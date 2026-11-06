@@ -7,3 +7,4 @@ CLI真实进程存档/重载与独立replay通过。60天批量暴露负现金�
 25局60天运行完成：value/random/no-clarify/clear-only各100%破产，greedy80%；原始结果见harness/results/batch.json及batch.csv，日志m0-slice-batch.log。
 回放：REPLAY_OK f9209084616923a0e3eee4d8a0e5e85fbc30f7313b913a58f36c0ddb57fc5962 slot=68。
 补充ViewModel内容对象隔离及移除core循环导入后再次运行门禁，见最终原始日志；未收到外部审查。
+最终16测试/4文件全部通过，571ms；冻结安装成功；代码检查点a6e8d93b8fcbd33bddd47d29de97c99d9fb75e1b。后续记录提交仅保存审查包和恢复SHA，无代码变更。
