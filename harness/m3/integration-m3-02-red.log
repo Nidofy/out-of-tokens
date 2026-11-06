@@ -1,0 +1,69 @@
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/review-m3.test.ts (3 tests | 3 failed) 40ms
+   × M3-02 every character can eat at their evening location 23ms
+   × M3-02 takeaway retains scene, cash and attendance guards with atomic rejection 10ms
+   × M3-02 library meal commands replay and old engine saves are refused 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/review-m3.test.ts > M3-02 every character can eat at their evening location
+AssertionError: qwen: expected 'WRONG_SCENE' to be null
+
+- Expected:
+null
+
++ Received:
+"WRONG_SCENE"
+
+ ❯ apps/sim-cli/review-m3.test.ts:18:34
+     16|         const beforeHash = hash(before);
+     17|         const result = dispatchCommand(before, { type: 'campaign', act…
+     18|         expect(result.error, id).toBeNull();
+       |                                  ^
+     19|         expect(hash(before)).toBe(beforeHash);
+     20|         expect(result.state.cash).toBe(before.cash - 30);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  apps/sim-cli/review-m3.test.ts > M3-02 takeaway retains scene, cash and attendance guards with atomic rejection
+AssertionError: poor: expected 'WRONG_SCENE' to be 'INSUFFICIENT_RESOURCES' // Object.is equality
+
+Expected: "INSUFFICIENT_RESOURCES"
+Received: "WRONG_SCENE"
+
+ ❯ apps/sim-cli/review-m3.test.ts:37:31
+     35|         const before = hash(s);
+     36|         const r = dispatchCommand(s, { type: 'campaign', action: 'meal…
+     37|         expect(r.error, kind).toBe({ 'wrong-scene': 'WRONG_SCENE', els…
+       |                               ^
+     38|         expect(r.state).toBe(s); expect(hash(s)).toBe(before);
+     39|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  apps/sim-cli/review-m3.test.ts > M3-02 library meal commands replay and old engine saves are refused
+AssertionError: expected 'WRONG_SCENE' to be null
+
+- Expected:
+null
+
++ Received:
+"WRONG_SCENE"
+
+ ❯ apps/sim-cli/review-m3.test.ts:46:89
+     44|     let s = createInitialState(c, 1);
+     45|     const commands = [{ type: 'advance' }, { type: 'advance' }, { type…
+     46|     for (const cmd of commands) { const r = dispatchCommand(s, cmd, c)…
+       |                                                                                         ^
+     47|     const text = save(c, s, commands);
+     48|     expect(hash(restore(c, text).state)).toBe(hash(s));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  07:34:53
+   Duration  382ms (transform 81ms, setup 0ms, import 186ms, tests 40ms, environment 0ms)

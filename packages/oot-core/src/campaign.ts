@@ -107,7 +107,7 @@ export function applyCampaign(s: State, c: Content, cmd: Extract<Command, { type
     check(!assigned || s.absoluteSlot % 4 >= 2, 'ACTOR_BUSY');
     check(actorScene(s, a!) === p.scene || (cmd.action === 'recall' && owns(s,'remote')), 'ACTOR_ELSEWHERE');
     if (cmd.action === 'recall') { check(actorScene(s,a!) !== 'workshop', 'ALREADY_HERE');if(owns(s,'remote') && actorScene(s,a!) !== p.scene) a!.mood=cap(a!.mood-5); r.location = 'workshop'; r.locationUntil = s.absoluteSlot + 1; r.affinity = cap(r.affinity + 1); return; }
-    if (cmd.action === 'meal') { r.hunger=cap(r.hunger-50);r.stress=cap(r.stress-8); check(p.scene === 'canteen', 'WRONG_SCENE'); pay(30); a!.energy = cap(a!.energy + 25); a!.mood = cap(a!.mood + 8); }
+    if (cmd.action === 'meal') { check(p.scene === 'canteen' || p.scene === 'library', 'WRONG_SCENE'); pay(30); r.hunger=cap(r.hunger-50);r.stress=cap(r.stress-8); a!.energy = cap(a!.energy + 25); a!.mood = cap(a!.mood + 8); }
     if (cmd.action === 'study') { check(p.scene === 'library', 'WRONG_SCENE'); check(a!.energy >= 10, 'TIRED'); a!.energy -= 10; r.xp += 10; p.research += 2; }
     if (cmd.action === 'chat') { r.stress=cap(r.stress-10); a!.mood = cap(a!.mood + 5); r.affinity = cap(r.affinity + 3); }
     if (cmd.action === 'gift') { pay(60); a!.mood = cap(a!.mood + 10); r.affinity = cap(r.affinity + 5); }

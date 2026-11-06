@@ -64,3 +64,6 @@ M3最终补验：CSP回归验证默认Pixi路径在禁止Function时失败，实
 
 分发检查点b5d1365355cba2d09ae50ecde9ff382bebe1af12：ZIP863819字节，211文件解压校验通过，包内Node24启动与DSH独立模块加载通过；IAB服务停止后离线刷新/推进通过。四份固定SHA Prompt在harness/reviews/m3-*-prompt.md，入口m3-handoff.md。本轮测试服务器已停；真实DSH/Profile/旧worktree未改。下一任务M05-03/PWA-01/WEB-03及收到的新报告，真人0/10与经营P1仍未关闭。
 M3代码检查点 afe87343cca5eb3460ad4b23f30b10f1346d99ca；114测试、构建与staged diff --check退出0。首次打包因artifacts父目录不存在而ENOENT（尚未生成包）；补mkdir父目录，保持目标包目录独占创建，避免覆盖已有版本。下一步打包校验与固定SHA审查。
+
+## 2026-11-07 M3复审集成检查点
+核验并原字节归档三份b5d1365报告，完整HEAD/报告hash及逐项处置见REVIEW_M3_INTEGRATION。恢复冻结安装和114测试通过。M3-02 P1保留3失败红测；最小增加图书馆同价外卖，0.8.1拒绝旧档。首次绿测2通过1失败为新测试save签名错误，日志保留；修正测试后3通过。全量pnpm check退出0：16文件117测试，integration-check-final-v1.log。所有日志另命名，历史check-final-v3/manifest/包/旧worktree不改。仅训练种子1，未消费正式或审查队列。下一任务WEB-03主线程复现与修复；M05-03不关闭，先研究低心情休息反事实，仍保留原分母。无真人/真实宿主/经营批准；不push、不付费调用。

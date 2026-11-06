@@ -1,0 +1,29 @@
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/review-m3.test.ts (3 tests | 1 failed) 48ms
+   × M3-02 library meal commands replay and old engine saves are refused 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/review-m3.test.ts > M3-02 library meal commands replay and old engine saves are refused
+Error: INVALID_SEED
+ ❯ requireRule packages/oot-core/dist/simulation.js:20:15
+     18| function requireRule(ok, message) {
+     19|     if (!ok)
+     20|         throw Error(message);
+       |               ^
+     21| }
+     22| function money(s, amount, reason) { s.cash = round(s.cash + amount); s…
+ ❯ createInitialState packages/oot-core/dist/simulation.js:33:5
+ ❯ replay packages/oot-persistence/dist/shared.js:10:17
+ ❯ save packages/oot-persistence/dist/index.js:6:14
+ ❯ apps/sim-cli/review-m3.test.ts:47:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  07:35:28
+   Duration  387ms (transform 83ms, setup 0ms, import 189ms, tests 48ms, environment 0ms)
