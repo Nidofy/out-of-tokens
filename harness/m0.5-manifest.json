@@ -1,0 +1,47 @@
+{
+  "fileHashEncoding": "SHA-256 of UTF-8 text with LF line endings",
+  "implementationCommit": "a91a52f0a4ea2c08ab6542c993ee91a6aa5c60b0",
+  "engineVersion": "0.4.0",
+  "contentVersion": "m0.4-1",
+  "contentHash": "8eb5797c5c1a43133792292c766919ee7a51f6a27a3f5ead418770a084da017d",
+  "policyVersion": 3,
+  "seeds": [
+    1001,
+    2000
+  ],
+  "games": 5000,
+  "tests": 56,
+  "replays": 14,
+  "gates": {
+    "chapterSurvival": true,
+    "randomRisk": true,
+    "characterCoverage": true,
+    "clarification": true
+  },
+  "files": {
+    "pnpm-lock.yaml": "a2d65ccc851793323aafc78d7b721847745fc13db9580b1cc368ce440cb909ac",
+    "harness/m0.5-install.log": "7547839af58c1c5f994cd50b3e5799268d91bec16a8c1ed54ff7ff3fbc19ced9",
+    "harness/m0.5-check.log": "b1488454cb26b3cf1b07bb89218b0c35afb2bda8bc186526ef6d81997883c029",
+    "harness/m0.5-validation.log": "6510f96fd87e93cc7ff044379f1a26f57eb7cd3b2f7e787eb51935a1f8c78a4e",
+    "harness/m0.5-smoke.log": "c9d308f6e011d410a10b141577e78b968687f46328bb7a4ef3c1b2b33bba75cc",
+    "harness/m0.5-replay-command.log": "5e4b75217d8c76af3862e83e0c6a0f320c665eb70d4e13377c6e180d5160acbc",
+    "harness/m0.5-replays.log": "ad936f77b4fab8f02492c875713f83b04b0204c0278046e704d69b69c2c38032",
+    "harness/validation-v3/summary.json": "ba30097293767ffa8c9ea09b0e9278d6e0009a5d55af65ddc811cad25e1cc673",
+    "harness/validation-v3/batch.csv": "96af5c0037c5902f39959b6b98548b01c17503d1449d36b9a80b0fea47e13b57",
+    "harness/validation-v3/batch.json": "566a440aa54a18047dd24271ef7704c20f4460753e3eb2d98d8737d58b275124",
+    "harness/validation-v3/value-replay.json": "542f6834addeeada25aabee59c03e45f662e027657c3e2963d0fb8867671a3cb",
+    "harness/validation-v3/value-1664-replay.json": "bd596b6f43fb6fea7659b93c49b15c639fbe3fb761f79b51f6a0002ac91f5af5",
+    "harness/validation-v3/value-1015-replay.json": "eb00d30d26722b08fdb14515b4389eb6d59d49971b2fc956dc22734eae95b60d",
+    "harness/validation-v3/greedy-replay.json": "539942e3a309b3dab5ebbed29b176cebf478400bbc6166e1dc50e4443feecb64",
+    "harness/validation-v3/greedy-1474-replay.json": "795c1195702494ec397f9b3d0faa2542d2a1990b2c8ef526a31068999464f205",
+    "harness/validation-v3/random-replay.json": "8ce30dd9cde04eebf05471f9f9210d4aad6c7b32cb0f54f34dbaf8a6b8bb1ac9",
+    "harness/validation-v3/random-1434-replay.json": "1686b4a21eec38700fef802c2446df1421b865fb0c8893832d76e9bffdd6714e",
+    "harness/validation-v3/random-1003-replay.json": "2506bfd94c430b590a1386cbd0b8637b0ee292bd551c1927da0f34c29c44a966",
+    "harness/validation-v3/no-clarify-replay.json": "b23911549a3d3c1cbce58c9c71acbdb87328c726e1d0d0f9e565ab553d6678fe",
+    "harness/validation-v3/no-clarify-1048-replay.json": "97f4f19a0fff956349d452709cc8ebf789beccfba5fb26754a8565e455dd5fcd",
+    "harness/validation-v3/no-clarify-1002-replay.json": "28ec5e35fe91e2edcce90c0d317dfea8239ccc7e6b770fc5765ed7ceed38466f",
+    "harness/validation-v3/clear-only-replay.json": "1983c76bced09218d5ecc533db73ebe2763cbe9fa93fef8961e4d4ba82a19f88",
+    "harness/validation-v3/clear-only-1362-replay.json": "1106928d3ef7180c8cfd97c0e52d8823db6293423acd8c7da513b76de604400d",
+    "harness/validation-v3/clear-only-1003-replay.json": "6cae9a8fca7687aa390132e8764a2e54f0374b0af666c3e66ac0a2a9e5ee26b7"
+  }
+}

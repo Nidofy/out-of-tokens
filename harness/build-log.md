@@ -26,3 +26,9 @@ pnpm sim:batch 100 60 1 harness/training-v4：500局四门禁通过，仅训练�
 node scripts/review-experiments.mjs：30模板×合法岗位×20种子，另100种子×14天逐角色消融；四人各有最优组合，Qwen移除收入仅64%，保留P1复核。
 pnpm sim:batch 5 14 1 harness/results：短规模和诊断回放成功。pnpm check：8文件56测试通过；m0.4-check-final.log。
 下一步：固定M0.4 SHA后1001–2000未见种子验证，完成M0.5包；M1仍有P1/资产门禁。
+
+M0.4代码提交a91a52f0a4ea2c08ab6542c993ee91a6aa5c60b0；795cc34记录审查包。
+M0.5最终验证（2026-11-06）：pnpm install --frozen-lockfile --offline成功；pnpm check为8文件56测试；pnpm sim:batch 5 14 21 harness/smoke-m05成功。
+pnpm sim:batch 1000 60 1001 harness/validation-v3 --enforce：5000局、四门禁全真、退出0，计算77.57秒。value章末现金1625.97/非负86.4%，random60天破产43.5%，四人参与18.31–32.56%，小白违约比10.16。
+pnpm sim:replay及全部14个诊断CLI回放均REPLAY_OK；verify-m05验证行数/唯一种子/指标重算/内容与状态hash，退出0。原始日志m0.5-*.log，文件校验m0.5-manifest.json。
+实现/参数在a91a52f后冻结，未用未见种子反调。M0.5工程检查点完成，不声称外部批准；Qwen消融和部分P1范围意见保留，M1未启动。
