@@ -26,7 +26,7 @@ test('daily weekly debt boundaries settle once', () => {
     expect(s.cash).toBe(-7600);
     s = step(s, { type: 'advance' });
     expect(s.ledger).toHaveLength(3);
-    expect(s.quota).toBe(600);
+    expect(s.quota).toBe(c.balance.upgradedQuota);
 });
 test('RNG streams are independent', () => { const a = createInitialState(c, 12), b = createInitialState(c, 12); draw(a, 'event'); expect(draw(a, 'board')).toBe(draw(b, 'board')); expect(draw(a, 'quality')).toBe(draw(b, 'quality')); });
 test('prepayment, occupancy and clarity cannot be repeated for free', () => { let s = createInitialState(c); const j = s.jobs[0]!.id; s = step(s, { type: 'accept', job: j }); expect(dispatchCommand(s, { type: 'accept', job: j }, c).error).toBe('NOT_POSTED'); s = step(s, { type: 'assign', job: j, team: [{ character: 'qwen', role: 'worker', mode: 'cloud' }] }); const j2 = s.jobs[1]!.id; s = step(s, { type: 'accept', job: j2 }); expect(dispatchCommand(s, { type: 'assign', job: j2, team: [{ character: 'qwen', role: 'worker', mode: 'cloud' }] }, c).error).toBe('ACTOR_BUSY'); });
@@ -42,7 +42,7 @@ test('empty resources halt without negative quota or spending', () => {
     expect(s.tokensUsed).toBe(0);
     expect(s.quota).toBe(0);
 });
-test('local work accrues electricity without consuming cloud quota', () => { let s = createInitialState({ ...c, events: [] }); const cmd = (x: unknown) => { const r = dispatchCommand(s, x, { ...c, events: [] }); expect(r.error).toBeNull(); s = r.state; }; cmd({ type: 'accept', job: s.jobs[0]!.id }); cmd({ type: 'assign', job: s.jobs[0]!.id, team: [{ character: 'qwen', role: 'worker', mode: 'local' }] }); cmd({ type: 'advance' }); expect(s.electricity).toBeGreaterThan(0); expect(s.quota).toBe(300); });
+test('local work accrues electricity without consuming cloud quota', () => { let s = createInitialState({ ...c, events: [] }); const cmd = (x: unknown) => { const r = dispatchCommand(s, x, { ...c, events: [] }); expect(r.error).toBeNull(); s = r.state; }; cmd({ type: 'accept', job: s.jobs[0]!.id }); cmd({ type: 'assign', job: s.jobs[0]!.id, team: [{ character: 'qwen', role: 'worker', mode: 'local' }] }); cmd({ type: 'advance' }); expect(s.electricity).toBeGreaterThan(0); expect(s.quota).toBe(c.balance.dailyQuota); });
 test('pending event save/reload resolves once and rejects replayed choice', () => {
     let found = false;
     for (let seed = 1; seed <= 50 && !found; seed++) {

@@ -6,9 +6,12 @@ import { save, restore, hash } from 'oot-persistence';
 import { parseLine } from './src/console.js';
 function fixture(delivery: 'oneshot' | 'multi' | 'retainer' = 'oneshot'): Content {
     const c = loadContent();
+    c.balance!.rewardScale = 1;
+    c.balance!.dailyQuota = 300;
+    c.balance!.upgradedQuota = 600;
     c.balance!.eventChance = 0;
     c.events = [];
-    c.commissions = [{ ...c.commissions[0]!, workload: 1, workSlots: 6, reward: 500, clarity: 100, delivery, phases: delivery === 'oneshot' ? 1 : 2 }];
+    c.commissions = [{ ...c.commissions[0]!, workload: 1, workSlots: 6, qualityLines: [60, 75, 90], reward: 500, clarity: 100, delivery, phases: delivery === 'oneshot' ? 1 : 2 }];
     for (const v of c.versions) {
         v.stability = 10;
         v.skills = { code: 8, write: 8, reason: 8, create: 8, media: 8, recall: 8 };

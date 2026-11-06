@@ -1,0 +1,4157 @@
+{
+  "protocol": "20 seeds per composition; controlled clarified first milestone; net receipts minus Token valued at 0.5/T per paid service slot; ablations 100 seeds x14 days using full engine",
+  "templates": [
+    {
+      "template": "menu",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 66.034,
+        "netRevenuePerPersonSlot": 193.9659756097561,
+        "cash": 902.3605,
+        "tokens": 214.2,
+        "workSlots": 4.1
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 66.034,
+          "netRevenuePerPersonSlot": 193.9659756097561,
+          "cash": 902.3605,
+          "tokens": 214.2,
+          "workSlots": 4.1
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.2,
+          "quality": 54.591499999999996,
+          "netRevenuePerPersonSlot": -29.81999999999999,
+          "cash": -89.09999999999997,
+          "tokens": 120,
+          "workSlots": 5
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.15,
+          "quality": 54.46999999999999,
+          "netRevenuePerPersonSlot": -39.50250000000001,
+          "cash": -147.01500000000004,
+          "tokens": 180,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 53.86999999999999,
+          "netRevenuePerPersonSlot": -64.26000000000002,
+          "cash": -267.30000000000007,
+          "tokens": 108,
+          "workSlots": 5
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.6,
+          "quality": 60.25899999999999,
+          "netRevenuePerPersonSlot": 54.67500000000002,
+          "cash": 427.6800000000001,
+          "tokens": 177.39000000000001,
+          "workSlots": 2.6
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.55,
+          "quality": 60.3285,
+          "netRevenuePerPersonSlot": 43.82674603174602,
+          "cash": 369.76499999999993,
+          "tokens": 187.31299999999996,
+          "workSlots": 2.65
+        },
+        "gain": 10.848253968254
+      }
+    },
+    {
+      "template": "bugs",
+      "best": {
+        "team": [
+          {
+            "character": "bluewhale",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 67.09149999999998,
+        "netRevenuePerPersonSlot": 199.03550000000004,
+        "cash": 1108.2825,
+        "tokens": 226.20999999999998,
+        "workSlots": 3
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 66.096,
+          "netRevenuePerPersonSlot": 192.81029411764706,
+          "cash": 1108.2825,
+          "tokens": 249.9,
+          "workSlots": 5.1
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 67.47,
+          "netRevenuePerPersonSlot": 167.21375,
+          "cash": 1108.2825,
+          "tokens": 210,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 49.61,
+          "netRevenuePerPersonSlot": -49.98749999999999,
+          "cash": -315.8999999999999,
+          "tokens": 168,
+          "workSlots": 8
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 49.86999999999999,
+          "netRevenuePerPersonSlot": -75.77999999999999,
+          "cash": -315.8999999999999,
+          "tokens": 126,
+          "workSlots": 5
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "planner",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.2,
+          "quality": 55.731500000000004,
+          "netRevenuePerPersonSlot": -17.825649350649357,
+          "cash": -42.12000000000002,
+          "tokens": 190.27500000000006,
+          "workSlots": 2.85
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 52.5495,
+          "netRevenuePerPersonSlot": -57.74999999999998,
+          "cash": -315.8999999999999,
+          "tokens": 176.69999999999993,
+          "workSlots": 3
+        },
+        "gain": 39.92435064935062
+      }
+    },
+    {
+      "template": "website",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 66.2465,
+        "netRevenuePerPersonSlot": 211.44951923076923,
+        "cash": 1242.3375,
+        "tokens": 285.6,
+        "workSlots": 5.2
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 66.2465,
+          "netRevenuePerPersonSlot": 211.44951923076923,
+          "cash": 1242.3375,
+          "tokens": 285.6,
+          "workSlots": 5.2
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.95,
+          "quality": 67.90400000000001,
+          "netRevenuePerPersonSlot": 103.88014285714287,
+          "cash": 847.1610000000001,
+          "tokens": 239.99999999999994,
+          "workSlots": 7
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 46.70399999999999,
+          "netRevenuePerPersonSlot": -63.5,
+          "cash": -364.5,
+          "tokens": 160,
+          "workSlots": 7
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 50.004,
+          "netRevenuePerPersonSlot": -72.75,
+          "cash": -364.5,
+          "tokens": 144,
+          "workSlots": 6
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "planner",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.25,
+          "quality": 56.63449999999999,
+          "netRevenuePerPersonSlot": -9.496839080459766,
+          "cash": 30.375,
+          "tokens": 225.99499999999995,
+          "workSlots": 3.85
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 53.69349999999999,
+          "netRevenuePerPersonSlot": -58.50625,
+          "cash": -364.5,
+          "tokens": 207.09999999999997,
+          "workSlots": 3
+        },
+        "gain": 49.00941091954024
+      }
+    },
+    {
+      "template": "signup",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 66.034,
+        "netRevenuePerPersonSlot": 221.6195121951219,
+        "cash": 1015.7399999999998,
+        "tokens": 214.2,
+        "workSlots": 4.1
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 66.034,
+          "netRevenuePerPersonSlot": 221.6195121951219,
+          "cash": 1015.7399999999998,
+          "tokens": 214.2,
+          "workSlots": 4.1
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 68.4915,
+          "netRevenuePerPersonSlot": 188.06399999999996,
+          "cash": 1030.32,
+          "tokens": 180,
+          "workSlots": 5
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 50.004,
+          "netRevenuePerPersonSlot": -60.60000000000001,
+          "cash": -291.6,
+          "tokens": 144,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 49.86999999999999,
+          "netRevenuePerPersonSlot": -69.12,
+          "cash": -291.6,
+          "tokens": 108,
+          "workSlots": 5
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 54.491499999999995,
+          "netRevenuePerPersonSlot": -52.73142857142857,
+          "cash": -291.6,
+          "tokens": 155.04,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 53.11600000000001,
+          "netRevenuePerPersonSlot": -52.99285714285714,
+          "cash": -291.6,
+          "tokens": 158.69999999999996,
+          "workSlots": 3
+        },
+        "gain": 0.2614285714285671
+      }
+    },
+    {
+      "template": "backup",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 66.49449999999999,
+        "netRevenuePerPersonSlot": 269.40725806451616,
+        "cash": 924.4125,
+        "tokens": 178.5,
+        "workSlots": 3.1
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 66.49449999999999,
+          "netRevenuePerPersonSlot": 269.40725806451616,
+          "cash": 924.4125,
+          "tokens": 178.5,
+          "workSlots": 3.1
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 68.1715,
+          "netRevenuePerPersonSlot": 215.69437499999995,
+          "cash": 937.7774999999998,
+          "tokens": 150,
+          "workSlots": 4
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 50.004,
+          "netRevenuePerPersonSlot": -54.55000000000002,
+          "cash": -267.30000000000007,
+          "tokens": 120,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 49.9915,
+          "netRevenuePerPersonSlot": -78.07500000000002,
+          "cash": -267.30000000000007,
+          "tokens": 90,
+          "workSlots": 4
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.3,
+          "quality": 57.091499999999996,
+          "netRevenuePerPersonSlot": 0.8999999999999968,
+          "cash": 80.19000000000001,
+          "tokens": 147.78000000000006,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.1,
+          "quality": 55.08749999999999,
+          "netRevenuePerPersonSlot": -44.65204081632655,
+          "cash": -151.47000000000006,
+          "tokens": 134.65000000000003,
+          "workSlots": 2.9
+        },
+        "gain": 45.552040816326546
+      }
+    },
+    {
+      "template": "weekly-script",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 66.49449999999999,
+        "netRevenuePerPersonSlot": 269.40725806451616,
+        "cash": 924.4125,
+        "tokens": 178.5,
+        "workSlots": 3.1
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 66.49449999999999,
+          "netRevenuePerPersonSlot": 269.40725806451616,
+          "cash": 924.4125,
+          "tokens": 178.5,
+          "workSlots": 3.1
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 68.1715,
+          "netRevenuePerPersonSlot": 215.69437499999995,
+          "cash": 937.7774999999998,
+          "tokens": 150,
+          "workSlots": 4
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 50.004,
+          "netRevenuePerPersonSlot": -54.55000000000002,
+          "cash": -267.30000000000007,
+          "tokens": 120,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 49.9915,
+          "netRevenuePerPersonSlot": -78.07500000000002,
+          "cash": -267.30000000000007,
+          "tokens": 90,
+          "workSlots": 4
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.3,
+          "quality": 57.091499999999996,
+          "netRevenuePerPersonSlot": 0.8999999999999968,
+          "cash": 80.19000000000001,
+          "tokens": 147.78000000000006,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.1,
+          "quality": 55.08749999999999,
+          "netRevenuePerPersonSlot": -44.65204081632655,
+          "cash": -151.47000000000006,
+          "tokens": 134.65000000000003,
+          "workSlots": 2.9
+        },
+        "gain": 45.552040816326546
+      }
+    },
+    {
+      "template": "translation",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 65.75449999999998,
+        "netRevenuePerPersonSlot": 250.41933333333338,
+        "cash": 838.7580000000002,
+        "tokens": 175,
+        "workSlots": 3
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 65.75449999999998,
+          "netRevenuePerPersonSlot": 250.41933333333338,
+          "cash": 838.7580000000002,
+          "tokens": 175,
+          "workSlots": 3
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.95,
+          "quality": 54.176,
+          "netRevenuePerPersonSlot": 202.79328358208954,
+          "cash": 719.4825,
+          "tokens": 80.25,
+          "workSlots": 3.35
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 55.489,
+          "netRevenuePerPersonSlot": 164.6680722891566,
+          "cash": 734.8725,
+          "tokens": 103,
+          "workSlots": 4.15
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.9,
+          "quality": 55.491499999999995,
+          "netRevenuePerPersonSlot": 77.33999999999996,
+          "cash": 461.6999999999998,
+          "tokens": 150,
+          "workSlots": 5
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 58.705999999999996,
+          "netRevenuePerPersonSlot": 176.43125,
+          "cash": 769.5,
+          "tokens": 127.55,
+          "workSlots": 2
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 57.7925,
+          "netRevenuePerPersonSlot": 171.37682926829268,
+          "cash": 769.5,
+          "tokens": 133.71,
+          "workSlots": 2.1
+        },
+        "gain": 5.054420731707324
+      }
+    },
+    {
+      "template": "speech",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 66.49449999999999,
+        "netRevenuePerPersonSlot": 373.9233870967742,
+        "cash": 1248.4125,
+        "tokens": 178.5,
+        "workSlots": 3.1
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 66.49449999999999,
+          "netRevenuePerPersonSlot": 373.9233870967742,
+          "cash": 1248.4125,
+          "tokens": 178.5,
+          "workSlots": 3.1
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.15,
+          "quality": 54.2715,
+          "netRevenuePerPersonSlot": -48.95,
+          "cash": -145.8,
+          "tokens": 100,
+          "workSlots": 4
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 55.491499999999995,
+          "netRevenuePerPersonSlot": -87.9,
+          "cash": -364.5,
+          "tokens": 150,
+          "workSlots": 5
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 53.991499999999995,
+          "netRevenuePerPersonSlot": -102.375,
+          "cash": -364.5,
+          "tokens": 90,
+          "workSlots": 4
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "planner",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.8,
+          "quality": 60.77750000000001,
+          "netRevenuePerPersonSlot": 172.979375,
+          "cash": 899.1,
+          "tokens": 137.59799999999998,
+          "workSlots": 2.4
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.5,
+          "quality": 59.684000000000005,
+          "netRevenuePerPersonSlot": 74.33936170212766,
+          "cash": 425.25,
+          "tokens": 151.71,
+          "workSlots": 2.7
+        },
+        "gain": 98.64001329787234
+      }
+    },
+    {
+      "template": "story",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 66.034,
+        "netRevenuePerPersonSlot": 262.90975609756094,
+        "cash": 1185.03,
+        "tokens": 214.2,
+        "workSlots": 4.1
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 66.034,
+          "netRevenuePerPersonSlot": 262.90975609756094,
+          "cash": 1185.03,
+          "tokens": 214.2,
+          "workSlots": 4.1
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.4,
+          "quality": 57.67,
+          "netRevenuePerPersonSlot": 27.10344827586208,
+          "cash": 226.80000000000004,
+          "tokens": 139.2,
+          "workSlots": 5.8
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.15,
+          "quality": 54.46999999999999,
+          "netRevenuePerPersonSlot": -37.68,
+          "cash": -136.07999999999998,
+          "tokens": 180,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 53.86999999999999,
+          "netRevenuePerPersonSlot": -78.83999999999997,
+          "cash": -340.19999999999993,
+          "tokens": 108,
+          "workSlots": 5
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.6,
+          "quality": 60.25899999999999,
+          "netRevenuePerPersonSlot": 73.48790322580643,
+          "cash": 544.3199999999999,
+          "tokens": 177.39000000000001,
+          "workSlots": 2.6
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.55,
+          "quality": 60.3285,
+          "netRevenuePerPersonSlot": 59.833888888888886,
+          "cash": 470.60999999999996,
+          "tokens": 187.31299999999996,
+          "workSlots": 2.65
+        },
+        "gain": 13.654014336917548
+      }
+    },
+    {
+      "template": "newsletter",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 66.49449999999999,
+        "netRevenuePerPersonSlot": 269.40725806451616,
+        "cash": 924.4125,
+        "tokens": 178.5,
+        "workSlots": 3.1
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 66.49449999999999,
+          "netRevenuePerPersonSlot": 269.40725806451616,
+          "cash": 924.4125,
+          "tokens": 178.5,
+          "workSlots": 3.1
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.3,
+          "quality": 57.239,
+          "netRevenuePerPersonSlot": 4.472164948453615,
+          "cash": 80.19000000000003,
+          "tokens": 117,
+          "workSlots": 4.85
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.3,
+          "quality": 57.459,
+          "netRevenuePerPersonSlot": -2.9884615384615403,
+          "cash": 66.82499999999999,
+          "tokens": 172.5,
+          "workSlots": 6.5
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 53.991499999999995,
+          "netRevenuePerPersonSlot": -78.07500000000002,
+          "cash": -267.30000000000007,
+          "tokens": 90,
+          "workSlots": 4
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "planner",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.8,
+          "quality": 60.77750000000001,
+          "netRevenuePerPersonSlot": 123.029375,
+          "cash": 659.3399999999999,
+          "tokens": 137.59799999999998,
+          "workSlots": 2.4
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.5,
+          "quality": 59.684000000000005,
+          "netRevenuePerPersonSlot": 50.21170212765957,
+          "cash": 311.85,
+          "tokens": 151.71,
+          "workSlots": 2.7
+        },
+        "gain": 72.81767287234044
+      }
+    },
+    {
+      "template": "review",
+      "best": {
+        "team": [
+          {
+            "character": "bluewhale",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 65.4775,
+        "netRevenuePerPersonSlot": 108.69511494252875,
+        "cash": 1060.8975,
+        "tokens": 230.49999999999991,
+        "workSlots": 3.15
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.7,
+          "quality": 61.47950000000001,
+          "netRevenuePerPersonSlot": 93.70178571428572,
+          "cash": 642.33,
+          "tokens": 235.19999999999996,
+          "workSlots": 5.6
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.5,
+          "quality": 60.633500000000005,
+          "netRevenuePerPersonSlot": 27.566666666666666,
+          "cash": 289.575,
+          "tokens": 207,
+          "workSlots": 6.75
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 50.004,
+          "netRevenuePerPersonSlot": -64.64999999999999,
+          "cash": -315.8999999999999,
+          "tokens": 144,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 44.8995,
+          "netRevenuePerPersonSlot": -73.97999999999998,
+          "cash": -315.8999999999999,
+          "tokens": 108,
+          "workSlots": 5
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "planner",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.4,
+          "quality": 58.30550000000001,
+          "netRevenuePerPersonSlot": 17.36200000000001,
+          "cash": 231.66000000000003,
+          "tokens": 202.88999999999996,
+          "workSlots": 2.75
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.25,
+          "quality": 57.00150000000001,
+          "netRevenuePerPersonSlot": -9.278846153846152,
+          "cash": 26.325000000000024,
+          "tokens": 197.40000000000003,
+          "workSlots": 2.9
+        },
+        "gain": 26.640846153846162
+      }
+    },
+    {
+      "template": "survey",
+      "best": {
+        "team": [
+          {
+            "character": "bluewhale",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 65.4775,
+        "netRevenuePerPersonSlot": 99.31494252873563,
+        "cash": 979.29,
+        "tokens": 230.49999999999991,
+        "workSlots": 3.15
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.7,
+          "quality": 61.47950000000001,
+          "netRevenuePerPersonSlot": 84.87857142857142,
+          "cash": 592.92,
+          "tokens": 235.19999999999996,
+          "workSlots": 5.6
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.5,
+          "quality": 60.633500000000005,
+          "netRevenuePerPersonSlot": 24.266666666666666,
+          "cash": 267.3,
+          "tokens": 207,
+          "workSlots": 6.75
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 50.004,
+          "netRevenuePerPersonSlot": -60.60000000000001,
+          "cash": -291.6,
+          "tokens": 144,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 44.8995,
+          "netRevenuePerPersonSlot": -69.12,
+          "cash": -291.6,
+          "tokens": 108,
+          "workSlots": 5
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "planner",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.4,
+          "quality": 58.30550000000001,
+          "netRevenuePerPersonSlot": 14.985999999999997,
+          "cash": 213.83999999999997,
+          "tokens": 202.88999999999996,
+          "workSlots": 2.75
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.25,
+          "quality": 57.00150000000001,
+          "netRevenuePerPersonSlot": -9.538461538461544,
+          "cash": 24.299999999999976,
+          "tokens": 197.40000000000003,
+          "workSlots": 2.9
+        },
+        "gain": 24.52446153846154
+      }
+    },
+    {
+      "template": "rivals",
+      "best": {
+        "team": [
+          {
+            "character": "bluewhale",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 64.7675,
+        "netRevenuePerPersonSlot": 118.8497487437186,
+        "cash": 1315.44,
+        "tokens": 265.77,
+        "workSlots": 3.4
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.55,
+          "quality": 60.59000000000001,
+          "netRevenuePerPersonSlot": 55.212903225806464,
+          "cash": 479.5200000000001,
+          "tokens": 274.4,
+          "workSlots": 6.2
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.35,
+          "quality": 57.903999999999996,
+          "netRevenuePerPersonSlot": -5.742857142857139,
+          "cash": 64.80000000000003,
+          "tokens": 210,
+          "workSlots": 7
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 49.61,
+          "netRevenuePerPersonSlot": -59.10000000000002,
+          "cash": -388.8000000000001,
+          "tokens": 168,
+          "workSlots": 8
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 45.05200000000001,
+          "netRevenuePerPersonSlot": -75.30000000000003,
+          "cash": -388.8000000000001,
+          "tokens": 126,
+          "workSlots": 6
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "planner",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.25,
+          "quality": 56.51800000000001,
+          "netRevenuePerPersonSlot": -10.530921052631587,
+          "cash": 32.399999999999956,
+          "tokens": 224.87000000000003,
+          "workSlots": 2.8
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 53.633500000000005,
+          "netRevenuePerPersonSlot": -61.807500000000026,
+          "cash": -388.8000000000001,
+          "tokens": 211.32000000000008,
+          "workSlots": 3
+        },
+        "gain": 51.276578947368435
+      }
+    },
+    {
+      "template": "history",
+      "best": {
+        "team": [
+          {
+            "character": "bluewhale",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 65.05350000000001,
+        "netRevenuePerPersonSlot": 125.70361538461539,
+        "cash": 911.0475,
+        "tokens": 187.94799999999995,
+        "workSlots": 2.25
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.5,
+          "quality": 60.705000000000005,
+          "netRevenuePerPersonSlot": 45.12765957446808,
+          "cash": 311.85,
+          "tokens": 199.5,
+          "workSlots": 4.7
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.55,
+          "quality": 60.59000000000001,
+          "netRevenuePerPersonSlot": 37.46854838709677,
+          "cash": 316.30499999999995,
+          "tokens": 168,
+          "workSlots": 6.2
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 50.004,
+          "netRevenuePerPersonSlot": -54.55000000000002,
+          "cash": -267.30000000000007,
+          "tokens": 120,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 44.903000000000006,
+          "netRevenuePerPersonSlot": -62.460000000000015,
+          "cash": -267.30000000000007,
+          "tokens": 90,
+          "workSlots": 5
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 50.757,
+          "netRevenuePerPersonSlot": -47.688571428571436,
+          "cash": -267.30000000000007,
+          "tokens": 133.04,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 51.102999999999994,
+          "netRevenuePerPersonSlot": -66.947,
+          "cash": -267.30000000000007,
+          "tokens": 134.86999999999995,
+          "workSlots": 3
+        },
+        "gain": 19.258428571428567
+      }
+    },
+    {
+      "template": "guide",
+      "best": {
+        "team": [
+          {
+            "character": "bluewhale",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 65.158,
+        "netRevenuePerPersonSlot": 121.28064516129032,
+        "cash": 828.225,
+        "tokens": 152.57,
+        "workSlots": 2.1
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.65,
+          "quality": 60.6225,
+          "netRevenuePerPersonSlot": 102.46478873239437,
+          "cash": 441.45,
+          "tokens": 155.4,
+          "workSlots": 3.55
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.5,
+          "quality": 60.705000000000005,
+          "netRevenuePerPersonSlot": 45.765957446808514,
+          "cash": 283.5,
+          "tokens": 136.8,
+          "workSlots": 4.7
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 49.86999999999999,
+          "netRevenuePerPersonSlot": -58.2,
+          "cash": -243,
+          "tokens": 96,
+          "workSlots": 5
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 45.032500000000006,
+          "netRevenuePerPersonSlot": -69.75,
+          "cash": -243,
+          "tokens": 72,
+          "workSlots": 4
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "planner",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.1,
+          "quality": 54.387,
+          "netRevenuePerPersonSlot": -40.77448979591837,
+          "cash": -137.7,
+          "tokens": 124.19000000000001,
+          "workSlots": 2.9
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 55.1985,
+          "netRevenuePerPersonSlot": -76.6925,
+          "cash": -243,
+          "tokens": 127.53999999999999,
+          "workSlots": 2
+        },
+        "gain": 35.918010204081625
+      }
+    },
+    {
+      "template": "logo",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 0.95,
+        "quality": 59.409000000000006,
+        "netRevenuePerPersonSlot": 96.36954545454545,
+        "cash": 1192.3200000000002,
+        "tokens": 264.5100000000001,
+        "workSlots": 5.5
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.55,
+          "quality": 54.80250000000001,
+          "netRevenuePerPersonSlot": 54.19523809523811,
+          "cash": 460.0800000000001,
+          "tokens": 237.29999999999995,
+          "workSlots": 6.3
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 37.843500000000006,
+          "netRevenuePerPersonSlot": -53.20000000000002,
+          "cash": -388.8000000000001,
+          "tokens": 180,
+          "workSlots": 9
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 47.554,
+          "netRevenuePerPersonSlot": -57.60000000000002,
+          "cash": -388.8000000000001,
+          "tokens": 144,
+          "workSlots": 8
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 38.004,
+          "netRevenuePerPersonSlot": -73.80000000000003,
+          "cash": -388.8000000000001,
+          "tokens": 108,
+          "workSlots": 6
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 44.510000000000005,
+          "netRevenuePerPersonSlot": -58.27500000000002,
+          "cash": -388.8000000000001,
+          "tokens": 154.80000000000004,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 44.7555,
+          "netRevenuePerPersonSlot": -66.36357142857143,
+          "cash": -388.8000000000001,
+          "tokens": 151.48999999999992,
+          "workSlots": 3
+        },
+        "gain": 8.088571428571413
+      }
+    },
+    {
+      "template": "poster",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 52.75449999999999,
+        "netRevenuePerPersonSlot": 273.6666666666667,
+        "cash": 891,
+        "tokens": 140,
+        "workSlots": 3
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 52.75449999999999,
+          "netRevenuePerPersonSlot": 273.6666666666667,
+          "cash": 891,
+          "tokens": 140,
+          "workSlots": 3
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.9,
+          "quality": 48.01049999999999,
+          "netRevenuePerPersonSlot": 143.3741573033708,
+          "cash": 681.615,
+          "tokens": 87.2,
+          "workSlots": 4.45
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.05,
+          "quality": 38.42,
+          "netRevenuePerPersonSlot": -47.86750000000002,
+          "cash": -227.2050000000001,
+          "tokens": 120,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 37.9915,
+          "netRevenuePerPersonSlot": -75.82500000000002,
+          "cash": -267.30000000000007,
+          "tokens": 72,
+          "workSlots": 4
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 49.319,
+          "netRevenuePerPersonSlot": 148.65625,
+          "cash": 891,
+          "tokens": 117.04999999999998,
+          "workSlots": 2.3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.8,
+          "quality": 47.482,
+          "netRevenuePerPersonSlot": 103.00327586206896,
+          "cash": 659.3399999999999,
+          "tokens": 123.84199999999998,
+          "workSlots": 2.4
+        },
+        "gain": 45.65297413793104
+      }
+    },
+    {
+      "template": "icons",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 54.311,
+        "netRevenuePerPersonSlot": 217.8409090909091,
+        "cash": 1053,
+        "tokens": 188.99999999999997,
+        "workSlots": 4.4
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 54.311,
+          "netRevenuePerPersonSlot": 217.8409090909091,
+          "cash": 1053,
+          "tokens": 188.99999999999997,
+          "workSlots": 4.4
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.5,
+          "quality": 48.83450000000001,
+          "netRevenuePerPersonSlot": 50.96315789473685,
+          "cash": 347.49000000000007,
+          "tokens": 114,
+          "workSlots": 5.7
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 38.824000000000005,
+          "netRevenuePerPersonSlot": -55.84285714285713,
+          "cash": -315.8999999999999,
+          "tokens": 150,
+          "workSlots": 7
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 37.86999999999999,
+          "netRevenuePerPersonSlot": -72.17999999999998,
+          "cash": -315.8999999999999,
+          "tokens": 90,
+          "workSlots": 5
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.45,
+          "quality": 48.788,
+          "netRevenuePerPersonSlot": 29.45921052631579,
+          "cash": 300.105,
+          "tokens": 152.43,
+          "workSlots": 2.8
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.3,
+          "quality": 47.42549999999999,
+          "netRevenuePerPersonSlot": 2.1148684210526363,
+          "cash": 94.77000000000002,
+          "tokens": 157.39399999999998,
+          "workSlots": 2.8
+        },
+        "gain": 27.344342105263152
+      }
+    },
+    {
+      "template": "ui-kit",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 59.231000000000016,
+        "netRevenuePerPersonSlot": 123.95846153846152,
+        "cash": 891,
+        "tokens": 170.54000000000005,
+        "workSlots": 3.25
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.6,
+          "quality": 54.564,
+          "netRevenuePerPersonSlot": 95.50136986301374,
+          "cash": 427.6800000000001,
+          "tokens": 158.2,
+          "workSlots": 3.65
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 38.42,
+          "netRevenuePerPersonSlot": -54.55000000000002,
+          "cash": -267.30000000000007,
+          "tokens": 120,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 47.8295,
+          "netRevenuePerPersonSlot": -63.06000000000002,
+          "cash": -267.30000000000007,
+          "tokens": 96,
+          "workSlots": 5
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 37.9915,
+          "netRevenuePerPersonSlot": -75.82500000000002,
+          "cash": -267.30000000000007,
+          "tokens": 72,
+          "workSlots": 4
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "planner",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 45.03149999999998,
+          "netRevenuePerPersonSlot": -53.66750000000002,
+          "cash": -267.30000000000007,
+          "tokens": 109.41000000000001,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 46.86999999999999,
+          "netRevenuePerPersonSlot": -64.44100000000002,
+          "cash": -267.30000000000007,
+          "tokens": 109.80999999999997,
+          "workSlots": 3
+        },
+        "gain": 10.773499999999999
+      }
+    },
+    {
+      "template": "mascot",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 0.95,
+        "quality": 59.409000000000006,
+        "netRevenuePerPersonSlot": 96.36954545454545,
+        "cash": 1192.3200000000002,
+        "tokens": 264.5100000000001,
+        "workSlots": 5.5
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.55,
+          "quality": 54.80250000000001,
+          "netRevenuePerPersonSlot": 54.19523809523811,
+          "cash": 460.0800000000001,
+          "tokens": 237.29999999999995,
+          "workSlots": 6.3
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 37.843500000000006,
+          "netRevenuePerPersonSlot": -53.20000000000002,
+          "cash": -388.8000000000001,
+          "tokens": 180,
+          "workSlots": 9
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 47.554,
+          "netRevenuePerPersonSlot": -57.60000000000002,
+          "cash": -388.8000000000001,
+          "tokens": 144,
+          "workSlots": 8
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 38.004,
+          "netRevenuePerPersonSlot": -73.80000000000003,
+          "cash": -388.8000000000001,
+          "tokens": 108,
+          "workSlots": 6
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 44.510000000000005,
+          "netRevenuePerPersonSlot": -58.27500000000002,
+          "cash": -388.8000000000001,
+          "tokens": 154.80000000000004,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 44.7555,
+          "netRevenuePerPersonSlot": -66.36357142857143,
+          "cash": -388.8000000000001,
+          "tokens": 151.48999999999992,
+          "workSlots": 3
+        },
+        "gain": 8.088571428571413
+      }
+    },
+    {
+      "template": "video",
+      "best": {
+        "team": [
+          {
+            "character": "bluewhale",
+            "role": "reviewer",
+            "mode": "cloud"
+          },
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "planner",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 0.85,
+        "quality": 47.684,
+        "netRevenuePerPersonSlot": 37.0209009009009,
+        "cash": 753.3,
+        "tokens": 273.80400000000003,
+        "workSlots": 5.55
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.45,
+          "quality": 43.903999999999996,
+          "netRevenuePerPersonSlot": 3.3285714285714385,
+          "cash": 145.8000000000001,
+          "tokens": 245.00000000000006,
+          "workSlots": 7
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 17.681,
+          "netRevenuePerPersonSlot": -38.23333333333334,
+          "cash": -291.6,
+          "tokens": 105,
+          "workSlots": 9
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 0,
+          "netRevenuePerPersonSlot": -40.080000000000005,
+          "cash": -291.6,
+          "tokens": 138.23999999999995,
+          "workSlots": 9
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 0,
+          "netRevenuePerPersonSlot": -40.326666666666675,
+          "cash": -291.6,
+          "tokens": 142.67999999999998,
+          "workSlots": 9
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 34.1805,
+          "netRevenuePerPersonSlot": -29.380000000000006,
+          "cash": -291.6,
+          "tokens": 239.43999999999997,
+          "workSlots": 5
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 34.59749999999999,
+          "netRevenuePerPersonSlot": -34.31166666666666,
+          "cash": -291.6,
+          "tokens": 240.27999999999983,
+          "workSlots": 4
+        },
+        "gain": 4.931666666666654
+      }
+    },
+    {
+      "template": "podcast",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 49.51099999999999,
+        "netRevenuePerPersonSlot": 67.10965909090909,
+        "cash": 677.16,
+        "tokens": 173.19000000000003,
+        "workSlots": 4.4
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.6,
+          "quality": 46.74100000000001,
+          "netRevenuePerPersonSlot": 50.01021505376343,
+          "cash": 311.6474999999999,
+          "tokens": 158.2,
+          "workSlots": 4.65
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 18.519999999999996,
+          "netRevenuePerPersonSlot": -43.475,
+          "cash": -230.85,
+          "tokens": 60.000000000000014,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 28.620000000000005,
+          "netRevenuePerPersonSlot": -45.141666666666666,
+          "cash": -230.85,
+          "tokens": 80,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 0,
+          "netRevenuePerPersonSlot": -46.305,
+          "cash": -230.85,
+          "tokens": 93.96000000000002,
+          "workSlots": 6
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 31.869999999999994,
+          "netRevenuePerPersonSlot": -35.62625,
+          "cash": -230.85,
+          "tokens": 108.31999999999996,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 31.52,
+          "netRevenuePerPersonSlot": -40.55214285714286,
+          "cash": -230.85,
+          "tokens": 106.03,
+          "workSlots": 3
+        },
+        "gain": 4.925892857142863
+      }
+    },
+    {
+      "template": "captions",
+      "best": {
+        "team": [
+          {
+            "character": "bluewhale",
+            "role": "planner",
+            "mode": "cloud"
+          },
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 0.7,
+        "quality": 46.637,
+        "netRevenuePerPersonSlot": 44.079589041095886,
+        "cash": 568.6199999999999,
+        "tokens": 171.897,
+        "workSlots": 3.65
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.35,
+          "quality": 44.17150000000001,
+          "netRevenuePerPersonSlot": 11.660000000000007,
+          "cash": 116.64000000000003,
+          "tokens": 140,
+          "workSlots": 4
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 0,
+          "netRevenuePerPersonSlot": -64.26,
+          "cash": -291.6,
+          "tokens": 59.4,
+          "workSlots": 5
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 0,
+          "netRevenuePerPersonSlot": -66.00000000000001,
+          "cash": -291.6,
+          "tokens": 76.79999999999998,
+          "workSlots": 5
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 0,
+          "netRevenuePerPersonSlot": -66.32400000000001,
+          "cash": -291.6,
+          "tokens": 80.03999999999998,
+          "workSlots": 5
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 31.869999999999994,
+          "netRevenuePerPersonSlot": -43.220000000000006,
+          "cash": -291.6,
+          "tokens": 108.31999999999996,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 31.52,
+          "netRevenuePerPersonSlot": -49.23071428571429,
+          "cash": -291.6,
+          "tokens": 106.03,
+          "workSlots": 3
+        },
+        "gain": 6.010714285714286
+      }
+    },
+    {
+      "template": "animation",
+      "best": {
+        "team": [
+          {
+            "character": "bluewhale",
+            "role": "reviewer",
+            "mode": "cloud"
+          },
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "planner",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 0.85,
+        "quality": 47.684,
+        "netRevenuePerPersonSlot": 44.56144144144144,
+        "cash": 878.85,
+        "tokens": 273.80400000000003,
+        "workSlots": 5.55
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.45,
+          "quality": 43.903999999999996,
+          "netRevenuePerPersonSlot": 6.799999999999997,
+          "cash": 170.1,
+          "tokens": 245.00000000000006,
+          "workSlots": 7
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 17.681,
+          "netRevenuePerPersonSlot": -43.633333333333326,
+          "cash": -340.19999999999993,
+          "tokens": 105,
+          "workSlots": 9
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 0,
+          "netRevenuePerPersonSlot": -45.47999999999999,
+          "cash": -340.19999999999993,
+          "tokens": 138.23999999999995,
+          "workSlots": 9
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 0,
+          "netRevenuePerPersonSlot": -45.72666666666665,
+          "cash": -340.19999999999993,
+          "tokens": 142.67999999999998,
+          "workSlots": 9
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 34.1805,
+          "netRevenuePerPersonSlot": -32.85142857142856,
+          "cash": -340.19999999999993,
+          "tokens": 239.43999999999997,
+          "workSlots": 5
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 34.59749999999999,
+          "netRevenuePerPersonSlot": -38.36166666666665,
+          "cash": -340.19999999999993,
+          "tokens": 240.27999999999983,
+          "workSlots": 4
+        },
+        "gain": 5.510238095238087
+      }
+    },
+    {
+      "template": "storyboard",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 49.51099999999999,
+        "netRevenuePerPersonSlot": 82.20511363636363,
+        "cash": 810,
+        "tokens": 173.19000000000003,
+        "workSlots": 4.4
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.6,
+          "quality": 46.74100000000001,
+          "netRevenuePerPersonSlot": 66.60215053763442,
+          "cash": 388.8,
+          "tokens": 158.2,
+          "workSlots": 4.65
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 25.994,
+          "netRevenuePerPersonSlot": -37.875,
+          "cash": -243,
+          "tokens": 119.99999999999997,
+          "workSlots": 8
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 18.519999999999996,
+          "netRevenuePerPersonSlot": -45.5,
+          "cash": -243,
+          "tokens": 60.000000000000014,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 28.620000000000005,
+          "netRevenuePerPersonSlot": -47.166666666666664,
+          "cash": -243,
+          "tokens": 80,
+          "workSlots": 6
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 31.869999999999994,
+          "netRevenuePerPersonSlot": -37.144999999999996,
+          "cash": -243,
+          "tokens": 108.31999999999996,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 31.52,
+          "netRevenuePerPersonSlot": -42.28785714285714,
+          "cash": -243,
+          "tokens": 106.03,
+          "workSlots": 3
+        },
+        "gain": 5.142857142857146
+      }
+    },
+    {
+      "template": "clean",
+      "best": {
+        "team": [
+          {
+            "character": "bluewhale",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 68.1715,
+        "netRevenuePerPersonSlot": 215.69437499999995,
+        "cash": 937.7774999999998,
+        "tokens": 150,
+        "workSlots": 4
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 68.1715,
+          "netRevenuePerPersonSlot": 215.69437499999995,
+          "cash": 937.7774999999998,
+          "tokens": 150,
+          "workSlots": 4
+        },
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 64.3475,
+          "netRevenuePerPersonSlot": 156.7227272727273,
+          "cash": 784.0800000000002,
+          "tokens": 189,
+          "workSlots": 4.4
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 47.5915,
+          "netRevenuePerPersonSlot": -63.460000000000015,
+          "cash": -267.30000000000007,
+          "tokens": 100,
+          "workSlots": 5
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 49.9915,
+          "netRevenuePerPersonSlot": -78.07500000000002,
+          "cash": -267.30000000000007,
+          "tokens": 90,
+          "workSlots": 4
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "planner",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 54.2235,
+          "netRevenuePerPersonSlot": -47.73857142857144,
+          "cash": -267.30000000000007,
+          "tokens": 133.73999999999995,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 53.638,
+          "netRevenuePerPersonSlot": -67.01400000000001,
+          "cash": -267.30000000000007,
+          "tokens": 135.54,
+          "workSlots": 3
+        },
+        "gain": 19.27542857142857
+      }
+    },
+    {
+      "template": "chart",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 64.3435,
+        "netRevenuePerPersonSlot": 250.36363636363637,
+        "cash": 1215,
+        "tokens": 226.8,
+        "workSlots": 4.4
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 64.3435,
+          "netRevenuePerPersonSlot": 250.36363636363637,
+          "cash": 1215,
+          "tokens": 226.8,
+          "workSlots": 4.4
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 68.4915,
+          "netRevenuePerPersonSlot": 239.58,
+          "cash": 1287.9,
+          "tokens": 180,
+          "workSlots": 5
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 50.004,
+          "netRevenuePerPersonSlot": -72.75,
+          "cash": -364.5,
+          "tokens": 144,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 49.86999999999999,
+          "netRevenuePerPersonSlot": -83.7,
+          "cash": -364.5,
+          "tokens": 108,
+          "workSlots": 5
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 53.5175,
+          "netRevenuePerPersonSlot": -63.02285714285715,
+          "cash": -364.5,
+          "tokens": 153.32000000000002,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 52.283500000000004,
+          "netRevenuePerPersonSlot": -63.301428571428566,
+          "cash": -364.5,
+          "tokens": 157.21999999999994,
+          "workSlots": 3
+        },
+        "gain": 0.2785714285714178
+      }
+    },
+    {
+      "template": "forecast",
+      "best": {
+        "team": [
+          {
+            "character": "bluewhale",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 66.64250000000001,
+        "netRevenuePerPersonSlot": 258.59711538461534,
+        "cash": 1459.6199999999997,
+        "tokens": 229.82999999999998,
+        "workSlots": 3.1
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 67.47,
+          "netRevenuePerPersonSlot": 224.04874999999998,
+          "cash": 1449.2925,
+          "tokens": 210,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.95,
+          "quality": 64.28099999999999,
+          "netRevenuePerPersonSlot": 218.4235849056604,
+          "cash": 1287.4950000000001,
+          "tokens": 259.7,
+          "workSlots": 5.3
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 49.61,
+          "netRevenuePerPersonSlot": -62.137500000000024,
+          "cash": -413.1000000000002,
+          "tokens": 168,
+          "workSlots": 8
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 49.86999999999999,
+          "netRevenuePerPersonSlot": -95.22000000000004,
+          "cash": -413.1000000000002,
+          "tokens": 126,
+          "workSlots": 5
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "planner",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.05,
+          "quality": 54.3005,
+          "netRevenuePerPersonSlot": -53.152848101265846,
+          "cash": -323.59500000000014,
+          "tokens": 192.62500000000006,
+          "workSlots": 2.95
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 51.83549999999999,
+          "netRevenuePerPersonSlot": -71.53000000000002,
+          "cash": -413.1000000000002,
+          "tokens": 175.2199999999999,
+          "workSlots": 3
+        },
+        "gain": 18.37715189873417
+      }
+    },
+    {
+      "template": "inventory",
+      "best": {
+        "team": [
+          {
+            "character": "bluewhale",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 66.123,
+        "netRevenuePerPersonSlot": 310.1512195121952,
+        "cash": 1354.3200000000002,
+        "tokens": 165.40000000000003,
+        "workSlots": 2.1
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 68.1715,
+          "netRevenuePerPersonSlot": 288.15900000000005,
+          "cash": 1227.6360000000002,
+          "tokens": 150,
+          "workSlots": 4
+        },
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0.6,
+          "quality": 62.21149999999999,
+          "netRevenuePerPersonSlot": 114.205,
+          "cash": 544.3199999999999,
+          "tokens": 175,
+          "workSlots": 4
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 47.5915,
+          "netRevenuePerPersonSlot": -87.76000000000003,
+          "cash": -388.8000000000001,
+          "tokens": 100,
+          "workSlots": 5
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 49.9915,
+          "netRevenuePerPersonSlot": -108.45000000000005,
+          "cash": -388.8000000000001,
+          "tokens": 90,
+          "workSlots": 4
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "planner",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 54.2235,
+          "netRevenuePerPersonSlot": -65.0957142857143,
+          "cash": -388.8000000000001,
+          "tokens": 133.73999999999995,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 53.638,
+          "netRevenuePerPersonSlot": -91.31400000000004,
+          "cash": -388.8000000000001,
+          "tokens": 135.54,
+          "workSlots": 3
+        },
+        "gain": 26.21828571428574
+      }
+    },
+    {
+      "template": "metrics",
+      "best": {
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          }
+        ],
+        "deliveryRate": 1,
+        "quality": 64.3435,
+        "netRevenuePerPersonSlot": 213.54545454545453,
+        "cash": 1053,
+        "tokens": 226.8,
+        "workSlots": 4.4
+      },
+      "bestSingle": [
+        {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 64.3435,
+          "netRevenuePerPersonSlot": 213.54545454545453,
+          "cash": 1053,
+          "tokens": 226.8,
+          "workSlots": 4.4
+        },
+        {
+          "team": [
+            {
+              "character": "bluewhale",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 1,
+          "quality": 68.4915,
+          "netRevenuePerPersonSlot": 205.23600000000002,
+          "cash": 1116.18,
+          "tokens": 180,
+          "workSlots": 5
+        },
+        {
+          "team": [
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 50.004,
+          "netRevenuePerPersonSlot": -64.64999999999999,
+          "cash": -315.8999999999999,
+          "tokens": 144,
+          "workSlots": 6
+        },
+        {
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 49.86999999999999,
+          "netRevenuePerPersonSlot": -73.97999999999998,
+          "cash": -315.8999999999999,
+          "tokens": 108,
+          "workSlots": 5
+        }
+      ],
+      "plannerAdvantage": {
+        "planner": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "planner",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 53.5175,
+          "netRevenuePerPersonSlot": -56.07999999999999,
+          "cash": -315.8999999999999,
+          "tokens": 153.32000000000002,
+          "workSlots": 3
+        },
+        "workers": {
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "cloud"
+            }
+          ],
+          "deliveryRate": 0,
+          "quality": 52.283500000000004,
+          "netRevenuePerPersonSlot": -56.35857142857141,
+          "cash": -315.8999999999999,
+          "tokens": 157.21999999999994,
+          "workSlots": 3
+        },
+        "gain": 0.2785714285714178
+      }
+    }
+  ],
+  "ablation": [
+    {
+      "excluded": null,
+      "runs": 100,
+      "chapterCash": 1287.6746000000003,
+      "netProjectReceipts": 8927.1746,
+      "deliveries": 7.98,
+      "parallelDailySnapshotRate": 0.565
+    },
+    {
+      "excluded": "bluewhale",
+      "runs": 100,
+      "chapterCash": -1422.0802000000006,
+      "netProjectReceipts": 6209.919799999998,
+      "deliveries": 6.06,
+      "parallelDailySnapshotRate": 0.225
+    },
+    {
+      "excluded": "qwen",
+      "runs": 100,
+      "chapterCash": -1896.4665999999997,
+      "netProjectReceipts": 5724.533399999999,
+      "deliveries": 5.55,
+      "parallelDailySnapshotRate": 0.21071428571428572
+    },
+    {
+      "excluded": "llama",
+      "runs": 100,
+      "chapterCash": -39.42929999999999,
+      "netProjectReceipts": 7589.070699999998,
+      "deliveries": 6.65,
+      "parallelDailySnapshotRate": 0.4492857142857143
+    },
+    {
+      "excluded": "mistral",
+      "runs": 100,
+      "chapterCash": -311.93039999999985,
+      "netProjectReceipts": 7318.569600000002,
+      "deliveries": 5.99,
+      "parallelDailySnapshotRate": 0.44642857142857145
+    }
+  ]
+}

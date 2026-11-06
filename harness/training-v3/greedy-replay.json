@@ -1,0 +1,622 @@
+{
+  "schemaVersion": 1,
+  "engineVersion": "0.4.0",
+  "contentVersion": "m0.4-1",
+  "contentHash": "67588b51160761eb7e426fc07a819831e7cff0b1428576f4bac006021c5de600",
+  "seed": 1,
+  "commands": [
+    {
+      "type": "accept",
+      "job": "0-0"
+    },
+    {
+      "type": "assign",
+      "job": "0-0",
+      "team": [
+        {
+          "character": "bluewhale",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "qwen",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "buy",
+      "amount": 100
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "8-1"
+    },
+    {
+      "type": "assign",
+      "job": "8-1",
+      "team": [
+        {
+          "character": "mistral",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "0-0"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "deliver",
+      "job": "8-1"
+    },
+    {
+      "type": "accept",
+      "job": "12-2"
+    },
+    {
+      "type": "assign",
+      "job": "12-2",
+      "team": [
+        {
+          "character": "mistral",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "12-2"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "32-2"
+    },
+    {
+      "type": "assign",
+      "job": "32-2",
+      "team": [
+        {
+          "character": "llama",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "mistral",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "0-0"
+    },
+    {
+      "type": "deliver",
+      "job": "32-2"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "52-4"
+    },
+    {
+      "type": "assign",
+      "job": "52-4",
+      "team": [
+        {
+          "character": "mistral",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "52-4"
+    },
+    {
+      "type": "accept",
+      "job": "56-0"
+    },
+    {
+      "type": "assign",
+      "job": "56-0",
+      "team": [
+        {
+          "character": "llama",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "mistral",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "0-0"
+    },
+    {
+      "type": "deliver",
+      "job": "56-0"
+    },
+    {
+      "type": "clarify",
+      "job": "64-1",
+      "character": "bluewhale"
+    },
+    {
+      "type": "clarify",
+      "job": "64-1",
+      "character": "qwen"
+    },
+    {
+      "type": "clarify",
+      "job": "64-1",
+      "character": "llama"
+    },
+    {
+      "type": "accept",
+      "job": "64-0"
+    },
+    {
+      "type": "assign",
+      "job": "64-0",
+      "team": [
+        {
+          "character": "mistral",
+          "role": "worker",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "68-4",
+      "character": "bluewhale"
+    },
+    {
+      "type": "clarify",
+      "job": "68-4",
+      "character": "qwen"
+    },
+    {
+      "type": "accept",
+      "job": "68-3"
+    },
+    {
+      "type": "assign",
+      "job": "68-3",
+      "team": [
+        {
+          "character": "llama",
+          "role": "worker",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "accept",
+      "job": "68-4"
+    },
+    {
+      "type": "assign",
+      "job": "68-4",
+      "team": [
+        {
+          "character": "bluewhale",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "qwen",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "64-0"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "68-3"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "80-0"
+    },
+    {
+      "type": "assign",
+      "job": "80-0",
+      "team": [
+        {
+          "character": "llama",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "mistral",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "68-4"
+    },
+    {
+      "type": "clarify",
+      "job": "80-1",
+      "character": "bluewhale"
+    },
+    {
+      "type": "clarify",
+      "job": "80-1",
+      "character": "qwen"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "84-0",
+      "character": "bluewhale"
+    },
+    {
+      "type": "clarify",
+      "job": "84-1",
+      "character": "qwen"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "84-0"
+    },
+    {
+      "type": "assign",
+      "job": "84-0",
+      "team": [
+        {
+          "character": "bluewhale",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "qwen",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "advance"
+    }
+  ],
+  "stateHash": "c254215176ea009fbf97a442babe37b0bee52ca12e793011ccee8318bde3ff4a"
+}

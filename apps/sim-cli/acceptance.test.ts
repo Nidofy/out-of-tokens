@@ -6,8 +6,11 @@ import { hash, save, restore } from 'oot-persistence';
 import { parseLine, render } from './src/console.js';
 function fixture(): Content {
     const c = loadContent();
+    c.balance!.rewardScale = 1;
+    c.balance!.dailyQuota = 300;
+    c.balance!.upgradedQuota = 600;
     c.events = [];
-    c.commissions = [{ ...c.commissions[0]!, reward: 500, workload: 4, workSlots: 4, clarity: 100 }];
+    c.commissions = [{ ...c.commissions[0]!, qualityLines: [60, 75, 90], reward: 500, workload: 4, workSlots: 4, clarity: 100 }];
     for (const v of c.versions) {
         v.skills = { code: 8, write: 8, reason: 8, create: 8, media: 8, recall: 8 };
         v.stability = 10;
@@ -107,7 +110,7 @@ test('partially validated team fails with no mutation or output', () => {
     x.send({ type: 'accept', job: '0-0' });
     const before = hash(x.state);
     const r = dispatchCommand(x.state, { type: 'assign', job: '0-0', team: [worker, { ...worker, character: 'missing' }] }, x.c);
-    expect(r.error).toBe('ACTOR_BUSY');
+    expect(r.error).toBe('UNKNOWN_ACTOR');
     expect(r.state).toBe(x.state);
     expect(r.events).toEqual([]);
     expect(hash(x.state)).toBe(before);
@@ -204,7 +207,7 @@ test('paid choice and resources are not charged twice after reload', () => {
         const r = dispatchCommand(restore(c, save(c, seed, commands, s)).state, choice, c);
         expect(r.error).toBeNull();
         const loaded = restore(c, save(c, seed, [...commands, choice], r.state)).state;
-        expect(loaded.ledger.filter(l => l.reason === 'event:busy')).toHaveLength(1);
+        expect(loaded.ledger.filter(l => l.reason.startsWith('event:busy:'))).toHaveLength(1);
         expect(loaded.resources).toHaveLength(1);
         const retry = dispatchCommand(loaded, choice, c);
         expect(retry.state).toBe(loaded);

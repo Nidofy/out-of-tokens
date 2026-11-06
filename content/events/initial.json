@@ -516,9 +516,14 @@
     "trigger": "working",
     "choices": [
       {
-        "label": "接受鼓励",
+        "label": "接受鼓励，额外消耗心情",
         "multiplier": 1.2,
-        "effects": [],
+        "effects": [
+          {
+            "kind": "mood",
+            "value": -5
+          }
+        ],
         "cost": 0
       },
       {

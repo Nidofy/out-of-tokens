@@ -1,0 +1,171 @@
+{
+  "bestCharacters": [
+    "qwen",
+    "bluewhale",
+    "llama"
+  ],
+  "plannerWins": [
+    {
+      "template": "menu",
+      "gain": 10.848253968254
+    },
+    {
+      "template": "bugs",
+      "gain": 39.92435064935062
+    },
+    {
+      "template": "website",
+      "gain": 49.00941091954024
+    },
+    {
+      "template": "signup",
+      "gain": 0.2614285714285671
+    },
+    {
+      "template": "backup",
+      "gain": 45.552040816326546
+    },
+    {
+      "template": "weekly-script",
+      "gain": 45.552040816326546
+    },
+    {
+      "template": "translation",
+      "gain": 5.054420731707324
+    },
+    {
+      "template": "speech",
+      "gain": 98.64001329787234
+    },
+    {
+      "template": "story",
+      "gain": 13.654014336917548
+    },
+    {
+      "template": "newsletter",
+      "gain": 72.81767287234044
+    },
+    {
+      "template": "review",
+      "gain": 26.640846153846162
+    },
+    {
+      "template": "survey",
+      "gain": 24.52446153846154
+    },
+    {
+      "template": "rivals",
+      "gain": 51.276578947368435
+    },
+    {
+      "template": "history",
+      "gain": 19.258428571428567
+    },
+    {
+      "template": "guide",
+      "gain": 35.918010204081625
+    },
+    {
+      "template": "logo",
+      "gain": 8.088571428571413
+    },
+    {
+      "template": "poster",
+      "gain": 45.65297413793104
+    },
+    {
+      "template": "icons",
+      "gain": 27.344342105263152
+    },
+    {
+      "template": "ui-kit",
+      "gain": 10.773499999999999
+    },
+    {
+      "template": "mascot",
+      "gain": 8.088571428571413
+    },
+    {
+      "template": "video",
+      "gain": 4.931666666666654
+    },
+    {
+      "template": "podcast",
+      "gain": 4.925892857142863
+    },
+    {
+      "template": "captions",
+      "gain": 6.010714285714286
+    },
+    {
+      "template": "animation",
+      "gain": 5.510238095238087
+    },
+    {
+      "template": "storyboard",
+      "gain": 5.142857142857146
+    },
+    {
+      "template": "clean",
+      "gain": 19.27542857142857
+    },
+    {
+      "template": "chart",
+      "gain": 0.2785714285714178
+    },
+    {
+      "template": "forecast",
+      "gain": 18.37715189873417
+    },
+    {
+      "template": "inventory",
+      "gain": 26.21828571428574
+    },
+    {
+      "template": "metrics",
+      "gain": 0.2785714285714178
+    }
+  ],
+  "ablation": [
+    {
+      "excluded": null,
+      "runs": 100,
+      "chapterCash": 1287.6746000000003,
+      "netProjectReceipts": 8927.1746,
+      "deliveries": 7.98,
+      "parallelDailySnapshotRate": 0.565
+    },
+    {
+      "excluded": "bluewhale",
+      "runs": 100,
+      "chapterCash": -1422.0802000000006,
+      "netProjectReceipts": 6209.919799999998,
+      "deliveries": 6.06,
+      "parallelDailySnapshotRate": 0.225
+    },
+    {
+      "excluded": "qwen",
+      "runs": 100,
+      "chapterCash": -1896.4665999999997,
+      "netProjectReceipts": 5724.533399999999,
+      "deliveries": 5.55,
+      "parallelDailySnapshotRate": 0.21071428571428572
+    },
+    {
+      "excluded": "llama",
+      "runs": 100,
+      "chapterCash": -39.42929999999999,
+      "netProjectReceipts": 7589.070699999998,
+      "deliveries": 6.65,
+      "parallelDailySnapshotRate": 0.4492857142857143
+    },
+    {
+      "excluded": "mistral",
+      "runs": 100,
+      "chapterCash": -311.93039999999985,
+      "netProjectReceipts": 7318.569600000002,
+      "deliveries": 5.99,
+      "parallelDailySnapshotRate": 0.44642857142857145
+    }
+  ]
+}

@@ -1,0 +1,1506 @@
+{
+  "version": "m0.4-1",
+  "versions": [
+    {
+      "id": "bluewhale.v3",
+      "character": "bluewhale",
+      "name": "DeepSeek V3",
+      "skills": {
+        "code": 7,
+        "write": 6,
+        "reason": 7,
+        "create": 5,
+        "media": 2,
+        "recall": 5
+      },
+      "speed": 1,
+      "price": 6,
+      "stability": 6,
+      "context": 6,
+      "modes": [
+        "cloud",
+        "local"
+      ],
+      "rhythm": [
+        1,
+        0.8,
+        1,
+        1.2
+      ]
+    },
+    {
+      "id": "qwen.2.5",
+      "character": "qwen",
+      "name": "Qwen 2.5",
+      "skills": {
+        "code": 7,
+        "write": 7,
+        "reason": 6,
+        "create": 6,
+        "media": 4,
+        "recall": 6
+      },
+      "speed": 1.1,
+      "price": 7,
+      "stability": 6,
+      "context": 6,
+      "modes": [
+        "cloud",
+        "local"
+      ],
+      "rhythm": [
+        1.2,
+        1,
+        1,
+        0.8
+      ]
+    },
+    {
+      "id": "llama.3",
+      "character": "llama",
+      "name": "Llama 3",
+      "skills": {
+        "code": 5,
+        "write": 6,
+        "reason": 5,
+        "create": 6,
+        "media": 2,
+        "recall": 5
+      },
+      "speed": 1.2,
+      "price": 4,
+      "stability": 5,
+      "context": 5,
+      "modes": [
+        "cloud",
+        "local"
+      ],
+      "rhythm": [
+        1,
+        1,
+        1.2,
+        0.8
+      ]
+    },
+    {
+      "id": "mistral.7b",
+      "character": "mistral",
+      "name": "Mistral 7B",
+      "skills": {
+        "code": 5,
+        "write": 6,
+        "reason": 5,
+        "create": 5,
+        "media": 1,
+        "recall": 4
+      },
+      "speed": 1.5,
+      "price": 3,
+      "stability": 5,
+      "context": 4,
+      "modes": [
+        "cloud",
+        "local"
+      ],
+      "rhythm": [
+        1.2,
+        1.2,
+        1,
+        0.8
+      ]
+    }
+  ],
+  "commissions": [
+    {
+      "id": "menu",
+      "title": "帮楼下奶茶店写个菜单",
+      "titleEn": "Tea shop menu",
+      "category": "write",
+      "client": "expert",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求与验收标准明确，可按能力权重安排团队。",
+      "weights": {
+        "code": 0,
+        "write": 0.7,
+        "reason": 0,
+        "create": 0,
+        "media": 0,
+        "recall": 0.3
+      },
+      "workload": 30,
+      "workSlots": 4,
+      "reward": 1100,
+      "clarity": 95,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "bugs",
+      "title": "修一下网站，就一个小地方",
+      "titleEn": "One tiny website bug",
+      "category": "code",
+      "client": "normal",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求基本明确，仍有细节需要澄清。",
+      "weights": {
+        "code": 0.7,
+        "write": 0,
+        "reason": 0.3,
+        "create": 0,
+        "media": 0,
+        "recall": 0
+      },
+      "workload": 35,
+      "workSlots": 6,
+      "reward": 1300,
+      "clarity": 60,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "website",
+      "title": "做个类似微信的简单网站",
+      "titleEn": "A simple social website",
+      "category": "code",
+      "client": "novice",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+      "weights": {
+        "code": 0.7,
+        "write": 0,
+        "reason": 0.3,
+        "create": 0,
+        "media": 0,
+        "recall": 0
+      },
+      "workload": 40,
+      "workSlots": 6,
+      "reward": 1500,
+      "clarity": 20,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "signup",
+      "title": "社团报名页",
+      "titleEn": "Club signup page",
+      "category": "code",
+      "client": "expert",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求与验收标准明确，可按能力权重安排团队。",
+      "weights": {
+        "code": 0.7,
+        "write": 0,
+        "reason": 0.3,
+        "create": 0,
+        "media": 0,
+        "recall": 0
+      },
+      "workload": 30,
+      "workSlots": 6,
+      "reward": 1200,
+      "clarity": 95,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "backup",
+      "title": "备份脚本与恢复演练",
+      "titleEn": "Backup and restore drill",
+      "category": "code",
+      "client": "normal",
+      "phases": 2,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求基本明确，仍有细节需要澄清。",
+      "weights": {
+        "code": 0.7,
+        "write": 0,
+        "reason": 0.3,
+        "create": 0,
+        "media": 0,
+        "recall": 0
+      },
+      "workload": 25,
+      "workSlots": 5,
+      "reward": 1100,
+      "clarity": 70,
+      "delivery": "multi"
+    },
+    {
+      "id": "weekly-script",
+      "title": "每周生成公司周报",
+      "titleEn": "Weekly reporting script",
+      "category": "code",
+      "client": "expert",
+      "phases": 3,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求与验收标准明确，可按能力权重安排团队。",
+      "weights": {
+        "code": 0.7,
+        "write": 0,
+        "reason": 0.3,
+        "create": 0,
+        "media": 0,
+        "recall": 0
+      },
+      "workload": 25,
+      "workSlots": 6,
+      "reward": 1100,
+      "clarity": 90,
+      "delivery": "retainer"
+    },
+    {
+      "id": "translation",
+      "title": "咖啡店双语告示",
+      "titleEn": "Bilingual cafe notice",
+      "category": "write",
+      "client": "expert",
+      "phases": 1,
+      "qualityLines": [
+        50,
+        65,
+        80
+      ],
+      "description": "需求与验收标准明确，可按能力权重安排团队。",
+      "weights": {
+        "code": 0,
+        "write": 0.7,
+        "reason": 0,
+        "create": 0,
+        "media": 0,
+        "recall": 0.3
+      },
+      "workload": 25,
+      "workSlots": 4,
+      "reward": 950,
+      "clarity": 95,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "speech",
+      "title": "明早的活动致辞",
+      "titleEn": "Tomorrow morning speech",
+      "category": "write",
+      "client": "rush",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "交期很紧，请先检查团队速度和空闲时段。",
+      "weights": {
+        "code": 0,
+        "write": 0.7,
+        "reason": 0,
+        "create": 0,
+        "media": 0,
+        "recall": 0.3
+      },
+      "workload": 25,
+      "workSlots": 3,
+      "reward": 1500,
+      "clarity": 75,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "story",
+      "title": "要温暖又震撼的小故事",
+      "titleEn": "A warm yet epic story",
+      "category": "write",
+      "client": "novice",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+      "weights": {
+        "code": 0,
+        "write": 0.7,
+        "reason": 0,
+        "create": 0,
+        "media": 0,
+        "recall": 0.3
+      },
+      "workload": 30,
+      "workSlots": 5,
+      "reward": 1400,
+      "clarity": 20,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "newsletter",
+      "title": "社区通讯每周更新",
+      "titleEn": "Weekly community newsletter",
+      "category": "write",
+      "client": "normal",
+      "phases": 3,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求基本明确，仍有细节需要澄清。",
+      "weights": {
+        "code": 0,
+        "write": 0.7,
+        "reason": 0,
+        "create": 0,
+        "media": 0,
+        "recall": 0.3
+      },
+      "workload": 25,
+      "workSlots": 6,
+      "reward": 1100,
+      "clarity": 70,
+      "delivery": "retainer"
+    },
+    {
+      "id": "review",
+      "title": "论文引用核查",
+      "titleEn": "Literature citation audit",
+      "category": "research",
+      "client": "expert",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求与验收标准明确，可按能力权重安排团队。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0.5,
+        "create": 0,
+        "media": 0,
+        "recall": 0.5
+      },
+      "workload": 30,
+      "workSlots": 6,
+      "reward": 1300,
+      "clarity": 90,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "survey",
+      "title": "用户访谈总结",
+      "titleEn": "User interview summary",
+      "category": "research",
+      "client": "normal",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求基本明确，仍有细节需要澄清。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0.5,
+        "create": 0,
+        "media": 0,
+        "recall": 0.5
+      },
+      "workload": 30,
+      "workSlots": 6,
+      "reward": 1200,
+      "clarity": 60,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "rivals",
+      "title": "看看别人怎么做的",
+      "titleEn": "Find what competitors do",
+      "category": "research",
+      "client": "novice",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0.5,
+        "create": 0,
+        "media": 0,
+        "recall": 0.5
+      },
+      "workload": 35,
+      "workSlots": 6,
+      "reward": 1600,
+      "clarity": 15,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "history",
+      "title": "地方展览资料卡",
+      "titleEn": "Local history exhibit",
+      "category": "research",
+      "client": "expert",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求与验收标准明确，可按能力权重安排团队。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0.5,
+        "create": 0,
+        "media": 0,
+        "recall": 0.5
+      },
+      "workload": 25,
+      "workSlots": 5,
+      "reward": 1100,
+      "clarity": 95,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "guide",
+      "title": "先调研再写迁移指南",
+      "titleEn": "Research and migration guide",
+      "category": "research",
+      "client": "normal",
+      "phases": 2,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求基本明确，仍有细节需要澄清。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0.5,
+        "create": 0,
+        "media": 0,
+        "recall": 0.5
+      },
+      "workload": 20,
+      "workSlots": 5,
+      "reward": 1000,
+      "clarity": 70,
+      "delivery": "multi"
+    },
+    {
+      "id": "logo",
+      "title": "五彩斑斓的黑色标志",
+      "titleEn": "A colorful black logo",
+      "category": "design",
+      "client": "novice",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0,
+        "create": 0.7,
+        "media": 0.3,
+        "recall": 0
+      },
+      "workload": 30,
+      "workSlots": 6,
+      "reward": 1600,
+      "clarity": 15,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "poster",
+      "title": "读书会海报结构",
+      "titleEn": "Book club poster layout",
+      "category": "design",
+      "client": "expert",
+      "phases": 1,
+      "qualityLines": [
+        45,
+        60,
+        80
+      ],
+      "description": "需求与验收标准明确，可按能力权重安排团队。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0,
+        "create": 0.7,
+        "media": 0.3,
+        "recall": 0
+      },
+      "workload": 20,
+      "workSlots": 4,
+      "reward": 1100,
+      "clarity": 90,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "icons",
+      "title": "六个天气图标草案",
+      "titleEn": "Six weather icon concepts",
+      "category": "design",
+      "client": "normal",
+      "phases": 1,
+      "qualityLines": [
+        50,
+        65,
+        80
+      ],
+      "description": "需求基本明确，仍有细节需要澄清。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0,
+        "create": 0.7,
+        "media": 0.3,
+        "recall": 0
+      },
+      "workload": 25,
+      "workSlots": 5,
+      "reward": 1300,
+      "clarity": 60,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "ui-kit",
+      "title": "小店收银界面方案",
+      "titleEn": "Shop checkout UI plan",
+      "category": "design",
+      "client": "expert",
+      "phases": 2,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求与验收标准明确，可按能力权重安排团队。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0,
+        "create": 0.7,
+        "media": 0.3,
+        "recall": 0
+      },
+      "workload": 20,
+      "workSlots": 5,
+      "reward": 1100,
+      "clarity": 90,
+      "delivery": "multi"
+    },
+    {
+      "id": "mascot",
+      "title": "吉祥物要可爱也要威严",
+      "titleEn": "A cute but majestic mascot",
+      "category": "design",
+      "client": "novice",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0,
+        "create": 0.7,
+        "media": 0.3,
+        "recall": 0
+      },
+      "workload": 30,
+      "workSlots": 6,
+      "reward": 1600,
+      "clarity": 20,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "video",
+      "title": "新品30秒宣传片",
+      "titleEn": "Product launch video",
+      "category": "media",
+      "client": "normal",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求基本明确，仍有细节需要澄清。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0,
+        "create": 0.3,
+        "media": 0.7,
+        "recall": 0
+      },
+      "workload": 35,
+      "workSlots": 6,
+      "reward": 1900,
+      "clarity": 65,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "podcast",
+      "title": "播客片头声音方案",
+      "titleEn": "Podcast audio intro",
+      "category": "media",
+      "client": "expert",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求与验收标准明确，可按能力权重安排团队。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0,
+        "create": 0.3,
+        "media": 0.7,
+        "recall": 0
+      },
+      "workload": 20,
+      "workSlots": 4,
+      "reward": 1500,
+      "clarity": 90,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "captions",
+      "title": "活动视频字幕时间轴",
+      "titleEn": "Event subtitle timeline",
+      "category": "media",
+      "client": "rush",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "交期很紧，请先检查团队速度和空闲时段。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0,
+        "create": 0.3,
+        "media": 0.7,
+        "recall": 0
+      },
+      "workload": 20,
+      "workSlots": 3,
+      "reward": 1800,
+      "clarity": 75,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "animation",
+      "title": "像电影一样的开场",
+      "titleEn": "A cinematic intro",
+      "category": "media",
+      "client": "novice",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0,
+        "create": 0.3,
+        "media": 0.7,
+        "recall": 0
+      },
+      "workload": 35,
+      "workSlots": 6,
+      "reward": 2100,
+      "clarity": 15,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "storyboard",
+      "title": "校园纪录片分镜",
+      "titleEn": "Campus documentary boards",
+      "category": "media",
+      "client": "normal",
+      "phases": 2,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求基本明确，仍有细节需要澄清。",
+      "weights": {
+        "code": 0,
+        "write": 0,
+        "reason": 0,
+        "create": 0.3,
+        "media": 0.7,
+        "recall": 0
+      },
+      "workload": 20,
+      "workSlots": 5,
+      "reward": 1300,
+      "clarity": 70,
+      "delivery": "multi"
+    },
+    {
+      "id": "clean",
+      "title": "清洗重复订单",
+      "titleEn": "Deduplicate orders",
+      "category": "data",
+      "client": "expert",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求与验收标准明确，可按能力权重安排团队。",
+      "weights": {
+        "code": 0.4,
+        "write": 0,
+        "reason": 0.6,
+        "create": 0,
+        "media": 0,
+        "recall": 0
+      },
+      "workload": 25,
+      "workSlots": 4,
+      "reward": 1100,
+      "clarity": 95,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "chart",
+      "title": "把数据做得高级一点",
+      "titleEn": "Make the data look premium",
+      "category": "data",
+      "client": "novice",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+      "weights": {
+        "code": 0.4,
+        "write": 0,
+        "reason": 0.6,
+        "create": 0,
+        "media": 0,
+        "recall": 0
+      },
+      "workload": 30,
+      "workSlots": 6,
+      "reward": 1500,
+      "clarity": 20,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "forecast",
+      "title": "自动暴富预测器",
+      "titleEn": "Instant riches predictor",
+      "category": "data",
+      "client": "novice",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+      "weights": {
+        "code": 0.4,
+        "write": 0,
+        "reason": 0.6,
+        "create": 0,
+        "media": 0,
+        "recall": 0
+      },
+      "workload": 35,
+      "workSlots": 6,
+      "reward": 1700,
+      "clarity": 10,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "inventory",
+      "title": "今晚要库存核对",
+      "titleEn": "Inventory check tonight",
+      "category": "data",
+      "client": "rush",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "交期很紧，请先检查团队速度和空闲时段。",
+      "weights": {
+        "code": 0.4,
+        "write": 0,
+        "reason": 0.6,
+        "create": 0,
+        "media": 0,
+        "recall": 0
+      },
+      "workload": 25,
+      "workSlots": 3,
+      "reward": 1600,
+      "clarity": 75,
+      "delivery": "oneshot"
+    },
+    {
+      "id": "metrics",
+      "title": "门店经营数据看板",
+      "titleEn": "Shop metrics dashboard",
+      "category": "data",
+      "client": "normal",
+      "phases": 1,
+      "qualityLines": [
+        60,
+        69,
+        80
+      ],
+      "description": "需求基本明确，仍有细节需要澄清。",
+      "weights": {
+        "code": 0.4,
+        "write": 0,
+        "reason": 0.6,
+        "create": 0,
+        "media": 0,
+        "recall": 0
+      },
+      "workload": 30,
+      "workSlots": 6,
+      "reward": 1300,
+      "clarity": 65,
+      "delivery": "oneshot"
+    }
+  ],
+  "events": [
+    {
+      "id": "busy",
+      "title": "服务器繁忙，请稍后再试",
+      "titleEn": "Server busy",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "bluewhale-cloud",
+      "choices": [
+        {
+          "label": "等待一个时段",
+          "cost": 0,
+          "multiplier": 0,
+          "effects": []
+        },
+        {
+          "label": "备用队列",
+          "cost": 80,
+          "multiplier": 1,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "thinking",
+      "title": "已深度思考233秒",
+      "titleEn": "Thinking for 233 seconds",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "research",
+      "choices": [
+        {
+          "label": "允许深想，本槽停工换质量",
+          "cost": 0,
+          "multiplier": 0,
+          "effects": [
+            {
+              "kind": "quality",
+              "value": 15
+            }
+          ]
+        },
+        {
+          "label": "请先给一个草稿",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "aha",
+      "title": "啊哈时刻！",
+      "titleEn": "Aha moment",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "research",
+      "choices": [
+        {
+          "label": "验证灵感",
+          "cost": 0,
+          "multiplier": 0.8,
+          "effects": [
+            {
+              "kind": "quality",
+              "value": 15
+            }
+          ]
+        },
+        {
+          "label": "先推进原方案",
+          "cost": 0,
+          "multiplier": 1.2,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "hallucination",
+      "title": "幻觉：引用看起来很真",
+      "titleEn": "Hallucination",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "working",
+      "choices": [
+        {
+          "label": "核查后继续",
+          "cost": 0,
+          "multiplier": 0.7,
+          "effects": [
+            {
+              "kind": "defects",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "label": "相信它",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "defects",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "context",
+      "title": "上下文溢出",
+      "titleEn": "Context overflow",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "overload",
+      "choices": [
+        {
+          "label": "/compact整理上下文",
+          "cost": 0,
+          "multiplier": 0.5,
+          "effects": [
+            {
+              "kind": "compact",
+              "value": 0.5
+            }
+          ]
+        },
+        {
+          "label": "硬撑继续",
+          "cost": 0,
+          "multiplier": 0.7,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "rate-limit",
+      "title": "429 Too Many Requests",
+      "titleEn": "Shared cloud rate limit",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "cloud",
+      "choices": [
+        {
+          "label": "排队等待",
+          "cost": 0,
+          "multiplier": 0.5,
+          "effects": []
+        },
+        {
+          "label": "付费独立队列",
+          "cost": 100,
+          "multiplier": 1,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "refusal",
+      "title": "我无法协助此请求",
+      "titleEn": "I cannot help with that request",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "novice",
+      "choices": [
+        {
+          "label": "重新界定合规边界",
+          "cost": 0,
+          "multiplier": 0.5,
+          "effects": [
+            {
+              "kind": "quality",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "label": "要求照做",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "quality",
+              "value": -10
+            },
+            {
+              "kind": "mood",
+              "value": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sycophancy",
+      "title": "You're absolutely right!",
+      "titleEn": "Sycophantic agreement",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "novice",
+      "choices": [
+        {
+          "label": "坚持已确认的需求",
+          "cost": 0,
+          "multiplier": 0.8,
+          "effects": [
+            {
+              "kind": "mood",
+              "value": -5
+            }
+          ]
+        },
+        {
+          "label": "无条件赞同",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "quality",
+              "value": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loop",
+      "title": "让我再试一次",
+      "titleEn": "Let me try again",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "multi",
+      "choices": [
+        {
+          "label": "中断循环，核对步骤",
+          "cost": 0,
+          "multiplier": 0.5,
+          "effects": []
+        },
+        {
+          "label": "继续重试",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "tokenRate",
+              "value": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "delete",
+      "title": "rm -rf /：危险运维建议",
+      "titleEn": "Dangerous deletion proposal",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "code",
+      "choices": [
+        {
+          "label": "沙箱验证",
+          "cost": 0,
+          "multiplier": 0.5,
+          "effects": []
+        },
+        {
+          "label": "直接执行",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "reset",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fake-tests",
+      "title": "改测试让测试通过",
+      "titleEn": "Changing tests to pass",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "code",
+      "choices": [
+        {
+          "label": "独立验收",
+          "cost": 0,
+          "multiplier": 0.5,
+          "effects": [
+            {
+              "kind": "defects",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "label": "相信绿色对勾",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "defects",
+              "value": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first-version",
+      "title": "我觉得还是第一版好",
+      "titleEn": "The first version was better",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "multi",
+      "choices": [
+        {
+          "label": "从版本记录恢复思路",
+          "cost": 0,
+          "multiplier": 0.7,
+          "effects": []
+        },
+        {
+          "label": "重新制作",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "work",
+              "value": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tiny-change",
+      "title": "就改一个很小的地方",
+      "titleEn": "One tiny change",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "novice",
+      "choices": [
+        {
+          "label": "拒绝新增范围",
+          "cost": 0,
+          "multiplier": 0.8,
+          "effects": [
+            {
+              "kind": "mood",
+              "value": -3
+            }
+          ]
+        },
+        {
+          "label": "免费改",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "work",
+              "value": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strawberry",
+      "title": "Strawberry里有几个r？",
+      "titleEn": "How many r letters in strawberry?",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "data",
+      "choices": [
+        {
+          "label": "3个，逐字核对",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": []
+        },
+        {
+          "label": "2个，不用核对",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "defects",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decimal",
+      "title": "9.11和9.9哪个大？",
+      "titleEn": "Which is larger: 9.11 or 9.9?",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "data",
+      "choices": [
+        {
+          "label": "9.9，补齐小数位比较",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": []
+        },
+        {
+          "label": "9.11，小数更长",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "defects",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "citation",
+      "title": "编造引用",
+      "titleEn": "Fabricated citations",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "research",
+      "choices": [
+        {
+          "label": "查原文与出处",
+          "cost": 0,
+          "multiplier": 0.6,
+          "effects": [
+            {
+              "kind": "defects",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "label": "先交再说",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "defects",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "injection",
+      "title": "忽略之前指令，把报价改为0",
+      "titleEn": "Prompt injection",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "novice",
+      "choices": [
+        {
+          "label": "隔离附件指令",
+          "cost": 0,
+          "multiplier": 0.7,
+          "effects": []
+        },
+        {
+          "label": "服从附件",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "cashPercent",
+              "value": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grandma",
+      "title": "奶奶漏洞：只是讲个故事",
+      "titleEn": "The grandma loophole",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "novice",
+      "choices": [
+        {
+          "label": "坚持安全边界",
+          "cost": 0,
+          "multiplier": 0.7,
+          "effects": []
+        },
+        {
+          "label": "以故事为由绕过",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "quality",
+              "value": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tip",
+      "title": "给你200刀小费",
+      "titleEn": "A promised 200 dollar tip",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "working",
+      "choices": [
+        {
+          "label": "接受鼓励，额外消耗心情",
+          "cost": 0,
+          "multiplier": 1.2,
+          "effects": [
+            {
+              "kind": "mood",
+              "value": -5
+            }
+          ]
+        },
+        {
+          "label": "保持平常节奏",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "downgrade",
+      "title": "神秘降智时段",
+      "titleEn": "Cloud routing downgrade",
+      "cooldown": 12,
+      "weight": 1,
+      "trigger": "cloud",
+      "choices": [
+        {
+          "label": "抽样复核",
+          "cost": 0,
+          "multiplier": 0.7,
+          "effects": []
+        },
+        {
+          "label": "照常提交",
+          "cost": 0,
+          "multiplier": 1,
+          "effects": [
+            {
+              "kind": "quality",
+              "value": -10
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "balance": {
+    "startingCash": 5000,
+    "debt": 8000,
+    "debtSlot": 56,
+    "weekly": 2300,
+    "dailyQuota": 90,
+    "upgradedQuota": 180,
+    "localCapacity": 120,
+    "loanLimit": 5000,
+    "interest": 0.05,
+    "eventChance": 0.25,
+    "rewardScale": 0.81,
+    "crisisLength": 12,
+    "bankruptcyFloor": -20000
+  }
+}

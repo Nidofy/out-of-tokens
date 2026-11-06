@@ -9,7 +9,7 @@ export function eligible(s: State, c: Content, card: Card, j: Job): boolean {
         return false;
     const t = c.commissions.find(t => t.id === j.template)!;
     switch (card.trigger) {
-        case 'bluewhale-cloud': return j.team.some(m => m.character === 'bluewhale' && m.mode === 'cloud');
+        case 'bluewhale-cloud': return j.team.some(m => m.character === 'bluewhale' && m.mode === 'cloud' && s.actors.find(a => a.id === m.character)!.energy >= 10 && s.quota + s.purchased > 0);
         case 'cloud': return j.team.some(m => m.mode === 'cloud');
         case 'code':
         case 'data':
@@ -32,6 +32,8 @@ export function applyEffects(s: State, j: Job, effects: Effect[]): number {
         if (e.kind === 'reset') {
             j.progress = 0;
             j.weighted = 0;
+            j.reviewCoverage = 0;
+            j.review = 0;
         }
         if (e.kind === 'tokenRate')
             rate = e.value;

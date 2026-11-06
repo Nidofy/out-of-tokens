@@ -21,6 +21,11 @@ export interface Template {
     reward: number;
     clarity: number;
     delivery: 'oneshot' | 'multi' | 'retainer';
+    qualityLines?: [
+        number,
+        number,
+        number
+    ];
     phases?: number;
     category?: 'code' | 'write' | 'research' | 'design' | 'media' | 'data';
     client?: 'expert' | 'normal' | 'novice' | 'rush';
@@ -80,6 +85,8 @@ export interface Job {
     phase: number;
     resumeAt: number;
     qualityBonus: number;
+    clarifyingUntil: number;
+    reviewCoverage: number;
 }
 export interface State {
     engineVersion: string;

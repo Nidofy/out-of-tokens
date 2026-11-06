@@ -5,8 +5,8 @@ function stable(value: unknown): string {
     if (value === null || typeof value !== 'object')
         return JSON.stringify(value);
     if (Array.isArray(value))
-        return '[' + value.map(stable).join(',') + ']';
-    return '{' + Object.entries(value).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0).map(([k, v]) => JSON.stringify(k) + ':' + stable(v)).join(',') + '}';
+        return '[' + Array.from(value, v => v === undefined ? 'null' : stable(v)).join(',') + ']';
+    return '{' + Object.entries(value).filter(([, v]) => v !== undefined).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0).map(([k, v]) => JSON.stringify(k) + ':' + stable(v)).join(',') + '}';
 }
 export const hash = (value: unknown) => createHash('sha256').update(stable(value)).digest('hex');
 export function replay(c: Content, seed: number, commands: unknown[]): State {

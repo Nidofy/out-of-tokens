@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "engineVersion": "0.3.0",
-  "contentVersion": "m0.3-1",
-  "contentHash": "e75f99ac18d8a88fa8c7f2063a51cf7456b9644410fa0c10d21c6cc3073705c3",
+  "engineVersion": "0.4.0",
+  "contentVersion": "m0.4-1",
+  "contentHash": "8eb5797c5c1a43133792292c766919ee7a51f6a27a3f5ead418770a084da017d",
   "seed": 1,
   "commands": [
     {
@@ -45,13 +45,37 @@
       "type": "advance"
     },
     {
-      "type": "advance"
+      "type": "buy",
+      "amount": 100
     },
     {
       "type": "advance"
     },
     {
       "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "8-1"
+    },
+    {
+      "type": "assign",
+      "job": "8-1",
+      "team": [
+        {
+          "character": "mistral",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
     },
     {
       "type": "advance"
@@ -73,7 +97,51 @@
       "type": "advance"
     },
     {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "deliver",
+      "job": "8-1"
+    },
+    {
+      "type": "accept",
+      "job": "12-2"
+    },
+    {
+      "type": "assign",
+      "job": "12-2",
+      "team": [
+        {
+          "character": "mistral",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
       "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "12-2"
     },
     {
       "type": "advance"
@@ -118,43 +186,24 @@
       "type": "advance"
     },
     {
-      "type": "advance"
+      "type": "accept",
+      "job": "32-2"
     },
     {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
+      "type": "assign",
+      "job": "32-2",
+      "team": [
+        {
+          "character": "llama",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "mistral",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
     },
     {
       "type": "advance"
@@ -176,11 +225,19 @@
       "type": "advance"
     },
     {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
       "type": "deliver",
       "job": "0-0"
     },
     {
-      "type": "advance"
+      "type": "deliver",
+      "job": "32-2"
     },
     {
       "type": "advance"
@@ -225,49 +282,24 @@
       "type": "advance"
     },
     {
-      "type": "advance"
+      "type": "accept",
+      "job": "52-4"
     },
     {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "advance"
+      "type": "assign",
+      "job": "52-4",
+      "team": [
+        {
+          "character": "mistral",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
     },
     {
       "type": "advance"
@@ -282,5 +314,5 @@
       "type": "advance"
     }
   ],
-  "stateHash": "b8cdc3a5563cae854f57121d169dc8b65fb4d65fa224fd44f42c5170c952552e"
+  "stateHash": "2f11b109b7f7e400e48c695454e8a28032bbd1ec3ba12f9f9800f78c7c5b4bc3"
 }

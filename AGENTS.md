@@ -13,7 +13,7 @@ M0 证明读委托、澄清、组队、执行、验收、经济反馈可玩且�
 
 ## 依据
 docs/GDD-v0.1.md 为产品基准，禁止静默改写。
-docs/M0_SPEC.md 为当前实施规则。
+docs/M0_RULES_FINAL.md 为当前实施规则；M0_SPEC.md 保留首切片历史。
 docs/DECISIONS.md 记录歧义、偏离、理由、测试和修订条件。
 docs/STATUS.md 是执行状态，不是愿望清单。
 

@@ -5,7 +5,9 @@ export const round = (n: number) => Math.round(n * 100) / 100;
 export function crisis(s: State, c: Content) {
     const b = balance(c);
     s.crises = s.crises.filter(n => s.absoluteSlot - n < 112);
-    if (s.cash < 0) {
+    // Advances are liabilities until a milestone is accepted: borrowing customer money cannot erase a crisis.
+    const liquid = s.cash - s.jobs.filter(j => ['accepted', 'working', 'review', 'waiting'].includes(j.status)).reduce((n, j) => n + j.advance, 0);
+    if (liquid < 0) {
         if (s.crisisSince === null || s.absoluteSlot - s.crisisSince >= b.crisisLength) {
             s.crisisSince = s.absoluteSlot;
             s.crises.push(s.absoluteSlot);

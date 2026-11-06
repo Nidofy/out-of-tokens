@@ -1,16 +1,16 @@
 # 状态与恢复入口
-2026-11-06；根目录为 ai-game/out-of-tokens；分支 codex/m0。
-环境：Node24.16.0，Corepack0.35.0，pnpm11.25.0；无全局tsc，使用项目固定版本。
-原目录只有docs，无Git、源码或资源；已原样归档GDD与实施Prompt。
-M0.0–M0.2完成。M0.3规则/内容完成：4角色30模板20事件，多阶段/长期、贷款/危机累计/重开、加班。44测试通过，日志harness/m0.3-check.log。M0.4正在完成统计与诊断报告，M0.5待未见种子验证。
-初始化SHA：7752322ba162edfe4e31d787a270e7663416f8a2。
-最新代码检查点SHA：15e2775e8f9bc88ab26ecf421f7b9988c49c3104；其后仅审查/恢复记录提交。本轮基准c0a1e4b。
-当前审查包：harness/reviews/m0.2-15e2775-packet.md。
-历史审查包：harness/reviews/m0-slice-a6e8d93-packet.md。新包固定本轮目标SHA，尚未收到外部报告。
-四角色、三委托、两个原型事件；接单/澄清/派遣/事件/交付/返工/账单/危机/存档重载已接通。
-验证：pnpm check通过（5文件32测试）；纯文本CLI进程闭环、保存/恢复/回放通过；日志harness/m0.2-check.log、m0.2-replay.log。
-新增双账本流水、完整决策信息、中文错误、审查者末尾执行、云端繁忙条件/局部作用、事件免费退路校验。引擎0.2.0，内容m0.2-2，明确拒绝旧存档。
-新25局14天诊断平均净现金变化：value -6926、greedy -6656、random -8806、no-clarify -7236、clear-only -7070；虽当天尚未破产，欠费后现金均为负，不是平衡达标。harness/results现为本轮结果；旧诊断保留在历史Git及m0-slice日志。
-下一命令：pnpm check；然后按ROADMAP B01改bot人员选择和逐项目成本统计，再用相同种子对比。
-未解决：30模板/20卡、完整经济/隐藏需求、利润率定义、平衡目标、外部审查、美术逐资产授权。M1尚未开始。
-git在沙箱/用户账号间有所有者差异；必要时仅命令级 -c safe.directory=<本目录绝对路径>，不改全局配置。
+2026-11-06；仓库 ai-game/out-of-tokens；分支 codex/m0。
+环境：Node24.16.0、Corepack0.35.0、pnpm11.25.0；本地固定TypeScript，无全局tsc。
+初始化7752322，M0.2检查点15e2775，M0.3检查点29862c2dd75d110a4fa4d3e91cc11e9c7dd73ec5。
+
+M0.0–M0.4工程完成，M0.5进入最终验证。4角色30模板20事件，多轮/长期、加班、贷款/还款、三次危机、继承重开、资源预览、五策略/逐项目利润/CSV/JSON/异常回放可用。
+引擎0.4.0，内容m0.4-1；规则以M0_RULES_FINAL为准，M0_SPEC是首切片历史。JSON为内容唯一数据源，旧生成器移除防止覆盖调参；旧存档在历史SHA继续，新版明确拒绝。
+已读取针对15e2775的Gemini/Opus/Sonnet固定快照报告，逐条处理见REVIEW_RESPONSE；不将自测标成外部批准。
+本次M0.4代码SHA由下一记录提交写入，避免自引用。
+
+实际验证：pnpm check通过8文件56测试，含纯文本/JSON真实CLI进程、存档与回放；harness/m0.4-check-final.log。短规模5种子×14天×5策略输出在harness/results，不能当成60天验收。
+训练1–100种子结果在harness/training-v4：value第14天现金均值1287.67，random60天破产48%，四项M0门禁通过。仍非未见种子结果。早期失败、报酬/额度扫描、training-v3均保留。
+
+下一命令：pnpm sim:batch 1000 60 1001 harness/validation-v3 --enforce。BALANCE已冻结；验证后如改规则/策略/参数，必须另换3001起的新队列。之后锁安装、check、短模拟、五策略回放，提交M0.5固定SHA审查包。
+未结风险：OPUS04移除Qwen收入64%（建议80%未达），概率澄清/玩家资源排序建议部分采纳待复核；闭源旗舰毛利/12人覆盖延至M2；人工乐趣和资产授权未验收。M1未开始，不绕过未结P1进入M1。
+Git所有者差异仅用命令级 -c safe.directory=<仓库绝对路径>，不改全局配置；只本地commit，不push。

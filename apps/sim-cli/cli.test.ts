@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadContent } from 'oot-content';
 import { runBot } from './src/bot.js';
+import { hash } from 'oot-persistence';
 test('real CLI accepts commands, reports invalid input, saves, loads and replays', () => {
     const cwd = mkdtempSync(join(tmpdir(), 'oot-cli-'));
     const bot = runBot(loadContent(), 1, 'value', 7);
@@ -46,4 +47,16 @@ test('real CLI accepts commands, reports invalid input, saves, loads and replays
     const replay = spawnSync(process.execPath, [fileURLToPath(new URL('./dist/replay.js', import.meta.url)), join(cwd, 'saves/manual.json')], { cwd, encoding: 'utf8', timeout: 20000 });
     expect(replay.status, replay.stderr).toBe(0);
     expect(replay.stdout).toContain('REPLAY_OK');
+});
+test('real CLI accepts JSON commands and produces the same state as the engine', () => {
+    const cwd = mkdtempSync(join(tmpdir(), 'oot-json-'));
+    const bot = runBot(loadContent(), 1, 'value', 3);
+    const script = ['load', '{bad JSON', ...bot.commands.map(c => JSON.stringify(c)), 'save', 'load', 'quit'].join('\n') + '\n';
+    const result = spawnSync(process.execPath, [fileURLToPath(new URL('./dist/main.js', import.meta.url))], { cwd, input: script, encoding: 'utf8', timeout: 20000, maxBuffer: 8 * 1024 * 1024 });
+    expect(result.status, result.stderr).toBe(0);
+    expect(result.stdout).toContain('尚无存档');
+    expect(result.stdout.match(/操作失败/g)).toHaveLength(2);
+    const saved = JSON.parse(readFileSync(join(cwd, 'saves/manual.json'), 'utf8'));
+    expect(saved.stateHash).toBe(hash(bot.state));
+    expect(saved.commands).toEqual(bot.commands);
 });

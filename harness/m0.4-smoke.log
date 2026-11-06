@@ -1,0 +1,213 @@
+$ pnpm build && tsx apps/sim-cli/src/batch.ts "5" "14" "1" "harness/results"
+$ tsc -b
+value {"runs":5,"seconds":0.026087000000000016}
+greedy {"runs":5,"seconds":0.0148604}
+random {"runs":5,"seconds":0.014895700000000005}
+no-clarify {"runs":5,"seconds":0.011912699999999972}
+clear-only {"runs":5,"seconds":0.013660699999999963}
+{
+  "summary": [
+    {
+      "strategy": "value",
+      "runs": 5,
+      "days": 14,
+      "bankruptcy": 0,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.6,
+      "chapterCash": 1007.842,
+      "netCash": -3992.1580000000004,
+      "deliveryRate": 0.7708333333333334,
+      "breachRate": 0.10416666666666667,
+      "active": 6,
+      "noviceClosed": 8,
+      "noviceBreached": 0,
+      "noviceBreachRate": 0,
+      "tokens": 1755.8659999999995,
+      "localCompute": 0,
+      "outOfTokens": 20,
+      "tokenPurchases": 3,
+      "participation": {
+        "bluewhale": 89,
+        "qwen": 97,
+        "llama": 58,
+        "mistral": 39
+      },
+      "participationRate": {
+        "bluewhale": 0.31448763250883394,
+        "qwen": 0.34275618374558303,
+        "llama": 0.2049469964664311,
+        "mistral": 0.13780918727915195
+      },
+      "grades": {
+        "failed": 4,
+        "pass": 38,
+        "good": 5,
+        "great": 2
+      },
+      "operatingMargin": 0.7061386691083975
+    },
+    {
+      "strategy": "greedy",
+      "runs": 5,
+      "days": 14,
+      "bankruptcy": 0,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.2,
+      "chapterCash": -1799.414,
+      "netCash": -6799.414000000002,
+      "deliveryRate": 0.7666666666666667,
+      "breachRate": 0.03333333333333333,
+      "active": 6,
+      "noviceClosed": 1,
+      "noviceBreached": 0,
+      "noviceBreachRate": 0,
+      "tokens": 1237.474,
+      "localCompute": 0,
+      "outOfTokens": 1,
+      "tokenPurchases": 4,
+      "participation": {
+        "bluewhale": 87,
+        "qwen": 87,
+        "llama": 69,
+        "mistral": 70
+      },
+      "participationRate": {
+        "bluewhale": 0.2779552715654952,
+        "qwen": 0.2779552715654952,
+        "llama": 0.22044728434504793,
+        "mistral": 0.22364217252396165
+      },
+      "grades": {
+        "failed": 0,
+        "pass": 15,
+        "good": 13,
+        "great": 3
+      },
+      "operatingMargin": 0.6268715299939429
+    },
+    {
+      "strategy": "random",
+      "runs": 5,
+      "days": 14,
+      "bankruptcy": 0,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.2,
+      "chapterCash": -1602.9959999999999,
+      "netCash": -6602.996000000001,
+      "deliveryRate": 0.6896551724137931,
+      "breachRate": 0.034482758620689655,
+      "active": 8,
+      "noviceClosed": 1,
+      "noviceBreached": 0,
+      "noviceBreachRate": 0,
+      "tokens": 1185.426,
+      "localCompute": 0,
+      "outOfTokens": 9,
+      "tokenPurchases": 2,
+      "participation": {
+        "bluewhale": 68,
+        "qwen": 60,
+        "llama": 64,
+        "mistral": 49
+      },
+      "participationRate": {
+        "bluewhale": 0.2821576763485477,
+        "qwen": 0.24896265560165975,
+        "llama": 0.26556016597510373,
+        "mistral": 0.2033195020746888
+      },
+      "grades": {
+        "failed": 1,
+        "pass": 22,
+        "good": 9,
+        "great": 1
+      },
+      "operatingMargin": 0.6631975387548008
+    },
+    {
+      "strategy": "no-clarify",
+      "runs": 5,
+      "days": 14,
+      "bankruptcy": 0,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.8,
+      "chapterCash": 454.9919999999999,
+      "netCash": -4545.008,
+      "deliveryRate": 0.6666666666666666,
+      "breachRate": 0.19047619047619047,
+      "active": 9,
+      "noviceClosed": 17,
+      "noviceBreached": 5,
+      "noviceBreachRate": 0.29411764705882354,
+      "tokens": 2227.5700000000006,
+      "localCompute": 0,
+      "outOfTokens": 38,
+      "tokenPurchases": 8,
+      "participation": {
+        "bluewhale": 116,
+        "qwen": 116,
+        "llama": 67,
+        "mistral": 56
+      },
+      "participationRate": {
+        "bluewhale": 0.3267605633802817,
+        "qwen": 0.3267605633802817,
+        "llama": 0.18873239436619718,
+        "mistral": 0.15774647887323945
+      },
+      "grades": {
+        "failed": 11,
+        "pass": 40,
+        "good": 6,
+        "great": 0
+      },
+      "operatingMargin": 0.668228024687137
+    },
+    {
+      "strategy": "clear-only",
+      "runs": 5,
+      "days": 14,
+      "bankruptcy": 0,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 1,
+      "chapterCash": 1684.596,
+      "netCash": -3315.404,
+      "deliveryRate": 0.7894736842105263,
+      "breachRate": 0.03508771929824561,
+      "active": 10,
+      "noviceClosed": 0,
+      "noviceBreached": 0,
+      "noviceBreachRate": 0,
+      "tokens": 1832.3419999999999,
+      "localCompute": 0,
+      "outOfTokens": 25,
+      "tokenPurchases": 3,
+      "participation": {
+        "bluewhale": 93,
+        "qwen": 101,
+        "llama": 72,
+        "mistral": 63
+      },
+      "participationRate": {
+        "bluewhale": 0.2826747720364742,
+        "qwen": 0.3069908814589666,
+        "llama": 0.2188449848024316,
+        "mistral": 0.19148936170212766
+      },
+      "grades": {
+        "failed": 2,
+        "pass": 42,
+        "good": 9,
+        "great": 0
+      },
+      "operatingMargin": 0.7780119742751455
+    }
+  ],
+  "gates": {
+    "chapterSurvival": true,
+    "randomRisk": false,
+    "characterCoverage": true,
+    "clarification": false
+  },
+  "seconds": 0.08254969999999998
+}

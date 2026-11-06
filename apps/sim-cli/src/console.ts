@@ -46,6 +46,10 @@ export function render(s: State, c: Content): string {
     for (const j of v.jobs.filter(j => !['delivered', 'breached'].includes(j.status)).concat(v.jobs.filter(j => ['delivered', 'breached'].includes(j.status)).slice(-3))) {
         lines.push(`[${j.id}] ${j.title} (${j.status}${j.overdue ? ' / 逾期' : ''}) ${j.progress}/${j.work}WP，报酬¥${j.reward}，质量${j.quality}/及格${j.passQuality}`, `  ${j.description} 权重${JSON.stringify(j.weights)}；隐藏${j.hidden}条；${j.status === 'posted' ? `接单后${j.workSlots}工作时段` : `截止${j.deadline}`}；团队${j.team.map(m => m.character + ':' + m.role + ':' + m.mode).join(',') || '未派遣'}`);
     }
+    const estimates = v.jobs.filter(j => j.status === 'working').reduce((n, j) => ({ cloud: n.cloud + j.resourceEstimate.cloud, local: n.local + j.resourceEstimate.local }), { cloud: 0, local: 0 });
+    lines.push('下槽资源上限估计：云 ' + estimates.cloud.toFixed(2) + 'T / 本地 ' + estimates.local.toFixed(2) + '；短尾、事件与岗位跳过会降低实耗。');
+    if (estimates.local > v.localCapacity || estimates.cloud > v.quota + v.purchased)
+        lines.push('资源预警：可能停工；按接单顺序分配，同单负责人→执行→审查，同岗位按角色ID。可购额或调整部署。');
     if (v.pending) {
         lines.push(`事件：${v.pending.title}`);
         v.pending.choices.forEach((x, i) => lines.push(` choose ${i}: ${x.label}（¥${x.cost}，产出倍率${x.multiplier}，效果${JSON.stringify(x.effects ?? [])}）`));
@@ -54,6 +58,11 @@ export function render(s: State, c: Content): string {
     return lines.join('\n');
 }
 export function explain(error: string): string {
-    const labels: Record<string, string> = { ACTOR_BUSY: '角色正在执行委托或澄清，请推进时段或换人', PENDING_CHOICE: '请先 choose 事件选项', NOT_READY: '委托尚未完成执行', REWORK_AVAILABLE: '质量不足，请使用 rework 返工一次', NO_REWORK: '无法返工：需低于60分、尚未返工且未过截止', NOT_POSTED: '委托已不在可接受/拒绝状态', INSUFFICIENT_CASH: '资金不足', UNKNOWN_JOB: '找不到该委托编号', BANKRUPT: '工作室已破产，仍可存档或读取存档', NOT_ASSIGNABLE: '先接受委托，完成验收的委托不可重新派遣', DUPLICATE_ACTOR: '同一角色不能兼岗', INVALID_ROLES: '至少一位执行者，最多一位负责人和一位审查者', NOT_CLARIFIABLE: '只能澄清待接委托中尚未揭示的需求', NO_PENDING_CHOICE: '当前没有待选事件', INCOMPATIBLE_SAVE: '存档版本或内容不兼容，请使用对应检查点打开' };
+    if (error.includes('ENOENT'))
+        return '尚无存档，请先 save';
+    const extra: Record<string, string> = { UNKNOWN_ACTOR: '找不到角色ID，请查看status', POSITIVE_AMOUNT_REQUIRED: '数量必须大于0', STILL_CLARIFYING: '澄清尚未完成，请推进一个时段', NOT_WORK_SLOT: '只能在上午或下午澄清', INVALID_CHOICE: '选项序号超出范围', INVALID_NUMBER: '请输入范围内的整数', INVALID_MEMBER: '角色岗位或部署方式无效', LOAN_LIMIT: '超过贷款上限', INVALID_REPAYMENT: '还款不得超过本金或可用资金', NOT_BANKRUPT: '尚未破产，不能继承重开' };
+    if (extra[error])
+        return `${extra[error]} [${error}]`;
+    const labels: Record<string, string> = { ACTOR_BUSY: '角色正在执行委托或澄清，请推进时段或换人', PENDING_CHOICE: '请先 choose 事件选项', NOT_READY: '委托尚未完成执行', REWORK_AVAILABLE: '质量不足，请使用 rework 返工一次', NO_REWORK: '无法返工：需低于该模板及格线、尚未返工且未过截止', NOT_POSTED: '委托已不在可接受/拒绝状态', INSUFFICIENT_CASH: '资金不足', UNKNOWN_JOB: '找不到该委托编号', BANKRUPT: '工作室已破产，仍可存档或读取存档', NOT_ASSIGNABLE: '先接受委托，完成验收的委托不可重新派遣', DUPLICATE_ACTOR: '同一角色不能兼岗', INVALID_ROLES: '至少一位执行者，最多一位负责人和一位审查者', NOT_CLARIFIABLE: '只能澄清待接委托中尚未揭示的需求', NO_PENDING_CHOICE: '当前没有待选事件', INCOMPATIBLE_SAVE: '存档版本或内容不兼容，请使用对应检查点打开' };
     return labels[error] ? `${labels[error]} [${error}]` : error;
 }

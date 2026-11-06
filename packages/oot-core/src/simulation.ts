@@ -2,6 +2,7 @@ import { deadlineAfterWorkSlots } from './clock.js';
 import { balance, crisis } from './economy.js';
 import { eligible, applyEffects } from './events.js';
 import { engineVersion } from './version.js';
+import { estimateResources } from './preview.js';
 import type { Actor, Command, Content, DomainEvent, Job, Member, Result, State, Version } from './model.js';
 const round = (n: number) => Math.round(n * 100) / 100;
 const clamp = (n: number) => Math.max(0, Math.min(100, round(n)));
@@ -25,7 +26,7 @@ function refill(s: State, c: Content) {
             j.status = 'expired';
     for (let n = 0; n < 5; n++) {
         const t = c.commissions[Math.floor(draw(s, 'board') * c.commissions.length)]!;
-        s.jobs.push({ id: `${s.absoluteSlot}-${n}`, template: t.id, status: 'posted', posted: s.absoluteSlot, deadline: 0, duration: 0, hidden: Math.round((100 - t.clarity) / 25), work: t.workload, progress: 0, weighted: 0, review: 0, defects: 0, reworked: false, advance: 0, quality: 0, team: [], phase: 0, resumeAt: 0, qualityBonus: 0 });
+        s.jobs.push({ id: `${s.absoluteSlot}-${n}`, template: t.id, status: 'posted', posted: s.absoluteSlot, deadline: 0, duration: 0, hidden: Math.round((100 - t.clarity) / 25), work: t.workload, progress: 0, weighted: 0, review: 0, defects: 0, reworked: false, advance: 0, quality: 0, team: [], phase: 0, resumeAt: 0, qualityBonus: 0, clarifyingUntil: 0, reviewCoverage: 0 });
     }
 }
 export function createInitialState(c: Content, seed = 1): State {
@@ -51,6 +52,8 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
             j.status = 'working';
     if (s.absoluteSlot % 4 < 2 || s.overtime.length)
         for (const j of s.jobs.filter(j => j.status === 'working')) {
+            const progressBefore = j.progress;
+            let workerProgress = 0;
             let bonus = 1;
             const order = { planner: 0, worker: 1, reviewer: 2 };
             for (const m of [...j.team].sort((a, b) => order[a.role] - order[b.role] || (a.character < b.character ? -1 : a.character > b.character ? 1 : 0))) {
@@ -64,14 +67,34 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                 if (m.role === 'worker' && j.progress >= j.work)
                     continue;
                 const energy = a.energy >= 60 ? 1 : a.energy >= 30 ? 0.85 : 0.6;
+                const overloaded = a.load > v.context;
                 const affected = (!eventJob || eventJob === j.id) && (!target || (m.character === target && m.mode === 'cloud'));
-                const effect = affected ? multiplier : 1;
-                let units = round(10 * matching * v.speed * energy * (v.rhythm[s.absoluteSlot % 4] ?? 1) * (a.load > v.context ? 0.7 : 1) * effect * (m.role === 'worker' ? bonus : m.role === 'planner' ? 0.5 : 0.3));
-                if (m.role === 'worker')
+                const effect = affected ? (m.role === 'worker' ? multiplier : Math.min(1, multiplier)) : 1;
+                const teamCost = 1 - .05 * Math.max(0, j.team.filter(m => m.role === 'worker').length - 2);
+                if (m.role === 'reviewer' && workerProgress === 0 && j.defects === 0)
+                    continue;
+                let units = round(10 * matching * v.speed * energy * (v.rhythm[s.absoluteSlot % 4] ?? 1) * (overloaded ? 0.7 : 1) * effect * (m.role === 'worker' ? bonus * teamCost : m.role === 'planner' ? 0.5 : 0.3));
+                if (m.role === 'worker' || m.role === 'planner')
                     units = Math.min(units, round(j.work - j.progress));
                 if (units <= 0)
                     continue;
                 const cost = round(units * v.price * (affected ? tokenRate : 1));
+                if (m.role === 'planner') {
+                    const ready = j.team.filter(w => w.role === 'worker').some(w => {
+                        const wa = s.actors.find(a => a.id === w.character)!;
+                        const wv = version(c, wa);
+                        if (wa.energy < 10 || (s.absoluteSlot % 4 >= 2 && !s.overtime.includes(wa.id)))
+                            return false;
+                        const wf = (!eventJob || eventJob === j.id) && (!target || (w.character === target && w.mode === 'cloud')) ? multiplier : 1;
+                        if (wf === 0)
+                            return false;
+                        const wp = Math.min(j.work - j.progress, 10 * match(c, j, wv) * wv.speed * (wv.rhythm[s.absoluteSlot % 4] ?? 1) * (wa.energy >= 60 ? 1 : wa.energy >= 30 ? .85 : .6) * (wa.load > wv.context ? .7 : 1) * wf * (1 + v.skills.reason * .015) * teamCost);
+                        const pool = (w.mode === 'cloud' ? s.quota + s.purchased : local) - (w.mode === m.mode ? cost : 0);
+                        return pool >= round(wp * wv.price * (affected ? tokenRate : 1));
+                    });
+                    if (!ready)
+                        continue;
+                }
                 if ((m.mode === 'local' ? local : s.quota + s.purchased) < cost) {
                     events.push({ type: 'OutOfTokens', message: `${a.id} 资源不足，停工` });
                     continue;
@@ -96,15 +119,17 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                 a.load++;
                 if (m.role === 'planner')
                     bonus = 1 + v.skills.reason * 0.015;
-                if (m.role === 'worker') {
+                if (m.role === 'worker' || m.role === 'planner') {
                     const delivered = Math.min(units, Math.max(0, j.work - j.progress));
                     j.progress = round(j.progress + delivered);
                     j.weighted = round(j.weighted + delivered * matching);
-                    if (draw(s, 'quality') < 0.25 * (1 - v.stability / 10) * (energy === 0.6 ? 1.5 : 1) * (a.load > v.context ? 1.5 : 1))
+                    if (m.role === 'worker')
+                        workerProgress += delivered;
+                    if (m.role === 'worker' && draw(s, 'quality') < 0.25 * (1 - v.stability / 10) * (energy === 0.6 ? 1.5 : 1) * (overloaded ? 1.5 : 1))
                         j.defects++;
                 }
                 if (m.role === 'reviewer') {
-                    j.review = Math.max(j.review, matching * 10);
+                    j.reviewCoverage = round(j.reviewCoverage + (j.progress - progressBefore) * matching * 10);
                     const defects = j.defects;
                     for (let n = 0; n < defects; n++)
                         if (draw(s, 'quality') < Math.min(1, 0.4 + 0.05 * v.skills.reason)) {
@@ -113,6 +138,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                         }
                 }
             }
+            j.review = round(j.reviewCoverage / Math.max(1, j.progress));
             if (j.progress >= j.work) {
                 j.status = 'review';
                 j.quality = clamp(100 * j.weighted / Math.max(1, j.progress) + j.review + j.qualityBonus - 8 * j.hidden - 6 * j.defects + (draw(s, 'quality') * 10 - 5));
@@ -231,7 +257,7 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
             const choice = card.choices[cmd.index];
             requireRule(choice, 'INVALID_CHOICE');
             requireRule(choice.cost === 0 || s.cash >= choice.cost, 'INSUFFICIENT_CASH');
-            money(s, -choice.cost, `event:${card.id}`);
+            money(s, -choice.cost, `event:${card.id}:${s.pending.job ?? ''}`);
             const job = s.jobs.find(j => j.id === s.pending!.job) || s.jobs.find(j => j.status === 'working');
             const rate = job ? applyEffects(s, job, choice.effects ?? []) : 1;
             s.eventLast[card.id] = s.absoluteSlot;
@@ -257,7 +283,8 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
             money(s, -cmd.amount, 'repay');
         }
         else if (cmd.type === 'buy') {
-            requireRule(cmd.amount > 0 && s.cash >= cmd.amount * 0.5, 'INSUFFICIENT_CASH');
+            requireRule(cmd.amount > 0, 'POSITIVE_AMOUNT_REQUIRED');
+            requireRule(s.cash >= cmd.amount * 0.5, 'INSUFFICIENT_CASH');
             money(s, -cmd.amount * 0.5, 'buy-tokens');
             s.purchased += cmd.amount;
         }
@@ -267,10 +294,11 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
             const t = c.commissions.find(t => t.id === j.template)!;
             if (cmd.type === 'accept') {
                 requireRule(j.status === 'posted', 'NOT_POSTED');
+                requireRule(j.clarifyingUntil <= s.absoluteSlot, 'STILL_CLARIFYING');
                 requireRule(s.cash >= 0 || t.workload <= 40, 'CRISIS_SMALL_ONLY');
                 j.status = 'accepted';
                 j.deadline = deadlineAfterWorkSlots(s.absoluteSlot, t.workSlots);
-                j.duration = j.deadline - s.absoluteSlot;
+                j.duration = t.workSlots * 2;
                 j.resumeAt = s.absoluteSlot;
                 j.advance = round(t.reward * balance(c).rewardScale * 0.3);
                 money(s, j.advance, `advance:${j.id}`);
@@ -280,12 +308,15 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
                 j.status = 'rejected';
             }
             else if (cmd.type === 'clarify') {
+                requireRule(s.absoluteSlot % 4 < 2, 'NOT_WORK_SLOT');
                 requireRule(j.status === 'posted' && j.hidden > 0, 'NOT_CLARIFIABLE');
                 const a = s.actors.find(a => a.id === cmd.character);
-                requireRule(a && !occupied(s, a.id) && a.energy >= 15, 'ACTOR_BUSY');
+                requireRule(a, 'UNKNOWN_ACTOR');
+                requireRule(!occupied(s, a.id) && a.energy >= 15, 'ACTOR_BUSY');
                 a.busyUntil = s.absoluteSlot + 1;
                 a.energy -= 15;
                 j.hidden = Math.max(0, j.hidden - 1);
+                j.clarifyingUntil = s.absoluteSlot + 1;
             }
             else if (cmd.type === 'assign') {
                 requireRule(j.status === 'accepted' || j.status === 'working', 'NOT_ASSIGNABLE');
@@ -293,7 +324,8 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
                 requireRule(cmd.team.some(m => m.role === 'worker') && cmd.team.filter(m => m.role === 'reviewer').length <= 1 && cmd.team.filter(m => m.role === 'planner').length <= 1, 'INVALID_ROLES');
                 for (const m of cmd.team) {
                     const a = s.actors.find(a => a.id === m.character);
-                    requireRule(a && !occupied(s, a.id, j.id), 'ACTOR_BUSY');
+                    requireRule(a, 'UNKNOWN_ACTOR');
+                    requireRule(!occupied(s, a.id, j.id), 'ACTOR_BUSY');
                     requireRule(version(c, a).modes.includes(m.mode), 'UNSUPPORTED_DEPLOYMENT');
                 }
                 j.team = cmd.team;
@@ -301,15 +333,15 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
             }
             else if (cmd.type === 'deliver') {
                 requireRule(j.status === 'review', 'NOT_READY');
-                if (j.quality < 60) {
+                if (j.quality < (t.qualityLines?.[0] ?? 60)) {
                     requireRule(j.reworked || s.absoluteSlot > j.deadline, 'REWORK_AVAILABLE');
                     breach(s, c, j);
                 }
                 else {
-                    const multiplier = j.quality >= 90 ? 1.35 : j.quality >= 75 ? 1.15 : 1;
+                    const multiplier = j.quality >= (t.qualityLines?.[2] ?? 90) ? 1.35 : j.quality >= (t.qualityLines?.[1] ?? 75) ? 1.15 : 1;
                     const late = Math.max(0, s.absoluteSlot - j.deadline);
                     money(s, round(t.reward * balance(c).rewardScale * multiplier * Math.max(0, 1 - late * 0.1)) - j.advance, `delivery:${j.id}`);
-                    s.reputation += j.quality >= 90 ? 4 : j.quality >= 75 ? 2 : 1;
+                    s.reputation += j.quality >= (t.qualityLines?.[2] ?? 90) ? 4 : j.quality >= (t.qualityLines?.[1] ?? 75) ? 2 : 1;
                     j.phase++;
                     if (j.phase < (t.phases ?? 1)) {
                         j.status = t.delivery === 'retainer' ? 'waiting' : 'working';
@@ -318,20 +350,21 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
                         j.weighted = 0;
                         j.defects = 0;
                         j.review = 0;
+                        j.reviewCoverage = 0;
                         j.quality = 0;
                         j.qualityBonus = 0;
                         j.work = t.workload;
                         j.reworked = false;
                         j.advance = 0;
                         j.deadline = deadlineAfterWorkSlots(j.resumeAt, t.workSlots);
-                        j.duration = j.deadline - j.resumeAt;
+                        j.duration = t.workSlots * 2;
                     }
                     else
                         j.status = 'delivered';
                 }
             }
             else if (cmd.type === 'rework') {
-                requireRule(j.status === 'review' && j.quality < 60 && !j.reworked && s.absoluteSlot <= j.deadline, 'NO_REWORK');
+                requireRule(j.status === 'review' && j.quality < (t.qualityLines?.[0] ?? 60) && !j.reworked && s.absoluteSlot <= j.deadline, 'NO_REWORK');
                 j.reworked = true;
                 j.hidden = 0;
                 j.defects = 0;
@@ -351,5 +384,5 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
 export const advanceSlot = (s: State, c: Content) => dispatchCommand(s, { type: 'advance' }, c);
 export function getViewModel(s: State, c: Content) {
     const card = s.pending ? c.events.find(e => e.id === s.pending!.card) : null;
-    return { absoluteSlot: s.absoluteSlot, day: Math.floor(s.absoluteSlot / 4) + 1, slot: ['上午', '下午', '晚上', '深夜'][s.absoluteSlot % 4], cash: s.cash, quota: s.quota, purchased: s.purchased, localCapacity: s.localCapacity, electricity: s.electricity, loan: s.loan, crises: s.crises.length, reputation: s.reputation, founderXP: s.founderXP, nextWeeklyBill: balance(c).weekly + s.electricity + round(s.loan * balance(c).interest), debtDue: s.debtPaid ? 0 : balance(c).debt, debtSlot: balance(c).debtSlot, bankrupt: s.bankrupt, crisisSince: s.crisisSince, actors: s.actors.map(a => ({ ...a, busy: occupied(s, a.id), skills: { ...version(c, a).skills }, price: version(c, a).price, modes: [...version(c, a).modes] })), jobs: s.jobs.filter(j => !['expired', 'rejected'].includes(j.status)).map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { ...j, title: t.title, description: t.description, weights: { ...t.weights }, reward: round(t.reward * balance(c).rewardScale), delivery: t.delivery, phases: t.phases ?? 1, workSlots: t.workSlots, clarity: t.clarity, passQuality: 60, overdue: active(j) && s.absoluteSlot > j.deadline, team: j.team.map(m => ({ ...m })) }; }), pending: card ? { ...card, choices: card.choices.map(x => ({ ...x, ...(x.effects ? { effects: x.effects.map(e => ({ ...e })) } : {}) })) } : null, ledger: s.ledger.slice(-10).map(x => ({ ...x })), resources: s.resources.slice(-10).map(x => ({ ...x })) };
+    return { absoluteSlot: s.absoluteSlot, day: Math.floor(s.absoluteSlot / 4) + 1, slot: ['上午', '下午', '晚上', '深夜'][s.absoluteSlot % 4], cash: s.cash, quota: s.quota, purchased: s.purchased, localCapacity: s.localCapacity, electricity: s.electricity, loan: s.loan, crises: s.crises.length, reputation: s.reputation, founderXP: s.founderXP, nextWeeklyBill: balance(c).weekly + s.electricity + round(s.loan * balance(c).interest), debtDue: s.debtPaid ? 0 : balance(c).debt, debtSlot: balance(c).debtSlot, bankrupt: s.bankrupt, crisisSince: s.crisisSince, actors: s.actors.map(a => ({ ...a, busy: occupied(s, a.id), skills: { ...version(c, a).skills }, price: version(c, a).price, modes: [...version(c, a).modes] })), jobs: s.jobs.filter(j => !['expired', 'rejected'].includes(j.status)).map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { ...j, title: t.title, description: t.description, weights: { ...t.weights }, reward: round(t.reward * balance(c).rewardScale), delivery: t.delivery, phases: t.phases ?? 1, workSlots: t.workSlots, clarity: t.clarity, passQuality: t.qualityLines?.[0] ?? 60, qualityLines: [...(t.qualityLines ?? [60, 75, 90])], resourceEstimate: estimateResources(s, c, j), qualityBreakdown: { base: round(100 * j.weighted / Math.max(1, j.progress)), review: j.review, event: j.qualityBonus, hiddenPenalty: 8 * j.hidden, defectPenalty: 6 * j.defects }, overdue: active(j) && s.absoluteSlot > j.deadline, team: j.team.map(m => ({ ...m })) }; }), pending: card ? { ...card, choices: card.choices.map(x => ({ ...x, ...(x.effects ? { effects: x.effects.map(e => ({ ...e })) } : {}) })) } : null, ledger: s.ledger.slice(-10).map(x => ({ ...x })), resources: s.resources.slice(-10).map(x => ({ ...x })) };
 }

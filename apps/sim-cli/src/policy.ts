@@ -14,7 +14,7 @@ function plans(c: Content, t: Template, available: Version[], strategy: Strategy
         for (const reviewer of [undefined, ...available.filter(v => !workers.includes(v))]) {
             const production = workers.reduce((n, v) => n + 10 * matching(v, t) * v.speed, 0);
             const quality = workers.reduce((n, v) => n + 10 * matching(v, t) ** 2 * v.speed, 0) / production * 100 + (reviewer ? 10 * matching(reviewer, t) : 0);
-            if (quality < 63 || production * t.workSlots < t.workload * 1.15)
+            if (quality < (t.qualityLines?.[0] ?? 60) + 3 || production * t.workSlots < t.workload * 1.15)
                 continue;
             const cost = workers.reduce((n, v) => n + 10 * matching(v, t) * v.speed * v.price, 0) + (reviewer ? 3 * matching(reviewer, t) * reviewer.speed * reviewer.price : 0);
             const count = workers.length + (reviewer ? 1 : 0);
@@ -30,13 +30,51 @@ export function runBot(c: Content, seed: number, strategy: Strategy, days: numbe
     const commands: unknown[] = [];
     let rng = (Math.imul(seed, 2654435761) >>> 0) || 1;
     const random = () => { rng ^= rng << 13; rng ^= rng >>> 17; rng ^= rng << 5; return (rng >>> 0) / 4294967296; };
-    const send = (cmd: unknown) => { const r = dispatchCommand(s, cmd, c); if (r.error)
-        throw Error(`${strategy}:${JSON.stringify(cmd)}:${r.error}`); s = r.state; commands.push(cmd); };
+    let outOfTokens = 0;
+    const grades = { failed: 0, pass: 0, good: 0, great: 0 };
+    const daily: {
+        slot: number;
+        cash: number;
+        quota: number;
+        purchased: number;
+        active: number;
+        bankrupt: boolean;
+    }[] = [];
+    const deliveries: {
+        job: string;
+        quality: number;
+        grade: string;
+        role: string;
+    }[] = [];
+    const send = (cmd: unknown) => {
+        const command = cmd as {
+            type: string;
+            job?: string;
+        };
+        if (command.type === 'deliver') {
+            const j = s.jobs.find(j => j.id === command.job)!;
+            const lines = c.commissions.find(t => t.id === j.template)!.qualityLines ?? [60, 75, 90];
+            const grade = j.quality < lines[0] ? 'failed' : j.quality < lines[1] ? 'pass' : j.quality < lines[2] ? 'good' : 'great';
+            grades[grade]++;
+            deliveries.push({ job: j.id, quality: j.quality, grade, role: j.team.some(m => m.role === 'reviewer') ? 'reviewed' : 'workers' });
+        }
+        const previous = s.absoluteSlot;
+        const r = dispatchCommand(s, cmd, c);
+        if (r.error)
+            throw Error(`${strategy}:${JSON.stringify(cmd)}:${r.error}`);
+        outOfTokens += r.events.filter(e => e.type === 'OutOfTokens').length;
+        s = r.state;
+        commands.push(cmd);
+        if (s.absoluteSlot !== previous && (s.absoluteSlot % 4 === 0 || s.bankrupt))
+            daily.push({ slot: s.absoluteSlot, cash: s.cash, quota: s.quota, purchased: s.purchased, active: s.jobs.filter(live).length, bankrupt: s.bankrupt });
+    };
     let chapterCash: number | null = null, chapterBankrupt = false;
-    const track = () => { if (chapterCash === null && (s.absoluteSlot >= 56 || s.bankrupt)) {
-        chapterCash = s.cash;
-        chapterBankrupt = s.bankrupt;
-    } };
+    const track = () => {
+        if (chapterCash === null && (s.absoluteSlot >= 56 || s.bankrupt)) {
+            chapterCash = s.cash;
+            chapterBankrupt = s.bankrupt;
+        }
+    };
     while (s.absoluteSlot < days * 4 && !s.bankrupt) {
         if (s.pending) {
             const card = c.events.find(e => e.id === s.pending!.card)!;
@@ -48,7 +86,7 @@ export function runBot(c: Content, seed: number, strategy: Strategy, days: numbe
         for (const j of s.jobs.filter(j => j.status === 'review')) {
             if (s.bankrupt)
                 break;
-            send({ type: j.quality < 60 && !j.reworked && s.absoluteSlot <= j.deadline ? 'rework' : 'deliver', job: j.id });
+            send({ type: j.quality < (c.commissions.find(t => t.id === j.template)!.qualityLines?.[0] ?? 60) && !j.reworked && s.absoluteSlot <= j.deadline ? 'rework' : 'deliver', job: j.id });
         }
         if (s.bankrupt) {
             track();
@@ -59,8 +97,8 @@ export function runBot(c: Content, seed: number, strategy: Strategy, days: numbe
             const busy = () => new Set(s.jobs.filter(live).flatMap(j => j.team.map(m => m.character)));
             const free = () => c.versions.filter(v => !busy().has(v.character) && s.actors.find(a => a.id === v.character)!.busyUntil <= s.absoluteSlot && s.actors.find(a => a.id === v.character)!.energy >= 15);
             let available = free();
-            const posted = s.jobs.filter(j => j.status === 'posted');
-            const candidates = posted.map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { j, t, options: plans(c, t, available, strategy) }; }).filter(x => s.cash >= 0 || x.t.workload <= 40).filter(x => strategy !== 'clear-only' || x.t.clarity >= 80).filter(x => strategy !== 'random' || c.versions.some(v => matching(v, x.t) * 110 >= 60));
+            const posted = s.jobs.filter(j => j.status === 'posted' && j.clarifyingUntil <= s.absoluteSlot);
+            const candidates = posted.map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { j, t, options: plans(c, t, available, strategy) }; }).filter(x => s.cash >= 0 || x.t.workload <= 40).filter(x => strategy !== 'clear-only' || x.t.clarity >= 80);
             candidates.sort((a, b) => (b.options[0]?.score ?? -Infinity) - (a.options[0]?.score ?? -Infinity));
             if (strategy === 'random')
                 for (let i = candidates.length - 1; i > 0; i--) {
@@ -91,6 +129,12 @@ export function runBot(c: Content, seed: number, strategy: Strategy, days: numbe
                 send({ type: 'assign', job: j.id, team });
             }
         }
+        if (s.absoluteSlot % 4 < 2 && s.quota + s.purchased < 40 && s.cash >= 50 && s.jobs.some(j => j.status === 'working'))
+            send({ type: 'buy', amount: 100 });
+        if (s.bankrupt) {
+            track();
+            break;
+        }
         send({ type: 'advance' });
         track();
     }
@@ -99,19 +143,32 @@ export function runBot(c: Content, seed: number, strategy: Strategy, days: numbe
     const delivered = accepted.filter(j => j.status === 'delivered').length, breached = accepted.filter(j => j.status === 'breached').length;
     const participation = Object.fromEntries(s.actors.map(a => [a.id, s.resources.filter(r => r.character === a.id).length]));
     const participantTotal = Object.values(participation).reduce((a, b) => a + b, 0);
+    const moneyByJob = new Map<string, number>();
+    for (const l of s.ledger) {
+        const id = l.reason.slice(l.reason.lastIndexOf(':') + 1);
+        moneyByJob.set(id, (moneyByJob.get(id) ?? 0) + l.amount);
+    }
+    const costs = new Map<string, {
+        direct: number;
+        quota: number;
+    }>();
+    let quotaTotal = 0;
+    for (const r of s.resources) {
+        const entry = costs.get(r.job) ?? { direct: 0, quota: 0 };
+        entry.direct += r.purchased * .5 + r.electricity;
+        entry.quota += r.quota;
+        quotaTotal += r.quota;
+        costs.set(r.job, entry);
+    }
+    const subscription = Math.floor(s.absoluteSlot / 28) * 1000;
     const projects = accepted.map(j => {
-        const cash = s.ledger.filter(l => l.reason.endsWith(':' + j.id)).reduce((n, l) => n + l.amount, 0);
-        const usage = s.resources.filter(r => r.job === j.id);
-        // Subscription allocation by actual quota share, separately from variable spend and inherited debt.
-        const quotaTotal = s.resources.reduce((n, r) => n + r.quota, 0);
-        const subscription = Math.floor(s.absoluteSlot / 28) * 1000;
-        const direct = usage.reduce((n, r) => n + r.purchased * .5 + r.electricity, 0);
-        const allocated = quotaTotal ? subscription * usage.reduce((n, r) => n + r.quota, 0) / quotaTotal : 0;
-        return { id: j.id, template: j.template, status: j.status, cash, directCost: direct, allocatedSubscription: allocated, profit: cash - direct - allocated, novice: c.commissions.find(t => t.id === j.template)!.client === 'novice' };
+        const cash = moneyByJob.get(j.id) ?? 0, usage = costs.get(j.id) ?? { direct: 0, quota: 0 };
+        const allocated = quotaTotal ? subscription * usage.quota / quotaTotal : 0;
+        return { id: j.id, template: j.template, status: j.status, cash, directCost: usage.direct, allocatedSubscription: allocated, profit: cash - usage.direct - allocated, novice: c.commissions.find(t => t.id === j.template)!.client === 'novice' };
     });
     const settled = projects.filter(p => p.status === 'delivered' || p.status === 'breached');
     const revenue = settled.reduce((n, p) => n + Math.max(0, p.cash), 0), profit = settled.reduce((n, p) => n + p.profit, 0);
     const novice = projects.filter(p => p.novice), noviceBreached = novice.filter(p => p.status === 'breached').length;
-    return { state: s, commands, projects, metrics: { seed, strategy, days, slots: s.absoluteSlot, netCash: s.cash - (c.balance?.startingCash ?? 5000), bankrupt: s.bankrupt, chapterCash, chapterBankrupt, chapterSolvent: chapterCash !== null && chapterCash >= 0 && !chapterBankrupt, accepted: accepted.length, delivered, breached, deliveryRate: accepted.length ? delivered / accepted.length : 0, breachRate: accepted.length ? breached / accepted.length : 0, tokens: s.resources.reduce((n, r) => n + r.quota + r.purchased, 0), localCompute: s.resources.filter(r => r.mode === 'local').reduce((n, r) => n + r.units, 0), participation, participationRate: Object.fromEntries(Object.entries(participation).map(([k, v]) => [k, participantTotal ? v / participantTotal : 0])), operatingMargin: revenue ? profit / revenue : 0, projectProfit: profit, noviceAccepted: novice.length, noviceBreached } };
+    return { state: s, commands, projects, daily, deliveries, metrics: { seed, strategy, days, slots: s.absoluteSlot, netCash: s.cash - (c.balance?.startingCash ?? 5000), bankrupt: s.bankrupt, chapterCash, chapterBankrupt, outOfTokens, tokenPurchases: s.ledger.filter(l => l.reason === 'buy-tokens').length, chapterSolvent: chapterCash !== null && chapterCash >= 0 && !chapterBankrupt, accepted: accepted.length, delivered, breached, deliveryRate: accepted.length ? delivered / accepted.length : 0, breachRate: accepted.length ? breached / accepted.length : 0, tokens: s.resources.reduce((n, r) => n + r.quota + r.purchased, 0), localCompute: s.resources.filter(r => r.mode === 'local').reduce((n, r) => n + r.units, 0), participation, participationRate: Object.fromEntries(Object.entries(participation).map(([k, v]) => [k, participantTotal ? v / participantTotal : 0])), operatingMargin: revenue ? profit / revenue : 0, projectProfit: profit, noviceAccepted: novice.length, noviceClosed: novice.filter(p => p.status === 'delivered' || p.status === 'breached').length, noviceBreached, grades, active: accepted.length - delivered - breached } };
 }
 export type BotState = State;

@@ -6,4 +6,5 @@
 报告格式：ID | severity P0/P1/P2/P3 | SHA | file:line | 复现证据 | 影响 | 最小修复 | 阻塞依赖。
 只读快照可 git worktree add --detach <独立审查目录> <SHA>，审查者不改主工作树。
 等待审查时继续独立任务；P0立即修，P1相关集成前修，P2/P3台账。
-当前未收到任何外部审查，不把自测当成审查通过。
+已收到针对15e2775的Gemini/Opus/Sonnet报告，处理表见REVIEW_RESPONSE.md。新快照需独立复审，不把自测当成外部通过。
+必须从固定SHA创建独立worktree或git archive；不能直接对正在修改的主目录取证。主线程继续推进无依赖任务，审查者只交报告。
