@@ -8,7 +8,7 @@ function visit(dir){
     if(['dist','node_modules'].includes(entry.name))continue;
     const path=join(dir,entry.name);
     if(entry.isDirectory())visit(path);
-    else if(path.endsWith('.ts')){
+    else if(/\.tsx?$/.test(path)){
       const source=readFileSync(path,'utf8');
       writeFileSync(path,printer.printFile(ts.createSourceFile(path,source,ts.ScriptTarget.Latest,true)));
     }

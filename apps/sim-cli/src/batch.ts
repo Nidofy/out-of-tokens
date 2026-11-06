@@ -39,7 +39,7 @@ for (const strategy of strategies) {
         diagnostics.push({ strategy, seed, replay: name, stateHash: hash(r.state) });
     }
 }
-write('summary.json', { engineVersion, contentVersion: c.version, contentHash: hash(c), policyVersion: 3, runs, days, seedStart, seedEnd: seedStart + runs - 1, parameters: c.balance, seconds, secondsPer1000: seconds / (runs * strategies.length) * 1000, summary, gates: checks, passed: Object.values(checks).every(Boolean), diagnostics });
+write('summary.json', { engineVersion, contentVersion: c.version, contentHash: hash(c), policyVersion: 4, runs, days, seedStart, seedEnd: seedStart + runs - 1, parameters: c.balance, seconds, secondsPer1000: seconds / (runs * strategies.length) * 1000, summary, gates: checks, passed: Object.values(checks).every(Boolean), diagnostics });
 console.log(JSON.stringify({ summary, gates: checks, seconds }, null, 2));
 if (process.argv.includes('--enforce') && !Object.values(checks).every(Boolean))
     process.exitCode = 1;

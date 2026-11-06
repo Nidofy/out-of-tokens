@@ -1,0 +1,33 @@
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/m03.test.ts (12 tests | 1 failed) 172ms
+   × a loan can rescue cash crisis; mood and reputation fall on continued crises 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/m03.test.ts > a loan can rescue cash crisis; mood and reputation fall on continued crises
+AssertionError: expected 1 to be null
+
+- Expected:
+null
+
++ Received:
+1
+
+ ❯ apps/sim-cli/m03.test.ts:113:33
+    111|     expect(x.state.crisisSince).not.toBeNull();
+    112|     x.send({ type: 'loan', amount: 1000 });
+    113|     expect(x.state.crisisSince).toBeNull();
+       |                                 ^
+    114|     expect(x.state.bankrupt).toBe(false);
+    115|     x.state.cash = -500;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 9 passed (10)
+      Tests  1 failed | 69 passed (70)
+   Start at  00:32:15
+   Duration  1.50s (transform 667ms, setup 0ms, import 2.25s, tests 2.84s, environment 1ms)
+

@@ -103,17 +103,19 @@ test('three consecutive crisis windows bankrupt; restart retains discovered card
     expect(x.state.runs).toBe(2);
     expect(dispatchCommand(x.state, { type: 'restart' }, x.c).error).toBe('NOT_BANKRUPT');
 });
-test('a loan can rescue cash crisis; mood and reputation fall on continued crises', () => {
+test('loan provides liquidity without resetting crisis; continued insolvency reduces reputation', () => {
     const x = session();
     x.state.cash = -500;
     x.state.reputation = 50;
     x.send({ type: 'advance' });
     expect(x.state.crisisSince).not.toBeNull();
     x.send({ type: 'loan', amount: 1000 });
-    expect(x.state.crisisSince).toBeNull();
+    expect(x.state.crisisSince).toBe(1);
+    expect(x.state.cash).toBe(500);
     expect(x.state.bankrupt).toBe(false);
     x.state.cash = -500;
-    x.send({ type: 'advance' });
+    while (x.state.absoluteSlot < 13)
+        x.send({ type: 'advance' });
     expect(x.state.reputation).toBe(40);
 });
 test('overtime costs energy and mood once; sleeping clears context', () => {

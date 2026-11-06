@@ -7,14 +7,17 @@
     "node": ">=24 <25"
   },
   "scripts": {
-    "build": "tsc -b",
+    "build": "pnpm build:core && pnpm --filter oot-web build",
     "typecheck": "tsc -b --pretty false",
     "lint": "eslint packages apps",
     "test": "pnpm build && vitest run",
     "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
     "sim:play": "pnpm build && tsx apps/sim-cli/src/main.ts",
     "sim:batch": "pnpm build && tsx apps/sim-cli/src/batch.ts",
-    "sim:replay": "pnpm build && tsx apps/sim-cli/src/replay.ts"
+    "sim:replay": "pnpm build && tsx apps/sim-cli/src/replay.ts",
+    "dev:web": "pnpm build:core && pnpm --filter oot-web dev",
+    "build:core": "tsc -b",
+    "preview:web": "pnpm --filter oot-web preview"
   },
   "devDependencies": {
     "typescript": "6.0.3",
@@ -22,6 +25,7 @@
     "eslint": "9.39.5",
     "typescript-eslint": "8.72.1",
     "tsx": "4.22.4",
-    "@types/node": "24.19.2"
+    "@types/node": "24.19.2",
+    "fake-indexeddb": "6.2.7"
   }
 }

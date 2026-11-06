@@ -1,1 +1,14 @@
-{"name":"sim-cli","private":true,"version":"0.0.1","type":"module","dependencies":{"oot-core":"workspace:*","oot-content":"workspace:*","oot-persistence":"workspace:*"}}
+{
+  "name": "sim-cli",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "oot-core": "workspace:*",
+    "oot-content": "workspace:*",
+    "oot-persistence": "workspace:*"
+  },
+  "devDependencies": {
+    "oot-platform": "workspace:*"
+  }
+}

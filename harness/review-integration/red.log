@@ -1,0 +1,180 @@
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/review-m05.test.ts (9 tests | 9 failed) 48ms
+   × GEM-a8-01 advances cannot bypass crisis acceptance or daily mood penalty 12ms
+   × GEM-a8-01 standard content contains both small and crisis-restricted contracts 4ms
+   × GEM-a8-02 retainer is assignable and visible at start of resume slot 3ms
+   × M05-03 low mood creates a production cost; rest recovers it 5ms
+   × M05-04 borrowing supplies spendable cash but cannot erase insolvency 2ms
+   × M05-01 zero chapter bankruptcies cannot pass an insolvent chapter gate 14ms
+   × GEM-a8-03 planner tail work receives reviewer coverage 2ms
+   × GEM-a8-04 exhausted teams and off-duty bluewhale cannot draw work events 2ms
+   × GEM-a8-05 night preview excludes actors who did not volunteer overtime 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/review-m05.test.ts > GEM-a8-01 advances cannot bypass crisis acceptance or daily mood penalty
+AssertionError: expected null to be 'CRISIS_SMALL_ONLY' // Object.is equality
+
+- Expected:
+"CRISIS_SMALL_ONLY"
+
++ Received:
+null
+
+ ❯ apps/sim-cli/review-m05.test.ts:25:19
+     23|   x.c.commissions[0]!.workload=48;
+     24|   const r=dispatchCommand(x.s,{type:'accept',job:'0-2'},x.c);
+     25|   expect(r.error).toBe('CRISIS_SMALL_ONLY'); expect(r.state).toBe(x.s);
+       |                   ^
+     26|   x.s.absoluteSlot=3; x.s.actors.forEach(a=>{a.mood=70;});
+     27|   x.send({type:'advance'}); expect(x.s.actors.every(a=>a.mood===68)).t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  apps/sim-cli/review-m05.test.ts > GEM-a8-01 standard content contains both small and crisis-restricted contracts
+AssertionError: expected [ null, null, null, null, null, …(25) ] to include 'CRISIS_SMALL_ONLY'
+ ❯ apps/sim-cli/review-m05.test.ts:35:18
+     33|     return dispatchCommand(clone,{type:'accept',job:'0-0'},c).error;
+     34|   });
+     35|   expect(errors).toContain('CRISIS_SMALL_ONLY'); expect(errors).toCont…
+       |                  ^
+     36| });
+     37| test('GEM-a8-02 retainer is assignable and visible at start of resume …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  apps/sim-cli/review-m05.test.ts > GEM-a8-02 retainer is assignable and visible at start of resume slot
+AssertionError: expected 'waiting' to be 'working' // Object.is equality
+
+Expected: "working"
+Received: "waiting"
+
+ ❯ apps/sim-cli/review-m05.test.ts:41:65
+     39|   j.status='waiting';j.resumeAt=28;j.deadline=200;x.s.absoluteSlot=27;
+     40|   x.send({type:'advance'});
+     41|   expect(x.s.absoluteSlot).toBe(28);expect(x.s.jobs[0]!.status).toBe('…
+       |                                                                 ^
+     42|   x.send({type:'assign',job:j.id,team:j.team});
+     43|   x.c.events=[{id:'always',title:'always',choices:[{label:'go',cost:0,…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  apps/sim-cli/review-m05.test.ts > M05-03 low mood creates a production cost; rest recovers it
+AssertionError: expected 8.84 to be less than 7.956
+ ❯ apps/sim-cli/review-m05.test.ts:49:35
+     47|   const high=fixture(),low=fixture(); low.s.actors.find(a=>a.id==='qwe…
+     48|   high.send({type:'advance'});low.send({type:'advance'});
+     49|   expect(low.s.jobs[0]!.progress).toBeLessThan(high.s.jobs[0]!.progres…
+       |                                   ^
+     50|   low.s.absoluteSlot=3; const before=low.s.actors[0]!.mood;
+     51|   low.send({type:'advance'});expect(low.s.actors[0]!.mood).toBeGreater…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  apps/sim-cli/review-m05.test.ts > M05-04 borrowing supplies spendable cash but cannot erase insolvency
+AssertionError: expected null to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+null
+
+ ❯ apps/sim-cli/review-m05.test.ts:58:27
+     56|   x.send({type:'loan',amount:1000});
+     57|   expect(x.s.cash).toBe(900);expect(x.s.loan).toBe(1000);
+     58|   expect(x.s.crisisSince).toBe(since);
+       |                           ^
+     59|   const before=hash(x.s);expect(dispatchCommand(x.s,{type:'loan',amoun…
+     60| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  apps/sim-cli/review-m05.test.ts > M05-01 zero chapter bankruptcies cannot pass an insolvent chapter gate
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ apps/sim-cli/review-m05.test.ts:64:50
+     62|   const rows=strategies.map(strategy=>runBot(loadContent(),1,strategy,…
+     63|   for(const row of rows){row.days=60;row.chapterBankrupt=false;row.cha…
+     64|   expect(gates(summarize(rows)).chapterSurvival).toBe(false);
+       |                                                  ^
+     65| });
+     66| test('GEM-a8-03 planner tail work receives reviewer coverage',()=>{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  apps/sim-cli/review-m05.test.ts > GEM-a8-03 planner tail work receives reviewer coverage
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ apps/sim-cli/review-m05.test.ts:69:83
+     67|   const x=fixture([{character:'llama',role:'planner',mode:'cloud'},{ch…
+     68|   const j=x.s.jobs[0]!;j.work=30;j.progress=28;j.reviewCoverage=140;j.…
+     69|   x.send({type:'advance'});expect(x.s.resources.some(r=>r.character===…
+       |                                                                                   ^
+     70| });
+     71| test('GEM-a8-04 exhausted teams and off-duty bluewhale cannot draw wor…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  apps/sim-cli/review-m05.test.ts > GEM-a8-04 exhausted teams and off-duty bluewhale cannot draw work events
+AssertionError: expected { card: 'work', slot: +0, job: '0-0' } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "card": "work",
+  "job": "0-0",
+  "slot": 0,
+}
+
+ ❯ apps/sim-cli/review-m05.test.ts:73:85
+     71| test('GEM-a8-04 exhausted teams and off-duty bluewhale cannot draw wor…
+     72|   const x=fixture();x.c.events=[{id:'work',title:'work',choices:[{labe…
+     73|   x.s.actors.forEach(a=>{a.energy=0;});x.send({type:'advance'});expect…
+       |                                                                                     ^
+     74|   const y=fixture([{character:'qwen',role:'worker',mode:'cloud'},{char…
+     75|   y.c.events=[{id:'busy',title:'busy',trigger:'bluewhale-cloud',choice…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  apps/sim-cli/review-m05.test.ts > GEM-a8-05 night preview excludes actors who did not volunteer overtime
+AssertionError: expected 51.59 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 51.59
+
+ ❯ apps/sim-cli/review-m05.test.ts:79:102
+     77| });
+     78| test('GEM-a8-05 night preview excludes actors who did not volunteer ov…
+     79|   const x=fixture();x.s.absoluteSlot=2;expect(getViewModel(x.s,x.c).jo…
+       |                                                                                                      ^
+     80| });
+     81|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed (9)
+   Start at  00:29:15
+   Duration  426ms (transform 89ms, setup 0ms, import 197ms, tests 48ms, environment 0ms)
+

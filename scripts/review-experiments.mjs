@@ -2,6 +2,7 @@ import {loadContent} from '../packages/oot-content/dist/index.js';
 import {createInitialState,dispatchCommand} from '../packages/oot-core/dist/index.js';
 import {runBot} from '../apps/sim-cli/dist/policy.js';
 import {writeFileSync} from 'node:fs';
+import {hash} from '../packages/oot-persistence/dist/index.js';
 const content=loadContent(),rows=[];
 // Controlled first-milestone comparisons: no events, fully clarified, abundant cloud quota.
 const roles=['none','worker','planner','reviewer'],teams=[];
@@ -49,5 +50,5 @@ for(const excluded of [null,...content.versions.map(v=>v.character)]){
  }
  ablation.push({excluded,runs:100,chapterCash:cash/100,netProjectReceipts:income/100,deliveries:deliveries/100,parallelDailySnapshotRate:parallel/slots});
 }
-writeFileSync('harness/review-experiments.json',JSON.stringify({protocol:'20 seeds per composition; controlled clarified first milestone; net receipts minus Token valued at 0.5/T per paid service slot; ablations 100 seeds x14 days using full engine',templates:rows,ablation},null,2)+'\n');
+writeFileSync(process.argv[2] ?? 'harness/review-experiments.json',JSON.stringify({contentHash:hash(content),protocol:'20 seeds per composition; controlled clarified first milestone; net receipts minus Token valued at 0.5/T per paid service slot; ablations 100 seeds x14 days using full engine',templates:rows,ablation},null,2)+'\n');
 console.log(JSON.stringify({bestCharacters:[...new Set(rows.flatMap(r=>r.best.team.map(m=>m.character)))],plannerWins:rows.filter(r=>r.plannerAdvantage?.gain>0).map(r=>({template:r.template,gain:r.plannerAdvantage.gain})),ablation},null,2));

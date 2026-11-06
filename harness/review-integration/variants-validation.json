@@ -1,0 +1,645 @@
+{
+  "start": 3001,
+  "count": 200,
+  "policyParity": 50,
+  "measurement": "Reviewer variants chapter cash uses end of slot56 commands; formal batch uses start of slot56. Loan solvent metric in this legacy helper excludes principal: use formal metrics for gate.",
+  "results": {
+    "value": {
+      "n": 200,
+      "chapterCash": 1737.6,
+      "chapterSolvent": 0.88,
+      "chapterLiquidSolvent": 0.815,
+      "sustained84": 0.815,
+      "bankrupt": 0.005,
+      "income14": 9393,
+      "finalCash": 18483,
+      "noviceClosed": 880,
+      "noviceBreach": 0.0443,
+      "breachRate": 0.0491,
+      "parallelWorkRate": 0.558,
+      "outOfTokens": 11.28,
+      "purchasesYuan": 107.8,
+      "leftoverPurchasedT": 15.8,
+      "loanRuns": 0,
+      "otSlots": 0,
+      "interest": 0,
+      "roleShare": {
+        "bluewhale:reviewer": 0.0062,
+        "bluewhale:worker": 0.3331,
+        "llama:reviewer": 0.0367,
+        "llama:worker": 0.1768,
+        "mistral:reviewer": 0.0518,
+        "mistral:worker": 0.085,
+        "qwen:reviewer": 0.0023,
+        "qwen:worker": 0.308
+      },
+      "wpShare": {
+        "bluewhale": 0.3298,
+        "llama": 0.1818,
+        "mistral": 0.1331,
+        "qwen": 0.3553
+      }
+    },
+    "greedy": {
+      "n": 200,
+      "chapterCash": -1489.9,
+      "chapterSolvent": 0.14,
+      "chapterLiquidSolvent": 0.095,
+      "sustained84": 0.095,
+      "bankrupt": 0.69,
+      "income14": 6157,
+      "finalCash": 1590,
+      "noviceClosed": 141,
+      "noviceBreach": 0.0142,
+      "breachRate": 0.024,
+      "parallelWorkRate": 0.266,
+      "outOfTokens": 2.43,
+      "purchasesYuan": 47.8,
+      "leftoverPurchasedT": 23.4,
+      "loanRuns": 0,
+      "otSlots": 0,
+      "interest": 0,
+      "roleShare": {
+        "bluewhale:reviewer": 0.0157,
+        "bluewhale:worker": 0.3107,
+        "llama:reviewer": 0.055,
+        "llama:worker": 0.1402,
+        "mistral:reviewer": 0.092,
+        "mistral:worker": 0.0686,
+        "qwen:reviewer": 0.2273,
+        "qwen:worker": 0.0905
+      },
+      "wpShare": {
+        "bluewhale": 0.4538,
+        "llama": 0.2256,
+        "mistral": 0.1616,
+        "qwen": 0.1591
+      }
+    },
+    "random-feasible": {
+      "n": 200,
+      "chapterCash": -1002.1,
+      "chapterSolvent": 0.295,
+      "chapterLiquidSolvent": 0.24,
+      "sustained84": 0.23,
+      "bankrupt": 0.44,
+      "income14": 6642,
+      "finalCash": 4542,
+      "noviceClosed": 138,
+      "noviceBreach": 0.0362,
+      "breachRate": 0.0545,
+      "parallelWorkRate": 0.348,
+      "outOfTokens": 4.83,
+      "purchasesYuan": 50.8,
+      "leftoverPurchasedT": 15.6,
+      "loanRuns": 0,
+      "otSlots": 0,
+      "interest": 0,
+      "roleShare": {
+        "bluewhale:reviewer": 0.0361,
+        "bluewhale:worker": 0.2409,
+        "llama:reviewer": 0.1299,
+        "llama:worker": 0.1222,
+        "mistral:reviewer": 0.1375,
+        "mistral:worker": 0.0613,
+        "qwen:reviewer": 0.0239,
+        "qwen:worker": 0.2481
+      },
+      "wpShare": {
+        "bluewhale": 0.318,
+        "llama": 0.1676,
+        "mistral": 0.128,
+        "qwen": 0.3864
+      }
+    },
+    "random-unconstrained": {
+      "n": 200,
+      "chapterCash": -5047.4,
+      "chapterSolvent": 0.005,
+      "chapterLiquidSolvent": 0.005,
+      "sustained84": 0,
+      "bankrupt": 1,
+      "income14": 2598,
+      "finalCash": -4106,
+      "noviceClosed": 118,
+      "noviceBreach": 0.6441,
+      "breachRate": 0.5616,
+      "parallelWorkRate": 0.656,
+      "outOfTokens": 3.69,
+      "purchasesYuan": 45.5,
+      "leftoverPurchasedT": 14.5,
+      "loanRuns": 0,
+      "otSlots": 0,
+      "interest": 0,
+      "roleShare": {
+        "bluewhale:reviewer": 0.0403,
+        "bluewhale:worker": 0.1973,
+        "llama:reviewer": 0.055,
+        "llama:worker": 0.2229,
+        "mistral:reviewer": 0.0483,
+        "mistral:worker": 0.217,
+        "qwen:reviewer": 0.0541,
+        "qwen:worker": 0.165
+      },
+      "wpShare": {
+        "bluewhale": 0.2033,
+        "llama": 0.2544,
+        "mistral": 0.3124,
+        "qwen": 0.2299
+      }
+    },
+    "random-loan": {
+      "n": 200,
+      "chapterCash": 805.9,
+      "chapterSolvent": 0.97,
+      "chapterLiquidSolvent": 0.965,
+      "sustained84": 0.74,
+      "bankrupt": 0.45,
+      "income14": 6642,
+      "finalCash": 5781,
+      "noviceClosed": 137,
+      "noviceBreach": 0.0365,
+      "breachRate": 0.0537,
+      "parallelWorkRate": 0.348,
+      "outOfTokens": 4.72,
+      "purchasesYuan": 51,
+      "leftoverPurchasedT": 16,
+      "loanRuns": 158,
+      "otSlots": 0,
+      "interest": 44,
+      "roleShare": {
+        "bluewhale:reviewer": 0.0358,
+        "bluewhale:worker": 0.241,
+        "llama:reviewer": 0.1303,
+        "llama:worker": 0.1223,
+        "mistral:reviewer": 0.1363,
+        "mistral:worker": 0.0619,
+        "qwen:reviewer": 0.0241,
+        "qwen:worker": 0.2484
+      },
+      "wpShare": {
+        "bluewhale": 0.3176,
+        "llama": 0.1676,
+        "mistral": 0.1292,
+        "qwen": 0.3856
+      }
+    },
+    "overtime": {
+      "n": 200,
+      "chapterCash": 3164.7,
+      "chapterSolvent": 0.985,
+      "chapterLiquidSolvent": 0.965,
+      "sustained84": 0.965,
+      "bankrupt": 0,
+      "income14": 10819,
+      "finalCash": 24156,
+      "noviceClosed": 1101,
+      "noviceBreach": 0.0309,
+      "breachRate": 0.0409,
+      "parallelWorkRate": 0.428,
+      "outOfTokens": 48.84,
+      "purchasesYuan": 103.3,
+      "leftoverPurchasedT": 5.7,
+      "loanRuns": 0,
+      "otSlots": 83.9,
+      "interest": 0,
+      "roleShare": {
+        "bluewhale:reviewer": 0.0056,
+        "bluewhale:worker": 0.3404,
+        "llama:reviewer": 0.0395,
+        "llama:worker": 0.172,
+        "mistral:reviewer": 0.0501,
+        "mistral:worker": 0.0827,
+        "qwen:reviewer": 0.0025,
+        "qwen:worker": 0.3073
+      },
+      "wpShare": {
+        "bluewhale": 0.3451,
+        "llama": 0.1804,
+        "mistral": 0.1264,
+        "qwen": 0.3481
+      }
+    },
+    "overtime-ahead": {
+      "n": 200,
+      "chapterCash": 4411.7,
+      "chapterSolvent": 0.985,
+      "chapterLiquidSolvent": 0.98,
+      "sustained84": 0.98,
+      "bankrupt": 0,
+      "income14": 12224,
+      "finalCash": 27158,
+      "noviceClosed": 1228,
+      "noviceBreach": 0.0155,
+      "breachRate": 0.0298,
+      "parallelWorkRate": 0.458,
+      "outOfTokens": 0.01,
+      "purchasesYuan": 547.2,
+      "leftoverPurchasedT": 46.7,
+      "loanRuns": 0,
+      "otSlots": 68.9,
+      "interest": 0,
+      "roleShare": {
+        "bluewhale:reviewer": 0.0069,
+        "bluewhale:worker": 0.3359,
+        "llama:reviewer": 0.0376,
+        "llama:worker": 0.16,
+        "mistral:reviewer": 0.0523,
+        "mistral:worker": 0.0833,
+        "qwen:reviewer": 0.0021,
+        "qwen:worker": 0.3218
+      },
+      "wpShare": {
+        "bluewhale": 0.3362,
+        "llama": 0.1746,
+        "mistral": 0.128,
+        "qwen": 0.3612
+      }
+    },
+    "skilled": {
+      "n": 200,
+      "chapterCash": 4619.5,
+      "chapterSolvent": 0.99,
+      "chapterLiquidSolvent": 0.985,
+      "sustained84": 0.985,
+      "bankrupt": 0,
+      "income14": 12396,
+      "finalCash": 27141,
+      "noviceClosed": 1193,
+      "noviceBreach": 0.0235,
+      "breachRate": 0.0349,
+      "parallelWorkRate": 0.469,
+      "outOfTokens": 0.02,
+      "purchasesYuan": 7.5,
+      "leftoverPurchasedT": 8.6,
+      "loanRuns": 0,
+      "otSlots": 67.4,
+      "interest": 0,
+      "roleShare": {
+        "bluewhale:reviewer": 0.0051,
+        "bluewhale:worker": 0.3385,
+        "llama:reviewer": 0.0409,
+        "llama:worker": 0.1601,
+        "mistral:reviewer": 0.0517,
+        "mistral:worker": 0.0849,
+        "qwen:reviewer": 0.0018,
+        "qwen:worker": 0.3169
+      },
+      "wpShare": {
+        "bluewhale": 0.3402,
+        "llama": 0.1722,
+        "mistral": 0.1294,
+        "qwen": 0.3583
+      }
+    },
+    "no-clarify": {
+      "n": 200,
+      "chapterCash": 1023.7,
+      "chapterSolvent": 0.655,
+      "chapterLiquidSolvent": 0.57,
+      "sustained84": 0.565,
+      "bankrupt": 0.14,
+      "income14": 8725,
+      "finalCash": 14660,
+      "noviceClosed": 2154,
+      "noviceBreach": 0.2707,
+      "breachRate": 0.1686,
+      "parallelWorkRate": 0.747,
+      "outOfTokens": 22.29,
+      "purchasesYuan": 224,
+      "leftoverPurchasedT": 12.4,
+      "loanRuns": 0,
+      "otSlots": 0,
+      "interest": 0,
+      "roleShare": {
+        "bluewhale:reviewer": 0.0043,
+        "bluewhale:worker": 0.352,
+        "llama:reviewer": 0.0293,
+        "llama:worker": 0.1448,
+        "mistral:reviewer": 0.0348,
+        "mistral:worker": 0.0787,
+        "qwen:reviewer": 0.0019,
+        "qwen:worker": 0.3541
+      },
+      "wpShare": {
+        "bluewhale": 0.3348,
+        "llama": 0.1498,
+        "mistral": 0.1157,
+        "qwen": 0.3997
+      }
+    },
+    "hidden-aware": {
+      "n": 200,
+      "chapterCash": 1228,
+      "chapterSolvent": 0.7,
+      "chapterLiquidSolvent": 0.665,
+      "sustained84": 0.65,
+      "bankrupt": 0.105,
+      "income14": 8888,
+      "finalCash": 13934,
+      "noviceClosed": 0,
+      "noviceBreach": null,
+      "breachRate": 0.0602,
+      "parallelWorkRate": 0.477,
+      "outOfTokens": 12.36,
+      "purchasesYuan": 90.8,
+      "leftoverPurchasedT": 14,
+      "loanRuns": 0,
+      "otSlots": 0,
+      "interest": 0,
+      "roleShare": {
+        "bluewhale:reviewer": 0.0134,
+        "bluewhale:worker": 0.2875,
+        "llama:reviewer": 0.0867,
+        "llama:worker": 0.1431,
+        "mistral:reviewer": 0.1468,
+        "mistral:worker": 0.0705,
+        "qwen:reviewer": 0.01,
+        "qwen:worker": 0.242
+      },
+      "wpShare": {
+        "bluewhale": 0.3495,
+        "llama": 0.1718,
+        "mistral": 0.1399,
+        "qwen": 0.3389
+      }
+    }
+  },
+  "templateRates": {
+    "value": {
+      "forecast": {
+        "closed": 139,
+        "breached": 9
+      },
+      "story": {
+        "closed": 253,
+        "breached": 9
+      },
+      "website": {
+        "closed": 93,
+        "breached": 10
+      },
+      "chart": {
+        "closed": 365,
+        "breached": 9
+      },
+      "logo": {
+        "closed": 14,
+        "breached": 2
+      },
+      "mascot": {
+        "closed": 8,
+        "breached": 0
+      },
+      "rivals": {
+        "closed": 8,
+        "breached": 0
+      }
+    },
+    "greedy": {
+      "chart": {
+        "closed": 28,
+        "breached": 0
+      },
+      "website": {
+        "closed": 27,
+        "breached": 0
+      },
+      "story": {
+        "closed": 41,
+        "breached": 1
+      },
+      "forecast": {
+        "closed": 41,
+        "breached": 1
+      },
+      "logo": {
+        "closed": 2,
+        "breached": 0
+      },
+      "rivals": {
+        "closed": 2,
+        "breached": 0
+      }
+    },
+    "random-feasible": {
+      "chart": {
+        "closed": 35,
+        "breached": 0
+      },
+      "logo": {
+        "closed": 17,
+        "breached": 2
+      },
+      "forecast": {
+        "closed": 16,
+        "breached": 0
+      },
+      "website": {
+        "closed": 25,
+        "breached": 1
+      },
+      "story": {
+        "closed": 17,
+        "breached": 1
+      },
+      "mascot": {
+        "closed": 23,
+        "breached": 1
+      },
+      "rivals": {
+        "closed": 5,
+        "breached": 0
+      }
+    },
+    "random-unconstrained": {
+      "animation": {
+        "closed": 15,
+        "breached": 12
+      },
+      "website": {
+        "closed": 15,
+        "breached": 9
+      },
+      "rivals": {
+        "closed": 21,
+        "breached": 13
+      },
+      "story": {
+        "closed": 25,
+        "breached": 9
+      },
+      "mascot": {
+        "closed": 14,
+        "breached": 12
+      },
+      "forecast": {
+        "closed": 9,
+        "breached": 4
+      },
+      "logo": {
+        "closed": 13,
+        "breached": 11
+      },
+      "chart": {
+        "closed": 6,
+        "breached": 6
+      }
+    },
+    "random-loan": {
+      "chart": {
+        "closed": 34,
+        "breached": 0
+      },
+      "logo": {
+        "closed": 17,
+        "breached": 2
+      },
+      "forecast": {
+        "closed": 16,
+        "breached": 0
+      },
+      "website": {
+        "closed": 25,
+        "breached": 1
+      },
+      "story": {
+        "closed": 17,
+        "breached": 1
+      },
+      "mascot": {
+        "closed": 23,
+        "breached": 1
+      },
+      "rivals": {
+        "closed": 5,
+        "breached": 0
+      }
+    },
+    "overtime": {
+      "forecast": {
+        "closed": 170,
+        "breached": 0
+      },
+      "story": {
+        "closed": 325,
+        "breached": 11
+      },
+      "chart": {
+        "closed": 474,
+        "breached": 9
+      },
+      "website": {
+        "closed": 94,
+        "breached": 11
+      },
+      "mascot": {
+        "closed": 10,
+        "breached": 2
+      },
+      "logo": {
+        "closed": 21,
+        "breached": 1
+      },
+      "rivals": {
+        "closed": 7,
+        "breached": 0
+      }
+    },
+    "overtime-ahead": {
+      "forecast": {
+        "closed": 170,
+        "breached": 0
+      },
+      "story": {
+        "closed": 381,
+        "breached": 5
+      },
+      "chart": {
+        "closed": 546,
+        "breached": 8
+      },
+      "website": {
+        "closed": 91,
+        "breached": 5
+      },
+      "logo": {
+        "closed": 17,
+        "breached": 1
+      },
+      "mascot": {
+        "closed": 14,
+        "breached": 0
+      },
+      "rivals": {
+        "closed": 9,
+        "breached": 0
+      }
+    },
+    "skilled": {
+      "forecast": {
+        "closed": 163,
+        "breached": 2
+      },
+      "story": {
+        "closed": 347,
+        "breached": 4
+      },
+      "website": {
+        "closed": 106,
+        "breached": 9
+      },
+      "chart": {
+        "closed": 538,
+        "breached": 11
+      },
+      "rivals": {
+        "closed": 11,
+        "breached": 0
+      },
+      "logo": {
+        "closed": 14,
+        "breached": 1
+      },
+      "mascot": {
+        "closed": 14,
+        "breached": 1
+      }
+    },
+    "no-clarify": {
+      "chart": {
+        "closed": 765,
+        "breached": 140
+      },
+      "forecast": {
+        "closed": 774,
+        "breached": 305
+      },
+      "story": {
+        "closed": 459,
+        "breached": 96
+      },
+      "website": {
+        "closed": 114,
+        "breached": 30
+      },
+      "logo": {
+        "closed": 21,
+        "breached": 8
+      },
+      "mascot": {
+        "closed": 16,
+        "breached": 3
+      },
+      "rivals": {
+        "closed": 5,
+        "breached": 1
+      }
+    },
+    "hidden-aware": {}
+  },
+  "weightedNoClarifyBreach": 0.2356742473332941,
+  "weightedRatio": 5.319960436417474,
+  "overtimeGain": 0.8213052486187846,
+  "overtimeAheadGain": 1.5389617863720075
+}

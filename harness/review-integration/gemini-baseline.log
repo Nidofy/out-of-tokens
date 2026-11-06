@@ -1,0 +1,237 @@
+GEMINI_VERIFY_OK D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\harness\review-integration\seeds-4001-4020.json
+{
+  "oldGemChecks": {
+    "GEM01": {
+      "status": "FIXED",
+      "clarifyErrorAtSlot0": null,
+      "clarifyingUntilAtSlot0": 1,
+      "sameSlotAcceptError": "STILL_CLARIFYING",
+      "eveningClarifyErrorAtSlot2": "NOT_WORK_SLOT"
+    },
+    "GEM02": {
+      "status": "PARTIALLY_FIXED_WITH_EDGE_CASES",
+      "quotaBefore": 20,
+      "quotaAfterWhenWorkerCannotAffordSlot": 20,
+      "progressAfter": 0,
+      "outOfTokensEvents": 0
+    },
+    "GEM03": {
+      "status": "FIXED",
+      "qwenContext": 6,
+      "wpWhenLoadEqualsContext": 8.45,
+      "wpWhenLoadExceedsContext": 5.91
+    },
+    "GEM04": {
+      "status": "FIXED",
+      "durations": [
+        {
+          "acceptSlot": 0,
+          "workSlots": 6,
+          "duration": 12,
+          "deadline": 10
+        },
+        {
+          "acceptSlot": 1,
+          "workSlots": 6,
+          "duration": 12,
+          "deadline": 13
+        },
+        {
+          "acceptSlot": 2,
+          "workSlots": 6,
+          "duration": 12,
+          "deadline": 14
+        },
+        {
+          "acceptSlot": 3,
+          "workSlots": 6,
+          "duration": 12,
+          "deadline": 14
+        }
+      ]
+    },
+    "GEM06": {
+      "status": "FIXED",
+      "hashMatchesWithUndefinedObjectKey": true,
+      "hashMatchesWithUndefinedArrayElement": true,
+      "roundTripHashMatches": true
+    }
+  },
+  "newFindings": {
+    "GEM_a8fb63c_01_CrisisCheckInconsistency": {
+      "maxSinglePhaseWorkloadInStandardContent": 40,
+      "maxTotalPhaseWorkloadInStandardContent": 75,
+      "allStandardTemplatesBypassCrisisSmallOnly": true,
+      "largeAcceptErrorBeforeSmallAdvance": "CRISIS_SMALL_ONLY",
+      "cashAfterSmallAccept": 217.3,
+      "liquidAfterSmallAccept": -50,
+      "crisisSinceAfterSmallAccept": 0,
+      "largeAcceptErrorDuringCrisisAfterSmallAdvance": null,
+      "largeAcceptSucceededDuringActiveCrisis": true,
+      "crisisSinceAfterLargeAccept": 0,
+      "moodBeforeDayEnd": 70,
+      "moodAfterDayEndDuringActiveCrisis": 82,
+      "expectedMoodIfCrisisPenaltyApplied": 69,
+      "crisisSinceAfterDayEnd": 0
+    },
+    "GEM_a8fb63c_02_RetainerResumeSlotTiming": {
+      "statusAfterPhase0": "waiting",
+      "resumeAt": 28,
+      "currentSlot": 28,
+      "statusAtResumeSlotBeforeAdvance": "waiting",
+      "assignTeamAtResumeSlotError": "NOT_ASSIGNABLE",
+      "consoleWorkingEstimatedCloudTokensAtResumeSlot": 0,
+      "eventChanceConfigured": 1,
+      "pendingEventDrawnAtResumeSlot": null,
+      "jobStatusAfterAdvanceAtResumeSlot": "review",
+      "tokensUsedInResumeSlot": 0
+    },
+    "GEM_a8fb63c_03_PlannerPrecheckAndShortTail": {
+      "subcase3A_ShortTailDilutesReview": {
+        "progressBefore": 28,
+        "work": 30,
+        "reviewBefore": 5,
+        "statusAfter": "review",
+        "progressAfter": 30,
+        "reviewCoverageBefore": 140,
+        "reviewCoverageAfter": 140,
+        "reviewAfter": 4.67
+      },
+      "subcase3B_PrecheckIgnoresPlannerWorkContribution": {
+        "remainingWorkBefore": 5,
+        "quotaAvailable": 32,
+        "plannerRan": false,
+        "progressAfter": 25,
+        "outOfTokensEventMessages": [
+          "qwen 资源不足，停工"
+        ]
+      },
+      "subcase3C_UnroundedWpAllowsPlannerChargeWhenWorkerStarves": {
+        "template": "menu",
+        "slot": 0,
+        "workerEnergy": 100,
+        "rawWp": 9.507299999999999,
+        "actualWorkerUnits": 9.51,
+        "plannerCost": 13.68,
+        "precheckWorkerCost": 66.55,
+        "actualWorkerCost": 66.57,
+        "quotaSet": 80.23,
+        "quotaAfter": 66.55,
+        "plannerCharged": true,
+        "workerHitOutOfTokens": true
+      }
+    },
+    "GEM_a8fb63c_04_EventEligibilityEdgeCases": {
+      "subcase4A_BluewhaleCloudInOvertimeWithoutBluewhaleOvertime": {
+        "overtimeActors": [
+          "qwen"
+        ],
+        "pendingCardTriggered": {
+          "card": "busy",
+          "slot": 2,
+          "job": "0-0"
+        }
+      },
+      "subcase4B_ZeroEnergyTeamFarmsQualityBonus": {
+        "actorEnergy": 0,
+        "pendingWhenAllActorsZeroEnergy": {
+          "card": "thinking",
+          "slot": 0,
+          "job": "0-0"
+        },
+        "progressAfter": 0,
+        "qualityBonusAfter": 15,
+        "tokensUsedAfter": 0
+      }
+    },
+    "GEM_a8fb63c_05_PreviewEstimateMismatch": {
+      "slot": 2,
+      "overtime": [],
+      "estimatedCloudTokens": 136.71,
+      "actualTokensWhenAdvancingWithoutOvertime": 0
+    }
+  },
+  "heldOutMeta": {
+    "seedRange": "4001-4020",
+    "totalRuns": 100,
+    "invariantViolations": 0,
+    "gatesOn20Seeds": {
+      "chapterSurvival": true,
+      "randomRisk": false,
+      "characterCoverage": true,
+      "clarification": true
+    },
+    "replayChecks": [
+      {
+        "seed": 4001,
+        "commandsCount": 494,
+        "finalSlot": 240,
+        "stateHash": "5ee2a0996253a770127bdee6c45a17e70be305ea11df3c72430b6925da592152",
+        "restoreHashMatch": true,
+        "replayHashMatch": true,
+        "actorsInBounds": true,
+        "jobsInBounds": true,
+        "tokensNonNegative": true,
+        "netCash": 18483.76,
+        "breached": 1,
+        "bankrupt": false
+      },
+      {
+        "seed": 4002,
+        "commandsCount": 506,
+        "finalSlot": 240,
+        "stateHash": "1ce4a7049dfad11558b7cefb0ed3714b5c4d9478d9a3c4a3545022b7e65a3c10",
+        "restoreHashMatch": true,
+        "replayHashMatch": true,
+        "actorsInBounds": true,
+        "jobsInBounds": true,
+        "tokensNonNegative": true,
+        "netCash": 22610.3,
+        "breached": 1,
+        "bankrupt": false
+      },
+      {
+        "seed": 4003,
+        "commandsCount": 503,
+        "finalSlot": 240,
+        "stateHash": "eb139ba4f12c29bf3d480a1256718a0b38170a34826b535ae19643fc668aa4a8",
+        "restoreHashMatch": true,
+        "replayHashMatch": true,
+        "actorsInBounds": true,
+        "jobsInBounds": true,
+        "tokensNonNegative": true,
+        "netCash": 18831.84,
+        "breached": 1,
+        "bankrupt": false
+      },
+      {
+        "seed": 4004,
+        "commandsCount": 518,
+        "finalSlot": 240,
+        "stateHash": "4a47d084a181974330409cbc75468eca58f0b9f04edb9eb102891165c356f330",
+        "restoreHashMatch": true,
+        "replayHashMatch": true,
+        "actorsInBounds": true,
+        "jobsInBounds": true,
+        "tokensNonNegative": true,
+        "netCash": 23830.75,
+        "breached": 0,
+        "bankrupt": false
+      },
+      {
+        "seed": 4005,
+        "commandsCount": 506,
+        "finalSlot": 240,
+        "stateHash": "dd2350f1abba41a8f67db794bb39d20c1289a1edfaaca529e24c33556a02f656",
+        "restoreHashMatch": true,
+        "replayHashMatch": true,
+        "actorsInBounds": true,
+        "jobsInBounds": true,
+        "tokensNonNegative": true,
+        "netCash": 19612.08,
+        "breached": 0,
+        "bankrupt": false
+      }
+    ]
+  }
+}

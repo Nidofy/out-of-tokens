@@ -3,13 +3,14 @@ import { round } from './economy.js';
 export function eligible(s: State, c: Content, card: Card, j: Job): boolean {
     if (j.status !== 'working')
         return false;
-    if (s.absoluteSlot % 4 >= 2 && !j.team.some(m => s.overtime.includes(m.character)))
+    const attending = (id: string) => s.actors.find(a => a.id === id)!.energy >= 10 && (s.absoluteSlot % 4 < 2 || s.overtime.includes(id));
+    if (!j.team.some(m => m.role === 'worker' && attending(m.character)))
         return false;
     if (s.absoluteSlot - (s.eventLast[card.id] ?? -10000) < (card.cooldown ?? 0))
         return false;
     const t = c.commissions.find(t => t.id === j.template)!;
     switch (card.trigger) {
-        case 'bluewhale-cloud': return j.team.some(m => m.character === 'bluewhale' && m.mode === 'cloud' && s.actors.find(a => a.id === m.character)!.energy >= 10 && s.quota + s.purchased > 0);
+        case 'bluewhale-cloud': return j.team.some(m => m.character === 'bluewhale' && m.mode === 'cloud' && attending(m.character) && s.quota + s.purchased > 0);
         case 'cloud': return j.team.some(m => m.mode === 'cloud');
         case 'code':
         case 'data':

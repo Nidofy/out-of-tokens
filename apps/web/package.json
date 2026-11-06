@@ -1,0 +1,21 @@
+{
+  "name": "oot-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "oot-core": "workspace:*",
+    "oot-content": "workspace:*",
+    "oot-persistence": "workspace:*",
+    "oot-platform": "workspace:*",
+    "preact": "11.2.0",
+    "pixi.js": "8.22.0"
+  },
+  "devDependencies": {
+    "vite": "8.3.6"
+  }
+}

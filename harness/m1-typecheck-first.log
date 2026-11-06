@@ -1,0 +1,24 @@
+Scope: all 7 workspace projects
+? Verifying lockfile against supply-chain policies (218 entries)...
+Lockfile is up to date, resolution step is skipped
+Already up to date
+✓ Lockfile passes supply-chain policies (218 entries in 10.6s)
+
+Done in 11s using pnpm v11.25.0
+$ tsc -b --pretty false
+apps/web/src/main.tsx(67,9): error TS2657: JSX expressions must have one parent element.
+apps/web/src/main.tsx(85,161): error TS2657: JSX expressions must have one parent element.
+apps/web/src/main.tsx(85,557): error TS1005: '>' expected.
+apps/web/src/main.tsx(85,571): error TS1382: Unexpected token. Did you mean `{'>'}` or `&gt;`?
+apps/web/src/main.tsx(85,576): error TS17002: Expected corresponding JSX closing tag for 'select'.
+apps/web/src/main.tsx(85,657): error TS17002: Expected corresponding JSX closing tag for 'div'.
+apps/web/src/main.tsx(85,948): error TS1005: ',' expected.
+apps/web/src/main.tsx(85,955): error TS1381: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+apps/web/src/main.tsx(85,958): error TS17015: Expected corresponding closing tag for JSX fragment.
+apps/web/src/main.tsx(85,961): error TS1382: Unexpected token. Did you mean `{'>'}` or `&gt;`?
+apps/web/src/main.tsx(88,5): error TS1003: Identifier expected.
+apps/web/src/main.tsx(88,6): error TS1381: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+apps/web/src/main.tsx(88,9): error TS17002: Expected corresponding JSX closing tag for 'div'.
+apps/web/src/main.tsx(92,2): error TS1128: Declaration or statement expected.
+apps/web/src/main.tsx(92,8): error TS1109: Expression expected.
+[ELIFECYCLE] Command failed with exit code 2.

@@ -1,0 +1,54 @@
+$ pnpm typecheck && pnpm lint && pnpm test && pnpm build
+$ tsc -b --pretty false
+$ eslint packages apps
+$ pnpm build && vitest run
+$ pnpm build:core && pnpm --filter oot-web build
+$ tsc -b
+$ vite build
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 836 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.99 kB │ gzip:   0.56 kB
+dist/assets/index-DyznuYYP.css                     17.26 kB │ gzip:   4.65 kB
+dist/assets/webworkerAll-DjuSAHTd.js                0.05 kB │ gzip:   0.06 kB
+dist/assets/getTextureBatchBindGroup-hK4Xhp7N.js    0.34 kB │ gzip:   0.26 kB
+dist/assets/canvasUtils-G1F85v5_.js                 6.01 kB │ gzip:   2.04 kB
+dist/assets/getTexelRangeRects-n9rC3yLB.js         11.31 kB │ gzip:   2.98 kB
+dist/assets/init-DqoPDUU6.js                       14.81 kB │ gzip:   4.62 kB
+dist/assets/browserAll-BvXBI0Nq.js                 43.47 kB │ gzip:  11.28 kB
+dist/assets/RenderTargetSystem-BssNwx7J.js         78.08 kB │ gzip:  22.07 kB
+dist/assets/CanvasPool-D071ZhP4.js                113.00 kB │ gzip:  34.45 kB
+dist/assets/index-oDOQVNjX.js                     453.93 kB │ gzip: 138.81 kB
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/scene.ts is dynamically imported by src/main.tsx but also statically imported by src/main.tsx, dynamic import will not move module into another chunk.
+
+✓ built in 354ms
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/browser-host.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/browser-host.test.ts [ apps/sim-cli/browser-host.test.ts ]
+Error: Cannot find package 'oot-platform' imported from D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/apps/sim-cli/browser-host.test.ts
+ ❯ apps/sim-cli/browser-host.test.ts:8:1
+      6| import { save, restore, hash } from 'oot-persistence';
+      7| import { saveBrowser, restoreBrowser, hashBrowser } from 'oot-persiste…
+      8| import { BrowserSaves, GameSession } from 'oot-platform';
+       | ^
+      9| import { runBot } from './src/policy.js';
+     10| test('Node and Web Crypto produce identical content, state and save en…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 8 passed (9)
+      Tests  56 passed (56)
+   Start at  00:20:39
+   Duration  1.70s (transform 835ms, setup 0ms, import 1.96s, tests 2.73s, environment 1ms)
+
+[ELIFECYCLE] Test failed. See above for more details.
+[ELIFECYCLE] Command failed with exit code 1.

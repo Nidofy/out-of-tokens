@@ -1,5 +1,5 @@
 import { deadlineAfterWorkSlots } from './clock.js';
-import { balance, crisis } from './economy.js';
+import { balance, crisis, liquidCash, moodFactor } from './economy.js';
 import { eligible, applyEffects } from './events.js';
 import { engineVersion } from './version.js';
 import { estimateResources } from './preview.js';
@@ -53,7 +53,6 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
     if (s.absoluteSlot % 4 < 2 || s.overtime.length)
         for (const j of s.jobs.filter(j => j.status === 'working')) {
             const progressBefore = j.progress;
-            let workerProgress = 0;
             let bonus = 1;
             const order = { planner: 0, worker: 1, reviewer: 2 };
             for (const m of [...j.team].sort((a, b) => order[a.role] - order[b.role] || (a.character < b.character ? -1 : a.character > b.character ? 1 : 0))) {
@@ -71,9 +70,9 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                 const affected = (!eventJob || eventJob === j.id) && (!target || (m.character === target && m.mode === 'cloud'));
                 const effect = affected ? (m.role === 'worker' ? multiplier : Math.min(1, multiplier)) : 1;
                 const teamCost = 1 - .05 * Math.max(0, j.team.filter(m => m.role === 'worker').length - 2);
-                if (m.role === 'reviewer' && workerProgress === 0 && j.defects === 0)
+                if (m.role === 'reviewer' && j.progress === progressBefore && j.defects === 0)
                     continue;
-                let units = round(10 * matching * v.speed * energy * (v.rhythm[s.absoluteSlot % 4] ?? 1) * (overloaded ? 0.7 : 1) * effect * (m.role === 'worker' ? bonus * teamCost : m.role === 'planner' ? 0.5 : 0.3));
+                let units = round(10 * matching * v.speed * energy * moodFactor(a.mood) * (v.rhythm[s.absoluteSlot % 4] ?? 1) * (overloaded ? 0.7 : 1) * effect * (m.role === 'worker' ? bonus * teamCost : m.role === 'planner' ? 0.5 : 0.3));
                 if (m.role === 'worker' || m.role === 'planner')
                     units = Math.min(units, round(j.work - j.progress));
                 if (units <= 0)
@@ -85,12 +84,13 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                         const wv = version(c, wa);
                         if (wa.energy < 10 || (s.absoluteSlot % 4 >= 2 && !s.overtime.includes(wa.id)))
                             return false;
-                        const wf = (!eventJob || eventJob === j.id) && (!target || (w.character === target && w.mode === 'cloud')) ? multiplier : 1;
+                        const workerAffected = (!eventJob || eventJob === j.id) && (!target || (w.character === target && w.mode === 'cloud'));
+                        const wf = workerAffected ? multiplier : 1;
                         if (wf === 0)
                             return false;
-                        const wp = Math.min(j.work - j.progress, 10 * match(c, j, wv) * wv.speed * (wv.rhythm[s.absoluteSlot % 4] ?? 1) * (wa.energy >= 60 ? 1 : wa.energy >= 30 ? .85 : .6) * (wa.load > wv.context ? .7 : 1) * wf * (1 + v.skills.reason * .015) * teamCost);
+                        const wp = Math.min(Math.max(0, round(j.work - j.progress - units)), round(10 * match(c, j, wv) * wv.speed * (wv.rhythm[s.absoluteSlot % 4] ?? 1) * (wa.energy >= 60 ? 1 : wa.energy >= 30 ? .85 : .6) * moodFactor(wa.mood) * (wa.load > wv.context ? .7 : 1) * wf * (1 + v.skills.reason * .015) * teamCost));
                         const pool = (w.mode === 'cloud' ? s.quota + s.purchased : local) - (w.mode === m.mode ? cost : 0);
-                        return pool >= round(wp * wv.price * (affected ? tokenRate : 1));
+                        return round(pool) >= round(wp * wv.price * (workerAffected ? tokenRate : 1));
                     });
                     if (!ready)
                         continue;
@@ -123,8 +123,6 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                     const delivered = Math.min(units, Math.max(0, j.work - j.progress));
                     j.progress = round(j.progress + delivered);
                     j.weighted = round(j.weighted + delivered * matching);
-                    if (m.role === 'worker')
-                        workerProgress += delivered;
                     if (m.role === 'worker' && draw(s, 'quality') < 0.25 * (1 - v.stability / 10) * (energy === 0.6 ? 1.5 : 1) * (overloaded ? 1.5 : 1))
                         j.defects++;
                 }
@@ -147,12 +145,16 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
         }
     for (const a of s.actors)
         if (!worked.has(a.id) && a.busyUntil <= s.absoluteSlot) {
-            a.energy = clamp(a.energy + (s.absoluteSlot % 4 === 3 ? 60 : 15));
+            const eveningWorked = s.resources.some(r => r.character === a.id && r.slot === s.absoluteSlot - 1);
+            a.energy = clamp(a.energy + (s.absoluteSlot % 4 === 3 ? (eveningWorked ? 30 : 60) : 15));
             a.mood = clamp(a.mood + 3);
             if (s.absoluteSlot % 4 === 3)
                 a.load = 0;
         }
     s.absoluteSlot++;
+    for (const j of s.jobs)
+        if (j.status === 'waiting' && s.absoluteSlot >= j.resumeAt)
+            j.status = 'working';
     s.overtime = [];
     s.pending = null;
     for (const j of s.jobs)
@@ -160,7 +162,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
             breach(s, c, j);
     if (s.absoluteSlot % 4 === 0) {
         s.quota = s.absoluteSlot >= 8 ? balance(c).upgradedQuota : balance(c).dailyQuota;
-        if (s.cash < 0)
+        if (liquidCash(s) < 0)
             for (const a of s.actors)
                 a.mood = clamp(a.mood - 5);
         refill(s, c);
@@ -184,6 +186,7 @@ function parse(input: unknown): Command {
     requireRule(typeof input === 'object' && input !== null && !Array.isArray(input), 'INVALID_COMMAND');
     const v = input as Record<string, unknown>;
     const t = v.type;
+    requireRule(typeof t === 'string' && ['overtime', 'restart', 'loan', 'repay', 'advance', 'choose', 'buy', 'accept', 'reject', 'deliver', 'rework', 'clarify', 'assign'].includes(t), 'UNSUPPORTED_COMMAND');
     if (t === 'overtime') {
         requireRule(typeof v.character === 'string', 'INVALID_ACTOR');
         return { type: t, character: v.character };
@@ -295,7 +298,7 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
             if (cmd.type === 'accept') {
                 requireRule(j.status === 'posted', 'NOT_POSTED');
                 requireRule(j.clarifyingUntil <= s.absoluteSlot, 'STILL_CLARIFYING');
-                requireRule(s.cash >= 0 || t.workload <= 40, 'CRISIS_SMALL_ONLY');
+                requireRule(liquidCash(s) >= 0 || t.workload * (t.phases ?? 1) <= 40, 'CRISIS_SMALL_ONLY');
                 j.status = 'accepted';
                 j.deadline = deadlineAfterWorkSlots(s.absoluteSlot, t.workSlots);
                 j.duration = t.workSlots * 2;

@@ -1,0 +1,33 @@
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/review-m05.test.ts (12 tests | 1 failed) 101ms
+   × NS-01..03 all domain errors have Chinese guidance; unknown JSON type is atomic 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/review-m05.test.ts > NS-01..03 all domain errors have Chinese guidance; unknown JSON type is atomic
+AssertionError: VERSION_MISMATCH: expected 'VERSION_MISMATCH' to match /[\u4e00-\u9fff]/
+
+- Expected:
+/[\u4e00-\u9fff]/
+
++ Received:
+"VERSION_MISMATCH"
+
+ ❯ apps/sim-cli/review-m05.test.ts:104:55
+    102|   const source=readFileSync(new URL('../../packages/oot-core/src/simul…
+    103|   const codes=[...new Set([...source.matchAll(/'([A-Z][A-Z_]+)'/g)].ma…
+    104|   for(const code of codes) expect(explain(code),code).toMatch(/[\u4e00…
+       |                                                       ^
+    105|   const c=loadContent(),s=createInitialState(c);const before=hash(s);
+    106|   for(const cmd of [{type:'nonsense'},{type:'nonsense',job:'0-0'}]){
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 9 passed (10)
+      Tests  1 failed | 72 passed (73)
+   Start at  00:34:40
+   Duration  1.52s (transform 948ms, setup 0ms, import 2.62s, tests 2.81s, environment 1ms)
+

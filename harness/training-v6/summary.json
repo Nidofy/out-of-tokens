@@ -1,0 +1,321 @@
+{
+  "engineVersion": "0.5.0",
+  "contentVersion": "m0.5-1",
+  "contentHash": "08c1400e62092c90aa6b954a7f6da1590c6b3091f8481cb9d212f6137a3f4bf9",
+  "policyVersion": 4,
+  "runs": 100,
+  "days": 60,
+  "seedStart": 1,
+  "seedEnd": 100,
+  "parameters": {
+    "startingCash": 5000,
+    "debt": 8000,
+    "debtSlot": 56,
+    "weekly": 2300,
+    "dailyQuota": 90,
+    "upgradedQuota": 180,
+    "localCapacity": 120,
+    "loanLimit": 5000,
+    "interest": 0.05,
+    "eventChance": 0.25,
+    "rewardScale": 0.83,
+    "crisisLength": 12,
+    "bankruptcyFloor": -20000
+  },
+  "seconds": 6.991512800000001,
+  "secondsPer1000": 13.983025600000001,
+  "summary": [
+    {
+      "strategy": "value",
+      "runs": 100,
+      "days": 60,
+      "bankruptcy": 0.02,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.75,
+      "sustainedSolvent": 0.74,
+      "chapterLiquid": 1010.9622000000002,
+      "chapterCash": 1331.4251999999992,
+      "netCash": 12791.538000000002,
+      "deliveryRate": 0.8944864259725721,
+      "breachRate": 0.054575986565911,
+      "active": 182,
+      "noviceClosed": 466,
+      "noviceBreached": 17,
+      "noviceBreachRate": 0.03648068669527897,
+      "tokens": 6920.352899999999,
+      "localCompute": 0,
+      "outOfTokens": 1169,
+      "tokenPurchases": 210,
+      "participation": {
+        "bluewhale": 7474,
+        "qwen": 6715,
+        "llama": 4772,
+        "mistral": 3026
+      },
+      "participationRate": {
+        "bluewhale": 0.33992813935507343,
+        "qwen": 0.3054077409378269,
+        "llama": 0.2170373402465093,
+        "mistral": 0.13762677946059035
+      },
+      "grades": {
+        "failed": 173,
+        "pass": 3299,
+        "good": 724,
+        "great": 24
+      },
+      "operatingMargin": 0.7813287747985624
+    },
+    {
+      "strategy": "greedy",
+      "runs": 100,
+      "days": 60,
+      "bankruptcy": 0.76,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.09,
+      "sustainedSolvent": 0.07,
+      "chapterLiquid": -1996.5917000000006,
+      "chapterCash": -1874.208200000001,
+      "netCash": -3831.454099999999,
+      "deliveryRate": 0.8198818897637795,
+      "breachRate": 0.028543307086614175,
+      "active": 154,
+      "noviceClosed": 60,
+      "noviceBreached": 0,
+      "noviceBreachRate": 0,
+      "tokens": 2706.181900000002,
+      "localCompute": 0,
+      "outOfTokens": 255,
+      "tokenPurchases": 93,
+      "participation": {
+        "bluewhale": 3727,
+        "qwen": 3571,
+        "llama": 2142,
+        "mistral": 1742
+      },
+      "participationRate": {
+        "bluewhale": 0.33330352351994275,
+        "qwen": 0.31935253085315685,
+        "llama": 0.19155786084779108,
+        "mistral": 0.1557860847791093
+      },
+      "grades": {
+        "failed": 6,
+        "pass": 662,
+        "good": 563,
+        "great": 79
+      },
+      "operatingMargin": 0.6843769260568437
+    },
+    {
+      "strategy": "random",
+      "runs": 100,
+      "days": 60,
+      "bankruptcy": 0.51,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.18,
+      "sustainedSolvent": 0.17,
+      "chapterLiquid": -1560.890200000001,
+      "chapterCash": -1370.4052000000004,
+      "netCash": -1167.3321999999994,
+      "deliveryRate": 0.8518303312027891,
+      "breachRate": 0.05287623474723998,
+      "active": 164,
+      "noviceClosed": 64,
+      "noviceBreached": 1,
+      "noviceBreachRate": 0.015625,
+      "tokens": 3938.1957999999995,
+      "localCompute": 0,
+      "outOfTokens": 496,
+      "tokenPurchases": 83,
+      "participation": {
+        "bluewhale": 4402,
+        "qwen": 4369,
+        "llama": 3952,
+        "mistral": 3115
+      },
+      "participationRate": {
+        "bluewhale": 0.2779391337290062,
+        "qwen": 0.2758555373153176,
+        "llama": 0.2495264553605253,
+        "mistral": 0.1966788735951509
+      },
+      "grades": {
+        "failed": 56,
+        "pass": 1520,
+        "good": 466,
+        "great": 55
+      },
+      "operatingMargin": 0.6858688630917023
+    },
+    {
+      "strategy": "no-clarify",
+      "runs": 100,
+      "days": 60,
+      "bankruptcy": 0.16,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.62,
+      "sustainedSolvent": 0.6,
+      "chapterLiquid": 571.2621,
+      "chapterCash": 1028.3016000000002,
+      "netCash": 8600.692100000002,
+      "deliveryRate": 0.7618152524167562,
+      "breachRate": 0.17508055853920515,
+      "active": 235,
+      "noviceClosed": 1066,
+      "noviceBreached": 291,
+      "noviceBreachRate": 0.27298311444652906,
+      "tokens": 8177.2185000000045,
+      "localCompute": 0,
+      "outOfTokens": 2194,
+      "tokenPurchases": 426,
+      "participation": {
+        "bluewhale": 8651,
+        "qwen": 8581,
+        "llama": 4190,
+        "mistral": 2781
+      },
+      "participationRate": {
+        "bluewhale": 0.3574350287154485,
+        "qwen": 0.3545428252695947,
+        "llama": 0.17311903483039293,
+        "mistral": 0.1149031111845639
+      },
+      "grades": {
+        "failed": 607,
+        "pass": 3072,
+        "good": 620,
+        "great": 14
+      },
+      "operatingMargin": 0.6969341720597362
+    },
+    {
+      "strategy": "clear-only",
+      "runs": 100,
+      "days": 60,
+      "bankruptcy": 0.05,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.68,
+      "sustainedSolvent": 0.68,
+      "chapterLiquid": 689.7523000000002,
+      "chapterCash": 940.8687999999996,
+      "netCash": 9825.7272,
+      "deliveryRate": 0.8968584931887684,
+      "breachRate": 0.053933833750347514,
+      "active": 177,
+      "noviceClosed": 0,
+      "noviceBreached": 0,
+      "noviceBreachRate": 0,
+      "tokens": 6773.417700000003,
+      "localCompute": 0,
+      "outOfTokens": 1092,
+      "tokenPurchases": 186,
+      "participation": {
+        "bluewhale": 6796,
+        "qwen": 6744,
+        "llama": 6131,
+        "mistral": 4808
+      },
+      "participationRate": {
+        "bluewhale": 0.27762572000490215,
+        "qwen": 0.27550145022263983,
+        "llama": 0.25045957759712406,
+        "mistral": 0.19641325217533395
+      },
+      "grades": {
+        "failed": 162,
+        "pass": 3242,
+        "good": 613,
+        "great": 98
+      },
+      "operatingMargin": 0.7634046932898373
+    }
+  ],
+  "gates": {
+    "chapterSurvival": true,
+    "randomRisk": true,
+    "characterCoverage": true,
+    "clarification": true
+  },
+  "passed": true,
+  "diagnostics": [
+    {
+      "strategy": "value",
+      "seed": 1,
+      "replay": "value-replay.json",
+      "stateHash": "f6f65a73acbf8d80d716d88da77c7635a20b6bd565f9656b7ac865dec44c54d6"
+    },
+    {
+      "strategy": "value",
+      "seed": 96,
+      "replay": "value-96-replay.json",
+      "stateHash": "7b7f78c8bc8328862885ad3c5ea9c516e768fc4c3b78fd2856d9d883907abba0"
+    },
+    {
+      "strategy": "value",
+      "seed": 63,
+      "replay": "value-63-replay.json",
+      "stateHash": "5b42625be68f90a20ac0a7be7e7990aa0e31c04f7d635b7c277fe41d269c4cb6"
+    },
+    {
+      "strategy": "greedy",
+      "seed": 1,
+      "replay": "greedy-replay.json",
+      "stateHash": "946e6b15b144c051504bcc6f23231813ecb44ae91f749e0b69c504166abb4514"
+    },
+    {
+      "strategy": "greedy",
+      "seed": 89,
+      "replay": "greedy-89-replay.json",
+      "stateHash": "dba006251a4ad33740d602c2057e20485991ed010cd49f532921a01feba6760d"
+    },
+    {
+      "strategy": "random",
+      "seed": 1,
+      "replay": "random-replay.json",
+      "stateHash": "4e2aef0be364aca0bec7e31b3c79f2d4a1f3b8e964eb6c19ec506f56a9b7977e"
+    },
+    {
+      "strategy": "random",
+      "seed": 28,
+      "replay": "random-28-replay.json",
+      "stateHash": "7351b1c4e1d494eb1db1f66346534b820f7c878143f6d4406b6461e9fa5153cb"
+    },
+    {
+      "strategy": "no-clarify",
+      "seed": 1,
+      "replay": "no-clarify-replay.json",
+      "stateHash": "5f516a86216feea31bdac93a2dbb3499314aac6cff64faee5e7a10c42602de4d"
+    },
+    {
+      "strategy": "no-clarify",
+      "seed": 59,
+      "replay": "no-clarify-59-replay.json",
+      "stateHash": "08f8325512a6d595e5b60fa1c5a9e6de538ce5d2fe7c23316c688132d6aec596"
+    },
+    {
+      "strategy": "no-clarify",
+      "seed": 3,
+      "replay": "no-clarify-3-replay.json",
+      "stateHash": "d845aa636c56096d1cab6fb144a5b3d33d54c8a79ba9929ef2cb10d5a9ca56ff"
+    },
+    {
+      "strategy": "clear-only",
+      "seed": 1,
+      "replay": "clear-only-replay.json",
+      "stateHash": "824b786ab63b41b033c15e54ccfd481e1d0409db44013fd6efed94d8fd755608"
+    },
+    {
+      "strategy": "clear-only",
+      "seed": 13,
+      "replay": "clear-only-13-replay.json",
+      "stateHash": "2ff27e60d998f8b6e57551b624572311d524351a4bce8e7204c6aaf736228fe8"
+    },
+    {
+      "strategy": "clear-only",
+      "seed": 9,
+      "replay": "clear-only-9-replay.json",
+      "stateHash": "39fbaea18f01a60588237fb60ca0175e715d24f01a3b6b24897ce2ba48fcb9a9"
+    }
+  ]
+}

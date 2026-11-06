@@ -23,7 +23,7 @@ M0.4审查修复与统计检查点（2026-11-06），基准29862c2。
 专项回归首轮51/53：旧event账本匹配未带job、危机用例误用200WP大单；修正测试后53/53。调报酬后53/56：公式fixture继承0.81倍率，将固定500报酬测试显式设rewardScale=1，不改生产断言；失败摘要m0.4-check.log，修复后check-pass和check-final均56/56。
 配额120扫描发现buy导致破产后仍advance，修复并补100种子低额度回归；失败局全部保留。
 pnpm sim:batch 100 60 1 harness/training-v4：500局四门禁通过，仅训练非正式；m0.4-training-v4.log。
-node scripts/review-experiments.mjs：30模板×合法岗位×20种子，另100种子×14天逐角色消融；四人各有最优组合，Qwen移除收入仅64%，保留P1复核。
+node scripts/review-experiments.mjs：30模板×合法岗位×20种子，另100种子×14天逐角色消融；更正（M05-02）：当时产物仅三人有最优组合，Mistral未进入，原记录错误，Qwen移除收入仅64%，保留P1复核。
 pnpm sim:batch 5 14 1 harness/results：短规模和诊断回放成功。pnpm check：8文件56测试通过；m0.4-check-final.log。
 下一步：固定M0.4 SHA后1001–2000未见种子验证，完成M0.5包；M1仍有P1/资产门禁。
 
@@ -32,3 +32,8 @@ M0.5最终验证（2026-11-06）：pnpm install --frozen-lockfile --offline成�
 pnpm sim:batch 1000 60 1001 harness/validation-v3 --enforce：5000局、四门禁全真、退出0，计算77.57秒。value章末现金1625.97/非负86.4%，random60天破产43.5%，四人参与18.31–32.56%，小白违约比10.16。
 pnpm sim:replay及全部14个诊断CLI回放均REPLAY_OK；verify-m05验证行数/唯一种子/指标重算/内容与状态hash，退出0。原始日志m0.5-*.log，文件校验m0.5-manifest.json。
 实现/参数在a91a52f后冻结，未用未见种子反调。M0.5工程检查点完成，不声称外部批准；Qwen消融和部分P1范围意见保留，M1未启动。
+
+2026-11-07 M0.6整改与M1.0宿主首切片，基准a8fb63c，分支codex/m1-foundation。新报告原件均在独立worktree核对HEAD后导入。9项预期回归先红；三份报告22项逐项台账REVIEW_M05_INTEGRATION。修复危机、恢复时机、辅助计费/覆盖、事件出勤、预览、贷款负债、错误提示；更正三人最优的旧错误记录。
+原报告脚本重跑复现；新训练v5偿付率71%失败保留，训练报酬0.83后v6四门禁过。正式3001–4000共5000局四主门禁全过，77.73秒；新增200配对专项贷款45%破产通过，加班现金+82.13%/+153.90%仍超目标，M05-03不关闭。
+浏览器基础等待报告期间已独立实现：GameSession/WebCrypto/IndexedDB revision CAS与5备份、原创Pixi画面、Preact交互。实浏览器完成接单/派遣/事件/存读档/刷新恢复；发现手机宽634>375，canvas改绝对定位+grid子项min-width:0后375=375。无console error。
+pnpm check最终74测试/10文件、lint/typecheck/生产构建通过；新证据由verify-m06校验。下一项M05-03训练疲劳取舍；无依赖宿主继续，不宣称完整M1或外部批准。下一记录提交写入固定SHA与三审查Prompt、主线程继续Prompt。

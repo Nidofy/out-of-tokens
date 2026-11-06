@@ -58,6 +58,13 @@ export function render(s: State, c: Content): string {
     return lines.join('\n');
 }
 export function explain(error: string): string {
+    if (error === 'VERSION_MISMATCH')
+        return '引擎或内容版本不兼容，请用对应检查点打开';
+    if (/JSON|Unexpected token|Unexpected end/.test(error))
+        return 'JSON 数据损坏或格式无效，请检查输入或存档文件';
+    const added: Record<string, string> = { NOT_LIFE_SLOT: '只能在晚上或深夜加班', NO_ACTIVE_ACTOR: '该角色未在执行中的团队内', ALREADY_OVERTIME: '该角色本时段已在加班', INVALID_TEAM: '团队须包含1至4位角色', CRISIS_SMALL_ONLY: '危机中只能接合同总工作量不超过40WP的小单', UNSUPPORTED_COMMAND: '不支持该命令类型', INVALID_JOB: '委托编号须为字符串', INVALID_ACTOR: '角色编号须为字符串', INVALID_COMMAND: '命令必须为对象', STALE_CHOICE: '事件时段已失效', UNSUPPORTED_DEPLOYMENT: '角色不支持该部署方式', INVALID_SEED: '种子须为32位非负整数', EMPTY_CONTENT: '内容缺少角色或委托' };
+    if (added[error])
+        return `${added[error]} [${error}]`;
     if (error.includes('ENOENT'))
         return '尚无存档，请先 save';
     const extra: Record<string, string> = { UNKNOWN_ACTOR: '找不到角色ID，请查看status', POSITIVE_AMOUNT_REQUIRED: '数量必须大于0', STILL_CLARIFYING: '澄清尚未完成，请推进一个时段', NOT_WORK_SLOT: '只能在上午或下午澄清', INVALID_CHOICE: '选项序号超出范围', INVALID_NUMBER: '请输入范围内的整数', INVALID_MEMBER: '角色岗位或部署方式无效', LOAN_LIMIT: '超过贷款上限', INVALID_REPAYMENT: '还款不得超过本金或可用资金', NOT_BANKRUPT: '尚未破产，不能继承重开' };

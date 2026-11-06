@@ -1,0 +1,69 @@
+{
+  "baseline": "a8fb63cdad76352e9cb5f59739735fcb4c98ce18",
+  "contentHash": "08c1400e62092c90aa6b954a7f6da1590c6b3091f8481cb9d212f6137a3f4bf9",
+  "engineVersion": "0.5.0",
+  "policyVersion": 4,
+  "seeds": [
+    3001,
+    4000
+  ],
+  "games": 5000,
+  "tests": 74,
+  "replays": 14,
+  "gates": {
+    "chapterSurvival": true,
+    "randomRisk": true,
+    "characterCoverage": true,
+    "clarification": true
+  },
+  "overtimePassed": false,
+  "openP1": [
+    "M05-03"
+  ],
+  "nicheTemplates": [
+    "translation",
+    "newsletter"
+  ],
+  "fileHashEncoding": "SHA256 UTF8 LF",
+  "files": {
+    "pnpm-lock.yaml": "3f1fddc871072c23e27a597d4ea75509ed27b43cb74469bf2a33c545262bdbd8",
+    "harness/review-integration/check-final.log": "b9cb3e2f68cac195cbe02660320485da2ddb027e695721b86cc0a4dda8beba82",
+    "harness/review-integration/red.log": "9c117a1b1ef20974769978e9b5090d8bb181c5550cd3b7af66c9f29b2791c059",
+    "harness/review-integration/controlled-final.json": "08552dbee2cd6e95684f3989ada64554c1ed6f2cb331c732129cd1bf3780d259",
+    "harness/review-integration/variants-validation.json": "d65b679c6e9ab255e541f4d6dd54305cc44a00bb195e178e71c3e6a130523025",
+    "harness/validation-v4/batch.csv": "106138395886b2fe282b42f83014eca7c39864050d855cbfe17c6ac4d1fe655b",
+    "harness/validation-v4/batch.json": "228ef3dcf87ad62a2150650ed034e9c1397ea89acf3b7dbeabf7d36716f1f390",
+    "harness/validation-v4/clear-only-3001-diagnostic.json": "e2564312b0784b306e49f4edb4513e338c43cd01468970461e8bdfcc546a7232",
+    "harness/validation-v4/clear-only-3005-diagnostic.json": "47708737668a45603e0cdba564fb7bb72e78ef5de762b582733931f8390e0ef4",
+    "harness/validation-v4/clear-only-3005-replay.json": "d232461778737e95802747e630ed07e7a247ad7ac6002baead84cfffd961087c",
+    "harness/validation-v4/clear-only-3482-diagnostic.json": "33c6f5095f93f2a2c1ea9938aca9342a0397856ec7a3e380d21d9c343a007079",
+    "harness/validation-v4/clear-only-3482-replay.json": "901ec6d025db35417ea682b1114e8fe6dad433af2723f3ed70b30e12b60a6dba",
+    "harness/validation-v4/clear-only-replay.json": "f2b76edd3b5eecb66e0a16bd9b3e3b0d56de6d1582b3d30bac89113cb6397ef0",
+    "harness/validation-v4/greedy-3001-diagnostic.json": "e8fc20299d15bf7c7bcae33d3b9c605495f6b9c5870fa4ed3759535f95d473a2",
+    "harness/validation-v4/greedy-3433-diagnostic.json": "c21358735295fcb0ccc25f502f9b61d5541f8fb33438ed17734a03e753761756",
+    "harness/validation-v4/greedy-3433-replay.json": "a0e8678bab2f2776e7470c35bbba6d355592b6ee35694603048b2a1183b80573",
+    "harness/validation-v4/greedy-replay.json": "67847fe8bb2399d1b0ab072da223f2fce14fb25dc8aed9a80ef191613e6aae72",
+    "harness/validation-v4/no-clarify-3001-diagnostic.json": "c7a5d56a536153b880d86dcd8b2bc01d40a5ec7a182eb484cb31321b2cf17eea",
+    "harness/validation-v4/no-clarify-3005-diagnostic.json": "6b97749127b1a612a6bf2d7a44f73af7512507bfc852a2e93f4eaa73e02d4c15",
+    "harness/validation-v4/no-clarify-3005-replay.json": "afcee92798e32417338419c18afb5f791d40e0402a379a3d390af0d17d9106eb",
+    "harness/validation-v4/no-clarify-3561-diagnostic.json": "456071b116f23b4b7df9fc1d1c628eb71026a68e7bde514e25b815d6c557f253",
+    "harness/validation-v4/no-clarify-3561-replay.json": "364b6402abc8b4c9f132815b2ad2fb7e15732b077ba60474dfefd2859e9a1c23",
+    "harness/validation-v4/no-clarify-replay.json": "7338e055cfeae9f5c60abfaece89a30b72934308a657fbc7dd16a4d10e226891",
+    "harness/validation-v4/random-3001-diagnostic.json": "3793f1d3128a1f8dcc9fda3c94311dd55c7641836b889666f40e7b308e224632",
+    "harness/validation-v4/random-3002-diagnostic.json": "6f423f140fcd39800e9ded7f479f40da51898b3210b9f31484171c167e4a17bc",
+    "harness/validation-v4/random-3002-replay.json": "997ca0f9d0ccc62e9fbf9f8d803f061eb22f9aac518c3a9c916cb75e272e5247",
+    "harness/validation-v4/random-3018-diagnostic.json": "e3fcad8f949537997281ced21b3c0ba4d5e42283baa7306399ec55b3c67e7449",
+    "harness/validation-v4/random-3018-replay.json": "f3f5c4984da7835e3a671898fd3cc4bbfb75058ee5d7e1f835f5ff099ca7e0a6",
+    "harness/validation-v4/random-replay.json": "ea7eab7d8dacef667dd1cc7492c5c061714c18d49f963578a8b522d1a59bd9de",
+    "harness/validation-v4/summary.json": "02df0589661071b33f5cee490fb17fedf5745aa04109abc25a6ac31e1306f4e4",
+    "harness/validation-v4/value-3001-diagnostic.json": "f4923e9ee4b30175866b22c4f3b9f288e6145ba213ed58d00ebb021996352c2d",
+    "harness/validation-v4/value-3177-diagnostic.json": "39fb11166bd87ea6b1ac77947cdd261c613df1a0c05e57a7a3f0519c8cc0665e",
+    "harness/validation-v4/value-3177-replay.json": "72397679599d32c738a2628b20cbc3fc719f4bcf83af92e60dbd89ab741b168b",
+    "harness/validation-v4/value-3231-diagnostic.json": "2d7fa9f7ba7a9004558d597d66d697edf6a3f30efe9102e6246aa498b2bc4f9d",
+    "harness/validation-v4/value-3231-replay.json": "74a72dff0f079e93e9cd237767d0e6218aa585e2453a884373919fa58279be0c",
+    "harness/validation-v4/value-replay.json": "f8f1e7da9521f59e3486941b38c960c1361dcaccdbb63a12d9ee83d330c7a7fe",
+    "harness/reviews/m0.5-a8fb63c-gemini-report.md": "1d4d5d8858f58bc62ca54bdc3983da49dd27cecad64ffac148766936466757fe",
+    "harness/reviews/m0.5-a8fb63c-opus-report.md": "a2b2e0e86b1cebd63c654097041f9f31dad3d2c3d9d1c29a6a35409556f5f93f",
+    "harness/reviews/m0.5-a8fb63c-sonnet-report.md": "0b818c56394f51931c8f34d8712160b5b7bf1848de9c89da0a1f0a7036728380"
+  }
+}

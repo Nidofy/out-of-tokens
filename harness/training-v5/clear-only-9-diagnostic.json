@@ -1,0 +1,406 @@
+{
+  "metrics": {
+    "seed": 9,
+    "strategy": "clear-only",
+    "days": 60,
+    "slots": 84,
+    "netCash": -6014.08,
+    "bankrupt": true,
+    "chapterCash": -2113.65,
+    "chapterLiquid": -2113.65,
+    "sustainedSolvent": false,
+    "chapterBankrupt": false,
+    "outOfTokens": 4,
+    "tokenPurchases": 1,
+    "chapterSolvent": false,
+    "accepted": 9,
+    "delivered": 6,
+    "breached": 2,
+    "deliveryRate": 0.6666666666666666,
+    "breachRate": 0.2222222222222222,
+    "tokens": 2078.369999999999,
+    "localCompute": 0,
+    "participation": {
+      "bluewhale": 21,
+      "qwen": 23,
+      "llama": 14,
+      "mistral": 21
+    },
+    "participationRate": {
+      "bluewhale": 0.26582278481012656,
+      "qwen": 0.2911392405063291,
+      "llama": 0.17721518987341772,
+      "mistral": 0.26582278481012656
+    },
+    "operatingMargin": 0.588561564972456,
+    "projectProfit": 4367.84485720489,
+    "noviceAccepted": 0,
+    "noviceClosed": 0,
+    "noviceBreached": 0,
+    "grades": {
+      "failed": 2,
+      "pass": 4,
+      "good": 6,
+      "great": 0
+    },
+    "active": 1
+  },
+  "projects": [
+    {
+      "id": "0-0",
+      "template": "menu",
+      "status": "breached",
+      "cash": -267.3,
+      "directCost": 39.155,
+      "allocatedSubscription": 133.13573614210844,
+      "profit": -439.5907361421085,
+      "novice": false
+    },
+    {
+      "id": "0-2",
+      "template": "weekly-script",
+      "status": "delivered",
+      "cash": 3073.9500000000003,
+      "directCost": 0,
+      "allocatedSubscription": 681.6598164062897,
+      "profit": 2392.2901835937105,
+      "novice": false
+    },
+    {
+      "id": "8-1",
+      "template": "review",
+      "status": "delivered",
+      "cash": 1053,
+      "directCost": 1.11,
+      "allocatedSubscription": 369.9595043575736,
+      "profit": 681.9304956424264,
+      "novice": false
+    },
+    {
+      "id": "16-4",
+      "template": "poster",
+      "status": "breached",
+      "cash": -267.3,
+      "directCost": 0,
+      "allocatedSubscription": 145.4207608333418,
+      "profit": -412.72076083334184,
+      "novice": false
+    },
+    {
+      "id": "20-0",
+      "template": "poster",
+      "status": "delivered",
+      "cash": 891,
+      "directCost": 0,
+      "allocatedSubscription": 212.07194288195677,
+      "profit": 678.9280571180432,
+      "novice": false
+    },
+    {
+      "id": "24-0",
+      "template": "review",
+      "status": "delivered",
+      "cash": 1053,
+      "directCost": 5.91,
+      "allocatedSubscription": 408.4354139947286,
+      "profit": 638.6545860052713,
+      "novice": false
+    },
+    {
+      "id": "36-0",
+      "template": "weekly-script",
+      "status": "waiting",
+      "cash": 2049.3,
+      "directCost": 0,
+      "allocatedSubscription": 530.1798572048921,
+      "profit": 1519.1201427951082,
+      "novice": false
+    },
+    {
+      "id": "56-0",
+      "template": "poster",
+      "status": "delivered",
+      "cash": 623.7,
+      "directCost": 0,
+      "allocatedSubscription": 145.4207608333418,
+      "profit": 478.2792391666583,
+      "novice": false
+    },
+    {
+      "id": "68-1",
+      "template": "review",
+      "status": "delivered",
+      "cash": 726.5699999999999,
+      "directCost": 2.78,
+      "allocatedSubscription": 373.7162073457682,
+      "profit": 350.07379265423174,
+      "novice": false
+    }
+  ],
+  "daily": [
+    {
+      "slot": 4,
+      "cash": 5484.6,
+      "liquidCash": 4950,
+      "quota": 90,
+      "purchased": 21.69,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 8,
+      "cash": 4950,
+      "liquidCash": 4682.7,
+      "quota": 180,
+      "purchased": 21.69,
+      "active": 1,
+      "bankrupt": false
+    },
+    {
+      "slot": 12,
+      "cash": 6023.25,
+      "liquidCash": 5707.35,
+      "quota": 180,
+      "purchased": 19.47,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 16,
+      "cash": 6023.25,
+      "liquidCash": 5707.35,
+      "quota": 180,
+      "purchased": 19.47,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 20,
+      "cash": 7027.65,
+      "liquidCash": 6760.35,
+      "quota": 180,
+      "purchased": 19.47,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 24,
+      "cash": 7294.95,
+      "liquidCash": 6760.35,
+      "quota": 180,
+      "purchased": 19.47,
+      "active": 3,
+      "bankrupt": false
+    },
+    {
+      "slot": 28,
+      "cash": 5399.95,
+      "liquidCash": 5084.05,
+      "quota": 180,
+      "purchased": 19.47,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 32,
+      "cash": 5399.95,
+      "liquidCash": 5084.05,
+      "quota": 180,
+      "purchased": 7.65,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 36,
+      "cash": 6424.6,
+      "liquidCash": 6108.7,
+      "quota": 180,
+      "purchased": 7.65,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 40,
+      "cash": 7429,
+      "liquidCash": 7161.7,
+      "quota": 180,
+      "purchased": 7.65,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 44,
+      "cash": 7429,
+      "liquidCash": 7161.7,
+      "quota": 180,
+      "purchased": 7.65,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 48,
+      "cash": 8186.35,
+      "liquidCash": 8186.35,
+      "quota": 180,
+      "purchased": 7.65,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 52,
+      "cash": 8186.35,
+      "liquidCash": 8186.35,
+      "quota": 180,
+      "purchased": 7.65,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 56,
+      "cash": -2113.65,
+      "liquidCash": -2113.65,
+      "quota": 180,
+      "purchased": 7.65,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 60,
+      "cash": -1846.35,
+      "liquidCash": -2113.65,
+      "quota": 180,
+      "purchased": 7.65,
+      "active": 3,
+      "bankrupt": false
+    },
+    {
+      "slot": 64,
+      "cash": -1846.35,
+      "liquidCash": -2113.65,
+      "quota": 180,
+      "purchased": 7.65,
+      "active": 3,
+      "bankrupt": false
+    },
+    {
+      "slot": 68,
+      "cash": -465.3,
+      "liquidCash": -465.3,
+      "quota": 180,
+      "purchased": 7.65,
+      "active": 1,
+      "bankrupt": false
+    },
+    {
+      "slot": 72,
+      "cash": -149.4,
+      "liquidCash": -465.3,
+      "quota": 180,
+      "purchased": 2.09,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 76,
+      "cash": 875.25,
+      "liquidCash": 559.35,
+      "quota": 180,
+      "purchased": 2.09,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 80,
+      "cash": 875.25,
+      "liquidCash": 559.35,
+      "quota": 180,
+      "purchased": 2.09,
+      "active": 2,
+      "bankrupt": false
+    },
+    {
+      "slot": 84,
+      "cash": -1014.08,
+      "liquidCash": -1014.08,
+      "quota": 180,
+      "purchased": 2.09,
+      "active": 1,
+      "bankrupt": true
+    }
+  ],
+  "deliveries": [
+    {
+      "job": "0-0",
+      "quality": 57.84,
+      "grade": "failed",
+      "role": "reviewed"
+    },
+    {
+      "job": "0-2",
+      "quality": 71.85,
+      "grade": "good",
+      "role": "workers"
+    },
+    {
+      "job": "8-1",
+      "quality": 66.5,
+      "grade": "pass",
+      "role": "reviewed"
+    },
+    {
+      "job": "16-4",
+      "quality": 43.85,
+      "grade": "failed",
+      "role": "workers"
+    },
+    {
+      "job": "20-0",
+      "quality": 52.88,
+      "grade": "pass",
+      "role": "workers"
+    },
+    {
+      "job": "0-2",
+      "quality": 69.95,
+      "grade": "good",
+      "role": "workers"
+    },
+    {
+      "job": "24-0",
+      "quality": 60.45,
+      "grade": "pass",
+      "role": "reviewed"
+    },
+    {
+      "job": "36-0",
+      "quality": 70.18,
+      "grade": "good",
+      "role": "workers"
+    },
+    {
+      "job": "56-0",
+      "quality": 47.49,
+      "grade": "pass",
+      "role": "workers"
+    },
+    {
+      "job": "0-2",
+      "quality": 69.96,
+      "grade": "good",
+      "role": "workers"
+    },
+    {
+      "job": "36-0",
+      "quality": 70.25,
+      "grade": "good",
+      "role": "workers"
+    },
+    {
+      "job": "68-1",
+      "quality": 78.08,
+      "grade": "good",
+      "role": "reviewed"
+    }
+  ],
+  "stateHash": "88bb1d5e9242e930490bcf33045a47969e8dc92a84b906c554075e1099018028"
+}

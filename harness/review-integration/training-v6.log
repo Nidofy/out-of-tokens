@@ -1,0 +1,221 @@
+value {"runs":100,"seconds":2.1374753}
+greedy {"runs":100,"seconds":0.5888071}
+random {"runs":100,"seconds":1.1111299000000003}
+no-clarify {"runs":100,"seconds":1.4642619}
+clear-only {"runs":100,"seconds":1.6827243000000007}
+{
+  "summary": [
+    {
+      "strategy": "value",
+      "runs": 100,
+      "days": 60,
+      "bankruptcy": 0.02,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.75,
+      "sustainedSolvent": 0.74,
+      "chapterLiquid": 1010.9622000000002,
+      "chapterCash": 1331.4251999999992,
+      "netCash": 12791.538000000002,
+      "deliveryRate": 0.8944864259725721,
+      "breachRate": 0.054575986565911,
+      "active": 182,
+      "noviceClosed": 466,
+      "noviceBreached": 17,
+      "noviceBreachRate": 0.03648068669527897,
+      "tokens": 6920.352899999999,
+      "localCompute": 0,
+      "outOfTokens": 1169,
+      "tokenPurchases": 210,
+      "participation": {
+        "bluewhale": 7474,
+        "qwen": 6715,
+        "llama": 4772,
+        "mistral": 3026
+      },
+      "participationRate": {
+        "bluewhale": 0.33992813935507343,
+        "qwen": 0.3054077409378269,
+        "llama": 0.2170373402465093,
+        "mistral": 0.13762677946059035
+      },
+      "grades": {
+        "failed": 173,
+        "pass": 3299,
+        "good": 724,
+        "great": 24
+      },
+      "operatingMargin": 0.7813287747985624
+    },
+    {
+      "strategy": "greedy",
+      "runs": 100,
+      "days": 60,
+      "bankruptcy": 0.76,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.09,
+      "sustainedSolvent": 0.07,
+      "chapterLiquid": -1996.5917000000006,
+      "chapterCash": -1874.208200000001,
+      "netCash": -3831.454099999999,
+      "deliveryRate": 0.8198818897637795,
+      "breachRate": 0.028543307086614175,
+      "active": 154,
+      "noviceClosed": 60,
+      "noviceBreached": 0,
+      "noviceBreachRate": 0,
+      "tokens": 2706.181900000002,
+      "localCompute": 0,
+      "outOfTokens": 255,
+      "tokenPurchases": 93,
+      "participation": {
+        "bluewhale": 3727,
+        "qwen": 3571,
+        "llama": 2142,
+        "mistral": 1742
+      },
+      "participationRate": {
+        "bluewhale": 0.33330352351994275,
+        "qwen": 0.31935253085315685,
+        "llama": 0.19155786084779108,
+        "mistral": 0.1557860847791093
+      },
+      "grades": {
+        "failed": 6,
+        "pass": 662,
+        "good": 563,
+        "great": 79
+      },
+      "operatingMargin": 0.6843769260568437
+    },
+    {
+      "strategy": "random",
+      "runs": 100,
+      "days": 60,
+      "bankruptcy": 0.51,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.18,
+      "sustainedSolvent": 0.17,
+      "chapterLiquid": -1560.890200000001,
+      "chapterCash": -1370.4052000000004,
+      "netCash": -1167.3321999999994,
+      "deliveryRate": 0.8518303312027891,
+      "breachRate": 0.05287623474723998,
+      "active": 164,
+      "noviceClosed": 64,
+      "noviceBreached": 1,
+      "noviceBreachRate": 0.015625,
+      "tokens": 3938.1957999999995,
+      "localCompute": 0,
+      "outOfTokens": 496,
+      "tokenPurchases": 83,
+      "participation": {
+        "bluewhale": 4402,
+        "qwen": 4369,
+        "llama": 3952,
+        "mistral": 3115
+      },
+      "participationRate": {
+        "bluewhale": 0.2779391337290062,
+        "qwen": 0.2758555373153176,
+        "llama": 0.2495264553605253,
+        "mistral": 0.1966788735951509
+      },
+      "grades": {
+        "failed": 56,
+        "pass": 1520,
+        "good": 466,
+        "great": 55
+      },
+      "operatingMargin": 0.6858688630917023
+    },
+    {
+      "strategy": "no-clarify",
+      "runs": 100,
+      "days": 60,
+      "bankruptcy": 0.16,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.62,
+      "sustainedSolvent": 0.6,
+      "chapterLiquid": 571.2621,
+      "chapterCash": 1028.3016000000002,
+      "netCash": 8600.692100000002,
+      "deliveryRate": 0.7618152524167562,
+      "breachRate": 0.17508055853920515,
+      "active": 235,
+      "noviceClosed": 1066,
+      "noviceBreached": 291,
+      "noviceBreachRate": 0.27298311444652906,
+      "tokens": 8177.2185000000045,
+      "localCompute": 0,
+      "outOfTokens": 2194,
+      "tokenPurchases": 426,
+      "participation": {
+        "bluewhale": 8651,
+        "qwen": 8581,
+        "llama": 4190,
+        "mistral": 2781
+      },
+      "participationRate": {
+        "bluewhale": 0.3574350287154485,
+        "qwen": 0.3545428252695947,
+        "llama": 0.17311903483039293,
+        "mistral": 0.1149031111845639
+      },
+      "grades": {
+        "failed": 607,
+        "pass": 3072,
+        "good": 620,
+        "great": 14
+      },
+      "operatingMargin": 0.6969341720597362
+    },
+    {
+      "strategy": "clear-only",
+      "runs": 100,
+      "days": 60,
+      "bankruptcy": 0.05,
+      "chapterBankruptcy": 0,
+      "chapterSolvent": 0.68,
+      "sustainedSolvent": 0.68,
+      "chapterLiquid": 689.7523000000002,
+      "chapterCash": 940.8687999999996,
+      "netCash": 9825.7272,
+      "deliveryRate": 0.8968584931887684,
+      "breachRate": 0.053933833750347514,
+      "active": 177,
+      "noviceClosed": 0,
+      "noviceBreached": 0,
+      "noviceBreachRate": 0,
+      "tokens": 6773.417700000003,
+      "localCompute": 0,
+      "outOfTokens": 1092,
+      "tokenPurchases": 186,
+      "participation": {
+        "bluewhale": 6796,
+        "qwen": 6744,
+        "llama": 6131,
+        "mistral": 4808
+      },
+      "participationRate": {
+        "bluewhale": 0.27762572000490215,
+        "qwen": 0.27550145022263983,
+        "llama": 0.25045957759712406,
+        "mistral": 0.19641325217533395
+      },
+      "grades": {
+        "failed": 162,
+        "pass": 3242,
+        "good": 613,
+        "great": 98
+      },
+      "operatingMargin": 0.7634046932898373
+    }
+  ],
+  "gates": {
+    "chapterSurvival": true,
+    "randomRisk": true,
+    "characterCoverage": true,
+    "clarification": true
+  },
+  "seconds": 6.991512800000001
+}

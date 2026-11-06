@@ -1,4 +1,4 @@
-import { createInitialState, dispatchCommand } from 'oot-core';
+import { createInitialState, dispatchCommand, liquidCash } from 'oot-core';
 import type { Content, State, Version, Member, Job, Template } from 'oot-core';
 export const strategies = ['value', 'greedy', 'random', 'no-clarify', 'clear-only'] as const;
 export type Strategy = typeof strategies[number];
@@ -39,6 +39,7 @@ export function runBot(c: Content, seed: number, strategy: Strategy, days: numbe
         purchased: number;
         active: number;
         bankrupt: boolean;
+        liquidCash: number;
     }[] = [];
     const deliveries: {
         job: string;
@@ -66,12 +67,14 @@ export function runBot(c: Content, seed: number, strategy: Strategy, days: numbe
         s = r.state;
         commands.push(cmd);
         if (s.absoluteSlot !== previous && (s.absoluteSlot % 4 === 0 || s.bankrupt))
-            daily.push({ slot: s.absoluteSlot, cash: s.cash, quota: s.quota, purchased: s.purchased, active: s.jobs.filter(live).length, bankrupt: s.bankrupt });
+            daily.push({ slot: s.absoluteSlot, cash: s.cash, liquidCash: liquidCash(s), quota: s.quota, purchased: s.purchased, active: s.jobs.filter(live).length, bankrupt: s.bankrupt });
     };
     let chapterCash: number | null = null, chapterBankrupt = false;
+    let chapterLiquid: number | null = null;
     const track = () => {
         if (chapterCash === null && (s.absoluteSlot >= 56 || s.bankrupt)) {
             chapterCash = s.cash;
+            chapterLiquid = liquidCash(s);
             chapterBankrupt = s.bankrupt;
         }
     };
@@ -98,7 +101,7 @@ export function runBot(c: Content, seed: number, strategy: Strategy, days: numbe
             const free = () => c.versions.filter(v => !busy().has(v.character) && s.actors.find(a => a.id === v.character)!.busyUntil <= s.absoluteSlot && s.actors.find(a => a.id === v.character)!.energy >= 15);
             let available = free();
             const posted = s.jobs.filter(j => j.status === 'posted' && j.clarifyingUntil <= s.absoluteSlot);
-            const candidates = posted.map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { j, t, options: plans(c, t, available, strategy) }; }).filter(x => s.cash >= 0 || x.t.workload <= 40).filter(x => strategy !== 'clear-only' || x.t.clarity >= 80);
+            const candidates = posted.map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { j, t, options: plans(c, t, available, strategy) }; }).filter(x => liquidCash(s) >= 0 || x.t.workload * (x.t.phases ?? 1) <= 40).filter(x => strategy !== 'clear-only' || x.t.clarity >= 80);
             candidates.sort((a, b) => (b.options[0]?.score ?? -Infinity) - (a.options[0]?.score ?? -Infinity));
             if (strategy === 'random')
                 for (let i = candidates.length - 1; i > 0; i--) {
@@ -169,6 +172,6 @@ export function runBot(c: Content, seed: number, strategy: Strategy, days: numbe
     const settled = projects.filter(p => p.status === 'delivered' || p.status === 'breached');
     const revenue = settled.reduce((n, p) => n + Math.max(0, p.cash), 0), profit = settled.reduce((n, p) => n + p.profit, 0);
     const novice = projects.filter(p => p.novice), noviceBreached = novice.filter(p => p.status === 'breached').length;
-    return { state: s, commands, projects, daily, deliveries, metrics: { seed, strategy, days, slots: s.absoluteSlot, netCash: s.cash - (c.balance?.startingCash ?? 5000), bankrupt: s.bankrupt, chapterCash, chapterBankrupt, outOfTokens, tokenPurchases: s.ledger.filter(l => l.reason === 'buy-tokens').length, chapterSolvent: chapterCash !== null && chapterCash >= 0 && !chapterBankrupt, accepted: accepted.length, delivered, breached, deliveryRate: accepted.length ? delivered / accepted.length : 0, breachRate: accepted.length ? breached / accepted.length : 0, tokens: s.resources.reduce((n, r) => n + r.quota + r.purchased, 0), localCompute: s.resources.filter(r => r.mode === 'local').reduce((n, r) => n + r.units, 0), participation, participationRate: Object.fromEntries(Object.entries(participation).map(([k, v]) => [k, participantTotal ? v / participantTotal : 0])), operatingMargin: revenue ? profit / revenue : 0, projectProfit: profit, noviceAccepted: novice.length, noviceClosed: novice.filter(p => p.status === 'delivered' || p.status === 'breached').length, noviceBreached, grades, active: accepted.length - delivered - breached } };
+    return { state: s, commands, projects, daily, deliveries, metrics: { seed, strategy, days, slots: s.absoluteSlot, netCash: s.cash - (c.balance?.startingCash ?? 5000), bankrupt: s.bankrupt, chapterCash, chapterLiquid, sustainedSolvent: Array.from({ length: 8 }, (_, i) => 56 + i * 4).every(slot => daily.some(d => d.slot === slot && d.liquidCash >= 0 && !d.bankrupt)), chapterBankrupt, outOfTokens, tokenPurchases: s.ledger.filter(l => l.reason === 'buy-tokens').length, chapterSolvent: chapterLiquid !== null && chapterLiquid >= 0 && !chapterBankrupt, accepted: accepted.length, delivered, breached, deliveryRate: accepted.length ? delivered / accepted.length : 0, breachRate: accepted.length ? breached / accepted.length : 0, tokens: s.resources.reduce((n, r) => n + r.quota + r.purchased, 0), localCompute: s.resources.filter(r => r.mode === 'local').reduce((n, r) => n + r.units, 0), participation, participationRate: Object.fromEntries(Object.entries(participation).map(([k, v]) => [k, participantTotal ? v / participantTotal : 0])), operatingMargin: revenue ? profit / revenue : 0, projectProfit: profit, noviceAccepted: novice.length, noviceClosed: novice.filter(p => p.status === 'delivered' || p.status === 'breached').length, noviceBreached, grades, active: accepted.length - delivered - breached } };
 }
 export type BotState = State;

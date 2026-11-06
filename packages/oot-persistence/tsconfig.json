@@ -1,1 +1,22 @@
-{"extends":"../../tsconfig.base.json","compilerOptions":{"rootDir":"src","outDir":"dist","types":["node"]},"references":[{"path":"../oot-core"}],"include":["src"]}
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "ES2022",
+      "DOM"
+    ]
+  },
+  "references": [
+    {
+      "path": "../oot-core"
+    }
+  ],
+  "include": [
+    "src"
+  ]
+}
