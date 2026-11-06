@@ -5,7 +5,8 @@ M0.0–M0.5工程检查点完成，M1未开始。实现4角色、30委托、20�
 规则：M0_RULES_FINAL；决策：DECISIONS；验收：M0.5_ACCEPTANCE；未结审查：REVIEW_RESPONSE；任务：ROADMAP。
 引擎0.4.0，内容m0.4-1，策略v3；旧存档须在历史SHA运行，禁止静默迁移。
 
-初始化7752322；M0.2 15e2775；M0.3 29862c2；M0.4实现SHA a91a52f0a4ea2c08ab6542c993ee91a6aa5c60b0。M0.5结果检查点SHA由后续记录提交写入，避免自引用。
+初始化7752322；M0.2 15e2775；M0.3 29862c2；M0.4实现SHA a91a52f0a4ea2c08ab6542c993ee91a6aa5c60b0。
+M0.5可审查检查点：73222ef263bb6a4c3eda373827daa54b4b08e6a9；固定审查包harness/reviews/m0.5-73222ef-packet.md。其后记录提交只写SHA与交接文档。
 已读取15e2775的Gemini/Opus/Sonnet报告并修复关键问题；未收到新快照复审，不把自测等同外部通过。
 
 最终验证：离线frozen-lockfile安装成功；pnpm check为8文件56测试；25局短模拟；5000局未见种子1001–2000×5策略×60天四门禁全通过；14个正常/最差/破产案例CLI回放一致。证据harness/m0.5-*.log、m0.5-manifest.json、validation-v3。

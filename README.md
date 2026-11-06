@@ -20,3 +20,4 @@ M0.0–M0.2已经逐项验收，证据见 docs/M0.0-M0.2_ACCEPTANCE.md。
 `pnpm sim:batch 100 60 1 harness/training` 指定次数、天数、起始种子和报告目录，生成逐局CSV/JSON、指标summary、最差/破产案例、资金曲线及可重放命令。末尾可加 `--enforce`，四项M0门禁不通过时退出码为1；短窗口不能伪装通过60天门禁。
 规则见docs/M0_RULES_FINAL.md，平衡协议见docs/BALANCE.md，外部意见逐项处理见docs/REVIEW_RESPONSE.md。
 JSON内容为当前唯一数据源；历史内容生成器已删除以免覆盖调参结果，旧配方在29862c2可查。
+M0.5工程检查点为73222ef，验收见docs/M0.5_ACCEPTANCE.md；56测试、5000局未见种子和14例回放通过。独立审查及未结P1仍在跟进，M1尚未开始。`node scripts/verify-m05.mjs` 可复核已提交证据。
