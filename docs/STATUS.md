@@ -4,7 +4,8 @@
 原目录只有docs，无Git、源码或资源；已原样归档GDD与实施Prompt。
 M0.0（初始化）、M0.1（核心规则/状态机）、M0.2（首个端到端可玩闭环）已按主实施Prompt F逐项完成；详见M0.0-M0.2_ACCEPTANCE.md。M0.4诊断工具部分完成，完整M0尚待M0.3–M0.5。
 初始化SHA：7752322ba162edfe4e31d787a270e7663416f8a2。
-本轮基准SHA：c0a1e4b（代码a6e8d93）；当前代码检查点SHA由随后审查记录提交补充。
+最新代码检查点SHA：15e2775e8f9bc88ab26ecf421f7b9988c49c3104；其后仅审查/恢复记录提交。本轮基准c0a1e4b。
+当前审查包：harness/reviews/m0.2-15e2775-packet.md。
 历史审查包：harness/reviews/m0-slice-a6e8d93-packet.md。新包固定本轮目标SHA，尚未收到外部报告。
 四角色、三委托、两个原型事件；接单/澄清/派遣/事件/交付/返工/账单/危机/存档重载已接通。
 验证：pnpm check通过（5文件32测试）；纯文本CLI进程闭环、保存/恢复/回放通过；日志harness/m0.2-check.log、m0.2-replay.log。
