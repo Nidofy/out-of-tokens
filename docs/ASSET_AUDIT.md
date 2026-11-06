@@ -9,3 +9,4 @@ Git SHA只读探测受dubious ownership限制；未修改全局safe.directory，
 
 复用清单：ID可采用；动画算法/纸娃娃渲染器可作为M1审计候选，需连同types与协议验证；图片、背景、音频暂不复制，逐资产溯源后才能接入。
 本次没有复制任何外部代码或美术。M0不依赖资产审计完成。
+2026-11-06补查：以仅命令级safe.directory读取相邻仓库HEAD=f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352；未修改该仓库或全局Git配置。此为补查时HEAD，不追溯声称第一次读取文件时的SHA已核实。

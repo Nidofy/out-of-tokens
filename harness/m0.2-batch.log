@@ -1,0 +1,7 @@
+$ pnpm build && tsx apps/sim-cli/src/batch.ts "5" "14"
+$ tsc -b
+value {"runs":5,"days":14,"bankruptcy":0,"netCash":-6926}
+greedy {"runs":5,"days":14,"bankruptcy":0,"netCash":-6656}
+random {"runs":5,"days":14,"bankruptcy":0,"netCash":-8806}
+no-clarify {"runs":5,"days":14,"bankruptcy":0,"netCash":-7236}
+clear-only {"runs":5,"days":14,"bankruptcy":0,"netCash":-7070}

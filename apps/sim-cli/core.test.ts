@@ -1,21 +1,56 @@
-import {test,expect} from 'vitest';
-import {loadContent} from 'oot-content';
-import {createInitialState,dispatchCommand,draw,getViewModel} from 'oot-core';
-import type {State} from 'oot-core';
-import {hash,save,restore} from 'oot-persistence';
-import {runBot,strategies} from './src/bot.js';
-const c=loadContent();
-function step(s:State,cmd:unknown){const r=dispatchCommand(s,cmd,c);expect(r.error).toBeNull();return r.state;}
-test('invalid commands leave original identity and RNG intact',()=>{const s=createInitialState(c);const before=hash(s);for(const cmd of [null,{}, {type:'buy',amount:NaN},{type:'accept',job:'missing'},{type:'assign',job:s.jobs[0]!.id,team:[null]},{type:'switchVersion'}]){const r=dispatchCommand(s,cmd,c);expect(r.error).toBeTruthy();expect(r.state).toBe(s);expect(r.events).toEqual([]);}expect(hash(s)).toBe(before);});
-test('daily weekly debt boundaries settle once',()=>{let s=createInitialState(c);for(let i=0;i<56;i++)s=step(s,{type:'advance'});expect(s.ledger.filter(l=>l.reason==='weekly')).toHaveLength(2);expect(s.ledger.filter(l=>l.reason==='inherited-debt')).toHaveLength(1);expect(s.cash).toBe(-7600);s=step(s,{type:'advance'});expect(s.ledger).toHaveLength(3);expect(s.quota).toBe(600);});
-test('RNG streams are independent',()=>{const a=createInitialState(c,12),b=createInitialState(c,12);draw(a,'event');expect(draw(a,'board')).toBe(draw(b,'board'));expect(draw(a,'quality')).toBe(draw(b,'quality'));});
-test('prepayment, occupancy and clarity cannot be repeated for free',()=>{let s=createInitialState(c);const j=s.jobs[0]!.id;s=step(s,{type:'accept',job:j});expect(dispatchCommand(s,{type:'accept',job:j},c).error).toBe('NOT_POSTED');s=step(s,{type:'assign',job:j,team:[{character:'qwen',role:'worker',mode:'cloud'}]});const j2=s.jobs[1]!.id;s=step(s,{type:'accept',job:j2});expect(dispatchCommand(s,{type:'assign',job:j2,team:[{character:'qwen',role:'worker',mode:'cloud'}]},c).error).toBe('ACTOR_BUSY');});
-test('empty resources halt without negative quota or spending',()=>{let s=createInitialState(c);s=step(s,{type:'accept',job:s.jobs[0]!.id});s=step(s,{type:'assign',job:s.jobs[0]!.id,team:[{character:'qwen',role:'worker',mode:'cloud'}]});s.quota=0;s=step(s,{type:'advance'});if(s.pending)s=step(s,{type:'choose',index:0});expect(s.jobs[0]!.progress).toBe(0);expect(s.tokensUsed).toBe(0);expect(s.quota).toBe(0);});
-test('local work accrues electricity without consuming cloud quota',()=>{let s=createInitialState({...c,events:[]});const cmd=(x:unknown)=>{const r=dispatchCommand(s,x,{...c,events:[]});expect(r.error).toBeNull();s=r.state;};cmd({type:'accept',job:s.jobs[0]!.id});cmd({type:'assign',job:s.jobs[0]!.id,team:[{character:'qwen',role:'worker',mode:'local'}]});cmd({type:'advance'});expect(s.electricity).toBeGreaterThan(0);expect(s.quota).toBe(300);});
-test('pending event save/reload resolves once and rejects replayed choice',()=>{let found=false;for(let seed=1;seed<=50&&!found;seed++){let s=createInitialState(c,seed);const commands:unknown[]=[{type:'accept',job:s.jobs[0]!.id},{type:'assign',job:s.jobs[0]!.id,team:[{character:'qwen',role:'worker',mode:'cloud'}]},{type:'advance'}];for(const cmd of commands)s=step(s,cmd);if(!s.pending)continue;found=true;const loaded=restore(c,save(c,seed,commands,s)).state;expect(hash(loaded)).toBe(hash(s));expect(dispatchCommand(s,{type:'advance'},c).error).toBe('PENDING_CHOICE');const resolved=step(loaded,{type:'choose',index:0});expect(resolved.absoluteSlot).toBe(1);expect(dispatchCommand(resolved,{type:'choose',index:0},c).error).toBe('NO_PENDING_CHOICE');}expect(found).toBe(true);});
-test('save corruption and future versions fail closed',()=>{const s=createInitialState(c);const json=save(c,1,[],s);const v=JSON.parse(json);expect(()=>restore(c,JSON.stringify({...v,schemaVersion:2}))).toThrow('INCOMPATIBLE');expect(()=>restore(c,JSON.stringify({...v,stateHash:'bad'}))).toThrow('HASH');});
-test('five reproducible bots preserve resource bounds and complete deliveries',()=>{for(const strategy of strategies){const r=runBot(c,3,strategy,14);expect(r.metrics.delivered).toBeGreaterThan(0);expect(r.state.quota).toBeGreaterThanOrEqual(0);expect(r.state.purchased).toBeGreaterThanOrEqual(0);expect(hash(runBot(c,3,strategy,14).state)).toBe(hash(r.state));expect(hash(restore(c,save(c,3,r.commands,r.state)).state)).toBe(hash(r.state));const delivered=r.state.jobs.find(j=>j.status==='delivered')!;expect(dispatchCommand(r.state,{type:'deliver',job:delivered.id},c).error).toBeTruthy();}});
-test('view model edits do not mutate state',()=>{const s=createInitialState(c);const before=hash(s);const vm=getViewModel(s,c);vm.actors[0]!.energy=0;vm.jobs[0]!.hidden=99;expect(hash(s)).toBe(before);});
-test('cash crisis never blocks a free event escape',()=>{const s=createInitialState(c);s.cash=-1;s.pending={card:'busy',slot:0};const r=step(s,{type:'choose',index:0});expect(r.absoluteSlot).toBe(1);expect(r.pending).toBeNull();});
-test('event presentation cannot mutate declarative content',()=>{const s=createInitialState(c);s.pending={card:'busy',slot:0};const before=hash(c);const vm=getViewModel(s,c);vm.pending!.choices[0]!.cost=999;expect(hash(c)).toBe(before);});
-test('60 day diagnostics stop cleanly at bankruptcy',()=>{for(const strategy of strategies)for(let seed=1;seed<=5;seed++){const r=runBot(c,seed,strategy,60);expect(r.state.bankrupt||r.state.absoluteSlot===240).toBe(true);expect(r.state.quota).toBeGreaterThanOrEqual(0);}});
+import { test, expect } from 'vitest';
+import { loadContent } from 'oot-content';
+import { createInitialState, dispatchCommand, draw, getViewModel } from 'oot-core';
+import type { State } from 'oot-core';
+import { hash, save, restore } from 'oot-persistence';
+import { runBot, strategies } from './src/bot.js';
+const c = loadContent();
+function step(s: State, cmd: unknown) { const r = dispatchCommand(s, cmd, c); expect(r.error).toBeNull(); return r.state; }
+test('invalid commands leave original identity and RNG intact', () => { const s = createInitialState(c); const before = hash(s); for (const cmd of [null, {}, { type: 'buy', amount: NaN }, { type: 'accept', job: 'missing' }, { type: 'assign', job: s.jobs[0]!.id, team: [null] }, { type: 'switchVersion' }]) {
+    const r = dispatchCommand(s, cmd, c);
+    expect(r.error).toBeTruthy();
+    expect(r.state).toBe(s);
+    expect(r.events).toEqual([]);
+} expect(hash(s)).toBe(before); });
+test('daily weekly debt boundaries settle once', () => { let s = createInitialState(c); for (let i = 0; i < 56; i++)
+    s = step(s, { type: 'advance' }); expect(s.ledger.filter(l => l.reason === 'weekly')).toHaveLength(2); expect(s.ledger.filter(l => l.reason === 'inherited-debt')).toHaveLength(1); expect(s.cash).toBe(-7600); s = step(s, { type: 'advance' }); expect(s.ledger).toHaveLength(3); expect(s.quota).toBe(600); });
+test('RNG streams are independent', () => { const a = createInitialState(c, 12), b = createInitialState(c, 12); draw(a, 'event'); expect(draw(a, 'board')).toBe(draw(b, 'board')); expect(draw(a, 'quality')).toBe(draw(b, 'quality')); });
+test('prepayment, occupancy and clarity cannot be repeated for free', () => { let s = createInitialState(c); const j = s.jobs[0]!.id; s = step(s, { type: 'accept', job: j }); expect(dispatchCommand(s, { type: 'accept', job: j }, c).error).toBe('NOT_POSTED'); s = step(s, { type: 'assign', job: j, team: [{ character: 'qwen', role: 'worker', mode: 'cloud' }] }); const j2 = s.jobs[1]!.id; s = step(s, { type: 'accept', job: j2 }); expect(dispatchCommand(s, { type: 'assign', job: j2, team: [{ character: 'qwen', role: 'worker', mode: 'cloud' }] }, c).error).toBe('ACTOR_BUSY'); });
+test('empty resources halt without negative quota or spending', () => { let s = createInitialState(c); s = step(s, { type: 'accept', job: s.jobs[0]!.id }); s = step(s, { type: 'assign', job: s.jobs[0]!.id, team: [{ character: 'qwen', role: 'worker', mode: 'cloud' }] }); s.quota = 0; s = step(s, { type: 'advance' }); if (s.pending)
+    s = step(s, { type: 'choose', index: 0 }); expect(s.jobs[0]!.progress).toBe(0); expect(s.tokensUsed).toBe(0); expect(s.quota).toBe(0); });
+test('local work accrues electricity without consuming cloud quota', () => { let s = createInitialState({ ...c, events: [] }); const cmd = (x: unknown) => { const r = dispatchCommand(s, x, { ...c, events: [] }); expect(r.error).toBeNull(); s = r.state; }; cmd({ type: 'accept', job: s.jobs[0]!.id }); cmd({ type: 'assign', job: s.jobs[0]!.id, team: [{ character: 'qwen', role: 'worker', mode: 'local' }] }); cmd({ type: 'advance' }); expect(s.electricity).toBeGreaterThan(0); expect(s.quota).toBe(300); });
+test('pending event save/reload resolves once and rejects replayed choice', () => { let found = false; for (let seed = 1; seed <= 50 && !found; seed++) {
+    let s = createInitialState(c, seed);
+    const commands: unknown[] = [{ type: 'accept', job: s.jobs[0]!.id }, { type: 'assign', job: s.jobs[0]!.id, team: [{ character: 'qwen', role: 'worker', mode: 'cloud' }] }, { type: 'advance' }];
+    for (const cmd of commands)
+        s = step(s, cmd);
+    if (!s.pending)
+        continue;
+    found = true;
+    const loaded = restore(c, save(c, seed, commands, s)).state;
+    expect(hash(loaded)).toBe(hash(s));
+    expect(dispatchCommand(s, { type: 'advance' }, c).error).toBe('PENDING_CHOICE');
+    const resolved = step(loaded, { type: 'choose', index: 0 });
+    expect(resolved.absoluteSlot).toBe(1);
+    expect(dispatchCommand(resolved, { type: 'choose', index: 0 }, c).error).toBe('NO_PENDING_CHOICE');
+} expect(found).toBe(true); });
+test('save corruption and future versions fail closed', () => { const s = createInitialState(c); const json = save(c, 1, [], s); const v = JSON.parse(json); expect(() => restore(c, JSON.stringify({ ...v, schemaVersion: 2 }))).toThrow('INCOMPATIBLE'); expect(() => restore(c, JSON.stringify({ ...v, stateHash: 'bad' }))).toThrow('HASH'); });
+test('five reproducible bots preserve resource bounds and complete deliveries', () => { for (const strategy of strategies) {
+    const r = runBot(c, 3, strategy, 14);
+    expect(r.metrics.delivered).toBeGreaterThan(0);
+    expect(r.state.quota).toBeGreaterThanOrEqual(0);
+    expect(r.state.purchased).toBeGreaterThanOrEqual(0);
+    expect(hash(runBot(c, 3, strategy, 14).state)).toBe(hash(r.state));
+    expect(hash(restore(c, save(c, 3, r.commands, r.state)).state)).toBe(hash(r.state));
+    const delivered = r.state.jobs.find(j => j.status === 'delivered')!;
+    expect(dispatchCommand(r.state, { type: 'deliver', job: delivered.id }, c).error).toBeTruthy();
+} });
+test('view model edits do not mutate state', () => { const s = createInitialState(c); const before = hash(s); const vm = getViewModel(s, c); vm.actors[0]!.energy = 0; vm.jobs[0]!.hidden = 99; expect(hash(s)).toBe(before); });
+test('cash crisis never blocks a free event escape', () => { const s = createInitialState(c); s.cash = -1; s.pending = { card: 'busy', slot: 0 }; const r = step(s, { type: 'choose', index: 0 }); expect(r.absoluteSlot).toBe(1); expect(r.pending).toBeNull(); });
+test('event presentation cannot mutate declarative content', () => { const s = createInitialState(c); s.pending = { card: 'busy', slot: 0 }; const before = hash(c); const vm = getViewModel(s, c); vm.pending!.choices[0]!.cost = 999; expect(hash(c)).toBe(before); });
+test('60 day diagnostics stop cleanly at bankruptcy', () => { for (const strategy of strategies)
+    for (let seed = 1; seed <= 5; seed++) {
+        const r = runBot(c, seed, strategy, 60);
+        expect(r.state.bankrupt || r.state.absoluteSlot === 240).toBe(true);
+        expect(r.state.quota).toBeGreaterThanOrEqual(0);
+    } });

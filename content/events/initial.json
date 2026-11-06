@@ -1,4 +1,4 @@
 [
- {"id":"busy","title":"服务器繁忙：本时段统一演练降载（原型事件）","choices":[{"label":"暂停，保留资源","cost":0,"multiplier":0},{"label":"支付80元使用备用队列","cost":80,"multiplier":1}]},
+ {"id":"busy","title":"DeepSeek 云端繁忙：本地部署不受影响","trigger":"bluewhale-cloud","choices":[{"label":"等待，DeepSeek 云端暂停一个时段","cost":0,"multiplier":0},{"label":"支付80元使用备用队列","cost":80,"multiplier":1}]},
  {"id":"tip","title":"给你200刀小费：只是激励话术","choices":[{"label":"接受鼓励，本时段产出+20%","cost":0,"multiplier":1.2},{"label":"按正常节奏做","cost":0,"multiplier":1}]}
 ]

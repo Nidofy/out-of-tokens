@@ -1,0 +1,3 @@
+$ pnpm build && tsx apps/sim-cli/src/replay.ts "harness/results/value-replay.json"
+$ tsc -b
+REPLAY_OK 6aded55719135ba185776e34357bcdfb5f36ed766f886d7dbc65274534362fe5 slot=56

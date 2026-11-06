@@ -13,3 +13,6 @@ M0 先实现 CLI，M1 才安装 Vite / Preact / PixiJS。
 `pnpm sim:replay saves/manual.json` 校验回放hash。
 `pnpm sim:batch 5 14` 运行五策略×5种子×14天，结果写harness/results（会覆盖上次报告）。
 当前3委托/2原型事件；尚未达到完整M0的30委托/20事件及经济验收。
+M0.0–M0.2已经逐项验收，证据见 docs/M0.0-M0.2_ACCEPTANCE.md。
+当前引擎0.2.0，旧0.1.0存档请在历史检查点打开；新版不会静默重算旧档。
+`node scripts/format.mjs` 使用已固定TypeScript打印器整理源码；提交前仍需pnpm check。

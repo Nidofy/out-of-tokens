@@ -10,7 +10,7 @@
     "build": "tsc -b",
     "typecheck": "tsc -b --pretty false",
     "lint": "eslint packages apps",
-    "test": "vitest run",
+    "test": "pnpm build && vitest run",
     "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
     "sim:play": "pnpm build && tsx apps/sim-cli/src/main.ts",
     "sim:batch": "pnpm build && tsx apps/sim-cli/src/batch.ts",

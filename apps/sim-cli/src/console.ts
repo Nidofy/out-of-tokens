@@ -1,0 +1,52 @@
+import { getViewModel } from 'oot-core';
+import type { Content, State } from 'oot-core';
+export const help = `status | advance | accept/reject/deliver/rework JOB
+clarify JOB ACTOR | assign JOB ACTOR:worker:cloud ACTOR:reviewer:local
+choose INDEX（从0开始）| buy T | save | load | quit
+查看委托及权重→澄清或拒绝→接受→派遣→advance→选择事件→交付/返工。
+澄清占角色一个时段。上午/下午工作，晚间/深夜休息；期限使用绝对时段。
+云额度每天刷新，临时购额保留；本地算力每槽重置、按用量周结电费。`;
+export function parseLine(line: string): unknown {
+    if (line.trim().startsWith('{'))
+        return JSON.parse(line);
+    const [type, ...args] = line.trim().split(/\s+/);
+    const arity: Record<string, number> = { advance: 0, accept: 1, reject: 1, deliver: 1, rework: 1, clarify: 2, choose: 1, buy: 1 };
+    if (type === 'assign') {
+        if (args.length < 2 || args.length > 5)
+            throw Error('用法：assign JOB ACTOR:ROLE:MODE ...');
+        return { type, job: args[0], team: args.slice(1).map(x => { const parts = x.split(':'); if (parts.length > 3 || parts.some(p => !p))
+                throw Error('角色格式错误'); const [character, role = 'worker', mode = 'cloud'] = parts; return { character, role, mode }; }) };
+    }
+    if (!type || !(type in arity))
+        throw Error('未知命令，输入 help 查看命令');
+    if (args.length !== arity[type])
+        throw Error('参数数量错误，输入 help 查看用法');
+    if (type === 'advance')
+        return { type };
+    if (type === 'choose' || type === 'buy') {
+        if (!/^\d+$/.test(args[0]!))
+            throw Error('请输入非负整数');
+        return type === 'choose' ? { type, index: Number(args[0]) } : { type, amount: Number(args[0]) };
+    }
+    return type === 'clarify' ? { type, job: args[0], character: args[1] } : { type, job: args[0] };
+}
+export function render(s: State, c: Content): string {
+    const v = getViewModel(s, c);
+    const lines = [`第${v.day}天 ${v.slot} / 绝对时段${v.absoluteSlot} | 资金¥${v.cash} | 云${v.quota}T + 购额${v.purchased}T | 本地${v.localCapacity}/槽`,
+        `下次周结预计¥${v.nextWeeklyBill} | 旧债¥${v.debtDue}（时段${v.debtSlot}到期）${v.bankrupt ? ' | 已破产' : v.crisisSince !== null ? ' | 现金流危机' : ''}`];
+    for (const a of v.actors)
+        lines.push(`${a.id} ${a.busy ? '占用' : '空闲'} 精力${a.energy} 心情${a.mood} 上下文${a.load} 单价${a.price}T/WP 能力${JSON.stringify(a.skills)}`);
+    for (const j of v.jobs.filter(j => !['delivered', 'breached'].includes(j.status)).concat(v.jobs.filter(j => ['delivered', 'breached'].includes(j.status)).slice(-3))) {
+        lines.push(`[${j.id}] ${j.title} (${j.status}${j.overdue ? ' / 逾期' : ''}) ${j.progress}/${j.work}WP，报酬¥${j.reward}，质量${j.quality}/及格${j.passQuality}`, `  ${j.description} 权重${JSON.stringify(j.weights)}；隐藏${j.hidden}条；${j.status === 'posted' ? `接单后${j.workSlots}工作时段` : `截止${j.deadline}`}；团队${j.team.map(m => m.character + ':' + m.role + ':' + m.mode).join(',') || '未派遣'}`);
+    }
+    if (v.pending) {
+        lines.push(`事件：${v.pending.title}`);
+        v.pending.choices.forEach((x, i) => lines.push(` choose ${i}: ${x.label}（¥${x.cost}，产出倍率${x.multiplier}）`));
+    }
+    lines.push('输入 help 查看操作。');
+    return lines.join('\n');
+}
+export function explain(error: string): string {
+    const labels: Record<string, string> = { ACTOR_BUSY: '角色正在执行委托或澄清，请推进时段或换人', PENDING_CHOICE: '请先 choose 事件选项', NOT_READY: '委托尚未完成执行', REWORK_AVAILABLE: '质量不足，请使用 rework 返工一次', NO_REWORK: '无法返工：需低于60分、尚未返工且未过截止', NOT_POSTED: '委托已不在可接受/拒绝状态', INSUFFICIENT_CASH: '资金不足', UNKNOWN_JOB: '找不到该委托编号', BANKRUPT: '工作室已破产，仍可存档或读取存档', NOT_ASSIGNABLE: '先接受委托，完成验收的委托不可重新派遣', DUPLICATE_ACTOR: '同一角色不能兼岗', INVALID_ROLES: '至少一位执行者，最多一位负责人和一位审查者', NOT_CLARIFIABLE: '只能澄清待接委托中尚未揭示的需求', NO_PENDING_CHOICE: '当前没有待选事件', INCOMPATIBLE_SAVE: '存档版本或内容不兼容，请使用对应检查点打开' };
+    return labels[error] ? `${labels[error]} [${error}]` : error;
+}
