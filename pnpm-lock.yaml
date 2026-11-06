@@ -27,7 +27,34 @@ importers:
         specifier: 4.1.8
         version: 4.1.8(@types/node@24.19.2)(vite@8.3.6(@types/node@24.19.2)(esbuild@0.28.2)(tsx@4.22.4))
 
+  apps/sim-cli:
+    dependencies:
+      oot-content:
+        specifier: workspace:*
+        version: link:../../packages/oot-content
+      oot-core:
+        specifier: workspace:*
+        version: link:../../packages/oot-core
+      oot-persistence:
+        specifier: workspace:*
+        version: link:../../packages/oot-persistence
+
+  packages/oot-content:
+    dependencies:
+      oot-core:
+        specifier: workspace:*
+        version: link:../oot-core
+      zod:
+        specifier: 4.6.7
+        version: 4.6.7
+
   packages/oot-core: {}
+
+  packages/oot-persistence:
+    dependencies:
+      oot-core:
+        specifier: workspace:*
+        version: link:../oot-core
 
 packages:
 
@@ -1047,6 +1074,9 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
+  zod@4.6.7:
+    resolution: {integrity: sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==}
+
 snapshots:
 
   '@esbuild/aix-ppc64@0.28.2':
@@ -1897,3 +1927,5 @@ snapshots:
   word-wrap@1.2.5: {}
 
   yocto-queue@0.1.0: {}
+
+  zod@4.6.7: {}

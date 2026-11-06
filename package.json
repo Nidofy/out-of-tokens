@@ -1,1 +1,27 @@
-{"name":"out-of-tokens","private":true,"type":"module","packageManager":"pnpm@11.25.0","engines":{"node":">=24 <25"},"scripts":{"build":"tsc -b","typecheck":"tsc -b --pretty false","lint":"eslint packages","test":"vitest run","check":"pnpm typecheck && pnpm lint && pnpm test && pnpm build"},"devDependencies":{"typescript":"6.0.3","vitest":"4.1.8","eslint":"9.39.5","typescript-eslint":"8.72.1","tsx":"4.22.4","@types/node":"24.19.2"}}
+{
+  "name": "out-of-tokens",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --pretty false",
+    "lint": "eslint packages apps",
+    "test": "vitest run",
+    "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
+    "sim:play": "pnpm build && tsx apps/sim-cli/src/main.ts",
+    "sim:batch": "pnpm build && tsx apps/sim-cli/src/batch.ts",
+    "sim:replay": "pnpm build && tsx apps/sim-cli/src/replay.ts"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3",
+    "vitest": "4.1.8",
+    "eslint": "9.39.5",
+    "typescript-eslint": "8.72.1",
+    "tsx": "4.22.4",
+    "@types/node": "24.19.2"
+  }
+}

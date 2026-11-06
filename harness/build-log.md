@@ -2,3 +2,8 @@
 2026-11-06：只读审计；原目录无Git；node24.16.0/pnpm11.25.0；npm registry核实版本，初次网络查询等待过久，短超时重试成功。
 首次pnpm install沙箱EPERM，已请求工具权限重试；结果以检查点原始日志为准。
 M0.0：安装初次因esbuild构建未批准退出；显式allowBuilds后成功。曾重复YAML键，修正后pnpm install、pnpm check全部通过。Vitest 1文件1测试，336ms。eslint9.39.5有上游弃用提示，当前与TS工具链兼容；升级列后续维护项。
+M0首切片：实现core/content/persistence/CLI。初次事件测试暴露相邻种子相关性，加混合派生；12测试通过。
+CLI真实进程存档/重载与独立replay通过。60天批量暴露负现金时免费事件选项被拒绝，修复cost=0判定并加回归；15测试通过。
+25局60天运行完成：value/random/no-clarify/clear-only各100%破产，greedy80%；原始结果见harness/results/batch.json及batch.csv，日志m0-slice-batch.log。
+回放：REPLAY_OK f9209084616923a0e3eee4d8a0e5e85fbc30f7313b913a58f36c0ddb57fc5962 slot=68。
+补充ViewModel内容对象隔离及移除core循环导入后再次运行门禁，见最终原始日志；未收到外部审查。

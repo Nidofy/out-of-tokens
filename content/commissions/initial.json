@@ -1,0 +1,5 @@
+[
+ {"id":"menu","title":"帮楼下奶茶店写个菜单","description":"懂行店主：六款饮品，写清价格和口味。","weights":{"code":0,"write":0.7,"reason":0,"create":0,"media":0,"recall":0.3},"workload":30,"workSlots":4,"reward":500,"clarity":90,"delivery":"oneshot"},
+ {"id":"bugs","title":"修一下网站，就一个小地方","description":"普通客户：登录偶尔失败，也许不止一个Bug。","weights":{"code":0.7,"write":0,"reason":0.3,"create":0,"media":0,"recall":0},"workload":40,"workSlots":4,"reward":700,"clarity":60,"delivery":"oneshot"},
+ {"id":"website","title":"做个类似微信的简单网站","description":"小白客户：其实社团只需要展示页，先问清楚。","weights":{"code":0.7,"write":0,"reason":0.3,"create":0,"media":0,"recall":0},"workload":60,"workSlots":6,"reward":800,"clarity":20,"delivery":"oneshot"}
+]
