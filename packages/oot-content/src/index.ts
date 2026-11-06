@@ -11,3 +11,8 @@ export function loadCampaignContent(): Content {
     const c = loadContent();
     return validateContent({ ...c, version: 'm1-1', events: [...c.events, ...read('campaign/events-m1.json') as Content['events']], versions: read('campaign/versions-m1.json'), campaign: read('campaign/m1.json') });
 }
+
+export function loadAlphaContent(): Content {
+ const read=(path:string):unknown=>JSON.parse(readFileSync(new URL(`../../../content/${path}`,import.meta.url),'utf8'));
+ return validateContent({...loadContent(),version:'m2-1',versions:read('campaign/versions-m2.json'),commissions:read('campaign/commissions-m2.json'),events:read('campaign/events-m2.json'),campaign:read('campaign/m2.json')});
+}

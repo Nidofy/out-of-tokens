@@ -95,7 +95,7 @@ export async function createWorkshop(host: HTMLElement, onSelect: (id: string) =
         base: number;
     }[] = [], elapsed = 0;
     const reduce = matchMedia('(prefers-reduced-motion: reduce)');
-    const update = (view: GameView) => {
+    const update = (view: GameView, language: 'zh'|'en' = 'zh') => {
         for (const child of world.removeChildren())
             child.destroy({ children: true });
         room(world);
@@ -103,7 +103,7 @@ export async function createWorkshop(host: HTMLElement, onSelect: (id: string) =
         const scene = view.campaign?.scene ?? 'workshop';
         if(scene !== 'workshop') {
             box(world,18,15,864,290,scene === 'library' ? 0xe1e6da : 0xf1dfc9,12);
-            label(world,sceneNames[scene],380,45,28);
+            label(world,language === 'en' ? scene : sceneNames[scene],380,45,28);
             if(scene === 'library') for(let i=0;i<10;i++) {box(world,80+i*70,100,45,90,colors[view.actors[i%view.actors.length]!.id] ?? 0xaabaac,3);}
             else {for(let i=0;i<6;i++){box(world,110+i*110,120,75,50,0xc29c70);world.addChild(new Graphics().ellipse(145+i*110,133,26,10).fill(0xfff3dd));}}
         }
@@ -123,7 +123,7 @@ export async function createWorkshop(host: HTMLElement, onSelect: (id: string) =
             box(world, x + 43, y - 4, 14, 18, index % 2 ? 0xe3c39c : 0xadbca1, 4);
             const name = label(world, names[actor.id] ?? actor.id, x - 40, 384, 13);
             name.x = x - name.width / 2; name.y = y + 64;
-            const status = label(world, working ? '认真开工中' : actor.busy ? '正在忙碌' : '等你安排', x - 40, 405, 11, working ? 0x5a7955 : 0x909783);
+            const status = label(world, language === 'en' ? (working ? 'Working' : actor.busy ? 'Busy' : 'Available') : (working ? '认真开工中' : actor.busy ? '正在忙碌' : '等你安排'), x - 40, 405, 11, working ? 0x5a7955 : 0x909783);
             status.x = x - status.width / 2; status.y = y + 87;
         });
     };

@@ -1,0 +1,20 @@
+import {useEffect,useRef,useState} from 'preact/hooks';
+import {BrowserSaves,GameSession,manualSlots} from 'oot-platform';
+import type {SaveSlot,StoredSave,WritableSlot} from 'oot-platform';
+import type {Command} from 'oot-core';
+import {content} from './content.js';
+export function useGame(){
+ const [session]=useState(()=>new GameSession(content)),[storage]=useState(()=>new BrowserSaves('out-of-tokens-alpha',import.meta.env.DEV && new URLSearchParams(location.search).get('test-fault')==='storage' ? {open(){throw Error('STORAGE_UNAVAILABLE');}} as unknown as IDBFactory : globalThis.indexedDB));
+ const [view,setView]=useState(session.view),[busy,setBusy]=useState(true),[message,setMessage]=useState(''),[records,setRecords]=useState<(StoredSave|null)[]>([]);
+ const gate=useRef(true),revisions=useRef<Partial<Record<WritableSlot,number>>>({}),paused=useRef(false);
+ const run=async(work:()=>Promise<void>)=>{if(gate.current)return;gate.current=true;setBusy(true);try{await work();}catch(e){setMessage(e instanceof SyntaxError?'BAD_JSON':e instanceof Error?e.message:String(e));}finally{gate.current=false;setBusy(false);}};
+ const list=async()=>setRecords(await storage.list());
+ const write=async(id:WritableSlot)=>{if(id==='auto'&&paused.current)throw Error('AUTO_PAUSED');revisions.current[id]=await storage.write(id,await session.exportSave(),revisions.current[id]??0);await list();};
+ useEffect(()=>{let live=true;storage.onExternalChange=()=>{paused.current=true;if(live)setMessage('EXTERNAL_CHANGE');};void(async()=>{try{const rows=await storage.list();if(!live)return;setRecords(rows);for(const r of rows)if(r&&(r.id==='auto'||manualSlots.includes(r.id as typeof manualSlots[number])))revisions.current[r.id as WritableSlot]=r.revision;const auto=rows.find(r=>r?.id==='auto');if(auto){await session.importSave(auto.text);if(live)setView(session.view);}}catch(e){paused.current=true;if(live)setMessage(e instanceof Error?e.message:'STORAGE_UNAVAILABLE');}finally{if(live){gate.current=false;setBusy(false);}}})();return()=>{live=false;void storage.close().catch(()=>{});};},[session,storage]);
+ const send=(cmd:Command)=>run(async()=>{const r=session.send(cmd);if(r.error)throw Error(r.error);setView(session.view);setMessage(r.events.at(-1)?.type??'DONE');if(r.events.some(e=>['DayEnd','Restarted'].includes(e.type))){try{await write('auto');}catch(e){paused.current=true;throw e;}}});
+ const load=(id:SaveSlot)=>run(async()=>{const row=await storage.read(id);if(!row)throw Error('NO_SAVE');const auto=await storage.read('auto');await session.importSave(row.text);if(id==='auto'||manualSlots.includes(id as typeof manualSlots[number]))revisions.current[id as WritableSlot]=row.revision;revisions.current.auto=auto?.revision??0;paused.current=false;setView(session.view);setMessage('LOADED');});
+ const save=(id:WritableSlot)=>run(async()=>{await write(id);setMessage('SAVED');});
+ const exportFile=()=>run(async()=>{const url=URL.createObjectURL(new Blob([await session.exportSave()],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='out-of-tokens-alpha.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);setMessage('EXPORTED');});
+ const importFile=(file:File|undefined)=>run(async()=>{if(!file)return;if(file.size===0||file.size>8000000)throw Error('INVALID_SAVE_SIZE');let available=true;try{revisions.current.auto=(await storage.read('auto'))?.revision??0;}catch{available=false;}await session.importSave(await file.text());paused.current=!available;setView(session.view);setMessage(available?'LOADED':'IMPORTED_NO_STORAGE');});
+ return{session,view,busy,message,records,send,load,save,exportFile,importFile,refresh:()=>run(list)};
+}

@@ -1,0 +1,1632 @@
+{
+  "initial": [
+    "bluewhale",
+    "qwen",
+    "llama",
+    "mistral"
+  ],
+  "recruits": [
+    {
+      "character": "gpt",
+      "cost": 350,
+      "reputation": 2
+    },
+    {
+      "character": "claude",
+      "cost": 450,
+      "reputation": 4
+    },
+    {
+      "character": "kimi",
+      "cost": 550,
+      "reputation": 6
+    },
+    {
+      "character": "gemini",
+      "cost": 650,
+      "reputation": 8
+    },
+    {
+      "character": "grok",
+      "cost": 850,
+      "reputation": 10
+    },
+    {
+      "character": "glm",
+      "cost": 1000,
+      "reputation": 13
+    },
+    {
+      "character": "minimax",
+      "cost": 1150,
+      "reputation": 16
+    },
+    {
+      "character": "seedance",
+      "cost": 1300,
+      "reputation": 19
+    }
+  ],
+  "software": [
+    {
+      "id": "search",
+      "name": "检索工具",
+      "nameEn": "Search",
+      "cost": 300,
+      "research": 2,
+      "requires": []
+    },
+    {
+      "id": "rag",
+      "name": "RAG知识库",
+      "nameEn": "RAG",
+      "cost": 700,
+      "research": 6,
+      "requires": [
+        "search"
+      ]
+    },
+    {
+      "id": "explain",
+      "name": "可解释验收",
+      "nameEn": "Explainability",
+      "cost": 250,
+      "research": 2,
+      "requires": []
+    },
+    {
+      "id": "sandbox",
+      "name": "安全沙箱",
+      "nameEn": "Sandbox",
+      "cost": 400,
+      "research": 3,
+      "requires": []
+    },
+    {
+      "id": "autotest",
+      "name": "自动测试",
+      "nameEn": "Autotests",
+      "cost": 600,
+      "research": 5,
+      "requires": [
+        "sandbox"
+      ]
+    },
+    {
+      "id": "prompt",
+      "name": "提示词优化",
+      "nameEn": "Prompt tuning",
+      "cost": 400,
+      "research": 4,
+      "requires": []
+    },
+    {
+      "id": "compact",
+      "name": "上下文整理",
+      "nameEn": "Context compaction",
+      "cost": 350,
+      "research": 3,
+      "requires": []
+    },
+    {
+      "id": "vllm",
+      "name": "本地推理优化",
+      "nameEn": "Local inference",
+      "cost": 800,
+      "research": 8,
+      "requires": []
+    },
+    {
+      "id": "ci",
+      "name": "持续交付",
+      "nameEn": "Continuous delivery",
+      "cost": 750,
+      "research": 6,
+      "requires": [
+        "autotest"
+      ]
+    },
+    {
+      "id": "management",
+      "name": "项目管理",
+      "nameEn": "Project management",
+      "cost": 700,
+      "research": 7,
+      "requires": [
+        "explain"
+      ]
+    },
+    {
+      "id": "multiagent",
+      "name": "多智能体协同",
+      "nameEn": "Multi-agent teams",
+      "cost": 1400,
+      "research": 12,
+      "requires": [
+        "management"
+      ]
+    },
+    {
+      "id": "versioncontrol",
+      "name": "版本控制",
+      "nameEn": "Version control",
+      "cost": 450,
+      "research": 4,
+      "requires": [
+        "sandbox"
+      ]
+    },
+    {
+      "id": "messenger",
+      "name": "精准找人",
+      "nameEn": "Messenger",
+      "cost": 250,
+      "research": 3,
+      "requires": []
+    },
+    {
+      "id": "remote",
+      "name": "远程召回",
+      "nameEn": "Remote recall",
+      "cost": 650,
+      "research": 6,
+      "requires": [
+        "messenger"
+      ]
+    },
+    {
+      "id": "crm",
+      "name": "客户关系",
+      "nameEn": "CRM",
+      "cost": 800,
+      "research": 6,
+      "requires": [
+        "management"
+      ]
+    },
+    {
+      "id": "analyst",
+      "name": "需求分析器",
+      "nameEn": "Requirement analyst",
+      "cost": 750,
+      "research": 8,
+      "requires": [
+        "search"
+      ]
+    },
+    {
+      "id": "contract",
+      "name": "合同模板",
+      "nameEn": "Contract templates",
+      "cost": 650,
+      "research": 6,
+      "requires": [
+        "crm"
+      ]
+    },
+    {
+      "id": "filter",
+      "name": "输入过滤",
+      "nameEn": "Input filter",
+      "cost": 500,
+      "research": 5,
+      "requires": [
+        "sandbox"
+      ]
+    },
+    {
+      "id": "monitor",
+      "name": "监控告警",
+      "nameEn": "Monitoring",
+      "cost": 700,
+      "research": 7,
+      "requires": [
+        "autotest"
+      ]
+    },
+    {
+      "id": "mcp",
+      "name": "MCP插件市场",
+      "nameEn": "MCP marketplace",
+      "cost": 1200,
+      "research": 10,
+      "requires": [
+        "multiagent"
+      ]
+    },
+    {
+      "id": "tokenbank",
+      "name": "Token银行",
+      "nameEn": "Token bank",
+      "cost": 900,
+      "research": 8,
+      "requires": [
+        "management"
+      ]
+    }
+  ],
+  "maxHardware": 5,
+  "maxChapter": 2,
+  "stories": [
+    {
+      "id": "bluewhale-bond-1",
+      "character": "bluewhale",
+      "affinity": 10,
+      "text": "食堂的最后一份包子。bluewhale放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "食堂的最后一份包子. bluewhale puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "bluewhale-bond-2",
+      "character": "bluewhale",
+      "affinity": 25,
+      "text": "小模型也能认真干活。bluewhale放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "小模型也能认真干活. bluewhale puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "bluewhale-bond-3",
+      "character": "bluewhale",
+      "affinity": 45,
+      "text": "第一次服务器繁忙。bluewhale放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "第一次服务器繁忙. bluewhale puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "bluewhale-bond-4",
+      "character": "bluewhale",
+      "affinity": 65,
+      "text": "不想只被叫便宜替代。bluewhale放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "不想只被叫便宜替代. bluewhale puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "bluewhale-bond-5",
+      "character": "bluewhale",
+      "affinity": 85,
+      "text": "给新伙伴留一个座位。bluewhale放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "给新伙伴留一个座位. bluewhale puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "qwen-bond-1",
+      "character": "qwen",
+      "affinity": 10,
+      "text": "整齐的双语便签。qwen放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "整齐的双语便签. qwen puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "qwen-bond-2",
+      "character": "qwen",
+      "affinity": 25,
+      "text": "为什么每单都叫我。qwen放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "为什么每单都叫我. qwen puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "qwen-bond-3",
+      "character": "qwen",
+      "affinity": 45,
+      "text": "茶凉了，代码还热。qwen放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "茶凉了，代码还热. qwen puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "qwen-bond-4",
+      "character": "qwen",
+      "affinity": 65,
+      "text": "学会说今天到这里。qwen放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "学会说今天到这里. qwen puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "qwen-bond-5",
+      "character": "qwen",
+      "affinity": 85,
+      "text": "把经验写给下一位。qwen放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "把经验写给下一位. qwen puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "llama-bond-1",
+      "character": "llama",
+      "affinity": 10,
+      "text": "一张回家的明信片。llama放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "一张回家的明信片. llama puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "llama-bond-2",
+      "character": "llama",
+      "affinity": 25,
+      "text": "小步快跑也有价值。llama放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "小步快跑也有价值. llama puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "llama-bond-3",
+      "character": "llama",
+      "affinity": 45,
+      "text": "独自交付的第一次。llama放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "独自交付的第一次. llama puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "llama-bond-4",
+      "character": "llama",
+      "affinity": 65,
+      "text": "我不是空闲替补。llama放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "我不是空闲替补. llama puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "llama-bond-5",
+      "character": "llama",
+      "affinity": 85,
+      "text": "开源社区的野餐。llama放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "开源社区的野餐. llama puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "mistral-bond-1",
+      "character": "mistral",
+      "affinity": 10,
+      "text": "帽子被风吹走了。mistral放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "帽子被风吹走了. mistral puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "mistral-bond-2",
+      "character": "mistral",
+      "affinity": 25,
+      "text": "快不等于粗心。mistral放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "快不等于粗心. mistral puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "mistral-bond-3",
+      "character": "mistral",
+      "affinity": 45,
+      "text": "短委托里的长耐心。mistral放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "短委托里的长耐心. mistral puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "mistral-bond-4",
+      "character": "mistral",
+      "affinity": 65,
+      "text": "给慢伙伴等一分钟。mistral放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "给慢伙伴等一分钟. mistral puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "mistral-bond-5",
+      "character": "mistral",
+      "affinity": 85,
+      "text": "顺风也记得回头。mistral放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "顺风也记得回头. mistral puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gpt-bond-1",
+      "character": "gpt",
+      "affinity": 10,
+      "text": "自我介绍有点长。gpt放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "自我介绍有点长. gpt puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gpt-bond-2",
+      "character": "gpt",
+      "affinity": 25,
+      "text": "不是每句都要称赞。gpt放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "不是每句都要称赞. gpt puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gpt-bond-3",
+      "character": "gpt",
+      "affinity": 45,
+      "text": "客户真正想说什么。gpt放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "客户真正想说什么. gpt puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gpt-bond-4",
+      "character": "gpt",
+      "affinity": 65,
+      "text": "昂贵的版本也会困惑。gpt放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "昂贵的版本也会困惑. gpt puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gpt-bond-5",
+      "character": "gpt",
+      "affinity": 85,
+      "text": "一次恰到好处的沉默。gpt放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "一次恰到好处的沉默. gpt puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "claude-bond-1",
+      "character": "claude",
+      "affinity": 10,
+      "text": "图书馆里折好的书角。claude放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "图书馆里折好的书角. claude puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "claude-bond-2",
+      "character": "claude",
+      "affinity": 25,
+      "text": "拒绝之前先解释。claude放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "拒绝之前先解释. claude puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "claude-bond-3",
+      "character": "claude",
+      "affinity": 45,
+      "text": "测试之外还有用户。claude放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "测试之外还有用户. claude puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "claude-bond-4",
+      "character": "claude",
+      "affinity": 65,
+      "text": "认真也需要休息。claude放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "认真也需要休息. claude puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "claude-bond-5",
+      "character": "claude",
+      "affinity": 85,
+      "text": "写一封不必完美的信。claude放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "写一封不必完美的信. claude puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "kimi-bond-1",
+      "character": "kimi",
+      "affinity": 10,
+      "text": "月光下的长笔记。kimi放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "月光下的长笔记. kimi puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "kimi-bond-2",
+      "character": "kimi",
+      "affinity": 25,
+      "text": "记得太多忘了吃饭。kimi放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "记得太多忘了吃饭. kimi puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "kimi-bond-3",
+      "character": "kimi",
+      "affinity": 45,
+      "text": "引用背后的人。kimi放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "引用背后的人. kimi puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "kimi-bond-4",
+      "character": "kimi",
+      "affinity": 65,
+      "text": "长上下文里的短约定。kimi放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "长上下文里的短约定. kimi puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "kimi-bond-5",
+      "character": "kimi",
+      "affinity": 85,
+      "text": "帮朋友记住好日子。kimi放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "帮朋友记住好日子. kimi puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gemini-bond-1",
+      "character": "gemini",
+      "affinity": 10,
+      "text": "把窗外的光画下来。gemini放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "把窗外的光画下来. gemini puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gemini-bond-2",
+      "character": "gemini",
+      "affinity": 25,
+      "text": "漂亮图表也要校验。gemini放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "漂亮图表也要校验. gemini puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gemini-bond-3",
+      "character": "gemini",
+      "affinity": 45,
+      "text": "不同模态的误会。gemini放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "不同模态的误会. gemini puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gemini-bond-4",
+      "character": "gemini",
+      "affinity": 65,
+      "text": "版本更新前的紧张。gemini放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "版本更新前的紧张. gemini puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gemini-bond-5",
+      "character": "gemini",
+      "affinity": 85,
+      "text": "一张全员合影。gemini放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "一张全员合影. gemini puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "grok-bond-1",
+      "character": "grok",
+      "affinity": 10,
+      "text": "一个笑话的分寸。grok放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "一个笑话的分寸. grok puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "grok-bond-2",
+      "character": "grok",
+      "affinity": 25,
+      "text": "吐槽之后怎么帮忙。grok放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "吐槽之后怎么帮忙. grok puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "grok-bond-3",
+      "character": "grok",
+      "affinity": 45,
+      "text": "不抢最后一句话。grok放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "不抢最后一句话. grok puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "grok-bond-4",
+      "character": "grok",
+      "affinity": 65,
+      "text": "给客户认真道歉。grok放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "给客户认真道歉. grok puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "grok-bond-5",
+      "character": "grok",
+      "affinity": 85,
+      "text": "把锋芒变成灯光。grok放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "把锋芒变成灯光. grok puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "glm-bond-1",
+      "character": "glm",
+      "affinity": 10,
+      "text": "机房里睡着的人。glm放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "机房里睡着的人. glm puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "glm-bond-2",
+      "character": "glm",
+      "affinity": 25,
+      "text": "可靠不等于不累。glm放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "可靠不等于不累. glm puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "glm-bond-3",
+      "character": "glm",
+      "affinity": 45,
+      "text": "一个被遗漏的边界。glm放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "一个被遗漏的边界. glm puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "glm-bond-4",
+      "character": "glm",
+      "affinity": 65,
+      "text": "请别人检查我的代码。glm放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "请别人检查我的代码. glm puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "glm-bond-5",
+      "character": "glm",
+      "affinity": 85,
+      "text": "准时关灯回家。glm放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "准时关灯回家. glm puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "minimax-bond-1",
+      "character": "minimax",
+      "affinity": 10,
+      "text": "哼到一半的旋律。minimax放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "哼到一半的旋律. minimax puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "minimax-bond-2",
+      "character": "minimax",
+      "affinity": 25,
+      "text": "声音也有留白。minimax放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "声音也有留白. minimax puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "minimax-bond-3",
+      "character": "minimax",
+      "affinity": 45,
+      "text": "多媒体里的一句文字。minimax放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "多媒体里的一句文字. minimax puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "minimax-bond-4",
+      "character": "minimax",
+      "affinity": 65,
+      "text": "没有掌声的练习。minimax放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "没有掌声的练习. minimax puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "minimax-bond-5",
+      "character": "minimax",
+      "affinity": 85,
+      "text": "把大家的声音剪在一起。minimax放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "把大家的声音剪在一起. minimax puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "seedance-bond-1",
+      "character": "seedance",
+      "affinity": 10,
+      "text": "第一段循环动画。seedance放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "第一段循环动画. seedance puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "seedance-bond-2",
+      "character": "seedance",
+      "affinity": 25,
+      "text": "镜头之外的故事。seedance放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "镜头之外的故事. seedance puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "seedance-bond-3",
+      "character": "seedance",
+      "affinity": 45,
+      "text": "慢动作不是偷懒。seedance放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "慢动作不是偷懒. seedance puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "seedance-bond-4",
+      "character": "seedance",
+      "affinity": 65,
+      "text": "允许一个镜头不完美。seedance放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "允许一个镜头不完美. seedance puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "seedance-bond-5",
+      "character": "seedance",
+      "affinity": 85,
+      "text": "属于工作室的片尾。seedance放下手里的工作，想和你聊聊。今天更需要被倾听，还是把心得写给团队？",
+      "textEn": "属于工作室的片尾. seedance puts work aside to talk. Would listening help more today, or should the team share what they learned?",
+      "choices": [
+        {
+          "label": "先听你说，不赶时间",
+          "labelEn": "I am listening. Take your time.",
+          "affinity": 5,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "一起整理给团队的笔记",
+          "labelEn": "Write notes for the team together.",
+          "affinity": 2,
+          "mood": -2,
+          "research": 2
+        }
+      ]
+    }
+  ]
+}

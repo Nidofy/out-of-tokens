@@ -30,6 +30,8 @@ export interface Template {
     category?: 'code' | 'write' | 'research' | 'design' | 'media' | 'data';
     client?: 'expert' | 'normal' | 'novice' | 'rush';
     titleEn?: string;
+    descriptionEn?: string;
+    requirements?: {label: string; labelEn: string; work: number}[];
 }
 export interface Card {
     id: string;
@@ -60,6 +62,8 @@ export interface CampaignContent {
     recruits: { character: string; cost: number; reputation: number }[];
     software: { id: string; name: string; nameEn: string; cost: number; research: number; requires: string[] }[];
     maxHardware: number;
+    maxChapter?: number;
+    stories?: {id: string; character: string; affinity: number; text: string; textEn: string; choices: {label: string; labelEn: string; affinity: number; mood: number; research: number}[]}[];
 }
 export interface Relation {
     xp: number;
@@ -69,6 +73,8 @@ export interface Relation {
     training: { until: number; version: string; skill: Skill | 'alignment' } | null;
     bonuses: Record<string, Partial<Record<Skill | 'alignment', number>>>;
     stories: string[];
+    stress: number;
+    hunger: number;
 }
 export interface CampaignState {
     chapter: number;
@@ -80,10 +86,14 @@ export interface CampaignState {
     hardware: Record<'office' | 'compute' | 'storage' | 'network', number>;
     unlocked: string[];
     relations: Record<string, Relation>;
+    chapterStarted: number;
+    clarifyRng: number;
+    subscription: number;
+    incidents: {job:string;at:number;deadline:number;resolved:boolean}[];
 }
 export interface Member {
     character: string;
-    role: 'worker' | 'planner' | 'reviewer';
+    role: 'worker' | 'planner' | 'reviewer' | 'tool';
     mode: 'cloud' | 'local';
 }
 export interface Actor {
@@ -117,6 +127,7 @@ export interface Job {
     qualityBonus: number;
     clarifyingUntil: number;
     reviewCoverage: number;
+    revealed?: number;
 }
 export interface State {
     engineVersion: string;
@@ -166,7 +177,7 @@ export interface State {
 }
 export type Command = {
     type: 'campaign';
-    action: 'visit' | 'chat' | 'gift' | 'meal' | 'study' | 'recall' | 'recruit' | 'unlock' | 'switch' | 'train' | 'align' | 'software' | 'hardware' | 'chapter';
+    action: 'visit' | 'chat' | 'gift' | 'meal' | 'study' | 'recall' | 'recruit' | 'unlock' | 'switch' | 'train' | 'align' | 'software' | 'hardware' | 'chapter' | 'story' | 'subscribe';
     id: string;
     target?: string;
 } | {
@@ -189,7 +200,7 @@ export type Command = {
     type: 'accept' | 'reject' | 'deliver' | 'rework';
     job: string;
 } | {
-    type: 'clarify';
+    type: 'clarify' | 'respond';
     job: string;
     character: string;
 } | {

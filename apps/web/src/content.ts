@@ -1,8 +1,7 @@
-import { validateContent } from 'oot-content/browser';
-import versions from '../../../content/campaign/versions-m1.json';
-import extraEvents from '../../../content/campaign/events-m1.json';
-import campaign from '../../../content/campaign/m1.json';
-import commissions from '../../../content/commissions/initial.json';
-import events from '../../../content/events/initial.json';
+import {validateContent} from 'oot-content/browser';
+import versions from '../../../content/campaign/versions-m2.json';
+import commissions from '../../../content/campaign/commissions-m2.json';
+import events from '../../../content/campaign/events-m2.json';
+import campaign from '../../../content/campaign/m2.json';
 import balance from '../../../content/balance/standard.json';
-export const content = validateContent({ version: 'm1-1', versions, commissions, events: [...events,...extraEvents], balance, campaign });
+export const content=validateContent({version:'m2-1',versions,commissions,events,campaign,balance});

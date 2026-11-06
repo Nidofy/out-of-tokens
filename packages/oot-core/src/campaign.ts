@@ -2,12 +2,12 @@ import type { Actor, CampaignState, Command, Content, Relation, Scene, Skill, St
 import { liquidCash, round } from './economy.js';
 const check = (ok: unknown, error: string) => { if (!ok) throw Error(error); };
 const cap = (n: number) => Math.max(0, Math.min(100, n));
-export const newRelation = (): Relation => ({ xp: 0, affinity: 0, location: null, locationUntil: 0, training: null, bonuses: {}, stories: [] });
+export const newRelation = (): Relation => ({ xp: 0, affinity: 0, location: null, locationUntil: 0, training: null, bonuses: {}, stories: [], stress: 0, hunger: 0 });
 export function initialCampaign(c: Content): CampaignState {
-    return { chapter: 0, chapterZero: 'pending', completed: [], scene: 'workshop', research: 0, software: [], hardware: { office: 0, compute: 0, storage: 0, network: 0 }, unlocked: c.versions.filter((v, i, all) => all.findIndex(x => x.character === v.character) === i).map(v => v.id), relations: Object.fromEntries(c.campaign!.initial.map(id => [id, newRelation()])) };
+    return { chapterStarted: 0, clarifyRng: 1, subscription: 0, incidents: [], chapter: 0, chapterZero: 'pending', completed: [], scene: 'workshop', research: 0, software: [], hardware: { office: 0, compute: 0, storage: 0, network: 0 }, unlocked: c.versions.filter((v, i, all) => all.findIndex(x => x.character === v.character) === i).map(v => v.id), relations: Object.fromEntries(c.campaign!.initial.map(id => [id, newRelation()])) };
 }
 export function cloneCampaign(p: CampaignState): CampaignState {
-    return { ...p, completed: [...p.completed], software: [...p.software], hardware: { ...p.hardware }, unlocked: [...p.unlocked], relations: Object.fromEntries(Object.entries(p.relations).map(([id, r]) => [id, { ...r, stories: [...r.stories], training: r.training ? { ...r.training } : null, bonuses: Object.fromEntries(Object.entries(r.bonuses).map(([v, skills]) => [v, { ...skills }])) }])) };
+    return { ...p, incidents:p.incidents.map(x=>({...x})), completed: [...p.completed], software: [...p.software], hardware: { ...p.hardware }, unlocked: [...p.unlocked], relations: Object.fromEntries(Object.entries(p.relations).map(([id, r]) => [id, { ...r, stories: [...r.stories], training: r.training ? { ...r.training } : null, bonuses: Object.fromEntries(Object.entries(r.bonuses).map(([v, skills]) => [v, { ...skills }])) }])) };
 }
 export const owns = (s: State, id: string) => s.campaign?.software.includes(id) ?? false;
 export function actorScene(s: State, a: Actor): Scene {
@@ -33,7 +33,7 @@ export function tickCampaign(s: State) {
     }
     if (s.absoluteSlot === 56 && p.chapterZero === 'pending') p.chapterZero = s.debtPaid && liquidCash(s) >= 0 && s.jobs.some(j => j.phase > 0) ? 'passed' : 'missed';
 }
-const actions = ['visit', 'chat', 'gift', 'meal', 'study', 'recall', 'recruit', 'unlock', 'switch', 'train', 'align', 'software', 'hardware', 'chapter'];
+const actions = ['visit', 'chat', 'gift', 'meal', 'study', 'recall', 'recruit', 'unlock', 'switch', 'train', 'align', 'software', 'hardware', 'chapter', 'story', 'subscribe'];
 export function parseCampaign(v: Record<string, unknown>): Extract<Command, { type: 'campaign' }> {
     check(typeof v.action === 'string' && actions.includes(v.action) && typeof v.id === 'string' && (v.target === undefined || typeof v.target === 'string'), 'INVALID_CAMPAIGN_COMMAND');
     return { type: 'campaign', action: v.action as Extract<Command, { type: 'campaign' }>['action'], id: v.id as string, ...(v.target === undefined ? {} : { target: v.target as string }) };
@@ -63,8 +63,25 @@ export function applyCampaign(s: State, c: Content, cmd: Extract<Command, { type
         return;
     }
     if (cmd.action === 'chapter') {
-        check(p.chapter === 0 && p.chapterZero === 'passed', 'CHAPTER_LOCKED');
-        p.completed.push(0); p.chapter = 1; return;
+        const completedJobs = s.jobs.filter(j => j.posted >= p.chapterStarted && j.status === 'delivered');
+        const ready = p.chapter === 0 ? p.chapterZero === 'passed' : p.chapter === 1 ? s.reputation >= 15 && liquidCash(s) >= 2500 && completedJobs.some(j => j.phase >= 2 && j.quality >= 75 && c.commissions.find(t => t.id === j.template)!.delivery === 'multi') : completedJobs.some(j => j.phase >= 3 && j.quality >= 80 && c.commissions.find(t => t.id === j.template)!.delivery === 'retainer') && p.unlocked.length >= new Set(c.versions.map(v=>v.character)).size + 2;
+        check(!p.completed.includes(p.chapter) && ready, 'CHAPTER_LOCKED');
+        p.completed.push(p.chapter);
+        if(p.chapter < (spec.maxChapter ?? 0)) {p.chapter++;p.chapterStarted=s.absoluteSlot;}
+        return;
+    }
+    if (cmd.action === 'subscribe') {
+        const level=Number(cmd.id);check([0,1,2].includes(level) && level !== p.subscription, 'INVALID_SUBSCRIPTION');
+        // Pay the positive difference for the remainder of this week, never refund downgrades.
+        pay(Math.ceil(Math.max(0, [0,120,420][level]!-[0,120,420][p.subscription]!) * (28-s.absoluteSlot%28)/28));
+        p.subscription=level;return;
+    }
+    if(cmd.action === 'story') {
+        const story=spec.stories?.find(t=>t.id===cmd.id);check(story,'UNKNOWN_STORY');
+        const r=p.relations[story!.character],a=s.actors.find(a=>a.id===story!.character);
+        check(r && a && r.affinity>=story!.affinity && !r.stories.includes(cmd.id) && actorScene(s,a)===p.scene && a.busyUntil<=s.absoluteSlot,'STORY_LOCKED');
+        check(cmd.target==='0'||cmd.target==='1','INVALID_CHOICE');const choice=story!.choices[Number(cmd.target)]!;
+        r!.affinity=cap(r!.affinity+choice.affinity);a!.mood=cap(a!.mood+choice.mood);p.research+=choice.research;r!.stories.push(cmd.id);a!.busyUntil=s.absoluteSlot+1;return;
     }
     if (cmd.action === 'unlock') {
         const v = c.versions.find(v => v.id === cmd.id);
@@ -88,11 +105,15 @@ export function applyCampaign(s: State, c: Content, cmd: Extract<Command, { type
         pay(300, 5); a!.busyUntil = s.absoluteSlot + (skill === 'alignment' ? 4 : 8); r.training = { until: a!.busyUntil, version: a!.version, skill }; r.location = 'library'; r.locationUntil = a!.busyUntil; return;
     }
     check(!assigned || s.absoluteSlot % 4 >= 2, 'ACTOR_BUSY');
-    check(actorScene(s, a!) === p.scene, 'ACTOR_ELSEWHERE');
-    if (cmd.action === 'recall') { check(p.scene !== 'workshop', 'ALREADY_HERE'); r.location = 'workshop'; r.locationUntil = s.absoluteSlot + 1; r.affinity = cap(r.affinity + 1); return; }
-    if (cmd.action === 'meal') { check(p.scene === 'canteen', 'WRONG_SCENE'); pay(30); a!.energy = cap(a!.energy + 25); a!.mood = cap(a!.mood + 8); }
+    check(actorScene(s, a!) === p.scene || (cmd.action === 'recall' && owns(s,'remote')), 'ACTOR_ELSEWHERE');
+    if (cmd.action === 'recall') { check(actorScene(s,a!) !== 'workshop', 'ALREADY_HERE');if(owns(s,'remote') && actorScene(s,a!) !== p.scene) a!.mood=cap(a!.mood-5); r.location = 'workshop'; r.locationUntil = s.absoluteSlot + 1; r.affinity = cap(r.affinity + 1); return; }
+    if (cmd.action === 'meal') { r.hunger=cap(r.hunger-50);r.stress=cap(r.stress-8); check(p.scene === 'canteen', 'WRONG_SCENE'); pay(30); a!.energy = cap(a!.energy + 25); a!.mood = cap(a!.mood + 8); }
     if (cmd.action === 'study') { check(p.scene === 'library', 'WRONG_SCENE'); check(a!.energy >= 10, 'TIRED'); a!.energy -= 10; r.xp += 10; p.research += 2; }
-    if (cmd.action === 'chat') { a!.mood = cap(a!.mood + 5); r.affinity = cap(r.affinity + 3); }
+    if (cmd.action === 'chat') { r.stress=cap(r.stress-10); a!.mood = cap(a!.mood + 5); r.affinity = cap(r.affinity + 3); }
     if (cmd.action === 'gift') { pay(60); a!.mood = cap(a!.mood + 10); r.affinity = cap(r.affinity + 5); }
     a!.busyUntil = s.absoluteSlot + 1;
 }
+
+export const clarifyChance=(s:State,c:Content,a:Actor)=>Math.min(.95,.35+.04*effectiveVersion(s,c,a).skills.recall+(owns(s,'analyst')?.15:0));
+export function clarifyRoll(s:State):number {let x=s.campaign!.clarifyRng;x^=x<<13;x^=x>>>17;x^=x<<5;s.campaign!.clarifyRng=x>>>0;return(x>>>0)/4294967296;}
+export const needsFactor=(s:State,id:string)=>{const r=s.campaign?.relations[id];return r&&s.campaign&&r.hunger>=70?.85:1;};

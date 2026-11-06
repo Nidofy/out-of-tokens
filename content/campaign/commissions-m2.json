@@ -1,0 +1,3464 @@
+[
+  {
+    "id": "menu",
+    "title": "帮楼下奶茶店写个菜单",
+    "titleEn": "Tea shop menu",
+    "category": "write",
+    "client": "expert",
+    "description": "需求与验收标准明确，可按能力权重安排团队。",
+    "weights": {
+      "code": 0,
+      "write": 0.7,
+      "reason": 0,
+      "create": 0,
+      "media": 0,
+      "recall": 0.3
+    },
+    "workload": 30,
+    "workSlots": 4,
+    "reward": 1100,
+    "clarity": 95,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+  },
+  {
+    "id": "bugs",
+    "title": "修一下网站，就一个小地方",
+    "titleEn": "One tiny website bug",
+    "category": "code",
+    "client": "normal",
+    "description": "需求基本明确，仍有细节需要澄清。",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 35,
+    "workSlots": 6,
+    "reward": 1300,
+    "clarity": 60,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "Confirm the delivery format and intended audience before starting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      },
+      {
+        "label": "确认目标读者",
+        "labelEn": "Confirm the target audience",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "website",
+    "title": "做个类似微信的简单网站",
+    "titleEn": "A simple social website",
+    "category": "code",
+    "client": "novice",
+    "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 40,
+    "workSlots": 6,
+    "reward": 1500,
+    "clarity": 20,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "The client has unstated requirements. Clarify them before accepting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      },
+      {
+        "label": "确认目标读者",
+        "labelEn": "Confirm the target audience",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "signup",
+    "title": "社团报名页",
+    "titleEn": "Club signup page",
+    "category": "code",
+    "client": "expert",
+    "description": "需求与验收标准明确，可按能力权重安排团队。",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 6,
+    "reward": 1200,
+    "clarity": 95,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+  },
+  {
+    "id": "backup",
+    "title": "备份脚本与恢复演练",
+    "titleEn": "Backup and restore drill",
+    "category": "code",
+    "client": "normal",
+    "description": "需求基本明确，仍有细节需要澄清。",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 25,
+    "workSlots": 5,
+    "reward": 1100,
+    "clarity": 70,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "Confirm the delivery format and intended audience before starting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "weekly-script",
+    "title": "每周生成公司周报",
+    "titleEn": "Weekly reporting script",
+    "category": "code",
+    "client": "expert",
+    "description": "需求与验收标准明确，可按能力权重安排团队。",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 25,
+    "workSlots": 6,
+    "reward": 1100,
+    "clarity": 90,
+    "delivery": "retainer",
+    "phases": 3,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+  },
+  {
+    "id": "translation",
+    "title": "咖啡店双语告示",
+    "titleEn": "Bilingual cafe notice",
+    "category": "write",
+    "client": "expert",
+    "description": "按固定术语和格式批量整理文案，重点是交付速度与成本；验收不要求创意发挥。",
+    "weights": {
+      "code": 0,
+      "write": 1,
+      "reason": 0,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 32,
+    "workSlots": 4,
+    "reward": 950,
+    "clarity": 95,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      50,
+      65,
+      80
+    ],
+    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+  },
+  {
+    "id": "speech",
+    "title": "明早的活动致辞",
+    "titleEn": "Tomorrow morning speech",
+    "category": "write",
+    "client": "rush",
+    "description": "交期很紧，请先检查团队速度和空闲时段。",
+    "weights": {
+      "code": 0,
+      "write": 0.7,
+      "reason": 0,
+      "create": 0,
+      "media": 0,
+      "recall": 0.3
+    },
+    "workload": 25,
+    "workSlots": 3,
+    "reward": 1500,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "The deadline is tight. Check speed and available work slots first.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "story",
+    "title": "要温暖又震撼的小故事",
+    "titleEn": "A warm yet epic story",
+    "category": "write",
+    "client": "novice",
+    "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+    "weights": {
+      "code": 0,
+      "write": 0.7,
+      "reason": 0,
+      "create": 0,
+      "media": 0,
+      "recall": 0.3
+    },
+    "workload": 30,
+    "workSlots": 5,
+    "reward": 1400,
+    "clarity": 20,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "The client has unstated requirements. Clarify them before accepting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      },
+      {
+        "label": "确认目标读者",
+        "labelEn": "Confirm the target audience",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "newsletter",
+    "title": "社区通讯每周更新",
+    "titleEn": "Weekly community newsletter",
+    "category": "write",
+    "client": "normal",
+    "description": "按固定术语和格式批量整理文案，重点是交付速度与成本；验收不要求创意发挥。",
+    "weights": {
+      "code": 0,
+      "write": 1,
+      "reason": 0,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 32,
+    "workSlots": 4,
+    "reward": 1100,
+    "clarity": 70,
+    "delivery": "retainer",
+    "phases": 3,
+    "qualityLines": [
+      50,
+      65,
+      80
+    ],
+    "descriptionEn": "Confirm the delivery format and intended audience before starting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "review",
+    "title": "论文引用核查",
+    "titleEn": "Literature citation audit",
+    "category": "research",
+    "client": "expert",
+    "description": "需求与验收标准明确，可按能力权重安排团队。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.5
+    },
+    "workload": 30,
+    "workSlots": 6,
+    "reward": 1300,
+    "clarity": 90,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+  },
+  {
+    "id": "survey",
+    "title": "用户访谈总结",
+    "titleEn": "User interview summary",
+    "category": "research",
+    "client": "normal",
+    "description": "需求基本明确，仍有细节需要澄清。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.5
+    },
+    "workload": 30,
+    "workSlots": 6,
+    "reward": 1200,
+    "clarity": 60,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "Confirm the delivery format and intended audience before starting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      },
+      {
+        "label": "确认目标读者",
+        "labelEn": "Confirm the target audience",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "rivals",
+    "title": "看看别人怎么做的",
+    "titleEn": "Find what competitors do",
+    "category": "research",
+    "client": "novice",
+    "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.5
+    },
+    "workload": 35,
+    "workSlots": 6,
+    "reward": 1600,
+    "clarity": 15,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "The client has unstated requirements. Clarify them before accepting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      },
+      {
+        "label": "确认目标读者",
+        "labelEn": "Confirm the target audience",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "history",
+    "title": "地方展览资料卡",
+    "titleEn": "Local history exhibit",
+    "category": "research",
+    "client": "expert",
+    "description": "需求与验收标准明确，可按能力权重安排团队。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.5
+    },
+    "workload": 25,
+    "workSlots": 5,
+    "reward": 1100,
+    "clarity": 95,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+  },
+  {
+    "id": "guide",
+    "title": "先调研再写迁移指南",
+    "titleEn": "Research and migration guide",
+    "category": "research",
+    "client": "normal",
+    "description": "需求基本明确，仍有细节需要澄清。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.5
+    },
+    "workload": 20,
+    "workSlots": 5,
+    "reward": 1000,
+    "clarity": 70,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "Confirm the delivery format and intended audience before starting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "logo",
+    "title": "五彩斑斓的黑色标志",
+    "titleEn": "A colorful black logo",
+    "category": "design",
+    "client": "novice",
+    "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0,
+      "create": 0.7,
+      "media": 0.3,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 6,
+    "reward": 1600,
+    "clarity": 15,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      65,
+      80
+    ],
+    "descriptionEn": "The client has unstated requirements. Clarify them before accepting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      },
+      {
+        "label": "确认目标读者",
+        "labelEn": "Confirm the target audience",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "poster",
+    "title": "读书会海报结构",
+    "titleEn": "Book club poster layout",
+    "category": "design",
+    "client": "expert",
+    "description": "需求与验收标准明确，可按能力权重安排团队。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0,
+      "create": 0.7,
+      "media": 0.3,
+      "recall": 0
+    },
+    "workload": 20,
+    "workSlots": 4,
+    "reward": 1100,
+    "clarity": 90,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      45,
+      60,
+      80
+    ],
+    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+  },
+  {
+    "id": "icons",
+    "title": "六个天气图标草案",
+    "titleEn": "Six weather icon concepts",
+    "category": "design",
+    "client": "normal",
+    "description": "需求基本明确，仍有细节需要澄清。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0,
+      "create": 0.7,
+      "media": 0.3,
+      "recall": 0
+    },
+    "workload": 25,
+    "workSlots": 5,
+    "reward": 1300,
+    "clarity": 60,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      50,
+      65,
+      80
+    ],
+    "descriptionEn": "Confirm the delivery format and intended audience before starting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      },
+      {
+        "label": "确认目标读者",
+        "labelEn": "Confirm the target audience",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "ui-kit",
+    "title": "小店收银界面方案",
+    "titleEn": "Shop checkout UI plan",
+    "category": "design",
+    "client": "expert",
+    "description": "需求与验收标准明确，可按能力权重安排团队。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0,
+      "create": 0.7,
+      "media": 0.3,
+      "recall": 0
+    },
+    "workload": 20,
+    "workSlots": 5,
+    "reward": 1100,
+    "clarity": 90,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      55,
+      65,
+      80
+    ],
+    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+  },
+  {
+    "id": "mascot",
+    "title": "吉祥物要可爱也要威严",
+    "titleEn": "A cute but majestic mascot",
+    "category": "design",
+    "client": "novice",
+    "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0,
+      "create": 0.7,
+      "media": 0.3,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 6,
+    "reward": 1600,
+    "clarity": 20,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      65,
+      80
+    ],
+    "descriptionEn": "The client has unstated requirements. Clarify them before accepting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      },
+      {
+        "label": "确认目标读者",
+        "labelEn": "Confirm the target audience",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "video",
+    "title": "新品30秒宣传片",
+    "titleEn": "Product launch video",
+    "category": "media",
+    "client": "normal",
+    "description": "需求基本明确，仍有细节需要澄清。本阶段交付文字方案与时间轴，不要求生成成片。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0,
+      "create": 0.3,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 35,
+    "workSlots": 6,
+    "reward": 1200,
+    "clarity": 65,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      45,
+      60,
+      80
+    ],
+    "descriptionEn": "Confirm the delivery format and intended audience before starting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "podcast",
+    "title": "播客片头声音方案",
+    "titleEn": "Podcast audio intro",
+    "category": "media",
+    "client": "expert",
+    "description": "需求与验收标准明确，可按能力权重安排团队。本阶段交付文字方案与时间轴，不要求生成成片。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0,
+      "create": 0.3,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 20,
+    "workSlots": 4,
+    "reward": 950,
+    "clarity": 90,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      45,
+      60,
+      80
+    ],
+    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+  },
+  {
+    "id": "captions",
+    "title": "活动视频字幕时间轴",
+    "titleEn": "Event subtitle timeline",
+    "category": "media",
+    "client": "rush",
+    "description": "交期很紧，请先检查团队速度和空闲时段。本阶段交付文字方案与时间轴，不要求生成成片。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0,
+      "create": 0.3,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 20,
+    "workSlots": 3,
+    "reward": 1200,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      45,
+      60,
+      80
+    ],
+    "descriptionEn": "The deadline is tight. Check speed and available work slots first.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "animation",
+    "title": "像电影一样的开场",
+    "titleEn": "A cinematic intro",
+    "category": "media",
+    "client": "novice",
+    "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。本阶段交付文字方案与时间轴，不要求生成成片。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0,
+      "create": 0.3,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 35,
+    "workSlots": 6,
+    "reward": 1400,
+    "clarity": 15,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      45,
+      60,
+      80
+    ],
+    "descriptionEn": "The client has unstated requirements. Clarify them before accepting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      },
+      {
+        "label": "确认目标读者",
+        "labelEn": "Confirm the target audience",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "storyboard",
+    "title": "校园纪录片分镜",
+    "titleEn": "Campus documentary boards",
+    "category": "media",
+    "client": "normal",
+    "description": "需求基本明确，仍有细节需要澄清。本阶段交付文字方案与时间轴，不要求生成成片。",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0,
+      "create": 0.3,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 20,
+    "workSlots": 5,
+    "reward": 1000,
+    "clarity": 70,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      45,
+      60,
+      80
+    ],
+    "descriptionEn": "Confirm the delivery format and intended audience before starting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "clean",
+    "title": "清洗重复订单",
+    "titleEn": "Deduplicate orders",
+    "category": "data",
+    "client": "expert",
+    "description": "需求与验收标准明确，可按能力权重安排团队。",
+    "weights": {
+      "code": 0.4,
+      "write": 0,
+      "reason": 0.6,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 25,
+    "workSlots": 4,
+    "reward": 1100,
+    "clarity": 95,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+  },
+  {
+    "id": "chart",
+    "title": "把数据做得高级一点",
+    "titleEn": "Make the data look premium",
+    "category": "data",
+    "client": "novice",
+    "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+    "weights": {
+      "code": 0.4,
+      "write": 0,
+      "reason": 0.6,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 6,
+    "reward": 1500,
+    "clarity": 20,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "The client has unstated requirements. Clarify them before accepting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      },
+      {
+        "label": "确认目标读者",
+        "labelEn": "Confirm the target audience",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "forecast",
+    "title": "自动暴富预测器",
+    "titleEn": "Instant riches predictor",
+    "category": "data",
+    "client": "novice",
+    "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+    "weights": {
+      "code": 0.4,
+      "write": 0,
+      "reason": 0.6,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 35,
+    "workSlots": 6,
+    "reward": 1700,
+    "clarity": 10,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "The client has unstated requirements. Clarify them before accepting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      },
+      {
+        "label": "确认目标读者",
+        "labelEn": "Confirm the target audience",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "inventory",
+    "title": "今晚要库存核对",
+    "titleEn": "Inventory check tonight",
+    "category": "data",
+    "client": "rush",
+    "description": "交期很紧，请先检查团队速度和空闲时段。",
+    "weights": {
+      "code": 0.4,
+      "write": 0,
+      "reason": 0.6,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 25,
+    "workSlots": 3,
+    "reward": 1600,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "The deadline is tight. Check speed and available work slots first.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "metrics",
+    "title": "门店经营数据看板",
+    "titleEn": "Shop metrics dashboard",
+    "category": "data",
+    "client": "normal",
+    "description": "需求基本明确，仍有细节需要澄清。",
+    "weights": {
+      "code": 0.4,
+      "write": 0,
+      "reason": 0.6,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 6,
+    "reward": 1300,
+    "clarity": 65,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "Confirm the delivery format and intended audience before starting.",
+    "requirements": [
+      {
+        "label": "补充交付格式",
+        "labelEn": "Additional delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-1",
+    "title": "诊所预约表单",
+    "titleEn": "Clinic booking form",
+    "category": "code",
+    "client": "expert",
+    "description": "诊所预约表单：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Clinic booking form: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 18,
+    "workSlots": 6,
+    "reward": 974,
+    "clarity": 100,
+    "delivery": "retainer",
+    "phases": 3,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-2",
+    "title": "社区报修入口",
+    "titleEn": "Community repair portal",
+    "category": "code",
+    "client": "normal",
+    "description": "社区报修入口：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Community repair portal: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 22,
+    "workSlots": 7,
+    "reward": 1046,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-3",
+    "title": "宠物店库存导入",
+    "titleEn": "Pet-store stock import",
+    "category": "code",
+    "client": "novice",
+    "description": "宠物店库存导入：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Pet-store stock import: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 26,
+    "workSlots": 8,
+    "reward": 1118,
+    "clarity": 40,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-4",
+    "title": "独立书店搜索",
+    "titleEn": "Bookshop search",
+    "category": "code",
+    "client": "rush",
+    "description": "独立书店搜索：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Bookshop search: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 4,
+    "reward": 1190,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-5",
+    "title": "展览票务校验",
+    "titleEn": "Exhibition ticket validation",
+    "category": "code",
+    "client": "expert",
+    "description": "展览票务校验：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Exhibition ticket validation: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 34,
+    "workSlots": 7,
+    "reward": 1262,
+    "clarity": 100,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-6",
+    "title": "公益网站键盘导航",
+    "titleEn": "Keyboard access for a charity site",
+    "category": "code",
+    "client": "normal",
+    "description": "公益网站键盘导航：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Keyboard access for a charity site: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 18,
+    "workSlots": 8,
+    "reward": 974,
+    "clarity": 75,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-7",
+    "title": "食堂菜单接口",
+    "titleEn": "Canteen menu API",
+    "category": "code",
+    "client": "novice",
+    "description": "食堂菜单接口：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Canteen menu API: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 22,
+    "workSlots": 6,
+    "reward": 1046,
+    "clarity": 40,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-8",
+    "title": "图书馆逾期提醒",
+    "titleEn": "Library due-date reminders",
+    "category": "code",
+    "client": "rush",
+    "description": "图书馆逾期提醒：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Library due-date reminders: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 26,
+    "workSlots": 4,
+    "reward": 1118,
+    "clarity": 75,
+    "delivery": "retainer",
+    "phases": 3,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-9",
+    "title": "小店退款测试",
+    "titleEn": "Refund tests for a small shop",
+    "category": "code",
+    "client": "expert",
+    "description": "小店退款测试：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Refund tests for a small shop: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 8,
+    "reward": 1190,
+    "clarity": 100,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-10",
+    "title": "社团报名去重",
+    "titleEn": "Club signup deduplication",
+    "category": "code",
+    "client": "normal",
+    "description": "社团报名去重：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Club signup deduplication: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 34,
+    "workSlots": 6,
+    "reward": 1262,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-11",
+    "title": "公共时钟时区修复",
+    "titleEn": "Public-clock timezone fix",
+    "category": "code",
+    "client": "novice",
+    "description": "公共时钟时区修复：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Public-clock timezone fix: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 18,
+    "workSlots": 7,
+    "reward": 974,
+    "clarity": 40,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-12",
+    "title": "预约表单无障碍",
+    "titleEn": "Accessible booking forms",
+    "category": "code",
+    "client": "rush",
+    "description": "预约表单无障碍：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Accessible booking forms: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 22,
+    "workSlots": 4,
+    "reward": 1046,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-13",
+    "title": "咖啡豆产地卡片",
+    "titleEn": "Coffee origin cards",
+    "category": "write",
+    "client": "expert",
+    "description": "咖啡豆产地卡片：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Coffee origin cards: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0,
+      "write": 0.8,
+      "reason": 0,
+      "create": 0.2,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 26,
+    "workSlots": 6,
+    "reward": 1118,
+    "clarity": 100,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-14",
+    "title": "社区志愿者手册",
+    "titleEn": "Volunteer handbook",
+    "category": "write",
+    "client": "normal",
+    "description": "社区志愿者手册：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Volunteer handbook: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0,
+      "write": 0.8,
+      "reason": 0,
+      "create": 0.2,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 7,
+    "reward": 1190,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-15",
+    "title": "手工皂包装文案",
+    "titleEn": "Handmade soap packaging",
+    "category": "write",
+    "client": "novice",
+    "description": "手工皂包装文案：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Handmade soap packaging: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0,
+      "write": 0.8,
+      "reason": 0,
+      "create": 0.2,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 34,
+    "workSlots": 8,
+    "reward": 1262,
+    "clarity": 40,
+    "delivery": "retainer",
+    "phases": 3,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-16",
+    "title": "书店活动邀请",
+    "titleEn": "Bookshop event invitation",
+    "category": "write",
+    "client": "rush",
+    "description": "书店活动邀请：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Bookshop event invitation: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0,
+      "write": 0.8,
+      "reason": 0,
+      "create": 0.2,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 18,
+    "workSlots": 4,
+    "reward": 974,
+    "clarity": 75,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-17",
+    "title": "宠物领养须知",
+    "titleEn": "Pet adoption guidelines",
+    "category": "write",
+    "client": "expert",
+    "description": "宠物领养须知：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Pet adoption guidelines: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0,
+      "write": 0.8,
+      "reason": 0,
+      "create": 0.2,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 22,
+    "workSlots": 7,
+    "reward": 1046,
+    "clarity": 100,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-18",
+    "title": "早餐店双语招牌",
+    "titleEn": "Bilingual breakfast signs",
+    "category": "write",
+    "client": "normal",
+    "description": "早餐店双语招牌：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Bilingual breakfast signs: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0,
+      "write": 0.8,
+      "reason": 0,
+      "create": 0.2,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 26,
+    "workSlots": 8,
+    "reward": 1118,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-19",
+    "title": "旧物交换规则",
+    "titleEn": "Swap-meet rules",
+    "category": "write",
+    "client": "novice",
+    "description": "旧物交换规则：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Swap-meet rules: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0,
+      "write": 0.8,
+      "reason": 0,
+      "create": 0.2,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 6,
+    "reward": 1190,
+    "clarity": 40,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-20",
+    "title": "儿童剧节目册",
+    "titleEn": "Children theatre programme",
+    "category": "write",
+    "client": "rush",
+    "description": "儿童剧节目册：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Children theatre programme: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0,
+      "write": 0.8,
+      "reason": 0,
+      "create": 0.2,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 34,
+    "workSlots": 4,
+    "reward": 1262,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-21",
+    "title": "运动社团周报",
+    "titleEn": "Sports club newsletter",
+    "category": "write",
+    "client": "expert",
+    "description": "运动社团周报：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Sports club newsletter: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0,
+      "write": 0.8,
+      "reason": 0,
+      "create": 0.2,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 18,
+    "workSlots": 8,
+    "reward": 974,
+    "clarity": 100,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-22",
+    "title": "工作室招聘说明",
+    "titleEn": "Studio job description",
+    "category": "write",
+    "client": "normal",
+    "description": "工作室招聘说明：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Studio job description: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0,
+      "write": 0.8,
+      "reason": 0,
+      "create": 0.2,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 22,
+    "workSlots": 6,
+    "reward": 1046,
+    "clarity": 75,
+    "delivery": "retainer",
+    "phases": 3,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-23",
+    "title": "图书馆展签校对",
+    "titleEn": "Library caption proofreading",
+    "category": "write",
+    "client": "novice",
+    "description": "图书馆展签校对：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Library caption proofreading: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0,
+      "write": 0.8,
+      "reason": 0,
+      "create": 0.2,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 26,
+    "workSlots": 7,
+    "reward": 1118,
+    "clarity": 40,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-24",
+    "title": "邻里节导览词",
+    "titleEn": "Neighbourhood festival guide",
+    "category": "write",
+    "client": "rush",
+    "description": "邻里节导览词：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Neighbourhood festival guide: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0,
+      "write": 0.8,
+      "reason": 0,
+      "create": 0.2,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 4,
+    "reward": 1190,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-25",
+    "title": "雨水花园资料整理",
+    "titleEn": "Rain-garden source notes",
+    "category": "research",
+    "client": "expert",
+    "description": "雨水花园资料整理：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Rain-garden source notes: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.4,
+      "create": 0,
+      "media": 0,
+      "recall": 0.6
+    },
+    "workload": 34,
+    "workSlots": 6,
+    "reward": 1262,
+    "clarity": 100,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-26",
+    "title": "无障碍坡道案例",
+    "titleEn": "Accessible-ramp case studies",
+    "category": "research",
+    "client": "normal",
+    "description": "无障碍坡道案例：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Accessible-ramp case studies: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.4,
+      "create": 0,
+      "media": 0,
+      "recall": 0.6
+    },
+    "workload": 18,
+    "workSlots": 7,
+    "reward": 974,
+    "clarity": 75,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-27",
+    "title": "社区能源对比",
+    "titleEn": "Community energy comparison",
+    "category": "research",
+    "client": "novice",
+    "description": "社区能源对比：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Community energy comparison: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.4,
+      "create": 0,
+      "media": 0,
+      "recall": 0.6
+    },
+    "workload": 22,
+    "workSlots": 8,
+    "reward": 1046,
+    "clarity": 40,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-28",
+    "title": "图书馆采购目录",
+    "titleEn": "Library purchase catalogue",
+    "category": "research",
+    "client": "rush",
+    "description": "图书馆采购目录：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Library purchase catalogue: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.4,
+      "create": 0,
+      "media": 0,
+      "recall": 0.6
+    },
+    "workload": 26,
+    "workSlots": 4,
+    "reward": 1118,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-29",
+    "title": "食品标签出处核查",
+    "titleEn": "Food-label source checking",
+    "category": "research",
+    "client": "expert",
+    "description": "食品标签出处核查：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Food-label source checking: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.4,
+      "create": 0,
+      "media": 0,
+      "recall": 0.6
+    },
+    "workload": 30,
+    "workSlots": 7,
+    "reward": 1190,
+    "clarity": 100,
+    "delivery": "retainer",
+    "phases": 3,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-30",
+    "title": "旧城地图年代核查",
+    "titleEn": "Old-map date verification",
+    "category": "research",
+    "client": "normal",
+    "description": "旧城地图年代核查：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Old-map date verification: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.4,
+      "create": 0,
+      "media": 0,
+      "recall": 0.6
+    },
+    "workload": 34,
+    "workSlots": 8,
+    "reward": 1262,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-31",
+    "title": "开源字体许可清单",
+    "titleEn": "Open-font licence list",
+    "category": "research",
+    "client": "novice",
+    "description": "开源字体许可清单：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Open-font licence list: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.4,
+      "create": 0,
+      "media": 0,
+      "recall": 0.6
+    },
+    "workload": 18,
+    "workSlots": 6,
+    "reward": 974,
+    "clarity": 40,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-32",
+    "title": "公交换乘意见归纳",
+    "titleEn": "Bus-transfer feedback review",
+    "category": "research",
+    "client": "rush",
+    "description": "公交换乘意见归纳：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Bus-transfer feedback review: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.4,
+      "create": 0,
+      "media": 0,
+      "recall": 0.6
+    },
+    "workload": 22,
+    "workSlots": 4,
+    "reward": 1046,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-33",
+    "title": "河岸植物参考表",
+    "titleEn": "Riverside plant references",
+    "category": "research",
+    "client": "expert",
+    "description": "河岸植物参考表：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Riverside plant references: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.4,
+      "create": 0,
+      "media": 0,
+      "recall": 0.6
+    },
+    "workload": 26,
+    "workSlots": 8,
+    "reward": 1118,
+    "clarity": 100,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-34",
+    "title": "地方志索引整理",
+    "titleEn": "Local-history index",
+    "category": "research",
+    "client": "normal",
+    "description": "地方志索引整理：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Local-history index: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.4,
+      "create": 0,
+      "media": 0,
+      "recall": 0.6
+    },
+    "workload": 30,
+    "workSlots": 6,
+    "reward": 1190,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-35",
+    "title": "公益项目竞品研究",
+    "titleEn": "Charity project comparisons",
+    "category": "research",
+    "client": "novice",
+    "description": "公益项目竞品研究：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Charity project comparisons: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.4,
+      "create": 0,
+      "media": 0,
+      "recall": 0.6
+    },
+    "workload": 34,
+    "workSlots": 7,
+    "reward": 1262,
+    "clarity": 40,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-36",
+    "title": "小模型部署文献",
+    "titleEn": "Small-model deployment sources",
+    "category": "research",
+    "client": "rush",
+    "description": "小模型部署文献：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Small-model deployment sources: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.4,
+      "create": 0,
+      "media": 0,
+      "recall": 0.6
+    },
+    "workload": 18,
+    "workSlots": 4,
+    "reward": 974,
+    "clarity": 75,
+    "delivery": "retainer",
+    "phases": 3,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-37",
+    "title": "亲子读书会海报",
+    "titleEn": "Family reading poster",
+    "category": "design",
+    "client": "expert",
+    "description": "亲子读书会海报：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Family reading poster: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0,
+      "write": 0.2,
+      "reason": 0,
+      "create": 0.6,
+      "media": 0.2,
+      "recall": 0
+    },
+    "workload": 22,
+    "workSlots": 6,
+    "reward": 1046,
+    "clarity": 100,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-38",
+    "title": "社区菜园标识",
+    "titleEn": "Community garden signs",
+    "category": "design",
+    "client": "normal",
+    "description": "社区菜园标识：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Community garden signs: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0,
+      "write": 0.2,
+      "reason": 0,
+      "create": 0.6,
+      "media": 0.2,
+      "recall": 0
+    },
+    "workload": 26,
+    "workSlots": 7,
+    "reward": 1118,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-39",
+    "title": "独立音乐会票面",
+    "titleEn": "Indie concert tickets",
+    "category": "design",
+    "client": "novice",
+    "description": "独立音乐会票面：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Indie concert tickets: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0,
+      "write": 0.2,
+      "reason": 0,
+      "create": 0.6,
+      "media": 0.2,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 8,
+    "reward": 1190,
+    "clarity": 40,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-40",
+    "title": "博物馆路线图",
+    "titleEn": "Museum route map",
+    "category": "design",
+    "client": "rush",
+    "description": "博物馆路线图：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Museum route map: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0,
+      "write": 0.2,
+      "reason": 0,
+      "create": 0.6,
+      "media": 0.2,
+      "recall": 0
+    },
+    "workload": 34,
+    "workSlots": 4,
+    "reward": 1262,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-41",
+    "title": "山间民宿折页",
+    "titleEn": "Mountain guesthouse leaflet",
+    "category": "design",
+    "client": "expert",
+    "description": "山间民宿折页：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Mountain guesthouse leaflet: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0,
+      "write": 0.2,
+      "reason": 0,
+      "create": 0.6,
+      "media": 0.2,
+      "recall": 0
+    },
+    "workload": 18,
+    "workSlots": 7,
+    "reward": 974,
+    "clarity": 100,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-42",
+    "title": "动物救助捐赠页",
+    "titleEn": "Animal shelter donation page",
+    "category": "design",
+    "client": "normal",
+    "description": "动物救助捐赠页：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Animal shelter donation page: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0,
+      "write": 0.2,
+      "reason": 0,
+      "create": 0.6,
+      "media": 0.2,
+      "recall": 0
+    },
+    "workload": 22,
+    "workSlots": 8,
+    "reward": 1046,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-43",
+    "title": "旧物市集徽章",
+    "titleEn": "Swap-market badges",
+    "category": "design",
+    "client": "novice",
+    "description": "旧物市集徽章：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Swap-market badges: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0,
+      "write": 0.2,
+      "reason": 0,
+      "create": 0.6,
+      "media": 0.2,
+      "recall": 0
+    },
+    "workload": 26,
+    "workSlots": 6,
+    "reward": 1118,
+    "clarity": 40,
+    "delivery": "retainer",
+    "phases": 3,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-44",
+    "title": "邻里运动会奖状",
+    "titleEn": "Neighbourhood sports certificates",
+    "category": "design",
+    "client": "rush",
+    "description": "邻里运动会奖状：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Neighbourhood sports certificates: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0,
+      "write": 0.2,
+      "reason": 0,
+      "create": 0.6,
+      "media": 0.2,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 4,
+    "reward": 1190,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-45",
+    "title": "素食餐厅菜单版式",
+    "titleEn": "Vegetarian menu layout",
+    "category": "design",
+    "client": "expert",
+    "description": "素食餐厅菜单版式：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Vegetarian menu layout: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0,
+      "write": 0.2,
+      "reason": 0,
+      "create": 0.6,
+      "media": 0.2,
+      "recall": 0
+    },
+    "workload": 34,
+    "workSlots": 8,
+    "reward": 1262,
+    "clarity": 100,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-46",
+    "title": "公园导向图标",
+    "titleEn": "Park wayfinding icons",
+    "category": "design",
+    "client": "normal",
+    "description": "公园导向图标：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Park wayfinding icons: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0,
+      "write": 0.2,
+      "reason": 0,
+      "create": 0.6,
+      "media": 0.2,
+      "recall": 0
+    },
+    "workload": 18,
+    "workSlots": 6,
+    "reward": 974,
+    "clarity": 75,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-47",
+    "title": "安全疏散示意图",
+    "titleEn": "Evacuation diagram",
+    "category": "design",
+    "client": "novice",
+    "description": "安全疏散示意图：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Evacuation diagram: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0,
+      "write": 0.2,
+      "reason": 0,
+      "create": 0.6,
+      "media": 0.2,
+      "recall": 0
+    },
+    "workload": 22,
+    "workSlots": 7,
+    "reward": 1046,
+    "clarity": 40,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-48",
+    "title": "社区合唱团标志",
+    "titleEn": "Community choir mark",
+    "category": "design",
+    "client": "rush",
+    "description": "社区合唱团标志：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Community choir mark: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0,
+      "write": 0.2,
+      "reason": 0,
+      "create": 0.6,
+      "media": 0.2,
+      "recall": 0
+    },
+    "workload": 26,
+    "workSlots": 4,
+    "reward": 1118,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-49",
+    "title": "手作课程预告片",
+    "titleEn": "Craft class trailer",
+    "category": "media",
+    "client": "expert",
+    "description": "手作课程预告片：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Craft class trailer: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.1,
+      "create": 0.2,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 6,
+    "reward": 1370,
+    "clarity": 100,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-50",
+    "title": "无障碍视频字幕",
+    "titleEn": "Accessible video captions",
+    "category": "media",
+    "client": "normal",
+    "description": "无障碍视频字幕：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Accessible video captions: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.1,
+      "create": 0.2,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 34,
+    "workSlots": 7,
+    "reward": 1442,
+    "clarity": 75,
+    "delivery": "retainer",
+    "phases": 3,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-51",
+    "title": "公园导览旁白",
+    "titleEn": "Park tour narration",
+    "category": "media",
+    "client": "novice",
+    "description": "公园导览旁白：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Park tour narration: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.1,
+      "create": 0.2,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 18,
+    "workSlots": 8,
+    "reward": 1154,
+    "clarity": 40,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-52",
+    "title": "工作室开业短片",
+    "titleEn": "Studio opening short",
+    "category": "media",
+    "client": "rush",
+    "description": "工作室开业短片：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Studio opening short: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.1,
+      "create": 0.2,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 22,
+    "workSlots": 4,
+    "reward": 1226,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-53",
+    "title": "博物馆藏品转场",
+    "titleEn": "Museum exhibit transitions",
+    "category": "media",
+    "client": "expert",
+    "description": "博物馆藏品转场：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Museum exhibit transitions: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.1,
+      "create": 0.2,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 26,
+    "workSlots": 7,
+    "reward": 1298,
+    "clarity": 100,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-54",
+    "title": "猫咖循环动画",
+    "titleEn": "Cat cafe animation loop",
+    "category": "media",
+    "client": "normal",
+    "description": "猫咖循环动画：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Cat cafe animation loop: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.1,
+      "create": 0.2,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 8,
+    "reward": 1370,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-55",
+    "title": "地方戏采访剪辑",
+    "titleEn": "Local theatre interview edit",
+    "category": "media",
+    "client": "novice",
+    "description": "地方戏采访剪辑：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Local theatre interview edit: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.1,
+      "create": 0.2,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 34,
+    "workSlots": 6,
+    "reward": 1442,
+    "clarity": 40,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-56",
+    "title": "植物生长延时片",
+    "titleEn": "Plant growth timelapse",
+    "category": "media",
+    "client": "rush",
+    "description": "植物生长延时片：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Plant growth timelapse: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.1,
+      "create": 0.2,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 18,
+    "workSlots": 4,
+    "reward": 1154,
+    "clarity": 75,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-57",
+    "title": "社区电台片头",
+    "titleEn": "Community radio intro",
+    "category": "media",
+    "client": "expert",
+    "description": "社区电台片头：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Community radio intro: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.1,
+      "create": 0.2,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 22,
+    "workSlots": 8,
+    "reward": 1226,
+    "clarity": 100,
+    "delivery": "retainer",
+    "phases": 3,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-58",
+    "title": "公益活动音频降噪",
+    "titleEn": "Charity recording cleanup",
+    "category": "media",
+    "client": "normal",
+    "description": "公益活动音频降噪：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Charity recording cleanup: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.1,
+      "create": 0.2,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 26,
+    "workSlots": 6,
+    "reward": 1298,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-59",
+    "title": "舞蹈教程分镜",
+    "titleEn": "Dance tutorial storyboard",
+    "category": "media",
+    "client": "novice",
+    "description": "舞蹈教程分镜：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Dance tutorial storyboard: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0,
+      "write": 0,
+      "reason": 0.1,
+      "create": 0.2,
+      "media": 0.7,
+      "recall": 0
+    },
+    "workload": 30,
+    "workSlots": 7,
+    "reward": 1370,
+    "clarity": 40,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-60",
+    "title": "旧书捐赠分类",
+    "titleEn": "Donated-book classification",
+    "category": "data",
+    "client": "rush",
+    "description": "旧书捐赠分类：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Donated-book classification: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0.3,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.2
+    },
+    "workload": 34,
+    "workSlots": 4,
+    "reward": 1262,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-61",
+    "title": "志愿排班冲突检查",
+    "titleEn": "Volunteer rota conflicts",
+    "category": "data",
+    "client": "expert",
+    "description": "志愿排班冲突检查：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Volunteer rota conflicts: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0.3,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.2
+    },
+    "workload": 18,
+    "workSlots": 6,
+    "reward": 974,
+    "clarity": 100,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-62",
+    "title": "菜园收成汇总",
+    "titleEn": "Garden harvest totals",
+    "category": "data",
+    "client": "normal",
+    "description": "菜园收成汇总：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Garden harvest totals: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0.3,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.2
+    },
+    "workload": 22,
+    "workSlots": 7,
+    "reward": 1046,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-63",
+    "title": "交通问卷匿名统计",
+    "titleEn": "Anonymous travel survey totals",
+    "category": "data",
+    "client": "novice",
+    "description": "交通问卷匿名统计：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Anonymous travel survey totals: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0.3,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.2
+    },
+    "workload": 26,
+    "workSlots": 8,
+    "reward": 1118,
+    "clarity": 40,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-64",
+    "title": "电表读数核对",
+    "titleEn": "Meter reading checks",
+    "category": "data",
+    "client": "rush",
+    "description": "电表读数核对：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Meter reading checks: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0.3,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.2
+    },
+    "workload": 30,
+    "workSlots": 4,
+    "reward": 1190,
+    "clarity": 75,
+    "delivery": "retainer",
+    "phases": 3,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-65",
+    "title": "展品编号对照",
+    "titleEn": "Exhibit identifier crosswalk",
+    "category": "data",
+    "client": "expert",
+    "description": "展品编号对照：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Exhibit identifier crosswalk: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0.3,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.2
+    },
+    "workload": 34,
+    "workSlots": 7,
+    "reward": 1262,
+    "clarity": 100,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-66",
+    "title": "优惠券使用报表",
+    "titleEn": "Coupon usage report",
+    "category": "data",
+    "client": "normal",
+    "description": "优惠券使用报表：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Coupon usage report: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0.3,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.2
+    },
+    "workload": 18,
+    "workSlots": 8,
+    "reward": 974,
+    "clarity": 75,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-67",
+    "title": "活动报名年龄分组",
+    "titleEn": "Event signup age bands",
+    "category": "data",
+    "client": "novice",
+    "description": "活动报名年龄分组：客户想法还不完整，请澄清格式和对象。",
+    "descriptionEn": "Event signup age bands: The client has unstated requirements. Clarify them before accepting.",
+    "weights": {
+      "code": 0.3,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.2
+    },
+    "workload": 22,
+    "workSlots": 6,
+    "reward": 1046,
+    "clarity": 40,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      },
+      {
+        "label": "需要可编辑原稿",
+        "labelEn": "Editable source required",
+        "work": 3
+      }
+    ]
+  },
+  {
+    "id": "alpha-68",
+    "title": "公共设施巡检台账",
+    "titleEn": "Public facility inspection log",
+    "category": "data",
+    "client": "rush",
+    "description": "公共设施巡检台账：请在活动开始前交付，先确认工期。",
+    "descriptionEn": "Public facility inspection log: The deadline is tight. Check speed and available work slots first.",
+    "weights": {
+      "code": 0.3,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.2
+    },
+    "workload": 26,
+    "workSlots": 4,
+    "reward": 1118,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  },
+  {
+    "id": "alpha-69",
+    "title": "无障碍问题分级",
+    "titleEn": "Accessibility issue triage",
+    "category": "data",
+    "client": "expert",
+    "description": "无障碍问题分级：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Accessibility issue triage: Requirements and acceptance criteria are explicit. Match the skill weights.",
+    "weights": {
+      "code": 0.3,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.2
+    },
+    "workload": 30,
+    "workSlots": 8,
+    "reward": 1190,
+    "clarity": 100,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": []
+  },
+  {
+    "id": "alpha-70",
+    "title": "社区预算可视化",
+    "titleEn": "Community budget visualization",
+    "category": "data",
+    "client": "normal",
+    "description": "社区预算可视化：按约定格式提交，保留可核查的原稿。",
+    "descriptionEn": "Community budget visualization: Confirm the delivery format and intended audience before starting.",
+    "weights": {
+      "code": 0.3,
+      "write": 0,
+      "reason": 0.5,
+      "create": 0,
+      "media": 0,
+      "recall": 0.2
+    },
+    "workload": 34,
+    "workSlots": 6,
+    "reward": 1262,
+    "clarity": 75,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      55,
+      72,
+      88
+    ],
+    "requirements": [
+      {
+        "label": "特定交付格式",
+        "labelEn": "Specific delivery format",
+        "work": 2
+      }
+    ]
+  }
+]

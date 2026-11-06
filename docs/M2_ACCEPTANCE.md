@@ -1,0 +1,9 @@
+# M2 Alpha engineering checkpoint
+
+Engine0.8.0/contentm2-1. 12characters/20versions,100bilingual commissions,60bilingual events,60affinity scenes,21software upgrades/fourhardware trees×5levels. Chapters0–2 use recorded business goals; chapter2staysfinal. Stress/hunger,subscription,probabilistic clarification withisolatedcursor,revealedrequirements/workload,resource stop estimates,toolrole,delayedSLAresponse/once-onlypenalty,fullUIlocale switching,andPWAstaticcacheimplemented.
+
+104tests passed includingM2boundary/rollback/replay/content/storage/PWAcases; firstfailures(toolparse andChineseNO_INCIDENT)retainedandfixed. Browser checks inharness/m2/browser-results.md. PWAneedsfirstonlineassetcache; updateswaitforuser. ExistingM0formal5000gamesarenotnewcampaignbalanceevidence.
+
+User clarified: no testers yet; completeengineeringandplaytestpackagefirst. 10personM1acceptanceandM2publictest/retentiondeferred,notclaimed. M05-03remainsP1: no businessrelease. M06-02loanrescue/M06-03actualcheapdispatch/M06-04statisticalfragilityremainopen. Assetartqualityandbilingualeditorialqualityneedreview. No push/deploy/paidAPI.
+
+NextM3: isolatedDSHHostsaveCAS/5backups,requestnamespaceandlifecycle,AI小院workshopentranceadapter,localpackage. VerifyactualneighborAPIbeforeintegration,donoteditoldworktrees/liveprofile.
