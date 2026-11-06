@@ -1,0 +1,101 @@
+{
+  "initial": [
+    "bluewhale",
+    "qwen",
+    "llama",
+    "mistral"
+  ],
+  "recruits": [
+    {
+      "character": "gpt",
+      "cost": 350,
+      "reputation": 2
+    },
+    {
+      "character": "claude",
+      "cost": 450,
+      "reputation": 4
+    },
+    {
+      "character": "kimi",
+      "cost": 550,
+      "reputation": 6
+    },
+    {
+      "character": "gemini",
+      "cost": 650,
+      "reputation": 8
+    }
+  ],
+  "software": [
+    {
+      "id": "search",
+      "name": "检索工具",
+      "nameEn": "Search",
+      "cost": 300,
+      "research": 2,
+      "requires": []
+    },
+    {
+      "id": "rag",
+      "name": "RAG知识库",
+      "nameEn": "RAG",
+      "cost": 700,
+      "research": 6,
+      "requires": [
+        "search"
+      ]
+    },
+    {
+      "id": "explain",
+      "name": "可解释验收",
+      "nameEn": "Explainability",
+      "cost": 250,
+      "research": 2,
+      "requires": []
+    },
+    {
+      "id": "sandbox",
+      "name": "安全沙箱",
+      "nameEn": "Sandbox",
+      "cost": 400,
+      "research": 3,
+      "requires": []
+    },
+    {
+      "id": "autotest",
+      "name": "自动测试",
+      "nameEn": "Autotests",
+      "cost": 600,
+      "research": 5,
+      "requires": [
+        "sandbox"
+      ]
+    },
+    {
+      "id": "prompt",
+      "name": "提示词优化",
+      "nameEn": "Prompt tuning",
+      "cost": 400,
+      "research": 4,
+      "requires": []
+    },
+    {
+      "id": "compact",
+      "name": "上下文整理",
+      "nameEn": "Context compaction",
+      "cost": 350,
+      "research": 3,
+      "requires": []
+    },
+    {
+      "id": "vllm",
+      "name": "本地推理优化",
+      "nameEn": "Local inference",
+      "cost": 800,
+      "research": 8,
+      "requires": []
+    }
+  ],
+  "maxHardware": 3
+}

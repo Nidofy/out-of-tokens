@@ -16,14 +16,24 @@ const balanceSchema = z.object({ startingCash: positive, debt: positive, debtSlo
 const schema = z.object({ version: words,
     versions: z.array(z.object({ id: words, character: words, name: words, skills: vector(score), speed: positive.max(2), price: positive, stability: score, context: positive, modes: z.array(z.enum(['cloud', 'local'])).min(1), rhythm: z.array(positive.max(2)).length(4) }).strict()).min(1),
     commissions: z.array(z.object({ id: words, title: words, titleEn: words.optional(), category: z.enum(['code', 'write', 'research', 'design', 'media', 'data']).optional(), client: z.enum(['expert', 'normal', 'novice', 'rush']).optional(), phases: z.number().int().min(1).max(4).optional(), qualityLines: z.tuple([z.number().min(1).max(100), z.number().min(1).max(100), z.number().min(1).max(100)]).refine(x => x[0] < x[1] && x[1] < x[2], 'ordered quality lines').optional(), description: words, weights: vector(z.number().min(0).max(1)).refine(v => Math.abs(Object.values(v).reduce((a, b) => a + b, 0) - 1) < 1e-8, 'weights sum'), workload: positive, workSlots: positive.int().max(56), reward: positive, clarity: z.number().min(0).max(100), delivery: z.enum(['oneshot', 'multi', 'retainer']) }).strict().refine(t => t.delivery === 'oneshot' ? (t.phases ?? 1) === 1 : (t.phases ?? 1) >= 2, 'delivery phases')).min(1),
-    events: z.array(z.object({ id: words, title: words, titleEn: words.optional(), cooldown: z.number().int().min(0).optional(), weight: positive.optional(), trigger: z.enum(['bluewhale-cloud', 'working', 'code', 'research', 'data', 'multi', 'cloud', 'overload', 'novice']).optional(), choices: z.array(z.object({ label: words, cost: z.number().min(0), multiplier: z.number().min(0).max(2), effects: z.array(effect).optional() }).strict()).min(1).refine(xs => xs.some(x => x.cost === 0), 'free escape required') }).strict()),
-    balance: balanceSchema.optional()
+    events: z.array(z.object({ id: words, title: words, titleEn: words.optional(), cooldown: z.number().int().min(0).optional(), weight: positive.optional(), trigger: z.enum(['bluewhale-cloud', 'working', 'code', 'write', 'design', 'media', 'research', 'data', 'multi', 'cloud', 'overload', 'novice']).optional(), choices: z.array(z.object({ label: words, labelEn: words.optional(), cost: z.number().min(0), multiplier: z.number().min(0).max(2), effects: z.array(effect).optional() }).strict()).min(1).refine(xs => xs.some(x => x.cost === 0), 'free escape required') }).strict()),
+    balance: balanceSchema.optional(),
+    campaign: z.object({ initial: z.array(words).min(1), recruits: z.array(z.object({character: words, cost: positive, reputation: z.number().min(0)}).strict()), software: z.array(z.object({id: words, name: words, nameEn: words, cost: positive, research: z.number().int().min(0), requires: z.array(words)}).strict()), maxHardware: z.number().int().min(1).max(5) }).strict().optional()
 }).strict();
 export function validateContent(input: unknown): Content {
     const c = schema.parse(input);
     const ids = [...c.versions, ...c.commissions, ...c.events].map(x => x.id);
-    if (new Set(ids).size !== ids.length || new Set(c.versions.map(v => v.character)).size !== c.versions.length)
+    if (new Set(ids).size !== ids.length || (!c.campaign && new Set(c.versions.map(v => v.character)).size !== c.versions.length))
         throw Error('DUPLICATE_ID');
+    if (c.campaign) {
+        const p = c.campaign, roster = [...p.initial, ...p.recruits.map(r => r.character)];
+        if (new Set(roster).size !== roster.length || roster.some(id => !c.versions.some(v => v.character === id)) || c.versions.some(v => !roster.includes(v.character))) throw Error('CAMPAIGN_REFERENCE');
+        const unlocked = new Set<string>();
+        for (const u of p.software) {
+            if (unlocked.has(u.id) || u.requires.some(id => !unlocked.has(id))) throw Error('UPGRADE_REFERENCE');
+            unlocked.add(u.id);
+        }
+    }
     if (c.events.some(e => e.trigger === 'bluewhale-cloud') && !c.versions.some(v => v.character === 'bluewhale' && v.modes.includes('cloud')))
         throw Error('EVENT_REFERENCE');
     // Strip explicit undefined optional keys while keeping the validated data shape.

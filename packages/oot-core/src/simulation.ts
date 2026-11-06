@@ -1,3 +1,4 @@
+import { initialCampaign, cloneCampaign, effectiveVersion, parseCampaign, applyCampaign, tickCampaign, actorScene, owns } from './campaign.js';
 import { deadlineAfterWorkSlots } from './clock.js';
 import { balance, crisis, liquidCash, moodFactor, fatigueFactor } from './economy.js';
 import { eligible, applyEffects } from './events.js';
@@ -33,16 +34,18 @@ export function createInitialState(c: Content, seed = 1): State {
     requireRule(Number.isSafeInteger(seed) && seed >= 0 && seed <= 0xffffffff, 'INVALID_SEED');
     requireRule(c.versions.length > 0 && c.commissions.length > 0, 'EMPTY_CONTENT');
     const b = balance(c);
-    const state: State = { overtime: [], loan: 0, crises: [], reputation: 0, peakReputation: 0, founderXP: 0, runs: 1, discovered: [], eventLast: {}, eventHistory: [], engineVersion, contentVersion: c.version, seed, absoluteSlot: 0, cash: b.startingCash, quota: b.dailyQuota, purchased: 0, localCapacity: b.localCapacity, electricity: 0, debtPaid: false, crisisSince: null, bankrupt: false, rng: { board: (seed ^ 0x12345678) >>> 0 || 1, event: (seed ^ 0x87654321) >>> 0 || 2, quality: (seed ^ 0xabcdef01) >>> 0 || 3 }, actors: c.versions.map(v => ({ id: v.character, version: v.id, energy: 100, mood: 70, load: 0, busyUntil: 0 })), jobs: [], pending: null, ledger: [], resources: [], tokensUsed: 0 };
+    const state: State = { overtime: [], loan: 0, crises: [], reputation: 0, peakReputation: 0, founderXP: 0, runs: 1, discovered: [], eventLast: {}, eventHistory: [], engineVersion, contentVersion: c.version, seed, absoluteSlot: 0, cash: b.startingCash, quota: b.dailyQuota, purchased: 0, localCapacity: b.localCapacity, electricity: 0, debtPaid: false, crisisSince: null, bankrupt: false, rng: { board: (seed ^ 0x12345678) >>> 0 || 1, event: (seed ^ 0x87654321) >>> 0 || 2, quality: (seed ^ 0xabcdef01) >>> 0 || 3 }, actors: c.versions.filter((v, i, all) => all.findIndex(x => x.character === v.character) === i && (!c.campaign || c.campaign.initial.includes(v.character))).map(v => ({ id: v.character, version: v.id, energy: 100, mood: 70, load: 0, busyUntil: 0 })), jobs: [], pending: null, ledger: [], resources: [], tokensUsed: 0 };
     for (const stream of ['board', 'event', 'quality'] as const)
         state.rng[stream] = mix(state.rng[stream]);
+    if (c.campaign) state.campaign = initialCampaign(c);
     refill(state, c);
     return state;
 }
 const active = (j: Job) => j.status === 'working' || j.status === 'accepted' || j.status === 'review' || j.status === 'waiting';
 function occupied(s: State, id: string, except = '') { return s.actors.find(a => a.id === id)!.busyUntil > s.absoluteSlot || s.jobs.some(j => j.id !== except && active(j) && j.team.some(m => m.character === id)); }
-function version(c: Content, a: Actor): Version { return c.versions.find(v => v.id === a.version)!; }
+function version(c: Content, a: Actor, s?: State, mode?: Member['mode']): Version { return s ? effectiveVersion(s, c, a, mode) : c.versions.find(v => v.id === a.version)!; }
 function match(c: Content, j: Job, v: Version): number { const w = c.commissions.find(t => t.id === j.template)!.weights; return Object.entries(w).reduce((sum, [key, value]) => sum + value * v.skills[key as keyof typeof w] / 10, 0); }
+function tRecall(c: Content, j: Job) { return c.commissions.find(t => t.id === j.template)!.weights.recall > 0; }
 function breach(s: State, c: Content, j: Job) { money(s, -j.advance - c.commissions.find(t => t.id === j.template)!.reward * balance(c).rewardScale * 0.3, `breach:${j.id}`); j.status = 'breached'; s.reputation = Math.max(0, s.reputation - 8); }
 function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, target?: string, eventJob?: string, tokenRate = 1) {
     const worked = new Set<string>();
@@ -57,11 +60,11 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
             const order = { planner: 0, worker: 1, reviewer: 2 };
             for (const m of [...j.team].sort((a, b) => order[a.role] - order[b.role] || (a.character < b.character ? -1 : a.character > b.character ? 1 : 0))) {
                 const a = s.actors.find(a => a.id === m.character)!;
-                const v = version(c, a);
+                const v = version(c, a, s, m.mode);
                 const matching = match(c, j, v);
                 if (s.absoluteSlot % 4 >= 2 && !s.overtime.includes(a.id))
                     continue;
-                if (a.energy < 10)
+                if (a.energy < 10 || a.busyUntil > s.absoluteSlot)
                     continue;
                 if (m.role === 'worker' && j.progress >= j.work)
                     continue;
@@ -72,7 +75,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                 const teamCost = 1 - .05 * Math.max(0, j.team.filter(m => m.role === 'worker').length - 2);
                 if (m.role === 'reviewer' && j.progress === progressBefore && j.defects === 0)
                     continue;
-                let units = round(10 * matching * v.speed * energy * moodFactor(a.mood) * fatigueFactor(a, s.absoluteSlot) * (v.rhythm[s.absoluteSlot % 4] ?? 1) * (overloaded ? 0.7 : 1) * effect * (m.role === 'worker' ? bonus * teamCost : m.role === 'planner' ? 0.5 : 0.3));
+                let units = round((owns(s, 'prompt') && progressBefore === 0 ? 1.2 : 1) * 10 * matching * v.speed * (1 + (s.campaign?.hardware.office ?? 0) * .1) * energy * moodFactor(a.mood) * fatigueFactor(a, s.absoluteSlot) * (v.rhythm[s.absoluteSlot % 4] ?? 1) * (overloaded ? 0.7 : 1) * effect * (m.role === 'worker' ? bonus * teamCost : m.role === 'planner' ? 0.5 : 0.3));
                 if (m.role === 'worker' || m.role === 'planner')
                     units = Math.min(units, round(j.work - j.progress));
                 if (units <= 0)
@@ -82,13 +85,13 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                     const ready = j.team.filter(w => w.role === 'worker').some(w => {
                         const wa = s.actors.find(a => a.id === w.character)!;
                         const wv = version(c, wa);
-                        if (wa.energy < 10 || (s.absoluteSlot % 4 >= 2 && !s.overtime.includes(wa.id)))
+                        if (wa.energy < 10 || wa.busyUntil > s.absoluteSlot || (s.absoluteSlot % 4 >= 2 && !s.overtime.includes(wa.id)))
                             return false;
                         const workerAffected = (!eventJob || eventJob === j.id) && (!target || (w.character === target && w.mode === 'cloud'));
                         const wf = workerAffected ? multiplier : 1;
                         if (wf === 0)
                             return false;
-                        const wp = Math.min(Math.max(0, round(j.work - j.progress - units)), round(10 * match(c, j, wv) * wv.speed * (wv.rhythm[s.absoluteSlot % 4] ?? 1) * (wa.energy >= 60 ? 1 : wa.energy >= 30 ? .85 : .6) * moodFactor(wa.mood) * fatigueFactor(wa, s.absoluteSlot) * (wa.load > wv.context ? .7 : 1) * wf * (1 + v.skills.reason * .015) * teamCost));
+                        const wp = Math.min(Math.max(0, round(j.work - j.progress - units)), round((owns(s, 'prompt') && progressBefore === 0 ? 1.2 : 1) * (1 + (s.campaign?.hardware.office ?? 0) * .1) * 10 * match(c, j, wv) * wv.speed * (wv.rhythm[s.absoluteSlot % 4] ?? 1) * (wa.energy >= 60 ? 1 : wa.energy >= 30 ? .85 : .6) * moodFactor(wa.mood) * fatigueFactor(wa, s.absoluteSlot) * (wa.load > wv.context ? .7 : 1) * wf * (1 + v.skills.reason * .015) * teamCost));
                         const pool = (w.mode === 'cloud' ? s.quota + s.purchased : local) - (w.mode === m.mode ? cost : 0);
                         return round(pool) >= round(wp * wv.price * (workerAffected ? tokenRate : 1));
                     });
@@ -114,6 +117,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                 events.push({ type: 'ResourceSpent', message: `${a.id}: ${cost} ${m.mode === 'cloud' ? 'T' : '本地算力'}，委托 ${j.id}` });
                 s.tokensUsed = round(s.tokensUsed + cost);
                 worked.add(a.id);
+                if (s.campaign) s.campaign.relations[a.id]!.xp++;
                 a.energy = clamp(a.energy - (s.absoluteSlot % 4 === 3 ? 22.5 : s.absoluteSlot % 4 === 2 ? 18 : 15));
                 a.mood = clamp(a.mood - (s.absoluteSlot % 4 === 3 ? 20 : s.absoluteSlot % 4 === 2 ? 10 : 1));
                 a.load++;
@@ -123,14 +127,14 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                     const delivered = Math.min(units, Math.max(0, j.work - j.progress));
                     j.progress = round(j.progress + delivered);
                     j.weighted = round(j.weighted + delivered * matching);
-                    if (m.role === 'worker' && draw(s, 'quality') < 0.25 * (1 - v.stability / 10) * (energy === 0.6 ? 1.5 : 1) * (overloaded ? 1.5 : 1))
+                    if (m.role === 'worker' && draw(s, 'quality') < 0.25 * (owns(s, 'rag') ? .75 : 1) * (owns(s, 'search') && tRecall(c, j) ? .8 : 1) * (1 - v.stability / 10) * (energy === 0.6 ? 1.5 : 1) * (overloaded ? 1.5 : 1))
                         j.defects++;
                 }
                 if (m.role === 'reviewer') {
                     j.reviewCoverage = round(j.reviewCoverage + (j.progress - progressBefore) * matching * 10);
                     const defects = j.defects;
                     for (let n = 0; n < defects; n++)
-                        if (draw(s, 'quality') < Math.min(1, 0.4 + 0.05 * v.skills.reason)) {
+                        if (draw(s, 'quality') < Math.min(1, 0.4 + 0.05 * v.skills.reason + (owns(s, 'autotest') ? .15 : 0))) {
                             j.defects--;
                             j.work += 5;
                         }
@@ -195,7 +199,8 @@ function parse(input: unknown): Command {
     requireRule(typeof input === 'object' && input !== null && !Array.isArray(input), 'INVALID_COMMAND');
     const v = input as Record<string, unknown>;
     const t = v.type;
-    requireRule(typeof t === 'string' && ['overtime', 'restart', 'loan', 'repay', 'advance', 'choose', 'buy', 'accept', 'reject', 'deliver', 'rework', 'clarify', 'assign'].includes(t), 'UNSUPPORTED_COMMAND');
+    requireRule(typeof t === 'string' && ['campaign', 'overtime', 'restart', 'loan', 'repay', 'advance', 'choose', 'buy', 'accept', 'reject', 'deliver', 'rework', 'clarify', 'assign'].includes(t), 'UNSUPPORTED_COMMAND');
+    if (t === 'campaign') return parseCampaign(v);
     if (t === 'overtime') {
         requireRule(typeof v.character === 'string', 'INVALID_ACTOR');
         return { type: t, character: v.character };
@@ -240,11 +245,13 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
             fresh.runs = original.runs + 1;
             fresh.discovered = [...original.discovered];
             fresh.founderXP = original.founderXP + Math.floor(original.peakReputation / 10);
+            if (fresh.campaign) fresh.campaign.research = fresh.founderXP;
             return { state: fresh, events: [{ type: 'Restarted', message: '保留图鉴和创始人经验，工作室重新开张' }], error: null };
         }
-        const s: State = { ...original, overtime: [...original.overtime], rng: { ...original.rng }, actors: original.actors.map(a => ({ ...a })), jobs: original.jobs.map(j => ({ ...j, team: j.team.map(m => ({ ...m })) })), pending: original.pending ? { ...original.pending } : null, ledger: [...original.ledger], resources: [...original.resources], crises: [...original.crises], discovered: [...original.discovered], eventLast: { ...original.eventLast }, eventHistory: [...original.eventHistory] };
-        if (cmd.type === 'advance') {
-            const cards = c.events.map(card => ({ card, jobs: s.jobs.filter(j => eligible(s, c, card, j)) })).filter(x => x.jobs.length);
+        const s: State = { ...original, ...(original.campaign ? { campaign: cloneCampaign(original.campaign) } : {}), overtime: [...original.overtime], rng: { ...original.rng }, actors: original.actors.map(a => ({ ...a })), jobs: original.jobs.map(j => ({ ...j, team: j.team.map(m => ({ ...m })) })), pending: original.pending ? { ...original.pending } : null, ledger: [...original.ledger], resources: [...original.resources], crises: [...original.crises], discovered: [...original.discovered], eventLast: { ...original.eventLast }, eventHistory: [...original.eventHistory] };
+        if (cmd.type === 'campaign') applyCampaign(s, c, cmd);
+        else if (cmd.type === 'advance') {
+            const cards = c.events.map(source => source.trigger === 'bluewhale-cloud' && s.campaign ? {...source,weight:(source.weight ?? 1) * .9 ** s.campaign.hardware.network} : source).map(card => ({ card, jobs: s.jobs.filter(j => eligible(s, c, card, j)) })).filter(x => x.jobs.length);
             if (cards.length && (s.absoluteSlot % 4 < 2 || s.overtime.length) && draw(s, 'event') < balance(c).eventChance) {
                 let pick = draw(s, 'event') * cards.reduce((n, x) => n + (x.card.weight ?? 1), 0);
                 let chosen = cards[0]!;
@@ -271,7 +278,8 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
             requireRule(choice.cost === 0 || s.cash >= choice.cost, 'INSUFFICIENT_CASH');
             money(s, -choice.cost, `event:${card.id}:${s.pending.job ?? ''}`);
             const job = s.jobs.find(j => j.id === s.pending!.job) || s.jobs.find(j => j.status === 'working');
-            const rate = job ? applyEffects(s, job, choice.effects ?? []) : 1;
+            const effects = (choice.effects ?? []).filter(e => !(owns(s, 'sandbox') && card.id === 'delete' && e.kind === 'reset')).map(e => e.kind === 'compact' && owns(s, 'compact') ? {...e,value:0} : e);
+            const rate = job ? applyEffects(s, job, effects) : 1;
             s.eventLast[card.id] = s.absoluteSlot;
             s.eventHistory.push({ slot: s.absoluteSlot, card: card.id, job: job?.id ?? '' });
             if (!s.discovered.includes(card.id))
@@ -280,7 +288,7 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
         }
         else if (cmd.type === 'overtime') {
             requireRule(s.absoluteSlot % 4 >= 2, 'NOT_LIFE_SLOT');
-            requireRule(s.actors.some(a => a.id === cmd.character && a.energy >= 10) && s.jobs.some(j => j.status === 'working' && j.team.some(m => m.character === cmd.character)), 'NO_ACTIVE_ACTOR');
+            requireRule(s.actors.some(a => a.id === cmd.character && a.energy >= 10 && a.busyUntil <= s.absoluteSlot) && s.jobs.some(j => j.status === 'working' && j.team.some(m => m.character === cmd.character)), 'NO_ACTIVE_ACTOR');
             requireRule(!s.overtime.includes(cmd.character), 'ALREADY_OVERTIME');
             s.overtime.push(cmd.character);
         }
@@ -343,7 +351,7 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
                     const a = s.actors.find(a => a.id === m.character);
                     requireRule(a, 'UNKNOWN_ACTOR');
                     requireRule(!occupied(s, a.id, j.id), 'ACTOR_BUSY');
-                    requireRule(version(c, a).modes.includes(m.mode), 'UNSUPPORTED_DEPLOYMENT');
+                    requireRule(version(c, a, s).modes.includes(m.mode), 'UNSUPPORTED_DEPLOYMENT');
                 }
                 j.team = cmd.team;
                 j.status = 'working';
@@ -389,6 +397,7 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
                 j.status = 'working';
             }
         }
+        tickCampaign(s);
         crisis(s, c);
         if ('job' in cmd)
             events.push({ type: 'CommandApplied', message: `${cmd.type}: ${cmd.job}` });
@@ -401,5 +410,5 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
 export const advanceSlot = (s: State, c: Content) => dispatchCommand(s, { type: 'advance' }, c);
 export function getViewModel(s: State, c: Content) {
     const card = s.pending ? c.events.find(e => e.id === s.pending!.card) : null;
-    return { liquidCash: liquidCash(s), overtime: [...s.overtime], loanGraceUntil: s.loanGraceUntil ?? 0, crisisLength: balance(c).crisisLength, absoluteSlot: s.absoluteSlot, day: Math.floor(s.absoluteSlot / 4) + 1, slot: ['上午', '下午', '晚上', '深夜'][s.absoluteSlot % 4], cash: s.cash, quota: s.quota, purchased: s.purchased, localCapacity: s.localCapacity, electricity: s.electricity, loan: s.loan, crises: s.crises.length, reputation: s.reputation, founderXP: s.founderXP, nextWeeklyBill: balance(c).weekly + s.electricity + round(s.loan * balance(c).interest), debtDue: s.debtPaid ? 0 : balance(c).debt, debtSlot: balance(c).debtSlot, bankrupt: s.bankrupt, crisisSince: s.crisisSince, actors: s.actors.map(a => ({ ...a, busy: occupied(s, a.id), skills: { ...version(c, a).skills }, price: version(c, a).price, modes: [...version(c, a).modes] })), jobs: s.jobs.filter(j => !['expired', 'rejected'].includes(j.status)).map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { ...j, title: t.title, description: t.description, weights: { ...t.weights }, reward: round(t.reward * balance(c).rewardScale), delivery: t.delivery, phases: t.phases ?? 1, workSlots: t.workSlots, clarity: t.clarity, passQuality: t.qualityLines?.[0] ?? 60, qualityLines: [...(t.qualityLines ?? [60, 75, 90])], resourceEstimate: estimateResources(s, c, j), qualityBreakdown: { base: round(100 * j.weighted / Math.max(1, j.progress)), review: j.review, event: j.qualityBonus, hiddenPenalty: 8 * j.hidden, defectPenalty: 6 * j.defects }, overdue: active(j) && s.absoluteSlot > j.deadline, team: j.team.map(m => ({ ...m })) }; }), pending: card ? { ...card, choices: card.choices.map(x => ({ ...x, ...(x.effects ? { effects: x.effects.map(e => ({ ...e })) } : {}) })) } : null, ledger: s.ledger.slice(-10).map(x => ({ ...x })), resources: s.resources.slice(-10).map(x => ({ ...x })) };
+    return { campaign: s.campaign ? cloneCampaign(s.campaign) : null, catalog: c.campaign ? { ...c.campaign, initial: [...c.campaign.initial], recruits: c.campaign.recruits.map(x => ({...x})), software: c.campaign.software.map(x => ({...x, requires: [...x.requires]})), versions: c.versions.map(v => ({ id: v.id, character: v.character, name: v.name, skills: {...v.skills}, price: v.price, speed: v.speed })) } : null, liquidCash: liquidCash(s), overtime: [...s.overtime], loanGraceUntil: s.loanGraceUntil ?? 0, crisisLength: balance(c).crisisLength, absoluteSlot: s.absoluteSlot, day: Math.floor(s.absoluteSlot / 4) + 1, slot: ['上午', '下午', '晚上', '深夜'][s.absoluteSlot % 4], cash: s.cash, quota: s.quota, purchased: s.purchased, localCapacity: s.localCapacity, electricity: s.electricity, loan: s.loan, crises: s.crises.length, reputation: s.reputation, founderXP: s.founderXP, nextWeeklyBill: balance(c).weekly + s.electricity + round(s.loan * balance(c).interest), debtDue: s.debtPaid ? 0 : balance(c).debt, debtSlot: balance(c).debtSlot, bankrupt: s.bankrupt, crisisSince: s.crisisSince, actors: s.actors.map(a => ({ ...a, location: actorScene(s, a), busy: occupied(s, a.id), skills: { ...version(c, a, s).skills }, price: version(c, a, s).price, modes: [...version(c, a, s).modes] })), jobs: s.jobs.filter(j => !['expired', 'rejected'].includes(j.status)).map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { ...j, title: t.title, description: t.description, weights: { ...t.weights }, reward: round(t.reward * balance(c).rewardScale), delivery: t.delivery, phases: t.phases ?? 1, workSlots: t.workSlots, clarity: t.clarity, passQuality: t.qualityLines?.[0] ?? 60, qualityLines: [...(t.qualityLines ?? [60, 75, 90])], resourceEstimate: estimateResources(s, c, j), qualityBreakdown: { base: round(100 * j.weighted / Math.max(1, j.progress)), review: j.review, event: j.qualityBonus, hiddenPenalty: 8 * j.hidden, defectPenalty: 6 * j.defects }, overdue: active(j) && s.absoluteSlot > j.deadline, team: j.team.map(m => ({ ...m })) }; }), pending: card ? { ...card, choices: card.choices.map(x => ({ ...x, ...(x.effects ? { effects: x.effects.map(e => ({ ...e })) } : {}) })) } : null, ledger: s.ledger.slice(-10).map(x => ({ ...x })), resources: s.resources.slice(-10).map(x => ({ ...x })) };
 }

@@ -1,1 +1,1 @@
-export const names: Record<string, string> = { bluewhale: 'DeepSeek', qwen: 'Qwen', llama: 'Llama', mistral: 'Mistral' };
+export const names: Record<string, string> = { bluewhale: 'DeepSeek', qwen: 'Qwen', llama: 'Llama', mistral: 'Mistral', gpt: 'GPT', claude: 'Claude', kimi: 'Kimi', gemini: 'Gemini', grok: 'Grok', glm: 'GLM', minimax: 'MiniMax', seedance: 'Seedance' };

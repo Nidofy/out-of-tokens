@@ -34,12 +34,13 @@ export interface Template {
 export interface Card {
     id: string;
     title: string;
-    trigger?: 'bluewhale-cloud' | 'working' | 'code' | 'research' | 'data' | 'multi' | 'cloud' | 'overload' | 'novice';
+    trigger?: 'bluewhale-cloud' | 'working' | 'code' | 'write' | 'design' | 'media' | 'research' | 'data' | 'multi' | 'cloud' | 'overload' | 'novice';
     titleEn?: string;
     cooldown?: number;
     weight?: number;
     choices: {
         label: string;
+        labelEn?: string;
         cost: number;
         multiplier: number;
         effects?: Effect[];
@@ -51,6 +52,34 @@ export interface Content {
     commissions: Template[];
     events: Card[];
     balance?: Balance;
+    campaign?: CampaignContent;
+}
+export type Scene = 'workshop' | 'canteen' | 'library';
+export interface CampaignContent {
+    initial: string[];
+    recruits: { character: string; cost: number; reputation: number }[];
+    software: { id: string; name: string; nameEn: string; cost: number; research: number; requires: string[] }[];
+    maxHardware: number;
+}
+export interface Relation {
+    xp: number;
+    affinity: number;
+    location: Scene | null;
+    locationUntil: number;
+    training: { until: number; version: string; skill: Skill | 'alignment' } | null;
+    bonuses: Record<string, Partial<Record<Skill | 'alignment', number>>>;
+    stories: string[];
+}
+export interface CampaignState {
+    chapter: number;
+    chapterZero: 'pending' | 'passed' | 'missed';
+    completed: number[];
+    scene: Scene;
+    research: number;
+    software: string[];
+    hardware: Record<'office' | 'compute' | 'storage' | 'network', number>;
+    unlocked: string[];
+    relations: Record<string, Relation>;
 }
 export interface Member {
     character: string;
@@ -133,8 +162,14 @@ export interface State {
     overtime: string[];
     loanGraceUntil?: number;
     loanGraceWeek?: number;
+    campaign?: CampaignState;
 }
 export type Command = {
+    type: 'campaign';
+    action: 'visit' | 'chat' | 'gift' | 'meal' | 'study' | 'recall' | 'recruit' | 'unlock' | 'switch' | 'train' | 'align' | 'software' | 'hardware' | 'chapter';
+    id: string;
+    target?: string;
+} | {
     type: 'overtime';
     character: string;
 } | {

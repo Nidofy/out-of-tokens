@@ -1,7 +1,9 @@
+import { PaperDoll } from './art/paper-doll.js';
+import { sceneNames } from './campaign-ui.js';
 import { Application, Container, Graphics, Text, Rectangle } from 'pixi.js';
 import type { GameView } from 'oot-platform';
 import { names } from './presentation.js';
-const colors: Record<string, number> = { bluewhale: 0x6b9ea9, qwen: 0x8a83b2, llama: 0xc6b8a4, mistral: 0xcb805b };
+const colors: Record<string, number> = { bluewhale: 0x6b9ea9, qwen: 0x8a83b2, llama: 0xc6b8a4, mistral: 0xcb805b, gpt: 0x6eaa95, claude: 0xb48268, kimi: 0x667599, gemini: 0x8a7ea6 };
 function box(parent: Container, x: number, y: number, w: number, h: number, color: number, r = 8) { const g = new Graphics().roundRect(x, y, w, h, r).fill(color); parent.addChild(g); return g; }
 function label(parent: Container, text: string, x: number, y: number, size = 14, color = 0x4c584c) { const t = new Text({ text, style: { fontFamily: 'Microsoft YaHei, sans-serif', fontSize: size, fill: color, fontWeight: '500' } }); t.position.set(x, y); parent.addChild(t); return t; }
 function room(root: Container) {
@@ -43,21 +45,21 @@ function room(root: Container) {
     root.addChild(plant);
     label(root, 'OPEN SOURCE GARAGE', 338, 214, 13, 0x8d9680);
 }
-function doll(id: string, parent: Container, x: number, y: number, onSelect: (id: string) => void) {
-    const tint = colors[id] ?? 0x84968a, root = new Container();
+function doll(id: string, parent: Container, x: number, y: number, onSelect: (id: string) => void, version: string) {
+    const tint = colors[id] ?? 0x84968a;
+    const paper = new PaperDoll({schemaVersion:1,id,canvas:[100,130],feet:[50,120],visibleHeight:120,parts:[['body',null,[0,0]],['head','body',[0,-49]],['left','body',[0,0]],['right','body',[0,0]]].map(([part,parent,pivot],i)=>({id:part as string,parent:parent as string|null,pivot:pivot as [number,number],offset:[0,0],size:[1,1],z:i,mirror:'never'}))},new Map());
+    const root = paper.root;
     root.position.set(x, y);
     parent.addChild(root);
     const shadow = new Graphics().ellipse(0, 12, 35, 9).fill({ color: 0x776e58, alpha: .13 });
     root.addChild(shadow);
-    const body = new Container();
-    root.addChild(body);
+    const body = paper.nodes.get('body')!;
     box(body, -19, -30, 38, 42, tint, 12);
     box(body, -15, 6, 11, 12, 0x5d655d, 5);
     box(body, 5, 6, 11, 12, 0x5d655d, 5);
     const armL = box(body, -29, -25, 13, 29, 0xf0d4bb, 6), armR = box(body, 16, -25, 13, 29, 0xf0d4bb, 6);
-    const head = new Container();
+    const head = paper.nodes.get('head')!;
     head.y = -49;
-    body.addChild(head);
     head.addChild(new Graphics().ellipse(0, 0, 28, 30).fill(tint).roundRect(-23, -7, 46, 35, 18).fill(0xf2d7c0));
     head.addChild(new Graphics().ellipse(-14, -15, 17, 16).fill(tint).ellipse(12, -17, 18, 14).fill(tint).circle(-9, 7, 2.1).fill(0x49534e).circle(9, 7, 2.1).fill(0x49534e).ellipse(-17, 15, 5, 2.5).fill(0xe8b7a9).ellipse(17, 15, 5, 2.5).fill(0xe8b7a9).moveTo(-3, 17).lineTo(3, 17).stroke({ color: 0xb77f6e, width: 1.5 }));
     if (id === 'llama')
@@ -70,11 +72,12 @@ function doll(id: string, parent: Container, x: number, y: number, onSelect: (id
         head.addChild(new Graphics().ellipse(0, -26, 34, 10).fill(0xa35d40).poly([9, -33, 26, -50, 22, -29]).fill(0xe0bb76));
     if (id === 'bluewhale')
         head.addChild(new Graphics().poly([19, -21, 35, -36, 33, -19, 45, -13, 27, -11]).fill(0x6693a0));
+    if (['r1','qwq','3.1','large','4o','sonnet','k2','pro'].includes(version.split('.').slice(1).join('.'))) head.addChild(new Graphics().star(20,-20,5,9,4).fill(0xe6c574));
     root.eventMode = 'static';
     root.cursor = 'pointer';
     root.hitArea = new Rectangle(-40, -100, 80, 125);
     root.on('pointertap', () => onSelect(id));
-    return { root, body, armL, armR };
+    return { root, body, armL, armR, paper };
 }
 export async function createWorkshop(host: HTMLElement, onSelect: (id: string) => void) {
     const app = new Application();
@@ -84,6 +87,7 @@ export async function createWorkshop(host: HTMLElement, onSelect: (id: string) =
     const world = new Container();
     app.stage.addChild(world);
     let actors: {
+        paper: PaperDoll;
         body: Container;
         armL: Graphics;
         armR: Graphics;
@@ -96,10 +100,17 @@ export async function createWorkshop(host: HTMLElement, onSelect: (id: string) =
             child.destroy({ children: true });
         room(world);
         actors = [];
-        view.actors.forEach((actor, index) => {
-            const x = 190 + index * 177, y = 318, working = view.jobs.some(j => j.status === 'working' && j.team.some(m => m.character === actor.id));
+        const scene = view.campaign?.scene ?? 'workshop';
+        if(scene !== 'workshop') {
+            box(world,18,15,864,290,scene === 'library' ? 0xe1e6da : 0xf1dfc9,12);
+            label(world,sceneNames[scene],380,45,28);
+            if(scene === 'library') for(let i=0;i<10;i++) {box(world,80+i*70,100,45,90,colors[view.actors[i%view.actors.length]!.id] ?? 0xaabaac,3);}
+            else {for(let i=0;i<6;i++){box(world,110+i*110,120,75,50,0xc29c70);world.addChild(new Graphics().ellipse(145+i*110,133,26,10).fill(0xfff3dd));}}
+        }
+        view.actors.filter(a=>a.location===scene).forEach((actor, index) => {
+            const x = 135 + (index % 6) * 127, y = index < 6 ? 318 : 190, working = view.jobs.some(j => j.status === 'working' && j.team.some(m => m.character === actor.id));
             box(world, x - 36, y - 18, 72, 63, 0xc7ccba, 15);
-            const figure = doll(actor.id, world, x, y, onSelect);
+            const figure = doll(actor.id, world, x, y, onSelect, actor.version);
             actors.push({ ...figure, working, base: index * .8 });
             box(world, x - 66, y + 2, 132, 10, 0xb59775, 4);
             box(world, x - 61, y + 10, 8, 49, 0xa68c6e, 2);
@@ -111,9 +122,9 @@ export async function createWorkshop(host: HTMLElement, onSelect: (id: string) =
             world.addChild(lines);
             box(world, x + 43, y - 4, 14, 18, index % 2 ? 0xe3c39c : 0xadbca1, 4);
             const name = label(world, names[actor.id] ?? actor.id, x - 40, 384, 13);
-            name.x = x - name.width / 2;
+            name.x = x - name.width / 2; name.y = y + 64;
             const status = label(world, working ? '认真开工中' : actor.busy ? '正在忙碌' : '等你安排', x - 40, 405, 11, working ? 0x5a7955 : 0x909783);
-            status.x = x - status.width / 2;
+            status.x = x - status.width / 2; status.y = y + 87;
         });
     };
     app.ticker.add(t => {
@@ -121,7 +132,7 @@ export async function createWorkshop(host: HTMLElement, onSelect: (id: string) =
         world.scale.set(Math.min(app.screen.width / 900, app.screen.height / 450));
         world.position.set((app.screen.width - 900 * world.scale.x) / 2, (app.screen.height - 450 * world.scale.y) / 2);
         for (const a of actors) {
-            a.body.y = reduce.matches ? 0 : Math.sin(elapsed * 1.8 + a.base) * 1.6;
+            a.paper.apply({expression:'neutral',ended:false,transforms:Object.fromEntries(['body','head','left','right'].map(id=>[id,{x:0,y:id==='body'&&!reduce.matches?Math.sin(elapsed*1.8+a.base)*1.6:0,rotation:0,scaleX:1,scaleY:1}]))});
             a.armL.rotation = reduce.matches || !a.working ? 0 : Math.sin(elapsed * 6 + a.base) * .035;
             a.armR.rotation = -a.armL.rotation;
         }

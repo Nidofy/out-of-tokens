@@ -3,7 +3,7 @@ import { round } from './economy.js';
 export function eligible(s: State, c: Content, card: Card, j: Job): boolean {
     if (j.status !== 'working')
         return false;
-    const attending = (id: string) => s.actors.find(a => a.id === id)!.energy >= 10 && (s.absoluteSlot % 4 < 2 || s.overtime.includes(id));
+    const attending = (id: string) => s.actors.find(a => a.id === id)!.busyUntil <= s.absoluteSlot && s.actors.find(a => a.id === id)!.energy >= 10 && (s.absoluteSlot % 4 < 2 || s.overtime.includes(id));
     const resourced = (m: Job['team'][number]) => attending(m.character) && (m.mode === 'cloud' ? s.quota + s.purchased > 0 : s.localCapacity > 0);
     if (!j.team.some(m => m.role === 'worker' && resourced(m)))
         return false;
@@ -13,6 +13,9 @@ export function eligible(s: State, c: Content, card: Card, j: Job): boolean {
     switch (card.trigger) {
         case 'bluewhale-cloud': return j.team.some(m => m.character === 'bluewhale' && m.mode === 'cloud' && attending(m.character) && s.quota + s.purchased > 0);
         case 'cloud': return j.team.some(m => m.mode === 'cloud' && resourced(m));
+        case 'write':
+        case 'design':
+        case 'media':
         case 'code':
         case 'data':
         case 'research': return t.category === card.trigger;

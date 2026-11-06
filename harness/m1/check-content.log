@@ -1,0 +1,669 @@
+$ pnpm typecheck && pnpm lint && pnpm test && pnpm build
+$ tsc -b --pretty false
+$ eslint packages apps
+$ pnpm build && vitest run
+$ pnpm build:core && pnpm --filter oot-web build
+$ tsc -b
+$ vite build
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 842 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.84 kB │ gzip:  0.60 kB
+dist/assets/index-CYME1d5y.css                     17.89 kB │ gzip:  4.81 kB
+dist/assets/WebGLRenderer-pZ1rFZwJ.js               0.05 kB │ gzip:  0.07 kB
+dist/assets/CanvasRenderer-BAIiYfqZ.js              0.05 kB │ gzip:  0.07 kB
+dist/assets/WebGPURenderer-BKIfSyqS.js              0.05 kB │ gzip:  0.07 kB
+dist/assets/webworkerAll-C79run82.js                0.05 kB │ gzip:  0.06 kB
+dist/assets/getTextureBatchBindGroup-CbVChWny.js    0.34 kB │ gzip:  0.27 kB
+dist/assets/canvasUtils-De7KxJPK.js                 6.01 kB │ gzip:  2.04 kB
+dist/assets/getTexelRangeRects-B8CAZpyb.js         11.31 kB │ gzip:  2.98 kB
+dist/assets/init-jBiSWjHp.js                       14.81 kB │ gzip:  4.63 kB
+dist/assets/browserAll-BX_gfdrZ.js                 43.47 kB │ gzip: 11.28 kB
+dist/assets/RenderTargetSystem-gFrjkq_8.js         78.08 kB │ gzip: 22.07 kB
+dist/assets/CanvasPool-B9GJ9aeL.js                112.87 kB │ gzip: 34.40 kB
+dist/assets/index-35d1G8P8.js                     195.00 kB │ gzip: 62.02 kB
+dist/assets/scene-BWyPIH6R.js                     287.48 kB │ gzip: 86.19 kB
+
+✓ built in 279ms
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/campaign.test.ts (11 tests | 11 failed) 101ms
+   × M1 catalog has eight unique characters and exactly two versions each 21ms
+   × visiting and finding people does not reroll business RNG; repeated chat is atomic 13ms
+   × recall is face to face and cannot farm affinity at the workshop 7ms
+   × failed recruit and software prerequisite checks keep money and research intact 7ms
+   × version switching is owned and refused while attached to a job 7ms
+   × training applies only at completion and prevents assignment throughout 8ms
+   × campaign nested state and view never mutate prior state or content 8ms
+   × campaign replay preserves visits, occupied activity and nested growth 6ms
+   × chapter zero is fixed at day14 and cannot be retroactively bought 7ms
+   × hardware cap and real compute capacity are enforced 8ms
+   × current browser campaign save roundtrip and M0 save rejection 6ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/campaign.test.ts > M1 catalog has eight unique characters and exactly two versions each
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      24,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  },
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      30,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  }
+]
+ ❯ validateContent packages/oot-content/dist/browser.js:23:22
+     21| }).strict();
+     22| export function validateContent(input) {
+     23|     const c = schema.parse(input);
+       |                      ^
+     24|     const ids = [...c.versions, ...c.commissions, ...c.events].map(x =…
+     25|     if (new Set(ids).size !== ids.length || (!c.campaign && new Set(c.…
+ ❯ loadCampaignContent packages/oot-content/dist/index.js:11:12
+ ❯ apps/sim-cli/campaign.test.ts:13:90
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  apps/sim-cli/campaign.test.ts > visiting and finding people does not reroll business RNG; repeated chat is atomic
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      24,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  },
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      30,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  }
+]
+ ❯ validateContent packages/oot-content/dist/browser.js:23:22
+     21| }).strict();
+     22| export function validateContent(input) {
+     23|     const c = schema.parse(input);
+       |                      ^
+     24|     const ids = [...c.versions, ...c.commissions, ...c.events].map(x =…
+     25|     if (new Set(ids).size !== ids.length || (!c.campaign && new Set(c.…
+ ❯ loadCampaignContent packages/oot-content/dist/index.js:11:12
+ ❯ fixture apps/sim-cli/campaign.test.ts:7:13
+ ❯ apps/sim-cli/campaign.test.ts:14:103
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  apps/sim-cli/campaign.test.ts > recall is face to face and cannot farm affinity at the workshop
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      24,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  },
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      30,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  }
+]
+ ❯ validateContent packages/oot-content/dist/browser.js:23:22
+     21| }).strict();
+     22| export function validateContent(input) {
+     23|     const c = schema.parse(input);
+       |                      ^
+     24|     const ids = [...c.versions, ...c.commissions, ...c.events].map(x =…
+     25|     if (new Set(ids).size !== ids.length || (!c.campaign && new Set(c.…
+ ❯ loadCampaignContent packages/oot-content/dist/index.js:11:12
+ ❯ fixture apps/sim-cli/campaign.test.ts:7:13
+ ❯ apps/sim-cli/campaign.test.ts:15:85
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  apps/sim-cli/campaign.test.ts > failed recruit and software prerequisite checks keep money and research intact
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      24,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  },
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      30,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  }
+]
+ ❯ validateContent packages/oot-content/dist/browser.js:23:22
+     21| }).strict();
+     22| export function validateContent(input) {
+     23|     const c = schema.parse(input);
+       |                      ^
+     24|     const ids = [...c.versions, ...c.commissions, ...c.events].map(x =…
+     25|     if (new Set(ids).size !== ids.length || (!c.campaign && new Set(c.…
+ ❯ loadCampaignContent packages/oot-content/dist/index.js:11:12
+ ❯ fixture apps/sim-cli/campaign.test.ts:7:13
+ ❯ apps/sim-cli/campaign.test.ts:16:100
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+ FAIL  apps/sim-cli/campaign.test.ts > version switching is owned and refused while attached to a job
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      24,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  },
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      30,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  }
+]
+ ❯ validateContent packages/oot-content/dist/browser.js:23:22
+     21| }).strict();
+     22| export function validateContent(input) {
+     23|     const c = schema.parse(input);
+       |                      ^
+     24|     const ids = [...c.versions, ...c.commissions, ...c.events].map(x =…
+     25|     if (new Set(ids).size !== ids.length || (!c.campaign && new Set(c.…
+ ❯ loadCampaignContent packages/oot-content/dist/index.js:11:12
+ ❯ fixture apps/sim-cli/campaign.test.ts:7:13
+ ❯ apps/sim-cli/campaign.test.ts:17:84
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/11]⎯
+
+ FAIL  apps/sim-cli/campaign.test.ts > training applies only at completion and prevents assignment throughout
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      24,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  },
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      30,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  }
+]
+ ❯ validateContent packages/oot-content/dist/browser.js:23:22
+     21| }).strict();
+     22| export function validateContent(input) {
+     23|     const c = schema.parse(input);
+       |                      ^
+     24|     const ids = [...c.versions, ...c.commissions, ...c.events].map(x =…
+     25|     if (new Set(ids).size !== ids.length || (!c.campaign && new Set(c.…
+ ❯ loadCampaignContent packages/oot-content/dist/index.js:11:12
+ ❯ fixture apps/sim-cli/campaign.test.ts:7:13
+ ❯ apps/sim-cli/campaign.test.ts:18:92
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/11]⎯
+
+ FAIL  apps/sim-cli/campaign.test.ts > campaign nested state and view never mutate prior state or content
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      24,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  },
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      30,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  }
+]
+ ❯ validateContent packages/oot-content/dist/browser.js:23:22
+     21| }).strict();
+     22| export function validateContent(input) {
+     23|     const c = schema.parse(input);
+       |                      ^
+     24|     const ids = [...c.versions, ...c.commissions, ...c.events].map(x =…
+     25|     if (new Set(ids).size !== ids.length || (!c.campaign && new Set(c.…
+ ❯ loadCampaignContent packages/oot-content/dist/index.js:11:12
+ ❯ fixture apps/sim-cli/campaign.test.ts:7:13
+ ❯ apps/sim-cli/campaign.test.ts:19:88
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/11]⎯
+
+ FAIL  apps/sim-cli/campaign.test.ts > campaign replay preserves visits, occupied activity and nested growth
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      24,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  },
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      30,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  }
+]
+ ❯ validateContent packages/oot-content/dist/browser.js:23:22
+     21| }).strict();
+     22| export function validateContent(input) {
+     23|     const c = schema.parse(input);
+       |                      ^
+     24|     const ids = [...c.versions, ...c.commissions, ...c.events].map(x =…
+     25|     if (new Set(ids).size !== ids.length || (!c.campaign && new Set(c.…
+ ❯ loadCampaignContent packages/oot-content/dist/index.js:11:12
+ ❯ fixture apps/sim-cli/campaign.test.ts:7:13
+ ❯ apps/sim-cli/campaign.test.ts:20:91
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/11]⎯
+
+ FAIL  apps/sim-cli/campaign.test.ts > chapter zero is fixed at day14 and cannot be retroactively bought
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      24,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  },
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      30,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  }
+]
+ ❯ validateContent packages/oot-content/dist/browser.js:23:22
+     21| }).strict();
+     22| export function validateContent(input) {
+     23|     const c = schema.parse(input);
+       |                      ^
+     24|     const ids = [...c.versions, ...c.commissions, ...c.events].map(x =…
+     25|     if (new Set(ids).size !== ids.length || (!c.campaign && new Set(c.…
+ ❯ loadCampaignContent packages/oot-content/dist/index.js:11:12
+ ❯ fixture apps/sim-cli/campaign.test.ts:7:13
+ ❯ apps/sim-cli/campaign.test.ts:21:87
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/11]⎯
+
+ FAIL  apps/sim-cli/campaign.test.ts > hardware cap and real compute capacity are enforced
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      24,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  },
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      30,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  }
+]
+ ❯ validateContent packages/oot-content/dist/browser.js:23:22
+     21| }).strict();
+     22| export function validateContent(input) {
+     23|     const c = schema.parse(input);
+       |                      ^
+     24|     const ids = [...c.versions, ...c.commissions, ...c.events].map(x =…
+     25|     if (new Set(ids).size !== ids.length || (!c.campaign && new Set(c.…
+ ❯ loadCampaignContent packages/oot-content/dist/index.js:11:12
+ ❯ fixture apps/sim-cli/campaign.test.ts:7:13
+ ❯ apps/sim-cli/campaign.test.ts:22:73
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/11]⎯
+
+ FAIL  apps/sim-cli/campaign.test.ts > current browser campaign save roundtrip and M0 save rejection
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      24,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  },
+  {
+    "code": "invalid_value",
+    "values": [
+      "bluewhale-cloud",
+      "working",
+      "code",
+      "research",
+      "data",
+      "multi",
+      "cloud",
+      "overload",
+      "novice"
+    ],
+    "path": [
+      "events",
+      30,
+      "trigger"
+    ],
+    "message": "Invalid option: expected one of \"bluewhale-cloud\"|\"working\"|\"code\"|\"research\"|\"data\"|\"multi\"|\"cloud\"|\"overload\"|\"novice\""
+  }
+]
+ ❯ validateContent packages/oot-content/dist/browser.js:23:22
+     21| }).strict();
+     22| export function validateContent(input) {
+     23|     const c = schema.parse(input);
+       |                      ^
+     24|     const ids = [...c.versions, ...c.commissions, ...c.events].map(x =…
+     25|     if (new Set(ids).size !== ids.length || (!c.campaign && new Set(c.…
+ ❯ loadCampaignContent packages/oot-content/dist/index.js:11:12
+ ❯ apps/sim-cli/campaign.test.ts:23:88
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/11]⎯
+
+
+ Test Files  1 failed | 11 passed (12)
+      Tests  11 failed | 81 passed (92)
+   Start at  01:57:09
+   Duration  1.60s (transform 1.32s, setup 0ms, import 3.64s, tests 3.09s, environment 1ms)
+
+[ELIFECYCLE] Test failed. See above for more details.
+[ELIFECYCLE] Command failed with exit code 1.

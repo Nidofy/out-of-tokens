@@ -1,0 +1,682 @@
+[
+  {
+    "id": "rubber-duck",
+    "title": "橡皮鸭听懂了",
+    "titleEn": "The rubber duck gets it",
+    "trigger": "code",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "解释给鸭子听",
+        "labelEn": "Explain it to the duck",
+        "multiplier": 0.8,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 8
+          }
+        ]
+      },
+      {
+        "label": "继续敲代码",
+        "labelEn": "Keep coding",
+        "multiplier": 1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "mood",
+            "value": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cache",
+    "title": "缓存里住着旧答案",
+    "titleEn": "An old answer lives in the cache",
+    "trigger": "data",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "核验后刷新",
+        "labelEn": "Verify and refresh",
+        "multiplier": 0.7,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": -1
+          }
+        ]
+      },
+      {
+        "label": "复用旧缓存",
+        "labelEn": "Reuse the cache",
+        "multiplier": 1.2,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": -5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "timezone",
+    "title": "凌晨三点的会议邀请",
+    "titleEn": "A meeting invite at 3 AM",
+    "trigger": "multi",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "异步留文档",
+        "labelEn": "Leave an async note",
+        "multiplier": 0.9,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "mood",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "label": "全员上线",
+        "labelEn": "Bring everyone online",
+        "multiplier": 1.2,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "mood",
+            "value": -10
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rubric",
+    "title": "验收标准终于写下来了",
+    "titleEn": "A written rubric at last",
+    "trigger": "novice",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "一起确认标准",
+        "labelEn": "Confirm the rubric",
+        "multiplier": 0.7,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 10
+          }
+        ]
+      },
+      {
+        "label": "先交个惊喜",
+        "labelEn": "Deliver a surprise",
+        "multiplier": 1.1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "format",
+    "title": "又多一个输出格式",
+    "titleEn": "One more output format",
+    "trigger": "write",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "确认转换边界",
+        "labelEn": "Agree on conversion scope",
+        "multiplier": 0.8,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 5
+          }
+        ]
+      },
+      {
+        "label": "一次全做了",
+        "labelEn": "Do all formats",
+        "multiplier": 1.1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "work",
+            "value": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "meeting",
+    "title": "这个会能写成邮件吗",
+    "titleEn": "Could this meeting be an email",
+    "trigger": "working",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "发三行摘要",
+        "labelEn": "Send a three-line summary",
+        "multiplier": 1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "mood",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "label": "继续头脑风暴",
+        "labelEn": "Keep brainstorming",
+        "multiplier": 0.5,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "typo",
+    "title": "错别字躲在标题里",
+    "titleEn": "A typo hides in the title",
+    "trigger": "working",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "逐字检查",
+        "labelEn": "Check every word",
+        "multiplier": 0.8,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": -1
+          }
+        ]
+      },
+      {
+        "label": "标题应该没事",
+        "labelEn": "Trust the title",
+        "multiplier": 1.1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": -5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dataset",
+    "title": "数据多了一列",
+    "titleEn": "A new column in the dataset",
+    "trigger": "data",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "更新字段字典",
+        "labelEn": "Update the schema notes",
+        "multiplier": 0.7,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 8
+          }
+        ]
+      },
+      {
+        "label": "猜一下含义",
+        "labelEn": "Guess its meaning",
+        "multiplier": 1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "benchmark",
+    "title": "榜单第一和客户不一样",
+    "titleEn": "The benchmark is not the client",
+    "trigger": "research",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "用客户样本测试",
+        "labelEn": "Test client samples",
+        "multiplier": 0.7,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 10
+          }
+        ]
+      },
+      {
+        "label": "追榜单分数",
+        "labelEn": "Chase the leaderboard",
+        "multiplier": 1.1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "mood",
+            "value": -5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "scope",
+    "title": "需求边界是一条虚线",
+    "titleEn": "Scope has a dotted border",
+    "trigger": "novice",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "画出范围",
+        "labelEn": "Draw the boundary",
+        "multiplier": 0.8,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "mood",
+            "value": -2
+          }
+        ]
+      },
+      {
+        "label": "免费多做一点",
+        "labelEn": "Add a free extra",
+        "multiplier": 1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "work",
+            "value": 6
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "emoji",
+    "title": "正式报告混入猫猫表情",
+    "titleEn": "A cat emoji in the formal report",
+    "trigger": "write",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "统一语气",
+        "labelEn": "Normalize the tone",
+        "multiplier": 0.8,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 6
+          }
+        ]
+      },
+      {
+        "label": "保留一点可爱",
+        "labelEn": "Keep it cute",
+        "multiplier": 1.1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": -4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "naming",
+    "title": "第七个最终版",
+    "titleEn": "The seventh final version",
+    "trigger": "multi",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "整理版本记录",
+        "labelEn": "Organize versions",
+        "multiplier": 0.8,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 5
+          }
+        ]
+      },
+      {
+        "label": "再另存一个",
+        "labelEn": "Save one more copy",
+        "multiplier": 1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "work",
+            "value": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "encoding",
+    "title": "编码变成了问号",
+    "titleEn": "The encoding became question marks",
+    "trigger": "code",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "补编码测试",
+        "labelEn": "Add encoding tests",
+        "multiplier": 0.7,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": -1
+          }
+        ]
+      },
+      {
+        "label": "先展示截图",
+        "labelEn": "Show screenshots first",
+        "multiplier": 1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": -6
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "library-close",
+    "title": "图书馆快关门了",
+    "titleEn": "The library is closing",
+    "trigger": "research",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "记下可靠出处",
+        "labelEn": "Record reliable sources",
+        "multiplier": 0.8,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 6
+          }
+        ]
+      },
+      {
+        "label": "凭印象补齐",
+        "labelEn": "Fill gaps from memory",
+        "multiplier": 1.2,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "coffee",
+    "title": "咖啡洒在便签边",
+    "titleEn": "Coffee on the notes",
+    "trigger": "working",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "整理再继续",
+        "labelEn": "Tidy up and continue",
+        "multiplier": 0.8,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "mood",
+            "value": 5
+          }
+        ]
+      },
+      {
+        "label": "边擦边赶工",
+        "labelEn": "Rush while cleaning",
+        "multiplier": 1.1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "mood",
+            "value": -5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "handoff",
+    "title": "接班人问这是什么",
+    "titleEn": "What is this, asks the next shift",
+    "trigger": "multi",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "补交接说明",
+        "labelEn": "Write handoff notes",
+        "multiplier": 0.7,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 8
+          }
+        ]
+      },
+      {
+        "label": "看代码就知道",
+        "labelEn": "The code explains itself",
+        "multiplier": 1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "license",
+    "title": "引用素材需要署名",
+    "titleEn": "The reference needs attribution",
+    "trigger": "research",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "确认来源和署名",
+        "labelEn": "Check source and credit",
+        "multiplier": 0.7,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 8
+          }
+        ]
+      },
+      {
+        "label": "换成自己画的",
+        "labelEn": "Create an original",
+        "multiplier": 0.9,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "work",
+            "value": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "deadline",
+    "title": "客户说不急但已读十次",
+    "titleEn": "No rush, says the anxious client",
+    "trigger": "novice",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "发进度和范围",
+        "labelEn": "Send a scoped update",
+        "multiplier": 0.8,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "mood",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "label": "立即加速",
+        "labelEn": "Speed up immediately",
+        "multiplier": 1.2,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "mood",
+            "value": -8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "test-flake",
+    "title": "测试偶尔变红",
+    "titleEn": "A flaky test turns red",
+    "trigger": "code",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "隔离不稳定依赖",
+        "labelEn": "Isolate the flaky dependency",
+        "multiplier": 0.7,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": -1
+          }
+        ]
+      },
+      {
+        "label": "重跑到绿色",
+        "labelEn": "Rerun until green",
+        "multiplier": 1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "token-count",
+    "title": "标点符号也占Token",
+    "titleEn": "Punctuation uses tokens too",
+    "trigger": "cloud",
+    "cooldown": 12,
+    "weight": 1,
+    "choices": [
+      {
+        "label": "压缩冗余表达",
+        "labelEn": "Trim redundant wording",
+        "multiplier": 0.9,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "tokenRate",
+            "value": 0.8
+          }
+        ]
+      },
+      {
+        "label": "保持原样",
+        "labelEn": "Keep the original",
+        "multiplier": 1,
+        "cost": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 2
+          }
+        ]
+      }
+    ]
+  }
+]
