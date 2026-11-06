@@ -1,5 +1,5 @@
 import { deadlineAfterWorkSlots } from './clock.js';
-import { balance, crisis, liquidCash, moodFactor } from './economy.js';
+import { balance, crisis, liquidCash, moodFactor, fatigueFactor } from './economy.js';
 import { eligible, applyEffects } from './events.js';
 import { engineVersion } from './version.js';
 import { estimateResources } from './preview.js';
@@ -72,7 +72,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                 const teamCost = 1 - .05 * Math.max(0, j.team.filter(m => m.role === 'worker').length - 2);
                 if (m.role === 'reviewer' && j.progress === progressBefore && j.defects === 0)
                     continue;
-                let units = round(10 * matching * v.speed * energy * moodFactor(a.mood) * (v.rhythm[s.absoluteSlot % 4] ?? 1) * (overloaded ? 0.7 : 1) * effect * (m.role === 'worker' ? bonus * teamCost : m.role === 'planner' ? 0.5 : 0.3));
+                let units = round(10 * matching * v.speed * energy * moodFactor(a.mood) * fatigueFactor(a, s.absoluteSlot) * (v.rhythm[s.absoluteSlot % 4] ?? 1) * (overloaded ? 0.7 : 1) * effect * (m.role === 'worker' ? bonus * teamCost : m.role === 'planner' ? 0.5 : 0.3));
                 if (m.role === 'worker' || m.role === 'planner')
                     units = Math.min(units, round(j.work - j.progress));
                 if (units <= 0)
@@ -88,7 +88,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                         const wf = workerAffected ? multiplier : 1;
                         if (wf === 0)
                             return false;
-                        const wp = Math.min(Math.max(0, round(j.work - j.progress - units)), round(10 * match(c, j, wv) * wv.speed * (wv.rhythm[s.absoluteSlot % 4] ?? 1) * (wa.energy >= 60 ? 1 : wa.energy >= 30 ? .85 : .6) * moodFactor(wa.mood) * (wa.load > wv.context ? .7 : 1) * wf * (1 + v.skills.reason * .015) * teamCost));
+                        const wp = Math.min(Math.max(0, round(j.work - j.progress - units)), round(10 * match(c, j, wv) * wv.speed * (wv.rhythm[s.absoluteSlot % 4] ?? 1) * (wa.energy >= 60 ? 1 : wa.energy >= 30 ? .85 : .6) * moodFactor(wa.mood) * fatigueFactor(wa, s.absoluteSlot) * (wa.load > wv.context ? .7 : 1) * wf * (1 + v.skills.reason * .015) * teamCost));
                         const pool = (w.mode === 'cloud' ? s.quota + s.purchased : local) - (w.mode === m.mode ? cost : 0);
                         return round(pool) >= round(wp * wv.price * (workerAffected ? tokenRate : 1));
                     });
@@ -143,11 +143,20 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                 events.push({ type: 'Ready', message: `${j.id} 待交付，质量 ${j.quality}` });
             }
         }
+    for (const id of s.overtime) {
+        const a = s.actors.find(a => a.id === id)!;
+        a.lastOvertimeSlot = s.absoluteSlot;
+        if (!worked.has(id)) {
+            a.energy = clamp(a.energy - (s.absoluteSlot % 4 === 3 ? 22.5 : 18));
+            a.mood = clamp(a.mood - (s.absoluteSlot % 4 === 3 ? 20 : 10));
+            worked.add(id);
+        }
+    }
     for (const a of s.actors)
         if (!worked.has(a.id) && a.busyUntil <= s.absoluteSlot) {
-            const eveningWorked = s.resources.some(r => r.character === a.id && r.slot === s.absoluteSlot - 1);
+            const eveningWorked = a.lastOvertimeSlot === s.absoluteSlot - 1;
             a.energy = clamp(a.energy + (s.absoluteSlot % 4 === 3 ? (eveningWorked ? 30 : 60) : 15));
-            a.mood = clamp(a.mood + 3);
+            if (s.absoluteSlot % 4 === 3) a.mood = clamp(a.mood + 3);
             if (s.absoluteSlot % 4 === 3)
                 a.load = 0;
         }
@@ -279,6 +288,11 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
             requireRule(s.loan + cmd.amount <= balance(c).loanLimit, 'LOAN_LIMIT');
             s.loan += cmd.amount;
             money(s, cmd.amount, 'loan');
+            const week = Math.floor(s.absoluteSlot / 28);
+            if (liquidCash(s) < 0 && s.loanGraceWeek !== week) {
+                s.loanGraceWeek = week;
+                s.loanGraceUntil = s.absoluteSlot + 12;
+            }
         }
         else if (cmd.type === 'repay') {
             requireRule(cmd.amount <= s.loan && cmd.amount <= s.cash, 'INVALID_REPAYMENT');
@@ -387,5 +401,5 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
 export const advanceSlot = (s: State, c: Content) => dispatchCommand(s, { type: 'advance' }, c);
 export function getViewModel(s: State, c: Content) {
     const card = s.pending ? c.events.find(e => e.id === s.pending!.card) : null;
-    return { absoluteSlot: s.absoluteSlot, day: Math.floor(s.absoluteSlot / 4) + 1, slot: ['上午', '下午', '晚上', '深夜'][s.absoluteSlot % 4], cash: s.cash, quota: s.quota, purchased: s.purchased, localCapacity: s.localCapacity, electricity: s.electricity, loan: s.loan, crises: s.crises.length, reputation: s.reputation, founderXP: s.founderXP, nextWeeklyBill: balance(c).weekly + s.electricity + round(s.loan * balance(c).interest), debtDue: s.debtPaid ? 0 : balance(c).debt, debtSlot: balance(c).debtSlot, bankrupt: s.bankrupt, crisisSince: s.crisisSince, actors: s.actors.map(a => ({ ...a, busy: occupied(s, a.id), skills: { ...version(c, a).skills }, price: version(c, a).price, modes: [...version(c, a).modes] })), jobs: s.jobs.filter(j => !['expired', 'rejected'].includes(j.status)).map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { ...j, title: t.title, description: t.description, weights: { ...t.weights }, reward: round(t.reward * balance(c).rewardScale), delivery: t.delivery, phases: t.phases ?? 1, workSlots: t.workSlots, clarity: t.clarity, passQuality: t.qualityLines?.[0] ?? 60, qualityLines: [...(t.qualityLines ?? [60, 75, 90])], resourceEstimate: estimateResources(s, c, j), qualityBreakdown: { base: round(100 * j.weighted / Math.max(1, j.progress)), review: j.review, event: j.qualityBonus, hiddenPenalty: 8 * j.hidden, defectPenalty: 6 * j.defects }, overdue: active(j) && s.absoluteSlot > j.deadline, team: j.team.map(m => ({ ...m })) }; }), pending: card ? { ...card, choices: card.choices.map(x => ({ ...x, ...(x.effects ? { effects: x.effects.map(e => ({ ...e })) } : {}) })) } : null, ledger: s.ledger.slice(-10).map(x => ({ ...x })), resources: s.resources.slice(-10).map(x => ({ ...x })) };
+    return { liquidCash: liquidCash(s), overtime: [...s.overtime], loanGraceUntil: s.loanGraceUntil ?? 0, crisisLength: balance(c).crisisLength, absoluteSlot: s.absoluteSlot, day: Math.floor(s.absoluteSlot / 4) + 1, slot: ['上午', '下午', '晚上', '深夜'][s.absoluteSlot % 4], cash: s.cash, quota: s.quota, purchased: s.purchased, localCapacity: s.localCapacity, electricity: s.electricity, loan: s.loan, crises: s.crises.length, reputation: s.reputation, founderXP: s.founderXP, nextWeeklyBill: balance(c).weekly + s.electricity + round(s.loan * balance(c).interest), debtDue: s.debtPaid ? 0 : balance(c).debt, debtSlot: balance(c).debtSlot, bankrupt: s.bankrupt, crisisSince: s.crisisSince, actors: s.actors.map(a => ({ ...a, busy: occupied(s, a.id), skills: { ...version(c, a).skills }, price: version(c, a).price, modes: [...version(c, a).modes] })), jobs: s.jobs.filter(j => !['expired', 'rejected'].includes(j.status)).map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { ...j, title: t.title, description: t.description, weights: { ...t.weights }, reward: round(t.reward * balance(c).rewardScale), delivery: t.delivery, phases: t.phases ?? 1, workSlots: t.workSlots, clarity: t.clarity, passQuality: t.qualityLines?.[0] ?? 60, qualityLines: [...(t.qualityLines ?? [60, 75, 90])], resourceEstimate: estimateResources(s, c, j), qualityBreakdown: { base: round(100 * j.weighted / Math.max(1, j.progress)), review: j.review, event: j.qualityBonus, hiddenPenalty: 8 * j.hidden, defectPenalty: 6 * j.defects }, overdue: active(j) && s.absoluteSlot > j.deadline, team: j.team.map(m => ({ ...m })) }; }), pending: card ? { ...card, choices: card.choices.map(x => ({ ...x, ...(x.effects ? { effects: x.effects.map(e => ({ ...e })) } : {}) })) } : null, ledger: s.ledger.slice(-10).map(x => ({ ...x })), resources: s.resources.slice(-10).map(x => ({ ...x })) };
 }

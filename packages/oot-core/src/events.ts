@@ -4,20 +4,21 @@ export function eligible(s: State, c: Content, card: Card, j: Job): boolean {
     if (j.status !== 'working')
         return false;
     const attending = (id: string) => s.actors.find(a => a.id === id)!.energy >= 10 && (s.absoluteSlot % 4 < 2 || s.overtime.includes(id));
-    if (!j.team.some(m => m.role === 'worker' && attending(m.character)))
+    const resourced = (m: Job['team'][number]) => attending(m.character) && (m.mode === 'cloud' ? s.quota + s.purchased > 0 : s.localCapacity > 0);
+    if (!j.team.some(m => m.role === 'worker' && resourced(m)))
         return false;
     if (s.absoluteSlot - (s.eventLast[card.id] ?? -10000) < (card.cooldown ?? 0))
         return false;
     const t = c.commissions.find(t => t.id === j.template)!;
     switch (card.trigger) {
         case 'bluewhale-cloud': return j.team.some(m => m.character === 'bluewhale' && m.mode === 'cloud' && attending(m.character) && s.quota + s.purchased > 0);
-        case 'cloud': return j.team.some(m => m.mode === 'cloud');
+        case 'cloud': return j.team.some(m => m.mode === 'cloud' && resourced(m));
         case 'code':
         case 'data':
         case 'research': return t.category === card.trigger;
         case 'multi': return t.delivery !== 'oneshot';
         case 'novice': return t.client === 'novice';
-        case 'overload': return j.team.some(m => { const a = s.actors.find(a => a.id === m.character)!; return a.load >= c.versions.find(v => v.id === a.version)!.context; });
+        case 'overload': return j.team.some(m => { const a = s.actors.find(a => a.id === m.character)!; return resourced(m) && a.load >= c.versions.find(v => v.id === a.version)!.context; });
         default: return true;
     }
 }

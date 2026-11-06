@@ -1,0 +1,70 @@
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/review-m06.test.ts (4 tests | 4 failed) 24ms
+   × M05-03 ordinary daytime idling cannot erase the mood cost of overtime 13ms
+   × GEM-41-04 zero-production overtime still costs attendance and reduced overnight recovery 4ms
+   × GEM-41-01 host can display net solvency and overtime without sharing references 3ms
+   × GEM-41-02 zero-token working actors cannot farm positive work events 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/review-m06.test.ts > M05-03 ordinary daytime idling cannot erase the mood cost of overtime
+AssertionError: expected 38 to be 35 // Object.is equality
+
+- Expected
++ Received
+
+- 35
++ 38
+
+ ❯ apps/sim-cli/review-m06.test.ts:5:219
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  apps/sim-cli/review-m06.test.ts > GEM-41-04 zero-production overtime still costs attendance and reduced overnight recovery
+AssertionError: expected 65 to be 32 // Object.is equality
+
+- Expected
++ Received
+
+- 32
++ 65
+
+ ❯ apps/sim-cli/review-m06.test.ts:6:350
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  apps/sim-cli/review-m06.test.ts > GEM-41-01 host can display net solvency and overtime without sharing references
+TypeError: actual value must be number or bigint, received "undefined"
+ ❯ apps/sim-cli/review-m06.test.ts:7:247
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  apps/sim-cli/review-m06.test.ts > GEM-41-02 zero-token working actors cannot farm positive work events
+AssertionError: expected { card: 'farm', slot: +0, job: '0-0' } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "card": "farm",
+  "job": "0-0",
+  "slot": 0,
+}
+
+ ❯ apps/sim-cli/review-m06.test.ts:8:265
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  01:35:34
+   Duration  367ms (transform 70ms, setup 0ms, import 172ms, tests 24ms, environment 0ms)
+

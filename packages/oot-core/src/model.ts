@@ -64,6 +64,7 @@ export interface Actor {
     mood: number;
     load: number;
     busyUntil: number;
+    lastOvertimeSlot?: number;
 }
 export interface Job {
     id: string;
@@ -130,6 +131,8 @@ export interface State {
         job: string;
     }[];
     overtime: string[];
+    loanGraceUntil?: number;
+    loanGraceWeek?: number;
 }
 export type Command = {
     type: 'overtime';

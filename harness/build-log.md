@@ -39,3 +39,6 @@ pnpm sim:replay及全部14个诊断CLI回放均REPLAY_OK；verify-m05验证行�
 pnpm check最终74测试/10文件、lint/typecheck/生产构建通过；新证据由verify-m06校验。下一项M05-03训练疲劳取舍；无依赖宿主继续，不宣称完整M1或外部批准。下一记录提交写入固定SHA与三审查Prompt、主线程继续Prompt。
 首次代码检查点e4e86f6d57445198c3e846b8f4bd10df62627056。暂存diff检查发现4份原始测试日志末尾空行，提交命令未按检查失败中止；现仅规范日志尾换行并重新记录manifest，保留全部失败内容，不改代码/参数。后续检查显式退出码阻断。
 固定复审SHA=41dd3c4c2398e9cd5e706298adc8e935bb509df4，实现SHA=e4e86f6d57445198c3e846b8f4bd10df62627056；四份Prompt见harness/reviews/m0.6-handoff.md。verify-m06 --require-business实际退出1，M05-03开放；离线frozen-lock安装成功。
+
+## 2026-11-07 M0.7复审整改
+核对并归档三份41dd3c4报告；恢复74测试与verify-m06通过，business按预期1。red四项失败，疲劳红测失败；训练全部为已见1–100，保留B/AB/喘息5/10结果。收入达标但小费22.37%失败，M05-03继续开放；7001未消费。新日志harness/m07，历史不覆盖。下一任务独立M1工程，尚无人类测试批准。

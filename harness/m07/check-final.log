@@ -1,0 +1,63 @@
+$ pnpm typecheck && pnpm lint && pnpm test && pnpm build
+$ tsc -b --pretty false
+$ eslint packages apps
+$ pnpm build && vitest run
+$ pnpm build:core && pnpm --filter oot-web build
+$ tsc -b
+$ vite build
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 837 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.84 kB │ gzip:  0.59 kB
+dist/assets/index-M6Vg9tVn.css                     17.38 kB │ gzip:  4.68 kB
+dist/assets/WebGLRenderer-lMDYeUhY.js               0.05 kB │ gzip:  0.07 kB
+dist/assets/CanvasRenderer-D1L6SLUM.js              0.05 kB │ gzip:  0.07 kB
+dist/assets/WebGPURenderer-29D-3ZXz.js              0.05 kB │ gzip:  0.07 kB
+dist/assets/webworkerAll-DA4RRtnZ.js                0.05 kB │ gzip:  0.06 kB
+dist/assets/getTextureBatchBindGroup-CbVChWny.js    0.34 kB │ gzip:  0.27 kB
+dist/assets/canvasUtils-De7KxJPK.js                 6.01 kB │ gzip:  2.04 kB
+dist/assets/getTexelRangeRects-B8CAZpyb.js         11.31 kB │ gzip:  2.98 kB
+dist/assets/init-ClLfS8Sj.js                       14.81 kB │ gzip:  4.62 kB
+dist/assets/browserAll-B7TOrjHy.js                 43.47 kB │ gzip: 11.28 kB
+dist/assets/RenderTargetSystem-gFrjkq_8.js         78.08 kB │ gzip: 22.07 kB
+dist/assets/CanvasPool-B9GJ9aeL.js                112.87 kB │ gzip: 34.40 kB
+dist/assets/index-lyIxF35v.js                     171.10 kB │ gzip: 54.34 kB
+dist/assets/scene-DF_c-APT.js                     285.28 kB │ gzip: 85.22 kB
+
+✓ built in 264ms
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+
+ Test Files  11 passed (11)
+      Tests  81 passed (81)
+   Start at  01:47:30
+   Duration  1.55s (transform 918ms, setup 0ms, import 2.82s, tests 2.93s, environment 1ms)
+
+$ pnpm build:core && pnpm --filter oot-web build
+$ tsc -b
+$ vite build
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 837 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.84 kB │ gzip:  0.59 kB
+dist/assets/index-M6Vg9tVn.css                     17.38 kB │ gzip:  4.68 kB
+dist/assets/WebGLRenderer-lMDYeUhY.js               0.05 kB │ gzip:  0.07 kB
+dist/assets/CanvasRenderer-D1L6SLUM.js              0.05 kB │ gzip:  0.07 kB
+dist/assets/WebGPURenderer-29D-3ZXz.js              0.05 kB │ gzip:  0.07 kB
+dist/assets/webworkerAll-DA4RRtnZ.js                0.05 kB │ gzip:  0.06 kB
+dist/assets/getTextureBatchBindGroup-CbVChWny.js    0.34 kB │ gzip:  0.27 kB
+dist/assets/canvasUtils-De7KxJPK.js                 6.01 kB │ gzip:  2.04 kB
+dist/assets/getTexelRangeRects-B8CAZpyb.js         11.31 kB │ gzip:  2.98 kB
+dist/assets/init-ClLfS8Sj.js                       14.81 kB │ gzip:  4.62 kB
+dist/assets/browserAll-B7TOrjHy.js                 43.47 kB │ gzip: 11.28 kB
+dist/assets/RenderTargetSystem-gFrjkq_8.js         78.08 kB │ gzip: 22.07 kB
+dist/assets/CanvasPool-B9GJ9aeL.js                112.87 kB │ gzip: 34.40 kB
+dist/assets/index-lyIxF35v.js                     171.10 kB │ gzip: 54.34 kB
+dist/assets/scene-DF_c-APT.js                     285.28 kB │ gzip: 85.22 kB
+
+✓ built in 263ms

@@ -527,9 +527,14 @@
         "cost": 0
       },
       {
-        "label": "保持平常节奏",
-        "multiplier": 1,
-        "effects": [],
+        "label": "拒绝催促，喘口气（本槽80%，心情+10）",
+        "multiplier": 0.8,
+        "effects": [
+          {
+            "kind": "mood",
+            "value": 10
+          }
+        ],
         "cost": 0
       }
     ],

@@ -29,4 +29,4 @@ export function validateContent(input: unknown): Content {
     // Strip explicit undefined optional keys while keeping the validated data shape.
     return JSON.parse(JSON.stringify(c)) as Content;
 }
-export const contentVersion = 'm0.5-1';
+export const contentVersion = 'm0.6-1';

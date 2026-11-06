@@ -1,0 +1,21 @@
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/review-m06.test.ts (5 tests | 1 failed) 24ms
+   × M05-03 fatigue persists into the next morning and low mood has continuous marginal cost 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/review-m06.test.ts > M05-03 fatigue persists into the next morning and low mood has continuous marginal cost
+TypeError: fatigueFactor is not a function
+ ❯ apps/sim-cli/review-m06.test.ts:10:170
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  01:42:47
+   Duration  348ms (transform 74ms, setup 0ms, import 178ms, tests 24ms, environment 0ms)
+

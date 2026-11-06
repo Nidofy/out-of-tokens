@@ -1,16 +1,17 @@
-import type { Balance, Content, State } from './model.js';
+import type { Actor, Balance, Content, State } from './model.js';
 export const defaults: Balance = { startingCash: 5000, debt: 8000, debtSlot: 56, weekly: 2300, dailyQuota: 300, upgradedQuota: 600, localCapacity: 120, loanLimit: 5000, interest: 0.05, eventChance: 0.25, rewardScale: 1, crisisLength: 12, bankruptcyFloor: -20000 };
 export const balance = (c: Content) => c.balance ?? defaults;
 export const round = (n: number) => Math.round(n * 100) / 100;
 export const liquidCash = (s: State) => round(s.cash - s.loan - s.jobs.filter(j => ['accepted', 'working', 'review', 'waiting'].includes(j.status)).reduce((n, j) => n + j.advance, 0));
-export const moodFactor = (mood: number) => mood >= 40 ? 1 : mood >= 20 ? .85 : .6;
+export const moodFactor = (mood: number) => Math.min(1, .1 + .9 * Math.max(0, mood) / 40);
+export const fatigueFactor = (a: Actor, slot: number) => slot % 4 === 0 && a.lastOvertimeSlot !== undefined && slot - a.lastOvertimeSlot <= 2 ? .8 : 1;
 export function crisis(s: State, c: Content) {
     const b = balance(c);
     s.crises = s.crises.filter(n => s.absoluteSlot - n < 112);
     // Advances are liabilities until a milestone is accepted: borrowing customer money cannot erase a crisis.
     const liquid = liquidCash(s);
     if (liquid < 0) {
-        if (s.crisisSince === null || s.absoluteSlot - s.crisisSince >= b.crisisLength) {
+        if ((s.crisisSince === null || s.absoluteSlot - s.crisisSince >= b.crisisLength) && s.absoluteSlot >= (s.loanGraceUntil ?? 0)) {
             s.crisisSince = s.absoluteSlot;
             s.crises.push(s.absoluteSlot);
             if (s.crises.length === 2)

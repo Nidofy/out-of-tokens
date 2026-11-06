@@ -1,0 +1,33 @@
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/m03.test.ts (12 tests | 1 failed) 185ms
+   × context event is reachable through natural continuous overtime commands 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/m03.test.ts > context event is reachable through natural continuous overtime commands
+AssertionError: expected undefined to be 'context' // Object.is equality
+
+- Expected:
+"context"
+
++ Received:
+undefined
+
+ ❯ apps/sim-cli/m03.test.ts:227:35
+    225|     x.send({ type: 'advance' });
+    226|     x.send({ type: 'advance' });
+    227|     expect(x.state.pending?.card).toBe('context');
+       |                                   ^
+    228| });
+    229|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 10 passed (11)
+      Tests  1 failed | 77 passed (78)
+   Start at  01:37:51
+   Duration  1.55s (transform 1.14s, setup 0ms, import 3.04s, tests 2.97s, environment 1ms)
+

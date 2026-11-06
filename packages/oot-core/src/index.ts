@@ -2,4 +2,4 @@ export { engineVersion } from './version.js';
 export * from './clock.js';
 export * from './model.js';
 export * from './simulation.js';
-export { liquidCash } from './economy.js';
+export { liquidCash, moodFactor, fatigueFactor } from './economy.js';
