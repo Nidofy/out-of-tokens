@@ -3,6 +3,8 @@
 
 当前交付：M1/M2/M3工程检查点均已实施；M3新增DSH Host/工坊入口、独立存档CAS与5备份、生命周期、打包工具。冻结安装和pnpm check通过：15文件114测试。新增浏览器发现fetch绑定/CSP问题已修复并留红灯证据；真实IAB验证Host保存恢复/卸载、Web跨标签通知/拒绝覆盖/显式载入。工程包仍实验性质：M05-03 P1、0/10真人试玩、M2公测和真实DSH安装共存均未验收。
 
+统一交付已就位：固定审查/分发SHA b5d1365355cba2d09ae50ecde9ff382bebe1af12（游戏代码afe87343cca5eb3460ad4b23f30b10f1346d99ca）。artifacts/out-of-tokens-b5d1365.zip已解压再校验211文件，包内独立启动/Host加载通过，服务器停止后实浏览器离线刷新与推进通过。四份Prompt入口harness/reviews/m3-handoff.md；后续仅记录与Prompt提交。下一项继续M05-03训练反事实及未阻塞的P2 PWA-01/WEB-03，不因等待报告停止。
+
 恢复先读本页、REVIEW_M06_INTEGRATION、M0.7_PROTOCOL及M3_ACCEPTANCE；git status/log/diff，pnpm install --frozen-lockfile、pnpm check。历史verify-m06只在41dd3c4历史检出运行。M3日志harness/m3，当前最终check-final-v3.log；不要覆盖历史失败和manifest绑定日志。下一任务：校验本地试玩包、固定SHA统一审查Prompt；之后继续M05-03训练1–100反事实设计及独立工程整改，不抢用7001–8000或审查者队列。
 
 用户已确认暂时没有真实测试者，先完成工程与试玩包。实际DSH Profile没有被修改/安装；可丢弃宿主契约测试与真实共存验收分开记录。只本地提交，未push/部署/付费调用。
