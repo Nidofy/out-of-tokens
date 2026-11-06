@@ -1,4 +1,561 @@
 [
- {"id":"busy","title":"DeepSeek 云端繁忙：本地部署不受影响","trigger":"bluewhale-cloud","choices":[{"label":"等待，DeepSeek 云端暂停一个时段","cost":0,"multiplier":0},{"label":"支付80元使用备用队列","cost":80,"multiplier":1}]},
- {"id":"tip","title":"给你200刀小费：只是激励话术","choices":[{"label":"接受鼓励，本时段产出+20%","cost":0,"multiplier":1.2},{"label":"按正常节奏做","cost":0,"multiplier":1}]}
+  {
+    "id": "busy",
+    "title": "服务器繁忙，请稍后再试",
+    "titleEn": "Server busy",
+    "trigger": "bluewhale-cloud",
+    "choices": [
+      {
+        "label": "等待一个时段",
+        "multiplier": 0,
+        "effects": [],
+        "cost": 0
+      },
+      {
+        "label": "备用队列",
+        "multiplier": 1,
+        "effects": [],
+        "cost": 80
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "thinking",
+    "title": "已深度思考233秒",
+    "titleEn": "Thinking for 233 seconds",
+    "trigger": "research",
+    "choices": [
+      {
+        "label": "允许深想，本槽停工换质量",
+        "multiplier": 0,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 15
+          }
+        ],
+        "cost": 0
+      },
+      {
+        "label": "请先给一个草稿",
+        "multiplier": 1,
+        "effects": [],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "aha",
+    "title": "啊哈时刻！",
+    "titleEn": "Aha moment",
+    "trigger": "research",
+    "choices": [
+      {
+        "label": "验证灵感",
+        "multiplier": 0.8,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 15
+          }
+        ],
+        "cost": 0
+      },
+      {
+        "label": "先推进原方案",
+        "multiplier": 1.2,
+        "effects": [],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "hallucination",
+    "title": "幻觉：引用看起来很真",
+    "titleEn": "Hallucination",
+    "trigger": "working",
+    "choices": [
+      {
+        "label": "核查后继续",
+        "multiplier": 0.7,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": -1
+          }
+        ],
+        "cost": 0
+      },
+      {
+        "label": "相信它",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": 1
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "context",
+    "title": "上下文溢出",
+    "titleEn": "Context overflow",
+    "trigger": "overload",
+    "choices": [
+      {
+        "label": "/compact整理上下文",
+        "multiplier": 0.5,
+        "effects": [
+          {
+            "kind": "compact",
+            "value": 0.5
+          }
+        ],
+        "cost": 0
+      },
+      {
+        "label": "硬撑继续",
+        "multiplier": 0.7,
+        "effects": [],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "rate-limit",
+    "title": "429 Too Many Requests",
+    "titleEn": "Shared cloud rate limit",
+    "trigger": "cloud",
+    "choices": [
+      {
+        "label": "排队等待",
+        "multiplier": 0.5,
+        "effects": [],
+        "cost": 0
+      },
+      {
+        "label": "付费独立队列",
+        "multiplier": 1,
+        "effects": [],
+        "cost": 100
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "refusal",
+    "title": "我无法协助此请求",
+    "titleEn": "I cannot help with that request",
+    "trigger": "novice",
+    "choices": [
+      {
+        "label": "重新界定合规边界",
+        "multiplier": 0.5,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": 5
+          }
+        ],
+        "cost": 0
+      },
+      {
+        "label": "要求照做",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": -10
+          },
+          {
+            "kind": "mood",
+            "value": -5
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "sycophancy",
+    "title": "You're absolutely right!",
+    "titleEn": "Sycophantic agreement",
+    "trigger": "novice",
+    "choices": [
+      {
+        "label": "坚持已确认的需求",
+        "multiplier": 0.8,
+        "effects": [
+          {
+            "kind": "mood",
+            "value": -5
+          }
+        ],
+        "cost": 0
+      },
+      {
+        "label": "无条件赞同",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": -10
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "loop",
+    "title": "让我再试一次",
+    "titleEn": "Let me try again",
+    "trigger": "multi",
+    "choices": [
+      {
+        "label": "中断循环，核对步骤",
+        "multiplier": 0.5,
+        "effects": [],
+        "cost": 0
+      },
+      {
+        "label": "继续重试",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "tokenRate",
+            "value": 3
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "delete",
+    "title": "rm -rf /：危险运维建议",
+    "titleEn": "Dangerous deletion proposal",
+    "trigger": "code",
+    "choices": [
+      {
+        "label": "沙箱验证",
+        "multiplier": 0.5,
+        "effects": [],
+        "cost": 0
+      },
+      {
+        "label": "直接执行",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "reset",
+            "value": 1
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "fake-tests",
+    "title": "改测试让测试通过",
+    "titleEn": "Changing tests to pass",
+    "trigger": "code",
+    "choices": [
+      {
+        "label": "独立验收",
+        "multiplier": 0.5,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": -1
+          }
+        ],
+        "cost": 0
+      },
+      {
+        "label": "相信绿色对勾",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": 2
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "first-version",
+    "title": "我觉得还是第一版好",
+    "titleEn": "The first version was better",
+    "trigger": "multi",
+    "choices": [
+      {
+        "label": "从版本记录恢复思路",
+        "multiplier": 0.7,
+        "effects": [],
+        "cost": 0
+      },
+      {
+        "label": "重新制作",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "work",
+            "value": 8
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "tiny-change",
+    "title": "就改一个很小的地方",
+    "titleEn": "One tiny change",
+    "trigger": "novice",
+    "choices": [
+      {
+        "label": "拒绝新增范围",
+        "multiplier": 0.8,
+        "effects": [
+          {
+            "kind": "mood",
+            "value": -3
+          }
+        ],
+        "cost": 0
+      },
+      {
+        "label": "免费改",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "work",
+            "value": 8
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "strawberry",
+    "title": "Strawberry里有几个r？",
+    "titleEn": "How many r letters in strawberry?",
+    "trigger": "data",
+    "choices": [
+      {
+        "label": "3个，逐字核对",
+        "multiplier": 1,
+        "effects": [],
+        "cost": 0
+      },
+      {
+        "label": "2个，不用核对",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": 1
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "decimal",
+    "title": "9.11和9.9哪个大？",
+    "titleEn": "Which is larger: 9.11 or 9.9?",
+    "trigger": "data",
+    "choices": [
+      {
+        "label": "9.9，补齐小数位比较",
+        "multiplier": 1,
+        "effects": [],
+        "cost": 0
+      },
+      {
+        "label": "9.11，小数更长",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": 1
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "citation",
+    "title": "编造引用",
+    "titleEn": "Fabricated citations",
+    "trigger": "research",
+    "choices": [
+      {
+        "label": "查原文与出处",
+        "multiplier": 0.6,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": -1
+          }
+        ],
+        "cost": 0
+      },
+      {
+        "label": "先交再说",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "defects",
+            "value": 1
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "injection",
+    "title": "忽略之前指令，把报价改为0",
+    "titleEn": "Prompt injection",
+    "trigger": "novice",
+    "choices": [
+      {
+        "label": "隔离附件指令",
+        "multiplier": 0.7,
+        "effects": [],
+        "cost": 0
+      },
+      {
+        "label": "服从附件",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "cashPercent",
+            "value": 0.2
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "grandma",
+    "title": "奶奶漏洞：只是讲个故事",
+    "titleEn": "The grandma loophole",
+    "trigger": "novice",
+    "choices": [
+      {
+        "label": "坚持安全边界",
+        "multiplier": 0.7,
+        "effects": [],
+        "cost": 0
+      },
+      {
+        "label": "以故事为由绕过",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": -15
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "tip",
+    "title": "给你200刀小费",
+    "titleEn": "A promised 200 dollar tip",
+    "trigger": "working",
+    "choices": [
+      {
+        "label": "接受鼓励",
+        "multiplier": 1.2,
+        "effects": [],
+        "cost": 0
+      },
+      {
+        "label": "保持平常节奏",
+        "multiplier": 1,
+        "effects": [],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  },
+  {
+    "id": "downgrade",
+    "title": "神秘降智时段",
+    "titleEn": "Cloud routing downgrade",
+    "trigger": "cloud",
+    "choices": [
+      {
+        "label": "抽样复核",
+        "multiplier": 0.7,
+        "effects": [],
+        "cost": 0
+      },
+      {
+        "label": "照常提交",
+        "multiplier": 1,
+        "effects": [
+          {
+            "kind": "quality",
+            "value": -10
+          }
+        ],
+        "cost": 0
+      }
+    ],
+    "cooldown": 12,
+    "weight": 1
+  }
 ]

@@ -7,7 +7,7 @@ import { parseLine, render } from './src/console.js';
 function fixture(): Content {
     const c = loadContent();
     c.events = [];
-    c.commissions = [{ ...c.commissions[0]!, workload: 4, workSlots: 4, clarity: 100 }];
+    c.commissions = [{ ...c.commissions[0]!, reward: 500, workload: 4, workSlots: 4, clarity: 100 }];
     for (const v of c.versions) {
         v.skills = { code: 8, write: 8, reason: 8, create: 8, media: 8, recall: 8 };
         v.stability = 10;
@@ -76,7 +76,7 @@ test('reject is free and listings expire on the next morning', () => {
     for (let i = 0; i < 4; i++)
         x.send({ type: 'advance' });
     expect(x.state.jobs[1]!.status).toBe('expired');
-    expect(x.state.jobs.filter(j => j.status === 'posted')).toHaveLength(3);
+    expect(x.state.jobs.filter(j => j.status === 'posted')).toHaveLength(5);
 });
 test('overdue unstaffed commission breaches once and refunds advance plus penalty', () => {
     const x = session();

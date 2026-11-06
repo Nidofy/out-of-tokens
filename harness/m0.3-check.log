@@ -1,0 +1,15 @@
+$ pnpm typecheck && pnpm lint && pnpm test && pnpm build
+$ tsc -b --pretty false
+$ eslint packages apps
+$ pnpm build && vitest run
+$ tsc -b
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+
+ Test Files  6 passed (6)
+      Tests  44 passed (44)
+   Start at  22:48:51
+   Duration  826ms (transform 352ms, setup 0ms, import 849ms, tests 983ms, environment 1ms)
+
+$ tsc -b

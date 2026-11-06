@@ -20,16 +20,24 @@ export interface Template {
     workSlots: number;
     reward: number;
     clarity: number;
-    delivery: 'oneshot';
+    delivery: 'oneshot' | 'multi' | 'retainer';
+    phases?: number;
+    category?: 'code' | 'write' | 'research' | 'design' | 'media' | 'data';
+    client?: 'expert' | 'normal' | 'novice' | 'rush';
+    titleEn?: string;
 }
 export interface Card {
     id: string;
     title: string;
-    trigger?: 'bluewhale-cloud' | 'working';
+    trigger?: 'bluewhale-cloud' | 'working' | 'code' | 'research' | 'data' | 'multi' | 'cloud' | 'overload' | 'novice';
+    titleEn?: string;
+    cooldown?: number;
+    weight?: number;
     choices: {
         label: string;
         cost: number;
         multiplier: number;
+        effects?: Effect[];
     }[];
 }
 export interface Content {
@@ -37,6 +45,7 @@ export interface Content {
     versions: Version[];
     commissions: Template[];
     events: Card[];
+    balance?: Balance;
 }
 export interface Member {
     character: string;
@@ -54,7 +63,7 @@ export interface Actor {
 export interface Job {
     id: string;
     template: string;
-    status: 'posted' | 'accepted' | 'working' | 'review' | 'delivered' | 'breached' | 'rejected' | 'expired';
+    status: 'posted' | 'accepted' | 'working' | 'review' | 'waiting' | 'delivered' | 'breached' | 'rejected' | 'expired';
     posted: number;
     deadline: number;
     duration: number;
@@ -68,6 +77,9 @@ export interface Job {
     advance: number;
     quality: number;
     team: Member[];
+    phase: number;
+    resumeAt: number;
+    qualityBonus: number;
 }
 export interface State {
     engineVersion: string;
@@ -88,6 +100,7 @@ export interface State {
     pending: {
         card: string;
         slot: number;
+        job?: string;
     } | null;
     ledger: {
         slot: number;
@@ -96,8 +109,33 @@ export interface State {
     }[];
     tokensUsed: number;
     resources: ResourceEntry[];
+    loan: number;
+    crises: number[];
+    reputation: number;
+    peakReputation: number;
+    founderXP: number;
+    runs: number;
+    discovered: string[];
+    eventLast: Record<string, number>;
+    eventHistory: {
+        slot: number;
+        card: string;
+        job: string;
+    }[];
+    overtime: string[];
 }
 export type Command = {
+    type: 'overtime';
+    character: string;
+} | {
+    type: 'loan';
+    amount: number;
+} | {
+    type: 'repay';
+    amount: number;
+} | {
+    type: 'restart';
+} | {
     type: 'advance';
 } | {
     type: 'choose';
@@ -135,4 +173,23 @@ export interface ResourceEntry {
     quota: number;
     purchased: number;
     electricity: number;
+}
+export interface Balance {
+    startingCash: number;
+    debt: number;
+    debtSlot: number;
+    weekly: number;
+    dailyQuota: number;
+    upgradedQuota: number;
+    localCapacity: number;
+    loanLimit: number;
+    interest: number;
+    eventChance: number;
+    rewardScale: number;
+    crisisLength: number;
+    bankruptcyFloor: number;
+}
+export interface Effect {
+    kind: 'work' | 'quality' | 'defects' | 'mood' | 'compact' | 'reset' | 'tokenRate' | 'cashPercent';
+    value: number;
 }
