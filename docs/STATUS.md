@@ -6,7 +6,7 @@
 M0.0–M0.4工程完成，M0.5进入最终验证。4角色30模板20事件，多轮/长期、加班、贷款/还款、三次危机、继承重开、资源预览、五策略/逐项目利润/CSV/JSON/异常回放可用。
 引擎0.4.0，内容m0.4-1；规则以M0_RULES_FINAL为准，M0_SPEC是首切片历史。JSON为内容唯一数据源，旧生成器移除防止覆盖调参；旧存档在历史SHA继续，新版明确拒绝。
 已读取针对15e2775的Gemini/Opus/Sonnet固定快照报告，逐条处理见REVIEW_RESPONSE；不将自测标成外部批准。
-本次M0.4代码SHA由下一记录提交写入，避免自引用。
+M0.4代码检查点：a91a52f0a4ea2c08ab6542c993ee91a6aa5c60b0；包harness/reviews/m0.4-a91a52f-packet.md。
 
 实际验证：pnpm check通过8文件56测试，含纯文本/JSON真实CLI进程、存档与回放；harness/m0.4-check-final.log。短规模5种子×14天×5策略输出在harness/results，不能当成60天验收。
 训练1–100种子结果在harness/training-v4：value第14天现金均值1287.67，random60天破产48%，四项M0门禁通过。仍非未见种子结果。早期失败、报酬/额度扫描、training-v3均保留。
