@@ -1,6 +1,8 @@
 import { PaperDoll } from './art/paper-doll.js';
 import { sceneNames } from './campaign-ui.js';
 import { Application, Container, Graphics, Text, Rectangle } from 'pixi.js';
+// Pixi's named compatibility module replaces generated Function code with static implementations.
+import 'pixi.js/unsafe-eval';
 import type { GameView } from 'oot-platform';
 import { names } from './presentation.js';
 const colors: Record<string, number> = { bluewhale: 0x6b9ea9, qwen: 0x8a83b2, llama: 0xc6b8a4, mistral: 0xcb805b, gpt: 0x6eaa95, claude: 0xb48268, kimi: 0x667599, gemini: 0x8a7ea6 };

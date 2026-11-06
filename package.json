@@ -7,7 +7,7 @@
     "node": ">=24 <25"
   },
   "scripts": {
-    "build": "pnpm build:core && pnpm --filter oot-web build",
+    "build": "pnpm build:core && pnpm --filter oot-web build && pnpm --filter oot-dsh build",
     "typecheck": "tsc -b --pretty false",
     "lint": "eslint packages apps",
     "test": "pnpm build && vitest run",

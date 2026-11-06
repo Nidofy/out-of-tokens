@@ -14,3 +14,5 @@ Git SHA只读探测受dubious ownership限制；未修改全局safe.directory，
 M1.0补查：相邻仓库仍f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352，Pixi8.22.0兼容当前版本。只读研究部件层级和动画协议；本次scene.ts使用原创Graphics/Container/Text程序化场景与4角色，没有复制代码、社区图片或音频。三场景正式资产及8角色纸娃娃复用仍需逐项授权核对。
 
 M1纸娃娃程序复用：邻库dsh_plugin完整SHA f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352，packages/ai-village/LICENSE为MIT，Copyright2026 DeepSeek/Nidofy。逐件复制src/art/paper-doll.ts与types.ts至apps/web/src/art，许可证随Web发布目录PAPER-DOLL-LICENSE.txt。复用层级/pivot/Pose动画，部件由本项目Graphics绘制；无外部人物纹理/图片/声音复制。8角色版本为原创程序配色与配饰，仍需要艺术品质人工验收。
+
+M3工程依赖许可：DSH atomic-write 0.2.1-rc.2的原始JS/声明文件与MIT许可证复制至apps/dsh/src/vendor；来源、哈希和离线安装失败说明见同目录PROVENANCE.md。该运行时来自邻库生成的.build/official-runtime，不冒充邻库Git HEAD内容。分发保留原许可证；M2/M3十二角色ID已与小院roster逐项核对，无新外部图片/音频复制。

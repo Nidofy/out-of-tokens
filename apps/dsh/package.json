@@ -1,0 +1,39 @@
+{
+  "name": "oot-dsh",
+  "version": "0.3.0-experimental",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./client": "./dist/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "engines": {
+    "node": ">=24 <25",
+    "dsh": "0.2.1-rc.5"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-connection"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "oot-core": "workspace:*",
+    "oot-content": "workspace:*",
+    "oot-persistence": "workspace:*",
+    "oot-platform": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "8.3.6"
+  }
+}

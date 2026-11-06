@@ -1,0 +1,23 @@
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/dsh/host.test.ts (8 tests | 1 failed) 248ms
+   × Host fetch adapter preserves the browser receiver 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/dsh/host.test.ts > Host fetch adapter preserves the browser receiver
+Error: Illegal invocation
+ ❯ HostSaves.globalThis.fetch [as request] apps/dsh/host.test.ts:14:167
+
+ ❯ HostSaves.call packages/oot-platform/dist/host-storage.js:16:24
+ ❯ HostSaves.list packages/oot-platform/dist/host-storage.js:26:45
+ ❯ apps/dsh/host.test.ts:14:350
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  05:09:26
+   Duration  687ms (transform 126ms, setup 0ms, import 283ms, tests 248ms, environment 0ms)

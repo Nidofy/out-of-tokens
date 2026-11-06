@@ -5,3 +5,4 @@
 新软件效果：search知识类缺陷概率×.8、rag×.75、explain展示质量分解、sandbox拦危险删除reset、autotest审查去缺陷+.15、prompt首次生产槽×1.2、compact事件清空负载、vllm本地推理技能×1.3封顶10。硬件office每级产能+.1、compute容量、storage每级上下文+1、network每级服务器繁忙卡权重×.9（不是绝对概率减少10个百分点）。版本以成本/速度/技能取舍，不作真实模型性能声明。
 
 全量92测试通过；真实浏览器见harness/m1/browser-results.md。工程试验完成不等于完整M1验收：M05-03小费P1开放、10名真人试玩0/10、存储禁用/WebGL故障实浏览器回归待补。新版未作正式经营放行，7001未消费。下一步独立M2内容、章节、升级树、双语、PWA；M3宿主适配随后进行。
+后续M2/M3补验：存储禁用与渲染故障降级已实测；双标签通知/CAS/载入恢复已实测。证据见harness/m2/browser-results.md、harness/m3/browser-results.md；原段落所列工程待办已补，真人/经营验收仍未完成。

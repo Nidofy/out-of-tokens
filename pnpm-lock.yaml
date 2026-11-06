@@ -30,6 +30,25 @@ importers:
         specifier: 4.1.8
         version: 4.1.8(@types/node@24.19.2)(vite@8.3.6(@types/node@24.19.2)(esbuild@0.28.2)(tsx@4.22.4))
 
+  apps/dsh:
+    dependencies:
+      oot-content:
+        specifier: workspace:*
+        version: link:../../packages/oot-content
+      oot-core:
+        specifier: workspace:*
+        version: link:../../packages/oot-core
+      oot-persistence:
+        specifier: workspace:*
+        version: link:../../packages/oot-persistence
+      oot-platform:
+        specifier: workspace:*
+        version: link:../../packages/oot-platform
+    devDependencies:
+      vite:
+        specifier: 8.3.6
+        version: 8.3.6(@types/node@24.19.2)(esbuild@0.28.2)(tsx@4.22.4)
+
   apps/sim-cli:
     dependencies:
       oot-content:

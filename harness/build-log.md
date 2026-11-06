@@ -54,3 +54,10 @@ M1工程SHA a3079a4cb2c6363651ee39287f120ad1b8b1afea；92测试、构建、diff 
 104测试及构建通过。双语/100委托/60事件/60剧情/12角色/21软件；新失败证据check-alpha-tests.log留存，工具角色解析及中文错误提示修复后check-final.log通过。真实浏览器完成英文切换、22→24WP澄清、存储失败导入和渲染失败仍推进。用户暂无测试者，先完成工程与试玩包。下一任务M3宿主CAS/生命周期/小院工坊入口。
 
 M2工程SHA 2e4d9159107f7234b4c6c9c73398c9ee2cb568f8；104测试与构建通过、diff --check退出0。下一任务M3；真人试玩/公测/经营P1未关闭。
+
+## M3工程检查点
+2026-11-07。DSH Host受限命名空间、跨进程CAS、单文件原子备份轮换、完整重放验证、请求取消和卸载等待；客户端地图/备用入口、iframe、逐命令自动保存、关闭确认和写入不确定只读对账。未安装真实DSH。
+首轮111测试通过；浏览器暴露fetch receiver绑定与Pixi CSP路径，red-fetch-binding.log失败1/8后修复；跨进程fixture根目录包解析失败保留check-final.log，改为包内worker后check-final-v2.log全量14文件113测试、构建通过。frozen-lockfile退出0。浏览器Host恢复/卸载与IndexedDB双标签冲突保护通过；截图及证据harness/m3。
+新依赖离线不可解析，保留install.log；从已核对本地DSH runtime复制MIT atomic-write原始文件/许可证并固定SHA256，不依赖不可用registry版本。打包工具仅复制构建产物/说明/许可证，manifest绑定源SHA及文件哈希；二进制artifacts不入Git。
+下一任务：提交工程检查点后生成并验证试玩包、记录SHA与三审查Prompt。M05-03仍P1开放，不宣称经营、人测或真实DSH批准。
+M3最终补验：CSP回归验证默认Pixi路径在禁止Function时失败，实际scene模块导入后静态uniform同步成功；check-final-v3.log为15文件114测试通过。

@@ -1,0 +1,1 @@
+{"extends":"../../tsconfig.base.json","compilerOptions":{"rootDir":"src","outDir":"types","emitDeclarationOnly":true,"lib":["ES2022","DOM","DOM.Iterable"],"types":["node"]},"include":["src"],"references":[{"path":"../../packages/oot-core"},{"path":"../../packages/oot-content"},{"path":"../../packages/oot-persistence"},{"path":"../../packages/oot-platform"}]}
