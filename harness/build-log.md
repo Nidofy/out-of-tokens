@@ -61,3 +61,4 @@ M2工程SHA 2e4d9159107f7234b4c6c9c73398c9ee2cb568f8；104测试与构建通过�
 新依赖离线不可解析，保留install.log；从已核对本地DSH runtime复制MIT atomic-write原始文件/许可证并固定SHA256，不依赖不可用registry版本。打包工具仅复制构建产物/说明/许可证，manifest绑定源SHA及文件哈希；二进制artifacts不入Git。
 下一任务：提交工程检查点后生成并验证试玩包、记录SHA与三审查Prompt。M05-03仍P1开放，不宣称经营、人测或真实DSH批准。
 M3最终补验：CSP回归验证默认Pixi路径在禁止Function时失败，实际scene模块导入后静态uniform同步成功；check-final-v3.log为15文件114测试通过。
+M3代码检查点 afe87343cca5eb3460ad4b23f30b10f1346d99ca；114测试、构建与staged diff --check退出0。首次打包因artifacts父目录不存在而ENOENT（尚未生成包）；补mkdir父目录，保持目标包目录独占创建，避免覆盖已有版本。下一步打包校验与固定SHA审查。

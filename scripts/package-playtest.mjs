@@ -4,6 +4,7 @@ import{execFileSync}from'node:child_process';
 import{createHash}from'node:crypto';
 const root=process.cwd(),git=(...args)=>execFileSync('git',['-c',`safe.directory=${root.replaceAll('\\','/')}`,...args],{encoding:'utf8'}).trim();
 const sha=git('rev-parse','HEAD');if(git('status','--porcelain'))throw Error('COMMIT_BEFORE_PACKAGING');
+await mkdir('artifacts',{recursive:true});
 const output=resolve('artifacts',`out-of-tokens-${sha.slice(0,7)}`);await mkdir(output,{recursive:false});
 await cp('apps/web/dist',join(output,'web'),{recursive:true});await cp('scripts/playtest-server.mjs',join(output,'start.mjs'));
 await cp('apps/dsh/dist',join(output,'dsh','dist'),{recursive:true});await cp('apps/dsh/cordis.patch.yml',join(output,'dsh','cordis.patch.yml'));
