@@ -38,3 +38,4 @@ pnpm sim:replay及全部14个诊断CLI回放均REPLAY_OK；verify-m05验证行�
 浏览器基础等待报告期间已独立实现：GameSession/WebCrypto/IndexedDB revision CAS与5备份、原创Pixi画面、Preact交互。实浏览器完成接单/派遣/事件/存读档/刷新恢复；发现手机宽634>375，canvas改绝对定位+grid子项min-width:0后375=375。无console error。
 pnpm check最终74测试/10文件、lint/typecheck/生产构建通过；新证据由verify-m06校验。下一项M05-03训练疲劳取舍；无依赖宿主继续，不宣称完整M1或外部批准。下一记录提交写入固定SHA与三审查Prompt、主线程继续Prompt。
 首次代码检查点e4e86f6d57445198c3e846b8f4bd10df62627056。暂存diff检查发现4份原始测试日志末尾空行，提交命令未按检查失败中止；现仅规范日志尾换行并重新记录manifest，保留全部失败内容，不改代码/参数。后续检查显式退出码阻断。
+固定复审SHA=41dd3c4c2398e9cd5e706298adc8e935bb509df4，实现SHA=e4e86f6d57445198c3e846b8f4bd10df62627056；四份Prompt见harness/reviews/m0.6-handoff.md。verify-m06 --require-business实际退出1，M05-03开放；离线frozen-lock安装成功。
