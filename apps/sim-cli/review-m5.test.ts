@@ -1,15 +1,16 @@
 import {test,expect} from 'vitest';
 import {loadFullContent} from 'oot-content';
-import {createInitialState,dispatchCommand,getViewModel,estimateResources} from 'oot-core';
+import {createInitialState,dispatchCommand,getViewModel} from 'oot-core';
 
 test('endless preview excludes unavailable support and uses local planner upgrades',()=>{
  const c=loadFullContent(),s=createInitialState(c,1),j=s.jobs[0]!;j.status='working';j.work=1000;
  j.team=[{character:'qwen',role:'planner',mode:'local'},{character:'llama',role:'worker',mode:'cloud'}];
- const before=estimateResources(s,c,j).cloud;s.campaign!.software.push('vllm');
- expect(estimateResources(s,c,j).cloud).toBeGreaterThan(before);
+ const before=getViewModel(s,c).jobs[0]!.resourceEstimate.cloud;s.campaign!.software.push('vllm');
+ expect(getViewModel(s,c).jobs[0]!.resourceEstimate.cloud).toBeGreaterThan(before);
  s.campaign!.finale!.endless=true;s.absoluteSlot=28;
  j.team=[{character:'bluewhale',role:'planner',mode:'cloud'},{character:'llama',role:'worker',mode:'local'}];
- expect(estimateResources(s,c,j).local).toBe(estimateResources(s,c,{...j,team:j.team.slice(1)}).local);
+ const withPlanner=getViewModel(s,c).jobs[0]!.resourceEstimate.local;j.team=j.team.slice(1);
+ expect(withPlanner).toBe(getViewModel(s,c).jobs[0]!.resourceEstimate.local);
 });
 
 test('late chapter zero solvency recovers campaign access',()=>{
