@@ -3,7 +3,7 @@ import{readFile,realpath,stat}from'node:fs/promises';
 import{dirname,resolve,extname,sep}from'node:path';
 import{fileURLToPath}from'node:url';
 const root=await realpath(resolve(dirname(fileURLToPath(import.meta.url)),'web'));
-const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.json':'application/json','.webmanifest':'application/manifest+json','.txt':'text/plain; charset=utf-8'};
+const mime={'.webp':'image/webp','.png':'image/png','.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.json':'application/json','.webmanifest':'application/manifest+json','.txt':'text/plain; charset=utf-8'};
 const server=createServer(async(req,res)=>{try{if(req.method!=='GET'&&req.method!=='HEAD'){res.writeHead(405);res.end();return;}const pathname=decodeURIComponent(new URL(req.url??'/','http://localhost').pathname),candidate=resolve(root,'.'+(pathname==='/'?'/index.html':pathname));if(!candidate.startsWith(root+sep))throw Error('outside');const path=await realpath(candidate);if(!path.startsWith(root+sep)||!(await stat(path)).isFile())throw Error('outside');const data=await readFile(path);res.writeHead(200,{'Content-Type':mime[extname(path)]??'application/octet-stream','Cache-Control':'no-cache','X-Content-Type-Options':'nosniff'});res.end(req.method==='HEAD'?undefined:data);}catch{res.writeHead(404);res.end('Not found');}});
 server.listen(4173,'127.0.0.1',()=>console.log('Out of Tokens: http://localhost:4173\nKeep this window open. Ctrl+C stops the local server. No API calls or public listener.'));
 server.on('error',e=>{console.error(e.message);process.exitCode=1;});

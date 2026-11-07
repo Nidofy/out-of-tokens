@@ -80,3 +80,15 @@ M4工程检查点 9ab9281762c3689abff40ee79226f9283c866286；19文件122测试�
 M5工程完整SHA 9e485100dfe22e31a6894022f3664e971c4818b7（132测试、diff --check退出0）。固定新包901文件独立解压/HTTP启动校验通过；ZIP6203568字节/SHA256 88bfcf5d3259c1dd8d91ab5504a8a013ab96068257ad462c8e860759c1611259。桌面computer-use实测英文切换、手动manual-1保存、Ctrl+R重载后显式载入显示存档已载入。Windows实际依赖缺失来源0；全锁未提取169项为平台/未用项，不冒充全部检查。新包离线停止服务刷新未重测，保留为复审项。本地服务已Ctrl+C停止；三审查+集成+持续开发Prompt统一入口m5-handoff.md，后续提交仅文档记录。
 
 Review integration checkpoint: d5f21bb7bb378aa71bdb76c03f312a9099406171; check v4 23 files/136 tests, diff-check 0. Earlier 1bbebab contains test import error; retained, corrected without rewriting history. Next UI/art.
+
+## 2026-11-07 现代工作室 UI / 美术
+
+2026-11-07 UI/美术检查点：已完成场景优先HUD/四入口抽屉、7场景、12角色/版本配饰、8远征结局插图、双语/深色/减少动态和离线资产。最终 pnpm check 25文件138测试及生产构建通过（harness/ui-art/check-final-v1.log）。审查来源与遗留见REVIEW_M5_INTEGRATION，界面范围与证据见UI_ART_ACCEPTANCE。下一任务固定新SHA打包/复审；M05-03、人测0/10、真实DSH、P3许可证正文与自然结局可达性保持开放。
+
+新增25/138回归通过，包括声明桌面但缺exe和hash合法但build来源不同的包拒绝。IAB双构建双标签更新、接单派遣/事件/保存/地图、390pxiframe窄屏及英文深色验证。首次命令级Vitest在普通沙箱写.vite-temp报EPERM，属于环境权限失败；经授权全量check退出0。保留所有旧日志，不重写失败。无外部发布、付费API、真实DSH配置变更。
+
+实浏览器最终追加：升级后手动载入成功；实际试玩服务器停止后离线刷新及推进成功；Vite预览源离线白屏另列UI-OFFLINE-01 P2。diff --check显式退出0。
+
+提交前Sonnet新报告已核对58eba0c1f20fcbe33908c8dac47239b0679db8c5并原字节归档，两项P3按文档口径与测试SOP采纳，无新增P0/P1。
+
+归档Sonnet后最终复查check-final-v2.log：25文件138测试及构建通过，退出0；git diff --check退出0，旧v1保留。

@@ -1,16 +1,17 @@
-import {readdirSync,writeFileSync} from 'node:fs';
+import {readdirSync,writeFileSync,readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import { defineConfig } from 'vite';
 export default defineConfig({
     base: './',
     plugins: [{name:'offline-build',closeBundle(){
- const assets=['index.html','icon.svg','manifest.webmanifest','PAPER-DOLL-LICENSE.txt',...readdirSync('dist/assets').map(f=>'assets/'+f)];
- const key='oot-alpha-'+createHash('sha256').update(assets.join('|')).digest('hex').slice(0,12);
+ const art=readdirSync('dist/art',{recursive:true,withFileTypes:true}).filter(e=>e.isFile()).map(e=>(e.parentPath+'/'+e.name).replaceAll('\\','/').replace(/^dist\//,''));
+ const assets=[...art,'index.html','icon.svg','manifest.webmanifest','PAPER-DOLL-LICENSE.txt',...readdirSync('dist/assets').map(f=>'assets/'+f)];
+ const key='oot-alpha-'+createHash('sha256').update(assets.map(f=>f+createHash('sha256').update(readFileSync('dist/'+f)).digest('hex')).join('|')).digest('hex').slice(0,12);
  const script=`const CACHE=${JSON.stringify(key)},FILES=${JSON.stringify(assets)};
  self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES.map(f=>new URL(f,self.registration.scope).href)))));
  self.addEventListener('message',e=>{if(e.data?.type==='ACTIVATE')self.skipWaiting();});
- self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('oot-alpha-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
- self.addEventListener('fetch',e=>{const u=new URL(e.request.url),base=new URL(self.registration.scope);if(e.request.method!=='GET'||u.origin!==base.origin||!u.pathname.startsWith(base.pathname)||u.pathname.includes('/api/'))return;e.respondWith(caches.open(CACHE).then(async c=>{const hit=await c.match(e.request);if(hit)return hit;try{return await fetch(e.request);}catch(error){if(e.request.mode==='navigate')return (await c.match(new URL('index.html',self.registration.scope).href));throw error;}}));});`;
+ self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));
+ self.addEventListener('fetch',e=>{const u=new URL(e.request.url),base=new URL(self.registration.scope);if(e.request.method!=='GET'||u.origin!==base.origin||!u.pathname.startsWith(base.pathname)||u.pathname.includes('/api/'))return;e.respondWith(caches.open(CACHE).then(async c=>{const hit=await c.match(e.request);if(hit)return hit;const legacy=await caches.match(e.request);if(legacy)return legacy;try{return await fetch(e.request);}catch(error){if(e.request.mode==='navigate')return (await c.match(new URL('index.html',self.registration.scope).href));throw error;}}));});`;
  writeFileSync('dist/sw.js',script);writeFileSync('dist/offline-assets.json',JSON.stringify({key,assets},null,2));
  }},{ name: 'browser-only-boundary', enforce: 'pre', resolveId(id) {
                 if (id.startsWith('node:'))
