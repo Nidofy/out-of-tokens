@@ -101,3 +101,5 @@ Q角色最终check-final-v1：25/138及构建退出0；asset-verification-v1：1
 
 最新Q角色固定源码 2b47242f236683b540faa6b1885d6267cf98c9f7；原AI Village12人直接复用，25文件138测试通过，原资产哈希/离线覆盖及停服刷新推进通过。新包out-of-tokens-2b47242.zip，88904715字节，manifest1296+自身1已解压复验。本轮仅Gemini统一复审，Prompt：harness/reviews/gemini-unified-2b47242-prompt.md；前轮多审Prompt保留为历史。下一任务接收Gemini报告，再按等级集成；M05-03/人测/真实DSH及既有待办仍开放。
 完整ZIP SHA256 a4319d41c30b7d78653f47c56bcb1134e9bf3dcd0208af2abb0f8260e1ca90a6；git暂存179来源文件逐字节hash一致后提交，.gitattributes保留原字节。随后仅记录提交。
+
+2026-11-07 review1107：基线138通过；v1 139通过2失败（版本夹具），v2 141通过；最终27文件143通过，check-final日志保留。IAB自然接单/派遣/地图/时段与390px无溢出通过。详见docs/REVIEW_1107_INTEGRATION.md。只Web开发，无新宿主安装/部署/封存种子批次。

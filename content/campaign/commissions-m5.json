@@ -3469,12 +3469,12 @@
     "client": "expert",
     "description": "API中断时仍保留病人的排队次序，不能上传个人信息。",
     "weights": {
-      "code": 0,
-      "write": 0.7,
-      "reason": 0,
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
       "create": 0,
       "media": 0,
-      "recall": 0.3
+      "recall": 0
     },
     "workload": 32,
     "workSlots": 6,
@@ -3505,12 +3505,12 @@
     "client": "expert",
     "description": "魔王城的账本混有三个纪年，提交可以追溯原页的索引。",
     "weights": {
-      "code": 0.7,
+      "code": 0,
       "write": 0,
-      "reason": 0.3,
+      "reason": 0.5,
       "create": 0,
       "media": 0,
-      "recall": 0
+      "recall": 0.5
     },
     "workload": 36,
     "workSlots": 7,
@@ -3541,11 +3541,11 @@
     "client": "expert",
     "description": "同色史莱姆也有不同过敏原，包装不能只依赖颜色。",
     "weights": {
-      "code": 0.7,
+      "code": 0,
       "write": 0,
-      "reason": 0.3,
-      "create": 0,
-      "media": 0,
+      "reason": 0,
+      "create": 0.7,
+      "media": 0.3,
       "recall": 0
     },
     "workload": 40,
@@ -3577,12 +3577,12 @@
     "client": "expert",
     "description": "投标书必须把可用性承诺和例外情况分开列明。",
     "weights": {
-      "code": 0.7,
-      "write": 0,
-      "reason": 0.3,
+      "code": 0,
+      "write": 0.7,
+      "reason": 0,
       "create": 0,
       "media": 0,
-      "recall": 0
+      "recall": 0.3
     },
     "workload": 44,
     "workSlots": 6,
@@ -3649,9 +3649,9 @@
     "client": "expert",
     "description": "每扇门都需要返回地址，必须保留无法确认的路径而非猜测。",
     "weights": {
-      "code": 0.7,
+      "code": 0.4,
       "write": 0,
-      "reason": 0.3,
+      "reason": 0.6,
       "create": 0,
       "media": 0,
       "recall": 0
@@ -3686,10 +3686,10 @@
     "description": "十二位伙伴的讲述都应保留原意，短片不得用一个声音替代所有人。",
     "weights": {
       "code": 0,
-      "write": 1,
+      "write": 0,
       "reason": 0,
-      "create": 0,
-      "media": 0,
+      "create": 0.3,
+      "media": 0.7,
       "recall": 0
     },
     "workload": 56,

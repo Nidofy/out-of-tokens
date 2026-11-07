@@ -4,4 +4,4 @@ import commissions from '../../../content/campaign/commissions-m5.json';
 import events from '../../../content/campaign/events-m5.json';
 import campaign from '../../../content/campaign/m5.json';
 import balance from '../../../content/balance/standard.json';
-export const content=validateContent({version:'m5-1',versions,commissions,events,campaign,balance});
+export const content=validateContent({version:'m5-2',versions,commissions,events,campaign,balance});

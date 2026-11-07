@@ -59,6 +59,9 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
         for (const j of s.jobs.filter(j => j.status === 'working')) {
             const progressBefore = j.progress;
             let bonus = 1, toolReady = false;
+            // Reserve the support budget once, before any member spends resources.
+            const budget = estimateResources(s, c, j);
+            const supportBudgetReady = !j.team.some(m => m.role === 'tool') || (budget.cloud <= s.quota + s.purchased && budget.local <= local);
             const order = { planner: 0, worker: 2, tool: 1, reviewer: 3 };
             for (const m of [...j.team].sort((a, b) => order[a.role] - order[b.role] || (a.character < b.character ? -1 : a.character > b.character ? 1 : 0))) {
                 const a = s.actors.find(a => a.id === m.character)!;
@@ -85,7 +88,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                     continue;
                 const cost = round(units * v.price * (affected ? tokenRate : 1));
                 if (m.role === 'planner' || m.role === 'tool') {
-                    if(j.team.some(member=>member.role==='tool')){const budget=estimateResources(s,c,j);if(budget.cloud>s.quota+s.purchased||budget.local>local)continue;}
+                    if (!supportBudgetReady) continue;
                     const ready = j.team.filter(w => w.role === 'worker').some(w => {
                         const wa = s.actors.find(a => a.id === w.character)!;
                         const wv = version(c, wa, s, w.mode);
