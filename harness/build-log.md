@@ -115,3 +115,5 @@ A4/A5：a4-a5-check-v1/final/final-v2均30文件162测试及构建通过；最�
 A4/A5代码SHA fa53ea2bdbbb9b647c192d4972f9564e4d2395cb。
 
 A6：Command-only正常训练seed1–5均进入第1章并完成112时段，保存恢复与hash重放一致；16–19单交付、1–6次返工。旧v1脚本负现金免费选项过滤错误修复，v2原策略3局破产，保留原日志/结果，并重建控制回放与逐日记录逐字对齐。最终改变三项选单策略，没有改变经济数值；重开专项恢复seed2破产回放后restart再走新策略，runs2、601命令，完整重放通过。详情PRODUCTIZATION_A3_A6。a6-check-final和final-v2均30文件162测试/构建通过；v2额外修复开业手册折叠偏好，IAB4197折叠→刷新仍折叠。scope成功文案接线修正。engine0.12.0/contentm5-4，内容hash固定。仅训练已见种子，M05-03仍22.37%未过25%，不消费7001–8000。只本地检查点，无push/部署/新平台接入。
+
+A6最终完整源码SHA：f311fcb55aa8470ba86bb3d0e329cae8bfa5bbc7。本条为独立记录提交；最终git diff --check通过。

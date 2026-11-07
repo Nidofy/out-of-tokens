@@ -60,4 +60,4 @@ node scripts/verify-art-budget.mjs
 
 - A3：`a5236794cb66650a99607d2e067735a7bc13a0b8`，158测试。
 - A4/A5：`fa53ea2bdbbb9b647c192d4972f9564e4d2395cb`，162测试及浏览器场景/离线验证。
-- A6的完整SHA由后续独立记录提交写入，避免自引用。
+- A6：`f311fcb55aa8470ba86bb3d0e329cae8bfa5bbc7`，162测试、5条正常路径及1条破产重开完整回放；本条由独立记录提交写入。
