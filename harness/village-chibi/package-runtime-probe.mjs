@@ -1,0 +1,4 @@
+import {spawn} from 'node:child_process';
+const child=spawn(process.execPath,['artifacts/out-of-tokens-2b47242/start.mjs'],{windowsHide:true,stdio:['ignore','pipe','pipe']});
+let output='';child.stdout.on('data',b=>output+=b);child.stderr.on('data',b=>output+=b);
+try{await new Promise((resolve,reject)=>{const timeout=setTimeout(()=>reject(Error('START_TIMEOUT:'+output)),5000);child.stdout.on('data',()=>{if(output.includes('Out of Tokens:')){clearTimeout(timeout);resolve();}});child.on('exit',code=>{clearTimeout(timeout);reject(Error('SERVER_EXIT:'+code+':'+output));});});const results=[];for(const path of ['/','/art/garage.webp','/art/ai-village/qwen/parts/face-neutral.png','/build-meta.json']){const r=await fetch('http://127.0.0.1:4173'+path);if(!r.ok)throw Error(path+':'+r.status);results.push({path,status:r.status,type:r.headers.get('content-type'),bytes:(await r.arrayBuffer()).byteLength});}console.log(JSON.stringify(results,null,2));}finally{child.kill();}

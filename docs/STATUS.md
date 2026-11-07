@@ -1,5 +1,7 @@
 # 状态与恢复入口
 
+最新Q角色固定源码 2b47242f236683b540faa6b1885d6267cf98c9f7；原AI Village12人直接复用，25文件138测试通过，原资产哈希/离线覆盖及停服刷新推进通过。新包out-of-tokens-2b47242.zip，88904715字节，manifest1296+自身1已解压复验。本轮仅Gemini统一复审，Prompt：harness/reviews/gemini-unified-2b47242-prompt.md；前轮多审Prompt保留为历史。下一任务接收Gemini报告，再按等级集成；M05-03/人测/真实DSH及既有待办仍开放。
+
 2026-11-07角色修订：按用户要求直接采用AI Village原版12人Q版纸娃娃/头像，原服饰与身份保留；之前12张新设计角色退役归档。来源f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352、部件hash/许可证记录完整；engine0.11.0/contentm5-1不变。验收见VILLAGE_CHIBI_ACCEPTANCE。下一轮仅由Gemini统一审核。
 
 最新固定UI美术源码 5b7e5effbe7fe2d3ee4f001dc08cf41a25590287；三份9e48510报告已全部集成归档，25/138通过。新包out-of-tokens-5b7e5ef.zip已独立解压复验972+1文件。统一Prompt入口harness/reviews/ui-art-handoff.md；下一任务本UI复审/UI-OFFLINE-01及既有经营/许可/真实宿主待办。此后仅记录提交，旧历史段按时间阅读。

@@ -98,3 +98,6 @@ UI美术本地代码检查点5b7e5effbe7fe2d3ee4f001dc08cf41a25590287，随后�
 2026-11-07角色修订：按用户要求直接采用AI Village原版12人Q版纸娃娃/头像，原服饰与身份保留；之前12张新设计角色退役归档。来源f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352、部件hash/许可证记录完整；engine0.11.0/contentm5-1不变。验收见VILLAGE_CHIBI_ACCEPTANCE。下一轮仅由Gemini统一审核。
 
 Q角色最终check-final-v1：25/138及构建退出0；asset-verification-v1：179hash一致、166运行时文件全部预缓存；IAB离线刷新推进与原角色拼装通过；git diff --check退出0。当前自然初始四人实看，不夸大为12人同屏性能验收。
+
+最新Q角色固定源码 2b47242f236683b540faa6b1885d6267cf98c9f7；原AI Village12人直接复用，25文件138测试通过，原资产哈希/离线覆盖及停服刷新推进通过。新包out-of-tokens-2b47242.zip，88904715字节，manifest1296+自身1已解压复验。本轮仅Gemini统一复审，Prompt：harness/reviews/gemini-unified-2b47242-prompt.md；前轮多审Prompt保留为历史。下一任务接收Gemini报告，再按等级集成；M05-03/人测/真实DSH及既有待办仍开放。
+完整ZIP SHA256 a4319d41c30b7d78653f47c56bcb1134e9bf3dcd0208af2abb0f8260e1ca90a6；git暂存179来源文件逐字节hash一致后提交，.gitattributes保留原字节。随后仅记录提交。
