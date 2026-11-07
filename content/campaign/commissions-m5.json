@@ -5,7 +5,7 @@
     "titleEn": "Tea shop menu",
     "category": "write",
     "client": "expert",
-    "description": "需求与验收标准明确，可按能力权重安排团队。",
+    "description": "店主已经圈好12款饮品和价格，只需要把口味、甜度与过敏原写清楚。沿用现有菜单的短句，不做新品牌设计。比较写作、知识能力与成本，一位合适的伙伴就能开工。",
     "weights": {
       "code": 0,
       "write": 0.7,
@@ -25,7 +25,7 @@
       69,
       80
     ],
-    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+    "descriptionEn": "The owner has marked 12 drinks and prices. Explain flavours, sweetness and allergens in the existing menu’s short style; no rebrand is requested. Compare writing, knowledge and cost before assigning a teammate."
   },
   {
     "id": "bugs",
@@ -33,7 +33,7 @@
     "titleEn": "One tiny website bug",
     "category": "code",
     "client": "normal",
-    "description": "需求基本明确，仍有细节需要澄清。",
+    "description": "店主说“付款按钮偶尔没反应”，却发来两种手机截图。先问清复现环境与重复点击的后果，再决定独立修复还是安排审查者复核。",
     "weights": {
       "code": 0.7,
       "write": 0,
@@ -53,16 +53,16 @@
       69,
       80
     ],
-    "descriptionEn": "Confirm the delivery format and intended audience before starting.",
+    "descriptionEn": "The owner says the pay button sometimes does nothing, but sends screenshots from two phones. Clarify reproduction conditions and repeated taps before choosing a solo fix or a reviewed one.",
     "requirements": [
       {
-        "label": "补充交付格式",
-        "labelEn": "Additional delivery format",
+        "label": "旧手机也要能提交，补一轮兼容验证",
+        "labelEn": "Verify submission on the older phone",
         "work": 2
       },
       {
-        "label": "确认目标读者",
-        "labelEn": "Confirm the target audience",
+        "label": "重复点击不能生成两笔订单，补防重检查",
+        "labelEn": "Check that repeated taps do not create duplicate orders",
         "work": 2
       }
     ]
@@ -73,7 +73,7 @@
     "titleEn": "A simple social website",
     "category": "code",
     "client": "novice",
-    "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+    "description": "社团负责人拿聊天软件作参考，但最常提到的是“让新人找到活动”。先问清需要哪些页面、谁更新内容；当前合同仍按完整约定工作量验收，尚不支持谈判缩单。",
     "weights": {
       "code": 0.7,
       "write": 0,
@@ -93,16 +93,16 @@
       69,
       80
     ],
-    "descriptionEn": "The client has unstated requirements. Clarify them before accepting.",
+    "descriptionEn": "The club organiser cites a chat app, yet keeps asking how newcomers can find events. Clarify the pages and who updates them. This contract still uses its full agreed workload; scope negotiation is not available yet.",
     "requirements": [
       {
-        "label": "补充交付格式",
-        "labelEn": "Additional delivery format",
+        "label": "活动页需要报名入口，补齐表单流程",
+        "labelEn": "Add the signup form flow to the event page",
         "work": 2
       },
       {
-        "label": "确认目标读者",
-        "labelEn": "Confirm the target audience",
+        "label": "社团干部要更新公告，补交维护说明",
+        "labelEn": "Provide instructions for organisers to update announcements",
         "work": 2
       }
     ]
@@ -113,7 +113,7 @@
     "titleEn": "Club signup page",
     "category": "code",
     "client": "expert",
-    "description": "需求与验收标准明确，可按能力权重安排团队。",
+    "description": "社团已提供字段、人数上限和报名成功文案。请按清单完成页面并核对提交逻辑；编码决定主要产出，推理帮助处理边界情况。",
     "weights": {
       "code": 0.7,
       "write": 0,
@@ -133,7 +133,7 @@
       69,
       80
     ],
-    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+    "descriptionEn": "The club provides fields, capacity and confirmation text. Implement the page and verify submission logic. Coding drives most output; reasoning helps with edge cases."
   },
   {
     "id": "backup",
@@ -141,7 +141,7 @@
     "titleEn": "Backup and restore drill",
     "category": "code",
     "client": "normal",
-    "description": "需求基本明确，仍有细节需要澄清。",
+    "description": "负责人有备份文件，却从未试过恢复。两阶段分别交付备份脚本和恢复演练；先问清演练地点，别把第一阶段结算误当成整个合同结束。",
     "weights": {
       "code": 0.7,
       "write": 0,
@@ -161,11 +161,11 @@
       69,
       80
     ],
-    "descriptionEn": "Confirm the delivery format and intended audience before starting.",
+    "descriptionEn": "The owner has backups but has never restored one. Two phases cover the backup script and recovery drill. Clarify where the drill runs; the first payment does not end the contract.",
     "requirements": [
       {
-        "label": "补充交付格式",
-        "labelEn": "Additional delivery format",
+        "label": "在隔离目录演练恢复，补交步骤记录",
+        "labelEn": "Record the recovery drill in an isolated directory",
         "work": 2
       }
     ]
@@ -176,7 +176,7 @@
     "titleEn": "Weekly reporting script",
     "category": "code",
     "client": "expert",
-    "description": "需求与验收标准明确，可按能力权重安排团队。",
+    "description": "每周从同一张表生成周报，共三期。字段与格式已经确定，适合稳定的编码搭档；选择前想想后续两期占用的人手和每周账单。",
     "weights": {
       "code": 0.7,
       "write": 0,
@@ -196,7 +196,7 @@
       69,
       80
     ],
-    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+    "descriptionEn": "Generate a weekly report from the same table for three phases. Fields and format are fixed. Consider the team reserved for later phases and weekly bills before committing."
   },
   {
     "id": "translation",
@@ -204,7 +204,7 @@
     "titleEn": "Bilingual cafe notice",
     "category": "write",
     "client": "expert",
-    "description": "按固定术语和格式批量整理文案，重点是交付速度与成本；验收不要求创意发挥。",
+    "description": "咖啡店已给出双语术语表，只需整理营业时间、点单步骤与禁烟告示。固定格式不需要创意发挥，适合比较快而省的写作伙伴。",
     "weights": {
       "code": 0,
       "write": 1,
@@ -224,7 +224,7 @@
       65,
       80
     ],
-    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+    "descriptionEn": "The cafe supplies a bilingual glossary for hours, ordering and no-smoking notices. The fixed format needs no creative reinvention; compare fast, economical writers."
   },
   {
     "id": "speech",
@@ -232,7 +232,7 @@
     "titleEn": "Tomorrow morning speech",
     "category": "write",
     "client": "rush",
-    "description": "交期很紧，请先检查团队速度和空闲时段。",
+    "description": "主持人要在活动前拿到一份能直接朗读的短致辞，交期只有三个工作时段。先确认现场对象，再比较伙伴节律；不要把今晚默认当作工作时段。",
     "weights": {
       "code": 0,
       "write": 0.7,
@@ -252,11 +252,11 @@
       69,
       80
     ],
-    "descriptionEn": "The deadline is tight. Check speed and available work slots first.",
+    "descriptionEn": "The host needs a read-aloud speech within three work periods. Clarify the audience and compare teammate rhythms; tonight is not automatically a work period.",
     "requirements": [
       {
-        "label": "补充交付格式",
-        "labelEn": "Additional delivery format",
+        "label": "听众包含第一次来访的居民，补背景介绍",
+        "labelEn": "Add context for residents attending for the first time",
         "work": 2
       }
     ]
@@ -267,7 +267,7 @@
     "titleEn": "A warm yet epic story",
     "category": "write",
     "client": "novice",
-    "description": "甲方描述含糊；先澄清范围，隐藏要求会影响验收。",
+    "description": "委托人同时说“温暖”和“震撼”，给出的参考却一篇写团聚、一篇写离别。先问清读者与结尾期待，再安排擅长写作且能照顾背景信息的伙伴。",
     "weights": {
       "code": 0,
       "write": 0.7,
@@ -287,16 +287,16 @@
       69,
       80
     ],
-    "descriptionEn": "The client has unstated requirements. Clarify them before accepting.",
+    "descriptionEn": "The client asks for warmth and impact, with references about reunion and farewell. Clarify the audience and desired ending before assigning a writer who can retain the context.",
     "requirements": [
       {
-        "label": "补充交付格式",
-        "labelEn": "Additional delivery format",
+        "label": "读者是刚搬来的小朋友，补充陌生环境的解释",
+        "labelEn": "Explain the unfamiliar setting for children who just moved here",
         "work": 2
       },
       {
-        "label": "确认目标读者",
-        "labelEn": "Confirm the target audience",
+        "label": "结尾需要保留团聚的希望，补写收束段落",
+        "labelEn": "Add a closing passage that preserves hope of reunion",
         "work": 2
       }
     ]
@@ -307,7 +307,7 @@
     "titleEn": "Weekly community newsletter",
     "category": "write",
     "client": "normal",
-    "description": "按固定术语和格式批量整理文案，重点是交付速度与成本；验收不要求创意发挥。",
+    "description": "社区通讯每周一期，共三期，沿用同一版式和固定栏目。先确认发布渠道；稳定、低成本的写作比每期重新创作更重要，也要预留后续人手。",
     "weights": {
       "code": 0,
       "write": 1,
@@ -327,11 +327,11 @@
       65,
       80
     ],
-    "descriptionEn": "Confirm the delivery format and intended audience before starting.",
+    "descriptionEn": "The community newsletter has three weekly phases with fixed columns and layout. Clarify the publication channel. Steady, economical writing matters more than reinvention; reserve future capacity.",
     "requirements": [
       {
-        "label": "补充交付格式",
-        "labelEn": "Additional delivery format",
+        "label": "公告栏与手机群都要发布，补窄屏排版",
+        "labelEn": "Prepare a narrow layout for the phone group as well as the noticeboard",
         "work": 2
       }
     ]
@@ -342,7 +342,7 @@
     "titleEn": "Literature citation audit",
     "category": "research",
     "client": "expert",
-    "description": "需求与验收标准明确，可按能力权重安排团队。",
+    "description": "研究组已经提供论文和引用清单，要核对结论能否追溯原文。知识与推理同样重要；独立核查节省人手，加入审查者则可补充复核并发现缺陷。",
     "weights": {
       "code": 0,
       "write": 0,
@@ -362,7 +362,7 @@
       69,
       80
     ],
-    "descriptionEn": "Requirements and acceptance criteria are explicit. Match the skill weights."
+    "descriptionEn": "The research team provides papers and citations. Check that conclusions trace back to the originals. Knowledge and reasoning both matter; solo work saves staffing, while a reviewer can improve checking and detect defects."
   },
   {
     "id": "survey",
@@ -370,7 +370,7 @@
     "titleEn": "User interview summary",
     "category": "research",
     "client": "normal",
-    "description": "需求基本明确，仍有细节需要澄清。",
+    "description": "访谈记录里既有常客也有第一次到店的人，负责人只说“告诉我大家想要什么”。先问清分组与匿名要求，避免把不同人的意见混成一个结论。",
     "weights": {
       "code": 0,
       "write": 0,
@@ -390,16 +390,16 @@
       69,
       80
     ],
-    "descriptionEn": "Confirm the delivery format and intended audience before starting.",
+    "descriptionEn": "The interviews mix regular customers and first-time visitors. The owner asks what everyone wants. Clarify grouping and anonymity so distinct needs are not flattened into one conclusion.",
     "requirements": [
       {
-        "label": "补充交付格式",
-        "labelEn": "Additional delivery format",
+        "label": "区分常客与新客，补做分组摘要",
+        "labelEn": "Add separate summaries for regulars and first-time visitors",
         "work": 2
       },
       {
-        "label": "确认目标读者",
-        "labelEn": "Confirm the target audience",
+        "label": "引用须去掉姓名，补匿名核查",
+        "labelEn": "Check that quoted comments have names removed",
         "work": 2
       }
     ]

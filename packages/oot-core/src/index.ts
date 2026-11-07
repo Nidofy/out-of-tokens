@@ -4,3 +4,5 @@ export * from './model.js';
 export * from './simulation.js';
 export { liquidCash, moodFactor, fatigueFactor } from './economy.js';
 export {worlds,endingReady} from './finale.js';
+export {forecastAssignment} from './preview.js';
+export {settlement} from './settlement.js';

@@ -1,0 +1,11 @@
+$ pnpm typecheck && pnpm lint && pnpm test && pnpm build
+$ tsc -b --pretty false
+$ eslint packages apps
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\web\src\decision-panels.tsx
+  2:9  error  'names' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

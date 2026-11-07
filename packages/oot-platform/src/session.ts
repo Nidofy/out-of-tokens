@@ -1,4 +1,4 @@
-import { createInitialState, dispatchCommand, getViewModel } from 'oot-core';
+import { createInitialState, dispatchCommand, getViewModel, forecastAssignment } from 'oot-core';
 import type { Command, Content, DomainEvent, State, Member } from 'oot-core';
 import { saveBrowser, restoreBrowser } from 'oot-persistence/browser';
 export class GameSession {
@@ -10,7 +10,7 @@ export class GameSession {
     get view() { return getViewModel(this.state, this.content); }
     previewAssignment(job: string, team: Member[]) {
         const result = dispatchCommand(this.state, { type: 'assign', job, team }, this.content);
-        return { error: result.error, estimate: result.error ? null : getViewModel(result.state, this.content).jobs.find(j => j.id === job)!.resourceEstimate };
+        return { error: result.error, estimate: result.error ? null : getViewModel(result.state, this.content).jobs.find(j => j.id === job)!.resourceEstimate, forecast: result.error ? null : forecastAssignment(result.state,this.content,result.state.jobs.find(j=>j.id===job)!) };
     }
     send(command: Command): {
         error: string | null;
