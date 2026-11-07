@@ -1,0 +1,1082 @@
+{
+  "sourceCommit": "f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352",
+  "sourceRepository": "adjacent dsh_plugin",
+  "authorization": "User explicitly requested direct reuse of AI Village characters, Q-style first",
+  "mode": "Original production PNG parts, rigs and portraits copied verbatim; no generation or pixel editing",
+  "files": [
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/character.json",
+      "file": "apps/web/public/art/ai-village/bluewhale/character.json",
+      "bytes": 6052,
+      "sha256": "a463fcc63680251cae884264bfd4281eddd71916500147ef5c2932bbe8094652"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/manifest.json",
+      "file": "art/ai-village-chibi-v1/source-manifests/bluewhale.json",
+      "bytes": 13860,
+      "sha256": "3d86953f689bb926ba1db7548c182dbb4009af2f52b83d5660fac38136b92efa"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/tail-root.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/tail-root.png",
+      "bytes": 179241,
+      "sha256": "c398730ca65e755ca7c7f0df8c43bf5d698f9101faf1cf6f966cd45caad86000"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/tail-fin.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/tail-fin.png",
+      "bytes": 196483,
+      "sha256": "43445a0e929d3c5dae02c5fbd3f0c27d37ae0fc0a55c35b5652acd36f85e02d5"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/leg-left.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/leg-left.png",
+      "bytes": 141026,
+      "sha256": "0166bffe16b481f225b57b94d550d5b475b27629525f886fdcdca20bf8f95285"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/leg-right.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/leg-right.png",
+      "bytes": 143730,
+      "sha256": "c0cbbcdcf61d5bb9269bb91f199de92b6013b90b67158d6d9460515b87b4ac72"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/back-hair.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/back-hair.png",
+      "bytes": 600730,
+      "sha256": "9a1b94abcf0b6baa106d6f5f81022f8c7292f16a0b2c882df08e01d254ca6b81"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/arm-left.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/arm-left.png",
+      "bytes": 145264,
+      "sha256": "a9f4c816d936c213c468f64f4c689f5c4d5785d0abcc1a4145440c3b71d8a31d"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/arm-right.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/arm-right.png",
+      "bytes": 144585,
+      "sha256": "b10b9f324f8416e83cd83f1b45202ca6324b3ac070d0a7d4fb2d9db7e135a1ee"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/skirt.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/skirt.png",
+      "bytes": 990006,
+      "sha256": "9f579115623627a1b58fcd57e10cc773908639a225208ffca35c90c6a46f7211"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/torso.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/torso.png",
+      "bytes": 494040,
+      "sha256": "51df6259a50511633fbc092e3dbe844b75f273c83ad9f91455d246aef2d7313e"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/ear-left.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/ear-left.png",
+      "bytes": 51025,
+      "sha256": "faa3ec252ff1795f5c9b2a185975d8b44f130d8f662acac8ba5e125900f97095"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/ear-right.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/ear-right.png",
+      "bytes": 49390,
+      "sha256": "81db0d20de076b4249011b2c12111d11e755d509754112450ac492d360c4eea2"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/face-neutral.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/face-neutral.png",
+      "bytes": 333064,
+      "sha256": "6f2ab20403d5e22355ac71ccd1dc7029cc1389e51ca88289424e2a6fd36d4020"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/face-happy.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/face-happy.png",
+      "bytes": 285079,
+      "sha256": "fc4b43ae66d5f1b2ac056a281a43382bcc5248f727a01e5eaa246cb4eafc45b1"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/face-surprised.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/face-surprised.png",
+      "bytes": 333867,
+      "sha256": "78678843eaf532ff24618d0abd99b6eada66207dc015d0aee2427e08aa9e43cf"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/face-sleepy.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/face-sleepy.png",
+      "bytes": 277686,
+      "sha256": "a4f550272882d23755b0da25331c6d698513679c7e00152754677b42c11b9b58"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/front-hair.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/front-hair.png",
+      "bytes": 411644,
+      "sha256": "64cbfc4e5e0c8ace47e113495a08d44e42faa6f4dc4743c5556349ad430455ce"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/headband.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/headband.png",
+      "bytes": 330037,
+      "sha256": "20e90cab0d1be583dd1e1bbb10c74bd79d00716d1e8b82ac7cbe118f6e000496"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/ahoge.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/ahoge.png",
+      "bytes": 227823,
+      "sha256": "8f903e7ee482290a66cd456389aa5514abffe1c14002e493abf33562f4dd80aa"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/curl-left.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/curl-left.png",
+      "bytes": 182478,
+      "sha256": "ab9c962460846d126edc2173df6a61fe3a0d6a72c01b53a407f5b2ad7f421333"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/bluewhale/parts/curl-right.png",
+      "file": "apps/web/public/art/ai-village/bluewhale/parts/curl-right.png",
+      "bytes": 168419,
+      "sha256": "11279b404a5a061877bc34c2d19c7b69060502418cfb78e5572145244dfd2592"
+    },
+    {
+      "source": "packages/ai-village/assets/portraits/bluewhale.png",
+      "file": "apps/web/public/art/ai-village/portraits/bluewhale.png",
+      "bytes": 32688,
+      "sha256": "c2b5f342ac03ac19612c0cb5f5450534fcbfd7526a37dece89a0a299cd43e68b"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/qwen/character.json",
+      "file": "apps/web/public/art/ai-village/qwen/character.json",
+      "bytes": 3358,
+      "sha256": "830ae524d01d192983945835405eb4a7c697e67e6af1a24b97c29ce2343011ee"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/qwen/manifest.json",
+      "file": "art/ai-village-chibi-v1/source-manifests/qwen.json",
+      "bytes": 7648,
+      "sha256": "897b5881003ccc673432b5c35c10d35658c3430b8e732309cfa98b353ff045e0"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/qwen/parts/leg-left.png",
+      "file": "apps/web/public/art/ai-village/qwen/parts/leg-left.png",
+      "bytes": 56964,
+      "sha256": "cc4c1c52b35a8dabe23122837c98188daaba9dab836966224204dbc5c8495840"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/qwen/parts/leg-right.png",
+      "file": "apps/web/public/art/ai-village/qwen/parts/leg-right.png",
+      "bytes": 54150,
+      "sha256": "5b780025461fed45b06293dd2f82ca0da5fa6d7b4f882822d69ab2785d5d7480"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/qwen/parts/back-hair.png",
+      "file": "apps/web/public/art/ai-village/qwen/parts/back-hair.png",
+      "bytes": 197770,
+      "sha256": "c6e27ea5ef6faa6ea3e50df76dfd5724d70fdb9782f2640a6d729cbe0371275c"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/qwen/parts/arm-right.png",
+      "file": "apps/web/public/art/ai-village/qwen/parts/arm-right.png",
+      "bytes": 112440,
+      "sha256": "b064fbbf4f53cb310ee48bf4d87c9ee1a74d8a0af1a83fd5535727bcb214f280"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/qwen/parts/arm-left.png",
+      "file": "apps/web/public/art/ai-village/qwen/parts/arm-left.png",
+      "bytes": 110170,
+      "sha256": "2d22eeaa7c3f984c4135a024a192a5a7c4a5e7290ee5b95bcf900bdf898f9cfc"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/qwen/parts/torso.png",
+      "file": "apps/web/public/art/ai-village/qwen/parts/torso.png",
+      "bytes": 178988,
+      "sha256": "7f7daebc19a899601189c2b2c76a0af520ee009f01e8731f292cd45af8a51130"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/qwen/parts/face-neutral.png",
+      "file": "apps/web/public/art/ai-village/qwen/parts/face-neutral.png",
+      "bytes": 196089,
+      "sha256": "8ee5c7db9cf706218325b2540a171c9198e9c232916dbf0c37e3d0344c5f8be6"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/qwen/parts/face-happy.png",
+      "file": "apps/web/public/art/ai-village/qwen/parts/face-happy.png",
+      "bytes": 199930,
+      "sha256": "b424dbdfc747ed8a238138de640a72c94a2318e38b4b82b30a4c93a0ea2f667f"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/qwen/parts/face-surprised.png",
+      "file": "apps/web/public/art/ai-village/qwen/parts/face-surprised.png",
+      "bytes": 202747,
+      "sha256": "c1d4008247580af7de3216063bf24b5619c7c66b460cf82d6d774fc8e2936b6d"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/qwen/parts/face-sleepy.png",
+      "file": "apps/web/public/art/ai-village/qwen/parts/face-sleepy.png",
+      "bytes": 190586,
+      "sha256": "c207cc93890a55dbd5bc333c2d5cbf12ac77308812257d9e0b25b669491054a2"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/qwen/parts/ornament.png",
+      "file": "apps/web/public/art/ai-village/qwen/parts/ornament.png",
+      "bytes": 82592,
+      "sha256": "e39d99c8a1a6e604cb884d3fdfd227fae6c28fceb737c8181475d1a13f601f7d"
+    },
+    {
+      "source": "packages/ai-village/assets/portraits/qwen.png",
+      "file": "apps/web/public/art/ai-village/portraits/qwen.png",
+      "bytes": 34652,
+      "sha256": "d927c9d574cd75d7846e0d1ea3d07f8c7820c694e7fc70bda21a5c72e63141cf"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/llama/character.json",
+      "file": "apps/web/public/art/ai-village/llama/character.json",
+      "bytes": 3358,
+      "sha256": "2338cf4292e83f81fae5dfaf9c59d1c646220a6f760406d74929e60a88e9eb26"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/llama/manifest.json",
+      "file": "art/ai-village-chibi-v1/source-manifests/llama.json",
+      "bytes": 12345,
+      "sha256": "c5dc8e7d838c6eb929946084a580f1f58316b96e74d324dbaded8674e8546a2c"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/llama/parts/leg-left.png",
+      "file": "apps/web/public/art/ai-village/llama/parts/leg-left.png",
+      "bytes": 61781,
+      "sha256": "244276cb98a7fed4d558fe8b861be9fff14719c53c305d93418ecf5bc61f4bcc"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/llama/parts/leg-right.png",
+      "file": "apps/web/public/art/ai-village/llama/parts/leg-right.png",
+      "bytes": 62034,
+      "sha256": "1729c2d487b0f46d097724850837d9cfa425c79061e73bf833cdae61712a7bb4"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/llama/parts/back-hair.png",
+      "file": "apps/web/public/art/ai-village/llama/parts/back-hair.png",
+      "bytes": 162939,
+      "sha256": "4a9dc513facd5f7b922facf007a4e58fed14daeb046b94c2bf97b35fa4b714ea"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/llama/parts/arm-left.png",
+      "file": "apps/web/public/art/ai-village/llama/parts/arm-left.png",
+      "bytes": 71817,
+      "sha256": "967adf98c3e66cc752a561ff5421d83efba6d6cb6fd4ef04bfd48f86eedfec8a"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/llama/parts/arm-right.png",
+      "file": "apps/web/public/art/ai-village/llama/parts/arm-right.png",
+      "bytes": 70438,
+      "sha256": "d2b00a1916c52eba9b2112a8e66d960a5aab218c2c06ba9c83a5129b6e14bc33"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/llama/parts/torso.png",
+      "file": "apps/web/public/art/ai-village/llama/parts/torso.png",
+      "bytes": 138210,
+      "sha256": "5d1bdefbebb45f8ac97219d896c2e959059bc2d1175b4d429c3bba09116a7ab8"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/llama/parts/face-neutral.png",
+      "file": "apps/web/public/art/ai-village/llama/parts/face-neutral.png",
+      "bytes": 157169,
+      "sha256": "d4e1c2e19b6886c4426df4f4b7ebcc9fa98cc09abb7a4138f51897bd233dc3ab"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/llama/parts/face-happy.png",
+      "file": "apps/web/public/art/ai-village/llama/parts/face-happy.png",
+      "bytes": 151916,
+      "sha256": "fd0b6c9fb5e217aef6a2eb0fb95cc6e988a0471f718dc4685b5045bb66816cfc"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/llama/parts/face-surprised.png",
+      "file": "apps/web/public/art/ai-village/llama/parts/face-surprised.png",
+      "bytes": 158761,
+      "sha256": "b365d714d20a964ee1c7d9cc89ada1e897d5bfa336810e672a0e36623bfb1c50"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/llama/parts/face-sleepy.png",
+      "file": "apps/web/public/art/ai-village/llama/parts/face-sleepy.png",
+      "bytes": 151100,
+      "sha256": "3a1df4c8a11dc1ff4819da9e15c48b35f2c0d914d442b44e6ee5f425e02ec212"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/llama/parts/ornament.png",
+      "file": "apps/web/public/art/ai-village/llama/parts/ornament.png",
+      "bytes": 75950,
+      "sha256": "03d64e5e6faa6d1219378f2db76d67e801cde4a1d3741a1cb4affe696772f615"
+    },
+    {
+      "source": "packages/ai-village/assets/portraits/llama.png",
+      "file": "apps/web/public/art/ai-village/portraits/llama.png",
+      "bytes": 19983,
+      "sha256": "b8db7042184bc54ab3da81d6a4b0d84f99b676d2e865a9b4c945d404ebabccdb"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/mistral/character.json",
+      "file": "apps/web/public/art/ai-village/mistral/character.json",
+      "bytes": 3361,
+      "sha256": "b3aa9f329bfdd62e6eec8c44b718e3e2f51e2d89f2d1b943453e82910916ad5c"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/mistral/manifest.json",
+      "file": "art/ai-village-chibi-v1/source-manifests/mistral.json",
+      "bytes": 12486,
+      "sha256": "a5aee641847f0c22e5d55a6cc38c34c832ac578996d6be4ac34868ca499864b3"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/mistral/parts/leg-left.png",
+      "file": "apps/web/public/art/ai-village/mistral/parts/leg-left.png",
+      "bytes": 73775,
+      "sha256": "ca8d15b18992d1af11b713d9b9efadd58b689840d2211f25296a20fb8517c720"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/mistral/parts/leg-right.png",
+      "file": "apps/web/public/art/ai-village/mistral/parts/leg-right.png",
+      "bytes": 71807,
+      "sha256": "562b0a8071f5eec1f9537808bea9bef08fff52b22fea1892016f78762f9d0c67"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/mistral/parts/back-hair.png",
+      "file": "apps/web/public/art/ai-village/mistral/parts/back-hair.png",
+      "bytes": 1515695,
+      "sha256": "6d208ca844d642bbad62fce3e402a47bcc264319c7ba55c9bbcf59facd9f204d"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/mistral/parts/arm-left.png",
+      "file": "apps/web/public/art/ai-village/mistral/parts/arm-left.png",
+      "bytes": 102059,
+      "sha256": "dc2b2d005e4b1ced4e5acdd6800a8f29da522708b8b34c8161b569cf2863b958"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/mistral/parts/arm-right.png",
+      "file": "apps/web/public/art/ai-village/mistral/parts/arm-right.png",
+      "bytes": 102276,
+      "sha256": "63b3de9a662da7b58445b940b23873d0c60a6b362de03a642b0f30d0f8afb371"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/mistral/parts/torso.png",
+      "file": "apps/web/public/art/ai-village/mistral/parts/torso.png",
+      "bytes": 213641,
+      "sha256": "767a5961ebec292242da95b24c7aa5e42c8df186b5b1c027e8748b85eff2a526"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/mistral/parts/face-neutral.png",
+      "file": "apps/web/public/art/ai-village/mistral/parts/face-neutral.png",
+      "bytes": 205898,
+      "sha256": "3fd48ffcbdafc8946edadcadd8642275441aba9ec3026fe7efc7564881e27110"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/mistral/parts/face-happy.png",
+      "file": "apps/web/public/art/ai-village/mistral/parts/face-happy.png",
+      "bytes": 205990,
+      "sha256": "cbad5b533d483172baa56bd973f2b7204ad6959c5cfe7ed1b61aca5f525f31cb"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/mistral/parts/face-surprised.png",
+      "file": "apps/web/public/art/ai-village/mistral/parts/face-surprised.png",
+      "bytes": 206438,
+      "sha256": "3db39f87d27e0d14322ed6d2a0178a0a1d8773abb12c5de4fceebcea0f9919fb"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/mistral/parts/face-sleepy.png",
+      "file": "apps/web/public/art/ai-village/mistral/parts/face-sleepy.png",
+      "bytes": 201332,
+      "sha256": "a5c51e21e5e21cbba1632b38d4042640811fde5b6283a31f2a32e25f6a263241"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/mistral/parts/ornament.png",
+      "file": "apps/web/public/art/ai-village/mistral/parts/ornament.png",
+      "bytes": 77057,
+      "sha256": "90f797e0a791f55aa0e08cb930dda168c7925e3da452efd6c51c014ed0a2d411"
+    },
+    {
+      "source": "packages/ai-village/assets/portraits/mistral.png",
+      "file": "apps/web/public/art/ai-village/portraits/mistral.png",
+      "bytes": 26803,
+      "sha256": "a6f67e90cafb26a70590229e4ce6fc8c44b18ee0d54d13170028bf6ba94a08cb"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gpt/character.json",
+      "file": "apps/web/public/art/ai-village/gpt/character.json",
+      "bytes": 3357,
+      "sha256": "622f0a838f0e03b240991468661e59e15f2a3ac22be93a99a3649f0176d42409"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gpt/manifest.json",
+      "file": "art/ai-village-chibi-v1/source-manifests/gpt.json",
+      "bytes": 7625,
+      "sha256": "6c1bd77b65d995e3f54819cf6bdccafc9be7fc9d21acbb4ddc8e501128c2b49e"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gpt/parts/leg-left.png",
+      "file": "apps/web/public/art/ai-village/gpt/parts/leg-left.png",
+      "bytes": 55905,
+      "sha256": "1bfc2e990361cdb2ab38b080f30dd3d7c713b574609135387a01df120fadc337"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gpt/parts/leg-right.png",
+      "file": "apps/web/public/art/ai-village/gpt/parts/leg-right.png",
+      "bytes": 53800,
+      "sha256": "9f4cfb4f1a49f917e46c0d7050de59e7d242cc21f1c0f47c53adc9b1a66f6735"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gpt/parts/back-hair.png",
+      "file": "apps/web/public/art/ai-village/gpt/parts/back-hair.png",
+      "bytes": 195529,
+      "sha256": "d7e3d0d0fe99596aa3b5107e4cd056ccb88c88ecd76540f6f0a37a55ad014061"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gpt/parts/arm-right.png",
+      "file": "apps/web/public/art/ai-village/gpt/parts/arm-right.png",
+      "bytes": 97581,
+      "sha256": "1bdfddb6b1d6cd68dcdbd291a914c3d32725f8dc2088f4ef72b1911dcf66cbaa"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gpt/parts/arm-left.png",
+      "file": "apps/web/public/art/ai-village/gpt/parts/arm-left.png",
+      "bytes": 92792,
+      "sha256": "10152d19d4cc3ce43675b5294d25757e8b0cd624a35278dea0d452bdfa70c3d7"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gpt/parts/torso.png",
+      "file": "apps/web/public/art/ai-village/gpt/parts/torso.png",
+      "bytes": 151110,
+      "sha256": "525458cfb737f5f8a3536175d560abc1e706d849761bdd96ceeafc5cc9bd859b"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gpt/parts/face-neutral.png",
+      "file": "apps/web/public/art/ai-village/gpt/parts/face-neutral.png",
+      "bytes": 188224,
+      "sha256": "03f8d3daf770a651a9a2a03077388141b73213bbdfcbf34436c37d93049eecb0"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gpt/parts/face-happy.png",
+      "file": "apps/web/public/art/ai-village/gpt/parts/face-happy.png",
+      "bytes": 185963,
+      "sha256": "9a56e2b3278f530e5fc82182c917e358158a12f4e4254f8ef250c2a79ea4c97f"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gpt/parts/face-surprised.png",
+      "file": "apps/web/public/art/ai-village/gpt/parts/face-surprised.png",
+      "bytes": 186297,
+      "sha256": "011378928d2acd6ce1b06a09c8b75b64f66f125901ba1055724d538ddd8b2523"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gpt/parts/face-sleepy.png",
+      "file": "apps/web/public/art/ai-village/gpt/parts/face-sleepy.png",
+      "bytes": 178124,
+      "sha256": "77f67046559a8716bb0aa4eb4d8935cec2dd6c523563c4b778a2d438087fff46"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gpt/parts/ornament.png",
+      "file": "apps/web/public/art/ai-village/gpt/parts/ornament.png",
+      "bytes": 101967,
+      "sha256": "ff87c0434138a7ecb115a5b50701b9c1b9741979190b13249a6c82fb43b2e82e"
+    },
+    {
+      "source": "packages/ai-village/assets/portraits/gpt.png",
+      "file": "apps/web/public/art/ai-village/portraits/gpt.png",
+      "bytes": 30371,
+      "sha256": "1adf1bf17fbb0d4d8faadabeb1e34b2b380d2fbcb1b7895a32f1ef7c421a4476"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/claude/character.json",
+      "file": "apps/web/public/art/ai-village/claude/character.json",
+      "bytes": 3359,
+      "sha256": "10b87e85cd4f5190fd740eb6ca3426dccfdbe04bc7cd14d4687593cb86ccfce8"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/claude/manifest.json",
+      "file": "art/ai-village-chibi-v1/source-manifests/claude.json",
+      "bytes": 7676,
+      "sha256": "f83e0d1e326efe2e5a6a5875fa0e02c2e57cdd1f710a2cde8e04818a1bf821f0"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/claude/parts/leg-left.png",
+      "file": "apps/web/public/art/ai-village/claude/parts/leg-left.png",
+      "bytes": 65890,
+      "sha256": "cbbd1465135f34dd470fd00875c3234f31eb2e24fd125c4f5a00de92f0410f17"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/claude/parts/leg-right.png",
+      "file": "apps/web/public/art/ai-village/claude/parts/leg-right.png",
+      "bytes": 65974,
+      "sha256": "22678d983c4e05ea9d968254c7afe3117dd47c98c7ca41cb438151872f05d3d3"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/claude/parts/back-hair.png",
+      "file": "apps/web/public/art/ai-village/claude/parts/back-hair.png",
+      "bytes": 228464,
+      "sha256": "117e75a0c0eb3c59c3629c1a064c002ff4ba4a7ef71018c449735e1b94b953ce"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/claude/parts/arm-left.png",
+      "file": "apps/web/public/art/ai-village/claude/parts/arm-left.png",
+      "bytes": 89414,
+      "sha256": "d0f55b58c3197b704078677b9715400d7945006715f0af6c604fc239b87dc5de"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/claude/parts/arm-right.png",
+      "file": "apps/web/public/art/ai-village/claude/parts/arm-right.png",
+      "bytes": 91211,
+      "sha256": "d23df1b6af757eb17a7e2bdbd37d8b12105bf3660d276846bf9d2f60e2486c1b"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/claude/parts/torso.png",
+      "file": "apps/web/public/art/ai-village/claude/parts/torso.png",
+      "bytes": 177840,
+      "sha256": "d6c26a58c188f61f06c04ccceddfc75ade22c58c0d7b06a5d686ed214a47ee1a"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/claude/parts/face-neutral.png",
+      "file": "apps/web/public/art/ai-village/claude/parts/face-neutral.png",
+      "bytes": 167783,
+      "sha256": "14ea0154b43c496c1f93c373f9ab650598d6d5c1a9b9ef2c364094072cb0b7a1"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/claude/parts/face-happy.png",
+      "file": "apps/web/public/art/ai-village/claude/parts/face-happy.png",
+      "bytes": 168953,
+      "sha256": "3da0845f98cca118a09a6493685f3dcf738172edae447ea9bfa5c53a2a456742"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/claude/parts/face-surprised.png",
+      "file": "apps/web/public/art/ai-village/claude/parts/face-surprised.png",
+      "bytes": 168235,
+      "sha256": "e5a871de08d8d905e200e19a8fa9c746ec98658a825c118d8b2d3cddffe7d206"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/claude/parts/face-sleepy.png",
+      "file": "apps/web/public/art/ai-village/claude/parts/face-sleepy.png",
+      "bytes": 163070,
+      "sha256": "895436d0044cc643c15fe752c79a43bdca5036fdc0c3c0cc2ddf8bcc8e118f14"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/claude/parts/ornament.png",
+      "file": "apps/web/public/art/ai-village/claude/parts/ornament.png",
+      "bytes": 102812,
+      "sha256": "2eaa618a56933cd64328284c7751e566e9ba364075502acdea4a786310126332"
+    },
+    {
+      "source": "packages/ai-village/assets/portraits/claude.png",
+      "file": "apps/web/public/art/ai-village/portraits/claude.png",
+      "bytes": 35565,
+      "sha256": "2613cb3d3cd03b4d53ff0c86b93afb3a3df677b04915ff0472f4220de14cacbd"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/kimi/character.json",
+      "file": "apps/web/public/art/ai-village/kimi/character.json",
+      "bytes": 3357,
+      "sha256": "a6d5fd002f30be5aaf9fd52a823d86cfb2976ed3c88701c01a0ac8de9149bbd8"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/kimi/manifest.json",
+      "file": "art/ai-village-chibi-v1/source-manifests/kimi.json",
+      "bytes": 7655,
+      "sha256": "ca10f6079c1ed08378a04349ea4a5ac02db9e49f3981df4dd61b7e1148a53f7e"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/kimi/parts/leg-left.png",
+      "file": "apps/web/public/art/ai-village/kimi/parts/leg-left.png",
+      "bytes": 59798,
+      "sha256": "33449d9c6469d6472609f0f491091b35e44a0bbd22f3f2d626f01ceff12a0b34"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/kimi/parts/leg-right.png",
+      "file": "apps/web/public/art/ai-village/kimi/parts/leg-right.png",
+      "bytes": 59247,
+      "sha256": "16220dc31128a235c7f3757661230b327fd1c173a7597de64d9eddac1a53b836"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/kimi/parts/back-hair.png",
+      "file": "apps/web/public/art/ai-village/kimi/parts/back-hair.png",
+      "bytes": 225147,
+      "sha256": "7417ed3767435ed07e3f514a6137f6a2548240d5e7d66bea0d444d6224971537"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/kimi/parts/arm-left.png",
+      "file": "apps/web/public/art/ai-village/kimi/parts/arm-left.png",
+      "bytes": 92147,
+      "sha256": "6f1f427461551f87e0357bb32376ea6c2a02ab7886a1556d233d72e66b88dce9"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/kimi/parts/arm-right.png",
+      "file": "apps/web/public/art/ai-village/kimi/parts/arm-right.png",
+      "bytes": 91620,
+      "sha256": "645bb84bc05f097de751577a5f3f0f75c9191bd99acf3d90d4e2ff0ad85edb0b"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/kimi/parts/torso.png",
+      "file": "apps/web/public/art/ai-village/kimi/parts/torso.png",
+      "bytes": 199477,
+      "sha256": "54a20566f91494b5b4aaba89d78caf720ec95d36dca9a9eae8a036213fe973c4"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/kimi/parts/face-neutral.png",
+      "file": "apps/web/public/art/ai-village/kimi/parts/face-neutral.png",
+      "bytes": 200348,
+      "sha256": "7ffe17f67c384f6ee74cf8a5bc6da409d55870404bf96a44b25ae7a7d6bd8a73"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/kimi/parts/face-happy.png",
+      "file": "apps/web/public/art/ai-village/kimi/parts/face-happy.png",
+      "bytes": 198689,
+      "sha256": "5655a709d9c9899e54bbdd7bbd60214ef873434c5027ab22bacd2238dd2f4ef4"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/kimi/parts/face-surprised.png",
+      "file": "apps/web/public/art/ai-village/kimi/parts/face-surprised.png",
+      "bytes": 197258,
+      "sha256": "819c650d292f756e1b7dc36cddc92d619fa680c94f18650ecef180fa617c73a7"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/kimi/parts/face-sleepy.png",
+      "file": "apps/web/public/art/ai-village/kimi/parts/face-sleepy.png",
+      "bytes": 190679,
+      "sha256": "d0bc1a4cac39a3a349588e22f8683956ed60befeb38424418d7d0961b2442a56"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/kimi/parts/ornament.png",
+      "file": "apps/web/public/art/ai-village/kimi/parts/ornament.png",
+      "bytes": 108195,
+      "sha256": "00ce390521fe2a53ae956f3509d485172343fc1ddf8ac9dad0ea7b2261fe679b"
+    },
+    {
+      "source": "packages/ai-village/assets/portraits/kimi.png",
+      "file": "apps/web/public/art/ai-village/portraits/kimi.png",
+      "bytes": 34874,
+      "sha256": "1e49a295539b96499cf8df90df5c2c95b248395e23158a763483d2c18c1f85f4"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gemini/character.json",
+      "file": "apps/web/public/art/ai-village/gemini/character.json",
+      "bytes": 3360,
+      "sha256": "8816dd3317310b198caf10a15796e5bc917e6a1025d98e87508fd4f9e42f3541"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gemini/manifest.json",
+      "file": "art/ai-village-chibi-v1/source-manifests/gemini.json",
+      "bytes": 7677,
+      "sha256": "79a4616b3d3c1215f7968af34f7e34d7f2d295ccc94224e31970768ffdec56e0"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gemini/parts/leg-left.png",
+      "file": "apps/web/public/art/ai-village/gemini/parts/leg-left.png",
+      "bytes": 83659,
+      "sha256": "ff260e9d3d4a1c7bba6ef0ca9d38aa61ef1973fc70d7d1e4d4bf754a5db8b2bf"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gemini/parts/leg-right.png",
+      "file": "apps/web/public/art/ai-village/gemini/parts/leg-right.png",
+      "bytes": 78921,
+      "sha256": "278fb0ec569397ccd9d5c0b86e1a7ba836e18c730a8dd8f3e71de724625b1a21"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gemini/parts/back-hair.png",
+      "file": "apps/web/public/art/ai-village/gemini/parts/back-hair.png",
+      "bytes": 215685,
+      "sha256": "3938573142575308e809d34cae95e6dcf96db4de2bf23301658eec2bed7b0eab"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gemini/parts/arm-left.png",
+      "file": "apps/web/public/art/ai-village/gemini/parts/arm-left.png",
+      "bytes": 87025,
+      "sha256": "db5f30d3dc0edc6321172527abdc360986d7e2c9a6b521c91e57e954c80f3dc0"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gemini/parts/arm-right.png",
+      "file": "apps/web/public/art/ai-village/gemini/parts/arm-right.png",
+      "bytes": 95541,
+      "sha256": "d2921cfc6deac13e2a3bcdd464bedeb791eef9a26506741f40cefd369a068121"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gemini/parts/torso.png",
+      "file": "apps/web/public/art/ai-village/gemini/parts/torso.png",
+      "bytes": 180407,
+      "sha256": "9c729b12b1b5c424700d378a74f11e2e5a78b944b0dab4be96450ef4899d66ce"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gemini/parts/face-neutral.png",
+      "file": "apps/web/public/art/ai-village/gemini/parts/face-neutral.png",
+      "bytes": 192282,
+      "sha256": "740be4fd45b1657535bb500100950fab75f7aea42e5bb5b6d58358369ccd4f93"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gemini/parts/face-happy.png",
+      "file": "apps/web/public/art/ai-village/gemini/parts/face-happy.png",
+      "bytes": 191400,
+      "sha256": "b4985256f9d571dcf9072c4a7094db841712adf5da099eb5426ec78faa9695d2"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gemini/parts/face-surprised.png",
+      "file": "apps/web/public/art/ai-village/gemini/parts/face-surprised.png",
+      "bytes": 192355,
+      "sha256": "3f45598b0ef1a6da0cb14e8cc53626bdbbfcd3d1c5fe51a92def5a411b599e77"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gemini/parts/face-sleepy.png",
+      "file": "apps/web/public/art/ai-village/gemini/parts/face-sleepy.png",
+      "bytes": 184815,
+      "sha256": "9ac6759602a3028a7d02357e06813d2b55c38488dde7ba277bee9a01aa376f00"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/gemini/parts/ornament.png",
+      "file": "apps/web/public/art/ai-village/gemini/parts/ornament.png",
+      "bytes": 93972,
+      "sha256": "e144319dbd33f9f2d9ea1faebd8ad004413515229942f4d84e2691476a7d3ee1"
+    },
+    {
+      "source": "packages/ai-village/assets/portraits/gemini.png",
+      "file": "apps/web/public/art/ai-village/portraits/gemini.png",
+      "bytes": 35272,
+      "sha256": "d25b5b368bd7161e625742545e1d1ee3824c71d9c914157576f5d4b7ac5f8cc3"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/grok/character.json",
+      "file": "apps/web/public/art/ai-village/grok/character.json",
+      "bytes": 3357,
+      "sha256": "3ab96899a5e82b78cf8d1dbeaca9ee0b4fdd8de06ae2c2b76dba8608b7cb58ef"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/grok/manifest.json",
+      "file": "art/ai-village-chibi-v1/source-manifests/grok.json",
+      "bytes": 7644,
+      "sha256": "19e934cd5a5fb7d59eaa887d2ba1e890e378594b79a6dde609f7467a0238c144"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/grok/parts/leg-left.png",
+      "file": "apps/web/public/art/ai-village/grok/parts/leg-left.png",
+      "bytes": 58127,
+      "sha256": "d4e0e2668c578e722b3a08b092375e2c5a3c9d0da0e08ae0e5fc82270e4e3c87"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/grok/parts/leg-right.png",
+      "file": "apps/web/public/art/ai-village/grok/parts/leg-right.png",
+      "bytes": 55169,
+      "sha256": "85f2bb24b4baf6c5b85613c946a19ce4231911e8a3b37a0fb673b01906be58a9"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/grok/parts/back-hair.png",
+      "file": "apps/web/public/art/ai-village/grok/parts/back-hair.png",
+      "bytes": 234096,
+      "sha256": "93c312817c52138a025a62b72a8a041de1413620eeedec942ec22c8aa6517325"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/grok/parts/arm-left.png",
+      "file": "apps/web/public/art/ai-village/grok/parts/arm-left.png",
+      "bytes": 85531,
+      "sha256": "8b766c3cf9f04cf232c82c2ff9815286087538f448463034744010bae8e4c547"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/grok/parts/arm-right.png",
+      "file": "apps/web/public/art/ai-village/grok/parts/arm-right.png",
+      "bytes": 88550,
+      "sha256": "bbcec0602a75c26e78968311f27cf0f2a896328bf3847d5ee5ff53d9d6a5544e"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/grok/parts/torso.png",
+      "file": "apps/web/public/art/ai-village/grok/parts/torso.png",
+      "bytes": 157743,
+      "sha256": "c43cb8432e09f9ab15508cdbbb68115baa5bc9788d79f709294cfbd711854fc2"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/grok/parts/face-neutral.png",
+      "file": "apps/web/public/art/ai-village/grok/parts/face-neutral.png",
+      "bytes": 190144,
+      "sha256": "cc283b7b3d498cc71c005566d33828a804056f3ddf218d04367c0e0ed44062a9"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/grok/parts/face-happy.png",
+      "file": "apps/web/public/art/ai-village/grok/parts/face-happy.png",
+      "bytes": 192394,
+      "sha256": "50fc8e6263a758421a45b227b8fd4de7e019f3c45182d0bc9ded654fde28cf1b"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/grok/parts/face-surprised.png",
+      "file": "apps/web/public/art/ai-village/grok/parts/face-surprised.png",
+      "bytes": 192179,
+      "sha256": "b4bb1c39f026f6aa274279aa5be0cc0d53791a1fc908b40d3dc3d4447c5a0ff2"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/grok/parts/face-sleepy.png",
+      "file": "apps/web/public/art/ai-village/grok/parts/face-sleepy.png",
+      "bytes": 185064,
+      "sha256": "c7b339c7047846b8eac058acefea371201f8bdbeafe1db7d4d937231f20f343e"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/grok/parts/ornament.png",
+      "file": "apps/web/public/art/ai-village/grok/parts/ornament.png",
+      "bytes": 41429,
+      "sha256": "8cda4a71c67683eea68f9ebeab3829da19ba570d934d70fc46eaa8c7a275c133"
+    },
+    {
+      "source": "packages/ai-village/assets/portraits/grok.png",
+      "file": "apps/web/public/art/ai-village/portraits/grok.png",
+      "bytes": 32838,
+      "sha256": "d857f4d75b5da717608f31fe3409f4d4f59df837fd25427bf2b4bc608ae74f67"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/glm/character.json",
+      "file": "apps/web/public/art/ai-village/glm/character.json",
+      "bytes": 3357,
+      "sha256": "4c0c7db96ba69e723f99926509fb86719fab71f9d5793b8477234c0e9d923e6b"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/glm/manifest.json",
+      "file": "art/ai-village-chibi-v1/source-manifests/glm.json",
+      "bytes": 12351,
+      "sha256": "615b0003c63da8305d09a9558907ad4c3d040f67526850711540bf59c1d880ed"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/glm/parts/leg-left.png",
+      "file": "apps/web/public/art/ai-village/glm/parts/leg-left.png",
+      "bytes": 83909,
+      "sha256": "b45f9d95be078ffce054b6925c2272b5e65712a6721ed45f80fc329762f03d28"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/glm/parts/leg-right.png",
+      "file": "apps/web/public/art/ai-village/glm/parts/leg-right.png",
+      "bytes": 79687,
+      "sha256": "262997fca00da5e320321cfb61f2048435c2e21808cc36addc67d68652046562"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/glm/parts/back-hair.png",
+      "file": "apps/web/public/art/ai-village/glm/parts/back-hair.png",
+      "bytes": 1331705,
+      "sha256": "1dbfd247a575191c9124424562169418a5d006189f631b8e4f5c6603aaafada5"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/glm/parts/arm-left.png",
+      "file": "apps/web/public/art/ai-village/glm/parts/arm-left.png",
+      "bytes": 93857,
+      "sha256": "70854bf1bd968494955ad8439ee361d32af34a130c200c58325cdfedbf518d56"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/glm/parts/arm-right.png",
+      "file": "apps/web/public/art/ai-village/glm/parts/arm-right.png",
+      "bytes": 103907,
+      "sha256": "16c03834a5ca3643a37528a184a2b0e6dbc7daba8af8a98881d4dd1503db9efb"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/glm/parts/torso.png",
+      "file": "apps/web/public/art/ai-village/glm/parts/torso.png",
+      "bytes": 181705,
+      "sha256": "e38dcfc974499e888a5fceb77cda5235b019f71a95229c2a62a5209f26276be9"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/glm/parts/face-neutral.png",
+      "file": "apps/web/public/art/ai-village/glm/parts/face-neutral.png",
+      "bytes": 192589,
+      "sha256": "7ccc79a4c7437903f9eae45631adb25f2dd7b4846e17ffa322ce668c84443a38"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/glm/parts/face-happy.png",
+      "file": "apps/web/public/art/ai-village/glm/parts/face-happy.png",
+      "bytes": 197298,
+      "sha256": "fe16ad224df7ea9875c3a1c1d91455b3f1a8bae6caa700bcce03fa2a81bcf814"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/glm/parts/face-surprised.png",
+      "file": "apps/web/public/art/ai-village/glm/parts/face-surprised.png",
+      "bytes": 194122,
+      "sha256": "ed7a52f8ee4fcead61f06022492021c80b78bafdcff01c12c8f235c0389d9e28"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/glm/parts/face-sleepy.png",
+      "file": "apps/web/public/art/ai-village/glm/parts/face-sleepy.png",
+      "bytes": 191661,
+      "sha256": "668a3a9f93940732549e8600a90d36e42cdd9533aba7e3f5c1371fd7fb0d7ad0"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/glm/parts/ornament.png",
+      "file": "apps/web/public/art/ai-village/glm/parts/ornament.png",
+      "bytes": 117385,
+      "sha256": "c6a08727ae0992bad2cd0dc430ec83a8853b39320d406e8dcde64825b4b086bd"
+    },
+    {
+      "source": "packages/ai-village/assets/portraits/glm.png",
+      "file": "apps/web/public/art/ai-village/portraits/glm.png",
+      "bytes": 24467,
+      "sha256": "82933b1fdba34ebb96f71292a5ce56a158f928cab38ce8dafccecaed054d83ee"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/minimax/character.json",
+      "file": "apps/web/public/art/ai-village/minimax/character.json",
+      "bytes": 3361,
+      "sha256": "d6292aa8921516da06f6f4a2bbfb900442eba346266b618a2fa577c62e24c478"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/minimax/manifest.json",
+      "file": "art/ai-village-chibi-v1/source-manifests/minimax.json",
+      "bytes": 12410,
+      "sha256": "b9b42dc054b0ab139f8a977e63f326734ff489e3596010b50d2a3e68e1f11cf1"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/minimax/parts/leg-left.png",
+      "file": "apps/web/public/art/ai-village/minimax/parts/leg-left.png",
+      "bytes": 68663,
+      "sha256": "a6b2cf200d1608a9ec0bfbe886b28985335986db1fc7d50f089e110c66550f53"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/minimax/parts/leg-right.png",
+      "file": "apps/web/public/art/ai-village/minimax/parts/leg-right.png",
+      "bytes": 68472,
+      "sha256": "2ce2673577915de6ab202c61c0f78527ed0e9aa74ccc2042b213df0aa961e448"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/minimax/parts/back-hair.png",
+      "file": "apps/web/public/art/ai-village/minimax/parts/back-hair.png",
+      "bytes": 238520,
+      "sha256": "80c839aeb3d01b256e67a6a08bb22b817f6fcc982b20943dd0e068a3363b4444"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/minimax/parts/arm-left.png",
+      "file": "apps/web/public/art/ai-village/minimax/parts/arm-left.png",
+      "bytes": 93891,
+      "sha256": "9ff58a70c0cf99e6f91d15b6fab65cf30fcdc7f4fcff81b0e3be874af9de1ace"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/minimax/parts/arm-right.png",
+      "file": "apps/web/public/art/ai-village/minimax/parts/arm-right.png",
+      "bytes": 94259,
+      "sha256": "c1eb4c3b6e29b4caf0c32c46847043dd816efec4c0bf7ada68b9c85c0039f6a4"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/minimax/parts/torso.png",
+      "file": "apps/web/public/art/ai-village/minimax/parts/torso.png",
+      "bytes": 189850,
+      "sha256": "41da6f36984f6b17262ad442d0381cce0c738562aacbb8f42e7f9aff878cc62a"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/minimax/parts/face-neutral.png",
+      "file": "apps/web/public/art/ai-village/minimax/parts/face-neutral.png",
+      "bytes": 210517,
+      "sha256": "52a7f16c951d10c072e5e0d5687cec5d1b80c4e489496095339c8f75b8a52dae"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/minimax/parts/face-happy.png",
+      "file": "apps/web/public/art/ai-village/minimax/parts/face-happy.png",
+      "bytes": 211854,
+      "sha256": "be5465114ef5bfa74bd7c76b8b1d94a6331b2764fe86144970b0dcb30ac15725"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/minimax/parts/face-surprised.png",
+      "file": "apps/web/public/art/ai-village/minimax/parts/face-surprised.png",
+      "bytes": 209732,
+      "sha256": "37a7fa75d4b92493df9476822ce4c5476fb9413f9620fb68ebfde9868b538aca"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/minimax/parts/face-sleepy.png",
+      "file": "apps/web/public/art/ai-village/minimax/parts/face-sleepy.png",
+      "bytes": 203762,
+      "sha256": "50b71f6f17bf667132e9ccdb2fd235e2ab791246e0de42afac6b18b7fb0d75b1"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/minimax/parts/ornament.png",
+      "file": "apps/web/public/art/ai-village/minimax/parts/ornament.png",
+      "bytes": 132496,
+      "sha256": "5641ea94a8e3ac00a405712e0c8b44f6fb78ea58d3d1bc6b6e92563f762f7f7e"
+    },
+    {
+      "source": "packages/ai-village/assets/portraits/minimax.png",
+      "file": "apps/web/public/art/ai-village/portraits/minimax.png",
+      "bytes": 22338,
+      "sha256": "cdc183bc666110e534ce1c2736fc89df2041015fd54c7745310d1e7e952d68f3"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/seedance/character.json",
+      "file": "apps/web/public/art/ai-village/seedance/character.json",
+      "bytes": 3362,
+      "sha256": "aff93dfe3f8bfd9f6c19fa7a3a9be7f74f28df80330f07d65b4ed9175d6ad96b"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/seedance/manifest.json",
+      "file": "art/ai-village-chibi-v1/source-manifests/seedance.json",
+      "bytes": 12445,
+      "sha256": "b9bbabc41b3240b2cb6ce1fa2a0eb2026544bd2088dbc1bad788f9800a75fbd4"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/seedance/parts/leg-left.png",
+      "file": "apps/web/public/art/ai-village/seedance/parts/leg-left.png",
+      "bytes": 58821,
+      "sha256": "e90e8182315c3228427ceddba303f80d7861082aa7a54b56b0bc51f7a393e0d2"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/seedance/parts/leg-right.png",
+      "file": "apps/web/public/art/ai-village/seedance/parts/leg-right.png",
+      "bytes": 59891,
+      "sha256": "07219150fa4ca6082140d0e8c64d4597c1ba37f3884be67932f7a31e44eb76fd"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/seedance/parts/back-hair.png",
+      "file": "apps/web/public/art/ai-village/seedance/parts/back-hair.png",
+      "bytes": 190016,
+      "sha256": "7e539512c85544b8378cf515de5d82f6ba5dfd3502ced7f0d6eb3b0dabe4db87"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/seedance/parts/arm-left.png",
+      "file": "apps/web/public/art/ai-village/seedance/parts/arm-left.png",
+      "bytes": 75429,
+      "sha256": "2584968ff3b8da57f958f0cc88f2b2327b5c74b5eba51f6eff0cba1fef659fb7"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/seedance/parts/arm-right.png",
+      "file": "apps/web/public/art/ai-village/seedance/parts/arm-right.png",
+      "bytes": 76585,
+      "sha256": "881bbf192fe7c25dbf696ba46960d7b5d6624f4f71af7534e41e3914a729e820"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/seedance/parts/torso.png",
+      "file": "apps/web/public/art/ai-village/seedance/parts/torso.png",
+      "bytes": 127812,
+      "sha256": "89d8e180869ab5ce7c7f708785a625352eadb30ef1a99b56481ebe4017707bb6"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/seedance/parts/face-neutral.png",
+      "file": "apps/web/public/art/ai-village/seedance/parts/face-neutral.png",
+      "bytes": 144369,
+      "sha256": "24c6053ebb53433f26b8a237e7cf95b8179027f0d87fcd19b4ee594027bce47d"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/seedance/parts/face-happy.png",
+      "file": "apps/web/public/art/ai-village/seedance/parts/face-happy.png",
+      "bytes": 146497,
+      "sha256": "db29d2f741812d30479b9f21e8d2cddb4e7f53167eae5e0d2c471b129000b073"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/seedance/parts/face-surprised.png",
+      "file": "apps/web/public/art/ai-village/seedance/parts/face-surprised.png",
+      "bytes": 146392,
+      "sha256": "b9167464ad468c40658fdfc5faeffc366b91a660f184954ef395cdcbc38ff763"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/seedance/parts/face-sleepy.png",
+      "file": "apps/web/public/art/ai-village/seedance/parts/face-sleepy.png",
+      "bytes": 143161,
+      "sha256": "344eea976c22ae5e2e9688a9870121da758364902d1b19088057b71d096b29b9"
+    },
+    {
+      "source": "packages/ai-village/assets/characters/seedance/parts/ornament.png",
+      "file": "apps/web/public/art/ai-village/seedance/parts/ornament.png",
+      "bytes": 93818,
+      "sha256": "9f7bdab3e60666bc7fe3ad9b004f46427328b99be327eb0f9483a4daf0cd4452"
+    },
+    {
+      "source": "packages/ai-village/assets/portraits/seedance.png",
+      "file": "apps/web/public/art/ai-village/portraits/seedance.png",
+      "bytes": 22108,
+      "sha256": "00c38bd5a80b7c2d0b8a80f5ed45ff89f5568cf3d5404dca26890034015939fd"
+    },
+    {
+      "source": "packages/ai-village/LICENSE",
+      "file": "apps/web/public/art/ai-village/LICENSE.txt",
+      "bytes": 1091,
+      "sha256": "a0e65e0111e605bf1187ab4191b2160e405b7a1fbce76e2309e20c4b8423732b"
+    },
+    {
+      "source": "packages/ai-village/assets/portraits/manifest.json",
+      "file": "art/ai-village-chibi-v1/source-portraits-manifest.json",
+      "bytes": 2399,
+      "sha256": "9eebeef7b70e6186c053b30031ab46f5895533f4a3e89ab60ada279365c6f299"
+    }
+  ]
+}

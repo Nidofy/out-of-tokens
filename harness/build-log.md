@@ -94,3 +94,7 @@ Review integration checkpoint: d5f21bb7bb378aa71bdb76c03f312a9099406171; check v
 归档Sonnet后最终复查check-final-v2.log：25文件138测试及构建通过，退出0；git diff --check退出0，旧v1保留。
 
 UI美术本地代码检查点5b7e5effbe7fe2d3ee4f001dc08cf41a25590287，随后仅记录。新包13753442字节，SHA256 aedf51e9192dcc240dd7291153ab5404db3e377279a6287c24349fce78fdfdcd；manifest972+自身1，解压复验及入口运行通过。统一审查/集成/持续开发Prompt已就位。下一项本UI新SHA复审和UI-OFFLINE-01，M05-03/真人/真实DSH保持开放。
+
+2026-11-07角色修订：按用户要求直接采用AI Village原版12人Q版纸娃娃/头像，原服饰与身份保留；之前12张新设计角色退役归档。来源f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352、部件hash/许可证记录完整；engine0.11.0/contentm5-1不变。验收见VILLAGE_CHIBI_ACCEPTANCE。下一轮仅由Gemini统一审核。
+
+Q角色最终check-final-v1：25/138及构建退出0；asset-verification-v1：179hash一致、166运行时文件全部预缓存；IAB离线刷新推进与原角色拼装通过；git diff --check退出0。当前自然初始四人实看，不夸大为12人同屏性能验收。

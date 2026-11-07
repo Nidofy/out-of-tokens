@@ -1,1 +1,6 @@
 * text=auto eol=lf
+
+# Preserve byte-exact imported AI Village assets and upstream audit manifests.
+apps/web/public/art/ai-village/** -text
+art/ai-village-chibi-v1/source-manifests/** -text
+art/ai-village-chibi-v1/source-portraits-manifest.json -text

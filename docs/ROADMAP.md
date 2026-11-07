@@ -1,5 +1,7 @@
 # 任务台账
 
+2026-11-07角色修订：按用户要求直接采用AI Village原版12人Q版纸娃娃/头像，原服饰与身份保留；之前12张新设计角色退役归档。来源f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352、部件hash/许可证记录完整；engine0.11.0/contentm5-1不变。验收见VILLAGE_CHIBI_ACCEPTANCE。下一轮仅由Gemini统一审核。
+
 最新固定UI美术源码 5b7e5effbe7fe2d3ee4f001dc08cf41a25590287；三份9e48510报告已全部集成归档，25/138通过。新包out-of-tokens-5b7e5ef.zip已独立解压复验972+1文件。统一Prompt入口harness/reviews/ui-art-handoff.md；下一任务本UI复审/UI-OFFLINE-01及既有经营/许可/真实宿主待办。此后仅记录提交，旧历史段按时间阅读。
 
 2026-11-07 UI/美术检查点：已完成场景优先HUD/四入口抽屉、7场景、12角色/版本配饰、8远征结局插图、双语/深色/减少动态和离线资产。最终 pnpm check 25文件138测试及生产构建通过（harness/ui-art/check-final-v2.log）。审查来源与遗留见REVIEW_M5_INTEGRATION，界面范围与证据见UI_ART_ACCEPTANCE。下一任务固定新SHA打包/复审；M05-03、人测0/10、真实DSH、P3许可证正文与自然结局可达性保持开放。

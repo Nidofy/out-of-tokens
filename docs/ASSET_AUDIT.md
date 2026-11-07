@@ -18,3 +18,5 @@ M1纸娃娃程序复用：邻库dsh_plugin完整SHA f4c2ac633d5ad5e9ee0f7c2cd66b
 M3工程依赖许可：DSH atomic-write 0.2.1-rc.2的原始JS/声明文件与MIT许可证复制至apps/dsh/src/vendor；来源、哈希和离线安装失败说明见同目录PROVENANCE.md。该运行时来自邻库生成的.build/official-runtime，不冒充邻库Git HEAD内容。分发保留原许可证；M2/M3十二角色ID已与小院roster逐项核对，无新外部图片/音频复制。
 
 2026-11-07 Studio v1：内置imagegen原创新图9张母版→27张运行时WebP（7场景+12人+8剧情卡）。母版/生成ID/SHA见art/studio-v1/manifest.json，prompt规格/导出步骤见同目录PROMPTS.md。未复制相邻AI Village的美术；只参考UI组织形式。已有MIT PaperDoll代码许可证保留。生成图不冒称MIT第三方资产；桌面Rust18包许可证正文缺口另列REVIEW_M5_INTEGRATION/GEM-06。
+
+2026-11-07角色修订：按用户要求直接采用AI Village原版12人Q版纸娃娃/头像，原服饰与身份保留；之前12张新设计角色退役归档。来源f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352、部件hash/许可证记录完整；engine0.11.0/contentm5-1不变。验收见VILLAGE_CHIBI_ACCEPTANCE。下一轮仅由Gemini统一审核。
