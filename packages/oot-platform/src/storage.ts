@@ -31,6 +31,8 @@ export class BrowserSaves {
                 return;
             } request.result.onversionchange = () => request.result.close(); resolve(request.result); };
         });
+        // Observe immediate failure before a UI effect attaches; preserve rejection for callers.
+        void this.db.catch(() => {});
     }
     async read(id: SaveSlot): Promise<StoredSave | null> {
         if (!saveSlots.includes(id))
