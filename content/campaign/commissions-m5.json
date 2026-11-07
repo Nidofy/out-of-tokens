@@ -73,7 +73,7 @@
     "titleEn": "A simple social website",
     "category": "code",
     "client": "novice",
-    "description": "社团负责人拿聊天软件作参考，但最常提到的是“让新人找到活动”。先问清需要哪些页面、谁更新内容；当前合同仍按完整约定工作量验收，尚不支持谈判缩单。",
+    "description": "负责人拿聊天软件作参考，实际最关心新人找到活动。先澄清两条要求，再比较一次性的小站与分两阶段的完整方案；确认范围后仍需接单。",
     "weights": {
       "code": 0.7,
       "write": 0,
@@ -93,7 +93,7 @@
       69,
       80
     ],
-    "descriptionEn": "The club organiser cites a chat app, yet keeps asking how newcomers can find events. Clarify the pages and who updates them. This contract still uses its full agreed workload; scope negotiation is not available yet.",
+    "descriptionEn": "The organiser cites a chat app but needs newcomers to find events. Clarify both requirements, then compare a small one-shot site with a full two-phase plan. Accept after agreeing on scope.",
     "requirements": [
       {
         "label": "活动页需要报名入口，补齐表单流程",
@@ -104,6 +104,20 @@
         "label": "社团干部要更新公告，补交维护说明",
         "labelEn": "Provide instructions for organisers to update announcements",
         "work": 2
+      }
+    ],
+    "proposals": [
+      {
+        "id": "small",
+        "label": "先做活动展示与报名",
+        "labelEn": "Start with events and signup",
+        "template": "website-small"
+      },
+      {
+        "id": "phased",
+        "label": "分两阶段交付完整站点",
+        "labelEn": "Deliver the full site in two phases",
+        "template": "website-phased"
       }
     ]
   },
@@ -3748,5 +3762,65 @@
       }
     ],
     "minChapter": 4
+  },
+  {
+    "id": "website-small",
+    "title": "社团活动与报名小站",
+    "titleEn": "Club events and signup",
+    "category": "code",
+    "client": "novice",
+    "description": "保留活动展示与报名，暂不实现聊天。只结算一期。",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 22,
+    "workSlots": 5,
+    "reward": 1050,
+    "clarity": 100,
+    "delivery": "oneshot",
+    "phases": 1,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "Events and signup only; chat is excluded. One payment phase.",
+    "requirements": [],
+    "offerOnly": true
+  },
+  {
+    "id": "website-phased",
+    "title": "社团站点分期交付",
+    "titleEn": "Phased club website",
+    "category": "code",
+    "client": "novice",
+    "description": "第一期上线活动与报名，第二期交付公告维护。每期独立验收、独立结算。",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 26,
+    "workSlots": 5,
+    "reward": 950,
+    "clarity": 100,
+    "delivery": "multi",
+    "phases": 2,
+    "qualityLines": [
+      60,
+      69,
+      80
+    ],
+    "descriptionEn": "Phase one delivers events and signup; phase two adds announcement maintenance. Each phase is accepted and paid separately.",
+    "requirements": [],
+    "offerOnly": true
   }
 ]

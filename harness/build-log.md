@@ -105,3 +105,5 @@ Q角色最终check-final-v1：25/138及构建退出0；asset-verification-v1：1
 2026-11-07 review1107：基线138通过；v1 139通过2失败（版本夹具），v2 141通过；最终27文件143通过，check-final日志保留。IAB自然接单/派遣/地图/时段与390px无溢出通过。详见docs/REVIEW_1107_INTEGRATION.md。只Web开发，无新宿主安装/部署/封存种子批次。
 
 2026-11-07 Productization A2：基线143通过；v1 lint未使用导入失败；v2/最终28文件154通过。IAB自然seed1接单→事件→交付质量79.36/尾款890.34/声望2通过，error空。docs/PRODUCTIZATION_A2记录预估假设和未验收范围。
+
+A3：a3-check-v1两处历史适配失败已修，a3-check-final 29文件158测试通过；scope回滚/重放与故事去重通过。

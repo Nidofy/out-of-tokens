@@ -12,6 +12,8 @@ export interface Version {
     rhythm: number[];
 }
 export interface Template {
+    offerOnly?: boolean;
+    proposals?: {id:string;label:string;labelEn:string;template:string}[];
     minChapter?: number;
     id: string;
     title: string;
@@ -60,6 +62,8 @@ export interface Content {
 }
 export type Scene = 'workshop' | 'canteen' | 'library';
 export interface CampaignContent {
+    openingJobs?: string[];
+    starterJobs?: string[];
     initial: string[];
     recruits: { character: string; cost: number; reputation: number }[];
     software: { id: string; name: string; nameEn: string; cost: number; research: number; requires: string[] }[];
@@ -180,7 +184,7 @@ export interface State {
     loanGraceWeek?: number;
     campaign?: CampaignState;
 }
-export type Command = {
+export type Command = {type:'scope';job:string;option:string} | {
     type: 'campaign';
     action: 'visit' | 'chat' | 'gift' | 'meal' | 'study' | 'recall' | 'recruit' | 'unlock' | 'switch' | 'train' | 'align' | 'software' | 'hardware' | 'chapter' | 'story' | 'subscribe' | 'expedition' | 'ending' | 'endless' | 'bid' | 'challenge';
     id: string;

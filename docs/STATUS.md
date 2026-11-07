@@ -72,3 +72,5 @@ M5工程完整SHA 9e485100dfe22e31a6894022f3664e971c4818b7；22文件132测试�
 1107 Web体验代码检查点：61b24333af4573a0bec322b304b912352fcf7c37。27文件143测试，git diff --check通过；随后仅记录提交。未打新跨平台包。
 
 A2代码检查点：5fffb053058a4830aab4e4b0b7af72205d43d4a9；28文件154测试、构建与diff检查通过，下一任务见PRODUCTIZATION_A2。
+
+A3阶段：engine0.12.0/contentm5-4，声明式开局/范围协商/八段互动/开业手册，29文件158测试通过。连续推进A4-A6，见PRODUCTIZATION_A3_A6。

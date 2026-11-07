@@ -251,46 +251,46 @@
     {
       "id": "bluewhale-bond-1",
       "character": "bluewhale",
-      "affinity": 10,
-      "text": "价格标签。他把价目表翻了过去，想让你先看解题过程。",
-      "textEn": "Price tag. He turns the price list over and asks you to read his reasoning first.",
+      "affinity": 0,
+      "text": "收工时，白鲸把两只饭碗并排放好。“今天那个问题，我差点想直接给答案。”她指着笔记上划掉的三行，“幸好先问了店主一句。要不要把这句话留给明天的自己？”",
+      "textEn": "After work, DeepSeek sets two rice bowls side by side. “I almost answered before asking the owner.” She points at three crossed-out lines. “Should we leave a reminder for tomorrow?”",
       "choices": [
         {
-          "label": "陪伴：价格标签",
-          "labelEn": "Stay together: Price tag",
+          "label": "写下先确认范围",
+          "labelEn": "Write down: confirm scope first",
+          "affinity": 3,
+          "mood": 2,
+          "research": 1
+        },
+        {
+          "label": "先吃饭，明天再整理",
+          "labelEn": "Eat first; organise tomorrow",
           "affinity": 4,
           "mood": 5,
           "research": 0
-        },
-        {
-          "label": "记录：价格标签",
-          "labelEn": "Keep a note: Price tag",
-          "affinity": 1,
-          "mood": -1,
-          "research": 1
         }
       ]
     },
     {
       "id": "bluewhale-bond-2",
       "character": "bluewhale",
-      "affinity": 25,
-      "text": "深夜草稿。废纸上的三种证明都失败了，他却终于笑了。",
-      "textEn": "Midnight draft. Three proofs on scrap paper failed. At last, he smiles.",
+      "affinity": 10,
+      "text": "白鲸把上周的返工单翻到背面，上面没有责备，只有一条新的检查步骤。“可以把失败记下来，但别让它变成谁的名字。”她把笔递给你。",
+      "textEn": "DeepSeek turns over last week’s rework sheet. There is no blame, only a new check. “We can record the mistake without turning it into someone’s name.” She hands you the pen.",
       "choices": [
         {
-          "label": "陪伴：深夜草稿",
-          "labelEn": "Stay together: Midnight draft",
-          "affinity": 5,
-          "mood": 6,
-          "research": 0
+          "label": "一起补全检查单",
+          "labelEn": "Complete the checklist together",
+          "affinity": 3,
+          "mood": 2,
+          "research": 1
         },
         {
-          "label": "记录：深夜草稿",
-          "labelEn": "Keep a note: Midnight draft",
-          "affinity": 1,
-          "mood": -1,
-          "research": 1
+          "label": "谢谢她留下余地",
+          "labelEn": "Thank her for leaving room to learn",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
         }
       ]
     },
@@ -366,46 +366,46 @@
     {
       "id": "qwen-bond-1",
       "character": "qwen",
-      "affinity": 10,
-      "text": "又一个请求。三个伙伴同时递来任务。她的午饭已经凉了。",
-      "textEn": "One more request. Three teammates bring tasks at once. Her lunch has gone cold.",
+      "affinity": 0,
+      "text": "Qwen把委托分成三叠：已确认、待提问、今天不接。“看起来少做了，其实明天会少返工。”她拿起最后一张，等你一起决定。",
+      "textEn": "Qwen sorts briefs into confirmed, questions, and not today. “It looks like less work, but tomorrow there will be less rework.” She holds up the last sheet.",
       "choices": [
         {
-          "label": "陪伴：又一个请求",
-          "labelEn": "Stay together: One more request",
+          "label": "一起整理问题",
+          "labelEn": "Organise the questions together",
+          "affinity": 3,
+          "mood": 2,
+          "research": 1
+        },
+        {
+          "label": "把今天留白的一栏圈出来",
+          "labelEn": "Mark today’s breathing room",
           "affinity": 4,
           "mood": 5,
           "research": 0
-        },
-        {
-          "label": "记录：又一个请求",
-          "labelEn": "Keep a note: One more request",
-          "affinity": 1,
-          "mood": -1,
-          "research": 1
         }
       ]
     },
     {
       "id": "qwen-bond-2",
       "character": "qwen",
-      "affinity": 25,
-      "text": "空白日程。你发现她唯一的空档也标着备用支持。",
-      "textEn": "An empty calendar. Even her only free slot is marked as backup support.",
+      "affinity": 10,
+      "text": "你发现Qwen的清单末尾多了一项：休息。她有些不好意思：“以前我只会把别人的事列进去。”窗外天色慢慢暗下来。",
+      "textEn": "You notice a new item at the bottom of Qwen’s list: rest. “I used to list only what others needed.” Outside, the evening light fades.",
       "choices": [
         {
-          "label": "陪伴：空白日程",
-          "labelEn": "Stay together: An empty calendar",
-          "affinity": 5,
-          "mood": 6,
-          "research": 0
+          "label": "一起把下班时间写上",
+          "labelEn": "Write down a finishing time",
+          "affinity": 3,
+          "mood": 2,
+          "research": 1
         },
         {
-          "label": "记录：空白日程",
-          "labelEn": "Keep a note: An empty calendar",
-          "affinity": 1,
-          "mood": -1,
-          "research": 1
+          "label": "陪她去喝杯茶",
+          "labelEn": "Join her for tea",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
         }
       ]
     },
@@ -481,46 +481,46 @@
     {
       "id": "llama-bond-1",
       "character": "llama",
-      "affinity": 10,
-      "text": "旧论坛。前辈翻出一条无人回复的求助帖，说这就是社区的起点。",
-      "textEn": "The old forum. He finds an unanswered help post and calls it the beginning of a community.",
+      "affinity": 0,
+      "text": "Llama拿来一份旧教程，边角已经卷起。“前辈的办法也会过时。你愿意替我找一个最难懂的地方吗？”她留出一整页空白，准备重写。",
+      "textEn": "Llama brings an old tutorial with curled corners. “A veteran’s methods can grow old too. Could you find the hardest part to understand?” She leaves a full page for a rewrite.",
       "choices": [
         {
-          "label": "陪伴：旧论坛",
-          "labelEn": "Stay together: The old forum",
+          "label": "一起试着重现步骤",
+          "labelEn": "Try the steps together",
+          "affinity": 3,
+          "mood": 2,
+          "research": 1
+        },
+        {
+          "label": "先听新人的疑问",
+          "labelEn": "Listen to a newcomer’s questions",
           "affinity": 4,
           "mood": 5,
           "research": 0
-        },
-        {
-          "label": "记录：旧论坛",
-          "labelEn": "Keep a note: The old forum",
-          "affinity": 1,
-          "mood": -1,
-          "research": 1
         }
       ]
     },
     {
       "id": "llama-bond-2",
       "character": "llama",
-      "affinity": 25,
-      "text": "补丁署名。一个小补丁有七位贡献者，他坚持把名字都写下。",
-      "textEn": "Patch credits. A tiny patch has seven contributors. He insists on crediting every one.",
+      "affinity": 10,
+      "text": "草坪旁，Llama把修好的例子放回共享文件夹。“以后有人少绕一次路，这一下午就不算白费。”她没有催你回应，只把位置往旁边挪了一点。",
+      "textEn": "Beside the lawn, Llama returns a fixed example to the shared folder. “If it saves someone a detour, this afternoon was worth it.” She makes room beside her.",
       "choices": [
         {
-          "label": "陪伴：补丁署名",
-          "labelEn": "Stay together: Patch credits",
-          "affinity": 5,
-          "mood": 6,
-          "research": 0
+          "label": "补一段说明再分享",
+          "labelEn": "Add an explanation before sharing",
+          "affinity": 3,
+          "mood": 2,
+          "research": 1
         },
         {
-          "label": "记录：补丁署名",
-          "labelEn": "Keep a note: Patch credits",
-          "affinity": 1,
-          "mood": -1,
-          "research": 1
+          "label": "坐下来聊聊今天",
+          "labelEn": "Sit and talk about the day",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
         }
       ]
     },
@@ -596,46 +596,46 @@
     {
       "id": "mistral-bond-1",
       "character": "mistral",
-      "affinity": 10,
-      "text": "帽沿。风差点吹走帽子，他接住它的动作比写代码还快。",
-      "textEn": "The brim. The wind nearly takes his hat. He catches it faster than he types.",
+      "affinity": 0,
+      "text": "风把Mistral的便签吹到桌角，她一把按住。“快不等于省掉最后一次检查。”纸上只有三行，每一行都打了勾。",
+      "textEn": "A breeze pushes Mistral’s note to the edge of the desk. “Fast does not mean skipping the last check.” All three lines have a tick.",
       "choices": [
         {
-          "label": "陪伴：帽沿",
-          "labelEn": "Stay together: The brim",
+          "label": "一起核对最后一遍",
+          "labelEn": "Check it once more together",
+          "affinity": 3,
+          "mood": 2,
+          "research": 1
+        },
+        {
+          "label": "请她分享简短清单",
+          "labelEn": "Ask for her short checklist",
           "affinity": 4,
           "mood": 5,
           "research": 0
-        },
-        {
-          "label": "记录：帽沿",
-          "labelEn": "Keep a note: The brim",
-          "affinity": 1,
-          "mood": -1,
-          "research": 1
         }
       ]
     },
     {
       "id": "mistral-bond-2",
       "character": "mistral",
-      "affinity": 25,
-      "text": "旧车票。帽子夹层里有张旧车票，目的地的字已经模糊。",
-      "textEn": "An old ticket. An old ticket hides in the lining. Its destination has faded.",
+      "affinity": 10,
+      "text": "Mistral今天没有抢着接下一单。她把红羽帽挂好：“格式重复的事我能快做，没想清楚的事还是要慢一点。”她给桌上的两份委托各留了不同的时间。",
+      "textEn": "Mistral does not rush into the next job today. “I can move fast through a familiar format. An unclear brief needs more time.” She gives the two briefs different time budgets.",
       "choices": [
         {
-          "label": "陪伴：旧车票",
-          "labelEn": "Stay together: An old ticket",
-          "affinity": 5,
-          "mood": 6,
-          "research": 0
+          "label": "比较两份委托的节奏",
+          "labelEn": "Compare the pace of both briefs",
+          "affinity": 3,
+          "mood": 2,
+          "research": 1
         },
         {
-          "label": "记录：旧车票",
-          "labelEn": "Keep a note: An old ticket",
-          "affinity": 1,
-          "mood": -1,
-          "research": 1
+          "label": "一起留出休息时间",
+          "labelEn": "Leave time to rest together",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
         }
       ]
     },
@@ -1628,5 +1628,26 @@
         }
       ]
     }
+  ],
+  "openingJobs": [
+    "menu",
+    "bugs",
+    "website",
+    "backup",
+    "review"
+  ],
+  "starterJobs": [
+    "menu",
+    "bugs",
+    "website",
+    "signup",
+    "backup",
+    "weekly-script",
+    "translation",
+    "speech",
+    "story",
+    "newsletter",
+    "review",
+    "survey"
   ]
 }

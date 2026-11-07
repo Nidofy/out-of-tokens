@@ -28,8 +28,11 @@ function refill(s: State, c: Content) {
         if (j.status === 'posted' && s.absoluteSlot - j.posted >= 4)
             j.status = 'expired';
     for (let n = 0; n < 5; n++) {
-        const pool=c.commissions.filter(t=>(t.minChapter??0)<=(s.campaign?.chapter??0));
-        const t = pool[Math.floor(draw(s, 'board') * pool.length)]!;
+        const starters=c.campaign?.starterJobs;
+        const pool=c.commissions.filter(t=>!t.offerOnly&&(t.minChapter??0)<=(s.campaign?.chapter??0)&&(!(starters&&s.absoluteSlot<28)||starters.includes(t.id)));
+        const roll=draw(s,'board');
+        const opening=s.absoluteSlot===0?c.campaign?.openingJobs?.[n]:undefined;
+        const t = opening?c.commissions.find(t=>t.id===opening)!:pool[Math.floor(roll * pool.length)]!;
         s.jobs.push({ id: `${s.absoluteSlot}-${n}`, template: t.id, status: 'posted', posted: s.absoluteSlot, deadline: 0, duration: 0, hidden: t.requirements?.length ?? Math.round((100 - t.clarity) / 25), work: t.workload, progress: 0, weighted: 0, review: 0, defects: 0, reworked: false, advance: 0, quality: 0, team: [], phase: 0, resumeAt: 0, qualityBonus: 0, clarifyingUntil: 0, reviewCoverage: 0 });
     }
 }
@@ -210,7 +213,7 @@ function parse(input: unknown): Command {
     requireRule(typeof input === 'object' && input !== null && !Array.isArray(input), 'INVALID_COMMAND');
     const v = input as Record<string, unknown>;
     const t = v.type;
-    requireRule(typeof t === 'string' && ['campaign', 'overtime', 'restart', 'loan', 'repay', 'advance', 'choose', 'buy', 'accept', 'reject', 'deliver', 'rework', 'clarify', 'respond', 'assign'].includes(t), 'UNSUPPORTED_COMMAND');
+    requireRule(typeof t === 'string' && ['scope', 'campaign', 'overtime', 'restart', 'loan', 'repay', 'advance', 'choose', 'buy', 'accept', 'reject', 'deliver', 'rework', 'clarify', 'respond', 'assign'].includes(t), 'UNSUPPORTED_COMMAND');
     if (t === 'campaign') return parseCampaign(v);
     if (t === 'overtime') {
         requireRule(typeof v.character === 'string', 'INVALID_ACTOR');
@@ -236,6 +239,7 @@ function parse(input: unknown): Command {
         requireRule(typeof v.character === 'string', 'INVALID_ACTOR');
         return { type: t, job: v.job, character: v.character };
     }
+    if(t==='scope'){requireRule(typeof v.option==='string','INVALID_OPTION');return {type:t,job:v.job,option:v.option};}
     if (t === 'assign') {
         requireRule(Array.isArray(v.team) && v.team.length > 0 && v.team.length <= 6, 'INVALID_TEAM');
         const team: Member[] = v.team.map((x: unknown) => { requireRule(typeof x === 'object' && x !== null, 'INVALID_MEMBER'); const m = x as Record<string, unknown>; requireRule(typeof m.character === 'string' && (m.role === 'worker' || m.role === 'reviewer' || m.role === 'planner' || m.role === 'tool') && (m.mode === 'cloud' || m.mode === 'local'), 'INVALID_MEMBER'); return { character: m.character, role: m.role, mode: m.mode }; });
@@ -329,7 +333,15 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
             const j = s.jobs.find(j => j.id === cmd.job);
             requireRule(j, 'UNKNOWN_JOB');
             const t = c.commissions.find(t => t.id === j.template)!;
-            if (cmd.type === 'accept') {
+            if(cmd.type==='scope'){
+                requireRule(j.status==='posted','NOT_POSTED');
+                requireRule(j.hidden===0 && j.clarifyingUntil<=s.absoluteSlot,'SCOPE_NOT_CLARIFIED');
+                const offer=t.proposals?.find(p=>p.id===cmd.option),replacement=c.commissions.find(x=>x.id===offer?.template);
+                requireRule(offer&&replacement,'INVALID_OPTION');
+                j.template=replacement.id;j.work=replacement.workload;j.hidden=replacement.requirements?.length??Math.round((100-replacement.clarity)/25);j.revealed=0;
+                events.push({type:'ScopeAgreed',message:offer.label});
+            }
+            else if (cmd.type === 'accept') {
                 requireRule(j.status === 'posted', 'NOT_POSTED');
                 requireRule(j.clarifyingUntil <= s.absoluteSlot, 'STILL_CLARIFYING');
                 requireRule(liquidCash(s) >= 0 || (t.workload + (t.requirements ?? []).reduce((n,r)=>n+r.work,0)) * (t.phases ?? 1) <= 40, 'CRISIS_SMALL_ONLY');
@@ -435,5 +447,5 @@ export function getViewModel(s: State, c: Content) {
     const possibleStops:string[]=[];
     for(const j of s.jobs.filter(j=>j.status==='working'))for(const m of estimateResources(s,c,j).members){if(m.mode==='cloud'){if(cloudBudget<m.cost)possibleStops.push(m.character);else cloudBudget-=m.cost;}else{if(localBudget<m.cost)possibleStops.push(m.character);else localBudget-=m.cost;}}
     const card = s.pending ? c.events.find(e => e.id === s.pending!.card) : null;
-    return { possibleStops, campaign: s.campaign ? cloneCampaign(s.campaign) : null, catalog: c.campaign ? { ...c.campaign, stories: c.campaign.stories?.map(x=>({...x,choices:x.choices.map(o=>({...o}))})) ?? [], initial: [...c.campaign.initial], recruits: c.campaign.recruits.map(x => ({...x})), software: c.campaign.software.map(x => ({...x, requires: [...x.requires]})), versions: c.versions.map(v => ({ id: v.id, character: v.character, name: v.name, skills: {...v.skills}, price: v.price, speed: v.speed })) } : null, liquidCash: liquidCash(s), overtime: [...s.overtime], loanGraceUntil: s.loanGraceUntil ?? 0, crisisLength: balance(c).crisisLength, absoluteSlot: s.absoluteSlot, day: Math.floor(s.absoluteSlot / 4) + 1, slot: ['上午', '下午', '晚上', '深夜'][s.absoluteSlot % 4], cash: s.cash, quota: s.quota, purchased: s.purchased, localCapacity: s.localCapacity, electricity: s.electricity, loan: s.loan, crises: s.crises.length, reputation: s.reputation, founderXP: s.founderXP, nextWeeklyBill: balance(c).weekly + [0,120,420][s.campaign?.subscription ?? 0]! + s.electricity + round(s.loan * balance(c).interest), debtDue: s.debtPaid ? 0 : balance(c).debt, debtSlot: balance(c).debtSlot, bankrupt: s.bankrupt, crisisSince: s.crisisSince, actors: s.actors.map(a => ({ ...a, clarifyChance: (c.campaign?.maxChapter??0)>=2 ? clarifyChance(s,c,a) : 1, location: actorScene(s, a), busy: occupied(s, a.id), skills: { ...version(c, a, s).skills }, price: version(c, a, s).price, modes: [...version(c, a, s).modes] })), jobs: s.jobs.filter(j => !['expired', 'rejected'].includes(j.status)).map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { ...j, title: t.title, titleEn: t.titleEn ?? t.title, description: t.description, descriptionEn: t.descriptionEn ?? t.description, revealedRequirements: (t.requirements ?? []).slice(0,j.revealed ?? 0).map(r=>({...r})), weights: { ...t.weights }, reward: round(t.reward * (j.rewardFactor??1) * balance(c).rewardScale), delivery: t.delivery, phases: t.phases ?? 1, workSlots: t.workSlots, clarity: t.clarity, passQuality: t.qualityLines?.[0] ?? 60, qualityLines: [...(t.qualityLines ?? [60, 75, 90])], resourceEstimate: estimateResources(s, c, j), settlement: settlement(s,c,j), qualityBreakdown: { base: round(100 * j.weighted / Math.max(1, j.progress)), review: j.review, event: j.qualityBonus, hiddenPenalty: 8 * j.hidden, defectPenalty: 6 * j.defects }, overdue: active(j) && s.absoluteSlot > j.deadline, team: j.team.map(m => ({ ...m })) }; }), pending: card ? { ...card, choices: card.choices.map(x => ({ ...x, ...(x.effects ? { effects: x.effects.map(e => ({ ...e })) } : {}) })) } : null, ledger: s.ledger.slice(-10).map(x => ({ ...x })), resources: s.resources.slice(-10).map(x => ({ ...x })) };
+    return { possibleStops, campaign: s.campaign ? cloneCampaign(s.campaign) : null, catalog: c.campaign ? { ...c.campaign, stories: c.campaign.stories?.map(x=>({...x,choices:x.choices.map(o=>({...o}))})) ?? [], initial: [...c.campaign.initial], recruits: c.campaign.recruits.map(x => ({...x})), software: c.campaign.software.map(x => ({...x, requires: [...x.requires]})), versions: c.versions.map(v => ({ id: v.id, character: v.character, name: v.name, skills: {...v.skills}, price: v.price, speed: v.speed })) } : null, liquidCash: liquidCash(s), overtime: [...s.overtime], loanGraceUntil: s.loanGraceUntil ?? 0, crisisLength: balance(c).crisisLength, absoluteSlot: s.absoluteSlot, day: Math.floor(s.absoluteSlot / 4) + 1, slot: ['上午', '下午', '晚上', '深夜'][s.absoluteSlot % 4], cash: s.cash, quota: s.quota, purchased: s.purchased, localCapacity: s.localCapacity, electricity: s.electricity, loan: s.loan, crises: s.crises.length, reputation: s.reputation, founderXP: s.founderXP, nextWeeklyBill: balance(c).weekly + [0,120,420][s.campaign?.subscription ?? 0]! + s.electricity + round(s.loan * balance(c).interest), debtDue: s.debtPaid ? 0 : balance(c).debt, debtSlot: balance(c).debtSlot, bankrupt: s.bankrupt, crisisSince: s.crisisSince, actors: s.actors.map(a => ({ ...a, clarifyChance: (c.campaign?.maxChapter??0)>=2 ? clarifyChance(s,c,a) : 1, location: actorScene(s, a), busy: occupied(s, a.id), skills: { ...version(c, a, s).skills }, price: version(c, a, s).price, modes: [...version(c, a, s).modes] })), jobs: s.jobs.filter(j => !['expired', 'rejected'].includes(j.status)).map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { ...j, proposals:(t.proposals??[]).map(p=>{const target=c.commissions.find(x=>x.id===p.template)!;return {...p,work:target.workload,phases:target.phases??1,reward:round(target.reward*balance(c).rewardScale),workSlots:target.workSlots};}), title: t.title, titleEn: t.titleEn ?? t.title, description: t.description, descriptionEn: t.descriptionEn ?? t.description, revealedRequirements: (t.requirements ?? []).slice(0,j.revealed ?? 0).map(r=>({...r})), weights: { ...t.weights }, reward: round(t.reward * (j.rewardFactor??1) * balance(c).rewardScale), delivery: t.delivery, phases: t.phases ?? 1, workSlots: t.workSlots, clarity: t.clarity, passQuality: t.qualityLines?.[0] ?? 60, qualityLines: [...(t.qualityLines ?? [60, 75, 90])], resourceEstimate: estimateResources(s, c, j), settlement: settlement(s,c,j), qualityBreakdown: { base: round(100 * j.weighted / Math.max(1, j.progress)), review: j.review, event: j.qualityBonus, hiddenPenalty: 8 * j.hidden, defectPenalty: 6 * j.defects }, overdue: active(j) && s.absoluteSlot > j.deadline, team: j.team.map(m => ({ ...m })) }; }), pending: card ? { ...card, actors:s.jobs.find(j=>j.id===s.pending?.job)?.team.map(m=>m.character)??[], choices: card.choices.map(x => ({ ...x, ...(x.effects ? { effects: x.effects.map(e => ({ ...e })) } : {}) })) } : null, ledger: s.ledger.slice(-10).map(x => ({ ...x })), resources: s.resources.slice(-10).map(x => ({ ...x })) };
 }
