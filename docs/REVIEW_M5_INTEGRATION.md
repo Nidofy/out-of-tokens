@@ -6,12 +6,12 @@
 
 | ID | 级别 | 集成处理 |
 |---|---|---|
-| GEM-01 | P2 | 打包入口强制先从干净 HEAD 构建 Web/DSH，再离线 locked 构建桌面；随后动态导入版本。源变化拒绝。验证器要求各 build-meta 与 sourceCommit 一致，桌面声明必须包含 exe/lock/notices/构建凭据。新包验证待 UI 检查点一起执行。历史包使用历史验证器。 |
+| GEM-01 | P2 | 打包入口强制先从干净 HEAD 构建 Web/DSH，再离线 locked 构建桌面；随后动态导入版本。源变化拒绝。验证器要求各 build-meta 与 sourceCommit 一致，桌面声明必须包含 exe/lock/notices/构建凭据。新包5b7e5ef已从干净SHA强制重建并解压校验972文件，通过。历史包使用历史验证器。 |
 | GEM-02 | P2 | 统一辅助岗位有效版本、Tool 不冒用 Planner 加成、过载严格超过有效 context、预览过滤无尽禁用支持角色并传 local mode。补回归；旧过载测试按严格边界更新，首次失败日志保留。 |
 | GEM-03 | P2 | 远征位置显式为 expedition；远征费用包含在途补给，不叠加本地饥饿/深夜压力惩罚，不在本地显示。出发20精力及费用不变。首次失败与回归已保留。 |
 | GEM-04 PWA | P2 | 初始 waiting 状态监听和被动 controllerchange 提示已补；不自动刷新丢弃进度。两构建/两标签IAB验收已执行：waiting提示、显式刷新、旧标签被动接管提示保留。首次安装不误报更新有自动回归。 |
 | GEM-04 Host | P2 | 新只读 auto 对账保留内存，仅服务端 revision 未变或 revision+1且字节匹配才解除 uncertain。其他修改仍拒绝；不盲刷手动槽。已保存 auto 字节去重，关闭等待在途任务。自动回归覆盖非空档、丢响应和外部冲突；原生并发关闭仍待独立验收。 |
-| GEM-05 | P3 | GUI 子系统无条件启用；desktop 每个成功命令自动保存。桌面重建验证随新包。 |
+| GEM-05 | P3 | GUI 子系统无条件启用；desktop 每个成功命令自动保存。桌面0.11.0已offline/locked重建并绑定exe hash，原生保存UI仍待验。 |
 | GEM-06 | P3 | Rust 无独立许可证文件的18包正文补齐待处理，不能将 SPDX 名称视为完整许可证文本。 |
 | GEM-07 | P3 | Origin null明确403；iframe ready握手前关闭不等待11秒；ready后仍等待checkpoint。 |
 | OP-01 | P2 | 决策采用迟到补救：保留56槽门槛与原条件，此后每槽补判直到passed，不永久失去战役。无奖励补发。红测→回归。 |

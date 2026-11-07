@@ -92,3 +92,5 @@ Review integration checkpoint: d5f21bb7bb378aa71bdb76c03f312a9099406171; check v
 提交前Sonnet新报告已核对58eba0c1f20fcbe33908c8dac47239b0679db8c5并原字节归档，两项P3按文档口径与测试SOP采纳，无新增P0/P1。
 
 归档Sonnet后最终复查check-final-v2.log：25文件138测试及构建通过，退出0；git diff --check退出0，旧v1保留。
+
+UI美术本地代码检查点5b7e5effbe7fe2d3ee4f001dc08cf41a25590287，随后仅记录。新包13753442字节，SHA256 aedf51e9192dcc240dd7291153ab5404db3e377279a6287c24349fce78fdfdcd；manifest972+自身1，解压复验及入口运行通过。统一审查/集成/持续开发Prompt已就位。下一项本UI新SHA复审和UI-OFFLINE-01，M05-03/真人/真实DSH保持开放。
