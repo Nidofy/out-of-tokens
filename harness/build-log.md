@@ -78,3 +78,5 @@ M4工程检查点 9ab9281762c3689abff40ee79226f9283c866286；19文件122测试�
 0.10.0/m5-1；章节0–4/五结局/无尽周挑战/竞标/三世界远征，108双语委托64事件60分角色剧情草稿。check-first因Tauri target生成物被lint扫描失败；排除生成目录后check-v2暴露DSH内容夹具与CLI错误说明；修复后check-v3合成bot遗漏版本研发动作，保留失败；补策略动作后全Command贯通和重放通过。check-final-v1为22文件132测试，桌面offline locked构建通过。Host空档只读对账、在途关闭等待、错误提示与样式补正。首次脚本UTF8读取/重复export错误日志保留，均未重写旧日志。训练1–100诊断34/152=22.37%，零心情28次全平，恢复14天；不改规则或门禁、不消费正式队列。下一任务固定SHA新包、统一复审Prompt；外部批准/真人/真实DSH均未冒领。
 
 M5工程完整SHA 9e485100dfe22e31a6894022f3664e971c4818b7（132测试、diff --check退出0）。固定新包901文件独立解压/HTTP启动校验通过；ZIP6203568字节/SHA256 88bfcf5d3259c1dd8d91ab5504a8a013ab96068257ad462c8e860759c1611259。桌面computer-use实测英文切换、手动manual-1保存、Ctrl+R重载后显式载入显示存档已载入。Windows实际依赖缺失来源0；全锁未提取169项为平台/未用项，不冒充全部检查。新包离线停止服务刷新未重测，保留为复审项。本地服务已Ctrl+C停止；三审查+集成+持续开发Prompt统一入口m5-handoff.md，后续提交仅文档记录。
+
+Review integration checkpoint: d5f21bb7bb378aa71bdb76c03f312a9099406171; check v4 23 files/136 tests, diff-check 0. Earlier 1bbebab contains test import error; retained, corrected without rewriting history. Next UI/art.
