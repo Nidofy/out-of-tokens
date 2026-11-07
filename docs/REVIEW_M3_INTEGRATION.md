@@ -56,3 +56,5 @@ HOST-01/02、WEB-01/02为历史已修项，本轮报告核验支持；不重新�
 全量integration-check-final-v1.log退出0，16文件117测试；新测试日志仅规范终端多余EOF空行（首次staged diff检查因此退出2），失败内容完整保留。
 
 续作集成：WEB-03主线程红测harness/m3/web03-red.log后最小修复，122测试通过；GEM-03/PWA-01状态与监听顺序自动回归通过，两版真实SW验证仍待做。其余P2按表保留，未假称全部关闭。
+
+M5收尾更新：GEM-04新增HostSaves.reconcileEmpty只读确认全空、有档则拒绝，UI已接；checkpoint等待当前run，父端复用在途Promise。载入后刷新可见列表，未加载的手动槽revision仍保留（拒绝盲刷以免绕过CAS）。host-reconcile.test覆盖超时→list仍阻断→有档拒绝→空档显式恢复，浏览器并发回归仍待复审。GEM-05仅备用入口样式复位已改；Origin:null和文档行尾建议未宣称关闭。SON-01/02/03补可读提示；SON-04/Opus M3-04在m5-1提供60段分角色双语草稿，m2-1历史未改，人工编辑仍待安排。

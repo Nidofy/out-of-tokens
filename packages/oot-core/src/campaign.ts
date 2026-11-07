@@ -1,13 +1,14 @@
 import type { Actor, CampaignState, Command, Content, Relation, Scene, Skill, State, Version } from './model.js';
+import {applyFinale,finaleGoal,tickFinale} from './finale.js';
 import { liquidCash, round } from './economy.js';
 const check = (ok: unknown, error: string) => { if (!ok) throw Error(error); };
 const cap = (n: number) => Math.max(0, Math.min(100, n));
 export const newRelation = (): Relation => ({ xp: 0, affinity: 0, location: null, locationUntil: 0, training: null, bonuses: {}, stories: [], stress: 0, hunger: 0 });
 export function initialCampaign(c: Content): CampaignState {
-    return { chapterStarted: 0, clarifyRng: 1, subscription: 0, incidents: [], chapter: 0, chapterZero: 'pending', completed: [], scene: 'workshop', research: 0, software: [], hardware: { office: 0, compute: 0, storage: 0, network: 0 }, unlocked: c.versions.filter((v, i, all) => all.findIndex(x => x.character === v.character) === i).map(v => v.id), relations: Object.fromEntries(c.campaign!.initial.map(id => [id, newRelation()])) };
+    return { ...((c.campaign?.maxChapter??0)>=4?{finale:{ending:null,endless:false,endlessAt:0,expeditions:[],souvenirs:[],bids:[],challengeWeek:0,challengeWins:[]}}:{}), chapterStarted: 0, clarifyRng: 1, subscription: 0, incidents: [], chapter: 0, chapterZero: 'pending', completed: [], scene: 'workshop', research: 0, software: [], hardware: { office: 0, compute: 0, storage: 0, network: 0 }, unlocked: c.versions.filter((v, i, all) => all.findIndex(x => x.character === v.character) === i).map(v => v.id), relations: Object.fromEntries(c.campaign!.initial.map(id => [id, newRelation()])) };
 }
 export function cloneCampaign(p: CampaignState): CampaignState {
-    return { ...p, incidents:p.incidents.map(x=>({...x})), completed: [...p.completed], software: [...p.software], hardware: { ...p.hardware }, unlocked: [...p.unlocked], relations: Object.fromEntries(Object.entries(p.relations).map(([id, r]) => [id, { ...r, stories: [...r.stories], training: r.training ? { ...r.training } : null, bonuses: Object.fromEntries(Object.entries(r.bonuses).map(([v, skills]) => [v, { ...skills }])) }])) };
+    return { ...p, ...(p.finale?{finale:{...p.finale,expeditions:p.finale.expeditions.map(x=>({...x})),souvenirs:[...p.finale.souvenirs],bids:p.finale.bids.map(x=>({...x})),challengeWins:[...p.finale.challengeWins]}}:{}), incidents:p.incidents.map(x=>({...x})), completed: [...p.completed], software: [...p.software], hardware: { ...p.hardware }, unlocked: [...p.unlocked], relations: Object.fromEntries(Object.entries(p.relations).map(([id, r]) => [id, { ...r, stories: [...r.stories], training: r.training ? { ...r.training } : null, bonuses: Object.fromEntries(Object.entries(r.bonuses).map(([v, skills]) => [v, { ...skills }])) }])) };
 }
 export const owns = (s: State, id: string) => s.campaign?.software.includes(id) ?? false;
 export function actorScene(s: State, a: Actor): Scene {
@@ -24,6 +25,7 @@ export function effectiveVersion(s: State, c: Content, a: Actor, mode: 'cloud' |
     return { ...v, skills: Object.fromEntries(Object.entries(v.skills).map(([k, n]) => [k, Math.min(10, (n + (b[k as Skill] ?? 0)) * (k === 'reason' && mode === 'local' && owns(s, 'vllm') ? 1.3 : 1))])) as Version['skills'], context: v.context + p.hardware.storage, stability: Math.min(10, v.stability + (b.alignment ?? 0)) };
 }
 export function tickCampaign(s: State) {
+    tickFinale(s);
     const p = s.campaign;
     if (!p) return;
     for (const r of Object.values(p.relations)) if (r.training && r.training.until <= s.absoluteSlot) {
@@ -33,7 +35,7 @@ export function tickCampaign(s: State) {
     }
     if (s.absoluteSlot === 56 && p.chapterZero === 'pending') p.chapterZero = s.debtPaid && liquidCash(s) >= 0 && s.jobs.some(j => j.phase > 0) ? 'passed' : 'missed';
 }
-const actions = ['visit', 'chat', 'gift', 'meal', 'study', 'recall', 'recruit', 'unlock', 'switch', 'train', 'align', 'software', 'hardware', 'chapter', 'story', 'subscribe'];
+const actions = ['visit', 'chat', 'gift', 'meal', 'study', 'recall', 'recruit', 'unlock', 'switch', 'train', 'align', 'software', 'hardware', 'chapter', 'story', 'subscribe', 'expedition', 'ending', 'endless', 'bid', 'challenge'];
 export function parseCampaign(v: Record<string, unknown>): Extract<Command, { type: 'campaign' }> {
     check(typeof v.action === 'string' && actions.includes(v.action) && typeof v.id === 'string' && (v.target === undefined || typeof v.target === 'string'), 'INVALID_CAMPAIGN_COMMAND');
     return { type: 'campaign', action: v.action as Extract<Command, { type: 'campaign' }>['action'], id: v.id as string, ...(v.target === undefined ? {} : { target: v.target as string }) };
@@ -41,6 +43,7 @@ export function parseCampaign(v: Record<string, unknown>): Extract<Command, { ty
 export function applyCampaign(s: State, c: Content, cmd: Extract<Command, { type: 'campaign' }>) {
     check(s.campaign && c.campaign, 'NO_CAMPAIGN');
     const p = s.campaign!, spec = c.campaign!;
+    if(applyFinale(s,c,cmd))return;
     const pay = (cash: number, research = 0) => { check(s.cash >= cash && p.research >= research, 'INSUFFICIENT_RESOURCES'); s.cash = round(s.cash - cash); p.research -= research; s.ledger.push({ slot: s.absoluteSlot, amount: -cash, reason: `campaign:${cmd.action}:${cmd.id}` }); };
     if (cmd.action === 'visit') { check(['workshop', 'canteen', 'library'].includes(cmd.id), 'UNKNOWN_SCENE'); p.scene = cmd.id as Scene; return; }
     if (cmd.action === 'recruit') {
@@ -64,7 +67,7 @@ export function applyCampaign(s: State, c: Content, cmd: Extract<Command, { type
     }
     if (cmd.action === 'chapter') {
         const completedJobs = s.jobs.filter(j => j.posted >= p.chapterStarted && j.status === 'delivered');
-        const ready = p.chapter === 0 ? p.chapterZero === 'passed' : p.chapter === 1 ? s.reputation >= 15 && liquidCash(s) >= 2500 && completedJobs.some(j => j.phase >= 2 && j.quality >= 75 && c.commissions.find(t => t.id === j.template)!.delivery === 'multi') : completedJobs.some(j => j.phase >= 3 && j.quality >= 80 && c.commissions.find(t => t.id === j.template)!.delivery === 'retainer') && p.unlocked.length >= new Set(c.versions.map(v=>v.character)).size + 2;
+        const ready = p.chapter >= 3 ? finaleGoal(s) : p.chapter === 0 ? p.chapterZero === 'passed' : p.chapter === 1 ? s.reputation >= 15 && liquidCash(s) >= 2500 && completedJobs.some(j => j.phase >= 2 && j.quality >= 75 && c.commissions.find(t => t.id === j.template)!.delivery === 'multi') : completedJobs.some(j => j.phase >= 3 && j.quality >= 80 && c.commissions.find(t => t.id === j.template)!.delivery === 'retainer') && p.unlocked.length >= new Set(c.versions.map(v=>v.character)).size + 2;
         check(!p.completed.includes(p.chapter) && ready, 'CHAPTER_LOCKED');
         p.completed.push(p.chapter);
         if(p.chapter < (spec.maxChapter ?? 0)) {p.chapter++;p.chapterStarted=s.absoluteSlot;}

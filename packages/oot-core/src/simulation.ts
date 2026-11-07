@@ -4,6 +4,7 @@ import { balance, crisis, liquidCash, moodFactor, fatigueFactor } from './econom
 import { eligible, applyEffects } from './events.js';
 import { engineVersion } from './version.js';
 import { estimateResources } from './preview.js';
+import {challengeAllows} from './finale.js';
 import type { Actor, Command, Content, DomainEvent, Job, Member, Result, State, Version } from './model.js';
 const round = (n: number) => Math.round(n * 100) / 100;
 const clamp = (n: number) => Math.max(0, Math.min(100, round(n)));
@@ -26,7 +27,8 @@ function refill(s: State, c: Content) {
         if (j.status === 'posted' && s.absoluteSlot - j.posted >= 4)
             j.status = 'expired';
     for (let n = 0; n < 5; n++) {
-        const t = c.commissions[Math.floor(draw(s, 'board') * c.commissions.length)]!;
+        const pool=c.commissions.filter(t=>(t.minChapter??0)<=(s.campaign?.chapter??0));
+        const t = pool[Math.floor(draw(s, 'board') * pool.length)]!;
         s.jobs.push({ id: `${s.absoluteSlot}-${n}`, template: t.id, status: 'posted', posted: s.absoluteSlot, deadline: 0, duration: 0, hidden: t.requirements?.length ?? Math.round((100 - t.clarity) / 25), work: t.workload, progress: 0, weighted: 0, review: 0, defects: 0, reworked: false, advance: 0, quality: 0, team: [], phase: 0, resumeAt: 0, qualityBonus: 0, clarifyingUntil: 0, reviewCoverage: 0 });
     }
 }
@@ -60,6 +62,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
             const order = { planner: 0, worker: 2, tool: 1, reviewer: 3 };
             for (const m of [...j.team].sort((a, b) => order[a.role] - order[b.role] || (a.character < b.character ? -1 : a.character > b.character ? 1 : 0))) {
                 const a = s.actors.find(a => a.id === m.character)!;
+                if(!challengeAllows(s,c,a.version,m.mode))continue;
                 const v = version(c, a, s, m.mode);
                 const matching = match(c, j, v);
                 if (s.absoluteSlot % 4 >= 2 && !s.overtime.includes(a.id))
@@ -86,6 +89,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                     const ready = j.team.filter(w => w.role === 'worker').some(w => {
                         const wa = s.actors.find(a => a.id === w.character)!;
                         const wv = version(c, wa);
+                        if(!challengeAllows(s,c,wa.version,w.mode))return false;
                         if (wa.energy < 10 || wa.busyUntil > s.absoluteSlot || (s.absoluteSlot % 4 >= 2 && !s.overtime.includes(wa.id)))
                             return false;
                         const workerAffected = (!eventJob || eventJob === j.id) && (!target || (w.character === target && w.mode === 'cloud'));
@@ -118,7 +122,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                 events.push({ type: 'ResourceSpent', message: `${a.id}: ${cost} ${m.mode === 'cloud' ? 'T' : '本地算力'}，委托 ${j.id}` });
                 s.tokensUsed = round(s.tokensUsed + cost);
                 worked.add(a.id);
-                if (s.campaign) {s.campaign.relations[a.id]!.xp++;if(c.campaign?.maxChapter===2)s.campaign.relations[a.id]!.stress=clamp(s.campaign.relations[a.id]!.stress+4);}
+                if (s.campaign) {s.campaign.relations[a.id]!.xp++;if((c.campaign?.maxChapter??0)>=2)s.campaign.relations[a.id]!.stress=clamp(s.campaign.relations[a.id]!.stress+4);}
                 a.energy = clamp(a.energy - (s.absoluteSlot % 4 === 3 ? 22.5 : s.absoluteSlot % 4 === 2 ? 18 : 15));
                 a.mood = clamp(a.mood - (s.absoluteSlot % 4 === 3 ? 20 : s.absoluteSlot % 4 === 2 ? 10 : 1));
                 a.load++;
@@ -166,7 +170,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
             if (s.absoluteSlot % 4 === 3)
                 a.load = 0;
         }
-    if (c.campaign?.maxChapter===2 && s.campaign) for(const a of s.actors){const r=s.campaign.relations[a.id]!;r.hunger=clamp(r.hunger+3);if(!worked.has(a.id)&&s.absoluteSlot%4===3)r.stress=clamp(r.stress-8);if(s.absoluteSlot%4===3&&(r.hunger>=80||r.stress>=80))a.mood=clamp(a.mood-5);}
+    if ((c.campaign?.maxChapter??0)>=2 && s.campaign) for(const a of s.actors){const r=s.campaign.relations[a.id]!;r.hunger=clamp(r.hunger+3);if(!worked.has(a.id)&&s.absoluteSlot%4===3)r.stress=clamp(r.stress-8);if(s.absoluteSlot%4===3&&(r.hunger>=80||r.stress>=80))a.mood=clamp(a.mood-5);}
     s.absoluteSlot++;
     for (const j of s.jobs)
         if (j.status === 'waiting' && s.absoluteSlot >= j.resumeAt)
@@ -240,6 +244,7 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
     try {
         const cmd = parse(input);
         requireRule(!original.bankrupt || cmd.type === 'restart', 'BANKRUPT');
+        requireRule(!original.campaign?.finale?.ending || original.campaign.finale.endless || (cmd.type==='campaign' && ['endless','visit'].includes(cmd.action)), 'ENDING_FINISHED');
         requireRule(original.engineVersion === engineVersion && original.contentVersion === c.version, 'VERSION_MISMATCH');
         requireRule(!original.pending || cmd.type === 'choose', 'PENDING_CHOICE');
         if (cmd.type === 'restart') {
@@ -329,7 +334,7 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
                 j.deadline = deadlineAfterWorkSlots(s.absoluteSlot, t.workSlots);
                 j.duration = t.workSlots * 2;
                 j.resumeAt = s.absoluteSlot;
-                j.advance = round(t.reward * balance(c).rewardScale * (owns(s,'contract') ? .5 : .3));
+                j.advance = round(t.reward * (j.rewardFactor??1) * balance(c).rewardScale * (owns(s,'contract') ? .5 : .3));
                 money(s, j.advance, `advance:${j.id}`);
             }
             else if (cmd.type === 'reject') {
@@ -344,7 +349,7 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
                 requireRule(!occupied(s, a.id) && a.energy >= 15, 'ACTOR_BUSY');
                 a.busyUntil = s.absoluteSlot + 1;
                 a.energy -= 15;
-                if(c.campaign?.maxChapter!==2 || clarifyRoll(s)<clarifyChance(s,c,a)){const requirement=t.requirements?.[j.revealed ?? 0];j.work+=requirement?.work ?? 0;j.revealed=(j.revealed ?? 0)+1;j.hidden=Math.max(0,j.hidden-1);events.push({type:'Clarified',message:requirement?.label ?? '揭示一条隐藏要求'});}else events.push({type:'ClarificationMiss',message:'本次未揭示新要求，可再次澄清'});
+                if((c.campaign?.maxChapter??0)<2 || clarifyRoll(s)<clarifyChance(s,c,a)){const requirement=t.requirements?.[j.revealed ?? 0];j.work+=requirement?.work ?? 0;j.revealed=(j.revealed ?? 0)+1;j.hidden=Math.max(0,j.hidden-1);events.push({type:'Clarified',message:requirement?.label ?? '揭示一条隐藏要求'});}else events.push({type:'ClarificationMiss',message:'本次未揭示新要求，可再次澄清'});
                 j.clarifyingUntil = s.absoluteSlot + 1;
             }
             else if (cmd.type === 'respond') {
@@ -361,9 +366,11 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
                     requireRule(a, 'UNKNOWN_ACTOR');
                     requireRule(!occupied(s, a.id, j.id), 'ACTOR_BUSY');
                     requireRule(version(c, a, s).modes.includes(m.mode), 'UNSUPPORTED_DEPLOYMENT');
+                    requireRule(challengeAllows(s,c,a.version,m.mode),'CHALLENGE_TEAM');
                 }
                 requireRule(cmd.team.filter(m=>m.role==='tool').length<=1 && (!cmd.team.some(m=>m.role==='tool')||owns(s,'mcp')), 'TOOL_LOCKED');
                 j.team = cmd.team;
+                if(s.campaign?.finale?.endless)j.challengeWeek=Math.floor(s.absoluteSlot/28);
                 j.status = 'working';
             }
             else if (cmd.type === 'deliver') {
@@ -375,9 +382,9 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
                 else {
                     const multiplier = j.quality >= (t.qualityLines?.[2] ?? 90) ? 1.35 : j.quality >= (t.qualityLines?.[1] ?? 75) ? 1.15 : 1;
                     const late = Math.max(0, s.absoluteSlot - j.deadline);
-                    money(s, round(t.reward * balance(c).rewardScale * (owns(s,'crm') && t.delivery==='retainer' ? 1.2 : 1) * multiplier * Math.max(0, 1 - late * 0.1)) - j.advance, `delivery:${j.id}`);
+                    money(s, round(t.reward * (j.rewardFactor??1) * balance(c).rewardScale * (owns(s,'crm') && t.delivery==='retainer' ? 1.2 : 1) * multiplier * Math.max(0, 1 - late * 0.1)) - j.advance, `delivery:${j.id}`);
                     s.reputation += j.quality >= (t.qualityLines?.[2] ?? 90) ? 4 : j.quality >= (t.qualityLines?.[1] ?? 75) ? 2 : 1;
-                    if(c.campaign?.maxChapter===2 && s.campaign && draw(s,'quality') < Math.min(.9,j.defects*.3+(t.delivery==='retainer'?.2:0))){const at=s.absoluteSlot+28+(draw(s,'quality')<.5?0:28);s.campaign.incidents.push({job:j.id,at,deadline:at+2,resolved:false});}
+                    if((c.campaign?.maxChapter??0)>=2 && s.campaign && draw(s,'quality') < Math.min(.9,j.defects*.3+(t.delivery==='retainer'?.2:0))){const at=s.absoluteSlot+28+(draw(s,'quality')<.5?0:28);s.campaign.incidents.push({job:j.id,at,deadline:at+2,resolved:false});}
                     j.phase++;
                     if (j.phase < (t.phases ?? 1)) {
                         j.status = t.delivery === 'retainer' || (s.campaign && !owns(s,'ci')) ? 'waiting' : 'working';
@@ -425,5 +432,5 @@ export function getViewModel(s: State, c: Content) {
     const possibleStops:string[]=[];
     for(const j of s.jobs.filter(j=>j.status==='working'))for(const m of estimateResources(s,c,j).members){if(m.mode==='cloud'){if(cloudBudget<m.cost)possibleStops.push(m.character);else cloudBudget-=m.cost;}else{if(localBudget<m.cost)possibleStops.push(m.character);else localBudget-=m.cost;}}
     const card = s.pending ? c.events.find(e => e.id === s.pending!.card) : null;
-    return { possibleStops, campaign: s.campaign ? cloneCampaign(s.campaign) : null, catalog: c.campaign ? { ...c.campaign, stories: c.campaign.stories?.map(x=>({...x,choices:x.choices.map(o=>({...o}))})) ?? [], initial: [...c.campaign.initial], recruits: c.campaign.recruits.map(x => ({...x})), software: c.campaign.software.map(x => ({...x, requires: [...x.requires]})), versions: c.versions.map(v => ({ id: v.id, character: v.character, name: v.name, skills: {...v.skills}, price: v.price, speed: v.speed })) } : null, liquidCash: liquidCash(s), overtime: [...s.overtime], loanGraceUntil: s.loanGraceUntil ?? 0, crisisLength: balance(c).crisisLength, absoluteSlot: s.absoluteSlot, day: Math.floor(s.absoluteSlot / 4) + 1, slot: ['上午', '下午', '晚上', '深夜'][s.absoluteSlot % 4], cash: s.cash, quota: s.quota, purchased: s.purchased, localCapacity: s.localCapacity, electricity: s.electricity, loan: s.loan, crises: s.crises.length, reputation: s.reputation, founderXP: s.founderXP, nextWeeklyBill: balance(c).weekly + [0,120,420][s.campaign?.subscription ?? 0]! + s.electricity + round(s.loan * balance(c).interest), debtDue: s.debtPaid ? 0 : balance(c).debt, debtSlot: balance(c).debtSlot, bankrupt: s.bankrupt, crisisSince: s.crisisSince, actors: s.actors.map(a => ({ ...a, clarifyChance: c.campaign?.maxChapter===2 ? clarifyChance(s,c,a) : 1, location: actorScene(s, a), busy: occupied(s, a.id), skills: { ...version(c, a, s).skills }, price: version(c, a, s).price, modes: [...version(c, a, s).modes] })), jobs: s.jobs.filter(j => !['expired', 'rejected'].includes(j.status)).map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { ...j, title: t.title, titleEn: t.titleEn ?? t.title, description: t.description, descriptionEn: t.descriptionEn ?? t.description, revealedRequirements: (t.requirements ?? []).slice(0,j.revealed ?? 0).map(r=>({...r})), weights: { ...t.weights }, reward: round(t.reward * balance(c).rewardScale), delivery: t.delivery, phases: t.phases ?? 1, workSlots: t.workSlots, clarity: t.clarity, passQuality: t.qualityLines?.[0] ?? 60, qualityLines: [...(t.qualityLines ?? [60, 75, 90])], resourceEstimate: estimateResources(s, c, j), qualityBreakdown: { base: round(100 * j.weighted / Math.max(1, j.progress)), review: j.review, event: j.qualityBonus, hiddenPenalty: 8 * j.hidden, defectPenalty: 6 * j.defects }, overdue: active(j) && s.absoluteSlot > j.deadline, team: j.team.map(m => ({ ...m })) }; }), pending: card ? { ...card, choices: card.choices.map(x => ({ ...x, ...(x.effects ? { effects: x.effects.map(e => ({ ...e })) } : {}) })) } : null, ledger: s.ledger.slice(-10).map(x => ({ ...x })), resources: s.resources.slice(-10).map(x => ({ ...x })) };
+    return { possibleStops, campaign: s.campaign ? cloneCampaign(s.campaign) : null, catalog: c.campaign ? { ...c.campaign, stories: c.campaign.stories?.map(x=>({...x,choices:x.choices.map(o=>({...o}))})) ?? [], initial: [...c.campaign.initial], recruits: c.campaign.recruits.map(x => ({...x})), software: c.campaign.software.map(x => ({...x, requires: [...x.requires]})), versions: c.versions.map(v => ({ id: v.id, character: v.character, name: v.name, skills: {...v.skills}, price: v.price, speed: v.speed })) } : null, liquidCash: liquidCash(s), overtime: [...s.overtime], loanGraceUntil: s.loanGraceUntil ?? 0, crisisLength: balance(c).crisisLength, absoluteSlot: s.absoluteSlot, day: Math.floor(s.absoluteSlot / 4) + 1, slot: ['上午', '下午', '晚上', '深夜'][s.absoluteSlot % 4], cash: s.cash, quota: s.quota, purchased: s.purchased, localCapacity: s.localCapacity, electricity: s.electricity, loan: s.loan, crises: s.crises.length, reputation: s.reputation, founderXP: s.founderXP, nextWeeklyBill: balance(c).weekly + [0,120,420][s.campaign?.subscription ?? 0]! + s.electricity + round(s.loan * balance(c).interest), debtDue: s.debtPaid ? 0 : balance(c).debt, debtSlot: balance(c).debtSlot, bankrupt: s.bankrupt, crisisSince: s.crisisSince, actors: s.actors.map(a => ({ ...a, clarifyChance: (c.campaign?.maxChapter??0)>=2 ? clarifyChance(s,c,a) : 1, location: actorScene(s, a), busy: occupied(s, a.id), skills: { ...version(c, a, s).skills }, price: version(c, a, s).price, modes: [...version(c, a, s).modes] })), jobs: s.jobs.filter(j => !['expired', 'rejected'].includes(j.status)).map(j => { const t = c.commissions.find(t => t.id === j.template)!; return { ...j, title: t.title, titleEn: t.titleEn ?? t.title, description: t.description, descriptionEn: t.descriptionEn ?? t.description, revealedRequirements: (t.requirements ?? []).slice(0,j.revealed ?? 0).map(r=>({...r})), weights: { ...t.weights }, reward: round(t.reward * (j.rewardFactor??1) * balance(c).rewardScale), delivery: t.delivery, phases: t.phases ?? 1, workSlots: t.workSlots, clarity: t.clarity, passQuality: t.qualityLines?.[0] ?? 60, qualityLines: [...(t.qualityLines ?? [60, 75, 90])], resourceEstimate: estimateResources(s, c, j), qualityBreakdown: { base: round(100 * j.weighted / Math.max(1, j.progress)), review: j.review, event: j.qualityBonus, hiddenPenalty: 8 * j.hidden, defectPenalty: 6 * j.defects }, overdue: active(j) && s.absoluteSlot > j.deadline, team: j.team.map(m => ({ ...m })) }; }), pending: card ? { ...card, choices: card.choices.map(x => ({ ...x, ...(x.effects ? { effects: x.effects.map(e => ({ ...e })) } : {}) })) } : null, ledger: s.ledger.slice(-10).map(x => ({ ...x })), resources: s.resources.slice(-10).map(x => ({ ...x })) };
 }

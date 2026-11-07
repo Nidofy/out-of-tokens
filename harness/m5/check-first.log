@@ -1,0 +1,56 @@
+$ pnpm typecheck && pnpm lint && pnpm test && pnpm build
+$ tsc -b --pretty false
+$ eslint packages apps
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\__global-api-script.js
+  1:1  error  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\0117cb5ecc77ad36f9b7473efd42c016cbffe030a985e8c3b40acfcb4c628b18.js
+  1:1  error  Parsing error: Invalid character
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\031f7e910ef51a53e9b842586bf8ca17c14b87984d2595f93547cbaeb166a4c2.js
+  1:0  error  Parsing error: File appears to be binary
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\0c718c21479baf6c51c6d70e2d5d4703548d7afa16170c0fe9b2c4c88ac9c64f.js
+  1:0  error  Parsing error: Invalid character
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\1ae8fd0a6ee7dde8177568522448bf64adcde2567e25701544d29ecf8787d682.js
+  1:0  error  Parsing error: Invalid character
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\5a102d472e7291b24e0fe98255b63c31487a4b2cbe5ef5709504326c902413b3.js
+  1:0  error  Parsing error: File appears to be binary
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\5f0d45d960ea796e86810851f881f8b26b205716a58c7c7509c738d8892f16e1.js
+  1:0  error  Parsing error: Invalid character
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\60200000f2b7d2299c336f84e483da01e34742935a704f17d31a794b9f0e83a6.js
+  1:0  error  Parsing error: File appears to be binary
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\80fd88b147fec84ea92c76d52bcbd3ac4d622d21bb61fb7cea277827c33e7df6.js
+  1:0  error  Parsing error: File appears to be binary
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\853d6b2838352f8b66e6cc67600b3eb7742c5ddc04857e04023d70380a1db485.js
+  1:0  error  Parsing error: Invalid character
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\9417be8876463c3fca2dbe25a2fc59c77d410f8e55c4261494b06a24c95f8438.js
+  1:1  error  Parsing error: Invalid character
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\962b4f1b2eae53577330c5ab2cacc5716fc489b1c8978a7e376e95754db0a023.js
+  1:0  error  Parsing error: Invalid character
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\ca3c7dd806d1bf7f46814f602410b224b550bd6f4b49b662e5a0f299c399d735.js
+  1:0  error  Parsing error: Invalid character
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\cdac91932abebe03e9dfc5548d0e4e624bd5663a04fb7149500168298284a467.js
+  1:0  error  Parsing error: File appears to be binary
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\f084d67da02556f683f19508b3d227978c7ff16a7c43fd30240b4c00be8de58b.js
+  1:1  error  Parsing error: Invalid character
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\desktop\target\debug\build\out-of-tokens-desktop-9508654791391a75\out\tauri-codegen-assets\f0ffe1a2a8b7d124cc75aeaf0027736832b01e568685d591538f4fdfdf7fe796.js
+  1:0  error  Parsing error: Invalid character
+
+✖ 16 problems (16 errors, 0 warnings)
+
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

@@ -1,12 +1,13 @@
+import {engineVersion} from 'oot-core';
 export type FlavorContext={actor:string;scene:string;slot:number;language:'zh'|'en';mood:number;version:string};
 export type FlavorPack={schemaVersion:1;id:string;version:string;engine:string;author:string;license:string;lines:{id:string;zh:string;en:string}[]};
 const safeText=(s:unknown)=>typeof s==='string'&&s.length>0&&s.length<=120&&!/[<>\u0000-\u001f]/u.test(s)&&!/(https?:|javascript:|傻逼|fuck|shit)/iu.test(s);
 export function parseFlavorPack(text:string):FlavorPack{
  if(text.length>64000)throw Error('PACK_TOO_LARGE');
  const p=JSON.parse(text) as FlavorPack;
- if(!p||Object.keys(p).some(k=>!['schemaVersion','id','version','engine','author','license','lines'].includes(k))||p.schemaVersion!==1||!/^[-a-z0-9]{1,40}$/.test(p.id)||p.engine!=='0.8.1'||![p.version,p.author,p.license].every(safeText)||!Array.isArray(p.lines)||p.lines.length<1||p.lines.length>100)throw Error('INVALID_FLAVOR_PACK');
+ if(!p||Object.keys(p).some(k=>!['schemaVersion','id','version','engine','author','license','lines'].includes(k))||p.schemaVersion!==1||typeof p.id!=='string'||!/^[-a-z0-9]{1,40}$/.test(p.id)||p.engine!==engineVersion||![p.version,p.author,p.license].every(safeText)||!Array.isArray(p.lines)||p.lines.length<1||p.lines.length>100)throw Error('INVALID_FLAVOR_PACK');
  const ids=new Set<string>();
- for(const line of p.lines){if(!line||Object.keys(line).some(k=>!['id','zh','en'].includes(k))||!/^[-a-z0-9]{1,40}$/.test(line.id)||!safeText(line.zh)||!safeText(line.en)||ids.has(line.id))throw Error('INVALID_FLAVOR_LINE');ids.add(line.id);line.id=p.id+':'+line.id;}
+ for(const line of p.lines){if(!line||Object.keys(line).some(k=>!['id','zh','en'].includes(k))||typeof line.id!=='string'||!/^[-a-z0-9]{1,40}$/.test(line.id)||!safeText(line.zh)||!safeText(line.en)||ids.has(line.id))throw Error('INVALID_FLAVOR_LINE');ids.add(line.id);line.id=p.id+':'+line.id;}
  return p;
 }
 const corpus={zh:['我把月亮排进了日程。','服务器想喝一杯热茶。','这朵云今天准时下班。','书签在梦里编译春天。'],en:['The moon has a deadline.','The server would like some tea.','This cloud clocks out on time.','A bookmark compiles spring.']};

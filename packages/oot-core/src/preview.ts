@@ -1,3 +1,4 @@
+import {challengeAllows} from './finale.js';
 import { effectiveVersion, owns, needsFactor } from './campaign.js';
 import type { Content, State, Job } from './model.js';
 import { moodFactor, fatigueFactor } from './economy.js';
@@ -12,7 +13,7 @@ export function estimateResources(s: State, c: Content, j: Job) {
     for (const m of [...j.team].sort((a,b)=>({planner:0,tool:1,worker:2,reviewer:3}[a.role]-{planner:0,tool:1,worker:2,reviewer:3}[b.role]) || (a.character<b.character?-1:a.character>b.character?1:0))) {
         const a = s.actors.find(a => a.id === m.character)!;
         const v = effectiveVersion(s, c, a, m.mode);
-        if (!attending(a.id))
+        if (!attending(a.id) || !challengeAllows(s,c,a.version,m.mode))
             continue;
         const match = Object.entries(t.weights).reduce((sum, [k, w]) => sum + w * v.skills[k as keyof typeof v.skills] / 10, 0);
         const role = m.role === 'worker' ? (1 + (pv?.skills.reason ?? 0) * .015) * (1 - (owns(s,'management')?0:.05) * Math.max(0, j.team.filter(m => m.role === 'worker').length - 2)) : m.role === 'planner' || m.role === 'tool' ? .5 : .3;

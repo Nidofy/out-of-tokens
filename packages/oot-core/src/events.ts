@@ -1,10 +1,11 @@
 import type { Card, Content, Job, State, Effect } from './model.js';
+import {challengeAllows} from './finale.js';
 import { round } from './economy.js';
 export function eligible(s: State, c: Content, card: Card, j: Job): boolean {
-    if (j.status !== 'working')
+    if ((card.minChapter??0)>(s.campaign?.chapter??0) || j.status !== 'working')
         return false;
     const attending = (id: string) => s.actors.find(a => a.id === id)!.busyUntil <= s.absoluteSlot && s.actors.find(a => a.id === id)!.energy >= 10 && (s.absoluteSlot % 4 < 2 || s.overtime.includes(id));
-    const resourced = (m: Job['team'][number]) => attending(m.character) && (m.mode === 'cloud' ? s.quota + s.purchased > 0 : s.localCapacity > 0);
+    const resourced = (m: Job['team'][number]) => challengeAllows(s,c,s.actors.find(a=>a.id===m.character)!.version,m.mode) && attending(m.character) && (m.mode === 'cloud' ? s.quota + s.purchased > 0 : s.localCapacity > 0);
     if (!j.team.some(m => m.role === 'worker' && resourced(m)))
         return false;
     if (s.absoluteSlot - (s.eventLast[card.id] ?? -10000) < (card.cooldown ?? 0))

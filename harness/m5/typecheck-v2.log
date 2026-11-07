@@ -1,0 +1,6 @@
+$ tsc -b --pretty false
+packages/oot-core/src/index.ts(7,9): error TS2300: Duplicate identifier 'worlds'.
+packages/oot-core/src/index.ts(7,16): error TS2300: Duplicate identifier 'endingReady'.
+packages/oot-core/src/index.ts(9,9): error TS2300: Duplicate identifier 'worlds'.
+packages/oot-core/src/index.ts(9,16): error TS2300: Duplicate identifier 'endingReady'.
+[ELIFECYCLE] Command failed with exit code 2.

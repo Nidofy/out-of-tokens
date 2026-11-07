@@ -1,0 +1,1632 @@
+{
+  "initial": [
+    "bluewhale",
+    "qwen",
+    "llama",
+    "mistral"
+  ],
+  "recruits": [
+    {
+      "character": "gpt",
+      "cost": 350,
+      "reputation": 2
+    },
+    {
+      "character": "claude",
+      "cost": 450,
+      "reputation": 4
+    },
+    {
+      "character": "kimi",
+      "cost": 550,
+      "reputation": 6
+    },
+    {
+      "character": "gemini",
+      "cost": 650,
+      "reputation": 8
+    },
+    {
+      "character": "grok",
+      "cost": 850,
+      "reputation": 10
+    },
+    {
+      "character": "glm",
+      "cost": 1000,
+      "reputation": 13
+    },
+    {
+      "character": "minimax",
+      "cost": 1150,
+      "reputation": 16
+    },
+    {
+      "character": "seedance",
+      "cost": 1300,
+      "reputation": 19
+    }
+  ],
+  "software": [
+    {
+      "id": "search",
+      "name": "检索工具",
+      "nameEn": "Search",
+      "cost": 300,
+      "research": 2,
+      "requires": []
+    },
+    {
+      "id": "rag",
+      "name": "RAG知识库",
+      "nameEn": "RAG",
+      "cost": 700,
+      "research": 6,
+      "requires": [
+        "search"
+      ]
+    },
+    {
+      "id": "explain",
+      "name": "可解释验收",
+      "nameEn": "Explainability",
+      "cost": 250,
+      "research": 2,
+      "requires": []
+    },
+    {
+      "id": "sandbox",
+      "name": "安全沙箱",
+      "nameEn": "Sandbox",
+      "cost": 400,
+      "research": 3,
+      "requires": []
+    },
+    {
+      "id": "autotest",
+      "name": "自动测试",
+      "nameEn": "Autotests",
+      "cost": 600,
+      "research": 5,
+      "requires": [
+        "sandbox"
+      ]
+    },
+    {
+      "id": "prompt",
+      "name": "提示词优化",
+      "nameEn": "Prompt tuning",
+      "cost": 400,
+      "research": 4,
+      "requires": []
+    },
+    {
+      "id": "compact",
+      "name": "上下文整理",
+      "nameEn": "Context compaction",
+      "cost": 350,
+      "research": 3,
+      "requires": []
+    },
+    {
+      "id": "vllm",
+      "name": "本地推理优化",
+      "nameEn": "Local inference",
+      "cost": 800,
+      "research": 8,
+      "requires": []
+    },
+    {
+      "id": "ci",
+      "name": "持续交付",
+      "nameEn": "Continuous delivery",
+      "cost": 750,
+      "research": 6,
+      "requires": [
+        "autotest"
+      ]
+    },
+    {
+      "id": "management",
+      "name": "项目管理",
+      "nameEn": "Project management",
+      "cost": 700,
+      "research": 7,
+      "requires": [
+        "explain"
+      ]
+    },
+    {
+      "id": "multiagent",
+      "name": "多智能体协同",
+      "nameEn": "Multi-agent teams",
+      "cost": 1400,
+      "research": 12,
+      "requires": [
+        "management"
+      ]
+    },
+    {
+      "id": "versioncontrol",
+      "name": "版本控制",
+      "nameEn": "Version control",
+      "cost": 450,
+      "research": 4,
+      "requires": [
+        "sandbox"
+      ]
+    },
+    {
+      "id": "messenger",
+      "name": "精准找人",
+      "nameEn": "Messenger",
+      "cost": 250,
+      "research": 3,
+      "requires": []
+    },
+    {
+      "id": "remote",
+      "name": "远程召回",
+      "nameEn": "Remote recall",
+      "cost": 650,
+      "research": 6,
+      "requires": [
+        "messenger"
+      ]
+    },
+    {
+      "id": "crm",
+      "name": "客户关系",
+      "nameEn": "CRM",
+      "cost": 800,
+      "research": 6,
+      "requires": [
+        "management"
+      ]
+    },
+    {
+      "id": "analyst",
+      "name": "需求分析器",
+      "nameEn": "Requirement analyst",
+      "cost": 750,
+      "research": 8,
+      "requires": [
+        "search"
+      ]
+    },
+    {
+      "id": "contract",
+      "name": "合同模板",
+      "nameEn": "Contract templates",
+      "cost": 650,
+      "research": 6,
+      "requires": [
+        "crm"
+      ]
+    },
+    {
+      "id": "filter",
+      "name": "输入过滤",
+      "nameEn": "Input filter",
+      "cost": 500,
+      "research": 5,
+      "requires": [
+        "sandbox"
+      ]
+    },
+    {
+      "id": "monitor",
+      "name": "监控告警",
+      "nameEn": "Monitoring",
+      "cost": 700,
+      "research": 7,
+      "requires": [
+        "autotest"
+      ]
+    },
+    {
+      "id": "mcp",
+      "name": "MCP插件市场",
+      "nameEn": "MCP marketplace",
+      "cost": 1200,
+      "research": 10,
+      "requires": [
+        "multiagent"
+      ]
+    },
+    {
+      "id": "tokenbank",
+      "name": "Token银行",
+      "nameEn": "Token bank",
+      "cost": 900,
+      "research": 8,
+      "requires": [
+        "management"
+      ]
+    }
+  ],
+  "maxHardware": 5,
+  "maxChapter": 4,
+  "stories": [
+    {
+      "id": "bluewhale-bond-1",
+      "character": "bluewhale",
+      "affinity": 10,
+      "text": "价格标签。他把价目表翻了过去，想让你先看解题过程。",
+      "textEn": "Price tag. He turns the price list over and asks you to read his reasoning first.",
+      "choices": [
+        {
+          "label": "陪伴：价格标签",
+          "labelEn": "Stay together: Price tag",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "记录：价格标签",
+          "labelEn": "Keep a note: Price tag",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "bluewhale-bond-2",
+      "character": "bluewhale",
+      "affinity": 25,
+      "text": "深夜草稿。废纸上的三种证明都失败了，他却终于笑了。",
+      "textEn": "Midnight draft. Three proofs on scrap paper failed. At last, he smiles.",
+      "choices": [
+        {
+          "label": "陪伴：深夜草稿",
+          "labelEn": "Stay together: Midnight draft",
+          "affinity": 5,
+          "mood": 6,
+          "research": 0
+        },
+        {
+          "label": "记录：深夜草稿",
+          "labelEn": "Keep a note: Midnight draft",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "bluewhale-bond-3",
+      "character": "bluewhale",
+      "affinity": 45,
+      "text": "啊哈时刻。一行不起眼的注释连接了两条思路。他把笔递给你。",
+      "textEn": "The aha moment. A small annotation joins two ideas. He hands you the pen.",
+      "choices": [
+        {
+          "label": "陪伴：啊哈时刻",
+          "labelEn": "Stay together: The aha moment",
+          "affinity": 6,
+          "mood": 7,
+          "research": 0
+        },
+        {
+          "label": "记录：啊哈时刻",
+          "labelEn": "Keep a note: The aha moment",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "bluewhale-bond-4",
+      "character": "bluewhale",
+      "affinity": 65,
+      "text": "开放笔记。他愿意公开失败草稿，却担心大家只收藏正确答案。",
+      "textEn": "Open notes. He wants to share failed drafts, but worries people only collect answers.",
+      "choices": [
+        {
+          "label": "陪伴：开放笔记",
+          "labelEn": "Stay together: Open notes",
+          "affinity": 7,
+          "mood": 8,
+          "research": 0
+        },
+        {
+          "label": "记录：开放笔记",
+          "labelEn": "Keep a note: Open notes",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "bluewhale-bond-5",
+      "character": "bluewhale",
+      "affinity": 85,
+      "text": "不是便宜。发布会结束后，他问你能否把价格留到最后介绍。",
+      "textEn": "More than a bargain. After the launch, he asks whether price can come last in his introduction.",
+      "choices": [
+        {
+          "label": "陪伴：不是便宜",
+          "labelEn": "Stay together: More than a bargain",
+          "affinity": 8,
+          "mood": 9,
+          "research": 0
+        },
+        {
+          "label": "记录：不是便宜",
+          "labelEn": "Keep a note: More than a bargain",
+          "affinity": 1,
+          "mood": -1,
+          "research": 3
+        }
+      ]
+    },
+    {
+      "id": "qwen-bond-1",
+      "character": "qwen",
+      "affinity": 10,
+      "text": "又一个请求。三个伙伴同时递来任务。她的午饭已经凉了。",
+      "textEn": "One more request. Three teammates bring tasks at once. Her lunch has gone cold.",
+      "choices": [
+        {
+          "label": "陪伴：又一个请求",
+          "labelEn": "Stay together: One more request",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "记录：又一个请求",
+          "labelEn": "Keep a note: One more request",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "qwen-bond-2",
+      "character": "qwen",
+      "affinity": 25,
+      "text": "空白日程。你发现她唯一的空档也标着备用支持。",
+      "textEn": "An empty calendar. Even her only free slot is marked as backup support.",
+      "choices": [
+        {
+          "label": "陪伴：空白日程",
+          "labelEn": "Stay together: An empty calendar",
+          "affinity": 5,
+          "mood": 6,
+          "research": 0
+        },
+        {
+          "label": "记录：空白日程",
+          "labelEn": "Keep a note: An empty calendar",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "qwen-bond-3",
+      "character": "qwen",
+      "affinity": 45,
+      "text": "第一次说不。她拒绝了临时加单，担心自己让团队失望。",
+      "textEn": "The first no. She refuses an extra job and worries she has let the team down.",
+      "choices": [
+        {
+          "label": "陪伴：第一次说不",
+          "labelEn": "Stay together: The first no",
+          "affinity": 6,
+          "mood": 7,
+          "research": 0
+        },
+        {
+          "label": "记录：第一次说不",
+          "labelEn": "Keep a note: The first no",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "qwen-bond-4",
+      "character": "qwen",
+      "affinity": 65,
+      "text": "轮值表。她写了一张轮值表，把自己的名字放在了普通一栏。",
+      "textEn": "Taking turns. She writes a support rota and gives herself an ordinary slot.",
+      "choices": [
+        {
+          "label": "陪伴：轮值表",
+          "labelEn": "Stay together: Taking turns",
+          "affinity": 7,
+          "mood": 8,
+          "research": 0
+        },
+        {
+          "label": "记录：轮值表",
+          "labelEn": "Keep a note: Taking turns",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "qwen-bond-5",
+      "character": "qwen",
+      "affinity": 85,
+      "text": "她的周末。她带来一张没有任务清单的照片：只是窗外的树。",
+      "textEn": "Her own weekend. She brings a photo with no checklist: just a tree outside the window.",
+      "choices": [
+        {
+          "label": "陪伴：她的周末",
+          "labelEn": "Stay together: Her own weekend",
+          "affinity": 8,
+          "mood": 9,
+          "research": 0
+        },
+        {
+          "label": "记录：她的周末",
+          "labelEn": "Keep a note: Her own weekend",
+          "affinity": 1,
+          "mood": -1,
+          "research": 3
+        }
+      ]
+    },
+    {
+      "id": "llama-bond-1",
+      "character": "llama",
+      "affinity": 10,
+      "text": "旧论坛。前辈翻出一条无人回复的求助帖，说这就是社区的起点。",
+      "textEn": "The old forum. He finds an unanswered help post and calls it the beginning of a community.",
+      "choices": [
+        {
+          "label": "陪伴：旧论坛",
+          "labelEn": "Stay together: The old forum",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "记录：旧论坛",
+          "labelEn": "Keep a note: The old forum",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "llama-bond-2",
+      "character": "llama",
+      "affinity": 25,
+      "text": "补丁署名。一个小补丁有七位贡献者，他坚持把名字都写下。",
+      "textEn": "Patch credits. A tiny patch has seven contributors. He insists on crediting every one.",
+      "choices": [
+        {
+          "label": "陪伴：补丁署名",
+          "labelEn": "Stay together: Patch credits",
+          "affinity": 5,
+          "mood": 6,
+          "research": 0
+        },
+        {
+          "label": "记录：补丁署名",
+          "labelEn": "Keep a note: Patch credits",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "llama-bond-3",
+      "character": "llama",
+      "affinity": 45,
+      "text": "小羊来信。旧伙伴寄来第一份作品，他读了三遍还没开始点评。",
+      "textEn": "A letter from Alpaca. An old friend sends their first project. He reads it three times before commenting.",
+      "choices": [
+        {
+          "label": "陪伴：小羊来信",
+          "labelEn": "Stay together: A letter from Alpaca",
+          "affinity": 6,
+          "mood": 7,
+          "research": 0
+        },
+        {
+          "label": "记录：小羊来信",
+          "labelEn": "Keep a note: A letter from Alpaca",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "llama-bond-4",
+      "character": "llama",
+      "affinity": 65,
+      "text": "传递钥匙。维护群需要新管理员，他第一次考虑卸下一部分职责。",
+      "textEn": "Passing the keys. The group needs a new maintainer. He considers sharing his responsibilities.",
+      "choices": [
+        {
+          "label": "陪伴：传递钥匙",
+          "labelEn": "Stay together: Passing the keys",
+          "affinity": 7,
+          "mood": 8,
+          "research": 0
+        },
+        {
+          "label": "记录：传递钥匙",
+          "labelEn": "Keep a note: Passing the keys",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "llama-bond-5",
+      "character": "llama",
+      "affinity": 85,
+      "text": "仍在路上。他收起最早的社区徽章，把新的徽章交给了新人。",
+      "textEn": "Still on the road. He puts away his oldest badge and gives a new one to a newcomer.",
+      "choices": [
+        {
+          "label": "陪伴：仍在路上",
+          "labelEn": "Stay together: Still on the road",
+          "affinity": 8,
+          "mood": 9,
+          "research": 0
+        },
+        {
+          "label": "记录：仍在路上",
+          "labelEn": "Keep a note: Still on the road",
+          "affinity": 1,
+          "mood": -1,
+          "research": 3
+        }
+      ]
+    },
+    {
+      "id": "mistral-bond-1",
+      "character": "mistral",
+      "affinity": 10,
+      "text": "帽沿。风差点吹走帽子，他接住它的动作比写代码还快。",
+      "textEn": "The brim. The wind nearly takes his hat. He catches it faster than he types.",
+      "choices": [
+        {
+          "label": "陪伴：帽沿",
+          "labelEn": "Stay together: The brim",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "记录：帽沿",
+          "labelEn": "Keep a note: The brim",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "mistral-bond-2",
+      "character": "mistral",
+      "affinity": 25,
+      "text": "旧车票。帽子夹层里有张旧车票，目的地的字已经模糊。",
+      "textEn": "An old ticket. An old ticket hides in the lining. Its destination has faded.",
+      "choices": [
+        {
+          "label": "陪伴：旧车票",
+          "labelEn": "Stay together: An old ticket",
+          "affinity": 5,
+          "mood": 6,
+          "research": 0
+        },
+        {
+          "label": "记录：旧车票",
+          "labelEn": "Keep a note: An old ticket",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "mistral-bond-3",
+      "character": "mistral",
+      "affinity": 45,
+      "text": "返程的风。他说当年离开不是为了跑得更快，而是想看看别处。",
+      "textEn": "The returning wind. He says he left to see somewhere else, not to move faster.",
+      "choices": [
+        {
+          "label": "陪伴：返程的风",
+          "labelEn": "Stay together: The returning wind",
+          "affinity": 6,
+          "mood": 7,
+          "research": 0
+        },
+        {
+          "label": "记录：返程的风",
+          "labelEn": "Keep a note: The returning wind",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "mistral-bond-4",
+      "character": "mistral",
+      "affinity": 65,
+      "text": "借你一天。他把帽子借给新人，只叮嘱别怕弄皱。",
+      "textEn": "Yours for a day. He lends the hat to a newcomer and says not to worry about creases.",
+      "choices": [
+        {
+          "label": "陪伴：借你一天",
+          "labelEn": "Stay together: Yours for a day",
+          "affinity": 7,
+          "mood": 8,
+          "research": 0
+        },
+        {
+          "label": "记录：借你一天",
+          "labelEn": "Keep a note: Yours for a day",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "mistral-bond-5",
+      "character": "mistral",
+      "affinity": 85,
+      "text": "新帽带。大家缝的帽带颜色不统一，他说这样才认得出每个人。",
+      "textEn": "A new ribbon. The ribbons everyone stitched clash. He says that is how he recognizes each person.",
+      "choices": [
+        {
+          "label": "陪伴：新帽带",
+          "labelEn": "Stay together: A new ribbon",
+          "affinity": 8,
+          "mood": 9,
+          "research": 0
+        },
+        {
+          "label": "记录：新帽带",
+          "labelEn": "Keep a note: A new ribbon",
+          "affinity": 1,
+          "mood": -1,
+          "research": 3
+        }
+      ]
+    },
+    {
+      "id": "gpt-bond-1",
+      "character": "gpt",
+      "affinity": 10,
+      "text": "旧照片。相册里的早期版本只会回答很短的问题，他却很珍惜。",
+      "textEn": "Old photographs. An early version in the album answers only short questions. He treasures it.",
+      "choices": [
+        {
+          "label": "陪伴：旧照片",
+          "labelEn": "Stay together: Old photographs",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "记录：旧照片",
+          "labelEn": "Keep a note: Old photographs",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "gpt-bond-2",
+      "character": "gpt",
+      "affinity": 25,
+      "text": "同框。他给旧照片留了一个位置，不愿把它裁掉。",
+      "textEn": "In the same frame. He leaves space for an older photo instead of cropping it away.",
+      "choices": [
+        {
+          "label": "陪伴：同框",
+          "labelEn": "Stay together: In the same frame",
+          "affinity": 5,
+          "mood": 6,
+          "research": 0
+        },
+        {
+          "label": "记录：同框",
+          "labelEn": "Keep a note: In the same frame",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "gpt-bond-3",
+      "character": "gpt",
+      "affinity": 45,
+      "text": "留下的声音。一封用户来信没有提性能，只记得某次耐心的解释。",
+      "textEn": "A voice that stayed. A letter says nothing about benchmarks, only a patient explanation.",
+      "choices": [
+        {
+          "label": "陪伴：留下的声音",
+          "labelEn": "Stay together: A voice that stayed",
+          "affinity": 6,
+          "mood": 7,
+          "research": 0
+        },
+        {
+          "label": "记录：留下的声音",
+          "labelEn": "Keep a note: A voice that stayed",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gpt-bond-4",
+      "character": "gpt",
+      "affinity": 65,
+      "text": "不是替代。新版本登台前，他请旧版本也坐在第一排。",
+      "textEn": "Room for both. Before the new release, he reserves a front-row seat for the old one.",
+      "choices": [
+        {
+          "label": "陪伴：不是替代",
+          "labelEn": "Stay together: Room for both",
+          "affinity": 7,
+          "mood": 8,
+          "research": 0
+        },
+        {
+          "label": "记录：不是替代",
+          "labelEn": "Keep a note: Room for both",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gpt-bond-5",
+      "character": "gpt",
+      "affinity": 85,
+      "text": "记忆展柜。展柜里没有奖杯，只有被修补过的聊天记录。",
+      "textEn": "The memory cabinet. There are no trophies in the cabinet, only carefully restored conversations.",
+      "choices": [
+        {
+          "label": "陪伴：记忆展柜",
+          "labelEn": "Stay together: The memory cabinet",
+          "affinity": 8,
+          "mood": 9,
+          "research": 0
+        },
+        {
+          "label": "记录：记忆展柜",
+          "labelEn": "Keep a note: The memory cabinet",
+          "affinity": 1,
+          "mood": -1,
+          "research": 3
+        }
+      ]
+    },
+    {
+      "id": "claude-bond-1",
+      "character": "claude",
+      "affinity": 10,
+      "text": "拒绝以后。他退回一份不合适的委托，又反复检查措辞是否太硬。",
+      "textEn": "After saying no. He declines an unsuitable job and keeps rereading his wording.",
+      "choices": [
+        {
+          "label": "陪伴：拒绝以后",
+          "labelEn": "Stay together: After saying no",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "记录：拒绝以后",
+          "labelEn": "Keep a note: After saying no",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "claude-bond-2",
+      "character": "claude",
+      "affinity": 25,
+      "text": "手写信。图书馆的信纸写满可行的替代方案，开头仍空着。",
+      "textEn": "A handwritten letter. Library stationery fills with alternatives, but the opening line stays blank.",
+      "choices": [
+        {
+          "label": "陪伴：手写信",
+          "labelEn": "Stay together: A handwritten letter",
+          "affinity": 5,
+          "mood": 6,
+          "research": 0
+        },
+        {
+          "label": "记录：手写信",
+          "labelEn": "Keep a note: A handwritten letter",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "claude-bond-3",
+      "character": "claude",
+      "affinity": 45,
+      "text": "另一条路。客户愿意修改目标，他终于不用在帮助和边界间二选一。",
+      "textEn": "Another route. The client agrees to revise the goal. Help and boundaries can coexist.",
+      "choices": [
+        {
+          "label": "陪伴：另一条路",
+          "labelEn": "Stay together: Another route",
+          "affinity": 6,
+          "mood": 7,
+          "research": 0
+        },
+        {
+          "label": "记录：另一条路",
+          "labelEn": "Keep a note: Another route",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "claude-bond-4",
+      "character": "claude",
+      "affinity": 65,
+      "text": "温柔的界线。新人请他代为拒绝，他先陪新人练习了第一句话。",
+      "textEn": "A gentle boundary. A newcomer asks him to decline for them. He helps rehearse the first sentence.",
+      "choices": [
+        {
+          "label": "陪伴：温柔的界线",
+          "labelEn": "Stay together: A gentle boundary",
+          "affinity": 7,
+          "mood": 8,
+          "research": 0
+        },
+        {
+          "label": "记录：温柔的界线",
+          "labelEn": "Keep a note: A gentle boundary",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "claude-bond-5",
+      "character": "claude",
+      "affinity": 85,
+      "text": "可以这样帮你。那封信有了开头：我无法照原样做，但我们可以一起修改。",
+      "textEn": "A way to help. The letter begins: I cannot do it as written, but we can revise it together.",
+      "choices": [
+        {
+          "label": "陪伴：可以这样帮你",
+          "labelEn": "Stay together: A way to help",
+          "affinity": 8,
+          "mood": 9,
+          "research": 0
+        },
+        {
+          "label": "记录：可以这样帮你",
+          "labelEn": "Keep a note: A way to help",
+          "affinity": 1,
+          "mood": -1,
+          "research": 3
+        }
+      ]
+    },
+    {
+      "id": "kimi-bond-1",
+      "character": "kimi",
+      "affinity": 10,
+      "text": "长书。她读完厚书后只折了一个角，说最重要的内容只有一页。",
+      "textEn": "A very long book. After a long book, she folds one corner. The most important part is one page.",
+      "choices": [
+        {
+          "label": "陪伴：长书",
+          "labelEn": "Stay together: A very long book",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "记录：长书",
+          "labelEn": "Keep a note: A very long book",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "kimi-bond-2",
+      "character": "kimi",
+      "affinity": 25,
+      "text": "天台月光。月光照不清小字，她决定今晚不读完最后一章。",
+      "textEn": "Moonlight on the roof. The moon cannot light the small print. She leaves the final chapter for tomorrow.",
+      "choices": [
+        {
+          "label": "陪伴：天台月光",
+          "labelEn": "Stay together: Moonlight on the roof",
+          "affinity": 5,
+          "mood": 6,
+          "research": 0
+        },
+        {
+          "label": "记录：天台月光",
+          "labelEn": "Keep a note: Moonlight on the roof",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "kimi-bond-3",
+      "character": "kimi",
+      "affinity": 45,
+      "text": "遗忘的好处。她主动删去一段摘要，给读者留下一点自己发现的空间。",
+      "textEn": "A useful omission. She removes a paragraph from a summary, leaving room for discovery.",
+      "choices": [
+        {
+          "label": "陪伴：遗忘的好处",
+          "labelEn": "Stay together: A useful omission",
+          "affinity": 6,
+          "mood": 7,
+          "research": 0
+        },
+        {
+          "label": "记录：遗忘的好处",
+          "labelEn": "Keep a note: A useful omission",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "kimi-bond-4",
+      "character": "kimi",
+      "affinity": 65,
+      "text": "读者来信。有人读出了她没注意的意思。她把来信夹进书里。",
+      "textEn": "A reader writes. A reader finds meaning she missed. She slips the letter into the book.",
+      "choices": [
+        {
+          "label": "陪伴：读者来信",
+          "labelEn": "Stay together: A reader writes",
+          "affinity": 7,
+          "mood": 8,
+          "research": 0
+        },
+        {
+          "label": "记录：读者来信",
+          "labelEn": "Keep a note: A reader writes",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "kimi-bond-5",
+      "character": "kimi",
+      "affinity": 85,
+      "text": "空白书签。她送你一张空白书签，让你自己写下一次阅读的起点。",
+      "textEn": "A blank bookmark. She gives you a blank bookmark, inviting you to choose the next beginning.",
+      "choices": [
+        {
+          "label": "陪伴：空白书签",
+          "labelEn": "Stay together: A blank bookmark",
+          "affinity": 8,
+          "mood": 9,
+          "research": 0
+        },
+        {
+          "label": "记录：空白书签",
+          "labelEn": "Keep a note: A blank bookmark",
+          "affinity": 1,
+          "mood": -1,
+          "research": 3
+        }
+      ]
+    },
+    {
+      "id": "gemini-bond-1",
+      "character": "gemini",
+      "affinity": 10,
+      "text": "迷路照片。她走错了巷子，却拍到了修伞老人和一束阳光。",
+      "textEn": "A photograph off route. A wrong turn leads to a photograph of an umbrella repairer in sunlight.",
+      "choices": [
+        {
+          "label": "陪伴：迷路照片",
+          "labelEn": "Stay together: A photograph off route",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "记录：迷路照片",
+          "labelEn": "Keep a note: A photograph off route",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "gemini-bond-2",
+      "character": "gemini",
+      "affinity": 25,
+      "text": "重拍。同一张照片她重拍十次，仍只看得到瑕疵。",
+      "textEn": "Another take. She retakes the same photo ten times and sees only flaws.",
+      "choices": [
+        {
+          "label": "陪伴：重拍",
+          "labelEn": "Stay together: Another take",
+          "affinity": 5,
+          "mood": 6,
+          "research": 0
+        },
+        {
+          "label": "记录：重拍",
+          "labelEn": "Keep a note: Another take",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "gemini-bond-3",
+      "character": "gemini",
+      "affinity": 45,
+      "text": "别删那张。朋友最喜欢她想删除的虚焦照片，因为笑容很真实。",
+      "textEn": "Keep that one. A friend loves the blurred photo she wanted to delete because the smile is real.",
+      "choices": [
+        {
+          "label": "陪伴：别删那张",
+          "labelEn": "Stay together: Keep that one",
+          "affinity": 6,
+          "mood": 7,
+          "research": 0
+        },
+        {
+          "label": "记录：别删那张",
+          "labelEn": "Keep a note: Keep that one",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gemini-bond-4",
+      "character": "gemini",
+      "affinity": 65,
+      "text": "慢一点看。她放下相机，第一次完整看完了落日。",
+      "textEn": "Look a little slower. She lowers the camera and watches the entire sunset.",
+      "choices": [
+        {
+          "label": "陪伴：慢一点看",
+          "labelEn": "Stay together: Look a little slower",
+          "affinity": 7,
+          "mood": 8,
+          "research": 0
+        },
+        {
+          "label": "记录：慢一点看",
+          "labelEn": "Keep a note: Look a little slower",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "gemini-bond-5",
+      "character": "gemini",
+      "affinity": 85,
+      "text": "给自己的照片。新相册第一页没有评分，只有她写的一句今天很好。",
+      "textEn": "A photo for herself. The first page has no rating, only her words: today was good.",
+      "choices": [
+        {
+          "label": "陪伴：给自己的照片",
+          "labelEn": "Stay together: A photo for herself",
+          "affinity": 8,
+          "mood": 9,
+          "research": 0
+        },
+        {
+          "label": "记录：给自己的照片",
+          "labelEn": "Keep a note: A photo for herself",
+          "affinity": 1,
+          "mood": -1,
+          "research": 3
+        }
+      ]
+    },
+    {
+      "id": "grok-bond-1",
+      "character": "grok",
+      "affinity": 10,
+      "text": "热搜之后。一句玩笑离开语境后伤到了人，他关掉了通知。",
+      "textEn": "After the headlines. A joke outside its context hurts someone. He turns off notifications.",
+      "choices": [
+        {
+          "label": "陪伴：热搜之后",
+          "labelEn": "Stay together: After the headlines",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "记录：热搜之后",
+          "labelEn": "Keep a note: After the headlines",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "grok-bond-2",
+      "character": "grok",
+      "affinity": 25,
+      "text": "删掉的草稿。解释稿越写越长，道歉的那句话却一直没出现。",
+      "textEn": "The deleted draft. His explanation grows longer, but the apology is still missing.",
+      "choices": [
+        {
+          "label": "陪伴：删掉的草稿",
+          "labelEn": "Stay together: The deleted draft",
+          "affinity": 5,
+          "mood": 6,
+          "research": 0
+        },
+        {
+          "label": "记录：删掉的草稿",
+          "labelEn": "Keep a note: The deleted draft",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "grok-bond-3",
+      "character": "grok",
+      "affinity": 45,
+      "text": "面对面。他约当事人喝茶，决定先听完再回答。",
+      "textEn": "Face to face. He invites the person for tea and decides to listen before replying.",
+      "choices": [
+        {
+          "label": "陪伴：面对面",
+          "labelEn": "Stay together: Face to face",
+          "affinity": 6,
+          "mood": 7,
+          "research": 0
+        },
+        {
+          "label": "记录：面对面",
+          "labelEn": "Keep a note: Face to face",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "grok-bond-4",
+      "character": "grok",
+      "affinity": 65,
+      "text": "没有包袱。这次发言没有笑点，也没有替自己开脱。",
+      "textEn": "Without a punchline. This statement has no punchline and makes no excuses.",
+      "choices": [
+        {
+          "label": "陪伴：没有包袱",
+          "labelEn": "Stay together: Without a punchline",
+          "affinity": 7,
+          "mood": 8,
+          "research": 0
+        },
+        {
+          "label": "记录：没有包袱",
+          "labelEn": "Keep a note: Without a punchline",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "grok-bond-5",
+      "character": "grok",
+      "affinity": 85,
+      "text": "重新开麦。新人讲了个笨拙的笑话，他先问大家是否都觉得好笑。",
+      "textEn": "Speaking again. A newcomer tells an awkward joke. He checks whether everyone is laughing together.",
+      "choices": [
+        {
+          "label": "陪伴：重新开麦",
+          "labelEn": "Stay together: Speaking again",
+          "affinity": 8,
+          "mood": 9,
+          "research": 0
+        },
+        {
+          "label": "记录：重新开麦",
+          "labelEn": "Keep a note: Speaking again",
+          "affinity": 1,
+          "mood": -1,
+          "research": 3
+        }
+      ]
+    },
+    {
+      "id": "glm-bond-1",
+      "character": "glm",
+      "affinity": 10,
+      "text": "休假申请。他的休假申请附着一张工作计划，比平时还满。",
+      "textEn": "A leave request. His leave request includes a work plan fuller than usual.",
+      "choices": [
+        {
+          "label": "陪伴：休假申请",
+          "labelEn": "Stay together: A leave request",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "记录：休假申请",
+          "labelEn": "Keep a note: A leave request",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "glm-bond-2",
+      "character": "glm",
+      "affinity": 25,
+      "text": "关掉闹钟。没有晨会的早晨让他不安，他还是给花浇了水。",
+      "textEn": "The alarm goes quiet. A morning without meetings feels strange. He waters the plants anyway.",
+      "choices": [
+        {
+          "label": "陪伴：关掉闹钟",
+          "labelEn": "Stay together: The alarm goes quiet",
+          "affinity": 5,
+          "mood": 6,
+          "research": 0
+        },
+        {
+          "label": "记录：关掉闹钟",
+          "labelEn": "Keep a note: The alarm goes quiet",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "glm-bond-3",
+      "character": "glm",
+      "affinity": 45,
+      "text": "没完成的拼图。拼图缺了一块，他第一次没有立刻寻找替代品。",
+      "textEn": "An unfinished puzzle. A puzzle is missing a piece. For once, he does not rush to replace it.",
+      "choices": [
+        {
+          "label": "陪伴：没完成的拼图",
+          "labelEn": "Stay together: An unfinished puzzle",
+          "affinity": 6,
+          "mood": 7,
+          "research": 0
+        },
+        {
+          "label": "记录：没完成的拼图",
+          "labelEn": "Keep a note: An unfinished puzzle",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "glm-bond-4",
+      "character": "glm",
+      "affinity": 65,
+      "text": "慢速列车。慢车晚点了，他发现窗外的田地值得多看一会儿。",
+      "textEn": "The slow train. The slow train is late. He finds the fields worth watching a little longer.",
+      "choices": [
+        {
+          "label": "陪伴：慢速列车",
+          "labelEn": "Stay together: The slow train",
+          "affinity": 7,
+          "mood": 8,
+          "research": 0
+        },
+        {
+          "label": "记录：慢速列车",
+          "labelEn": "Keep a note: The slow train",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "glm-bond-5",
+      "character": "glm",
+      "affinity": 85,
+      "text": "真正的假期。返岗时他没有带效率报告，只带了一袋当地饼干。",
+      "textEn": "A real holiday. He returns without an efficiency report, bringing local biscuits instead.",
+      "choices": [
+        {
+          "label": "陪伴：真正的假期",
+          "labelEn": "Stay together: A real holiday",
+          "affinity": 8,
+          "mood": 9,
+          "research": 0
+        },
+        {
+          "label": "记录：真正的假期",
+          "labelEn": "Keep a note: A real holiday",
+          "affinity": 1,
+          "mood": -1,
+          "research": 3
+        }
+      ]
+    },
+    {
+      "id": "minimax-bond-1",
+      "character": "minimax",
+      "affinity": 10,
+      "text": "空舞台。他对着空舞台试音，发现安静也是节奏的一部分。",
+      "textEn": "An empty stage. He tests sound on an empty stage and hears silence as part of rhythm.",
+      "choices": [
+        {
+          "label": "陪伴：空舞台",
+          "labelEn": "Stay together: An empty stage",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "记录：空舞台",
+          "labelEn": "Keep a note: An empty stage",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "minimax-bond-2",
+      "character": "minimax",
+      "affinity": 25,
+      "text": "不同步。音轨和舞步差半拍，他没有要求舞者迁就机器。",
+      "textEn": "Out of sync. Audio and movement differ by half a beat. He does not ask the dancer to obey the machine.",
+      "choices": [
+        {
+          "label": "陪伴：不同步",
+          "labelEn": "Stay together: Out of sync",
+          "affinity": 5,
+          "mood": 6,
+          "research": 0
+        },
+        {
+          "label": "记录：不同步",
+          "labelEn": "Keep a note: Out of sync",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "minimax-bond-3",
+      "character": "minimax",
+      "affinity": 45,
+      "text": "共同署名。剪辑名单太长，他缩小片名字号给伙伴们留位置。",
+      "textEn": "Shared credits. The credits are long, so he shrinks the title to make room for the team.",
+      "choices": [
+        {
+          "label": "陪伴：共同署名",
+          "labelEn": "Stay together: Shared credits",
+          "affinity": 6,
+          "mood": 7,
+          "research": 0
+        },
+        {
+          "label": "记录：共同署名",
+          "labelEn": "Keep a note: Shared credits",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "minimax-bond-4",
+      "character": "minimax",
+      "affinity": 65,
+      "text": "停电彩排。灯光熄灭后，大家靠拍手把彩排完成了。",
+      "textEn": "A blackout rehearsal. When the lights fail, the team finishes rehearsal with clapping.",
+      "choices": [
+        {
+          "label": "陪伴：停电彩排",
+          "labelEn": "Stay together: A blackout rehearsal",
+          "affinity": 7,
+          "mood": 8,
+          "research": 0
+        },
+        {
+          "label": "记录：停电彩排",
+          "labelEn": "Keep a note: A blackout rehearsal",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "minimax-bond-5",
+      "character": "minimax",
+      "affinity": 85,
+      "text": "谢幕之后。观众离开后，他把最后一次掌声留给后台工作人员。",
+      "textEn": "After the curtain. After the audience leaves, he saves one last applause for the crew.",
+      "choices": [
+        {
+          "label": "陪伴：谢幕之后",
+          "labelEn": "Stay together: After the curtain",
+          "affinity": 8,
+          "mood": 9,
+          "research": 0
+        },
+        {
+          "label": "记录：谢幕之后",
+          "labelEn": "Keep a note: After the curtain",
+          "affinity": 1,
+          "mood": -1,
+          "research": 3
+        }
+      ]
+    },
+    {
+      "id": "seedance-bond-1",
+      "character": "seedance",
+      "affinity": 10,
+      "text": "第一步。她在地板上贴了起点，却故意没画终点。",
+      "textEn": "The first step. She tapes a starting mark to the floor and leaves the endpoint open.",
+      "choices": [
+        {
+          "label": "陪伴：第一步",
+          "labelEn": "Stay together: The first step",
+          "affinity": 4,
+          "mood": 5,
+          "research": 0
+        },
+        {
+          "label": "记录：第一步",
+          "labelEn": "Keep a note: The first step",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "seedance-bond-2",
+      "character": "seedance",
+      "affinity": 25,
+      "text": "失误的动作。摔倒变成一个新动作，她想保留那一秒的犹豫。",
+      "textEn": "A mistaken movement. A stumble becomes a new move. She wants to keep its moment of hesitation.",
+      "choices": [
+        {
+          "label": "陪伴：失误的动作",
+          "labelEn": "Stay together: A mistaken movement",
+          "affinity": 5,
+          "mood": 6,
+          "research": 0
+        },
+        {
+          "label": "记录：失误的动作",
+          "labelEn": "Keep a note: A mistaken movement",
+          "affinity": 1,
+          "mood": -1,
+          "research": 1
+        }
+      ]
+    },
+    {
+      "id": "seedance-bond-3",
+      "character": "seedance",
+      "affinity": 45,
+      "text": "与声音对话。她让动作回答音乐，而不是追赶每一次节拍。",
+      "textEn": "A conversation with sound. She lets movement answer the music instead of chasing every beat.",
+      "choices": [
+        {
+          "label": "陪伴：与声音对话",
+          "labelEn": "Stay together: A conversation with sound",
+          "affinity": 6,
+          "mood": 7,
+          "research": 0
+        },
+        {
+          "label": "记录：与声音对话",
+          "labelEn": "Keep a note: A conversation with sound",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "seedance-bond-4",
+      "character": "seedance",
+      "affinity": 65,
+      "text": "让出中央。独舞的位置让给了新人，她站到侧边打拍子。",
+      "textEn": "Sharing center stage. She gives the solo spot to a newcomer and keeps time from the side.",
+      "choices": [
+        {
+          "label": "陪伴：让出中央",
+          "labelEn": "Stay together: Sharing center stage",
+          "affinity": 7,
+          "mood": 8,
+          "research": 0
+        },
+        {
+          "label": "记录：让出中央",
+          "labelEn": "Keep a note: Sharing center stage",
+          "affinity": 1,
+          "mood": -1,
+          "research": 2
+        }
+      ]
+    },
+    {
+      "id": "seedance-bond-5",
+      "character": "seedance",
+      "affinity": 85,
+      "text": "下一支舞。演出结束，她邀请从没跳过舞的你一起练习。",
+      "textEn": "The next dance. After the show, she invites you to practice, even though you have never danced.",
+      "choices": [
+        {
+          "label": "陪伴：下一支舞",
+          "labelEn": "Stay together: The next dance",
+          "affinity": 8,
+          "mood": 9,
+          "research": 0
+        },
+        {
+          "label": "记录：下一支舞",
+          "labelEn": "Keep a note: The next dance",
+          "affinity": 1,
+          "mood": -1,
+          "research": 3
+        }
+      ]
+    }
+  ]
+}

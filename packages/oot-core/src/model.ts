@@ -12,6 +12,7 @@ export interface Version {
     rhythm: number[];
 }
 export interface Template {
+    minChapter?: number;
     id: string;
     title: string;
     description: string;
@@ -34,6 +35,7 @@ export interface Template {
     requirements?: {label: string; labelEn: string; work: number}[];
 }
 export interface Card {
+    minChapter?: number;
     id: string;
     title: string;
     trigger?: 'bluewhale-cloud' | 'working' | 'code' | 'write' | 'design' | 'media' | 'research' | 'data' | 'multi' | 'cloud' | 'overload' | 'novice';
@@ -77,6 +79,7 @@ export interface Relation {
     hunger: number;
 }
 export interface CampaignState {
+    finale?: import('./finale.js').FinaleState;
     chapter: number;
     chapterZero: 'pending' | 'passed' | 'missed';
     completed: number[];
@@ -106,6 +109,8 @@ export interface Actor {
     lastOvertimeSlot?: number;
 }
 export interface Job {
+    rewardFactor?: number;
+    challengeWeek?: number;
     id: string;
     template: string;
     status: 'posted' | 'accepted' | 'working' | 'review' | 'waiting' | 'delivered' | 'breached' | 'rejected' | 'expired';
@@ -177,7 +182,7 @@ export interface State {
 }
 export type Command = {
     type: 'campaign';
-    action: 'visit' | 'chat' | 'gift' | 'meal' | 'study' | 'recall' | 'recruit' | 'unlock' | 'switch' | 'train' | 'align' | 'software' | 'hardware' | 'chapter' | 'story' | 'subscribe';
+    action: 'visit' | 'chat' | 'gift' | 'meal' | 'study' | 'recall' | 'recruit' | 'unlock' | 'switch' | 'train' | 'align' | 'software' | 'hardware' | 'chapter' | 'story' | 'subscribe' | 'expedition' | 'ending' | 'endless' | 'bid' | 'challenge';
     id: string;
     target?: string;
 } | {
