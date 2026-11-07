@@ -1,0 +1,12 @@
+{"seed":1,"chapterAt":65,"slots":112,"bankrupt":false,"cash":2104.93,"liquid":1588.5,"delivered":8,"breached":0,"reworks":1,"reloaded":true,"replayMatches":true,"errors":0}
+file:///D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/scripts/validate-a6.mjs:14
+   });send({type:'choose',index:choices[0].i});continue;}
+                                           ^
+
+TypeError: Cannot read properties of undefined (reading 'i')
+    at file:///D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/scripts/validate-a6.mjs:14:44
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:633:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.16.0

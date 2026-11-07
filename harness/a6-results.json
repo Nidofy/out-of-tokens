@@ -1,0 +1,1084 @@
+{
+  "kind": "training-reachability-not-balance-approval",
+  "policy": "short-contracts-before-debt",
+  "engine": "0.12.0",
+  "content": "m5-4",
+  "contentHash": "a6830854cb3c74f0baa2c19a55f714f7f5005818109b12d679cbb7a70a3809be",
+  "results": [
+    {
+      "seed": 1,
+      "chapterAt": 66,
+      "slots": 112,
+      "bankrupt": false,
+      "cash": 3226.65,
+      "liquid": 2678.85,
+      "delivered": 19,
+      "breached": 2,
+      "reworks": 1,
+      "reloaded": true,
+      "replayMatches": true,
+      "runs": 1,
+      "commandCount": 374,
+      "stateHash": "ca8877b94064001857f3dd7733a2fe47ff5d8703e7e38e0ef109b4109d953abe",
+      "errors": [],
+      "daily": [
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "delivered": 0,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 5572.7,
+          "liquid": 5000,
+          "delivered": 0,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6236.7,
+          "liquid": 5639.1,
+          "delivered": 1,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 7199.85,
+          "liquid": 6664.5,
+          "delivered": 2,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 7897.05,
+          "liquid": 7660.5,
+          "delivered": 3,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 8486.35,
+          "liquid": 8212.45,
+          "delivered": 4,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 5985.71,
+          "liquid": 5711.81,
+          "delivered": 4,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 7084.71,
+          "liquid": 6446.77,
+          "delivered": 5,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 7084.71,
+          "liquid": 6446.77,
+          "delivered": 5,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 7697.93,
+          "liquid": 7374.23,
+          "delivered": 6,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 8453.23,
+          "liquid": 8453.23,
+          "delivered": 7,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 8713.68,
+          "liquid": 8453.23,
+          "delivered": 7,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 8593.68,
+          "liquid": 8333.23,
+          "delivered": 7,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": -628.92,
+          "liquid": -1257.4,
+          "delivered": 8,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": -332.61,
+          "liquid": -1257.4,
+          "delivered": 8,
+          "chapter": 0
+        },
+        {
+          "slot": 64,
+          "cash": 204.41,
+          "liquid": -644.18,
+          "delivered": 9,
+          "chapter": 0
+        },
+        {
+          "slot": 68,
+          "cash": 387.84,
+          "liquid": 109.46,
+          "delivered": 10,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 1464.58,
+          "liquid": 887.4,
+          "delivered": 11,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 1344.58,
+          "liquid": 767.4,
+          "delivered": 11,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 3300.23,
+          "liquid": 2747.95,
+          "delivered": 13,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 1838.76,
+          "liquid": 1268.55,
+          "delivered": 14,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 2594.41,
+          "liquid": 2061.55,
+          "delivered": 15,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 3564.18,
+          "liquid": 3049.25,
+          "delivered": 16,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 4178.38,
+          "liquid": 3601.2,
+          "delivered": 17,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 4904.98,
+          "liquid": 4626.6,
+          "delivered": 18,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 5183.36,
+          "liquid": 5183.36,
+          "delivered": 19,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 5457.26,
+          "liquid": 5183.36,
+          "delivered": 19,
+          "chapter": 1
+        },
+        {
+          "slot": 112,
+          "cash": 3226.65,
+          "liquid": 2678.85,
+          "delivered": 19,
+          "chapter": 1
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "chapterAt": 56,
+      "slots": 112,
+      "bankrupt": false,
+      "cash": 5144.98,
+      "liquid": 4592.7,
+      "delivered": 19,
+      "breached": 0,
+      "reworks": 3,
+      "reloaded": true,
+      "replayMatches": true,
+      "runs": 1,
+      "commandCount": 388,
+      "stateHash": "397d23e8aa15878ec29bc45bfb27b0719b1d548e21f13406b4a54c36dcf43750",
+      "errors": [],
+      "daily": [
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "delivered": 0,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "delivered": 0,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 5913,
+          "liquid": 5639.1,
+          "delivered": 1,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 6091.8,
+          "liquid": 5519.1,
+          "delivered": 1,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 6730.9,
+          "liquid": 6432.1,
+          "delivered": 2,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 7851.4,
+          "liquid": 7577.5,
+          "delivered": 3,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 6216.79,
+          "liquid": 5980.24,
+          "delivered": 4,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 6713.79,
+          "liquid": 5980.24,
+          "delivered": 4,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 8188.87,
+          "liquid": 8188.87,
+          "delivered": 7,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 8607.7,
+          "liquid": 8068.87,
+          "delivered": 7,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 8607.7,
+          "liquid": 8068.87,
+          "delivered": 7,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 10179.23,
+          "liquid": 9864.99,
+          "delivered": 9,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 10615.99,
+          "liquid": 9744.99,
+          "delivered": 9,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": 937.91,
+          "liquid": 381.15,
+          "delivered": 10,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 2753.46,
+          "liquid": 2237.03,
+          "delivered": 12,
+          "chapter": 1
+        },
+        {
+          "slot": 64,
+          "cash": 3199.35,
+          "liquid": 2925.45,
+          "delivered": 12,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 3747.15,
+          "liquid": 3747.15,
+          "delivered": 13,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 5143.71,
+          "liquid": 4555.57,
+          "delivered": 14,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 4873.71,
+          "liquid": 4285.57,
+          "delivered": 14,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 5462.6,
+          "liquid": 5148.36,
+          "delivered": 15,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 3804.28,
+          "liquid": 3804.28,
+          "delivered": 16,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 3926.81,
+          "liquid": 3684.28,
+          "delivered": 16,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 4205.19,
+          "liquid": 3684.28,
+          "delivered": 16,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 4771.08,
+          "liquid": 4492.7,
+          "delivered": 16,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 5300.64,
+          "liquid": 5300.64,
+          "delivered": 17,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 5596.95,
+          "liquid": 5300.64,
+          "delivered": 17,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 6405.37,
+          "liquid": 6109.06,
+          "delivered": 18,
+          "chapter": 1
+        },
+        {
+          "slot": 112,
+          "cash": 5144.98,
+          "liquid": 4592.7,
+          "delivered": 19,
+          "chapter": 1
+        }
+      ]
+    },
+    {
+      "seed": 3,
+      "chapterAt": 56,
+      "slots": 112,
+      "bankrupt": false,
+      "cash": 3975.17,
+      "liquid": 3732.64,
+      "delivered": 18,
+      "breached": 1,
+      "reworks": 6,
+      "reloaded": true,
+      "replayMatches": true,
+      "runs": 1,
+      "commandCount": 377,
+      "stateHash": "5c4a28a9a5a98b2c761fb492f8daa791bf8126d6cbc1ab1ff622e55b5633cb9d",
+      "errors": [],
+      "daily": [
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "delivered": 0,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 6149.55,
+          "liquid": 5913,
+          "delivered": 1,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6660,
+          "liquid": 5913,
+          "delivered": 1,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 7643.9,
+          "liquid": 7133.45,
+          "delivered": 3,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 8283,
+          "liquid": 7772.55,
+          "delivered": 4,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 9291.45,
+          "liquid": 8482.2,
+          "delivered": 5,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 8223.43,
+          "liquid": 7650.73,
+          "delivered": 7,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 9070.03,
+          "liquid": 8796.13,
+          "delivered": 8,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 10023.37,
+          "liquid": 9709.13,
+          "delivered": 9,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 10217.61,
+          "liquid": 9589.13,
+          "delivered": 9,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 10950.83,
+          "liquid": 10636.59,
+          "delivered": 10,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 11265.07,
+          "liquid": 10636.59,
+          "delivered": 10,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 11564.05,
+          "liquid": 11249.81,
+          "delivered": 11,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": 1031.58,
+          "liquid": 717.34,
+          "delivered": 11,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 1984.91,
+          "liquid": 1450.56,
+          "delivered": 12,
+          "chapter": 1
+        },
+        {
+          "slot": 64,
+          "cash": 2322.64,
+          "liquid": 2048.74,
+          "delivered": 13,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 3226.68,
+          "liquid": 2687.84,
+          "delivered": 14,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 3226.68,
+          "liquid": 2687.84,
+          "delivered": 14,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 3672.57,
+          "liquid": 3376.26,
+          "delivered": 14,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 3672.57,
+          "liquid": 3376.26,
+          "delivered": 14,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 1813.57,
+          "liquid": 1514.77,
+          "delivered": 15,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 2007.81,
+          "liquid": 1394.77,
+          "delivered": 15,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 2007.81,
+          "liquid": 1394.77,
+          "delivered": 15,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 3587.63,
+          "liquid": 3587.63,
+          "delivered": 17,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 3467.63,
+          "liquid": 3467.63,
+          "delivered": 17,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 4015.43,
+          "liquid": 3467.63,
+          "delivered": 17,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 4897.06,
+          "liquid": 4380.63,
+          "delivered": 18,
+          "chapter": 1
+        },
+        {
+          "slot": 112,
+          "cash": 3975.17,
+          "liquid": 3732.64,
+          "delivered": 18,
+          "chapter": 1
+        }
+      ]
+    },
+    {
+      "seed": 4,
+      "chapterAt": 62,
+      "slots": 112,
+      "bankrupt": false,
+      "cash": 796.51,
+      "liquid": 796.51,
+      "delivered": 16,
+      "breached": 3,
+      "reworks": 2,
+      "reloaded": true,
+      "replayMatches": true,
+      "runs": 1,
+      "commandCount": 373,
+      "stateHash": "2f42722b582b1633f40e0eeb85874ce443f724f1d9f33e07db24b63c3996ac1d",
+      "errors": [],
+      "daily": [
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "delivered": 0,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 6211.8,
+          "liquid": 5913,
+          "delivered": 1,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6211.8,
+          "liquid": 5913,
+          "delivered": 1,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 7237.2,
+          "liquid": 6938.4,
+          "delivered": 2,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 8320.35,
+          "liquid": 8083.8,
+          "delivered": 3,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 8693.85,
+          "liquid": 8083.8,
+          "delivered": 3,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 6582.73,
+          "liquid": 6209.23,
+          "delivered": 4,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 7377.04,
+          "liquid": 7080.73,
+          "delivered": 5,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 7987.59,
+          "liquid": 7080.73,
+          "delivered": 5,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 8707.13,
+          "liquid": 8096.58,
+          "delivered": 6,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 9398.52,
+          "liquid": 9084.28,
+          "delivered": 7,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 9712.76,
+          "liquid": 9712.76,
+          "delivered": 8,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 9866.66,
+          "liquid": 9592.76,
+          "delivered": 8,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": -514.65,
+          "liquid": -788.55,
+          "delivered": 8,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 739.73,
+          "liquid": -53.59,
+          "delivered": 9,
+          "chapter": 0
+        },
+        {
+          "slot": 64,
+          "cash": 1185.62,
+          "liquid": 634.83,
+          "delivered": 9,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 1501.02,
+          "liquid": 1186.78,
+          "delivered": 10,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 1917.51,
+          "liquid": 1680.96,
+          "delivered": 11,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 1797.51,
+          "liquid": 1560.96,
+          "delivered": 11,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 1324.41,
+          "liquid": 1324.41,
+          "delivered": 11,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": -384.47,
+          "liquid": -1043.32,
+          "delivered": 11,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 363.71,
+          "liquid": -295.14,
+          "delivered": 12,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 726.92,
+          "liquid": 174.64,
+          "delivered": 13,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 1619.01,
+          "liquid": 1102.58,
+          "delivered": 14,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 1864.21,
+          "liquid": 1621.68,
+          "delivered": 15,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 2690.55,
+          "liquid": 2430.1,
+          "delivered": 15,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 3298.28,
+          "liquid": 3298.28,
+          "delivered": 16,
+          "chapter": 1
+        },
+        {
+          "slot": 112,
+          "cash": 796.51,
+          "liquid": 796.51,
+          "delivered": 16,
+          "chapter": 1
+        }
+      ]
+    },
+    {
+      "seed": 5,
+      "chapterAt": 58,
+      "slots": 112,
+      "bankrupt": false,
+      "cash": 1855.18,
+      "liquid": 1242.14,
+      "delivered": 16,
+      "breached": 2,
+      "reworks": 4,
+      "reloaded": true,
+      "replayMatches": true,
+      "runs": 1,
+      "commandCount": 366,
+      "stateHash": "2fd9f2b43023568bf5da848f332b0ab352a79be97dbb19b3ab5053a92d85409e",
+      "errors": [],
+      "daily": [
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "delivered": 0,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 5913,
+          "liquid": 5913,
+          "delivered": 1,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6211.8,
+          "liquid": 5913,
+          "delivered": 1,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 6091.8,
+          "liquid": 5793,
+          "delivered": 1,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 7087.8,
+          "liquid": 6789,
+          "delivered": 2,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 7785,
+          "liquid": 7785,
+          "delivered": 3,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 5858.77,
+          "liquid": 5286.07,
+          "delivered": 3,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 5858.77,
+          "liquid": 5286.07,
+          "delivered": 3,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 6538.21,
+          "liquid": 5925.17,
+          "delivered": 4,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 6816.61,
+          "liquid": 6502.37,
+          "delivered": 5,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 7810.28,
+          "liquid": 7549.83,
+          "delivered": 6,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 8088.66,
+          "liquid": 7549.83,
+          "delivered": 6,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 9462.5,
+          "liquid": 9225.95,
+          "delivered": 8,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": -662.69,
+          "liquid": -1173.14,
+          "delivered": 8,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 486.86,
+          "liquid": 212.96,
+          "delivered": 10,
+          "chapter": 1
+        },
+        {
+          "slot": 64,
+          "cash": 609.39,
+          "liquid": 92.96,
+          "delivered": 10,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 1544.8,
+          "liquid": 1005.96,
+          "delivered": 11,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 1333.64,
+          "liquid": 763.43,
+          "delivered": 11,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 1930.16,
+          "liquid": 1382.36,
+          "delivered": 11,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 3071.41,
+          "liquid": 3071.41,
+          "delivered": 13,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 1096.62,
+          "liquid": 698.22,
+          "delivered": 13,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 976.62,
+          "liquid": 578.22,
+          "delivered": 13,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 416.37,
+          "liquid": 179.82,
+          "delivered": 13,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 937.28,
+          "liquid": 179.82,
+          "delivered": 13,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 2348.13,
+          "liquid": 2348.13,
+          "delivered": 15,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 2348.13,
+          "liquid": 2348.13,
+          "delivered": 15,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 3749.17,
+          "liquid": 3749.17,
+          "delivered": 16,
+          "chapter": 1
+        },
+        {
+          "slot": 112,
+          "cash": 1855.18,
+          "liquid": 1242.14,
+          "delivered": 16,
+          "chapter": 1
+        }
+      ]
+    }
+  ]
+}
