@@ -1,6 +1,7 @@
 import type { Card, Content, Job, State, Effect } from './model.js';
 import {challengeAllows} from './finale.js';
 import { round } from './economy.js';
+import {effectiveVersion} from './campaign.js';
 export function eligible(s: State, c: Content, card: Card, j: Job): boolean {
     if ((card.minChapter??0)>(s.campaign?.chapter??0) || j.status !== 'working')
         return false;
@@ -22,7 +23,7 @@ export function eligible(s: State, c: Content, card: Card, j: Job): boolean {
         case 'research': return t.category === card.trigger;
         case 'multi': return t.delivery !== 'oneshot';
         case 'novice': return t.client === 'novice';
-        case 'overload': return j.team.some(m => { const a = s.actors.find(a => a.id === m.character)!; return resourced(m) && a.load >= c.versions.find(v => v.id === a.version)!.context; });
+        case 'overload': return j.team.some(m => { const a = s.actors.find(a => a.id === m.character)!; return resourced(m) && a.load > effectiveVersion(s,c,a,m.mode).context; });
         default: return true;
     }
 }

@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Out of Tokens", "version": "0.10.0", "identifier": "dev.outoftokens.experimental",
+  "productName": "Out of Tokens", "version": "0.11.0", "identifier": "dev.outoftokens.experimental",
   "build": { "frontendDist": "../web/dist" },
   "app": {
     "windows": [{ "label": "main", "title": "Out of Tokens — Experimental", "width": 1200, "height": 820, "minWidth": 390, "minHeight": 600, "url": "index.html?desktop=1" }],

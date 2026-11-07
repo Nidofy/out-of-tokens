@@ -1,0 +1,99 @@
+$ pnpm typecheck && pnpm lint && pnpm test && pnpm build
+$ tsc -b --pretty false
+$ eslint packages apps
+$ pnpm build && vitest run
+$ pnpm build:core && pnpm --filter oot-web build && pnpm --filter oot-dsh build
+$ tsc -b
+$ vite build
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 857 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.93 kB │ gzip:  0.62 kB
+dist/assets/flavor-worker-EJdz_56z.js               2.18 kB
+dist/assets/index-CYME1d5y.css                     17.89 kB │ gzip:  4.81 kB
+dist/assets/WebGLRenderer-BT91V63S.js               0.05 kB │ gzip:  0.07 kB
+dist/assets/CanvasRenderer-CN3O535M.js              0.05 kB │ gzip:  0.07 kB
+dist/assets/WebGPURenderer-QU_unqB7.js              0.05 kB │ gzip:  0.07 kB
+dist/assets/webworkerAll-SsdQPeqw.js                0.05 kB │ gzip:  0.06 kB
+dist/assets/getTextureBatchBindGroup-hK4Xhp7N.js    0.34 kB │ gzip:  0.26 kB
+dist/assets/canvasUtils-G1F85v5_.js                 6.01 kB │ gzip:  2.04 kB
+dist/assets/getTexelRangeRects-CS5VEsyd.js         11.31 kB │ gzip:  2.98 kB
+dist/assets/init-B6iIr-V-.js                       14.81 kB │ gzip:  4.62 kB
+dist/assets/browserAll-DzzwNO4e.js                 43.47 kB │ gzip: 11.28 kB
+dist/assets/RenderTargetSystem-HEtJK4J8.js         78.09 kB │ gzip: 22.08 kB
+dist/assets/CanvasPool-D071ZhP4.js                113.00 kB │ gzip: 34.45 kB
+dist/assets/scene-CTvsBcye.js                     300.60 kB │ gzip: 89.30 kB
+dist/assets/index-B0s34IMX.js                     310.89 kB │ gzip: 87.76 kB
+
+✓ built in 332ms
+$ node build.mjs
+vite v8.3.6 building ssr environment for production...
+transforming...
+✓ 118 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.js  245.76 kB │ gzip: 60.08 kB
+
+✓ built in 70ms
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 2 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/client.js  3.32 kB │ gzip: 1.61 kB
+
+✓ built in 15ms
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+
+ Test Files  44 passed (44)
+      Tests  264 passed (264)
+   Start at  11:52:39
+   Duration  4.76s (transform 4.86s, setup 0ms, import 17.97s, tests 21.45s, environment 10ms)
+
+$ pnpm build:core && pnpm --filter oot-web build && pnpm --filter oot-dsh build
+$ tsc -b
+$ vite build
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 857 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.93 kB │ gzip:  0.62 kB
+dist/assets/flavor-worker-EJdz_56z.js               2.18 kB
+dist/assets/index-CYME1d5y.css                     17.89 kB │ gzip:  4.81 kB
+dist/assets/WebGLRenderer-BT91V63S.js               0.05 kB │ gzip:  0.07 kB
+dist/assets/CanvasRenderer-CN3O535M.js              0.05 kB │ gzip:  0.07 kB
+dist/assets/WebGPURenderer-QU_unqB7.js              0.05 kB │ gzip:  0.07 kB
+dist/assets/webworkerAll-SsdQPeqw.js                0.05 kB │ gzip:  0.06 kB
+dist/assets/getTextureBatchBindGroup-hK4Xhp7N.js    0.34 kB │ gzip:  0.26 kB
+dist/assets/canvasUtils-G1F85v5_.js                 6.01 kB │ gzip:  2.04 kB
+dist/assets/getTexelRangeRects-CS5VEsyd.js         11.31 kB │ gzip:  2.98 kB
+dist/assets/init-B6iIr-V-.js                       14.81 kB │ gzip:  4.62 kB
+dist/assets/browserAll-DzzwNO4e.js                 43.47 kB │ gzip: 11.28 kB
+dist/assets/RenderTargetSystem-HEtJK4J8.js         78.09 kB │ gzip: 22.08 kB
+dist/assets/CanvasPool-D071ZhP4.js                113.00 kB │ gzip: 34.45 kB
+dist/assets/scene-CTvsBcye.js                     300.60 kB │ gzip: 89.30 kB
+dist/assets/index-B0s34IMX.js                     310.89 kB │ gzip: 87.76 kB
+
+✓ built in 307ms
+$ node build.mjs
+vite v8.3.6 building ssr environment for production...
+transforming...
+✓ 118 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.js  245.76 kB │ gzip: 60.08 kB
+
+✓ built in 69ms
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 2 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/client.js  3.32 kB │ gzip: 1.61 kB
+
+✓ built in 15ms

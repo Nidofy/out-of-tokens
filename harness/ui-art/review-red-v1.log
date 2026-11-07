@@ -1,0 +1,47 @@
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/review-m5.test.ts (2 tests | 2 failed) 41ms
+   × late chapter zero solvency recovers campaign access 27ms
+   × expedition travellers are absent locally and provisioned while away 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/review-m5.test.ts > late chapter zero solvency recovers campaign access
+AssertionError: expected 'missed' to be 'passed' // Object.is equality
+
+Expected: "passed"
+Received: "missed"
+
+ ❯ apps/sim-cli/review-m5.test.ts:9:40
+      7|  s.absoluteSlot=60;s.cash=20000;s.debtPaid=true;s.campaign!.chapterZer…
+      8|  const r=dispatchCommand(s,{type:'advance'},c);
+      9|  expect(r.state.campaign!.chapterZero).toBe('passed');
+       |                                        ^
+     10|  expect(dispatchCommand(r.state,{type:'campaign',action:'chapter',id:'…
+     11| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  apps/sim-cli/review-m5.test.ts > expedition travellers are absent locally and provisioned while away
+AssertionError: expected 'workshop' to be 'expedition' // Object.is equality
+
+Expected: "expedition"
+Received: "workshop"
+
+ ❯ apps/sim-cli/review-m5.test.ts:16:68
+     14|  s.campaign!.chapter=3;s.campaign!.relations.qwen!.hunger=40;
+     15|  s=dispatchCommand(s,{type:'campaign',action:'expedition',id:'qwen',ta…
+     16|  expect(getViewModel(s,c).actors.find(a=>a.id==='qwen')!.location).toB…
+       |                                                                    ^
+     17|  for(let n=0;n<16;n++)s=dispatchCommand(s,{type:'advance'},c).state;
+     18|  expect(s.campaign!.relations.qwen!.hunger).toBe(40);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  11:54:09
+   Duration  388ms (transform 85ms, setup 0ms, import 191ms, tests 41ms, environment 0ms)
+

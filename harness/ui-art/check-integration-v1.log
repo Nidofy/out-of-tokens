@@ -1,0 +1,82 @@
+$ pnpm typecheck && pnpm lint && pnpm test && pnpm build
+$ tsc -b --pretty false
+$ eslint packages apps
+$ pnpm build && vitest run
+$ pnpm build:core && pnpm --filter oot-web build && pnpm --filter oot-dsh build
+$ tsc -b
+$ vite build
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 857 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.93 kB │ gzip:  0.62 kB
+dist/assets/flavor-worker-BKD3BB-l.js               2.18 kB
+dist/assets/index-CYME1d5y.css                     17.89 kB │ gzip:  4.81 kB
+dist/assets/WebGLRenderer-YOKddhbN.js               0.05 kB │ gzip:  0.07 kB
+dist/assets/CanvasRenderer-CDrbMzim.js              0.05 kB │ gzip:  0.07 kB
+dist/assets/WebGPURenderer-De5SnI8L.js              0.05 kB │ gzip:  0.07 kB
+dist/assets/webworkerAll-Dvc6NQ0F.js                0.05 kB │ gzip:  0.06 kB
+dist/assets/getTextureBatchBindGroup-hK4Xhp7N.js    0.34 kB │ gzip:  0.26 kB
+dist/assets/canvasUtils-G1F85v5_.js                 6.01 kB │ gzip:  2.04 kB
+dist/assets/getTexelRangeRects-CS5VEsyd.js         11.31 kB │ gzip:  2.98 kB
+dist/assets/init-DfHsQQXe.js                       14.81 kB │ gzip:  4.62 kB
+dist/assets/browserAll-ACHIgO96.js                 43.47 kB │ gzip: 11.28 kB
+dist/assets/RenderTargetSystem-HEtJK4J8.js         78.09 kB │ gzip: 22.08 kB
+dist/assets/CanvasPool-D071ZhP4.js                113.00 kB │ gzip: 34.45 kB
+dist/assets/scene-DSzCnzfY.js                     300.60 kB │ gzip: 89.30 kB
+dist/assets/index-BsMB7CIH.js                     312.22 kB │ gzip: 88.13 kB
+
+✓ built in 288ms
+$ node build.mjs
+vite v8.3.6 building ssr environment for production...
+transforming...
+✓ 118 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.js  246.08 kB │ gzip: 60.16 kB
+
+✓ built in 62ms
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 2 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/client.js  3.32 kB │ gzip: 1.61 kB
+
+✓ built in 14ms
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/m03.test.ts (12 tests | 1 failed) 482ms
+   × context event is reachable through natural continuous overtime commands 16ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/m03.test.ts > context event is reachable through natural continuous overtime commands
+AssertionError: expected undefined to be 'context' // Object.is equality
+
+- Expected:
+"context"
+
++ Received:
+undefined
+
+ ❯ apps/sim-cli/m03.test.ts:227:35
+    225|     x.send({ type: 'advance' });
+    226|     x.send({ type: 'advance' });
+    227|     expect(x.state.pending?.card).toBe('context');
+       |                                   ^
+    228| });
+    229|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 44 passed (45)
+      Tests  1 failed | 266 passed (267)
+   Start at  11:56:25
+   Duration  4.18s (transform 4.23s, setup 0ms, import 17.19s, tests 21.01s, environment 4ms)
+
+[ELIFECYCLE] Test failed. See above for more details.
+[ELIFECYCLE] Command failed with exit code 1.

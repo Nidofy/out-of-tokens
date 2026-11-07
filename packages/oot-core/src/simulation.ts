@@ -88,7 +88,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                     if(j.team.some(member=>member.role==='tool')){const budget=estimateResources(s,c,j);if(budget.cloud>s.quota+s.purchased||budget.local>local)continue;}
                     const ready = j.team.filter(w => w.role === 'worker').some(w => {
                         const wa = s.actors.find(a => a.id === w.character)!;
-                        const wv = version(c, wa);
+                        const wv = version(c, wa, s, w.mode);
                         if(!challengeAllows(s,c,wa.version,w.mode))return false;
                         if (wa.energy < 10 || wa.busyUntil > s.absoluteSlot || (s.absoluteSlot % 4 >= 2 && !s.overtime.includes(wa.id)))
                             return false;
@@ -96,7 +96,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                         const wf = workerAffected ? multiplier : 1;
                         if (wf === 0)
                             return false;
-                        const wp = Math.min(Math.max(0, round(j.work - j.progress - units)), round((owns(s, 'prompt') && progressBefore === 0 ? 1.2 : 1) * (1 + (s.campaign?.hardware.office ?? 0) * .1) * 10 * match(c, j, wv) * wv.speed * (wv.rhythm[s.absoluteSlot % 4] ?? 1) * (wa.energy >= 60 ? 1 : wa.energy >= 30 ? .85 : .6) * moodFactor(wa.mood) * needsFactor(s,wa.id) * fatigueFactor(wa, s.absoluteSlot) * (wa.load > wv.context ? .7 : 1) * wf * (1 + v.skills.reason * .015) * teamCost));
+                        const wp = Math.min(Math.max(0, round(j.work - j.progress - units)), round((owns(s, 'prompt') && progressBefore === 0 ? 1.2 : 1) * (1 + (s.campaign?.hardware.office ?? 0) * .1) * 10 * match(c, j, wv) * wv.speed * (wv.rhythm[s.absoluteSlot % 4] ?? 1) * (wa.energy >= 60 ? 1 : wa.energy >= 30 ? .85 : .6) * moodFactor(wa.mood) * needsFactor(s,wa.id) * fatigueFactor(wa, s.absoluteSlot) * (wa.load > wv.context ? .7 : 1) * wf * (m.role === 'planner' ? 1 + v.skills.reason * .015 : bonus) * teamCost));
                         const pool = (w.mode === 'cloud' ? s.quota + s.purchased : local) - (w.mode === m.mode ? cost : 0);
                         return round(pool) >= round(wp * wv.price * (workerAffected ? tokenRate : 1));
                     });
@@ -170,7 +170,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
             if (s.absoluteSlot % 4 === 3)
                 a.load = 0;
         }
-    if ((c.campaign?.maxChapter??0)>=2 && s.campaign) for(const a of s.actors){const r=s.campaign.relations[a.id]!;r.hunger=clamp(r.hunger+3);if(!worked.has(a.id)&&s.absoluteSlot%4===3)r.stress=clamp(r.stress-8);if(s.absoluteSlot%4===3&&(r.hunger>=80||r.stress>=80))a.mood=clamp(a.mood-5);}
+    if ((c.campaign?.maxChapter??0)>=2 && s.campaign) for(const a of s.actors){if(actorScene(s,a)==='expedition')continue;const r=s.campaign.relations[a.id]!;r.hunger=clamp(r.hunger+3);if(!worked.has(a.id)&&s.absoluteSlot%4===3)r.stress=clamp(r.stress-8);if(s.absoluteSlot%4===3&&(r.hunger>=80||r.stress>=80))a.mood=clamp(a.mood-5);}
     s.absoluteSlot++;
     for (const j of s.jobs)
         if (j.status === 'waiting' && s.absoluteSlot >= j.resumeAt)

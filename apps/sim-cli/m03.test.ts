@@ -210,6 +210,7 @@ test('new CLI commands parse and pending effects are detached from content', () 
 });
 test('context event is reachable through natural continuous overtime commands', () => {
     const c = fixture();
+    c.versions.find(v=>v.character==='mistral')!.context=2;
     c.commissions[0]!.workload = 200;
     c.commissions[0]!.workSlots = 20;
     c.events = [loadContent().events.find(e => e.id === 'context')!];
@@ -221,8 +222,8 @@ test('context event is reachable through natural continuous overtime commands', 
     x.send({ type: 'advance' });
     x.send({ type: 'overtime', character: 'mistral' });
     x.send({ type: 'advance' });
+    expect(x.state.pending).toBeNull(); // Exactly at capacity is not overload.
     x.send({ type: 'overtime', character: 'mistral' });
-    x.send({ type: 'advance' });
     x.send({ type: 'advance' });
     expect(x.state.pending?.card).toBe('context');
 });

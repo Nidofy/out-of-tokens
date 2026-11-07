@@ -1,13 +1,23 @@
 import {bundleDesktop} from './bundle-desktop.mjs';
-import {engineVersion} from '../packages/oot-core/dist/index.js';
-import {loadFullContent} from '../packages/oot-content/dist/index.js';
-const contentVersion=loadFullContent().version;
 import{mkdir,cp,readFile,writeFile,readdir,stat}from'node:fs/promises';
 import{resolve,join,relative}from'node:path';
 import{execFileSync}from'node:child_process';
 import{createHash}from'node:crypto';
 const root=process.cwd(),git=(...args)=>execFileSync('git',['-c',`safe.directory=${root.replaceAll('\\','/')}`,...args],{encoding:'utf8'}).trim();
 const sha=git('rev-parse','HEAD');if(git('status','--porcelain'))throw Error('COMMIT_BEFORE_PACKAGING');
+// Always build from the clean source before importing generated modules or copying outputs.
+execFileSync(process.platform==='win32'?'corepack.cmd':'corepack',['pnpm','build'],{stdio:'inherit',shell:process.platform==='win32'});
+const {engineVersion}=await import('../packages/oot-core/dist/index.js');
+const {loadFullContent}=await import('../packages/oot-content/dist/index.js');
+const contentVersion=loadFullContent().version;
+const meta=JSON.stringify({sourceCommit:sha,engineVersion,contentVersion});
+await writeFile('apps/web/dist/build-meta.json',meta);await writeFile('apps/dsh/dist/build-meta.json',meta);
+if(process.argv.includes('--desktop')){
+ const {homedir}=await import('node:os');
+ const cargo=process.argv.includes('--cargo')?process.argv[process.argv.indexOf('--cargo')+1]:join(homedir(),'.cargo','bin',process.platform==='win32'?'cargo.exe':'cargo');
+ execFileSync(cargo,['build','--offline','--locked','--manifest-path','apps/desktop/Cargo.toml'],{stdio:'inherit'});
+}
+if(git('rev-parse','HEAD')!==sha||git('status','--porcelain'))throw Error('SOURCE_CHANGED_DURING_BUILD');
 await mkdir('artifacts',{recursive:true});
 const output=resolve('artifacts',`out-of-tokens-${sha.slice(0,7)}`);await mkdir(output,{recursive:false});
 await cp('apps/web/dist',join(output,'web'),{recursive:true});await cp('scripts/playtest-server.mjs',join(output,'start.mjs'));
@@ -24,5 +34,6 @@ await writeFile(join(output,'README.txt'),`Out of Tokens — M1-M5 experimental 
 await writeFile(join(output,'start.cmd'),'@echo off\r\ncd /d "%~dp0"\r\nnode start.mjs\r\npause\r\n');
 await cp('content/packs',join(output,'example-dialogue-packs'),{recursive:true});
 if(process.argv.includes('--desktop'))await bundleDesktop(output,process.argv[process.argv.indexOf('--rust-registry')+1]);
+if(process.argv.includes('--desktop'))await writeFile(join(output,'desktop','build-meta.json'),JSON.stringify({sourceCommit:sha,executableSha256:createHash('sha256').update(await readFile(join(output,'desktop','out-of-tokens.exe'))).digest('hex')}));
 const files={};async function walk(dir){for(const e of await readdir(dir,{withFileTypes:true})){const path=join(dir,e.name);if(e.isDirectory())await walk(path);else files[relative(output,path).replaceAll('\\','/')]=createHash('sha256').update(await readFile(path)).digest('hex');}}await walk(output);
 await writeFile(join(output,'manifest.json'),JSON.stringify({schemaVersion:1,sourceCommit:sha,engineVersion,contentVersion,businessApproved:false,humanTesters:0,desktopIncluded:process.argv.includes('--desktop'),files},null,2));console.log(output);

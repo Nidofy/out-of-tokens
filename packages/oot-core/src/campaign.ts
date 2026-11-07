@@ -11,7 +11,8 @@ export function cloneCampaign(p: CampaignState): CampaignState {
     return { ...p, ...(p.finale?{finale:{...p.finale,expeditions:p.finale.expeditions.map(x=>({...x})),souvenirs:[...p.finale.souvenirs],bids:p.finale.bids.map(x=>({...x})),challengeWins:[...p.finale.challengeWins]}}:{}), incidents:p.incidents.map(x=>({...x})), completed: [...p.completed], software: [...p.software], hardware: { ...p.hardware }, unlocked: [...p.unlocked], relations: Object.fromEntries(Object.entries(p.relations).map(([id, r]) => [id, { ...r, stories: [...r.stories], training: r.training ? { ...r.training } : null, bonuses: Object.fromEntries(Object.entries(r.bonuses).map(([v, skills]) => [v, { ...skills }])) }])) };
 }
 export const owns = (s: State, id: string) => s.campaign?.software.includes(id) ?? false;
-export function actorScene(s: State, a: Actor): Scene {
+export function actorScene(s: State, a: Actor): Scene | 'expedition' {
+    if (s.campaign?.finale?.expeditions.some(x=>x.actor===a.id && x.until>s.absoluteSlot)) return 'expedition';
     const r = s.campaign?.relations[a.id];
     if (r?.location && r.locationUntil > s.absoluteSlot) return r.location;
     if (s.absoluteSlot % 4 < 2 || s.overtime.includes(a.id)) return 'workshop';
@@ -33,7 +34,7 @@ export function tickCampaign(s: State) {
         b[t.skill] = (b[t.skill] ?? 0) + 1;
         r.training = null;
     }
-    if (s.absoluteSlot === 56 && p.chapterZero === 'pending') p.chapterZero = s.debtPaid && liquidCash(s) >= 0 && s.jobs.some(j => j.phase > 0) ? 'passed' : 'missed';
+    if (s.absoluteSlot >= 56 && p.chapterZero !== 'passed') p.chapterZero = s.debtPaid && liquidCash(s) >= 0 && s.jobs.some(j => j.phase > 0) ? 'passed' : 'missed';
 }
 const actions = ['visit', 'chat', 'gift', 'meal', 'study', 'recall', 'recruit', 'unlock', 'switch', 'train', 'align', 'software', 'hardware', 'chapter', 'story', 'subscribe', 'expedition', 'ending', 'endless', 'bid', 'challenge'];
 export function parseCampaign(v: Record<string, unknown>): Extract<Command, { type: 'campaign' }> {

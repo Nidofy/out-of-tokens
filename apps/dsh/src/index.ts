@@ -25,7 +25,7 @@ export async function apply(ctx:HostContext,directory=dirname(fileURLToPath(impo
   const signal=AbortSignal.any([request.signal,lifetime.signal]);
   const json=(status:number,value:unknown)=>{if(!res.destroyed&&!res.writableEnded){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(value));}};
   const work=(async()=>{try{
-   signal.throwIfAborted();if(req.headers.origin&&new URL(req.headers.origin).host!==req.headers.host){json(403,{error:'FOREIGN_ORIGIN'});return;}
+   signal.throwIfAborted();if(req.headers.origin&&(!URL.canParse(req.headers.origin)||new URL(req.headers.origin).host!==req.headers.host)){json(403,{error:'FOREIGN_ORIGIN'});return;}
    const path=(req.url??'').split('?')[0]!;
    if(path===prefix+'api/saves'&&req.method==='GET'){json(200,{records:await store!.list()});return;}
    if(path===prefix+'api/saves'&&req.method==='POST'){const b=await body(req,signal);json(200,{revision:await store!.write(b.id,b.text,b.expectedRevision,signal)});return;}

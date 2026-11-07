@@ -8,8 +8,9 @@ export function estimateResources(s: State, c: Content, j: Job) {
     const members: {character:string;mode:string;cost:number}[]=[];
     const t = c.commissions.find(t => t.id === j.template)!;
     const attending = (id: string) => s.actors.find(a => a.id === id)!.busyUntil <= s.absoluteSlot && s.actors.find(a => a.id === id)!.energy >= 10 && (s.absoluteSlot % 4 < 2 || s.overtime.includes(id));
-    const planner = j.team.find(m => m.role === 'planner' && attending(m.character));
-    const pv = planner ? effectiveVersion(s, c, s.actors.find(a => a.id === planner.character)!) : undefined;
+    const allowed = (m: Job['team'][number]) => attending(m.character) && challengeAllows(s,c,s.actors.find(a=>a.id===m.character)!.version,m.mode);
+    const planner = j.team.find(m => m.role === 'planner' && allowed(m));
+    const pv = planner ? effectiveVersion(s, c, s.actors.find(a => a.id === planner.character)!, planner.mode) : undefined;
     for (const m of [...j.team].sort((a,b)=>({planner:0,tool:1,worker:2,reviewer:3}[a.role]-{planner:0,tool:1,worker:2,reviewer:3}[b.role]) || (a.character<b.character?-1:a.character>b.character?1:0))) {
         const a = s.actors.find(a => a.id === m.character)!;
         const v = effectiveVersion(s, c, a, m.mode);
@@ -17,7 +18,7 @@ export function estimateResources(s: State, c: Content, j: Job) {
             continue;
         const match = Object.entries(t.weights).reduce((sum, [k, w]) => sum + w * v.skills[k as keyof typeof v.skills] / 10, 0);
         const role = m.role === 'worker' ? (1 + (pv?.skills.reason ?? 0) * .015) * (1 - (owns(s,'management')?0:.05) * Math.max(0, j.team.filter(m => m.role === 'worker').length - 2)) : m.role === 'planner' || m.role === 'tool' ? .5 : .3;
-        const cost = (owns(s, 'prompt') && j.progress === 0 ? (j.team.some(m=>m.role==='tool'&&attending(m.character))?1.4:1.2) : 1) * 10 * match * v.speed * (1 + (s.campaign?.hardware.office ?? 0) * .1) * v.price * role * moodFactor(a.mood) * needsFactor(s,a.id) * fatigueFactor(a, s.absoluteSlot) * (a.energy >= 60 ? 1 : a.energy >= 30 ? .85 : .6) * (v.rhythm[s.absoluteSlot % 4] ?? 1) * (a.load > v.context ? .7 : 1);
+        const cost = (owns(s, 'prompt') && j.progress === 0 ? (j.team.some(m=>m.role==='tool'&&allowed(m))?1.4:1.2) : 1) * 10 * match * v.speed * (1 + (s.campaign?.hardware.office ?? 0) * .1) * v.price * role * moodFactor(a.mood) * needsFactor(s,a.id) * fatigueFactor(a, s.absoluteSlot) * (a.energy >= 60 ? 1 : a.energy >= 30 ? .85 : .6) * (v.rhythm[s.absoluteSlot % 4] ?? 1) * (a.load > v.context ? .7 : 1);
         members.push({character:a.id,mode:m.mode,cost:Math.round(cost*100)/100});
         if (m.mode === 'cloud')
             cloud += cost;

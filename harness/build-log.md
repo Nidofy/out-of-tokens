@@ -1,4 +1,6 @@
 # 实施日志
+
+2026-11-07 UI轮前复审集成：Gemini/Opus固定9e48510报告已归档，逐项见REVIEW_M5_INTEGRATION。0.11.0修复有效属性、远征位置/补给、章节迟到补救、Host只读对账、桌面自动保存与打包来源链。M05-03仍开放。接下来实施AI Village形式UI与现代场景；未收到本轮Sonnet报告。
 2026-11-06：只读审计；原目录无Git；node24.16.0/pnpm11.25.0；npm registry核实版本，初次网络查询等待过久，短超时重试成功。
 首次pnpm install沙箱EPERM，已请求工具权限重试；结果以检查点原始日志为准。
 M0.0：安装初次因esbuild构建未批准退出；显式allowBuilds后成功。曾重复YAML键，修正后pnpm install、pnpm check全部通过。Vitest 1文件1测试，336ms。eslint9.39.5有上游弃用提示，当前与TS工具链兼容；升级列后续维护项。

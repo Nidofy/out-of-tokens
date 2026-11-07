@@ -14,6 +14,11 @@ export class HostSaves implements SaveStorage {
  async list(){const rows=(await this.call()).records;if(!Array.isArray(rows)||rows.length!==saveSlots.length||rows.some((r,i)=>r!==null&&(!r||r.id!==saveSlots[i]||typeof r.text!=='string'||!Number.isSafeInteger(r.revision)||r.revision<1)))throw Error('INVALID_HOST_RESPONSE');return rows;}
  async read(id:SaveSlot){if(!saveSlots.includes(id))throw Error('INVALID_SLOT');const rows=await this.list();this.uncertain=false;return rows.find(r=>r?.id===id)??null;}
  async reconcileEmpty(){const rows=await this.list();if(rows.some(Boolean))throw Error('EXISTING_SAVE');this.uncertain=false;return rows;}
+ async reconcile(id:WritableSlot,expectedRevision:number,text:string){
+  const rows=await this.list(),row=rows.find(r=>r?.id===id)??null,revision=row?.revision??0;
+  if(revision!==expectedRevision && !(revision===expectedRevision+1 && row?.text===text))throw Error('SAVE_CONFLICT');
+  this.uncertain=false;return {rows,revision,committed:row?.text===text};
+ }
  async write(id:WritableSlot,text:string,expectedRevision:number){
   if(this.uncertain)throw Error('WRITE_UNCERTAIN');if(![...manualSlots,'auto'].includes(id))throw Error('INVALID_SLOT');
   try{const b=await this.call({method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,text,expectedRevision})});if(b.revision!==expectedRevision+1)throw Error('INVALID_HOST_RESPONSE');return b.revision;}
