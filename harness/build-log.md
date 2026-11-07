@@ -107,3 +107,7 @@ Q角色最终check-final-v1：25/138及构建退出0；asset-verification-v1：1
 2026-11-07 Productization A2：基线143通过；v1 lint未使用导入失败；v2/最终28文件154通过。IAB自然seed1接单→事件→交付质量79.36/尾款890.34/声望2通过，error空。docs/PRODUCTIZATION_A2记录预估假设和未验收范围。
 
 A3：a3-check-v1两处历史适配失败已修，a3-check-final 29文件158测试通过；scope回滚/重放与故事去重通过。
+
+A3完整代码SHA：a5236794cb66650a99607d2e067735a7bc13a0b8，随后继续A4/A5。
+
+A4/A5：a4-a5-check-v1/final/final-v2均30文件162测试及构建通过；最后一次新增枢轴差值缓存与加载重试修正。三场景原角色动作、固定名册锚点、三档office与compute灯、头像lazy、DEV-only 12人夹具。静态预算与IAB观察分别见a5-art-budget.json、a4-a5-browser.md；生产独立4196停服刷新推进通过，手机宽度390/390、error为空。git diff --check发现scene一行空白，提交前清理。未声称GPU/低端性能或所有离线旧环境已验收。

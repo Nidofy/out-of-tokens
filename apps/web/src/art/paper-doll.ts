@@ -5,11 +5,15 @@ import type { Character, Expression, Pose } from './types.ts'
 export class PaperDoll {
   readonly root = new Container()
   readonly nodes = new Map<string, Container>()
+  private offsets = new Map<string, readonly [number, number]>()
   private face: Sprite | undefined
   private expressions: Record<Expression, Texture> | undefined
   constructor(readonly character: Character, textures: Map<string, Texture>) {
     this.root.sortableChildren = true
+    const parts = new Map(character.parts.map(part => [part.id, part]))
     for (const part of character.parts) {
+      const parent = parts.get(part.parent ?? '')
+      this.offsets.set(part.id, [part.pivot[0] - (parent?.pivot[0] ?? 0), part.pivot[1] - (parent?.pivot[1] ?? 0)])
       const node = new Container()
       node.label = part.id
       node.sortableChildren = true
@@ -39,8 +43,8 @@ export class PaperDoll {
   apply(pose: Pose): void {
     for (const part of this.character.parts) {
       const node = this.nodes.get(part.id)!, transform = pose.transforms[part.id]!
-      const parent = this.character.parts.find(p => p.id === part.parent)
-      node.position.set(part.pivot[0] - (parent?.pivot[0] ?? 0) + transform.x, part.pivot[1] - (parent?.pivot[1] ?? 0) + transform.y)
+      const offset = this.offsets.get(part.id)!
+      node.position.set(offset[0] + transform.x, offset[1] + transform.y)
       node.rotation = transform.rotation * Math.PI / 180
       node.scale.set(transform.scaleX, transform.scaleY)
     }
