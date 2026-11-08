@@ -125,3 +125,4 @@ B自然路径：v1/v2原型各10/10，但发现合同60及格/项目75推进的�
 B IAB独立4198：从自然命令前缀导入第15天第1章，选择系统路线/查看18WP与65及格/澄清/手存成功；正常路演前checkpoint显示4项目标满足，点击进入第2章，completed0,1。390px英文document390/390、项目卡320/320、error空。最后修正每期质量文案与澄清结果提示优先级，final检查通过。原版美术和真实存档不改；未重测低端GPU/停服离线。完整规则与下一队列PRODUCTIZATION_B。
 
 Productization B完整源码检查点：67bc3ca350a4ea931a5be061858c173fd2f5f2e2。独立提交记录SHA；173测试，30份回放复验，diff --check通过。本轮4198服务已停止，无push/部署。
+2026-11-08 review1108: baseline sandbox failed EPERM (log/cache write); controlled rerun passed. check-v1 173 tests, v2 181, final 183/32 files; typecheck/lint/Web+DSH builds passed. Last scene vertical placement: 14/2 affected tests passed. Browser verified posted assignment preview and 390x844 name/pager layout; desktop capture clipped, not accepted as complete visual matrix. Integration ledger docs/REVIEW_1108_INTEGRATION.md. No external publication, no held-out seeds consumed.

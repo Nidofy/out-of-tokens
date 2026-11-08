@@ -9,7 +9,10 @@ export class GameSession {
     constructor(content: Content, seed = 1) { this.content = structuredClone(content); this.state = createInitialState(this.content, seed); }
     get view() { return getViewModel(this.state, this.content); }
     previewAssignment(job: string, team: Member[]) {
-        const result = dispatchCommand(this.state, { type: 'assign', job, team }, this.content);
+        // Hypothetical acceptance stays on a detached command result; never enters the save log.
+        const posted = this.state.jobs.find(j=>j.id===job)?.status==='posted';
+        const accepted = posted ? dispatchCommand(this.state,{type:'accept',job},this.content) : null;
+        const result = accepted?.error ? accepted : dispatchCommand(accepted?.state??this.state, { type: 'assign', job, team }, this.content);
         return { error: result.error, estimate: result.error ? null : getViewModel(result.state, this.content).jobs.find(j => j.id === job)!.resourceEstimate, forecast: result.error ? null : forecastAssignment(result.state,this.content,result.state.jobs.find(j=>j.id===job)!) };
     }
     send(command: Command): {

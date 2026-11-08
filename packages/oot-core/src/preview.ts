@@ -45,7 +45,7 @@ export function forecastAssignment(s: State, c: Content, job: Job) {
         const slot = s.absoluteSlot + offset;
         const frame = {...s, absoluteSlot: slot, overtime: offset === 0 ? s.overtime : []};
         const step = estimateResources(frame, c, j, true);
-        const required = estimateResources(frame, c, j);
+        const required = step;
         cloud += step.cloud; local += step.local;
         capacityRisk ||= required.local > s.localCapacity;
         if (step.progress > j.progress) workSlots++;
@@ -61,5 +61,5 @@ export function forecastAssignment(s: State, c: Content, job: Job) {
     });
     return {firstSlot, completion, workSlots, horizon, cloud:Math.round(cloud*100)/100,local:Math.round(local*100)/100,electricity:Math.round(local*10)/100,
         quality:completion===null?null:[cap(base-5),cap(base+5)],
-        risks:{noProgress:completion===null,late:completion!==null&&completion>job.deadline,capacity:capacityRisk,cloud:estimateResources(s,c,job).cloud>s.quota+s.purchased,hidden:job.hidden>0,condition:conditions.some(a=>a.energy<60||a.mood<50||a.overloaded||a.needs)},conditions};
+        risks:{noProgress:completion===null,late:completion!==null&&completion>job.deadline,capacity:capacityRisk,cloud:firstSlot.cloud>s.quota+s.purchased,hidden:job.hidden>0,condition:conditions.some(a=>a.energy<60||a.mood<50||a.overloaded||a.needs)},conditions};
 }

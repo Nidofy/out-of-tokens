@@ -1,2 +1,4 @@
 :root{--paper:#f1e5cd;--card:#fff6df;--ink:#493a30;--muted:#806d59;--line:#b69a6c66;--green:#98663d;--hover:#ead8b7;--glass:#f8edd8f5;color-scheme:light}
 :root[data-theme=dark]{--paper:#292731;--card:#36313d;--ink:#f3e7ce;--muted:#c7b79f;--line:#bca78155;--green:#dab77a;--hover:#49404b;--glass:#302b38f5;color-scheme:dark}
+
+:root{--accent-hover:#785030;--on-accent:#fff6df;--danger:#a33e27}:root[data-theme=dark]{--accent-hover:#edcb91;--on-accent:#352b24;--danger:#ffab8d}

@@ -28,11 +28,11 @@ function requireRule(ok: unknown, message: string): asserts ok {
 function money(s: State, amount: number, reason: string) { s.cash = round(s.cash + amount); s.ledger.push({ slot: s.absoluteSlot, reason, amount: round(amount) }); }
 function refill(s: State, c: Content) {
     for (const j of s.jobs)
-        if (j.status === 'posted' && s.absoluteSlot - j.posted >= 4)
+        if (j.status === 'posted' && s.absoluteSlot - j.posted >= 4 && (j.clarifyingUntil===0 || s.absoluteSlot>=Math.ceil(j.clarifyingUntil/4)*4+4))
             j.status = 'expired';
     for (let n = 0; n < 5; n++) {
         const starters=c.campaign?.starterJobs;
-        const pool=c.commissions.filter(t=>!t.offerOnly&&(t.minChapter??0)<=(s.campaign?.chapter??0)&&(!(starters&&s.absoluteSlot<28)||starters.includes(t.id)));
+        const pool=c.commissions.filter(t=>!t.offerOnly&&(t.minChapter??0)<=(s.campaign?.chapter??0)&&(!(starters&&(s.campaign?.chapter??0)===0)||starters.includes(t.id)));
         const roll=draw(s,'board');
         const opening=s.absoluteSlot===0?c.campaign?.openingJobs?.[n]:undefined;
         const t = opening?c.commissions.find(t=>t.id===opening)!:pool[Math.floor(roll * pool.length)]!;
@@ -67,7 +67,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
             const progressBefore = j.progress;
             let bonus = 1, toolReady = false;
             // Reserve the support budget once, before any member spends resources.
-            const budget = estimateResources(s, c, j);
+            const budget = estimateResources(s, c, j, true);
             const supportBudgetReady = !j.team.some(m => m.role === 'tool') || (budget.cloud <= s.quota + s.purchased && budget.local <= local);
             const order = { planner: 0, worker: 2, tool: 1, reviewer: 3 };
             for (const m of [...j.team].sort((a, b) => order[a.role] - order[b.role] || (a.character < b.character ? -1 : a.character > b.character ? 1 : 0))) {

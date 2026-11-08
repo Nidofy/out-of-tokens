@@ -1,5 +1,10 @@
 import type {GameView} from 'oot-platform';
 export function stationLayout(width:number,height:number,count:number){
+ if(count<= (width<1000?2:4)){
+  const compact=width<1000,available=compact?width:width-330,cell=(available-32)/Math.max(1,count);
+  const scale=Math.min(.95,cell/160,Math.max(.5,(height-430)/250));
+  return Array.from({length:count},(_,i)=>({x:16+cell*(i+.5),y:height-(compact?280:260),scale}));
+ }
  const compact=width<650,cols=Math.min(count,compact?(count>6?4:3):6),rows=Math.ceil(count/Math.max(1,cols));
  const top=Math.min(Math.max(compact?330:280,height*.42),height*.52),bottom=height-(compact?230:190);
  const cellWidth=(width-32)/Math.max(1,cols),cellHeight=Math.max(30,bottom-top)/Math.max(1,rows);
