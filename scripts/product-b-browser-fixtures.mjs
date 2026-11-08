@@ -1,0 +1,12 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {loadFullContent} from '../packages/oot-content/dist/index.js';
+import {replay,save} from '../packages/oot-persistence/dist/index.js';
+const c=loadFullContent(),source=JSON.parse(readFileSync('harness/product-b-v3-build-2-replay.json','utf8'));
+const index=source.commands.findIndex(cmd=>cmd.type==='campaign'&&cmd.action==='chapter');
+const commands=source.commands.slice(0,index+1),s=replay(c,source.seed,commands);
+if(s.campaign.chapter!==1||Object.keys(s.campaign.projects).length)throw Error('Bad natural checkpoint');
+writeFileSync('harness/product-b-browser-chapter1.json',save(c,source.seed,commands,s));
+const finalCommands=source.commands.slice(0,-1),ready=replay(c,source.seed,finalCommands);
+if(ready.campaign.chapter!==1||!ready.campaign.projects.incubator.completed)throw Error('Bad pitch checkpoint');
+writeFileSync('harness/product-b-browser-pitch.json',save(c,source.seed,finalCommands,ready));
+console.log('Natural command prefixes saved; no state or content mutation');

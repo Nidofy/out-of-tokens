@@ -1,0 +1,4078 @@
+{
+  "kind": "training-paths-not-balance-approval",
+  "engine": "0.13.0",
+  "content": "b1-1",
+  "contentHash": "3a54e799d49412369da24004f62a17f9e82747e0723014f503046ec80fb0ccbd",
+  "results": [
+    {
+      "route": "build",
+      "seed": 1,
+      "chapterOne": 66,
+      "chapterTwo": 242,
+      "slots": 242,
+      "bankrupt": false,
+      "cash": 16477.46,
+      "liquid": 16163.22,
+      "reworks": 6,
+      "reloads": 3,
+      "replayMatches": true,
+      "commandCount": 873,
+      "stateHash": "54e80a00252165d152dc390a9b85036d296ece33bccd94b226db155bc1a436bc",
+      "project": {
+        "id": "incubator",
+        "chapter": 1,
+        "title": "第一笔大订单 · 社区书店",
+        "titleEn": "The first large order · Community bookshop",
+        "brief": "店长带着一张画满箭头的纸来到孵化器：“能不能做得像那些大平台？”先选交付路线，再逐单澄清、派遣与验收。两条路线都通向路演，但需要的能力、现金回款和团队占用不同。",
+        "briefEn": "The owner arrives with a page of arrows: “Can it work like the big platforms?” Choose a delivery route, then clarify, assign and accept each job. Both lead to a pitch, with different skills, payments and staffing commitments.",
+        "research": 4,
+        "retryCost": 60,
+        "routes": [
+          {
+            "id": "build",
+            "label": "小范围系统",
+            "labelEn": "A focused system",
+            "description": "代码与推理为主；两期各26WP、基础报酬1550。需要复核边界，不承诺完整平台。",
+            "descriptionEn": "Code and reasoning; two phases of 26 WP at base pay 1550 each. Verify edge cases without promising a full platform.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：预约系统，两次交付",
+                "titleEn": "Big order II: booking system in two deliveries",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          },
+          {
+            "id": "guide",
+            "label": "服务手册先行",
+            "labelEn": "Service handbook first",
+            "description": "写作与知识为主；两期各22WP、基础报酬1350。先用现有表单解决服务问题。",
+            "descriptionEn": "Writing and knowledge; two phases of 22 WP at base pay 1350 each. Solve service problems with existing forms first.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：先把店员手册交到手上",
+                "titleEn": "Big order II: the staff handbook comes first",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          }
+        ],
+        "route": "build",
+        "step": 2,
+        "attempts": 1,
+        "completed": true,
+        "job": "project:incubator:2",
+        "status": "delivered",
+        "quality": 73.27,
+        "target": 70,
+        "canAdvance": false,
+        "canRetry": false,
+        "feedback": "店长带来了两期验收单和真实使用记录。回形针提醒：材料准备好了，路演前还要检查净资金和声望；完成后再决定搬家。",
+        "feedbackEn": "The owner brings signed acceptances and usage records. Paperclip reminds you to check solvency and reputation before holding the pitch and moving on.",
+        "lastStep": true,
+        "accounting": {
+          "receipts": 4494.46,
+          "cloud": 0,
+          "purchased": 0,
+          "electricity": 85.45,
+          "retries": 0
+        }
+      },
+      "errors": [],
+      "daily": [
+        {
+          "slot": 0,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 5572.7,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6236.7,
+          "liquid": 5639.1,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6473.25,
+          "liquid": 5639.1,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 7199.85,
+          "liquid": 6664.5,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 7897.05,
+          "liquid": 7660.5,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 8486.35,
+          "liquid": 8212.45,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 5985.71,
+          "liquid": 5711.81,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 7084.71,
+          "liquid": 6446.77,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 7084.71,
+          "liquid": 6446.77,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 7084.71,
+          "liquid": 6446.77,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 7697.93,
+          "liquid": 7374.23,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 8453.23,
+          "liquid": 8453.23,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 8713.68,
+          "liquid": 8453.23,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 8593.68,
+          "liquid": 8333.23,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": -628.92,
+          "liquid": -1257.4,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": -332.61,
+          "liquid": -1257.4,
+          "chapter": 0
+        },
+        {
+          "slot": 64,
+          "cash": 204.41,
+          "liquid": -644.18,
+          "chapter": 0
+        },
+        {
+          "slot": 68,
+          "cash": 387.84,
+          "liquid": 109.46,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 387.84,
+          "liquid": 109.46,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 1099.05,
+          "liquid": 887.4,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 1099.05,
+          "liquid": 887.4,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 1472.9,
+          "liquid": 1472.9,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 2137.23,
+          "liquid": 1472.9,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 384.24,
+          "liquid": -1.71,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 620.79,
+          "liquid": -1.71,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 1594.32,
+          "liquid": 1357.77,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 1594.32,
+          "liquid": 1357.77,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 1909.72,
+          "liquid": 1909.72,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 1909.72,
+          "liquid": 1909.72,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 3269.2,
+          "liquid": 3269.2,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 3518.2,
+          "liquid": 3269.2,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 3518.2,
+          "liquid": 3269.2,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 3792.1,
+          "liquid": 3269.2,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 4083.55,
+          "liquid": 3549.2,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 4083.55,
+          "liquid": 3549.2,
+          "chapter": 1
+        },
+        {
+          "slot": 112,
+          "cash": 2526.69,
+          "liquid": 1952,
+          "chapter": 1
+        },
+        {
+          "slot": 116,
+          "cash": 3394.87,
+          "liquid": 2820.18,
+          "chapter": 1
+        },
+        {
+          "slot": 120,
+          "cash": 3763.27,
+          "liquid": 2790.18,
+          "chapter": 1
+        },
+        {
+          "slot": 124,
+          "cash": 4011.29,
+          "liquid": 3352.44,
+          "chapter": 1
+        },
+        {
+          "slot": 124,
+          "cash": 4289.67,
+          "liquid": 3352.44,
+          "chapter": 1
+        },
+        {
+          "slot": 128,
+          "cash": 4100.6,
+          "liquid": 3822.22,
+          "chapter": 1
+        },
+        {
+          "slot": 132,
+          "cash": 4366.91,
+          "liquid": 3792.22,
+          "chapter": 1
+        },
+        {
+          "slot": 132,
+          "cash": 4366.91,
+          "liquid": 3792.22,
+          "chapter": 1
+        },
+        {
+          "slot": 136,
+          "cash": 5455.72,
+          "liquid": 4600.16,
+          "chapter": 1
+        },
+        {
+          "slot": 140,
+          "cash": 4309.23,
+          "liquid": 3199.19,
+          "chapter": 1
+        },
+        {
+          "slot": 140,
+          "cash": 4309.23,
+          "liquid": 3199.19,
+          "chapter": 1
+        },
+        {
+          "slot": 144,
+          "cash": 5714.39,
+          "liquid": 5163.6,
+          "chapter": 1
+        },
+        {
+          "slot": 148,
+          "cash": 5909.79,
+          "liquid": 5595.55,
+          "chapter": 1
+        },
+        {
+          "slot": 152,
+          "cash": 6643.01,
+          "liquid": 6643.01,
+          "chapter": 1
+        },
+        {
+          "slot": 156,
+          "cash": 7424.25,
+          "liquid": 6613.01,
+          "chapter": 1
+        },
+        {
+          "slot": 156,
+          "cash": 7424.25,
+          "liquid": 6613.01,
+          "chapter": 1
+        },
+        {
+          "slot": 160,
+          "cash": 7582.63,
+          "liquid": 6493.01,
+          "chapter": 1
+        },
+        {
+          "slot": 164,
+          "cash": 9296.35,
+          "liquid": 9000.04,
+          "chapter": 1
+        },
+        {
+          "slot": 168,
+          "cash": 7144.21,
+          "liquid": 6587.45,
+          "chapter": 1
+        },
+        {
+          "slot": 172,
+          "cash": 7826.05,
+          "liquid": 7305.15,
+          "chapter": 1
+        },
+        {
+          "slot": 176,
+          "cash": 8707.68,
+          "liquid": 8173.33,
+          "chapter": 1
+        },
+        {
+          "slot": 176,
+          "cash": 8707.68,
+          "liquid": 8173.33,
+          "chapter": 1
+        },
+        {
+          "slot": 180,
+          "cash": 10385.16,
+          "liquid": 10061.46,
+          "chapter": 1
+        },
+        {
+          "slot": 180,
+          "cash": 10385.16,
+          "liquid": 10061.46,
+          "chapter": 1
+        },
+        {
+          "slot": 184,
+          "cash": 10525.61,
+          "liquid": 9941.46,
+          "chapter": 1
+        },
+        {
+          "slot": 184,
+          "cash": 10799.51,
+          "liquid": 9941.46,
+          "chapter": 1
+        },
+        {
+          "slot": 188,
+          "cash": 11554.81,
+          "liquid": 11020.46,
+          "chapter": 1
+        },
+        {
+          "slot": 192,
+          "cash": 11277.81,
+          "liquid": 10730.01,
+          "chapter": 1
+        },
+        {
+          "slot": 192,
+          "cash": 11277.81,
+          "liquid": 10730.01,
+          "chapter": 1
+        },
+        {
+          "slot": 196,
+          "cash": 9768.85,
+          "liquid": 9768.85,
+          "chapter": 1
+        },
+        {
+          "slot": 200,
+          "cash": 10083.09,
+          "liquid": 9768.85,
+          "chapter": 1
+        },
+        {
+          "slot": 204,
+          "cash": 10645.71,
+          "liquid": 9738.85,
+          "chapter": 1
+        },
+        {
+          "slot": 208,
+          "cash": 10525.71,
+          "liquid": 9618.85,
+          "chapter": 1
+        },
+        {
+          "slot": 212,
+          "cash": 12098.47,
+          "liquid": 11802.16,
+          "chapter": 1
+        },
+        {
+          "slot": 212,
+          "cash": 12098.47,
+          "liquid": 11802.16,
+          "chapter": 1
+        },
+        {
+          "slot": 216,
+          "cash": 13133.36,
+          "liquid": 12759.86,
+          "chapter": 1
+        },
+        {
+          "slot": 216,
+          "cash": 13133.36,
+          "liquid": 12759.86,
+          "chapter": 1
+        },
+        {
+          "slot": 220,
+          "cash": 13013.36,
+          "liquid": 12639.86,
+          "chapter": 1
+        },
+        {
+          "slot": 220,
+          "cash": 13601.5,
+          "liquid": 12639.86,
+          "chapter": 1
+        },
+        {
+          "slot": 224,
+          "cash": 11726.91,
+          "liquid": 11138.77,
+          "chapter": 1
+        },
+        {
+          "slot": 228,
+          "cash": 11596.91,
+          "liquid": 11008.77,
+          "chapter": 1
+        },
+        {
+          "slot": 228,
+          "cash": 11875.29,
+          "liquid": 11008.77,
+          "chapter": 1
+        },
+        {
+          "slot": 232,
+          "cash": 13077.4,
+          "liquid": 12799.02,
+          "chapter": 1
+        },
+        {
+          "slot": 232,
+          "cash": 13705.88,
+          "liquid": 12799.02,
+          "chapter": 1
+        },
+        {
+          "slot": 236,
+          "cash": 14494.63,
+          "liquid": 13866.15,
+          "chapter": 1
+        },
+        {
+          "slot": 240,
+          "cash": 14738.53,
+          "liquid": 13836.15,
+          "chapter": 1
+        }
+      ]
+    },
+    {
+      "route": "build",
+      "seed": 2,
+      "chapterOne": 56,
+      "chapterTwo": 101,
+      "slots": 101,
+      "bankrupt": false,
+      "cash": 3639.1,
+      "liquid": 3342.79,
+      "reworks": 2,
+      "reloads": 4,
+      "replayMatches": true,
+      "commandCount": 359,
+      "stateHash": "a9e842d607fb3e49c7e9d1157179de7e2ff7dbbf0b1f74c643d03b72a90f8454",
+      "project": {
+        "id": "incubator",
+        "chapter": 1,
+        "title": "第一笔大订单 · 社区书店",
+        "titleEn": "The first large order · Community bookshop",
+        "brief": "店长带着一张画满箭头的纸来到孵化器：“能不能做得像那些大平台？”先选交付路线，再逐单澄清、派遣与验收。两条路线都通向路演，但需要的能力、现金回款和团队占用不同。",
+        "briefEn": "The owner arrives with a page of arrows: “Can it work like the big platforms?” Choose a delivery route, then clarify, assign and accept each job. Both lead to a pitch, with different skills, payments and staffing commitments.",
+        "research": 4,
+        "retryCost": 60,
+        "routes": [
+          {
+            "id": "build",
+            "label": "小范围系统",
+            "labelEn": "A focused system",
+            "description": "代码与推理为主；两期各26WP、基础报酬1550。需要复核边界，不承诺完整平台。",
+            "descriptionEn": "Code and reasoning; two phases of 26 WP at base pay 1550 each. Verify edge cases without promising a full platform.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：预约系统，两次交付",
+                "titleEn": "Big order II: booking system in two deliveries",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          },
+          {
+            "id": "guide",
+            "label": "服务手册先行",
+            "labelEn": "Service handbook first",
+            "description": "写作与知识为主；两期各22WP、基础报酬1350。先用现有表单解决服务问题。",
+            "descriptionEn": "Writing and knowledge; two phases of 22 WP at base pay 1350 each. Solve service problems with existing forms first.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：先把店员手册交到手上",
+                "titleEn": "Big order II: the staff handbook comes first",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          }
+        ],
+        "route": "build",
+        "step": 2,
+        "attempts": 1,
+        "completed": true,
+        "job": "project:incubator:3",
+        "status": "delivered",
+        "quality": 71.11,
+        "target": 70,
+        "canAdvance": false,
+        "canRetry": false,
+        "feedback": "店长带来了两期验收单和真实使用记录。回形针提醒：材料准备好了，路演前还要检查净资金和声望；完成后再决定搬家。",
+        "feedbackEn": "The owner brings signed acceptances and usage records. Paperclip reminds you to check solvency and reputation before holding the pitch and moving on.",
+        "lastStep": true,
+        "accounting": {
+          "receipts": 4600.29,
+          "cloud": 0,
+          "purchased": 0,
+          "electricity": 90.86,
+          "retries": 60
+        }
+      },
+      "errors": [],
+      "daily": [
+        {
+          "slot": 0,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 5913,
+          "liquid": 5639.1,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6211.8,
+          "liquid": 5639.1,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 6091.8,
+          "liquid": 5519.1,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 6730.9,
+          "liquid": 6432.1,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 7851.4,
+          "liquid": 7577.5,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 6216.79,
+          "liquid": 5980.24,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 6713.79,
+          "liquid": 5980.24,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 8188.87,
+          "liquid": 8188.87,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 8607.7,
+          "liquid": 8068.87,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 8607.7,
+          "liquid": 8068.87,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 8607.7,
+          "liquid": 8068.87,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 10179.23,
+          "liquid": 9864.99,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 10615.99,
+          "liquid": 9744.99,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": 937.91,
+          "liquid": 381.15,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 1687.03,
+          "liquid": 1687.03,
+          "chapter": 1
+        },
+        {
+          "slot": 64,
+          "cash": 1997.06,
+          "liquid": 1507.03,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 1997.06,
+          "liquid": 1507.03,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 3216.3,
+          "liquid": 3216.3,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 3332.25,
+          "liquid": 2946.3,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 3332.25,
+          "liquid": 2946.3,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 3332.25,
+          "liquid": 2946.3,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 2023.76,
+          "liquid": 2023.76,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 2023.76,
+          "liquid": 2023.76,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 1903.76,
+          "liquid": 1903.76,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 1903.76,
+          "liquid": 1903.76,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 3602.24,
+          "liquid": 3353.24,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 3602.24,
+          "liquid": 3353.24,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 2761.79,
+          "liquid": 2512.79,
+          "chapter": 1
+        }
+      ]
+    },
+    {
+      "route": "build",
+      "seed": 3,
+      "chapterOne": 56,
+      "chapterTwo": 97,
+      "slots": 97,
+      "bankrupt": false,
+      "cash": 5317.35,
+      "liquid": 4724.73,
+      "reworks": 2,
+      "reloads": 4,
+      "replayMatches": true,
+      "commandCount": 320,
+      "stateHash": "d832c1f0ddce0c1a9501b8d5e7bceebf9804e8ad75142ef5a0d9d23c8b4f8eb8",
+      "project": {
+        "id": "incubator",
+        "chapter": 1,
+        "title": "第一笔大订单 · 社区书店",
+        "titleEn": "The first large order · Community bookshop",
+        "brief": "店长带着一张画满箭头的纸来到孵化器：“能不能做得像那些大平台？”先选交付路线，再逐单澄清、派遣与验收。两条路线都通向路演，但需要的能力、现金回款和团队占用不同。",
+        "briefEn": "The owner arrives with a page of arrows: “Can it work like the big platforms?” Choose a delivery route, then clarify, assign and accept each job. Both lead to a pitch, with different skills, payments and staffing commitments.",
+        "research": 4,
+        "retryCost": 60,
+        "routes": [
+          {
+            "id": "build",
+            "label": "小范围系统",
+            "labelEn": "A focused system",
+            "description": "代码与推理为主；两期各26WP、基础报酬1550。需要复核边界，不承诺完整平台。",
+            "descriptionEn": "Code and reasoning; two phases of 26 WP at base pay 1550 each. Verify edge cases without promising a full platform.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：预约系统，两次交付",
+                "titleEn": "Big order II: booking system in two deliveries",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          },
+          {
+            "id": "guide",
+            "label": "服务手册先行",
+            "labelEn": "Service handbook first",
+            "description": "写作与知识为主；两期各22WP、基础报酬1350。先用现有表单解决服务问题。",
+            "descriptionEn": "Writing and knowledge; two phases of 22 WP at base pay 1350 each. Solve service problems with existing forms first.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：先把店员手册交到手上",
+                "titleEn": "Big order II: the staff handbook comes first",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          }
+        ],
+        "route": "build",
+        "step": 2,
+        "attempts": 1,
+        "completed": true,
+        "job": "project:incubator:3",
+        "status": "delivered",
+        "quality": 75.68,
+        "target": 70,
+        "canAdvance": false,
+        "canRetry": false,
+        "feedback": "店长带来了两期验收单和真实使用记录。回形针提醒：材料准备好了，路演前还要检查净资金和声望；完成后再决定搬家。",
+        "feedbackEn": "The owner brings signed acceptances and usage records. Paperclip reminds you to check solvency and reputation before holding the pitch and moving on.",
+        "lastStep": true,
+        "accounting": {
+          "receipts": 4724.79,
+          "cloud": 0,
+          "purchased": 0,
+          "electricity": 93.22,
+          "retries": 60
+        }
+      },
+      "errors": [],
+      "daily": [
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 6149.55,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6660,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 7643.9,
+          "liquid": 7133.45,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 8283,
+          "liquid": 7772.55,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 8818.35,
+          "liquid": 7772.55,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 9291.45,
+          "liquid": 8482.2,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 8223.43,
+          "liquid": 7650.73,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 9070.03,
+          "liquid": 8796.13,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 10023.37,
+          "liquid": 9709.13,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 10217.61,
+          "liquid": 9589.13,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 10950.83,
+          "liquid": 10636.59,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 11265.07,
+          "liquid": 10636.59,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 11564.05,
+          "liquid": 11249.81,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": 1031.58,
+          "liquid": 717.34,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 900.56,
+          "liquid": 900.56,
+          "chapter": 1
+        },
+        {
+          "slot": 64,
+          "cash": 782.21,
+          "liquid": 570.56,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 1381.89,
+          "liquid": 1381.89,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 2016.22,
+          "liquid": 1351.89,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 2210.46,
+          "liquid": 1231.89,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 2210.46,
+          "liquid": 1231.89,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 3953.55,
+          "liquid": 3639.31,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 2440.75,
+          "liquid": 2440.75,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 2634.99,
+          "liquid": 2320.75,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 4641.85,
+          "liquid": 3800.23,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 4611.85,
+          "liquid": 3770.23,
+          "chapter": 1
+        }
+      ]
+    },
+    {
+      "route": "build",
+      "seed": 4,
+      "chapterOne": 65,
+      "chapterTwo": 154,
+      "slots": 154,
+      "bankrupt": false,
+      "cash": 11579.29,
+      "liquid": 10950.81,
+      "reworks": 1,
+      "reloads": 5,
+      "replayMatches": true,
+      "commandCount": 519,
+      "stateHash": "2d121dbfbcf8770d62067a8bb4ff88ae120bd310bb5931085de5da403163aafe",
+      "project": {
+        "id": "incubator",
+        "chapter": 1,
+        "title": "第一笔大订单 · 社区书店",
+        "titleEn": "The first large order · Community bookshop",
+        "brief": "店长带着一张画满箭头的纸来到孵化器：“能不能做得像那些大平台？”先选交付路线，再逐单澄清、派遣与验收。两条路线都通向路演，但需要的能力、现金回款和团队占用不同。",
+        "briefEn": "The owner arrives with a page of arrows: “Can it work like the big platforms?” Choose a delivery route, then clarify, assign and accept each job. Both lead to a pitch, with different skills, payments and staffing commitments.",
+        "research": 4,
+        "retryCost": 60,
+        "routes": [
+          {
+            "id": "build",
+            "label": "小范围系统",
+            "labelEn": "A focused system",
+            "description": "代码与推理为主；两期各26WP、基础报酬1550。需要复核边界，不承诺完整平台。",
+            "descriptionEn": "Code and reasoning; two phases of 26 WP at base pay 1550 each. Verify edge cases without promising a full platform.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：预约系统，两次交付",
+                "titleEn": "Big order II: booking system in two deliveries",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          },
+          {
+            "id": "guide",
+            "label": "服务手册先行",
+            "labelEn": "Service handbook first",
+            "description": "写作与知识为主；两期各22WP、基础报酬1350。先用现有表单解决服务问题。",
+            "descriptionEn": "Writing and knowledge; two phases of 22 WP at base pay 1350 each. Solve service problems with existing forms first.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：先把店员手册交到手上",
+                "titleEn": "Big order II: the staff handbook comes first",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          }
+        ],
+        "route": "build",
+        "step": 2,
+        "attempts": 1,
+        "completed": true,
+        "job": "project:incubator:4",
+        "status": "delivered",
+        "quality": 75.2,
+        "target": 70,
+        "canAdvance": false,
+        "canRetry": false,
+        "feedback": "店长带来了两期验收单和真实使用记录。回形针提醒：材料准备好了，路演前还要检查净资金和声望；完成后再决定搬家。",
+        "feedbackEn": "The owner brings signed acceptances and usage records. Paperclip reminds you to check solvency and reputation before holding the pitch and moving on.",
+        "lastStep": true,
+        "accounting": {
+          "receipts": 10408.22,
+          "cloud": 0,
+          "purchased": 0,
+          "electricity": 205.46,
+          "retries": 120
+        }
+      },
+      "errors": [],
+      "daily": [
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 6211.8,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 6211.8,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6211.8,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 7237.2,
+          "liquid": 6938.4,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 7473.75,
+          "liquid": 6938.4,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 8320.35,
+          "liquid": 8083.8,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 8693.85,
+          "liquid": 8083.8,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 6582.73,
+          "liquid": 6209.23,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 7377.04,
+          "liquid": 7080.73,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 7987.59,
+          "liquid": 7080.73,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 8707.13,
+          "liquid": 8096.58,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 9398.52,
+          "liquid": 9084.28,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 9712.76,
+          "liquid": 9712.76,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 9866.66,
+          "liquid": 9592.76,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 9866.66,
+          "liquid": 9592.76,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": -514.65,
+          "liquid": -788.55,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 497.2,
+          "liquid": -53.59,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 497.2,
+          "liquid": -53.59,
+          "chapter": 0
+        },
+        {
+          "slot": 64,
+          "cash": 377.2,
+          "liquid": -173.59,
+          "chapter": 0
+        },
+        {
+          "slot": 68,
+          "cash": 692.6,
+          "liquid": 378.36,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 1140.8,
+          "liquid": 378.36,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 1009.78,
+          "liquid": 561.58,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 1935.58,
+          "liquid": 1935.58,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 2321.53,
+          "liquid": 1935.58,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 1857.22,
+          "liquid": 1471.27,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": -531.54,
+          "liquid": -917.49,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 13.15,
+          "liquid": -947.49,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 2160.09,
+          "liquid": 1567.47,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 2160.09,
+          "liquid": 1567.47,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 2347.63,
+          "liquid": 2033.39,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 3207.97,
+          "liquid": 3207.97,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 5008.8,
+          "liquid": 4344.47,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 5767.55,
+          "liquid": 5381.6,
+          "chapter": 1
+        },
+        {
+          "slot": 112,
+          "cash": 4432.58,
+          "liquid": 4432.58,
+          "chapter": 1
+        },
+        {
+          "slot": 116,
+          "cash": 4616.48,
+          "liquid": 4342.58,
+          "chapter": 1
+        },
+        {
+          "slot": 120,
+          "cash": 4900.72,
+          "liquid": 4312.58,
+          "chapter": 1
+        },
+        {
+          "slot": 120,
+          "cash": 4900.72,
+          "liquid": 4312.58,
+          "chapter": 1
+        },
+        {
+          "slot": 124,
+          "cash": 5673.32,
+          "liquid": 5085.18,
+          "chapter": 1
+        },
+        {
+          "slot": 124,
+          "cash": 6059.27,
+          "liquid": 5085.18,
+          "chapter": 1
+        },
+        {
+          "slot": 128,
+          "cash": 5969.27,
+          "liquid": 4995.18,
+          "chapter": 1
+        },
+        {
+          "slot": 128,
+          "cash": 5969.27,
+          "liquid": 4995.18,
+          "chapter": 1
+        },
+        {
+          "slot": 132,
+          "cash": 7607.9,
+          "liquid": 6925.64,
+          "chapter": 1
+        },
+        {
+          "slot": 136,
+          "cash": 8931.88,
+          "liquid": 8375.12,
+          "chapter": 1
+        },
+        {
+          "slot": 140,
+          "cash": 8017.27,
+          "liquid": 7738.89,
+          "chapter": 1
+        },
+        {
+          "slot": 144,
+          "cash": 8636.83,
+          "liquid": 8636.83,
+          "chapter": 1
+        },
+        {
+          "slot": 144,
+          "cash": 8951.07,
+          "liquid": 8636.83,
+          "chapter": 1
+        },
+        {
+          "slot": 148,
+          "cash": 8921.07,
+          "liquid": 8606.83,
+          "chapter": 1
+        },
+        {
+          "slot": 152,
+          "cash": 10873.79,
+          "liquid": 9996.31,
+          "chapter": 1
+        }
+      ]
+    },
+    {
+      "route": "build",
+      "seed": 5,
+      "chapterOne": 58,
+      "chapterTwo": 102,
+      "slots": 102,
+      "bankrupt": false,
+      "cash": 6724.55,
+      "liquid": 6425.75,
+      "reworks": 4,
+      "reloads": 3,
+      "replayMatches": true,
+      "commandCount": 350,
+      "stateHash": "1c9e56e3262666ba149fe5f060112509c71fa953ec9dc6e6802e967666db6f76",
+      "project": {
+        "id": "incubator",
+        "chapter": 1,
+        "title": "第一笔大订单 · 社区书店",
+        "titleEn": "The first large order · Community bookshop",
+        "brief": "店长带着一张画满箭头的纸来到孵化器：“能不能做得像那些大平台？”先选交付路线，再逐单澄清、派遣与验收。两条路线都通向路演，但需要的能力、现金回款和团队占用不同。",
+        "briefEn": "The owner arrives with a page of arrows: “Can it work like the big platforms?” Choose a delivery route, then clarify, assign and accept each job. Both lead to a pitch, with different skills, payments and staffing commitments.",
+        "research": 4,
+        "retryCost": 60,
+        "routes": [
+          {
+            "id": "build",
+            "label": "小范围系统",
+            "labelEn": "A focused system",
+            "description": "代码与推理为主；两期各26WP、基础报酬1550。需要复核边界，不承诺完整平台。",
+            "descriptionEn": "Code and reasoning; two phases of 26 WP at base pay 1550 each. Verify edge cases without promising a full platform.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：预约系统，两次交付",
+                "titleEn": "Big order II: booking system in two deliveries",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          },
+          {
+            "id": "guide",
+            "label": "服务手册先行",
+            "labelEn": "Service handbook first",
+            "description": "写作与知识为主；两期各22WP、基础报酬1350。先用现有表单解决服务问题。",
+            "descriptionEn": "Writing and knowledge; two phases of 22 WP at base pay 1350 each. Solve service problems with existing forms first.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：先把店员手册交到手上",
+                "titleEn": "Big order II: the staff handbook comes first",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          }
+        ],
+        "route": "build",
+        "step": 2,
+        "attempts": 1,
+        "completed": true,
+        "job": "project:incubator:2",
+        "status": "delivered",
+        "quality": 71.51,
+        "target": 70,
+        "canAdvance": false,
+        "canRetry": false,
+        "feedback": "店长带来了两期验收单和真实使用记录。回形针提醒：材料准备好了，路演前还要检查净资金和声望；完成后再决定搬家。",
+        "feedbackEn": "The owner brings signed acceptances and usage records. Paperclip reminds you to check solvency and reputation before holding the pitch and moving on.",
+        "lastStep": true,
+        "accounting": {
+          "receipts": 4301.48,
+          "cloud": 0,
+          "purchased": 0,
+          "electricity": 89.94,
+          "retries": 0
+        }
+      },
+      "errors": [],
+      "daily": [
+        {
+          "slot": 0,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 5913,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6211.8,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 6091.8,
+          "liquid": 5793,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 7087.8,
+          "liquid": 6789,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 7785,
+          "liquid": 7785,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 5858.77,
+          "liquid": 5286.07,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 5858.77,
+          "liquid": 5286.07,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 6538.21,
+          "liquid": 5925.17,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 6816.61,
+          "liquid": 6502.37,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 7810.28,
+          "liquid": 7549.83,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 8088.66,
+          "liquid": 7549.83,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 9462.5,
+          "liquid": 9225.95,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": -662.69,
+          "liquid": -1173.14,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": -662.69,
+          "liquid": -1173.14,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 486.86,
+          "liquid": 212.96,
+          "chapter": 1
+        },
+        {
+          "slot": 64,
+          "cash": 578.51,
+          "liquid": 92.96,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 667.61,
+          "liquid": 455.96,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 941.51,
+          "liquid": 455.96,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 1804.46,
+          "liquid": 1804.46,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 2474.65,
+          "liquid": 1774.46,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 65.54,
+          "liquid": -634.65,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 1736.43,
+          "liquid": 1736.43,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 1942.98,
+          "liquid": 1706.43,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 2221.36,
+          "liquid": 1706.43,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 2495.26,
+          "liquid": 1706.43,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 5367.5,
+          "liquid": 4545.8,
+          "chapter": 1
+        }
+      ]
+    },
+    {
+      "route": "guide",
+      "seed": 1,
+      "chapterOne": 66,
+      "chapterTwo": 262,
+      "slots": 262,
+      "bankrupt": false,
+      "cash": 20395.28,
+      "liquid": 19508.34,
+      "reworks": 3,
+      "reloads": 6,
+      "replayMatches": true,
+      "commandCount": 960,
+      "stateHash": "657fe8736e61f6d74686e23969f8c24aeb9738a8a0a600e9eb78b48bc3db6620",
+      "project": {
+        "id": "incubator",
+        "chapter": 1,
+        "title": "第一笔大订单 · 社区书店",
+        "titleEn": "The first large order · Community bookshop",
+        "brief": "店长带着一张画满箭头的纸来到孵化器：“能不能做得像那些大平台？”先选交付路线，再逐单澄清、派遣与验收。两条路线都通向路演，但需要的能力、现金回款和团队占用不同。",
+        "briefEn": "The owner arrives with a page of arrows: “Can it work like the big platforms?” Choose a delivery route, then clarify, assign and accept each job. Both lead to a pitch, with different skills, payments and staffing commitments.",
+        "research": 4,
+        "retryCost": 60,
+        "routes": [
+          {
+            "id": "build",
+            "label": "小范围系统",
+            "labelEn": "A focused system",
+            "description": "代码与推理为主；两期各26WP、基础报酬1550。需要复核边界，不承诺完整平台。",
+            "descriptionEn": "Code and reasoning; two phases of 26 WP at base pay 1550 each. Verify edge cases without promising a full platform.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：预约系统，两次交付",
+                "titleEn": "Big order II: booking system in two deliveries",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          },
+          {
+            "id": "guide",
+            "label": "服务手册先行",
+            "labelEn": "Service handbook first",
+            "description": "写作与知识为主；两期各22WP、基础报酬1350。先用现有表单解决服务问题。",
+            "descriptionEn": "Writing and knowledge; two phases of 22 WP at base pay 1350 each. Solve service problems with existing forms first.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：先把店员手册交到手上",
+                "titleEn": "Big order II: the staff handbook comes first",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          }
+        ],
+        "route": "guide",
+        "step": 2,
+        "attempts": 1,
+        "completed": true,
+        "job": "project:incubator:5",
+        "status": "delivered",
+        "quality": 76.21,
+        "target": 70,
+        "canAdvance": false,
+        "canRetry": false,
+        "feedback": "店长带来了两期验收单和真实使用记录。回形针提醒：材料准备好了，路演前还要检查净资金和声望；完成后再决定搬家。",
+        "feedbackEn": "The owner brings signed acceptances and usage records. Paperclip reminds you to check solvency and reputation before holding the pitch and moving on.",
+        "lastStep": true,
+        "accounting": {
+          "receipts": 10792.07,
+          "cloud": 451.01,
+          "purchased": 0,
+          "electricity": 165.65,
+          "retries": 180
+        }
+      },
+      "errors": [],
+      "daily": [
+        {
+          "slot": 0,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 5572.7,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6236.7,
+          "liquid": 5639.1,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6473.25,
+          "liquid": 5639.1,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 7199.85,
+          "liquid": 6664.5,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 7897.05,
+          "liquid": 7660.5,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 8486.35,
+          "liquid": 8212.45,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 5985.71,
+          "liquid": 5711.81,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 7084.71,
+          "liquid": 6446.77,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 7084.71,
+          "liquid": 6446.77,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 7084.71,
+          "liquid": 6446.77,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 7697.93,
+          "liquid": 7374.23,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 8453.23,
+          "liquid": 8453.23,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 8713.68,
+          "liquid": 8453.23,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 8593.68,
+          "liquid": 8333.23,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": -628.92,
+          "liquid": -1257.4,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": -332.61,
+          "liquid": -1257.4,
+          "chapter": 0
+        },
+        {
+          "slot": 64,
+          "cash": 204.41,
+          "liquid": -644.18,
+          "chapter": 0
+        },
+        {
+          "slot": 68,
+          "cash": 387.84,
+          "liquid": 109.46,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 387.84,
+          "liquid": 109.46,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 1099.05,
+          "liquid": 887.4,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 1099.05,
+          "liquid": 887.4,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 1472.9,
+          "liquid": 1472.9,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 2361.33,
+          "liquid": 1472.9,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 1581.35,
+          "liquid": 1581.35,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 1817.9,
+          "liquid": 1581.35,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 1697.9,
+          "liquid": 1461.35,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 3924.88,
+          "liquid": 3310.35,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 4679.23,
+          "liquid": 4400.85,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 4679.23,
+          "liquid": 4400.85,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 4559.23,
+          "liquid": 4280.85,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 4559.23,
+          "liquid": 4280.85,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 5898.11,
+          "liquid": 5898.11,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 6508.16,
+          "liquid": 5898.11,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 6478.16,
+          "liquid": 5868.11,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 6478.16,
+          "liquid": 5868.11,
+          "chapter": 1
+        },
+        {
+          "slot": 112,
+          "cash": 4734.75,
+          "liquid": 4460.85,
+          "chapter": 1
+        },
+        {
+          "slot": 116,
+          "cash": 5456.26,
+          "liquid": 5195.81,
+          "chapter": 1
+        },
+        {
+          "slot": 120,
+          "cash": 7829.04,
+          "liquid": 7094.49,
+          "chapter": 1
+        },
+        {
+          "slot": 124,
+          "cash": 8753.84,
+          "liquid": 8094.99,
+          "chapter": 1
+        },
+        {
+          "slot": 124,
+          "cash": 9032.22,
+          "liquid": 8094.99,
+          "chapter": 1
+        },
+        {
+          "slot": 128,
+          "cash": 8843.15,
+          "liquid": 8564.77,
+          "chapter": 1
+        },
+        {
+          "slot": 132,
+          "cash": 9759.02,
+          "liquid": 9462.71,
+          "chapter": 1
+        },
+        {
+          "slot": 132,
+          "cash": 9759.02,
+          "liquid": 9462.71,
+          "chapter": 1
+        },
+        {
+          "slot": 136,
+          "cash": 11176.59,
+          "liquid": 10631.28,
+          "chapter": 1
+        },
+        {
+          "slot": 140,
+          "cash": 10410.96,
+          "liquid": 10174.41,
+          "chapter": 1
+        },
+        {
+          "slot": 140,
+          "cash": 10410.96,
+          "liquid": 10174.41,
+          "chapter": 1
+        },
+        {
+          "slot": 144,
+          "cash": 10380.96,
+          "liquid": 10144.41,
+          "chapter": 1
+        },
+        {
+          "slot": 148,
+          "cash": 10872.67,
+          "liquid": 10576.36,
+          "chapter": 1
+        },
+        {
+          "slot": 152,
+          "cash": 10722.67,
+          "liquid": 10426.36,
+          "chapter": 1
+        },
+        {
+          "slot": 156,
+          "cash": 12195.3,
+          "liquid": 11384.06,
+          "chapter": 1
+        },
+        {
+          "slot": 156,
+          "cash": 12195.3,
+          "liquid": 11384.06,
+          "chapter": 1
+        },
+        {
+          "slot": 160,
+          "cash": 12075.3,
+          "liquid": 11264.06,
+          "chapter": 1
+        },
+        {
+          "slot": 160,
+          "cash": 12371.61,
+          "liquid": 11264.06,
+          "chapter": 1
+        },
+        {
+          "slot": 164,
+          "cash": 12406.24,
+          "liquid": 11795.69,
+          "chapter": 1
+        },
+        {
+          "slot": 168,
+          "cash": 10689.74,
+          "liquid": 10375.5,
+          "chapter": 1
+        },
+        {
+          "slot": 172,
+          "cash": 11563.41,
+          "liquid": 11302.96,
+          "chapter": 1
+        },
+        {
+          "slot": 176,
+          "cash": 11673.86,
+          "liquid": 11152.96,
+          "chapter": 1
+        },
+        {
+          "slot": 180,
+          "cash": 12251.59,
+          "liquid": 11991.14,
+          "chapter": 1
+        },
+        {
+          "slot": 180,
+          "cash": 12251.59,
+          "liquid": 11991.14,
+          "chapter": 1
+        },
+        {
+          "slot": 184,
+          "cash": 11610.69,
+          "liquid": 11610.69,
+          "chapter": 1
+        },
+        {
+          "slot": 184,
+          "cash": 11884.59,
+          "liquid": 11610.69,
+          "chapter": 1
+        },
+        {
+          "slot": 188,
+          "cash": 11884.59,
+          "liquid": 11610.69,
+          "chapter": 1
+        },
+        {
+          "slot": 192,
+          "cash": 12128.49,
+          "liquid": 11580.69,
+          "chapter": 1
+        },
+        {
+          "slot": 192,
+          "cash": 12128.49,
+          "liquid": 11580.69,
+          "chapter": 1
+        },
+        {
+          "slot": 196,
+          "cash": 10002.16,
+          "liquid": 9728.26,
+          "chapter": 1
+        },
+        {
+          "slot": 200,
+          "cash": 10777.46,
+          "liquid": 10463.22,
+          "chapter": 1
+        },
+        {
+          "slot": 204,
+          "cash": 11340.08,
+          "liquid": 10433.22,
+          "chapter": 1
+        },
+        {
+          "slot": 208,
+          "cash": 12958.93,
+          "liquid": 12348.38,
+          "chapter": 1
+        },
+        {
+          "slot": 212,
+          "cash": 13650.32,
+          "liquid": 13336.08,
+          "chapter": 1
+        },
+        {
+          "slot": 212,
+          "cash": 13650.32,
+          "liquid": 13336.08,
+          "chapter": 1
+        },
+        {
+          "slot": 216,
+          "cash": 14631.92,
+          "liquid": 14353.54,
+          "chapter": 1
+        },
+        {
+          "slot": 216,
+          "cash": 14631.92,
+          "liquid": 14353.54,
+          "chapter": 1
+        },
+        {
+          "slot": 220,
+          "cash": 15122.47,
+          "liquid": 14233.54,
+          "chapter": 1
+        },
+        {
+          "slot": 220,
+          "cash": 15122.47,
+          "liquid": 14233.54,
+          "chapter": 1
+        },
+        {
+          "slot": 224,
+          "cash": 12724.06,
+          "liquid": 11835.13,
+          "chapter": 1
+        },
+        {
+          "slot": 228,
+          "cash": 14668.23,
+          "liquid": 14668.23,
+          "chapter": 1
+        },
+        {
+          "slot": 228,
+          "cash": 14946.61,
+          "liquid": 14668.23,
+          "chapter": 1
+        },
+        {
+          "slot": 232,
+          "cash": 15150.31,
+          "liquid": 14548.23,
+          "chapter": 1
+        },
+        {
+          "slot": 232,
+          "cash": 15464.55,
+          "liquid": 14548.23,
+          "chapter": 1
+        },
+        {
+          "slot": 236,
+          "cash": 15464.55,
+          "liquid": 14548.23,
+          "chapter": 1
+        },
+        {
+          "slot": 240,
+          "cash": 17113.31,
+          "liquid": 16525.17,
+          "chapter": 1
+        },
+        {
+          "slot": 244,
+          "cash": 18365.63,
+          "liquid": 18365.63,
+          "chapter": 1
+        },
+        {
+          "slot": 244,
+          "cash": 18935.84,
+          "liquid": 18365.63,
+          "chapter": 1
+        },
+        {
+          "slot": 248,
+          "cash": 18935.84,
+          "liquid": 18365.63,
+          "chapter": 1
+        },
+        {
+          "slot": 248,
+          "cash": 18935.84,
+          "liquid": 18365.63,
+          "chapter": 1
+        },
+        {
+          "slot": 252,
+          "cash": 17155.77,
+          "liquid": 16859.46,
+          "chapter": 1
+        },
+        {
+          "slot": 256,
+          "cash": 18301.85,
+          "liquid": 17727.16,
+          "chapter": 1
+        },
+        {
+          "slot": 260,
+          "cash": 18575.75,
+          "liquid": 17727.16,
+          "chapter": 1
+        },
+        {
+          "slot": 260,
+          "cash": 18849.65,
+          "liquid": 17727.16,
+          "chapter": 1
+        }
+      ]
+    },
+    {
+      "route": "guide",
+      "seed": 2,
+      "chapterOne": 56,
+      "chapterTwo": 202,
+      "slots": 202,
+      "bankrupt": false,
+      "cash": 12590.27,
+      "liquid": 12590.27,
+      "reworks": 4,
+      "reloads": 12,
+      "replayMatches": true,
+      "commandCount": 711,
+      "stateHash": "9130f240af299934dd48d202d7772cff0c92aae8d5074eda500e60b859427a13",
+      "project": {
+        "id": "incubator",
+        "chapter": 1,
+        "title": "第一笔大订单 · 社区书店",
+        "titleEn": "The first large order · Community bookshop",
+        "brief": "店长带着一张画满箭头的纸来到孵化器：“能不能做得像那些大平台？”先选交付路线，再逐单澄清、派遣与验收。两条路线都通向路演，但需要的能力、现金回款和团队占用不同。",
+        "briefEn": "The owner arrives with a page of arrows: “Can it work like the big platforms?” Choose a delivery route, then clarify, assign and accept each job. Both lead to a pitch, with different skills, payments and staffing commitments.",
+        "research": 4,
+        "retryCost": 60,
+        "routes": [
+          {
+            "id": "build",
+            "label": "小范围系统",
+            "labelEn": "A focused system",
+            "description": "代码与推理为主；两期各26WP、基础报酬1550。需要复核边界，不承诺完整平台。",
+            "descriptionEn": "Code and reasoning; two phases of 26 WP at base pay 1550 each. Verify edge cases without promising a full platform.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：预约系统，两次交付",
+                "titleEn": "Big order II: booking system in two deliveries",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          },
+          {
+            "id": "guide",
+            "label": "服务手册先行",
+            "labelEn": "Service handbook first",
+            "description": "写作与知识为主；两期各22WP、基础报酬1350。先用现有表单解决服务问题。",
+            "descriptionEn": "Writing and knowledge; two phases of 22 WP at base pay 1350 each. Solve service problems with existing forms first.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：先把店员手册交到手上",
+                "titleEn": "Big order II: the staff handbook comes first",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          }
+        ],
+        "route": "guide",
+        "step": 2,
+        "attempts": 3,
+        "completed": true,
+        "job": "project:incubator:11",
+        "status": "delivered",
+        "quality": 74.13,
+        "target": 70,
+        "canAdvance": false,
+        "canRetry": false,
+        "feedback": "店长带来了两期验收单和真实使用记录。回形针提醒：材料准备好了，路演前还要检查净资金和声望；完成后再决定搬家。",
+        "feedbackEn": "The owner brings signed acceptances and usage records. Paperclip reminds you to check solvency and reputation before holding the pitch and moving on.",
+        "lastStep": true,
+        "accounting": {
+          "receipts": 19218.64,
+          "cloud": 1254.61,
+          "purchased": 0,
+          "electricity": 313.75,
+          "retries": 540
+        }
+      },
+      "errors": [],
+      "daily": [
+        {
+          "slot": 0,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 5913,
+          "liquid": 5639.1,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6211.8,
+          "liquid": 5639.1,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 6091.8,
+          "liquid": 5519.1,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 6730.9,
+          "liquid": 6432.1,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 7851.4,
+          "liquid": 7577.5,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 6216.79,
+          "liquid": 5980.24,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 6713.79,
+          "liquid": 5980.24,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 8188.87,
+          "liquid": 8188.87,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 8607.7,
+          "liquid": 8068.87,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 8607.7,
+          "liquid": 8068.87,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 8607.7,
+          "liquid": 8068.87,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 10179.23,
+          "liquid": 9864.99,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 10615.99,
+          "liquid": 9744.99,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": 937.91,
+          "liquid": 381.15,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 1787.03,
+          "liquid": 1787.03,
+          "chapter": 1
+        },
+        {
+          "slot": 64,
+          "cash": 1997.06,
+          "liquid": 1507.03,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 1997.06,
+          "liquid": 1507.03,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 2797.06,
+          "liquid": 2182.53,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 2527.06,
+          "liquid": 1912.53,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 2754.65,
+          "liquid": 2754.65,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 2754.65,
+          "liquid": 2754.65,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 254.08,
+          "liquid": 254.08,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 254.08,
+          "liquid": 254.08,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 134.08,
+          "liquid": 134.08,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 1530.73,
+          "liquid": 1194.58,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 2285.08,
+          "liquid": 2285.08,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 2285.08,
+          "liquid": 2285.08,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 2165.08,
+          "liquid": 2165.08,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 2461.39,
+          "liquid": 2165.08,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 2461.39,
+          "liquid": 2165.08,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 3728.04,
+          "liquid": 3095.58,
+          "chapter": 1
+        },
+        {
+          "slot": 112,
+          "cash": 1911.67,
+          "liquid": 1575.52,
+          "chapter": 1
+        },
+        {
+          "slot": 116,
+          "cash": 2864.09,
+          "liquid": 2864.09,
+          "chapter": 1
+        },
+        {
+          "slot": 120,
+          "cash": 3148.33,
+          "liquid": 2834.09,
+          "chapter": 1
+        },
+        {
+          "slot": 124,
+          "cash": 4424.98,
+          "liquid": 3774.59,
+          "chapter": 1
+        },
+        {
+          "slot": 128,
+          "cash": 5394.75,
+          "liquid": 4822.05,
+          "chapter": 1
+        },
+        {
+          "slot": 132,
+          "cash": 6149.1,
+          "liquid": 5912.55,
+          "chapter": 1
+        },
+        {
+          "slot": 136,
+          "cash": 6344.5,
+          "liquid": 6344.5,
+          "chapter": 1
+        },
+        {
+          "slot": 140,
+          "cash": 5624.22,
+          "liquid": 5027.62,
+          "chapter": 1
+        },
+        {
+          "slot": 144,
+          "cash": 5594.22,
+          "liquid": 4997.62,
+          "chapter": 1
+        },
+        {
+          "slot": 144,
+          "cash": 5594.22,
+          "liquid": 4997.62,
+          "chapter": 1
+        },
+        {
+          "slot": 148,
+          "cash": 6061.7,
+          "liquid": 5747.46,
+          "chapter": 1
+        },
+        {
+          "slot": 152,
+          "cash": 6061.7,
+          "liquid": 5747.46,
+          "chapter": 1
+        },
+        {
+          "slot": 156,
+          "cash": 7428.35,
+          "liquid": 6777.96,
+          "chapter": 1
+        },
+        {
+          "slot": 160,
+          "cash": 8353.15,
+          "liquid": 7778.46,
+          "chapter": 1
+        },
+        {
+          "slot": 160,
+          "cash": 8353.15,
+          "liquid": 7778.46,
+          "chapter": 1
+        },
+        {
+          "slot": 164,
+          "cash": 8353.15,
+          "liquid": 7778.46,
+          "chapter": 1
+        },
+        {
+          "slot": 168,
+          "cash": 7152.73,
+          "liquid": 6838.49,
+          "chapter": 1
+        },
+        {
+          "slot": 168,
+          "cash": 7152.73,
+          "liquid": 6838.49,
+          "chapter": 1
+        },
+        {
+          "slot": 172,
+          "cash": 8093.23,
+          "liquid": 7778.99,
+          "chapter": 1
+        },
+        {
+          "slot": 176,
+          "cash": 8429.38,
+          "liquid": 7778.99,
+          "chapter": 1
+        },
+        {
+          "slot": 180,
+          "cash": 9812.2,
+          "liquid": 9812.2,
+          "chapter": 1
+        },
+        {
+          "slot": 180,
+          "cash": 9812.2,
+          "liquid": 9812.2,
+          "chapter": 1
+        },
+        {
+          "slot": 184,
+          "cash": 10006.44,
+          "liquid": 9692.2,
+          "chapter": 1
+        },
+        {
+          "slot": 188,
+          "cash": 11394.01,
+          "liquid": 10830.77,
+          "chapter": 1
+        },
+        {
+          "slot": 188,
+          "cash": 11394.01,
+          "liquid": 10830.77,
+          "chapter": 1
+        },
+        {
+          "slot": 192,
+          "cash": 11785.01,
+          "liquid": 11470.77,
+          "chapter": 1
+        },
+        {
+          "slot": 196,
+          "cash": 10542.07,
+          "liquid": 9994.27,
+          "chapter": 1
+        },
+        {
+          "slot": 200,
+          "cash": 11312.07,
+          "liquid": 10764.27,
+          "chapter": 1
+        }
+      ]
+    },
+    {
+      "route": "guide",
+      "seed": 3,
+      "chapterOne": 56,
+      "chapterTwo": 186,
+      "slots": 186,
+      "bankrupt": false,
+      "cash": 13429.07,
+      "liquid": 12836.45,
+      "reworks": 5,
+      "reloads": 10,
+      "replayMatches": true,
+      "commandCount": 655,
+      "stateHash": "fba6aa109da363552f99f8e12166c1de54bbb60860056a0fc11ab559a2982c36",
+      "project": {
+        "id": "incubator",
+        "chapter": 1,
+        "title": "第一笔大订单 · 社区书店",
+        "titleEn": "The first large order · Community bookshop",
+        "brief": "店长带着一张画满箭头的纸来到孵化器：“能不能做得像那些大平台？”先选交付路线，再逐单澄清、派遣与验收。两条路线都通向路演，但需要的能力、现金回款和团队占用不同。",
+        "briefEn": "The owner arrives with a page of arrows: “Can it work like the big platforms?” Choose a delivery route, then clarify, assign and accept each job. Both lead to a pitch, with different skills, payments and staffing commitments.",
+        "research": 4,
+        "retryCost": 60,
+        "routes": [
+          {
+            "id": "build",
+            "label": "小范围系统",
+            "labelEn": "A focused system",
+            "description": "代码与推理为主；两期各26WP、基础报酬1550。需要复核边界，不承诺完整平台。",
+            "descriptionEn": "Code and reasoning; two phases of 26 WP at base pay 1550 each. Verify edge cases without promising a full platform.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：预约系统，两次交付",
+                "titleEn": "Big order II: booking system in two deliveries",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          },
+          {
+            "id": "guide",
+            "label": "服务手册先行",
+            "labelEn": "Service handbook first",
+            "description": "写作与知识为主；两期各22WP、基础报酬1350。先用现有表单解决服务问题。",
+            "descriptionEn": "Writing and knowledge; two phases of 22 WP at base pay 1350 each. Solve service problems with existing forms first.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：先把店员手册交到手上",
+                "titleEn": "Big order II: the staff handbook comes first",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          }
+        ],
+        "route": "guide",
+        "step": 2,
+        "attempts": 1,
+        "completed": true,
+        "job": "project:incubator:9",
+        "status": "delivered",
+        "quality": 72.88,
+        "target": 70,
+        "canAdvance": false,
+        "canRetry": false,
+        "feedback": "店长带来了两期验收单和真实使用记录。回形针提醒：材料准备好了，路演前还要检查净资金和声望；完成后再决定搬家。",
+        "feedbackEn": "The owner brings signed acceptances and usage records. Paperclip reminds you to check solvency and reputation before holding the pitch and moving on.",
+        "lastStep": true,
+        "accounting": {
+          "receipts": 17390.57,
+          "cloud": 1117.34,
+          "purchased": 0,
+          "electricity": 292.02,
+          "retries": 420
+        }
+      },
+      "errors": [],
+      "daily": [
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 6149.55,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6660,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 7643.9,
+          "liquid": 7133.45,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 8283,
+          "liquid": 7772.55,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 8818.35,
+          "liquid": 7772.55,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 9291.45,
+          "liquid": 8482.2,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 8223.43,
+          "liquid": 7650.73,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 9070.03,
+          "liquid": 8796.13,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 10023.37,
+          "liquid": 9709.13,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 10217.61,
+          "liquid": 9589.13,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 10950.83,
+          "liquid": 10636.59,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 11265.07,
+          "liquid": 10636.59,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 11564.05,
+          "liquid": 11249.81,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": 1031.58,
+          "liquid": 717.34,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 1000.56,
+          "liquid": 1000.56,
+          "chapter": 1
+        },
+        {
+          "slot": 64,
+          "cash": 882.21,
+          "liquid": 670.56,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 1376.06,
+          "liquid": 1376.06,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 1960.59,
+          "liquid": 1346.06,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 2624.94,
+          "liquid": 2346.56,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 2624.94,
+          "liquid": 2346.56,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 2624.94,
+          "liquid": 2346.56,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 1615.97,
+          "liquid": 1001.44,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 3244.12,
+          "liquid": 2929.88,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 3244.12,
+          "liquid": 2929.88,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 4274.62,
+          "liquid": 3960.38,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 5223.99,
+          "liquid": 4887.84,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 5497.89,
+          "liquid": 4887.84,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 6282.24,
+          "liquid": 6008.34,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 6252.24,
+          "liquid": 5978.34,
+          "chapter": 1
+        },
+        {
+          "slot": 112,
+          "cash": 5893.66,
+          "liquid": 5159.11,
+          "chapter": 1
+        },
+        {
+          "slot": 116,
+          "cash": 6172.04,
+          "liquid": 5159.11,
+          "chapter": 1
+        },
+        {
+          "slot": 116,
+          "cash": 6432.49,
+          "liquid": 5159.11,
+          "chapter": 1
+        },
+        {
+          "slot": 120,
+          "cash": 6255.25,
+          "liquid": 5658.65,
+          "chapter": 1
+        },
+        {
+          "slot": 124,
+          "cash": 7527.33,
+          "liquid": 7527.33,
+          "chapter": 1
+        },
+        {
+          "slot": 128,
+          "cash": 7527.33,
+          "liquid": 7527.33,
+          "chapter": 1
+        },
+        {
+          "slot": 132,
+          "cash": 8893.98,
+          "liquid": 8557.83,
+          "chapter": 1
+        },
+        {
+          "slot": 136,
+          "cash": 8773.98,
+          "liquid": 8437.83,
+          "chapter": 1
+        },
+        {
+          "slot": 136,
+          "cash": 9070.29,
+          "liquid": 8437.83,
+          "chapter": 1
+        },
+        {
+          "slot": 140,
+          "cash": 7475.25,
+          "liquid": 7178.94,
+          "chapter": 1
+        },
+        {
+          "slot": 144,
+          "cash": 7445.25,
+          "liquid": 7148.94,
+          "chapter": 1
+        },
+        {
+          "slot": 148,
+          "cash": 9077.14,
+          "liquid": 9077.14,
+          "chapter": 1
+        },
+        {
+          "slot": 152,
+          "cash": 9691.67,
+          "liquid": 9077.14,
+          "chapter": 1
+        },
+        {
+          "slot": 152,
+          "cash": 9691.67,
+          "liquid": 9077.14,
+          "chapter": 1
+        },
+        {
+          "slot": 156,
+          "cash": 10446.02,
+          "liquid": 10167.64,
+          "chapter": 1
+        },
+        {
+          "slot": 160,
+          "cash": 10975.58,
+          "liquid": 10975.58,
+          "chapter": 1
+        },
+        {
+          "slot": 164,
+          "cash": 9897.78,
+          "liquid": 9561.63,
+          "chapter": 1
+        },
+        {
+          "slot": 168,
+          "cash": 7739.03,
+          "liquid": 7128.98,
+          "chapter": 1
+        },
+        {
+          "slot": 168,
+          "cash": 7739.03,
+          "liquid": 7128.98,
+          "chapter": 1
+        },
+        {
+          "slot": 172,
+          "cash": 8403.38,
+          "liquid": 8129.48,
+          "chapter": 1
+        },
+        {
+          "slot": 176,
+          "cash": 9042.48,
+          "liquid": 8768.58,
+          "chapter": 1
+        },
+        {
+          "slot": 180,
+          "cash": 10673.95,
+          "liquid": 9877.15,
+          "chapter": 1
+        },
+        {
+          "slot": 180,
+          "cash": 10910.5,
+          "liquid": 9877.15,
+          "chapter": 1
+        },
+        {
+          "slot": 184,
+          "cash": 11338.3,
+          "liquid": 10578.85,
+          "chapter": 1
+        },
+        {
+          "slot": 184,
+          "cash": 11652.54,
+          "liquid": 10578.85,
+          "chapter": 1
+        }
+      ]
+    },
+    {
+      "route": "guide",
+      "seed": 4,
+      "chapterOne": 65,
+      "chapterTwo": 134,
+      "slots": 134,
+      "bankrupt": false,
+      "cash": 10226.6,
+      "liquid": 9966.15,
+      "reworks": 1,
+      "reloads": 5,
+      "replayMatches": true,
+      "commandCount": 460,
+      "stateHash": "bc050f65bbe4f86534658bdbc637978604bad12bc34150a481a90fa2becc5156",
+      "project": {
+        "id": "incubator",
+        "chapter": 1,
+        "title": "第一笔大订单 · 社区书店",
+        "titleEn": "The first large order · Community bookshop",
+        "brief": "店长带着一张画满箭头的纸来到孵化器：“能不能做得像那些大平台？”先选交付路线，再逐单澄清、派遣与验收。两条路线都通向路演，但需要的能力、现金回款和团队占用不同。",
+        "briefEn": "The owner arrives with a page of arrows: “Can it work like the big platforms?” Choose a delivery route, then clarify, assign and accept each job. Both lead to a pitch, with different skills, payments and staffing commitments.",
+        "research": 4,
+        "retryCost": 60,
+        "routes": [
+          {
+            "id": "build",
+            "label": "小范围系统",
+            "labelEn": "A focused system",
+            "description": "代码与推理为主；两期各26WP、基础报酬1550。需要复核边界，不承诺完整平台。",
+            "descriptionEn": "Code and reasoning; two phases of 26 WP at base pay 1550 each. Verify edge cases without promising a full platform.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：预约系统，两次交付",
+                "titleEn": "Big order II: booking system in two deliveries",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          },
+          {
+            "id": "guide",
+            "label": "服务手册先行",
+            "labelEn": "Service handbook first",
+            "description": "写作与知识为主；两期各22WP、基础报酬1350。先用现有表单解决服务问题。",
+            "descriptionEn": "Writing and knowledge; two phases of 22 WP at base pay 1350 each. Solve service problems with existing forms first.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：先把店员手册交到手上",
+                "titleEn": "Big order II: the staff handbook comes first",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          }
+        ],
+        "route": "guide",
+        "step": 2,
+        "attempts": 1,
+        "completed": true,
+        "job": "project:incubator:4",
+        "status": "delivered",
+        "quality": 74.86,
+        "target": 70,
+        "canAdvance": false,
+        "canRetry": false,
+        "feedback": "店长带来了两期验收单和真实使用记录。回形针提醒：材料准备好了，路演前还要检查净资金和声望；完成后再决定搬家。",
+        "feedbackEn": "The owner brings signed acceptances and usage records. Paperclip reminds you to check solvency and reputation before holding the pitch and moving on.",
+        "lastStep": true,
+        "accounting": {
+          "receipts": 8426.57,
+          "cloud": 485.38,
+          "purchased": 0,
+          "electricity": 140.69,
+          "retries": 120
+        }
+      },
+      "errors": [],
+      "daily": [
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 6211.8,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 6211.8,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6211.8,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 7237.2,
+          "liquid": 6938.4,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 7473.75,
+          "liquid": 6938.4,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 8320.35,
+          "liquid": 8083.8,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 8693.85,
+          "liquid": 8083.8,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 6582.73,
+          "liquid": 6209.23,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 7377.04,
+          "liquid": 7080.73,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 7987.59,
+          "liquid": 7080.73,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 8707.13,
+          "liquid": 8096.58,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 9398.52,
+          "liquid": 9084.28,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 9712.76,
+          "liquid": 9712.76,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 9866.66,
+          "liquid": 9592.76,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 9866.66,
+          "liquid": 9592.76,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": -514.65,
+          "liquid": -788.55,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 497.2,
+          "liquid": -53.59,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 497.2,
+          "liquid": -53.59,
+          "chapter": 0
+        },
+        {
+          "slot": 64,
+          "cash": 377.2,
+          "liquid": -173.59,
+          "chapter": 0
+        },
+        {
+          "slot": 68,
+          "cash": 692.6,
+          "liquid": 378.36,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 1140.8,
+          "liquid": 378.36,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 1109.78,
+          "liquid": 661.58,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 2035.58,
+          "liquid": 2035.58,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 2371.73,
+          "liquid": 2035.58,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 2371.73,
+          "liquid": 2035.58,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": -17.3,
+          "liquid": -353.45,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 907.5,
+          "liquid": 647.05,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 1459.78,
+          "liquid": 647.05,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 1459.78,
+          "liquid": 647.05,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 4386.67,
+          "liquid": 4386.67,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 4602.82,
+          "liquid": 4266.67,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 5665.55,
+          "liquid": 5387.17,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 5635.55,
+          "liquid": 5357.17,
+          "chapter": 1
+        },
+        {
+          "slot": 112,
+          "cash": 4833.93,
+          "liquid": 4833.93,
+          "chapter": 1
+        },
+        {
+          "slot": 116,
+          "cash": 5443.98,
+          "liquid": 4833.93,
+          "chapter": 1
+        },
+        {
+          "slot": 120,
+          "cash": 6472.23,
+          "liquid": 5924.43,
+          "chapter": 1
+        },
+        {
+          "slot": 120,
+          "cash": 6472.23,
+          "liquid": 5924.43,
+          "chapter": 1
+        },
+        {
+          "slot": 124,
+          "cash": 5928.33,
+          "liquid": 5380.53,
+          "chapter": 1
+        },
+        {
+          "slot": 124,
+          "cash": 5928.33,
+          "liquid": 5380.53,
+          "chapter": 1
+        },
+        {
+          "slot": 128,
+          "cash": 7856,
+          "liquid": 7308.2,
+          "chapter": 1
+        },
+        {
+          "slot": 128,
+          "cash": 8105,
+          "liquid": 7308.2,
+          "chapter": 1
+        },
+        {
+          "slot": 132,
+          "cash": 8714.1,
+          "liquid": 8191.2,
+          "chapter": 1
+        }
+      ]
+    },
+    {
+      "route": "guide",
+      "seed": 5,
+      "chapterOne": 58,
+      "chapterTwo": 126,
+      "slots": 126,
+      "bankrupt": false,
+      "cash": 8231.06,
+      "liquid": 7932.26,
+      "reworks": 4,
+      "reloads": 5,
+      "replayMatches": true,
+      "commandCount": 435,
+      "stateHash": "2abf059c0940a7412fe44cd2ed21716b2800ce067325a75674c78e43714845df",
+      "project": {
+        "id": "incubator",
+        "chapter": 1,
+        "title": "第一笔大订单 · 社区书店",
+        "titleEn": "The first large order · Community bookshop",
+        "brief": "店长带着一张画满箭头的纸来到孵化器：“能不能做得像那些大平台？”先选交付路线，再逐单澄清、派遣与验收。两条路线都通向路演，但需要的能力、现金回款和团队占用不同。",
+        "briefEn": "The owner arrives with a page of arrows: “Can it work like the big platforms?” Choose a delivery route, then clarify, assign and accept each job. Both lead to a pitch, with different skills, payments and staffing commitments.",
+        "research": 4,
+        "retryCost": 60,
+        "routes": [
+          {
+            "id": "build",
+            "label": "小范围系统",
+            "labelEn": "A focused system",
+            "description": "代码与推理为主；两期各26WP、基础报酬1550。需要复核边界，不承诺完整平台。",
+            "descriptionEn": "Code and reasoning; two phases of 26 WP at base pay 1550 each. Verify edge cases without promising a full platform.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：预约系统，两次交付",
+                "titleEn": "Big order II: booking system in two deliveries",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          },
+          {
+            "id": "guide",
+            "label": "服务手册先行",
+            "labelEn": "Service handbook first",
+            "description": "写作与知识为主；两期各22WP、基础报酬1350。先用现有表单解决服务问题。",
+            "descriptionEn": "Writing and knowledge; two phases of 22 WP at base pay 1350 each. Solve service problems with existing forms first.",
+            "steps": [
+              {
+                "title": "大订单①：把“像大平台”写成验收单",
+                "titleEn": "Big order I: define what “like a platform” means",
+                "quality": 65,
+                "phases": 1
+              },
+              {
+                "title": "大订单②：先把店员手册交到手上",
+                "titleEn": "Big order II: the staff handbook comes first",
+                "quality": 75,
+                "phases": 2
+              },
+              {
+                "title": "大订单③：带着真实账单去路演",
+                "titleEn": "Big order III: pitch with real delivery bills",
+                "quality": 70,
+                "phases": 1
+              }
+            ]
+          }
+        ],
+        "route": "guide",
+        "step": 2,
+        "attempts": 1,
+        "completed": true,
+        "job": "project:incubator:4",
+        "status": "delivered",
+        "quality": 70.64,
+        "target": 70,
+        "canAdvance": false,
+        "canRetry": false,
+        "feedback": "店长带来了两期验收单和真实使用记录。回形针提醒：材料准备好了，路演前还要检查净资金和声望；完成后再决定搬家。",
+        "feedbackEn": "The owner brings signed acceptances and usage records. Paperclip reminds you to check solvency and reputation before holding the pitch and moving on.",
+        "lastStep": true,
+        "accounting": {
+          "receipts": 8762.71,
+          "cloud": 448.21,
+          "purchased": 0,
+          "electricity": 138.31,
+          "retries": 120
+        }
+      },
+      "errors": [],
+      "daily": [
+        {
+          "slot": 0,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 4,
+          "cash": 5273.9,
+          "liquid": 5000,
+          "chapter": 0
+        },
+        {
+          "slot": 8,
+          "cash": 5913,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 12,
+          "cash": 6211.8,
+          "liquid": 5913,
+          "chapter": 0
+        },
+        {
+          "slot": 16,
+          "cash": 6091.8,
+          "liquid": 5793,
+          "chapter": 0
+        },
+        {
+          "slot": 20,
+          "cash": 7087.8,
+          "liquid": 6789,
+          "chapter": 0
+        },
+        {
+          "slot": 24,
+          "cash": 7785,
+          "liquid": 7785,
+          "chapter": 0
+        },
+        {
+          "slot": 28,
+          "cash": 5858.77,
+          "liquid": 5286.07,
+          "chapter": 0
+        },
+        {
+          "slot": 32,
+          "cash": 5858.77,
+          "liquid": 5286.07,
+          "chapter": 0
+        },
+        {
+          "slot": 36,
+          "cash": 6538.21,
+          "liquid": 5925.17,
+          "chapter": 0
+        },
+        {
+          "slot": 40,
+          "cash": 6816.61,
+          "liquid": 6502.37,
+          "chapter": 0
+        },
+        {
+          "slot": 44,
+          "cash": 7810.28,
+          "liquid": 7549.83,
+          "chapter": 0
+        },
+        {
+          "slot": 48,
+          "cash": 8088.66,
+          "liquid": 7549.83,
+          "chapter": 0
+        },
+        {
+          "slot": 52,
+          "cash": 9462.5,
+          "liquid": 9225.95,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": -662.69,
+          "liquid": -1173.14,
+          "chapter": 0
+        },
+        {
+          "slot": 56,
+          "cash": -662.69,
+          "liquid": -1173.14,
+          "chapter": 0
+        },
+        {
+          "slot": 60,
+          "cash": 486.86,
+          "liquid": 212.96,
+          "chapter": 1
+        },
+        {
+          "slot": 64,
+          "cash": 578.51,
+          "liquid": 92.96,
+          "chapter": 1
+        },
+        {
+          "slot": 68,
+          "cash": 767.61,
+          "liquid": 555.96,
+          "chapter": 1
+        },
+        {
+          "slot": 72,
+          "cash": 1041.51,
+          "liquid": 555.96,
+          "chapter": 1
+        },
+        {
+          "slot": 76,
+          "cash": 1904.46,
+          "liquid": 1904.46,
+          "chapter": 1
+        },
+        {
+          "slot": 80,
+          "cash": 2524.85,
+          "liquid": 1874.46,
+          "chapter": 1
+        },
+        {
+          "slot": 84,
+          "cash": 1081.83,
+          "liquid": 767.59,
+          "chapter": 1
+        },
+        {
+          "slot": 88,
+          "cash": 961.83,
+          "liquid": 647.59,
+          "chapter": 1
+        },
+        {
+          "slot": 92,
+          "cash": 3257.91,
+          "liquid": 2411.31,
+          "chapter": 1
+        },
+        {
+          "slot": 96,
+          "cash": 3536.29,
+          "liquid": 2411.31,
+          "chapter": 1
+        },
+        {
+          "slot": 100,
+          "cash": 6408.52,
+          "liquid": 6109.72,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 6378.52,
+          "liquid": 6079.72,
+          "chapter": 1
+        },
+        {
+          "slot": 104,
+          "cash": 6378.52,
+          "liquid": 6079.72,
+          "chapter": 1
+        },
+        {
+          "slot": 108,
+          "cash": 8621.77,
+          "liquid": 8285.62,
+          "chapter": 1
+        },
+        {
+          "slot": 112,
+          "cash": 7486.21,
+          "liquid": 6873.17,
+          "chapter": 1
+        },
+        {
+          "slot": 116,
+          "cash": 7456.21,
+          "liquid": 6843.17,
+          "chapter": 1
+        },
+        {
+          "slot": 116,
+          "cash": 7456.21,
+          "liquid": 6843.17,
+          "chapter": 1
+        },
+        {
+          "slot": 120,
+          "cash": 8199.74,
+          "liquid": 7636.5,
+          "chapter": 1
+        },
+        {
+          "slot": 124,
+          "cash": 7650.06,
+          "liquid": 7102.26,
+          "chapter": 1
+        }
+      ]
+    }
+  ]
+}

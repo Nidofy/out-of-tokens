@@ -1,0 +1,69 @@
+[
+  {
+    "id": "incubator",
+    "chapter": 1,
+    "title": "第一笔大订单 · 社区书店",
+    "titleEn": "The first large order · Community bookshop",
+    "brief": "店长带着一张画满箭头的纸来到孵化器：“能不能做得像那些大平台？”先选交付路线，再逐单澄清、派遣与验收。两条路线都通向路演，但需要的能力、现金回款和团队占用不同。",
+    "briefEn": "The owner arrives with a page of arrows: “Can it work like the big platforms?” Choose a delivery route, then clarify, assign and accept each job. Both lead to a pitch, with different skills, payments and staffing commitments.",
+    "requiredForChapter": true,
+    "retryCost": 60,
+    "research": 4,
+    "routes": [
+      {
+        "id": "build",
+        "label": "小范围系统",
+        "labelEn": "A focused system",
+        "description": "代码与推理为主；两期各26WP、基础报酬1550。需要复核边界，不承诺完整平台。",
+        "descriptionEn": "Code and reasoning; two phases of 26 WP at base pay 1550 each. Verify edge cases without promising a full platform.",
+        "steps": [
+          {
+            "template": "incubator-brief",
+            "quality": 65,
+            "feedback": "店长把“以后再做”单独贴在白板上：“这次终于知道验收时该看什么了。”接下来按选定路线做两期交付。",
+            "feedbackEn": "The owner puts “later” on a separate board. “Now I know what acceptance means.” Next comes the chosen two-phase delivery."
+          },
+          {
+            "template": "incubator-build",
+            "quality": 75,
+            "feedback": "试营业时，一位读者连按了两次预约。系统只留下一条记录。店长说：“这比演示里多一个按钮更让我放心。”",
+            "feedbackEn": "A reader clicks twice during the pilot. Only one booking remains. “That reassures me more than another demo button,” says the owner."
+          },
+          {
+            "template": "incubator-pitch",
+            "quality": 70,
+            "feedback": "店长带来了两期验收单和真实使用记录。回形针提醒：材料准备好了，路演前还要检查净资金和声望；完成后再决定搬家。",
+            "feedbackEn": "The owner brings signed acceptances and usage records. Paperclip reminds you to check solvency and reputation before holding the pitch and moving on."
+          }
+        ]
+      },
+      {
+        "id": "guide",
+        "label": "服务手册先行",
+        "labelEn": "Service handbook first",
+        "description": "写作与知识为主；两期各22WP、基础报酬1350。先用现有表单解决服务问题。",
+        "descriptionEn": "Writing and knowledge; two phases of 22 WP at base pay 1350 each. Solve service problems with existing forms first.",
+        "steps": [
+          {
+            "template": "incubator-brief",
+            "quality": 65,
+            "feedback": "店长把“以后再做”单独贴在白板上：“这次终于知道验收时该看什么了。”接下来按选定路线做两期交付。",
+            "feedbackEn": "The owner puts “later” on a separate board. “Now I know what acceptance means.” Next comes the chosen two-phase delivery."
+          },
+          {
+            "template": "incubator-guide",
+            "quality": 75,
+            "feedback": "新店员照着手册完成了一次改期，还在旁边记下了引用页码。店长第一次没有给你们发“在线等，急”。",
+            "feedbackEn": "A new clerk reschedules a booking using the handbook and notes the source page. For once, the owner does not send an urgent message."
+          },
+          {
+            "template": "incubator-pitch",
+            "quality": 70,
+            "feedback": "店长带来了两期验收单和真实使用记录。回形针提醒：材料准备好了，路演前还要检查净资金和声望；完成后再决定搬家。",
+            "feedbackEn": "The owner brings signed acceptances and usage records. Paperclip reminds you to check solvency and reputation before holding the pitch and moving on."
+          }
+        ]
+      }
+    ]
+  }
+]

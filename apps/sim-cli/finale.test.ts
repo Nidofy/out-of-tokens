@@ -49,7 +49,7 @@ test('full campaign state and ordinary life replay; old engine and content rejec
  const text=save(c,1,commands,s);expect(hash(restore(c,text).state)).toBe(hash(s));expect(()=>restore(loadAlphaContent(),text)).toThrow('INCOMPATIBLE_SAVE');
 });
 test('every ending has a reachable explicit predicate and cannot be claimed twice',()=>{
- const c=loadFullContent();let s=createInitialState(c,1);s.cash=100000;s.reputation=100;
+ const c=loadFullContent();let s=createInitialState(c,1);s.cash=100000;s.reputation=100;s.campaign!.chapter=4;
  for(const r of c.campaign!.recruits)s=act(s,c,'recruit',r.character).state;
  s.campaign!.completed=[0,1,2,3,4];s.campaign!.chapter=4;
  for(const r of Object.values(s.campaign!.relations))r.affinity=85;

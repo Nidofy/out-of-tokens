@@ -61,11 +61,19 @@ export interface Content {
     campaign?: CampaignContent;
 }
 export type Scene = 'workshop' | 'canteen' | 'library';
+export interface ProjectDefinition {
+    id: string; chapter: number; title: string; titleEn: string; brief: string; briefEn: string;
+    requiredForChapter: boolean; retryCost: number; research: number;
+    routes: {id: string; label: string; labelEn: string; description: string; descriptionEn: string;
+        steps: {template: string; quality: number; feedback: string; feedbackEn: string}[]}[];
+}
+export interface ProjectState {route: string; step: number; job: string; attempts: number; history: string[]; completed: boolean}
 export interface CampaignContent {
+    projects?: ProjectDefinition[];
     openingJobs?: string[];
     starterJobs?: string[];
     initial: string[];
-    recruits: { character: string; cost: number; reputation: number }[];
+    recruits: { character: string; cost: number; reputation: number; minChapter?: number }[];
     software: { id: string; name: string; nameEn: string; cost: number; research: number; requires: string[] }[];
     maxHardware: number;
     maxChapter?: number;
@@ -83,6 +91,7 @@ export interface Relation {
     hunger: number;
 }
 export interface CampaignState {
+    projects?: Record<string, ProjectState>;
     finale?: import('./finale.js').FinaleState;
     chapter: number;
     chapterZero: 'pending' | 'passed' | 'missed';
@@ -186,7 +195,7 @@ export interface State {
 }
 export type Command = {type:'scope';job:string;option:string} | {
     type: 'campaign';
-    action: 'visit' | 'chat' | 'gift' | 'meal' | 'study' | 'recall' | 'recruit' | 'unlock' | 'switch' | 'train' | 'align' | 'software' | 'hardware' | 'chapter' | 'story' | 'subscribe' | 'expedition' | 'ending' | 'endless' | 'bid' | 'challenge';
+    action: 'project-start' | 'project-next' | 'visit' | 'chat' | 'gift' | 'meal' | 'study' | 'recall' | 'recruit' | 'unlock' | 'switch' | 'train' | 'align' | 'software' | 'hardware' | 'chapter' | 'story' | 'subscribe' | 'expedition' | 'ending' | 'endless' | 'bid' | 'challenge';
     id: string;
     target?: string;
 } | {

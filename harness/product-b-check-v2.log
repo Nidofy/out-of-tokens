@@ -1,0 +1,11 @@
+$ pnpm typecheck && pnpm lint && pnpm test && pnpm build
+$ tsc -b --pretty false
+$ eslint packages apps
+
+D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens\apps\sim-cli\product-b.test.ts
+  23:9  error  'c' is never reassigned. Use 'const' instead  prefer-const
+
+✖ 1 problem (1 error, 0 warnings)
+
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

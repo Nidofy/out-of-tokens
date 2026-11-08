@@ -9,42 +9,50 @@
     {
       "character": "gpt",
       "cost": 350,
-      "reputation": 2
+      "reputation": 2,
+      "minChapter": 1
     },
     {
       "character": "claude",
       "cost": 450,
-      "reputation": 4
+      "reputation": 4,
+      "minChapter": 1
     },
     {
       "character": "kimi",
       "cost": 550,
-      "reputation": 6
+      "reputation": 6,
+      "minChapter": 1
     },
     {
       "character": "gemini",
       "cost": 650,
-      "reputation": 8
+      "reputation": 8,
+      "minChapter": 2
     },
     {
       "character": "grok",
       "cost": 850,
-      "reputation": 10
+      "reputation": 10,
+      "minChapter": 2
     },
     {
       "character": "glm",
       "cost": 1000,
-      "reputation": 13
+      "reputation": 13,
+      "minChapter": 3
     },
     {
       "character": "minimax",
       "cost": 1150,
-      "reputation": 16
+      "reputation": 16,
+      "minChapter": 2
     },
     {
       "character": "seedance",
       "cost": 1300,
-      "reputation": 19
+      "reputation": 19,
+      "minChapter": 2
     }
   ],
   "software": [

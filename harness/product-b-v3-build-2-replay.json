@@ -1,0 +1,1828 @@
+{
+  "schemaVersion": 1,
+  "engineVersion": "0.13.0",
+  "contentVersion": "b1-2",
+  "contentHash": "cb61906b156d9d90db392905ef94d4c036765262f8eafc7ccd3f41a50d9e03d9",
+  "seed": 2,
+  "commands": [
+    {
+      "type": "clarify",
+      "job": "0-1",
+      "character": "bluewhale"
+    },
+    {
+      "type": "accept",
+      "job": "0-0"
+    },
+    {
+      "type": "assign",
+      "job": "0-0",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "0-2",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "0-3",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 1
+    },
+    {
+      "type": "clarify",
+      "job": "0-1",
+      "character": "bluewhale"
+    },
+    {
+      "type": "clarify",
+      "job": "0-2",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "0-3",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "4-0",
+      "character": "bluewhale"
+    },
+    {
+      "type": "clarify",
+      "job": "4-1",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "4-2",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "4-0",
+      "character": "bluewhale"
+    },
+    {
+      "type": "clarify",
+      "job": "4-2",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "4-3",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "8-1",
+      "character": "bluewhale"
+    },
+    {
+      "type": "clarify",
+      "job": "8-2",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "8-3",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 1
+    },
+    {
+      "type": "deliver",
+      "job": "0-0"
+    },
+    {
+      "type": "clarify",
+      "job": "8-1",
+      "character": "bluewhale"
+    },
+    {
+      "type": "accept",
+      "job": "8-4"
+    },
+    {
+      "type": "assign",
+      "job": "8-4",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "8-2",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "8-3",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "12-0"
+    },
+    {
+      "type": "assign",
+      "job": "12-0",
+      "team": [
+        {
+          "character": "bluewhale",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "12-2",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "12-4",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "clarify",
+      "job": "12-4",
+      "character": "llama"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "bluewhale"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "library"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "qwen"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "llama"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "16-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "16-2",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "8-4"
+    },
+    {
+      "type": "clarify",
+      "job": "16-0",
+      "character": "qwen"
+    },
+    {
+      "type": "clarify",
+      "job": "16-2",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "16-3",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "20-1"
+    },
+    {
+      "type": "assign",
+      "job": "20-1",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "20-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "20-2",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "12-0"
+    },
+    {
+      "type": "clarify",
+      "job": "20-0",
+      "character": "bluewhale"
+    },
+    {
+      "type": "clarify",
+      "job": "20-2",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "20-4",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "24-3",
+      "character": "bluewhale"
+    },
+    {
+      "type": "accept",
+      "job": "24-2"
+    },
+    {
+      "type": "assign",
+      "job": "24-2",
+      "team": [
+        {
+          "character": "llama",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "24-3",
+      "character": "bluewhale"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "20-1"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "bluewhale"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "library"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "qwen"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "llama"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "28-0",
+      "character": "bluewhale"
+    },
+    {
+      "type": "accept",
+      "job": "28-3"
+    },
+    {
+      "type": "assign",
+      "job": "28-3",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "accept",
+      "job": "28-2"
+    },
+    {
+      "type": "assign",
+      "job": "28-2",
+      "team": [
+        {
+          "character": "mistral",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "28-4",
+      "character": "bluewhale"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "32-1",
+      "character": "bluewhale"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "24-2"
+    },
+    {
+      "type": "rework",
+      "job": "28-2"
+    },
+    {
+      "type": "clarify",
+      "job": "32-1",
+      "character": "bluewhale"
+    },
+    {
+      "type": "clarify",
+      "job": "32-2",
+      "character": "llama"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "deliver",
+      "job": "28-2"
+    },
+    {
+      "type": "deliver",
+      "job": "28-3"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "36-3"
+    },
+    {
+      "type": "assign",
+      "job": "36-3",
+      "team": [
+        {
+          "character": "bluewhale",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "36-1",
+      "character": "qwen"
+    },
+    {
+      "type": "clarify",
+      "job": "36-2",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "36-4",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "36-2"
+    },
+    {
+      "type": "assign",
+      "job": "36-2",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "36-1",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "36-4",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "bluewhale"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "library"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "qwen"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "llama"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "40-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "40-2",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 1
+    },
+    {
+      "type": "clarify",
+      "job": "40-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "40-2",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "44-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "44-1",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "36-2"
+    },
+    {
+      "type": "accept",
+      "job": "44-3"
+    },
+    {
+      "type": "assign",
+      "job": "44-3",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "44-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "44-1",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "deliver",
+      "job": "36-3"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "48-0"
+    },
+    {
+      "type": "assign",
+      "job": "48-0",
+      "team": [
+        {
+          "character": "bluewhale",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "48-2",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "48-3",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "48-2"
+    },
+    {
+      "type": "assign",
+      "job": "48-2",
+      "team": [
+        {
+          "character": "llama",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "48-3",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "bluewhale"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "library"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "qwen"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "llama"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "52-0",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "52-0",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "44-3"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "campaign",
+      "action": "chapter",
+      "id": "next"
+    },
+    {
+      "type": "campaign",
+      "action": "project-start",
+      "id": "incubator",
+      "target": "build"
+    },
+    {
+      "type": "clarify",
+      "job": "project:incubator:0",
+      "character": "qwen"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "48-0"
+    },
+    {
+      "type": "deliver",
+      "job": "48-2"
+    },
+    {
+      "type": "campaign",
+      "action": "recruit",
+      "id": "kimi"
+    },
+    {
+      "type": "clarify",
+      "job": "project:incubator:0",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "campaign",
+      "action": "project-next",
+      "id": "incubator"
+    },
+    {
+      "type": "clarify",
+      "job": "project:incubator:1",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "project:incubator:1"
+    },
+    {
+      "type": "assign",
+      "job": "project:incubator:1",
+      "team": [
+        {
+          "character": "kimi",
+          "role": "worker",
+          "mode": "local"
+        },
+        {
+          "character": "bluewhale",
+          "role": "reviewer",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "accept",
+      "job": "60-2"
+    },
+    {
+      "type": "assign",
+      "job": "60-2",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "60-1",
+      "character": "llama"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "bluewhale"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "library"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "qwen"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "llama"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "64-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "64-1",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "64-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "64-2",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "68-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "68-2",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "rework",
+      "job": "60-2"
+    },
+    {
+      "type": "clarify",
+      "job": "68-2",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "68-3",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "60-2"
+    },
+    {
+      "type": "deliver",
+      "job": "project:incubator:1"
+    },
+    {
+      "type": "campaign",
+      "action": "project-next",
+      "id": "incubator"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "library"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "project:incubator:2"
+    },
+    {
+      "type": "assign",
+      "job": "project:incubator:2",
+      "team": [
+        {
+          "character": "bluewhale",
+          "role": "worker",
+          "mode": "local"
+        },
+        {
+          "character": "qwen",
+          "role": "reviewer",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "72-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "72-1",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "72-2",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "72-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "72-1",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "72-2",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "bluewhale"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "library"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "qwen"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "llama"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "76-1",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "76-2",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "76-3",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "76-1",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "76-2",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "76-3",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "80-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "80-1",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "80-2",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "deliver",
+      "job": "project:incubator:2"
+    },
+    {
+      "type": "clarify",
+      "job": "80-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "80-1",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "80-2",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "library"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "84-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "84-1",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "84-2",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "clarify",
+      "job": "84-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "84-1",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "84-2",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "bluewhale"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "library"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "qwen"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "llama"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "88-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "88-1",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "88-2",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "88-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "88-1",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "88-3",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "92-1",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "92-2",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "92-3",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "project:incubator:2"
+    },
+    {
+      "type": "campaign",
+      "action": "project-next",
+      "id": "incubator"
+    },
+    {
+      "type": "accept",
+      "job": "project:incubator:3"
+    },
+    {
+      "type": "assign",
+      "job": "project:incubator:3",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "local"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "92-3",
+      "character": "bluewhale"
+    },
+    {
+      "type": "clarify",
+      "job": "92-4",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "library"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "96-0",
+      "character": "bluewhale"
+    },
+    {
+      "type": "clarify",
+      "job": "96-1",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "96-2",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 1
+    },
+    {
+      "type": "clarify",
+      "job": "96-1",
+      "character": "bluewhale"
+    },
+    {
+      "type": "clarify",
+      "job": "96-2",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "96-3",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 1
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "bluewhale"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "library"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "qwen"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "llama"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "canteen"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "100-2"
+    },
+    {
+      "type": "assign",
+      "job": "100-2",
+      "team": [
+        {
+          "character": "bluewhale",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "100-0",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "100-1",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "project:incubator:3"
+    },
+    {
+      "type": "campaign",
+      "action": "project-next",
+      "id": "incubator"
+    },
+    {
+      "type": "clarify",
+      "job": "100-0",
+      "character": "qwen"
+    },
+    {
+      "type": "clarify",
+      "job": "100-1",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "100-3",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "100-4",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "104-0",
+      "character": "qwen"
+    },
+    {
+      "type": "clarify",
+      "job": "104-1",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "104-2",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "104-3",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "clarify",
+      "job": "104-0",
+      "character": "qwen"
+    },
+    {
+      "type": "clarify",
+      "job": "104-1",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "104-3",
+      "character": "mistral"
+    },
+    {
+      "type": "clarify",
+      "job": "104-4",
+      "character": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "campaign",
+      "action": "visit",
+      "id": "library"
+    },
+    {
+      "type": "campaign",
+      "action": "meal",
+      "id": "kimi"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "108-1"
+    },
+    {
+      "type": "assign",
+      "job": "108-1",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "local"
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "job": "108-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "108-3",
+      "character": "mistral"
+    },
+    {
+      "type": "accept",
+      "job": "108-2"
+    },
+    {
+      "type": "assign",
+      "job": "108-2",
+      "team": [
+        {
+          "character": "kimi",
+          "role": "worker",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "clarify",
+      "job": "108-0",
+      "character": "llama"
+    },
+    {
+      "type": "clarify",
+      "job": "108-3",
+      "character": "mistral"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "choose",
+      "index": 0
+    },
+    {
+      "type": "deliver",
+      "job": "100-2"
+    },
+    {
+      "type": "campaign",
+      "action": "chapter",
+      "id": "next"
+    }
+  ],
+  "stateHash": "5703a6180dd05803aae9c46377225d703050ae353cff9ad608a74fbebfbb59f6"
+}

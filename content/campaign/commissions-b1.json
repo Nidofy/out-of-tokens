@@ -1,0 +1,132 @@
+[
+  {
+    "id": "incubator-brief",
+    "title": "大订单①：把“像大平台”写成验收单",
+    "titleEn": "Big order I: define what “like a platform” means",
+    "description": "孵化器的社区书店想把预约、会员、推荐和在线付款一口气做完。请整理采访记录，列出本次范围、明确排除项和逐条可检查的验收条件。客户先要的是共同理解，不是更多功能。",
+    "descriptionEn": "The incubator bookshop asks for bookings, memberships, recommendations and payments at once. Turn interviews into scope, exclusions and testable acceptance criteria. They need shared understanding before more features.",
+    "weights": {
+      "code": 0,
+      "write": 0.4,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0.3
+    },
+    "workload": 18,
+    "reward": 850,
+    "delivery": "oneshot",
+    "phases": 1,
+    "workSlots": 8,
+    "qualityLines": [
+      65,
+      80,
+      90
+    ],
+    "clarity": 75,
+    "requirements": [
+      {
+        "label": "只覆盖一家门店；会员付款、跨店调货不在本次范围内",
+        "labelEn": "One shop only; membership payments and cross-shop stock transfers are excluded",
+        "work": 2
+      }
+    ],
+    "category": "write",
+    "client": "novice",
+    "minChapter": 1,
+    "offerOnly": true
+  },
+  {
+    "id": "incubator-build",
+    "title": "大订单②：预约系统，两次交付",
+    "titleEn": "Big order II: booking system in two deliveries",
+    "description": "第1期交付可演示的预约流程；第2期修正重复预约、时区和取消记录。每期都要验收，等待反馈期间团队仍被合同占用。没有支付、推荐算法或即时聊天，别把“以后可以做”算进这次工期。",
+    "descriptionEn": "Phase one demonstrates bookings. Phase two handles duplicates, time zones and cancellations. Both phases require acceptance and retain the team during feedback. Payments, recommendations and chat are excluded.",
+    "weights": {
+      "code": 0.7,
+      "write": 0,
+      "reason": 0.3,
+      "create": 0,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 26,
+    "reward": 1550,
+    "delivery": "multi",
+    "phases": 2,
+    "workSlots": 8,
+    "qualityLines": [
+      75,
+      85,
+      95
+    ],
+    "clarity": 100,
+    "requirements": [],
+    "category": "code",
+    "client": "novice",
+    "minChapter": 1,
+    "offerOnly": true
+  },
+  {
+    "id": "incubator-guide",
+    "title": "大订单②：先把店员手册交到手上",
+    "titleEn": "Big order II: the staff handbook comes first",
+    "description": "第1期把店员最常遇到的预约问题整理成有出处的操作手册；第2期根据试营业记录核查例外情况。采用现有表单，不承诺自动化平台。资料复核需要知识与写作，审查者应确认回答能追溯到原记录。",
+    "descriptionEn": "First deliver a sourced booking handbook; then verify edge cases against the pilot log. Use existing forms instead of promising an automated platform. Knowledge and writing matter; review should trace answers to the original records.",
+    "weights": {
+      "code": 0,
+      "write": 0.5,
+      "reason": 0.1,
+      "create": 0,
+      "media": 0,
+      "recall": 0.4
+    },
+    "workload": 22,
+    "reward": 1350,
+    "delivery": "multi",
+    "phases": 2,
+    "workSlots": 8,
+    "qualityLines": [
+      75,
+      85,
+      95
+    ],
+    "clarity": 100,
+    "requirements": [],
+    "category": "write",
+    "client": "novice",
+    "minChapter": 1,
+    "offerOnly": true
+  },
+  {
+    "id": "incubator-pitch",
+    "title": "大订单③：带着真实账单去路演",
+    "titleEn": "Big order III: pitch with real delivery bills",
+    "description": "用已交付的案例说明客户得到什么、没得到什么，以及云端额度、本地电费和人手占用。不要把预付款当利润，也不要承诺无限免费维护。路演材料验收后，客户会留下可供投资人核对的交付记录。",
+    "descriptionEn": "Explain what the client received and what was excluded, with cloud usage, electricity and staffing costs. Advances are not profit and maintenance is not unlimited. The accepted pitch leaves a delivery record investors can verify.",
+    "weights": {
+      "code": 0,
+      "write": 0.6,
+      "reason": 0.2,
+      "create": 0.2,
+      "media": 0,
+      "recall": 0
+    },
+    "workload": 20,
+    "reward": 1000,
+    "delivery": "oneshot",
+    "phases": 1,
+    "workSlots": 8,
+    "qualityLines": [
+      70,
+      85,
+      95
+    ],
+    "clarity": 100,
+    "requirements": [],
+    "category": "write",
+    "client": "novice",
+    "minChapter": 1,
+    "offerOnly": true
+  }
+]

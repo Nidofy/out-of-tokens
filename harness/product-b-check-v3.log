@@ -1,0 +1,140 @@
+$ pnpm typecheck && pnpm lint && pnpm test && pnpm build
+$ tsc -b --pretty false
+$ eslint packages apps
+$ pnpm build && vitest run
+$ pnpm build:core && pnpm --filter oot-web build && pnpm --filter oot-dsh build
+$ tsc -b
+$ vite build
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 872 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.93 kB │ gzip:   0.63 kB
+dist/assets/flavor-worker-DqotE37b.js               2.18 kB
+dist/assets/index-BQW4oV8-.css                     17.92 kB │ gzip:   4.71 kB
+dist/assets/BitmapFont-C2mOdMqB.js                  0.04 kB │ gzip:   0.06 kB
+dist/assets/WebGLRenderer-DxugsnMm.js               0.05 kB │ gzip:   0.07 kB
+dist/assets/CanvasRenderer-CNslovHH.js              0.05 kB │ gzip:   0.07 kB
+dist/assets/WebGPURenderer-piZF_Ub5.js              0.05 kB │ gzip:   0.07 kB
+dist/assets/webworkerAll-Bmw6TRCU.js                0.05 kB │ gzip:   0.06 kB
+dist/assets/getTextureBatchBindGroup-CIH9f4hr.js    0.34 kB │ gzip:   0.26 kB
+dist/assets/Cache-fNcOcM1E.js                       1.10 kB │ gzip:   0.55 kB
+dist/assets/canvasUtils-B0HNDru7.js                 6.01 kB │ gzip:   2.04 kB
+dist/assets/getTexelRangeRects-DRn4s913.js         11.35 kB │ gzip:   2.99 kB
+dist/assets/init-m3eX1Dk3.js                       14.84 kB │ gzip:   4.59 kB
+dist/assets/GCManagedHash-By9KI96M.js              19.32 kB │ gzip:   6.27 kB
+dist/assets/Filter-C-9RPzfk.js                     41.95 kB │ gzip:  12.01 kB
+dist/assets/browserAll-CznFR_j2.js                 43.50 kB │ gzip:  11.24 kB
+dist/assets/RenderTargetSystem-C7yGXsaD.js         58.80 kB │ gzip:  16.47 kB
+dist/assets/GraphicsContext-B48FNXTa.js            61.67 kB │ gzip:  20.62 kB
+dist/assets/CanvasPool-BKClwQdf.js                 71.19 kB │ gzip:  23.29 kB
+dist/assets/scene-BkbaDmGx.js                     278.51 kB │ gzip:  82.00 kB
+dist/assets/index-C-5ohXPZ.js                     365.15 kB │ gzip: 111.51 kB
+
+✓ built in 394ms
+$ node build.mjs
+vite v8.3.6 building ssr environment for production...
+transforming...
+✓ 122 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.js  256.23 kB │ gzip: 62.80 kB
+
+✓ built in 81ms
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 2 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/client.js  3.44 kB │ gzip: 1.64 kB
+
+✓ built in 13ms
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/product-b.test.ts (9 tests | 8 failed) 636ms
+   × chapter and route checks are atomic; authored jobs never enter the random board 89ms
+   × expired project attempt can be retried once per ended contract without erasing costs 37ms
+   × rejected project attempt can be retried once per ended contract without erasing costs 82ms
+   × breached project attempt can be retried once per ended contract without erasing costs 90ms
+   × delivered project attempt can be retried once per ended contract without erasing costs 70ms
+   × build route advances only from its own accepted results and grants once 62ms
+   × guide route advances only from its own accepted results and grants once 101ms
+   × pitch requires the project as well as solvency; recruit chapter gates preserve old content behavior 39ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/product-b.test.ts > chapter and route checks are atomic; authored jobs never enter the random board
+AssertionError: expected 'Cannot read properties of undefined (…' to be 'PROJECT_LOCKED' // Object.is equality
+
+Expected: "PROJECT_LOCKED"
+Received: "Cannot read properties of undefined (reading 'version')"
+
+ ❯ apps/sim-cli/product-b.test.ts:13:128
+     11| });
+     12| test('chapter and route checks are atomic; authored jobs never enter t…
+     13|  const c=loadFullContent(),s=createInitialState(c,1),before=hash(s);ex…
+       |                                                                                                                                ^
+     14|  s.campaign!.chapter=1;expect(act(s,c,'project-start','incubator','mis…
+     15|  const {s:running}=started();expect(act(running,c,'project-start','inc…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  apps/sim-cli/product-b.test.ts > expired project attempt can be retried once per ended contract without erasing costs
+ FAIL  apps/sim-cli/product-b.test.ts > rejected project attempt can be retried once per ended contract without erasing costs
+ FAIL  apps/sim-cli/product-b.test.ts > breached project attempt can be retried once per ended contract without erasing costs
+ FAIL  apps/sim-cli/product-b.test.ts > delivered project attempt can be retried once per ended contract without erasing costs
+AssertionError: expected 'Cannot read properties of undefined (…' to be null
+
+- Expected:
+null
+
++ Received:
+"Cannot read properties of undefined (reading 'version')"
+
+ ❯ started apps/sim-cli/product-b.test.ts:7:174
+
+ ❯ apps/sim-cli/product-b.test.ts:19:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  apps/sim-cli/product-b.test.ts > build route advances only from its own accepted results and grants once
+ FAIL  apps/sim-cli/product-b.test.ts > guide route advances only from its own accepted results and grants once
+AssertionError: expected 'Cannot read properties of undefined (…' to be null
+
+- Expected:
+null
+
++ Received:
+"Cannot read properties of undefined (reading 'version')"
+
+ ❯ started apps/sim-cli/product-b.test.ts:7:174
+
+ ❯ apps/sim-cli/product-b.test.ts:23:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  apps/sim-cli/product-b.test.ts > pitch requires the project as well as solvency; recruit chapter gates preserve old content behavior
+AssertionError: expected 'Cannot read properties of undefined (…' to be null
+
+- Expected:
+null
+
++ Received:
+"Cannot read properties of undefined (reading 'version')"
+
+ ❯ started apps/sim-cli/product-b.test.ts:7:174
+
+ ❯ apps/sim-cli/product-b.test.ts:34:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+
+ Test Files  1 failed | 30 passed (31)
+      Tests  8 failed | 163 passed (171)
+   Start at  02:02:13
+   Duration  2.62s (transform 2.77s, setup 0ms, import 10.36s, tests 11.09s, environment 3ms)
+
+[ELIFECYCLE] Test failed. See above for more details.
+[ELIFECYCLE] Command failed with exit code 1.
