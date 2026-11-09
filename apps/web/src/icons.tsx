@@ -1,4 +1,5 @@
 const paths:Record<string,string>={
+ notifications:'M20 16H4l2-3V9a6 6 0 0 1 12 0v4ZM9 20h6',more:'M5 11h1v2H5ZM11 11h1v2h-1ZM17 11h1v2h-1Z',view:'M16 10a6 6 0 1 1-12 0 6 6 0 0 1 12 0m-1 5 6 6M7 10h6M10 7v6',play:'m7 4 13 8-13 8Z',decor:'M4 12h16v8H4ZM6 12V5h12v7M7 20v2M17 20v2',
  people:'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M16 3a4 4 0 0 1 0 8M22 21v-2a4 4 0 0 0-3-3.87M13 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0',
  briefcase:'M9 6V3h6v3M3 7h18v14H3zM3 12c6 4 12 4 18 0M12 11v5',
  home:'M3 10l9-7 9 7M5 9v12h14V9M9 21v-8h6v8',
