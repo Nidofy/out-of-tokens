@@ -164,3 +164,13 @@ VF1固定实现147ddac4d875d421fffefafdd577be091196f83f；36文件242测试通�
 四个临时端口5181–5184已停止并查询无监听，浏览器视口恢复、验证标签关闭；保留../vf11-perf-baseline审计worktree（含依赖junction，不递归删除）。用户指定两个本地提交后暂停；无push、部署、付费调用、量产或新玩法。Gemini尚未复审本轮。
 
 VF1.1固定实现：2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f；独立记录提交提供harness/reviews/vf11-handoff.md与vf11-2bd6d40-gemini-prompt.md，要求Gemini输出完整回交Codex Prompt。本条不改实现；补充原附件CRLF与Git规范LF的双hash说明，正文未改。当前暂停等待复审，无远端操作。
+
+2026-11-09 VF2：用户vf2-user-handoff.txt明确VF1.1通过并授权VF2，基线2bd6d40/fed8c40干净。原CRLF附件SHA256 97758f24ea527f733eea80036ae835fa8b1ed2303063f796f7214af710e11d83，Git LF文本19792f6d8d3f710197397deeabcd1192c33b24f41a05a204e1f556fb2862e3fa；未收到另一个完整报告。先复现standard两槽Qwen图书馆仍错误忙碌及档案全局消息，证据harness/vf2/before-*。
+
+抽出commission-workbench/partner-profile/dialog/ui-labels，纯展示/预估不改命令顺序。partner-state区分lifeBusy与派遣busy，恢复普通recall；自动测试逐项比对chat/gift/meal/study/recall真实命令、白天/夜晚/加班互斥及remote/锁定/远征派生。recall现有core不消耗busyUntil，保留该例外。真实浏览器吃饭4904→4874/心情69→77、召回到工作室、加班禁用；手机试选跨步保留、接单切team、真实派遣、关闭草稿丢弃、review交付/history/waiting回归。
+
+VF-07改单UiFeedback按origin/object ID路由，移除应用receipt队列与无条件S3首屏消息；接单/派遣/交付/存读档/角色错误均单节点。实机发现成长区错误回执滚出屏幕，增加sticky后top160.57/bottom212.57位于dialog72–648；键盘聚焦成功提示超过6秒仍保留，离开再过期。五视口三屏/下拉框/步骤/底栏/摘要焦点截图齐备；横屏最终主数字16px、内容224.13px，旧225.53px/14px中间图不覆盖。现代系统无衬线/纸面/圆角与焦点升级VF2规范，详细对比度与未验范围见VF2_CHECKPOINT。
+
+性能：保留原040031e审计worktree，新建只读2bd6d40 worktree，复用junction/相同包产物，未安装锁依赖。12预热排除、72条三版本dev/优化诊断preview六轮同DPR1.0000000447034836；preview标准对VF1.1+3.57%，十二人-5.07%；dev十二人+15.66%超过线，另36条不改实现复核为+5.41%，不删除不利批次、不宣布全预算通过。采样后只补错误sticky/聚焦寿命/横屏16px，采样路径不触发这些行为，严格记录为收尾前工作树样本。汇总脚本首次缺括号SyntaxError保留startup-summary.log，修复后startup-summary-final与JSON可重算。
+
+基线251，typecheck-first通过；check-first/final/final-v2/final-v3均37文件259测试、类型/lint/Web/既有DSH构建通过。最后另执行oot-web build恢复默认生产，restore-production-build-final；正常产物无vf-metrics。开发逐步落盘产生过新import暂缺，完成后恢复；临时Python读脚本GBK失败、证据写入沙箱失败已用UTF-8/允许工具完成，不覆盖失败事实。仅清理本轮日志行尾。保护路径packages/pnpm-lock/ai-village资产零改动；引擎0.16.0/内容office-2不变。浏览器结束并恢复视口，临时服务全部停止后双本地提交；用户要求暂停，不push/部署/付费调用/自动VF3或O4新玩法。

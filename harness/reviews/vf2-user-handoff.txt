@@ -1,0 +1,81 @@
+# VF1.1 独立复审裁决与 VF2 检查点执行指令
+
+你当前处于仓库 `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens`、分支 `codex/m1-foundation`。独立审查者已完成对固定实现 SHA `2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f`（记录提交 `fed8c40`，返修父提交 `46070d1`，性能基线 `040031e`）及 `harness/vf1/` 证据包的只读源码审查、全量测试与实机浏览器独立复现。
+
+## 一、明确阶段裁决与总体原则
+
+1. **阶段裁决：VF1.1 通过，批准按计划进入 VF2 检查点（不直接宣布 Visual Freeze 1 整体完成）**。
+   - **设计方向：通过**。已批准的三屏差异化结构（S1 场景与推进优先 + 手机常显双排经营摘要；S2 桌面三栏/手机三步骤工作台 + 保持挂载跨步草稿 + 关闭丢弃告知 + 固定底栏；S3 单角色名大标题 + 1:1 衬底相框 + 四项现状 + 当前主操作）、暖木场景 + 不透明暖白/深褐纸面（`--solid`）+ 深胡桃轻 HUD + 黄铜细饰、现代系统无衬线字体栈（`PingFang SC / Hiragino Sans GB / Microsoft YaHei / Segoe UI` + `tabular-nums`）、原版 12 名 AI Village Q 版角色与固定槽位/完整工位/1920×1080 逻辑世界坐标/前后遮挡层继续保留，严禁推翻重做。
+   - **交互正确性：通过（原 R-01～R-06/09/10 全部闭环）**。你对两项领域规则偏离的处理（拒绝将 `recall` 伪装成远征取消、为 `overtime` 与 `study` 补齐真实 core 前置条件）以及结束态改读实际 `ledger` 流水的附加修复均被判定为正确且必要。本轮独立审查仅发现 2 项非阻断 **P2** 遗留（`VF11-F-01` 与 `VF11-F-02`），直接并入本轮 VF2 的状态表统一与 `VF-07` 反馈渠道清理中一并闭环。
+   - **证据充分性与性能风险：调查闭环，带门禁放行**。原单次 `+19.1%` 启动悬案已通过同 DPR（`1.0000000447034836`）6 次/组正反交替采样与 `preloadWorkshop()` 调查闭环；但优化诊断 `preview standard` 中位数 `+9.47%` 仍贴近 `10%` 调查线，且早期批次存在 `>10%` 波动。不得宣布完整性能预算通过；VF2 检查点必须继续执行同条件启动抽检。
+2. **工作树与安全边界**：
+   - 开始前先运行 `git status -sb` 与 `git log -5`，确认当前工作树干净且位于 `2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f` 及其记录提交之上；严禁覆盖任何用户未提交改动，严禁使用 `git reset --hard` 或 `git clean -fd`，严禁递归删除 `../vf11-perf-baseline` 中的依赖 junction 目标。
+   - **领域与资产零改动红线**：`engine 0.16.0 / content office-2`、`packages/` 下所有领域规则/价格/容量/奖励/RNG/Command 契约/存档版本、`pnpm-lock.yaml`、以及 `apps/web/public/art/ai-village` 原版角色资产必须保持 **零改动**。
+
+---
+
+## 二、本轮（VF2 检查点）必做任务清单（按依赖顺序执行）
+
+本轮范围严格限定为 **VF2（闭环 VF11-F-01/02 + 抽出 S2/S3 组件 + 落地 VF-07 单主反馈渠道 + 统一按钮/候选卡/焦点/禁用状态规范与字体形状冻结）**。不要在本轮提前混入 VF3 的场景相机定位/离屏提示、VF4 批量资产生产或 O4-B/O4-C 新玩法。
+
+### 任务 1：`VF11-F-01`（P2 必做）——校准 S3 晚间/深夜在岗伙伴日常互动忙碌判定，并恢复准确命名的普通日程 `recall` 入口
+- **涉及文件**：`apps/web/src/alpha-app.tsx`（及本轮抽出的伙伴档案组件）。
+- **问题根因与复现**：
+  1. 在 `?office-lab=standard&animation-time=1` 下点击两次「下一时段」进入 `第1天 · 晚上`（`slot = 2`），Qwen 处于 `working` 委托队伍中但未加班，按日程前往图书馆。点击「去找伙伴」到达图书馆后打开 Qwen 档案，因 UI 对「聊天 / 送礼 / 吃饭 / 学习」直接使用了 `actor.busy`（即 `occupied(s, a.id)`，只要挂在活跃委托队伍中全天 4 槽皆为 `true`），导致晚间下班在图书馆的 Qwen 仍显示“正在负责委托工作，空闲后可聊天”且无法聊天、吃饭（恢复精力/降饥饿）、送礼或学习。而 `packages/oot-core/src/campaign.ts` 第 101、114 行的真实规则是 `check(!assigned || s.absoluteSlot % 4 >= 2, 'ACTOR_BUSY')`——即在岗伙伴仅在白天工作时段（`slot % 4 < 2`）、已安排本槽加班（`overtime.includes`）或本槽已有个人活动（`busyUntil > absoluteSlot`）时才不能进行日常互动。
+  2. VF1.1 移除错误远征召回后，非远征时的普通日程 `recall`（`campaign.ts` 第 115–116 行：将晚间在食堂/图书馆的伙伴请回工作室 1 槽，要求同场景当面或已安装 `remote` 软件）在档案折叠区失去了入口。
+- **修复目标**：
+  1. 在不动 `packages/oot-core` 的前提下，在前端状态派生中明确区分：
+     - **派遣/澄清占用**：`actor.busy`（继续用于 S2 候选卡占用提示、澄清按钮与版本切换/训练锁定）；
+     - **当前时段日常互动忙碌（`lifeBusy`）**：`const lifeBusy = actor.busyUntil > view.absoluteSlot || view.overtime.includes(actor.id) || (activeJobs.length > 0 && view.absoluteSlot % 4 < 2);`
+  2. S3 首屏 `.profile-status`、首屏「聊天」按钮、以及折叠区「送礼 / 吃饭 / 学习」按钮改用 `lifeBusy` 替代 `actor.busy`：
+     - 当 `!onExpedition && sameScene && !lifeBusy && activeJobs.length > 0 && view.absoluteSlot % 4 >= 2` 时，可不显示阻塞提示或显示温和说明（如 `"当前为晚间休息时段，可聊天、互动或安排本槽加班。"`），且允许正常点击同场景「聊天 / 送礼 / 吃饭 / 学习」；
+     - 一旦玩家点击了「本槽加班」（`view.overtime.includes(actor.id)` 为真）或执行了一次日常互动（`actor.busyUntil > view.absoluteSlot` 为真），`lifeBusy` 立即变为 `true`，上述日常按钮与「本槽加班」同步禁用（完全符合 `campaign.ts` 与 `simulation.ts` 的互斥规则）。
+  3. 在 `<details>互动与日程</details>` 的 `.button-row` 中，当 `!onExpedition` 时恢复普通日程召回按钮，命名为 **「请回工作室 / Recall to workshop」**，禁用条件严格对齐 `campaign.ts` 第 101、114–116 行：
+     - `disabled={locked || lifeBusy || actor.location === 'workshop' || (!sameScene && !p.software.includes('remote'))}`；
+     - `onExpedition` 为真时继续显示禁用的「远征中，等待返程 / On expedition; awaiting return」按钮；
+     - 更新折叠区说明文案，简明交代「请回工作室需伙伴在食堂/图书馆且同场景（或已研发远程协作）」。
+- **验收条件**：
+  - `standard` 夹具推进 2 槽到 `第1天 · 晚上`，点「去找伙伴」到图书馆后，Qwen 的「聊天 / 送礼 / 吃饭 / 学习 / 请回工作室」均可用，点击任一动作成功且不报错；
+  - 若先在晚上对 Qwen 点击「本槽加班」，Qwen 立即回到工作室加班，`lifeBusy` 为真，「聊天 / 送礼 / 吃饭 / 学习 / 请回工作室 / 本槽加班」全部禁用。
+
+### 任务 2：`VF11-F-02` 与 `VF-07`（P2 必做）——落地单主反馈渠道协议并消除 S3 首屏全局消息污染
+- **涉及文件**：`apps/web/src/alpha-app.tsx`、`apps/web/src/use-game.ts`、`apps/web/src/presentation-events.ts`、`apps/web/src/vf1.css`（及抽出的 S2/S3 组件）。
+- **问题根因与修复目标**：
+  1. 当前 S3 伙伴档案在 `.resume-heading` 与 `.profile-vitals` 之间仍渲染 `{game.message&&<p role="status">{message}</p>}`，导致推进时段后打开档案会插入 `"时段已推进。"`（见 `s3-elsewhere-1280.png`），且页面上同时存在 `.presentation-receipt`、`.status-toast` 与弹窗内 `role="status"` 多重反馈。
+  2. 盘点现有全部反馈事件并建立清晰的 **VF-07 单主反馈渠道规则**：
+     - **S1 主界面常驻/轻提示**：推进时段（`SlotResolved` / `DayEnd`）、存读档回执、日常成功回执由单一主渠道呈现（避免同一事件既弹 `.presentation-receipt` 又弹重复 `.status-toast`，或明确区分高优收据卡片与普通轻提示，确保读屏 `role="status"` 不对同一事件双重播报）；
+     - **S2 委托工作台内**：仅展示与委托操作直接相关的状态/错误（澄清结果、范围确认、`STILL_CLARIFYING`、`CRISIS_SMALL_ONLY`、队伍校验 `assignment-error` 等），绝不混入 `SlotResolved` 等全局消息；
+     - **S3 伙伴档案内**：移除 `.resume-heading` 下方无条件渲染的全局 `game.message`；仅当玩家在档案中触发了角色相关操作（如聊天/送礼/吃饭/学习/请回/加班/研发/切换版本/训练/对齐/故事选择）或遇到角色操作错误码时，才在档案的操作区附近展示与该角色动作相关的反馈（或统一走单一顶层 toast 并保持首屏排版干净）。
+- **验收条件**：
+  - 点击「下一时段」推进时间后打开任意伙伴档案，头像与四项现状卡片之间不再出现 `"时段已推进。"`；
+  - 同一成功操作不会同时出现两个内容重复的浮动提示框。
+
+### 任务 3：VF2 组件抽取与样式/状态表统一（`VF-04` / `VF-05` 收敛）
+- **涉及文件**：`apps/web/src/alpha-app.tsx`、新增 `apps/web/src/commission-workbench.tsx`（或并入 `decision-panels.tsx`）、新增 `apps/web/src/partner-profile.tsx`、`apps/web/src/vf1.css`、`apps/web/src/tokens.css`。
+- **实施目标**：
+  1. **组件抽取**：将 S2 委托工作台与 S3 伙伴档案从 `alpha-app.tsx` 抽出为职责清晰的独立组件，保持纯展示与既有 `send` / `life` / `previewAssignment` 调用顺序完全不变（严禁因组件拆分改变任何命令派发顺序或 RNG 消费）。
+  2. **字号、对比度与焦点规范冻结（`VF-04` / `VF-05`）**：
+     - 核查三屏及抽屉中的字级：确保关键金额/核心状态 `>= 16px`、决策标签与说明 `12px–14px`，消除残留的非附注 `11px` 决策文本（横屏极紧凑模式 `@media(max-height:479px)` 下的底栏副文案除外）；
+     - 将焦点态 token 与普通黄铜装饰线分离（或在浅色/深色纸面上统一提供清晰的明暗双环 `:focus-visible` 样式），确保键盘 Tab 导航在 S1 HUD/Dock、S2 步骤/下拉框/底栏按钮、S3 首屏操作/折叠面板摘要上均清晰可辨；
+     - 在文档中正式将当前现代系统无衬线字体栈（`--font-sans` / `--font-display` + `tabular-nums`）与三屏材质/圆角规范从“候选”升级为 **VF2 已确认规范**。
+
+---
+
+## 三、VF2 检查点验证、性能抽检、文档与停止条件
+
+1. **自动化检查與單元/DOM 測試**：
+   - 运行 `pnpm check` 与 `git diff --check`，确保所有测试、TypeScript、lint、默认生产构建与 DSH 构建全部通过；
+   - 运行 `git diff 2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f -- packages pnpm-lock.yaml apps/web/public/art/ai-village`，确认输出为空；
+   - 为 `VF11-F-01`（晚间在岗伙伴的 `lifeBusy` 判定及普通日程 `recall` 可用性）补充可复现的验证或测试记录。
+2. **实机浏览器证据（保存至 `harness/vf2/` 或 `harness/vf1/` 并明确索引）**：
+   - 实机复现并截图验证：
+     - `s3-elsewhere-1280` 更新版：确认推进两槽后打开异地档案，首屏不再出现 `"时段已推进。"`，且点击「去找伙伴」到图书馆后可点击「请回工作室」；
+     - `s3-evening-working-library-1280`：`standard` 推进两槽到晚上并前往图书馆后，Qwen（在岗未加班）可正常点击「聊天 / 送礼 / 吃饭 / 学习 / 请回工作室」；
+     - 覆盖 `1280×720`、`1920×1080`、`390×844`、`560×800`（`locale=en&theme=dark`）、`844×390` 下的 S1/S2/S3 关键状态与焦点可见性检查。
+3. **同 DPR 性能对照抽检（持续门禁）**：
+   - 保持 `1280×720` 与固定相同 DPR（`1.0000000447034836`），在优化诊断构建（`vite build --mode visual-review`）与 `dev` 下对 `standard` 与 `twelve` 执行与 VF1.1 相同协议的 6 次/组正反交替采样，与 `040031e` 及 `2bd6d40` 对照；
+   - 保留全部原始 JSON 与不利批次，不得删除或掩盖任何 `>10%` 波动；测试完毕后务必重新运行 `pnpm --filter oot-web build` 恢复默认生产构建产物，并关闭所有临时端口。
+4. **文档更新与雙提交停止条件**：
+   - 更新 `docs/STATUS.md`、`docs/ROADMAP.md`、`docs/VF1_CHECKPOINT.md`（或新增 `docs/VF2_CHECKPOINT.md`）、`docs/VISUAL_FREEZE_1.md`、`docs/DECISIONS.md` 与 `harness/build-log.md`；
+   - 先创建 **VF2 本地实现提交（commit 1）**，再创建独立的 **固定 SHA 与 Gemini 复审交接 Prompt 记录提交（commit 2）**；
+   - **停止条件**：完成上述两个本地提交并关闭所有临时服务后**立即暂停**，提供下一轮 Gemini 独立审查 Prompt（并要求 Gemini 报告末尾再次包含交接回 Codex 的 Prompt）。**严禁自动进入 VF3/VF4、严禁扩展 O4-B/O4-C 新玩法、严禁 `git push`、部署或调用任何外部付费模型。**

@@ -1,0 +1,41 @@
+{
+  "scope": "Opaque paper surfaces only; not an all-pixel scene, HUD, gradient or disabled-background audit.",
+  "pairs": [
+    {
+      "name": "light text",
+      "foreground": "#332922",
+      "background": "#fcf6eb",
+      "contrast": 13.18
+    },
+    {
+      "name": "light secondary",
+      "foreground": "#6e5c4d",
+      "background": "#fcf6eb",
+      "contrast": 5.91
+    },
+    {
+      "name": "light focus",
+      "foreground": "#174f87",
+      "background": "#fcf6eb",
+      "contrast": 7.79
+    },
+    {
+      "name": "dark text",
+      "foreground": "#f7ede0",
+      "background": "#282320",
+      "contrast": 13.43
+    },
+    {
+      "name": "dark secondary",
+      "foreground": "#c9b9a6",
+      "background": "#282320",
+      "contrast": 8.12
+    },
+    {
+      "name": "dark focus",
+      "foreground": "#9ed5ff",
+      "background": "#282320",
+      "contrast": 9.93
+    }
+  ]
+}

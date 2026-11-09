@@ -1,4 +1,19 @@
 import type {Command} from 'oot-core';
+export type FeedbackTarget={surface:'global'|'job'|'actor'|'saves';id?:string};
+export interface UiFeedback {id:number;code:string;target:FeedbackTarget;error:boolean;receipt:PresentationEvent|null;}
+/** The command origin, not a string-code allowlist, owns its feedback. */
+export function commandFeedbackTarget(command:Command):FeedbackTarget{
+ if('job' in command)return {surface:'job',id:command.job};
+ if(command.type==='overtime')return {surface:'actor',id:command.character};
+ return {surface:'global'};
+}
+export function feedbackSurface(feedback:UiFeedback|null,open:{job?:string|undefined;actor?:string|undefined;saves:boolean;modal:boolean}):'global'|'job'|'actor'|'saves'|null{
+ if(!feedback)return null;
+ if(open.job&&feedback.target.surface==='job'&&feedback.target.id===open.job)return 'job';
+ if(!open.job&&open.actor&&feedback.target.surface==='actor'&&feedback.target.id===open.actor)return 'actor';
+ if(open.saves&&(feedback.target.surface==='saves'||feedback.target.surface==='global'&&feedback.error))return 'saves';
+ return open.modal?null:'global';
+}
 export interface PresentationEvent {id:number;kind:'accept'|'assign'|'deliver'|'upgrade';title:[string,string];}
 // A transient, bounded UI queue. No timers, rewards, RNG or save mutations here.
 export function presentationEvent(command:Command,id:number,cashDelta:number):PresentationEvent|null{

@@ -1,0 +1,109 @@
+$ pnpm typecheck && pnpm lint && pnpm test && pnpm build
+$ tsc -b --pretty false
+$ eslint packages apps
+$ pnpm build && vitest run
+$ pnpm build:core && pnpm --filter oot-web build && pnpm --filter oot-dsh build
+$ tsc -b
+$ vite build
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 889 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.95 kB │ gzip:   0.63 kB
+dist/assets/flavor-worker-XLSTFJQC.js               2.18 kB
+dist/assets/index-Btj5_vIV.css                     50.67 kB │ gzip:  10.64 kB
+dist/assets/BitmapFont-D-mpG1iZ.js                  0.04 kB │ gzip:   0.06 kB
+dist/assets/WebGLRenderer-Dp7hwRCT.js               0.05 kB │ gzip:   0.07 kB
+dist/assets/CanvasRenderer-NajnO0ns.js              0.05 kB │ gzip:   0.07 kB
+dist/assets/WebGPURenderer-ChQ9wWi4.js              0.05 kB │ gzip:   0.07 kB
+dist/assets/webworkerAll-HQ3JIhWK.js                0.05 kB │ gzip:   0.06 kB
+dist/assets/getTextureBatchBindGroup-CIH9f4hr.js    0.34 kB │ gzip:   0.26 kB
+dist/assets/Cache-fNcOcM1E.js                       1.10 kB │ gzip:   0.55 kB
+dist/assets/canvasUtils-B0HNDru7.js                 6.01 kB │ gzip:   2.04 kB
+dist/assets/getTexelRangeRects-DRn4s913.js         11.35 kB │ gzip:   2.99 kB
+dist/assets/init-CxVgbMMh.js                       14.84 kB │ gzip:   4.59 kB
+dist/assets/GCManagedHash-By9KI96M.js              19.32 kB │ gzip:   6.27 kB
+dist/assets/Filter-C-9RPzfk.js                     41.95 kB │ gzip:  12.01 kB
+dist/assets/browserAll-DBi7pgIW.js                 43.50 kB │ gzip:  11.24 kB
+dist/assets/RenderTargetSystem-C7yGXsaD.js         58.80 kB │ gzip:  16.47 kB
+dist/assets/GraphicsContext-B48FNXTa.js            61.67 kB │ gzip:  20.62 kB
+dist/assets/CanvasPool-BKClwQdf.js                 71.19 kB │ gzip:  23.29 kB
+dist/assets/scene-CW-9a8vn.js                     280.20 kB │ gzip:  82.22 kB
+dist/assets/index-HzanH4tx.js                     403.68 kB │ gzip: 125.09 kB
+
+✓ built in 694ms
+$ node build.mjs
+vite v8.3.6 building ssr environment for production...
+transforming...
+✓ 123 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.js  264.98 kB │ gzip: 65.18 kB
+
+✓ built in 157ms
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 2 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/client.js  3.44 kB │ gzip: 1.64 kB
+
+✓ built in 35ms
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+
+ Test Files  37 passed (37)
+      Tests  259 passed (259)
+   Start at  23:13:23
+   Duration  8.15s (transform 9.56s, setup 0ms, import 31.38s, tests 42.43s, environment 7ms)
+
+$ pnpm build:core && pnpm --filter oot-web build && pnpm --filter oot-dsh build
+$ tsc -b
+$ vite build
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 889 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.95 kB │ gzip:   0.63 kB
+dist/assets/flavor-worker-XLSTFJQC.js               2.18 kB
+dist/assets/index-Btj5_vIV.css                     50.67 kB │ gzip:  10.64 kB
+dist/assets/BitmapFont-D-mpG1iZ.js                  0.04 kB │ gzip:   0.06 kB
+dist/assets/WebGLRenderer-Dp7hwRCT.js               0.05 kB │ gzip:   0.07 kB
+dist/assets/CanvasRenderer-NajnO0ns.js              0.05 kB │ gzip:   0.07 kB
+dist/assets/WebGPURenderer-ChQ9wWi4.js              0.05 kB │ gzip:   0.07 kB
+dist/assets/webworkerAll-HQ3JIhWK.js                0.05 kB │ gzip:   0.06 kB
+dist/assets/getTextureBatchBindGroup-CIH9f4hr.js    0.34 kB │ gzip:   0.26 kB
+dist/assets/Cache-fNcOcM1E.js                       1.10 kB │ gzip:   0.55 kB
+dist/assets/canvasUtils-B0HNDru7.js                 6.01 kB │ gzip:   2.04 kB
+dist/assets/getTexelRangeRects-DRn4s913.js         11.35 kB │ gzip:   2.99 kB
+dist/assets/init-CxVgbMMh.js                       14.84 kB │ gzip:   4.59 kB
+dist/assets/GCManagedHash-By9KI96M.js              19.32 kB │ gzip:   6.27 kB
+dist/assets/Filter-C-9RPzfk.js                     41.95 kB │ gzip:  12.01 kB
+dist/assets/browserAll-DBi7pgIW.js                 43.50 kB │ gzip:  11.24 kB
+dist/assets/RenderTargetSystem-C7yGXsaD.js         58.80 kB │ gzip:  16.47 kB
+dist/assets/GraphicsContext-B48FNXTa.js            61.67 kB │ gzip:  20.62 kB
+dist/assets/CanvasPool-BKClwQdf.js                 71.19 kB │ gzip:  23.29 kB
+dist/assets/scene-CW-9a8vn.js                     280.20 kB │ gzip:  82.22 kB
+dist/assets/index-HzanH4tx.js                     403.68 kB │ gzip: 125.09 kB
+
+✓ built in 823ms
+$ node build.mjs
+vite v8.3.6 building ssr environment for production...
+transforming...
+✓ 123 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.js  264.98 kB │ gzip: 65.18 kB
+
+✓ built in 124ms
+vite v8.3.6 building client environment for production...
+transforming...
+✓ 2 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/client.js  3.44 kB │ gzip: 1.64 kB
+
+✓ built in 24ms

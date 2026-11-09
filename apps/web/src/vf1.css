@@ -9,7 +9,7 @@
 .studio-app .hud-resources{background:var(--hud-pill);border-radius:12px;padding:0 4px}
 .studio-app .studio-hud .advance-period{background:#f4dfb5;color:#362719;border-radius:12px;text-shadow:none;font-size:14px}
 .studio-app .studio-hud .advance-period:hover{color:#362719;filter:brightness(1.05)}
-.studio-app .studio-hud button:focus-visible,.studio-app .studio-dock button:focus-visible,.studio-app .office-editor button:focus-visible{outline-color:#fff;box-shadow:0 0 0 4px #47321e}
+.studio-app :is(button,a,summary,select,input,[role=button]):focus-visible{outline:3px solid var(--focus-ring);outline-offset:3px;box-shadow:0 0 0 3px var(--focus-contrast);scroll-margin:10px}
 .ledger-row{font-size:12px}.ledger-row b{font-size:16px}
 .station-pill,.bonus-pill,.energy-pill{font-size:12px}
 .workbench-dialog{width:min(1180px,calc(100% - 32px));max-height:92dvh;padding:0;overflow:hidden;background:var(--solid)}
@@ -53,7 +53,24 @@
 @media(max-height:479px){
  .workbench-dialog{max-height:96dvh}.workbench-dialog>.dialog-head{padding:8px 16px;height:54px;box-sizing:border-box}.workbench-dialog>.dialog-head button{min-height:36px;padding:0 8px}
  .workbench{height:calc(96dvh - 56px)}.work-steps{padding:4px 10px}.work-steps button{min-height:34px;padding:2px 8px}
- .work-confirm{flex-wrap:nowrap;padding:6px 12px;gap:12px}.work-confirm>span:first-child{flex-basis:auto}.work-confirm button{flex:0 0 auto;min-height:38px;padding:4px 12px}.work-confirm b{font-size:14px}.work-confirm small{font-size:11px}
+ .work-confirm{flex-wrap:nowrap;padding:6px 12px;gap:12px}.work-confirm>span:first-child{flex-basis:auto}.work-confirm button{flex:0 0 auto;min-height:38px;padding:4px 12px}.work-confirm b{font-size:16px}.work-confirm small{font-size:11px}
  .profile-dialog{max-height:92dvh}
 }
 .job-bottom strong,.finance-summary>b,.quality-result strong{font-family:var(--font-display)}
+/* VF2 confirmed type, state and feedback rules; compact landscape notes remain 11px. */
+.studio-app .hud-resources span,.studio-app .resource-strip button>span{font-size:16px}
+.studio-app :is(.actor-card small,.job-meta,.job-bottom,.map-cards small,.onboarding p,.ending-option p){font-size:12px}
+.studio-app .actor-card b,.studio-app .candidate b,.studio-app .job-meta>span:first-child{font-size:16px}
+.studio-app .village-time{font-size:12px}
+.studio-app :is(button,select,input):disabled{opacity:1;color:var(--muted);background:var(--hover);border-color:var(--line);box-shadow:none;cursor:not-allowed}
+.studio-app .studio-hud button:disabled{color:#d8cfc0;background:#302a26;border-color:#786b5c;filter:none}
+.studio-app .team-row{border-bottom:1px solid var(--line)}
+.studio-app .team-row:focus-within{background:var(--hover)}
+.profile-actions{flex-wrap:wrap}
+.feedback-notice{display:flex;align-items:center;gap:8px;border-inline-start:3px solid var(--sage);padding:4px 8px;background:var(--solid);border-radius:var(--r-sm);min-width:0}
+.feedback-notice[data-kind=error]{border-color:var(--danger)}
+.feedback-notice p{margin:0;flex:1;min-width:0;font-size:14px;overflow-wrap:anywhere}
+.feedback-notice button{flex:0 0 44px;min-height:44px;padding:4px}
+.profile-dialog>.feedback-notice{position:sticky;top:68px;z-index:1;margin-bottom:12px;box-shadow:0 2px 8px #21180f20}
+.work-confirm .feedback-notice{margin-bottom:4px}
+.studio-app .status-toast{padding:4px;max-width:min(460px,calc(100% - 24px));background:var(--solid)}
