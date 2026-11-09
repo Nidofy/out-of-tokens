@@ -1,0 +1,103 @@
+{
+  "input": "harness/vf1/vf11-preload-balanced-startup.json",
+  "viewport": [
+    1280,
+    720,
+    1.0000000447034836
+  ],
+  "protocol": "Warm cache; six navigations per group, alternating forward/reverse order; first controls+canvas rAF observation only. Not cold-load, fully-interactive, or frame/GPU budget.",
+  "groups": [
+    {
+      "mode": "dev",
+      "scenario": "standard",
+      "baseline": [
+        253.1,
+        243.2,
+        240.2,
+        204.2,
+        227.5,
+        225.2
+      ],
+      "candidate": [
+        268.4,
+        236.1,
+        205.6,
+        206.2,
+        193.3,
+        212.1
+      ],
+      "baselineMedian": 233.85,
+      "candidateMedian": 209.14999999999998,
+      "changePercent": -10.56
+    },
+    {
+      "mode": "dev",
+      "scenario": "twelve",
+      "baseline": [
+        224.6,
+        214.8,
+        280.3,
+        217.8,
+        215.8,
+        232.1
+      ],
+      "candidate": [
+        299.6,
+        211.7,
+        208.7,
+        200.8,
+        254.2,
+        218.3
+      ],
+      "baselineMedian": 221.2,
+      "candidateMedian": 215,
+      "changePercent": -2.8
+    },
+    {
+      "mode": "preview",
+      "scenario": "standard",
+      "baseline": [
+        158.1,
+        155.6,
+        165.3,
+        157.7,
+        139.4,
+        171.7
+      ],
+      "candidate": [
+        175.1,
+        185.8,
+        142,
+        171.9,
+        157.7,
+        173.8
+      ],
+      "baselineMedian": 157.89999999999998,
+      "candidateMedian": 172.85000000000002,
+      "changePercent": 9.47
+    },
+    {
+      "mode": "preview",
+      "scenario": "twelve",
+      "baseline": [
+        200.4,
+        158.3,
+        153.8,
+        138.3,
+        148,
+        178.2
+      ],
+      "candidate": [
+        173.8,
+        146.5,
+        153.5,
+        189,
+        150.8,
+        124.7
+      ],
+      "baselineMedian": 156.05,
+      "candidateMedian": 152.15,
+      "changePercent": -2.5
+    }
+  ]
+}

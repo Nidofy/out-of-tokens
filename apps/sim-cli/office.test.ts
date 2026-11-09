@@ -8,6 +8,15 @@ import {labSession,labCases,LabSaves} from '../web/src/office-lab.js';
 import {officeCamera,slotPoint,idlePoint} from '../web/src/office-scene-spec.js';
 const team=(ids:string[],role:Member['role']='worker'):Member[]=>ids.map(character=>({character,role,mode:'local'}));
 function fixture(){const c=loadFullContent();c.events=[];c.balance!.eventChance=0;let s=createInitialState(c,1);const id=s.jobs[0]!.id;s=dispatchCommand(s,{type:'accept',job:id},c).state;return {c,s,id};}
+test.each(['review','waiting','delivery'])('visual %s fixture reaches its phase through valid commands',scenario=>{
+ const session=labSession(loadFullContent(),scenario),job=session.view.jobs.find(j=>j.template==='menu')!;
+ expect(job.status).toBe(scenario==='delivery'?'delivered':scenario);
+ if(scenario==='waiting'){expect(job.phases).toBe(2);expect(job.phase).toBe(1);}
+});
+test('meeting hit-test fixture reserves both meeting seats',()=>{
+ const view=labSession(loadFullContent(),'meeting').view;
+ expect(Object.values(view.office!.reservations).filter(r=>r.zone==='meeting')).toHaveLength(2);
+});
 test('three stations accept three workers and one meeting planner, rejecting fourth worker atomically',()=>{
  const {c,s,id}=fixture(),before=structuredClone(s);
  const bad=dispatchCommand(s,{type:'assign',job:id,team:team(c.campaign!.initial)},c);expect(bad.error).toBe('NO_WORKSTATION');expect(bad.state).toBe(s);expect(s).toEqual(before);

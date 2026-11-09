@@ -1,0 +1,104 @@
+Browser tab: 4, Title: "Out of Tokens · 开源万事屋", URL: "http://127.0.0.1:5181/?office-lab=meeting&animation-time=1".
+1 AXWebArea Out of Tokens · 开源万事屋, URL: 127.0.0.1:5181/?office-lab=meeting&animation-time=1
+	2 container 帮楼下奶茶店写个菜单
+		3 container
+			4 heading 帮楼下奶茶店写个菜单, Value: 2
+				5 text 帮楼下奶茶店写个菜单
+			6 button Close / 关闭
+		7 container
+			8 heading 01 · 理解需求, Value: 3
+				9 text 01 · 理解需求
+			10 text 店主已经圈好12款饮品和价格，只需要把口味、甜度与过敏原写清楚。沿用现有菜单的短句，不做新品牌设计。比较写作、知识能力与成本，一位合适的伙伴就能开工。 工作量 / 截止时间 / 及格线 :  30  /  第2天 · 晚上  /  60
+		11 container
+			12 heading 02 · 安排伙伴, Value: 3
+				13 text 02 · 安排伙伴
+			14 text 设施容量：电脑 3  ·  会议席 2  ·  工作/工具岗位需要电脑；支持岗位通常使用会议席，特定版本或任务需要电脑。
+			15 container 派遣岗位与模式
+				16 text 派遣岗位与模式
+				17 container
+					18 text DeepSeek 精力 / 负载 :  100  /  0  ·  6 T/WP ·  本单在岗 代码 7 · 推理 7  ·  使用：会议席位
+					19 pop up button (collapsed, settable) Description: DeepSeek 岗位, Value: 负责人, Secondary Actions: Expand
+						20 menu
+							21 不参与
+							22 执行者
+							23 (selected) 负责人
+							24 审查者
+							25 工具人
+					26 pop up button (collapsed, settable) Description: DeepSeek 模式, Value: 云端, Secondary Actions: Expand
+						27 menu
+							28 (selected) 云端
+							29 本地
+				30 container
+					31 text Qwen 精力 / 负载 :  100  /  0  ·  7 T/WP ·  本单在岗 代码 7 · 写作 7  ·  使用：电脑工位
+					32 pop up button (collapsed, settable) Description: Qwen 岗位, Value: 执行者, Secondary Actions: Expand
+						33 menu
+							34 不参与
+							35 (selected) 执行者
+							36 负责人
+							37 审查者
+							38 工具人
+					39 pop up button (collapsed, settable) Description: Qwen 模式, Value: 云端, Secondary Actions: Expand
+						40 menu
+							41 (selected) 云端
+							42 本地
+				43 container
+					44 text Llama 精力 / 负载 :  100  /  0  ·  4 T/WP ·  本单在岗 写作 6 · 创意 6  ·  使用：会议席位
+					45 pop up button (collapsed, settable) Description: Llama 岗位, Value: 审查者, Secondary Actions: Expand
+						46 menu
+							47 不参与
+							48 执行者
+							49 负责人
+							50 (selected) 审查者
+							51 工具人
+					52 pop up button (collapsed, settable) Description: Llama 模式, Value: 云端, Secondary Actions: Expand
+						53 menu
+							54 (selected) 云端
+							55 本地
+				56 container
+					57 text Mistral 精力 / 负载 :  100  /  0  ·  3 T/WP ·  空闲 写作 6 · 代码 5  ·  执行/工具需电脑 · 支持用会议席
+					58 pop up button (collapsed, settable) Description: Mistral 岗位, Value: 不参与, Secondary Actions: Expand
+						59 menu
+							60 (selected) 不参与
+							61 执行者
+							62 负责人
+							63 审查者
+							64 工具人
+					65 pop up button (collapsed, settable) Description: Mistral 模式, Value: 云端, Secondary Actions: Expand
+						66 menu
+							67 (selected) 云端
+							68 本地
+		69 container
+			70 heading 03 · 核对方案, Value: 3
+				71 text 03 · 核对方案
+			72 text 本槽无事件资源上限估计（未加班的夜间为0） :  93.69T / 0 本地
+			73 container 派遣方案预估
+				74 heading 这支队伍能做到什么？, Value: 3
+					75 text 这支队伍能做到什么？
+				76 text 本阶段完成时间
+				77 text 第2天 · 下午
+				78 container
+					79 text 3 工作时段
+				80 text 本阶段资源预算
+				81 container
+					82 text 226.62  T /  0 本地算力
+				83 container
+					84 text 本地电费周结  ¥ 0.00
+				85 text 条件质量区间
+				86 text 65–75
+				87 content list 工位与精力预估
+					88 container
+						89 text DeepSeek 会议席 产出加成  + 0 % 本槽成功执行时精力  − 15
+					90 container
+						91 text Qwen 基础工位 产出加成  + 0 % 本槽成功执行时精力  − 17
+					92 container
+						93 text Llama 会议席 产出加成  + 0 % 本槽成功执行时精力  − 15
+				94 text 假设：保持当前精力、心情和负载，资源充足，无新事件、缺陷或返工；仅算当前阶段，未来夜间不自动加班。不是结果保证。
+				95 text 云端数字是游戏额度消耗，不是再次扣现金；跨日配额和补购没有计入预算。
+				96 content list
+					97 text 本槽云端额度不足，需要换部署方式或补充额度。
+		98 container
+			99 text 3 位伙伴 关闭后未提交的队伍草稿会丢弃。
+			100 button 取消
+			101 button 确认派遣
+
+The focused UI element is 2 container 帮楼下奶茶店写个菜单

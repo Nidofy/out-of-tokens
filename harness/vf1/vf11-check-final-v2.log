@@ -1,0 +1,9 @@
+$ pnpm typecheck && pnpm lint && pnpm test && pnpm build
+$ tsc -b --pretty false
+apps/web/src/alpha-app.tsx(109,2555): error TS2375: Type '{ job: { proposals: { work: number; phases: number; reward: number; workSlots: number; id: string; label: string; labelEn: string; template: string; }[]; title: string; titleEn: string; description: string; ... 37 more ...; revealed?: number; }; english: boolean; settled: { ...; } | undefined; }' is not assignable to type 'IntrinsicAttributes & { job: { proposals: { work: number; phases: number; reward: number; workSlots: number; id: string; label: string; labelEn: string; template: string; }[]; ... 40 more ...; revealed?: number; }; english: boolean; settled?: { ...; }; }' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Type '{ job: { proposals: { work: number; phases: number; reward: number; workSlots: number; id: string; label: string; labelEn: string; template: string; }[]; title: string; titleEn: string; description: string; ... 37 more ...; revealed?: number; }; english: boolean; settled: { ...; } | undefined; }' is not assignable to type '{ job: { proposals: { work: number; phases: number; reward: number; workSlots: number; id: string; label: string; labelEn: string; template: string; }[]; title: string; titleEn: string; description: string; ... 37 more ...; revealed?: number; }; english: boolean; settled?: { ...; }; }' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+    Types of property 'settled' are incompatible.
+      Type '{ slot: number; reason: string; amount: number; } | undefined' is not assignable to type '{ slot: number; reason: string; amount: number; }'.
+        Type 'undefined' is not assignable to type '{ slot: number; reason: string; amount: number; }'.
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

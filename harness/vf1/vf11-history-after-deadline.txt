@@ -1,0 +1,34 @@
+- generic: LAB · delivery · isolated memory saves
+- generic "当前场景；可通过下方角色卡操作"
+- banner:
+  - button "工作看板与提示":
+  - generic: 第3天 · 下午
+  - button "开源车库"
+  - button "现金与经营":
+    - generic: ¥6233
+  - button "云端额度":
+    - generic: 180 T
+  - button "地图":
+  - button "下一时段":
+    - generic: 下一时段
+  - button "视角":
+  - button "更多":
+- dialog "帮楼下奶茶店写个菜单" [active]:
+  - heading "帮楼下奶茶店写个菜单" [level=2]
+  - button "Close / 关闭": ×
+  - heading "委托需求" [level=3]
+  - paragraph: 店主已经圈好12款饮品和价格，只需要把口味、甜度与过敏原写清楚。沿用现有菜单的短句，不做新品牌设计。比较写作、知识能力与成本，一位合适的伙伴就能开工。
+  - paragraph: "工作量 / 截止时间 / 及格线: 1 / 第2天 · 晚上 / 1"
+  - region "历史结算记录":
+    - heading "合同已交付" [level=3]
+    - term: 最后一次实际结算
+    - definition: 第1天 · 下午
+    - term: 现金变动
+    - definition: ¥958.65
+    - paragraph: 仅展示已发生的结算；多期合同各期单独入账。
+  - strong: "71.56"
+  - text: 交付质量
+  - generic: 出色
+  - contentinfo:
+    - generic: 委托已结束
+    - button "关闭"

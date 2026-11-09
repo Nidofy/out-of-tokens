@@ -1,3 +1,4 @@
+import {visualReviewEnabled} from './visual-review.js';
 import {LabSaves,labSession} from './office-lab.js';
 import {presentationEvent,enqueuePresentation} from './presentation-events.js';
 import type {PresentationEvent} from './presentation-events.js';
@@ -7,7 +8,7 @@ import type {SaveSlot,StoredSave,WritableSlot} from 'oot-platform';
 import type {Command} from 'oot-core';
 import {content} from './content.js';
 export function useGame(){
- const lab=import.meta.env.DEV?new URLSearchParams(location.search).get('office-lab'):null;
+ const lab=visualReviewEnabled?new URLSearchParams(location.search).get('office-lab'):null;
  const hosted=!lab&&location.pathname.startsWith('/out-of-tokens/web/')&&new URLSearchParams(location.search).get('dsh')==='1';
  const [session]=useState(()=>lab?labSession(content,lab):new GameSession(content)),[storage]=useState(()=>lab?new LabSaves():hosted?new HostSaves():new BrowserSaves('out-of-tokens-'+content.version,import.meta.env.DEV && new URLSearchParams(location.search).get('test-fault')==='storage' ? {open(){throw Error('STORAGE_UNAVAILABLE');}} as unknown as IDBFactory : globalThis.indexedDB));
  const [view,setView]=useState(session.view),[busy,setBusy]=useState(true),[message,setMessage]=useState(''),[records,setRecords]=useState<(StoredSave|null)[]>([]);

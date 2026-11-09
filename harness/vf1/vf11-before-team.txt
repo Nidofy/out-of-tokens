@@ -1,0 +1,107 @@
+- generic: DEV · standard · isolated memory saves
+- generic "当前场景；可通过下方角色卡操作"
+- banner:
+  - button "工作看板与提示":
+  - generic: 第1天 · 上午
+  - button "开源车库"
+  - button "现金与经营":
+    - generic: ¥4904
+  - button "云端额度":
+    - generic: 90 T
+  - button "地图":
+  - button "下一时段":
+    - generic: 下一时段
+  - button "视角":
+  - button "更多":
+- dialog "帮楼下奶茶店写个菜单" [active]:
+  - heading "帮楼下奶茶店写个菜单" [level=2]
+  - button "Close / 关闭": ×
+  - heading "01 · 理解需求" [level=3]
+  - status: 读一张委托，再安排合适的伙伴。
+  - paragraph: 店主已经圈好12款饮品和价格，只需要把口味、甜度与过敏原写清楚。沿用现有菜单的短句，不做新品牌设计。比较写作、知识能力与成本，一位合适的伙伴就能开工。
+  - paragraph: "工作量 / 截止时间 / 及格线: 30 / 第2天 · 晚上 / 60"
+  - heading "02 · 安排伙伴" [level=3]
+  - paragraph: 设施容量：电脑 3 · 会议席 2 · 工作/工具岗位需要电脑；支持岗位通常使用会议席，特定版本或任务需要电脑。
+  - group "派遣岗位与模式":
+    - generic: 派遣岗位与模式
+    - text: DeepSeek
+    - generic: "精力 / 负载: 100 / 0 · 6T/WP"
+    - generic: "设施: 会议席位（支持岗位）"
+    - text: 空闲 · 代码 7 · 推理 7
+    - combobox "DeepSeek 岗位":
+      - option "不参与" [selected]
+      - option "执行者"
+      - option "负责人"
+      - option "审查者"
+      - option "工具人"
+    - combobox "DeepSeek 模式":
+      - option "云端" [selected]
+      - option "本地"
+    - text: Qwen
+    - generic: "精力 / 负载: 100 / 0 · 7T/WP"
+    - generic: "设施: 电脑工位"
+    - text: 已有安排 · 代码 7 · 写作 7
+    - combobox "Qwen 岗位":
+      - option "不参与"
+      - option "执行者" [selected]
+      - option "负责人"
+      - option "审查者"
+      - option "工具人"
+    - combobox "Qwen 模式":
+      - option "云端" [selected]
+      - option "本地"
+    - text: Llama
+    - generic: "精力 / 负载: 100 / 0 · 4T/WP"
+    - generic: "设施: 会议席位（支持岗位）"
+    - text: 已有安排 · 写作 6 · 创意 6
+    - combobox "Llama 岗位":
+      - option "不参与"
+      - option "执行者"
+      - option "负责人"
+      - option "审查者" [selected]
+      - option "工具人"
+    - combobox "Llama 模式":
+      - option "云端" [selected]
+      - option "本地"
+    - text: Mistral
+    - generic: "精力 / 负载: 100 / 0 · 3T/WP"
+    - generic: "设施: 会议席位（支持岗位）"
+    - text: 空闲 · 写作 6 · 代码 5
+    - combobox "Mistral 岗位":
+      - option "不参与" [selected]
+      - option "执行者"
+      - option "负责人"
+      - option "审查者"
+      - option "工具人"
+    - combobox "Mistral 模式":
+      - option "云端" [selected]
+      - option "本地"
+  - heading "03 · 核对方案" [level=3]
+  - paragraph: "本槽无事件资源上限估计（未加班的夜间为0）: 76.31T / 0 本地"
+  - region "派遣方案预估":
+    - heading "这支队伍能做到什么？" [level=3]
+    - generic: 本阶段完成时间
+    - generic: 第2天 · 晚上
+    - generic: 4 工作时段
+    - generic: 本阶段资源预算
+    - generic: 242.8 T / 0 本地算力
+    - generic: 本地电费周结 ¥0.00
+    - generic: 条件质量区间
+    - generic: 68–78
+    - list "工位与精力预估":
+      - generic: Qwen
+      - generic: 标准工位
+      - generic: 产出加成 +10%
+      - generic: 本槽成功执行时精力 −15
+      - generic: Llama
+      - generic: 会议席
+      - generic: 产出加成 +0%
+      - generic: 本槽成功执行时精力 −15
+    - paragraph: 假设：保持当前精力、心情和负载，资源充足，无新事件、缺陷或返工；仅算当前阶段，未来夜间不自动加班。不是结果保证。
+    - paragraph: 云端数字是游戏额度消耗，不是再次扣现金；跨日配额和补购没有计入预算。
+    - list
+  - contentinfo:
+    - generic: 2 位伙伴
+    - generic: 关闭后未提交的队伍草稿会丢弃。
+    - button "取消"
+    - button "确认派遣"

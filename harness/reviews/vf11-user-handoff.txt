@@ -1,0 +1,153 @@
+# VF1 检查点独立审查裁决与 VF1.1 返修交接指令
+
+你当前处于分支 `codex/m1-foundation`。独立审查者已完成对固定实现 SHA `147ddac4d875d421fffefafdd577be091196f83f`（基线 `040031e`）及 `harness/vf1/` 证据包的只读审查与实机复现（完整审查报告已随本 Prompt 附上或粘贴在上方对话中）。
+
+## 一、明确阶段裁决与总体原则
+
+1. **阶段裁决**：**有条件进入 VF2/VF3（须先完成本指令列出的 VF1.1 检查点返修先决项）**。
+   - **设计方向：通过**。三屏差异化结构（S1 场景与推进优先、S2 桌面三栏/手机三步骤工作台、S3 大头像身份+四项现状+当前主操作）、暖木场景+不透明暖白/深褐纸面操作面板（`--solid`）+深胡桃轻 HUD+黄铜细饰材质体系、以及系统无衬线字体栈候选（`PingFang SC / Hiragino Sans GB / Microsoft YaHei / Segoe UI` + `tabular-nums`）已获批准，后续继续深化，不得推翻重来。
+   - **交互正确性：未通过（4 项 P1 必修缺陷）**。实机发现 S3 首屏与折叠区按钮状态矛盾且漏检异地状态、S2 在 `posted`/`review`/`waiting`/`delivered` 状态下结构与底栏失配且全局 `message` 污染需求首段、S2 候选卡在 `none` 岗位下误报设施需求且 `<small>` 嵌套撑高列表、`844×390` 横屏下 S2 内容可视区仅 `135px`。
+   - **证据充分性：待补齐**。需补充异常/非正常状态截图及固定同 DPR（如 `1.75`）受控多样本性能记录，关闭 `+19.1%` 复核项。
+2. **已批准且必须保留的设计决策**：
+   - 保持 AI Village 原版 12 名 Q 版角色母版、固定槽位、完整工位套餐、共用 `1920×1080` 逻辑世界坐标与前后遮挡层。
+   - 普通弹窗打开与派遣确认不自动移动或缩放世界相机；视角切换（`zone`）不隐藏画内其他分区的角色。
+   - S1 手机 `390px` 保留双列常显资金/额度摘要及点击打开经营详情能力。
+   - S2 桌面三栏独立滚动、手机三步骤（DOM 保持挂载保留草稿）、关闭弹窗丢弃未提交队伍草稿并明确文字告知。
+   - **严守工程与规则边界**：严禁修改 `packages/` 下的领域算式、平衡数值、容量、价格、奖励、RNG 流、Command 契约与存档版本（保持 `engine 0.16.0 / content office-2`）。不得借 UI 返修顺便扩展 O4-B/O4-C 玩法或启动 VF4 批量资产生成。
+3. **无需向用户额外提问澄清的已定调事项**：
+   - S2 关闭未提交草稿维持“丢弃并文字告知”；
+   - 标题与正文字体维持当前现代无衬线字体栈候选 + `tabular-nums`，移除残留 `Georgia` 硬编码；
+   - S3 头像采用带衬底边框的 `1:1` 相框适配 `128×128` 源资产，消除上下悬空留白；
+   - `VF-07` 单主渠道反馈协议归入 VF2、`VF-03` 显式定位与离屏提示归入 VF3，本轮先把 VF1.1 的 P1/P2 返修扎实闭环。
+
+## 二、执行前核对与复现要求
+
+1. 先运行 `git status -sb`、`git log --oneline -n 5`，确认当前工作树干净且基于 `147ddac4d875d421fffefafdd577be091196f83f`（及其记录提交 `46070d1`）。不得使用 `git reset --hard` 或 `git clean -fd`，不得覆盖用户未提交改动。
+2. 在修改代码前，先按下方问题表中的复现条件在本地核对确认 `VF1-R-01` 至 `VF1-R-06` 的现状，再逐项实施最小修复。
+
+## 三、按执行顺序排列的必修问题清单与逐项验收条件
+
+### 1. [VF1-R-01]（P1 Bug）修复 S3 伙伴档案首屏与折叠区行动状态矛盾及异地漏检
+- **涉及文件**：`apps/web/src/alpha-app.tsx`（约第 106 行）、`apps/web/src/vf1.css`（约第 31–36 行）
+- **复现方法**：
+  1. 在 `?office-lab=standard` 打开 Qwen 档案：首屏 `.profile-actions` 的「聊天」为 `disabled`，但展开下方 `<details>互动与日程</details>` 后里面的「聊天」却是 `enabled`，点击触发 `伙伴正在忙碌，请推进时段或换人。`。
+  2. 在 `?office-lab=initial` 推进 2 个时段至第 1 天晚上（玩家在工作室，伙伴在食堂/图书馆），打开任一伙伴档案：首屏「聊天」为 `enabled`，点击直接报错 `先去同一场景找伙伴。`，而「去找伙伴」却藏在折叠区。
+  3. 角色已在工作室时，折叠区「去找伙伴」仍可点；角色未远征（`actor.location !== 'expedition'`）时，折叠区「召回」仍可点。
+- **修复目标**：
+  1. 统一计算角色当前状态与动作可用性（同场景 `sameScene = actor.location === p.scene`、远征中 `onExpedition = actor.location === 'expedition'`、当前参与委托 `activeJobs`）。
+  2. **首屏状态说明 `.profile-status`**：
+     - 若 `onExpedition`：显示“正在远征中，返程后可安排工作室活动。”；
+     - 否则若 `!sameScene`：显示“当前在{场景名}：先去找伙伴即可聊天或互动。”；
+     - 否则若 `actor.busy`：区分显示“正在负责委托工作，空闲后可聊天。”（有在岗工作时）或“本时段已有安排，下一时段可聊天。”。
+  3. **首屏主动作 `.profile-actions`**：
+     - 若有进行中/待验收/已接委托（`activeJobs.length > 0`），展示 `.primary`「查看工作」按钮；
+     - 若 `!sameScene && !onExpedition`，首屏直接展示「去找伙伴」（点击执行 `life('visit', actor.location)` 并关闭当前档案弹窗或留在当前场景），此时若无「查看工作」可将「去找伙伴」设为 `.primary`；
+     - 首屏「聊天」按钮禁用条件改为 `disabled={locked || actor.busy || !sameScene}`。
+  4. **折叠区 `<details class="profile-section"><summary>互动与日程</summary>`**：
+     - **移除**折叠区内重复的「聊天」和「去找伙伴」按钮（因首屏已承载）；
+     - 保留并严格校验其余日程动作的 `disabled` 条件：
+       - `gift`（送礼 ¥60）：`disabled={locked || actor.busy || !sameScene || view.cash < 60}`
+       - `meal`（吃饭/图书馆外卖 ¥30）：`disabled={locked || actor.busy || !sameScene || !['canteen','library'].includes(p.scene) || view.cash < 30}`
+       - `study`（学习 +2RP）：`disabled={locked || actor.busy || !sameScene || p.scene !== 'library'}`
+       - `overtime`（本槽加班）：`disabled={locked || view.absoluteSlot % 4 < 2 || onExpedition || view.overtime.includes(actor.id)}`
+       - `recall`（远征召回）：仅当 `onExpedition` 时显示或设置 `disabled={locked || !onExpedition}`。
+     - 在折叠区补充简短规则提示（如“吃饭需在食堂/图书馆（¥30），学习需在图书馆，均需伙伴同场景且当前空闲；加班仅限晚间/深夜”），让玩家清楚禁用原因。
+- **验收条件**：
+  - 忙碌、同场景空闲、异地空闲（食堂/图书馆）、晚间可加班四种状态下，首屏与折叠区无重复按钮，不会出现“按钮可点但点击后因忙碌/异地/场景不对而报错”的情况。
+
+### 2. [VF1-R-02]（P1 Bug）修复 S2 委托工作台在 `posted`、`review`、`waiting`、`delivered/breached` 下的结构失配与全局 `message` 污染
+- **涉及文件**：`apps/web/src/alpha-app.tsx`（约第 102–105 行）、`apps/web/src/vf1.css`（约第 15–43 行）
+- **复现方法**：
+  1. 在 `?office-lab=initial` 打开「待接单」委托：未选人时右栏立即弹出红色 `role="alert"`（`请选择至少一位执行者...`），底栏显示该错误与静态文字 `先在需求页接单`；手机切到第 2/3 步时底栏无「接单」按钮；点左栏「接单」会暗中打开背景 `jobs` 抽屉。
+  2. 在 `?office-lab=standard` 推进至 `review`（待验收）打开委托：`.workbench-dialog` 仍为 `1180px` 宽，顶部残留孤立的 `01 · 理解需求`，「返工」与「验收结算」无固定底栏且 `margin-right: 0px` 紧贴。
+  3. 在 `?office-lab=delivery` 打开「已结束」委托（或检查 `waiting` 状态）：仅显示 `01 · 理解需求`，无历史结算或等待期说明。
+  4. 先触发任意报错/保存提示再打开 S2：`01 · 理解需求` 下方第一行 `<p role="status">{message}</p>` 将无关全局提示渲染为需求正文首段。
+- **修复目标**：
+  1. **移除全局 `message` 对需求首段的污染**：去掉 `<section class="work-brief">` 顶部无条件渲染的 `<p role="status">{message}</p>`（若需显示澄清/范围协商结果，仅当 `shownMessage` 属于 `['Clarified','ClarificationMiss','ScopeAgreed','STILL_CLARIFYING','ACCEPTED','CRISIS_SMALL_ONLY','ACTOR_BUSY','PENDING_CHOICE']` 时在需求区操作行旁提示，绝不把默认引导语或无关提示塞进需求首段）。
+  2. **修复 `posted`（待接单）状态体验**：
+     - 当 `job.status === 'posted' && members.length === 0` 时，右栏 `.work-result` 不渲染红色 `role="alert"` 错误框，而是显示温和说明（如“接单后需安排至少一位执行者；也可现在先试选伙伴预览工期与预算。”）；
+     - 底部固定栏 `.work-confirm` 在 `job.status === 'posted'` 时：左侧显示合同关键摘要（如 `报酬 ¥${job.reward} · ${job.work} WP · ${job.workSlots} 工作时段` 及试算提示），右侧放置「取消」「拒绝」与 `.primary`「接单」按钮（桌面与手机三步骤均可直接从底栏接单！）；左栏 `.work-brief` 内仅保留「澄清」与「确认范围」按钮，不再重复放「接单/拒绝」以免双主按钮冲突；
+     - 点击「接单」成功后，保持当前 `jobId` 弹窗打开（自动进入 `accepted` 状态并切换到 `team` 步骤方便继续派遣），**移除 `setPanel('jobs'); setJobFilter('active')`**，不暗中打开背景抽屉。
+  3. **修复 `review`、`waiting`、`delivered/breached` 状态布局与底栏**：
+     - 在 `.workbench` 上增加显式属性 `data-layout={['posted','accepted','working'].includes(job.status) ? 'tri' : 'single'}`（并在 `.workbench-dialog` 上同步 `data-layout`），替代脆弱的 `:not(:has(.work-team))` 选择器；
+     - 当 `data-layout="single"` 时，`.workbench-dialog` 宽度收敛为 `min(760px, calc(100% - 24px))`，`.work-steps` 隐藏，`.work-brief h3` 显示「委托需求 / Commission brief」（不带 `01 ·` 编号）；
+     - 当 `job.status === 'review'` 时，将 `<DeliverySummary/>`、`.quality-result` 与质量拆解放在可滚动内容区，底部统一使用 `<footer class="work-confirm">` 固定栏承载左侧结算提示及右侧「关闭」「返工」「验收结算（`.primary`）」按钮（自带 `gap: 12px`，彻底解决按钮 `0px` 紧贴与滚出屏幕问题）；
+     - 当 `job.status === 'delivered' || job.status === 'breached'` 时，同样展示 `<DeliverySummary/>` 与最终质量分，并在底部 `<footer class="work-confirm">` 提供「关闭」按钮；
+     - 当 `job.status === 'waiting'` 时，在需求区下方明确展示阶段等待说明（“当前阶段已交付，下一阶段将于下个白天工作时段开启”）及底部 `<footer class="work-confirm">`「关闭」按钮。
+- **验收条件**：
+  - `posted`、`accepted`、`working`、`waiting`、`review`、`delivered` 六种状态在 `1280×720` 与 `390×844` 下均结构完整、有固定底栏、按钮间距正常；打开 `posted` 委托不再立即弹红字报错；无关全局 `message` 不再出现在需求首段。
+
+### 3. [VF1-R-03]（P1 Bug）修复 S2 候选卡设施需求误报、消除 `<small>` 嵌套与区分本单/他单占用
+- **涉及文件**：`apps/web/src/alpha-app.tsx`（约第 103 行）、`apps/web/src/vf1.css`（约第 22–24 行）
+- **复现方法**：
+  - 打开 S2 工作台，观察处于「不参与」（`none`）的 DeepSeek 或 Qwen，其设施标签显示 `设施: 会议席位（支持岗位）`，选为「执行者」后才突变为 `设施: 电脑工位`；检查 DOM 发现 `.candidate small small` 存在嵌套，且已在当前委托中的 Qwen 显示笼统的 `已有安排`。
+- **修复目标**：
+  1. **消除 `<small>` 嵌套**：将 `.candidate > span` 内的说明整理为扁平的 2 行 `<small>`（确保 `document.querySelectorAll('.candidate small small').length === 0`）。
+  2. **修正设施需求文案逻辑**：
+     - 若角色当前已选定岗位（`role !== 'none'`），按所选岗位显示实际所需设施：`['worker','tool'].includes(role) || needsComputerSupport ? '使用：电脑工位' : '使用：会议席位'`；
+     - 若角色当前为 `不参与`（`role === 'none'`），不要谎称其使用“会议席位”，而是显示其固有规则：若该角色版本或当前委托模板要求支持岗也用电脑（`needsComputerSupport`），标注 `需电脑工位（含支持岗）`，否则显示 `执行/工具需电脑 · 支持用会议席`（或精简省略，把空间留给状态与擅长能力）。
+  3. **区分「本单在岗」与「其他占用」**：
+     - 检查角色是否已在当前委托的已提交队伍中（`const inThisJob = job.team.some(m => m.character === a.id)`）：
+       - 若 `inThisJob`，状态显示 `本单在岗` / `On this job`；
+       - 否则若 `a.busy`，状态显示 `其他安排占用` / `Occupied`；
+       - 否则显示 `空闲` / `Available`。
+  4. **紧凑化桌面端 `.team-row`**：在桌面端减少不必要的行高膨胀（如减小 `.team-row` 上下内边距至 `8px 0`），使 `1280×720` 下 4 名开局角色无需长距离滚动即可浏览。
+- **验收条件**：
+  - `.candidate small small` 数量为 `0`；`不参与` 状态下不再把普通角色误标为 `设施: 会议席位（支持岗位）`；`standard` 中 Qwen/Llama 在本委托内显示「本单在岗」。
+
+### 4. [VF1-R-04]（P1 Bug）修复 `844×390` 手机横屏下 S2 工作台可视内容高度过小
+- **涉及文件**：`apps/web/src/vf1.css`（约第 37–45 行、第 54 行）
+- **复现方法**：
+  - 在 `844×390` 视口打开 S2 工作台：`.workbench` 高 `265px`，扣除 `.work-steps`（`61px`）和 `.work-confirm`（`69px`），中间 `<section>` 仅剩 `135px`。
+- **修复目标**：
+  - 在 `@media (max-height: 479px)` 下：
+    - 将 `.workbench-dialog` 的 `max-height` 设为 `96dvh`，`.workbench-dialog > .dialog-head` 的 `padding` 压缩为 `8px 16px`（按钮 `min-height: 36px`）；
+    - 若保留分步栏（或对 `min-width: 760px` 横屏直接启用紧凑三栏），将 `.work-steps` 的 `padding` 压缩为 `4px 10px`（按钮 `min-height: 34px`），将 `.work-confirm` 改为单行紧凑布局（`flex-wrap: nowrap; padding: 6px 12px`，`.work-confirm > span:first-child { flex-basis: auto }`，按钮 `flex: 0 0 auto; min-height: 38px`）；
+    - 将 `.workbench` 的高度设为 `calc(96dvh - 54px)`，使中间内容滚动区高度提升至 `>= 190px`。
+- **验收条件**：
+  - 实测 `844×390` 视口下，S2 工作台 `.workbench > section` 可视高度 `>= 190px`，底部确认栏与顶部关闭按钮完整可见且无横向溢出。
+
+### 5. [VF1-R-05]（P2 必修）修复坐姿角色头顶命中偏移与双人会议席白板遮挡，并补齐几何测试
+- **涉及文件**：`apps/web/src/office-hit-area.ts`、`apps/web/src/office-scene.ts`（约第 32–45 行）、`apps/sim-cli/office-hit-area.test.ts`
+- **复现方法**：
+  1. `office-scene.ts` 中 `w.root.hitArea = new Rectangle(-65, -195, 130, 215)` 未随工位坐姿 `sit = -48` 上移，导致 `1280×720` 下点击坐姿 Qwen 帽顶 `(426, 383)` 落空；
+  2. 会议席 `seat 0/1` 角色位于 `x = p.x ± 72`（`zIndex = p.y`），其 `130px` 宽矩形 `hitArea` 覆盖 `[-137, -7]` 与 `[+7, +137]`，挡住了后方 `whiteboard`（`zIndex = p.y - 2`，宽 `224px`）`93.8%` 的宽度。
+- **修复目标**：
+  1. 在 `office-hit-area.ts` 中新增并导出角色命中区域函数 `actorHitArea(seatedWork: boolean)`（或返回 `Rectangle`）：
+     - 站姿 / 会议席使用紧凑身体宽度（如 `x: -44, y: -185, width: 88, height: 200`），使双人会议席（`±72`）在 `x ∈ [-28, +28]`（宽 `56px`）处留出充足的白板中央可点击区域，同时保留角色自身完整可点；
+     - 工位入座（`deskSeated`）时，命中框随 `sit = -48` 上移（如 `x: -48, y: -235, width: 96, height: 155`），完整覆盖坐姿头顶与上身，且不侵入下方桌面。
+  2. 在 `office-scene.ts` 的 `tick` / `sync` 中根据 `deskSeated` 更新 `w.root.hitArea = actorHitArea(deskSeated)`。
+  3. 在 `apps/sim-cli/office-hit-area.test.ts` 中新增测试：验证工位坐姿头顶（如 `(0, -210)`）命中角色且不被家具前景拦截，验证双人会议席（`x = ±72`）下白板中心区域（如 `(0, -120)`）不被角色 `hitArea` 拦截。
+- **验收条件**：
+  - `office-hit-area.test.ts` 新增断言全部通过；实测 `1280×720` 点击 `standard` Qwen 帽顶 `(426, 383)` 能正常打开 `profile-dialog`。
+
+### 6. [VF1-R-06 / VF1-R-09 / VF1-R-10]（P2/P3 同轮顺手收敛）S3 标题消重、方形头像相框、折叠区顺序与 `Georgia` 字体清理
+- **涉及文件**：`apps/web/src/alpha-app.tsx`（约第 106 行）、`apps/web/src/flavor-panel.tsx`（第 11 行）、`apps/web/src/vf1.css`
+- **修复目标**：
+  1. 将 `profile-dialog` 的 `<Dialog title={...}>` 改为 `title={tr('伙伴档案','Team profile')}`，移除 `.resume-heading` 内重复的 `<span class="eyebrow">`（使 `.resume-heading h3` 成为唯一的角色名大标题）；
+  2. 将 `.portrait[data-variant=profile]` 尺寸改为 `1:1` 相框（桌面 `160×160`、`<=899px` `128×128`、`<=679px` `112×112`），并添加柔和衬底与圆角边框（`background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 8px`）；
+  3. 在 `flavor-panel.tsx` 的根 `<details>` 上添加 `class="profile-section"`，并在 `alpha-app.tsx` 中将 `<FlavorPanel/>` 移至「伙伴故事」之后（作为 S3 最后一个折叠区）；
+  4. 在 `vf1.css` 中将 `.job-bottom strong, .finance-summary > b, .quality-result strong` 的 `font-family` 统一覆盖为 `var(--font-display)`。
+- **验收条件**：
+  - S3 顶部不再出现两次角色名；四人头像相框无上下悬空；4 个折叠区行高与分割线一致；全站金额/质量数字无 `Georgia` 衬线残留。
+
+## 四、下一检查点（VF1.1）验证、文档与停止条件
+
+完成上述修复后，请严格执行以下验证与交接步骤：
+
+1. **自动化检查**：
+   - 运行 `pnpm check` 与 `git diff --check`，确保所有测试、类型检查、lint 与生产构建全部通过；
+   - 运行 `git diff -- packages`，确认 `packages/` 下零改动。
+2. **实机浏览器证据补齐（保存至 `harness/vf1/`）**：
+   - 覆盖 `standard`、`initial`、`delivery`、`twelve` 夹具及 `1280×720`、`1920×1080`、`390×844`、`560×800`（`locale=en&theme=dark`）、`844×390`；
+   - 必须包含修复后的新增/更新截图：
+     - `s2-posted-1280.png` 与 `s2-posted-390.png`（待接单状态，无抢跑红字，底栏可直接接单）；
+     - `s2-review-1280.png` 与 `s2-review-390.png`（待验收状态，含固定底栏与正常间距按钮）；
+     - `s2-844.png`（更新横屏截图，验证内容可视高度 `>= 190px`）；
+     - `s3-elsewhere-1280.png`（伙伴在食堂/图书馆时的档案首屏，验证「去找伙伴」与「聊天」禁用说明）及四位开局角色头像相框检查。
+3. **受控性能复核（关闭 `+19.1%` 悬案）**：
+   - 保持视口 `1280×720` 且固定同一 DPR（确保每次采样 `viewport[2]` 完全一致），对 `standard` 与 `twelve` 各连续采样至少 3 次 `vf-metrics=1`，并补充 `vite preview` 生产构建下的同条件采样，将 JSON 与中位数对比写入 `docs/VF1_CHECKPOINT.md`。
+4. **文档更新与提交规范**：
+   - 更新 `docs/VF1_CHECKPOINT.md`、`docs/VISUAL_FREEZE_1.md`、`docs/STATUS.md`、`docs/DECISIONS.md` 与 `harness/build-log.md`；
+   - 创建本地实现提交（commit 1），随后创建独立的 SHA 与交接 Prompt 记录提交（commit 2）；
+   - **停止条件**：完成上述两个本地提交后立即暂停，关闭临时验证端口，输出下一轮审查交接 Prompt。**严禁自动进入 VF4 批量资产生产、严禁扩展 O4-B/O4-C 新玩法、严禁 `git push`、部署或调用任何外部付费模型。**

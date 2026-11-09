@@ -1,0 +1,842 @@
+[
+  {
+    "label": "vf11-preview",
+    "scenario": "standard",
+    "n": 1,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 136.7,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-preview",
+    "scenario": "standard",
+    "n": 1,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 134.4,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-dev",
+    "scenario": "standard",
+    "n": 1,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 196.4,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-dev",
+    "scenario": "standard",
+    "n": 1,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 216.1,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-preview",
+    "scenario": "standard",
+    "n": 2,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 156.7,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-preview",
+    "scenario": "standard",
+    "n": 2,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 133.5,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-dev",
+    "scenario": "standard",
+    "n": 2,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 208.2,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-dev",
+    "scenario": "standard",
+    "n": 2,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 212,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-preview",
+    "scenario": "standard",
+    "n": 3,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 161.4,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-preview",
+    "scenario": "standard",
+    "n": 3,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 147.1,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-dev",
+    "scenario": "standard",
+    "n": 3,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 184.2,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-dev",
+    "scenario": "standard",
+    "n": 3,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 183.4,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-preview",
+    "scenario": "standard",
+    "n": 4,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 137.8,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-preview",
+    "scenario": "standard",
+    "n": 4,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 124.5,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-dev",
+    "scenario": "standard",
+    "n": 4,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 187.6,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-dev",
+    "scenario": "standard",
+    "n": 4,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 175.9,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-preview",
+    "scenario": "standard",
+    "n": 5,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 136,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-preview",
+    "scenario": "standard",
+    "n": 5,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 134,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-dev",
+    "scenario": "standard",
+    "n": 5,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 218.1,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-dev",
+    "scenario": "standard",
+    "n": 5,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 219.5,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-preview",
+    "scenario": "twelve",
+    "n": 1,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 149.4,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-preview",
+    "scenario": "twelve",
+    "n": 1,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 172.1,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-dev",
+    "scenario": "twelve",
+    "n": 1,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 185.6,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-dev",
+    "scenario": "twelve",
+    "n": 1,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 179.6,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-preview",
+    "scenario": "twelve",
+    "n": 2,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 133.5,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-preview",
+    "scenario": "twelve",
+    "n": 2,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 125.8,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-dev",
+    "scenario": "twelve",
+    "n": 2,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 192.1,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-dev",
+    "scenario": "twelve",
+    "n": 2,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 150.1,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-preview",
+    "scenario": "twelve",
+    "n": 3,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 119.1,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-preview",
+    "scenario": "twelve",
+    "n": 3,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 135.8,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-dev",
+    "scenario": "twelve",
+    "n": 3,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 173.8,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-dev",
+    "scenario": "twelve",
+    "n": 3,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 172.6,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-preview",
+    "scenario": "twelve",
+    "n": 4,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 130.8,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-preview",
+    "scenario": "twelve",
+    "n": 4,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 139.6,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-dev",
+    "scenario": "twelve",
+    "n": 4,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 157.3,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-dev",
+    "scenario": "twelve",
+    "n": 4,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 217.4,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-preview",
+    "scenario": "twelve",
+    "n": 5,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 150.8,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-preview",
+    "scenario": "twelve",
+    "n": 5,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 138,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "vf11-dev",
+    "scenario": "twelve",
+    "n": 5,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 163.2,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  },
+  {
+    "label": "040031e-dev",
+    "scenario": "twelve",
+    "n": 5,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 180.4,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+  }
+]

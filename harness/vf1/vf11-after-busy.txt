@@ -1,0 +1,42 @@
+- generic: LAB · standard · isolated memory saves
+- generic "当前场景；可通过下方角色卡操作"
+- banner:
+  - button "工作看板与提示":
+  - generic: 第1天 · 上午
+  - button "开源车库"
+  - button "现金与经营":
+    - generic: ¥4904
+  - button "云端额度":
+    - generic: 90 T
+  - button "地图":
+  - button "下一时段":
+    - generic: 下一时段
+  - button "视角":
+  - button "更多":
+- dialog "伙伴档案":
+  - heading "伙伴档案" [level=2]
+  - button "Close / 关闭": ×
+  - heading "Qwen" [level=3]
+  - paragraph: 愿意接住各种工作的全尺寸劳模，尤其擅长中文表达。她常把散乱的材料整理成一份清单；能干不等于永远有空，派单前记得看看她的负载。
+  - paragraph: "擅长: 代码 · 写作"
+  - paragraph: "当前版本: Qwen 2.5"
+  - generic: 所在场景
+  - generic: 工作室
+  - generic: 精力
+  - generic: "100"
+  - generic: 心情
+  - generic: "70"
+  - generic: 负载
+  - generic: "0"
+  - paragraph: 正在负责委托工作，空闲后可聊天。
+  - button "聊天" [disabled]
+  - button "查看工作"
+  - generic "互动与日程" [active]
+  - paragraph: 送礼需 ¥60；吃饭需在食堂/图书馆（¥30），学习需在图书馆且精力至少10。均需伙伴同场景且当前空闲；加班仅限晚间/深夜且不可重复安排。
+  - button "送礼 ¥60" [disabled]
+  - button "吃饭/图书馆外卖 ¥30" [disabled]
+  - button "学习 +2RP" [disabled]
+  - button "本槽加班" [disabled]
+  - generic "能力、版本与成长"
+  - generic "伙伴故事"
+  - generic "本地气泡与内容包"

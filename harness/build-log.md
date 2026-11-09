@@ -152,3 +152,13 @@ O4-A固定源码：bdaa11c25bbf8616b0191ca4599b8dc4a711cd2f。最终233/34通过
 2026-11-09 VF1首版：基线234；新增8项命中测试，check-final与check-final-v2均36文件242测试及类型/lint/build通过。真实浏览器确认修前脸点击误进委托、修后脸/上身进档案而桌面仍进委托；验证三屏1280/1920/390、560英文暗色、844横屏与12人抽检、手机草稿跨步骤保留和真实派遣。截图与性能原始记录harness/vf1；覆盖限制及+19.1%复核触发见docs/VF1_CHECKPOINT.md。早期截图before-face-click-context仅记录点击上下文，不冒充错误弹窗截图；浏览器只读评估不支持performance/navigator，改DEV显式观测，不将响应体大小当显存。用户要求检查点暂停，未推送/部署/生成资产/改变经营规则。
 
 VF1固定实现147ddac4d875d421fffefafdd577be091196f83f；36文件242测试通过，staged diff --check通过。当前仅记录SHA与Gemini Prompt，要求审核报告提供完整交接回Codex的Prompt。临时5181服务已停止；按用户要求暂停，未push。
+
+2026-11-09 VF1.1：用户返修交接原文归档harness/reviews/vf11-user-handoff.txt（SHA256 1277769AF6720AC7EAF5B9DA2538E9EA03EDB53C21ADF64DBE43E5A016D61F1E），未收到另一份完整报告，不虚构。基于147ddac/46070d1，执行R-01–06/09/10；明确批准方向沿用。packages/正式内容/锁文件/资产未改，engine0.16.0/content office-2保持。
+
+实机先复现忙碌与异地按钮矛盾、posted红错、small嵌套与设施误报、844横屏136.25px、帽顶点击落空；返修后六种S2状态各1280/390截图，横屏225.53px，四人头像方框逐张确认，1920双会议席和560英文深色12人覆盖。新增meeting夹具最初角色id误写deepseek触发LAB:UNKNOWN_ACTOR，改bluewhale；initial夜间无working委托试加班报NO_ACTIVE_ACTOR，补真实前置校验后standard夜间成功，均记入检查点。历史结算发现随当前slot漂移风险，改实际ledger，交付后推进8槽显示958.65不变。远征召回与现有core契约不符，不实现错误按钮；远征状态未实机验证。
+
+性能调查保留所有中间批次。基线040031e独立worktree的首次pnpm启动触发workspace链接更新，主仓offline frozen-lockfile恢复，锁文件无diff；基线直接node vite启动，包构建产物相同。最终同1280×720、精确DPR1.0000000447034836、六次/组、dev与优化诊断preview共48条，standard分别-10.56%/+9.47%，twelve分别-2.80%/-2.50%。早期preview+11.34%/+11.76%与首轮dev约+31.5%均保留；提前下载scene后最终组近线，不能宣布预算通过。启动观测与全帧/GPU/冷缓存严格区分。最后单条180帧p50=8.3/p95=8.6另存，不作为对照。完整协议与复现命令见VF1_CHECKPOINT。
+
+检查日志vf11-check-v1、final、final-v2/v3/v4均保留：final-v2因optional settled显式undefined严格类型失败，修复后v3通过；v3发现main间接常量条件虽移除运行入口但仍产出指标chunk进入离线清单，改成直接编译期条件；最终v4为36文件251测试、类型/lint/默认Web及既有DSH构建全部通过，产物/离线清单无vf-metrics。测试新增2命中+3lab自动案例+4状态/双席断言。仅清理本轮日志尾部空白，不改失败内容。
+
+四个临时端口5181–5184已停止并查询无监听，浏览器视口恢复、验证标签关闭；保留../vf11-perf-baseline审计worktree（含依赖junction，不递归删除）。用户指定两个本地提交后暂停；无push、部署、付费调用、量产或新玩法。Gemini尚未复审本轮。
