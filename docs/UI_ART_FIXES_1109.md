@@ -1,6 +1,6 @@
 # 办公室场景、角色比例与全屏 UI 修复说明 (UI & Art Fixes)
 
-> **状态**：已完成代码与美术资源更新（按要求未执行 `git commit`）  
+> **状态**：已完成集成复审并提交；第四节为最终结论
 > **涉及目录**：`out-of-tokens/apps/web`、`out-of-tokens/scripts`
 
 ---

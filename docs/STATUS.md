@@ -90,3 +90,5 @@ A3–A6最终源码检查点：f311fcb55aa8470ba86bb3d0e329cae8bfa5bbc7（A3 a52
 1108首批修复固定源码：e7ee74289a8bf3ad32ef5690d9765ed7b33a873d。完整已完成/未完成范围见REVIEW_1108_INTEGRATION；本条仅记录提交。
 
 O0–O3固定源码检查点：2161a540c472f4610bfb1c310c3520c9bc675a45。33文件213测试、最终check-v3及staged diff检查通过。本条为独立记录提交。
+
+UI/美术1109固定实现：ee9dd843061b90d8dff88340d65f75100d897dc1；独立记录见harness/reviews/ui-art-1109-handoff.md。
