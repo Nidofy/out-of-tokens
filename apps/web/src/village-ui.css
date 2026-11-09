@@ -11,7 +11,7 @@ button[aria-pressed=true],.button-row button[aria-pressed=true]{background:var(-
 select,input{background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);font-size:var(--fs-sm);min-height:44px;padding:6px 10px}
 select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23987344' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;padding-right:28px}
 dialog:focus,dialog:focus-visible{outline:none}
-button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible,input:focus-visible,[role=button]:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible,input:focus-visible,[role=button]:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}
 dialog,.drawer-content,.office-editor>footer,.office-inventory{scrollbar-width:thin;scrollbar-color:var(--brass) transparent}
 dialog::-webkit-scrollbar,.drawer-content::-webkit-scrollbar,.office-editor>footer::-webkit-scrollbar,.office-inventory::-webkit-scrollbar{width:5px;height:5px}
 dialog::-webkit-scrollbar-thumb,.drawer-content::-webkit-scrollbar-thumb,.office-editor>footer::-webkit-scrollbar-thumb,.office-inventory::-webkit-scrollbar-thumb{background:var(--line);border-radius:999px}
@@ -66,13 +66,13 @@ dialog::backdrop{background:rgba(28,21,16,.44);backdrop-filter:blur(4px)}
 .dialog-head{top:-20px;margin:-20px -20px 14px;padding:10px 16px;background:var(--solid);border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(43,29,18,.06)}
 .dialog-head h2{font-size:var(--fs-lg)}.dialog-head button{min-height:44px;min-width:44px;padding:4px 8px;background:transparent;border:0;box-shadow:none}
 .studio-app .job-card,.studio-app .campaign-panel,.studio-app .project-panel,.studio-app .finance-summary,.studio-app .actor-card{border:1px solid var(--line);border-radius:var(--r-sm);background:var(--card);box-shadow:inset 0 1px 0 rgba(255,255,255,.28);padding:10px 12px;margin-bottom:8px}
-.studio-app .actor-card small,.studio-app .job-card p{font-size:var(--fs-sm)}.studio-app .panel-intro{font-size:var(--fs-sm);margin-bottom:10px}.studio-app .portrait{width:44px;height:52px}
+.studio-app .actor-card small,.studio-app .job-card p{font-size:var(--fs-sm)}.studio-app .panel-intro{font-size:var(--fs-sm);margin-bottom:10px}
 .forecast-grid{grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
 .forecast-grid>div{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);padding:8px 10px}
 .forecast-grid b{font-size:var(--fs-md);color:var(--green);margin:2px 0}
 .forecast-members,.forecast-risks{list-style:none;padding:0;margin:8px 0;display:grid;gap:6px}
 .forecast-members li{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:7px 10px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);font-size:var(--fs-sm)}
-.station-pill,.bonus-pill,.energy-pill{padding:2px 8px;border-radius:var(--r-pill);font-size:var(--fs-xs);font-weight:600;border:1px solid var(--line);background:var(--card)}
+.station-pill,.bonus-pill,.energy-pill{padding:2px 8px;border-radius:var(--r-pill);font-size:var(--fs-sm);font-weight:600;border:1px solid var(--line);background:var(--card)}
 .station-pill[data-tier=standard],.bonus-pill[data-boost=true]{border-color:var(--brass);color:var(--sage)}
 .forecast-risks li{padding:7px 10px;border-radius:var(--r-sm);background:rgba(168,60,37,.1);border-left:3px solid var(--danger);font-size:var(--fs-sm);color:var(--ink)}
 .studio-app .office-lab-badge{left:50%;top:auto;bottom:2px;z-index:70;font-size:9px;padding:1px 6px;border-radius:6px;background:rgba(44,34,26,.72);color:#fff7ea}

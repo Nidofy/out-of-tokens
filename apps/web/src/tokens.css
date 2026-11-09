@@ -11,6 +11,7 @@
  --green:#5b4029;
  --sage:#43684d;
  --brass:#c8a262;
+ --accent-decor:var(--brass);--focus-ring:#775021;--selected-indicator:#43684d;
  --line:rgba(118,90,60,.28);
  --hover:rgba(118,90,60,.10);
  --primary-bg:linear-gradient(180deg,#684932 0%,#483120 100%);
@@ -18,7 +19,7 @@
  --accent-hover:#7c583c;
  --on-accent:#fff8eb;
  --danger:#a83c25;
- --font-display:'STKaiti','KaiTi','Kaiti SC','Songti SC','Noto Serif SC',Georgia,serif;
+ --font-display:var(--font-sans);
  --font-sans:'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Segoe UI',sans-serif;
  --fs-xs:11px;--fs-sm:12px;--fs-base:14px;--fs-md:16px;--fs-lg:20px;--fs-xl:clamp(24px,2.2vw,32px);
  --r-sm:10px;--r-md:16px;--r-pill:999px;
@@ -37,6 +38,7 @@
  --green:#e0be82;
  --sage:#8bc29a;
  --brass:#dfb978;
+ --focus-ring:#f1cc86;--selected-indicator:#8bc29a;
  --line:rgba(218,190,144,.24);
  --hover:rgba(255,246,234,.08);
  --primary-bg:linear-gradient(180deg,#e2c286 0%,#b99252 100%);

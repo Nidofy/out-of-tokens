@@ -148,3 +148,5 @@ O4-A固定源码：bdaa11c25bbf8616b0191ca4599b8dc4a711cd2f。最终233/34通过
 2026-11-09 UI工作树复审：修复前233/34、修复后234/35，typecheck/lint/build通过。代码与资产修复、实机范围和后续验收见ui-art-review-1109/integration-results.md及docs/UI_ART_DIRECTION_1109.md。
 
 2026-11-09 附件复审规划修订：归档用户原文，源码核对头像覆盖/关键字号/相机过滤，命中风险保持待运行时复现；新增VISUAL_FREEZE_1，替换UI_ART_DIRECTION原A–F计划，更新STATUS/ROADMAP/D048。仅文档变更；未运行新的浏览器视觉验收。提交前检查记录见harness/reviews/visual-freeze-1-plan-check.log。
+
+2026-11-09 VF1首版：基线234；新增8项命中测试，check-final与check-final-v2均36文件242测试及类型/lint/build通过。真实浏览器确认修前脸点击误进委托、修后脸/上身进档案而桌面仍进委托；验证三屏1280/1920/390、560英文暗色、844横屏与12人抽检、手机草稿跨步骤保留和真实派遣。截图与性能原始记录harness/vf1；覆盖限制及+19.1%复核触发见docs/VF1_CHECKPOINT.md。早期截图before-face-click-context仅记录点击上下文，不冒充错误弹窗截图；浏览器只读评估不支持performance/navigator，改DEV显式观测，不将响应体大小当显存。用户要求检查点暂停，未推送/部署/生成资产/改变经营规则。
