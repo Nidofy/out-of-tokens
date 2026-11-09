@@ -82,3 +82,5 @@ A3阶段：engine0.12.0/contentm5-4，声明式开局/范围协商/八段互动/
 A3–A6最终源码检查点：f311fcb55aa8470ba86bb3d0e329cae8bfa5bbc7（A3 a523679；A4/A5 fa53ea2）。最终162测试、自然路径/破产恢复/浏览器证据见PRODUCTIZATION_A3_A6；后续本条仅记录，不改变运行逻辑。
 
 1108首批修复固定源码：e7ee74289a8bf3ad32ef5690d9765ed7b33a873d。完整已完成/未完成范围见REVIEW_1108_INTEGRATION；本条仅记录提交。
+
+O0–O3固定源码检查点：2161a540c472f4610bfb1c310c3520c9bc675a45。33文件213测试、最终check-v3及staged diff检查通过。本条为独立记录提交。

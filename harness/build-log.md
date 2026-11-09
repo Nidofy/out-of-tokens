@@ -128,3 +128,5 @@ Productization B完整源码检查点：67bc3ca350a4ea931a5be061858c173fd2f5f2e2
 2026-11-08 review1108: baseline sandbox failed EPERM (log/cache write); controlled rerun passed. check-v1 173 tests, v2 181, final 183/32 files; typecheck/lint/Web+DSH builds passed. Last scene vertical placement: 14/2 affected tests passed. Browser verified posted assignment preview and 390x844 name/pager layout; desktop capture clipped, not accepted as complete visual matrix. Integration ledger docs/REVIEW_1108_INTEGRATION.md. No external publication, no held-out seeds consumed.
 
 2026-11-09 O0–O3：基线183通过；office-core-first保留构建旧版本与合成结局委托引用失败；first全量183通过。新增专项v1澄清夹具已揭示完全部需求，修正测试隐藏条目；v2 29通过；check-v2 lint未使用导入，v3全量212通过。增加IndexedDB关闭/重开测试后final-v1/v2 33文件213测试、类型/lint及构建通过；最终final-v3为固定提交前检查。真实浏览器发现并修正office命令解析白名单遗漏、屏幕挡脸、680底栏重叠、手机英文标题换行、12人名牌裁切与编辑器透底；证据harness/office/acceptance.md。没有修改玩家存档/使用封存种子/外部部署。
+
+O0–O3固定源码：2161a540c472f4610bfb1c310c3520c9bc675a45。提交前仅修正4份日志末尾多余空行，失败内容完整保留；staged diff --check通过。5173临时服务停止。后续本条仅记录。
