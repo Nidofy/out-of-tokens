@@ -1,0 +1,106 @@
+# VF2 独立审查裁决与 VF2 收尾 + VF3 检查点执行指令
+
+你当前处于仓库 `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens`、分支 `codex/m1-foundation`。Gemini 独立审查者已完成对固定实现 SHA `61b9c7594dcf288e7cb0f136aec11911cdc7cbb6`（记录提交 `e693642`，父提交 `fed8c40`，VF1.1 实现 `2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f`，长期性能基线 `040031e`）及 `harness/vf2/` 证据包的独立只读源码审查、全量 `pnpm check`（37 文件 259 测试）与实机 Chrome 五视口（`1280×720`、`1920×1080`、`390×844`、`560×800` 英文深色、`844×390`）+ 诊断 `preview` 独立复现。
+
+## 一、明确阶段裁决与总体红线
+
+1. **阶段裁决：VF2 有条件通过——先在本轮按序完成 4 项轻量先决修复（`VF2-F-01`～`VF2-F-04`），验证闭环后批准同轮进入限定范围的 VF3 检查点（严禁直接宣布 Visual Freeze 1 整体完成，严禁进入 VF4 量产或 O4-B/O4-C 新玩法）**。
+   - **已确认冻结并必须保留的成果**：
+     - 三屏结构（S1 场景与推进优先 + 手机常显双排经营摘要；S2 桌面三栏/手机分步工作台 + `key={job.id}` 跨步草稿保留 + 关闭丢弃告知 + 固定底栏；S3 单角色名大标题 + `160/128/112` `1:1` 衬底相框 + 四项现状 `20px` + 当前主操作）；
+     - VF2 已确认规范：现代系统无衬线字体栈（`--font-sans` / `--font-display` 同栈 + `tabular-nums`）、暖木场景 + 不透明暖白/深褐操作纸面（`--solid`）+ 深胡桃轻 HUD + 黄铜细饰、`10/12/16/999px` 圆角体系、浅/深色独立蓝色 `3px` 双焦点环（`#174f87` / `#9ed5ff` + 反差衬环）；
+     - `VF11-F-01` 的 `partnerAvailability`（`lifeBusy` 与 `actor.busy` 解耦、晚间在岗未加班伙伴日常互动可用、普通日程 `recall`「请回工作室」恢复并尊重 core 提前返回不写 `busyUntil` 契约、版本研发不被 `actor.busy` 误锁）；
+     - 原版 12 名 AI Village Q 版角色、固定槽位/完整工位、1920×1080 逻辑世界坐标与前后遮挡层。
+2. **开始前安全检查与零改动红线**：
+   - 开始前先运行 `git status -sb` 与 `git log -5 --oneline`，确认工作树干净且位于 `61b9c7594dcf288e7cb0f136aec11911cdc7cbb6` 及其记录提交 `e693642` 之上；严禁覆盖任何用户未提交改动，严禁使用 `git reset --hard` 或 `git clean -fd`，严禁递归删除 `../vf11-perf-baseline` 或 `../vf2-vf11-baseline` 中的依赖 junction 目标。
+   - **领域与资产零改动红线**：`engine 0.16.0 / content office-2`、`packages/` 下所有领域规则/价格/容量/奖励/RNG/Command 契约/存档版本、`pnpm-lock.yaml`、以及 `apps/web/public/art/ai-village` 原版角色资产必须保持 **零改动**。
+
+---
+
+## 二、本轮必做任务清单（严格按依赖顺序：先闭环 VF2 先决项 1～4，再执行 VF3 任务 5～6）
+
+### 第一部分：VF2 先决返修项（必须在进入 VF3 任务前优先闭环）
+
+#### 任务 1：`VF2-F-01`（P2 先决必做）——收紧 `feedbackSurface` 与 `use-game.ts` 的局部/全局错误路由边界
+- **涉及文件**：`apps/web/src/presentation-events.ts`、`apps/web/src/use-game.ts`、`apps/web/src/alpha-app.tsx`、`apps/sim-cli/vf2.test.ts`。
+- **问题复现与根因**：
+  1. **局部错误与弹窗内动作在手动关窗后泄漏到 S1**：`presentation-events.ts` 第 15 行无条件返回 `return open.modal ? null : 'global'`。实机在 `?office-lab=initial` 打开 Qwen 档案 → 展开「能力、版本与成长」→ 点「研发 ¥600 / 10RP」产生局部错误 `"现金或研发点不足。"`（`target: {surface: 'actor', id: 'qwen'}`, `error: true`）→ 点右上角 `×` 关闭 Qwen 档案后，该角色局部错误会跳到 S1 底部的 `.status-toast` 常驻显示，且之后每次打开/关闭地图或其他弹窗回到 S1 都会重新挂载 `<p role="alert">` 触发重复播报；同理在 S3 点击「去找伙伴」（`visit`）关窗后 S1 也会弹出无上下文的 `"安排好了。"`。
+  2. **弹窗开启期间发生自动保存失败（`StorageFeedbackError`）或跨标签冲突（`EXTERNAL_CHANGE`）被隐身及覆盖抹除**：`use-game.ts` 中 `StorageFeedbackError` 与 `EXTERNAL_CHANGE` 均将 `target` 设为 `{surface: 'global'}`。当 S2 或 S3 处于打开状态时，`feedbackSurface` 对 `surface: 'global'` 返回 `null`（导致 `hosted`/`desktop` 下弹窗内操作写盘失败时弹窗不关闭且界面无任何报错）；而在 Web 模式下，若 S2/S3 开启期间触发 `onExternalChange`（`paused.current = true`），玩家在关窗前随手点击弹窗内任何不写盘的常规动作（如 `accept`、`clarify`、`chat`、`meal`），新的成功回执会直接覆盖 `feedback`，导致玩家关窗后也彻底看不到 `EXTERNAL_CHANGE` 警告。
+- **最小修复要求**：
+  1. **禁止局部反馈在关窗后串入 S1**：在 `presentation-events.ts` 的 `feedbackSurface` 中，当 `open.modal` 为 `false` 时，仅当 `feedback.target.surface === 'global'`，或属于显式关窗回执（如 `feedback.receipt?.kind === 'assign' || feedback.receipt?.kind === 'deliver'`）时才返回 `'global'`；对于 `target.surface === 'actor'`、无跨屏收据的 `'job'`（如 `STILL_CLARIFYING`、`accept`、`clarify`、`scope`、`reject`）以及 `'saves'` 的局部反馈，在对应弹窗关闭后返回 `null`（或在关闭 `jobId` / `actorId` 弹窗时清理属于该局部对象的错误/回执；对于 S3 内的「去找伙伴」`visit`，直接走场景切换或不在 S1 遗留 `"安排好了。"`）。
+  2. **确保全局存储错误（`StorageFeedbackError` / `EXTERNAL_CHANGE`）不被弹窗隐身或被非写盘成功回执静默抹除**：
+     - 当 `feedback.target.surface === 'global' && feedback.error`（如 `EXTERNAL_CHANGE`、`AUTO_PAUSED`、`STORAGE_UNAVAILABLE`、`SAVE_CONFLICT`、`WRITE_UNCERTAIN`）时，若当前打开了 `job`、`actor` 或 `saves` 弹窗，`feedbackSurface` 应允许在当前活动弹窗的 notice 区域（`job` / `actor` / `saves`）直接展示该全局存储错误，使玩家在弹窗内即可立即看到写盘/跨窗口告警；
+     - 同时在 `use-game.ts` 的 `report` / `send` 中，若当前存在未关闭的全局存储错误（`feedback?.target.surface === 'global' && feedback.error && paused.current`），未执行 `write('auto')` 的普通命令成功回执不得静默覆盖该全局存储错误（直至玩家手动点 `×` 收起、或通过 `load`/`importFile`/`reconcile` 解除 `paused.current`）。
+- **验收标准**：
+  - 在 Qwen 档案触发 `"现金或研发点不足。"` 后关闭档案，S1 不显示该错误；在 S3 点「去找伙伴」后 S1 不弹 `"安排好了。"`；S2 点「确认派遣」或「验收结算」关窗后 S1 仍正常显示唯一收据；
+  - 在 S2 或 S3 打开时触发 `EXTERNAL_CHANGE`（或 `StorageFeedbackError`），当前弹窗内可见该错误，且在弹窗内点击一次 `accept` 或 `chat` 不会抹除尚未解除的 `EXTERNAL_CHANGE` 告警；在 `apps/sim-cli/vf2.test.ts` 中补充对应断言。
+
+#### 任务 2：`VF2-F-02`（P2 先决必做）——修复 S3 伙伴档案错误提示 `sticky` 顶部 20px 透字缝隙
+- **涉及文件**：`apps/web/src/vf1.css`。
+- **问题复现与根因**：
+  - `dialog` 具有 `padding: 20px`（`650px` 以下 `padding: 20px`），`.dialog-head` 使用 `top: -20px` 贴顶（桌面端 `.dialog-head` 底边位于 `dialog.top + 68px`，即在含 `20px` 上内边距的滚动坐标系中位于 `48px`）。而 `vf1.css` 第 74 行 `.profile-dialog>.feedback-notice` 设置了 `position: sticky; top: 68px`，叠加 `20px` 上内边距后实际吸附在 `dialog.top + 88px`（`y = 161px`），导致与 `.dialog-head` 底边（`y = 141px`）之间产生 **20px–23.5px 的镂空缝隙**（见 `harness/vf2/s3-error-visible-1280.png` 中「推理 ━━━━ 6」从缝隙半截露出）。
+- **最小修复要求**：
+  - 校准 `apps/web/src/vf1.css` 中 `.profile-dialog>.feedback-notice` 的 `top` 值（例如改为 `top: 45px` 或与 `.dialog-head` 实际底边无缝贴合），确保在桌面（`1280×720`）与手机（`390×844`）滚到底部时，`notice.top - head.bottom` 在 `0px–2px` 以内，上方绝无半截文字穿透露出，且不遮挡当前点击的研发按钮。
+- **验收标准**：
+  - 更新 `s3-error-visible-1280.png` 与 `profile-error-feedback.json`，确认 `notice.top - head.bottom <= 2px`，`.dialog-head` 与 `.feedback-notice` 之间无任何透字缝隙。
+
+#### 任务 3：`VF2-F-03`（P2 先决必做）——校准 S3 `.profile-status` 在「异地且本时段已忙碌（`!sameScene && lifeBusy`）」时的提示优先级
+- **涉及文件**：`apps/web/src/partner-profile.tsx`、`apps/sim-cli/vf2.test.ts`。
+- **问题复现与根因**：
+  - `partner-profile.tsx` 第 45 行三元表达式顺序为 `onExpedition ? ... : !sameScene ? '当前在...：先去找伙伴即可聊天或互动。' : ...`。当 `lifeBusy === true` 且 `!sameScene === true` 时（例如在图书馆对 Qwen 点击「本槽加班」使其立即回到工作室加班，或白天异地查看在岗伙伴，或异地查看正在图书馆训练/已互动过的伙伴），界面仍提示 `"当前在工作室：先去找伙伴即可聊天或互动。"`，但玩家点「去找伙伴」过去后因 `lifeBusy === true` 根本无法聊天或互动。
+- **最小修复要求**：
+  - 在 `partner-profile.tsx` 第 45 行将 `lifeBusy` 判定移至 `!sameScene` 之前（即 `onExpedition ? ... : lifeBusy ? (activeJobs.length && actor.busyUntil <= view.absoluteSlot ? tr('正在负责委托工作，空闲后可聊天。','Working on a commission. Chat becomes available when free.') : tr('本时段已有安排，下一时段可聊天。','Occupied this period. Chat becomes available next period.')) : tr(\`当前在\${scene(actor.location)}：先去找伙伴即可聊天或互动。\`, \`Currently in \${scene(actor.location)}. Visit this teammate to interact.\`)`）。
+  - 注意：由于晚间在岗未加班的伙伴在图书馆时 `lifeBusy` 为 `false`，此时在工作室打开其档案仍会命中 `!sameScene` 分支并正确显示 `"当前在图书馆：先去找伙伴即可聊天或互动。"`。
+- **验收标准**：
+  - 晚间在工作室打开未加班的图书馆 Qwen 档案，仍显示 `"当前在图书馆：先去找伙伴即可聊天或互动。"`；
+  - 在图书馆对 Qwen 点击「本槽加班」后（或白天在图书馆打开工作室在岗 Qwen 档案），`.profile-status` 显示 `"正在负责委托工作，空闲后可聊天。"`，不再误导提示“先去找伙伴即可聊天或互动”。
+
+#### 任务 4：`VF2-F-04`（P3 先决必做）——消除「委托」抽屉 `.job-tags span` 残留的 `10px` 字号
+- **涉及文件**：`apps/web/src/vf1.css`。
+- **问题复现与根因**：
+  - `apps/web/src/style.css` 第 7 行定义了 `.job-tags span{font-size:10px;...}`，在「委托」抽屉（`panel === 'jobs'`）中实测技能权重标签（如 `写作 70%`、`知识 30%`）的 computed `font-size` 为 `10px`，遗漏在 `vf1.css` 第 62 行的 `12px` 覆盖列表之外。
+- **最小修复要求**：
+  - 在 `apps/web/src/vf1.css` 第 62 行的 `.studio-app :is(...)` 选择器中加入 `.job-tags span,.version-tag`，使其 computed `font-size` 统一为 `12px`。
+- **验收标准**：
+  - 实机遍历 S1、S2、S3 及四个抽屉（`actors`/`jobs`/`studio`/`journal`，全部 `<details>` 展开）中的所有可见叶子文本元素，确认除 `.office-lab-badge` 与 `@media(max-height:479px) .work-confirm small`（`11px`）外，无任何 `<12px` 文本节点。
+
+---
+
+### 第二部分：VF3 检查点限定实施范围（在任务 1～4 完成后执行）
+
+本轮 VF3 严格依据 `docs/VISUAL_FREEZE_1.md` 第三、四、五节与 `docs/ROADMAP.md` 已定边界，限定为 **VF-03 显式相机定位/返回全景/离屏提示 + 工作角落与 12 角色在场命中/遮挡/接触核验**。严禁提前启动 VF4 批量资产重绘/导出，严禁恢复 O4-B/O4-C 新玩法。
+
+#### 任务 5：`VF-03`（P1/P2）——显式伙伴/工位相机定位、返回全景入口与窄屏/局部视角离屏提示
+- **涉及文件**：`apps/web/src/alpha-app.tsx`、`apps/web/src/partner-profile.tsx`、`apps/web/src/commission-workbench.tsx`、`apps/web/src/office-scene-spec.ts`、`apps/web/src/scene.ts`、`apps/web/src/vf1.css`。
+- **实施目标**：
+  1. **视角只控制镜头，不暗中隐藏画内人物**：确认并保持 `scene.ts` 中切视角（全景 / 工作区 / 会议区 / 休闲区 / 机房区）仅移动相机，绝不通过 `renderable` 隐藏画内角色；普通打开 S2/S3/抽屉不自动改变镜头。
+  2. **显式定位与返回全景**：
+     - 当玩家处于工作室（`p.scene === 'workshop'`）且目标伙伴也在工作室（或目标委托有已预订工位/会议席）时，提供清晰的显式「定位到场景 / Locate in scene」操作（例如在 S3 伙伴档案同场景操作区或伙伴抽屉/看板中点击定位后关闭浮层并将 `layoutCamera` 对准该伙伴所在槽位/锚点）；
+     - 当镜头处于非全景状态（`layoutCamera !== null` 或选择了局部区域视角）时，在 S1 主界面提供轻量、一键可达的 **「返回全景 / Reset view」** 胶囊按钮，点击后恢复默认全景镜头，且绝不派发任何经营 Command 或消耗 RNG。
+  3. **手机/窄屏与局部视角下的离屏提示**：
+     - 在窄屏（如 `390×844`、`560×800`）或局部视角下，当工作室中有在场伙伴因视口裁剪处于画外，或有伙伴位于食堂/图书馆/远征不在当前工作室画面内时，提供清晰的离屏/在场状态引导或快速定位入口，满足 `VISUAL_FREEZE_1.md` S1 放行标准（“明确可定位、可返回；HUD 不改变场景坐标”）。
+
+#### 任务 6：VF3 工作角落接触、遮挡与 4/12 人命中回归核验
+- **涉及文件**：`apps/web/src/office-scene-spec.ts`、`apps/web/src/scene.ts`、`apps/web/src/village-characters.ts`（仅在发现几何/锚点偏差时做表现层微调，**严禁修改 `apps/web/public/art/ai-village` 原版图像资产**）、测试文件。
+- **实施目标**：
+  1. 在 S1 最终显示尺寸（`1280×720`、`1920×1080`、`390×844`、`560×800`、`844×390`）下核验四位开局角色（DeepSeek / Qwen / Llama / Mistral）及 `twelve` 12 人夹具（含 GLM 等特殊体型）在站姿、基础/标准电脑工位入座、双会议席入座时的脚点/坐姿锚点、桌面与前挡板遮挡顺序、名牌位置及点击命中轮廓；
+  2. 确保点击角色脸部/上身稳定打开对应伙伴档案（S3），点击已占用工位桌面稳定打开对应委托工作台（S2），点击空闲工位桌面打开办公室布置（`OfficeEditor`），透明区域不抢点。
+
+---
+
+## 三、测试、实机证据、性能协议与双提交停止条件
+
+1. **自动化门禁**：
+   - 运行 `pnpm check` 与 `git diff --check`，确保所有单元测试、TypeScript、lint、默认 Web 生产构建与 DSH 构建全部通过；
+   - 运行 `git diff 2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f -- packages pnpm-lock.yaml apps/web/public/art/ai-village`，确认输出为空。
+2. **实机浏览器证据（保存至 `harness/vf3/` 或更新 `harness/vf2/` 并清晰索引）**：
+   - 实机复现并保存截图/JSON 证据：
+     - `VF2-F-01`～`VF2-F-04` 闭环证据：更新后的 S3 sticky 错误截图与坐标 JSON（`notice.top - head.bottom <= 2px`，无上方透字缝隙）、S3 关闭后 S1 无残留错误 JSON、异地加班后 `.profile-status` 文案验证、四个抽屉全部展开 `<12px` 文本节点为 `0` 的审计 JSON；
+     - `VF3` 证据：五视口（`1280×720`、`1920×1080`、`390×844`、`560×800` 英文深色 `twelve`、`844×390`）下的显式定位→镜头移动→「返回全景」恢复镜头验证、窄屏离屏提示/定位验证、4 人与 12 人（含 GLM）站姿/工位坐姿/会议席点击命中与遮挡截图。
+3. **同 DPR 性能对照抽检（必须在全部代码与 CSS 修改彻底定稿后执行！）**：
+   - **严格时序要求**：必须在完成任务 1～6 的全部代码与样式修改、确认不再改动源码之后，再执行启动性能采样，避免再次出现“先采样、后补收尾样式”的时间差；
+   - 保持 `1280×720` 与精确相同 DPR（`1.0000000447034836`），在 `dev` 与优化诊断构建（`vite build --mode visual-review`）下对 `standard` 与 `twelve` 执行 6 轮正反交替采样，与长期基线 `040031e`（`../vf11-perf-baseline`）及上一固定实现对照；
+   - 完整保留所有原始 JSON、预热排除项与任何 `>10%` 的不利批次，严禁挑选或删改数据；测试结束后必须重新运行 `pnpm --filter oot-web build` 恢复默认生产构建产物，确认产物无 `vf-metrics`。
+4. **文档更新与双提交停止条件**：
+   - 更新 `docs/STATUS.md`、`docs/ROADMAP.md`、`docs/VF2_CHECKPOINT.md`（及新增 `docs/VF3_CHECKPOINT.md`）、`docs/VISUAL_FREEZE_1.md`、`docs/DECISIONS.md` 与 `harness/build-log.md`；
+   - 先创建 **本地实现提交（commit 1）**，再创建独立的 **固定 SHA 与 Gemini 复审交接 Prompt 记录提交（commit 2）**；
+   - **停止条件**：完成上述两个本地提交、恢复默认生产构建产物、关闭所有临时端口（5181–5186）并恢复浏览器视口后**立即暂停**，输出下一轮 Gemini 独立审查 Prompt（并要求 Gemini 报告末尾再次给出完整可复制的交接回 Codex 的执行 Prompt）。**严禁自动进入 VF4 批量资产生产、严禁开启 O4-B/O4-C 新玩法、严禁 `git push`、部署或调用外部付费模型。**

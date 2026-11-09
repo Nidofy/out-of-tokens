@@ -1,6 +1,6 @@
 import {visualReviewEnabled} from './visual-review.js';
 import {LabSaves,labSession} from './office-lab.js';
-import {presentationEvent,commandFeedbackTarget} from './presentation-events.js';
+import {presentationEvent,commandFeedbackTarget,nextFeedback} from './presentation-events.js';
 import type {UiFeedback,FeedbackTarget,PresentationEvent} from './presentation-events.js';
 import {useEffect,useRef,useState} from 'preact/hooks';
 import {BrowserSaves,HostSaves,GameSession,manualSlots} from 'oot-platform';
@@ -17,13 +17,15 @@ export function useGame(){
  const [view,setView]=useState(session.view),[busy,setBusy]=useState(true),[records,setRecords]=useState<(StoredSave|null)[]>([]);
  const [feedback,setFeedback]=useState<UiFeedback|null>(null),feedbackId=useRef(0);
  const dismissFeedback=()=>setFeedback(null);
- const report=(code:string,target:FeedbackTarget={surface:'global'},error=false,receipt:PresentationEvent|null=null)=>setFeedback({id:++feedbackId.current,code,target,error,receipt});
+ const report=(code:string,target:FeedbackTarget={surface:'global'},error=false,receipt:PresentationEvent|null=null)=>{const next={id:++feedbackId.current,code,target,error,receipt};setFeedback(previous=>nextFeedback(previous,next,paused.current));};
  // Latest action wins; successful receipts expire, errors require dismissal or another operation.
  useEffect(()=>{if(!feedback||feedback.error)return;const expire=()=>{if(document.activeElement?.closest('.feedback-notice'))timer=setTimeout(expire,1000);else dismissFeedback();};let timer=setTimeout(expire,6000);return()=>clearTimeout(timer);},[feedback?.id]);
  const savedAuto=useRef('');
  const desktop=new URLSearchParams(location.search).get('desktop')==='1';
  const active=useRef<Promise<unknown>>(Promise.resolve());
  const gate=useRef(true),revisions=useRef<Partial<Record<WritableSlot,number>>>({}),paused=useRef(false);
+ // Explicit isolated lab fault injection exercises the real notification path, never player storage.
+ useEffect(()=>{if(!lab||!visualReviewEnabled||new URLSearchParams(location.search).get('test-fault')!=='storage-events')return;const inject=(e:KeyboardEvent)=>{if(e.ctrlKey&&e.shiftKey&&e.key==='F9'){e.preventDefault();storage.onExternalChange?.();}};window.addEventListener('keydown',inject);return()=>window.removeEventListener('keydown',inject);},[lab,storage]);
  const run=(work:()=>Promise<void>,target:FeedbackTarget={surface:'global'})=>{if(gate.current)return Promise.resolve(false);gate.current=true;setBusy(true);const task=(async()=>{try{await work();return true;}catch(e){report(e instanceof SyntaxError?'BAD_JSON':e instanceof Error?e.message:String(e),e instanceof StorageFeedbackError?{surface:'global'}:target,true);return false;}finally{gate.current=false;setBusy(false);}})();active.current=task;return task;};
  const list=async()=>setRecords(await storage.list());
  const write=async(id:WritableSlot)=>{if(id==='auto'&&paused.current)throw Error('AUTO_PAUSED');const text=await session.exportSave();if(id==='auto'&&savedAuto.current===text)return;revisions.current[id]=await storage.write(id,text,revisions.current[id]??0);if(id==='auto')savedAuto.current=text;await list();};

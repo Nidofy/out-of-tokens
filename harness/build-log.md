@@ -176,3 +176,14 @@ VF-07改单UiFeedback按origin/object ID路由，移除应用receipt队列与无
 基线251，typecheck-first通过；check-first/final/final-v2/final-v3均37文件259测试、类型/lint/Web/既有DSH构建通过。最后另执行oot-web build恢复默认生产，restore-production-build-final；正常产物无vf-metrics。开发逐步落盘产生过新import暂缺，完成后恢复；临时Python读脚本GBK失败、证据写入沙箱失败已用UTF-8/允许工具完成，不覆盖失败事实。仅清理本轮日志行尾。保护路径packages/pnpm-lock/ai-village资产零改动；引擎0.16.0/内容office-2不变。浏览器结束并恢复视口，临时服务全部停止后双本地提交；用户要求暂停，不push/部署/付费调用/自动VF3或O4新玩法。
 
 VF2固定实现61b9c7594dcf288e7cb0f136aec11911cdc7cbb6；本独立记录提交提供vf2-handoff与vf2-61b9c75-gemini-prompt，包含审查范围及必需回交Codex Prompt。实现提交前staged diff --check通过；没有后续实现修改。收尾复启5181亦已停止，状态暂停待复审，无push。
+
+
+## 2026-11-10 VF2收尾 + VF3检查点
+
+用户裁决原文归档 harness/reviews/vf3-user-handoff.txt，父e693642/VF2固定61b9c75。基线clean、pnpm check通过。按依赖先修局部反馈泄漏/全局暂停告警保留、sticky间隙、异地busy优先和遗漏字号；15项反馈/状态单测先通过，实机S3局部错误关闭无S1、visit无DONE、assign/deliver各1收据、Ctrl+Shift+F9内存夹具外部变更后chat不抹告警，desktop/mobile gap均0.4286px、展开抽屉无额外小字，然后进入VF3。
+
+共享actorPlacements和camera state，S2/S3显式locate、S1 reset、画外/异地位置列表；初始统一overview，场景变更清过期focus，普通浮层不移镜头。实机发现GLM工位名牌与下方Seedance头相碰；下移站位试验造成窄屏靠近底栏，最终撤回并改前挡板名牌。横屏双会议席低缩放名牌错开22px，Canvas文字12px。原像素资产/领域/价格/容量/RNG零改动。新增twelve-basic/standard/meeting内存夹具；初稿五人队伍被core拒绝LAB:INVALID_TEAM，保留fixture-initial-failure，改合法三人队伍并加入回归。preview-verification包含同一旧dev URL历史错误，不是新preview报错。
+
+38文件291测试、类型/lint/Web/DSH构建通过。42次实机点击：四人/十二人站姿、GLM电脑及双会议席、占用桌面/白板、空桌布置、透明桌角；五视口camera往返JSON及截图。若干旧位置工具/名牌中间图保留，最终图以VF3_CHECKPOINT索引为准。不冒称全角色×全姿态×全视口笛卡尔积全部实点，远征未从第0章长跑到达；共享几何有逐十二角色真实Command锚点断言。
+
+严格时序：UTC16:28:30.958冻结全部源码/CSS，之后才12预热与72正式+72复核，同1280×720/DPR1.0000000447034836，standard/twelve、dev/优化visual-review preview，六轮正反交替，对040031e及61b9c75。150文件采样前后原始哈希一致，另列LF规范化哈希支持Git检出验证。首批dev standard对040031e+14.82%；复核对VF2+20.20%仍不利，两批保留。preview对VF2首批-2.50%/-1.89%、复核-4.78%/-4.30%。补充三个dev版本180帧p50约8.3/p95约8.4–8.5、>50ms帧0，资源数VF2/VF3均104，载荷+36720B；不能用单次较好启动值关闭风险，根因待专项profile。正常发布产物已重建无vf-metrics/vf-startup；5181–5186无监听、视口reset和标签关闭。旧基线worktree/junction保留。更新六份状态/决策文档，本地双提交后暂停；没有push、部署、付费调用、VF4或O4新玩法。

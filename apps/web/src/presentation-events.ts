@@ -9,10 +9,19 @@ export function commandFeedbackTarget(command:Command):FeedbackTarget{
 }
 export function feedbackSurface(feedback:UiFeedback|null,open:{job?:string|undefined;actor?:string|undefined;saves:boolean;modal:boolean}):'global'|'job'|'actor'|'saves'|null{
  if(!feedback)return null;
+ if(feedback.target.surface==='global'&&feedback.error){
+  if(open.job)return 'job';
+  if(open.actor)return 'actor';
+  if(open.saves)return 'saves';
+ }
  if(open.job&&feedback.target.surface==='job'&&feedback.target.id===open.job)return 'job';
  if(!open.job&&open.actor&&feedback.target.surface==='actor'&&feedback.target.id===open.actor)return 'actor';
  if(open.saves&&(feedback.target.surface==='saves'||feedback.target.surface==='global'&&feedback.error))return 'saves';
- return open.modal?null:'global';
+ return !open.modal&&(feedback.target.surface==='global'||feedback.receipt?.kind==='assign'||feedback.receipt?.kind==='deliver')?'global':null;
+}
+/** Paused persistence warnings survive unrelated operations until acknowledged or recovered. */
+export function nextFeedback(previous:UiFeedback|null,next:UiFeedback,paused:boolean):UiFeedback{
+ return paused&&previous?.target.surface==='global'&&previous.error&&!(next.target.surface==='global'&&next.error)?previous:next;
 }
 export interface PresentationEvent {id:number;kind:'accept'|'assign'|'deliver'|'upgrade';title:[string,string];}
 // A transient, bounded UI queue. No timers, rewards, RNG or save mutations here.

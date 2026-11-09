@@ -8,10 +8,10 @@ import {characterProfiles} from './character-profiles.js';
 import {names} from './presentation.js';
 import {sceneText,skillText} from './ui-labels.js';
 import {partnerAvailability} from './partner-state.js';
-type Props={view:GameView;actor:GameView['actors'][number];english:boolean;locked:boolean;send:(cmd:Command)=>Promise<boolean>;close:()=>void;closePanel:()=>void;openJob:(id:string)=>void;notice:ComponentChildren};
-export function PartnerProfile({view,actor,english,locked,send,close,closePanel,openJob,notice}:Props){
+type Props={locate:(()=>void)|undefined;view:GameView;actor:GameView['actors'][number];english:boolean;locked:boolean;send:(cmd:Command)=>Promise<boolean>;close:()=>void;closePanel:()=>void;openJob:(id:string)=>void;notice:ComponentChildren};
+export function PartnerProfile({view,actor,english,locked,send,close,closePanel,openJob,notice,locate}:Props){
  const tr=(zh:string,en:string)=>english?en:zh,p=view.campaign!,catalog=view.catalog!;
- const {sameScene,onExpedition,activeJobs,lifeBusy,canRecall}=partnerAvailability(view,actor,locked);
+ const {sameScene,onExpedition,activeJobs,lifeBusy,canRecall,status}=partnerAvailability(view,actor,locked);
  const scene=(id:keyof typeof sceneText|'expedition')=>id==='expedition'?tr('远征中','On expedition'):sceneText[id][english?1:0],skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
  const life=(action:Extract<Command,{type:'campaign'}>['action'],id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
  return (
@@ -42,8 +42,8 @@ export function PartnerProfile({view,actor,english,locked,send,close,closePanel,
 <small>{tr('负载','Load')}</small>
 <b>{actor.load}</b>
 </div>
-</div>{(onExpedition||!sameScene||lifeBusy)&&<p class="profile-status">{onExpedition?tr('正在远征中，返程后可安排工作室活动。','On expedition. Studio activities resume after returning.'):!sameScene?tr(`当前在${scene(actor.location)}：先去找伙伴即可聊天或互动。`,`Currently in ${scene(actor.location)}. Visit this teammate to interact.`):activeJobs.length&&actor.busyUntil<=view.absoluteSlot?tr('正在负责委托工作，空闲后可聊天。','Working on a commission. Chat becomes available when free.'):tr('本时段已有安排，下一时段可聊天。','Occupied this period. Chat becomes available next period.')}</p>}<div class="profile-actions">
-<button onClick={()=>life('chat',actor.id)} disabled={locked||lifeBusy||!sameScene}>{tr('聊天','Chat')}</button>{activeJobs.map(j=>
+</div>{(onExpedition||!sameScene||lifeBusy)&&<p class="profile-status">{onExpedition?tr('正在远征中，返程后可安排工作室活动。','On expedition. Studio activities resume after returning.'):status==='elsewhere'?tr(`当前在${scene(actor.location)}：先去找伙伴即可聊天或互动。`,`Currently in ${scene(actor.location)}. Visit this teammate to interact.`):status==='work'?tr('正在负责委托工作，空闲后可聊天。','Working on a commission. Chat becomes available when free.'):tr('本时段已有安排，下一时段可聊天。','Occupied this period. Chat becomes available next period.')}</p>}<div class="profile-actions">
+{locate&&<button onClick={locate}>{tr('定位到场景','Locate in scene')}</button>}<button onClick={()=>life('chat',actor.id)} disabled={locked||lifeBusy||!sameScene}>{tr('聊天','Chat')}</button>{activeJobs.map(j=>
 <button class="primary" onClick={()=>{close();openJob(j.id);}}>{tr('查看工作','View work')}</button>)}{!sameScene&&!onExpedition&&<button class={activeJobs.length?'':'primary'} disabled={locked} onClick={()=>{void send({type:'campaign',action:'visit',id:actor.location}).then(ok=>{if(ok){close();closePanel();}});}}>{tr('去找伙伴','Visit character')}</button>}</div>{notice}<details class="profile-section">
 <summary>{tr('互动与日程','Interactions and schedule')}</summary>
 <p>{tr('送礼需 ¥60；吃饭需在食堂/图书馆（¥30），学习需在图书馆且精力至少10。均需伙伴同场景且本时段空闲（在岗伙伴晚间未加班时可互动）；请回工作室需在食堂/图书馆且同场景，或已研发远程协作；加班需执行中的委托、精力至少10且本时段未被其他活动占用，仅限晚间/深夜且不可重复安排。','Gifts cost ¥60. Meals require the canteen/library and ¥30; study requires the library and 10 energy. These activities need a teammate free this period in the same scene; assigned teammates can interact after work without overtime. Recall from the canteen/library requires the same scene or Remote Collaboration. Overtime requires an active job, 10 energy and no conflicting activity; evening/night only, once per period.')}</p>

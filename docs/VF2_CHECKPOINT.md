@@ -1,3 +1,5 @@
+2026-11-10 收尾更新：用户独立裁决VF2有条件通过。本轮已闭环VF2-F-01～04：局部反馈不泄漏、暂停存储告警在活动弹窗保留、S3 sticky gap约0.43px、异地忙碌优先、job-tags/version-tag≥12px。先决实机验证后进入限定VF3；本轮全量291测试、证据和当前风险以VF3_CHECKPOINT.md为准。下文VF2原始实现/259测试及旧反馈边界是历史，不代表返修后的语义。
+
 # VF2：组件、反馈与字体形状规范检查点
 
 2026-11-09。实现基线 `2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f` / 记录 `fed8c40`。本轮已实施并到检查点暂停，待 Gemini 独立复审；固定实现 SHA 和完整 Prompt 见后续记录提交的 `harness/reviews/vf2-handoff.md`。不自动进入 VF3/VF4，不 push。

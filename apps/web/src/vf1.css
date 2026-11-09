@@ -59,7 +59,7 @@
 .job-bottom strong,.finance-summary>b,.quality-result strong{font-family:var(--font-display)}
 /* VF2 confirmed type, state and feedback rules; compact landscape notes remain 11px. */
 .studio-app .hud-resources span,.studio-app .resource-strip button>span{font-size:16px}
-.studio-app :is(.actor-card small,.job-meta,.job-bottom,.map-cards small,.onboarding p,.ending-option p){font-size:12px}
+.studio-app :is(.job-tags span,.version-tag,.actor-card small,.job-meta,.job-bottom,.map-cards small,.onboarding p,.ending-option p){font-size:12px}
 .studio-app .actor-card b,.studio-app .candidate b,.studio-app .job-meta>span:first-child{font-size:16px}
 .studio-app .village-time{font-size:12px}
 .studio-app :is(button,select,input):disabled{opacity:1;color:var(--muted);background:var(--hover);border-color:var(--line);box-shadow:none;cursor:not-allowed}
@@ -71,6 +71,15 @@
 .feedback-notice[data-kind=error]{border-color:var(--danger)}
 .feedback-notice p{margin:0;flex:1;min-width:0;font-size:14px;overflow-wrap:anywhere}
 .feedback-notice button{flex:0 0 44px;min-height:44px;padding:4px}
-.profile-dialog>.feedback-notice{position:sticky;top:68px;z-index:1;margin-bottom:12px;box-shadow:0 2px 8px #21180f20}
+.profile-dialog>.feedback-notice{position:sticky;top:48px;z-index:1;margin-bottom:12px;box-shadow:0 2px 8px #21180f20}
 .work-confirm .feedback-notice{margin-bottom:4px}
 .studio-app .status-toast{padding:4px;max-width:min(460px,calc(100% - 24px));background:var(--solid)}
+/* VF3 navigation is screen space; world geometry never reserves room for HUD. */
+.scene-tools{position:absolute;z-index:40;left:16px;top:72px;display:flex;gap:8px;max-width:calc(100% - 32px);flex-wrap:wrap}
+.scene-tools button{min-height:44px;padding:8px 14px;border-radius:999px;background:var(--solid);font-size:12px;box-shadow:0 2px 8px #21180f30}
+.scene-presence{position:absolute;z-index:36;left:16px;top:126px;width:320px;max-width:calc(100% - 32px);max-height:calc(100dvh - 220px);overflow:auto;padding:12px;background:var(--solid);border:1px solid var(--line);border-radius:16px;box-sizing:border-box}
+.scene-presence header,.scene-presence>div{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.scene-presence header{position:sticky;top:-12px;background:var(--solid);padding:4px 0;border-bottom:1px solid var(--line)}
+.scene-presence>div{padding:8px 0}.scene-presence b{font-size:14px}.scene-presence small{display:block;font-size:12px}.scene-presence button{font-size:12px;flex-shrink:0}
+@media(max-width:679px){.scene-tools{top:116px}.scene-presence{top:170px;max-height:calc(100dvh - 264px)}}
+@media(max-height:479px){.scene-tools{top:64px}.scene-presence{top:118px;max-height:calc(100dvh - 200px)}}

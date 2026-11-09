@@ -1,0 +1,21 @@
+{
+  "camera": {
+    "background": "-42.6667px -370.667px",
+    "dialogs": 0,
+    "hud": "第1天 · 上午开源车库¥490490 T下一时段",
+    "reset": true,
+    "size": "2048px 1152px",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "errors": [
+    {
+      "level": "error",
+      "message": "Error: LAB:INVALID_TEAM\n    at send (http://127.0.0.1:5181/src/office-lab.ts?t=1794240556082:53:22)\n    at labSession (http://127.0.0.1:5181/src/office-lab.ts?t=1794240556082:97:70)\n    at http://127.0.0.1:5181/src/use-game.ts?t=1794240556082:15:41\n    at G (http://127.0.0.1:5181/node_modules/.vite/deps/preact_hooks.js?v=68b66940:198:34)\n    at _ (http://127.0.0.1:5181/node_modules/.vite/deps/preact_hooks.js?v=68b66940:31:45)\n    at d (http://127.0.0.1:5181/node_modules/.vite/deps/preact_hooks.js?v=68b66940:27:16)\n    at useGame (http://127.0.0.1:5181/src/use-game.ts?t=1794240556082:15:20)\n    at x.AlphaApp [as constructor] (http://127.0.0.1:5181/src/alpha-app.tsx?t=1794240556084:160:15)\n    at x.K [as render] (http://127.0.0.1:5181/node_modules/.vite/deps/preact.js?v=d22c192b:272:14)\n    at z (http://127.0.0.1:5181/node_modules/.vite/deps/preact.js?v=d22c192b:179:35)",
+      "timestamp": "2026-11-09T16:12:17.230Z",
+      "url": "http://127.0.0.1:5181/src/office-lab.ts?t=1794240556082"
+    }
+  ]
+}

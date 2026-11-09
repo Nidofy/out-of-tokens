@@ -1,0 +1,134 @@
+[
+  {
+    "recordedAt": "2026-11-09T16:34:47.533Z",
+    "label": "040031e-dev",
+    "scenario": "standard",
+    "round": 0,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 173.6,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "reload"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics.",
+    "framesAndResources": {
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "threads": 16,
+      "viewport": [
+        1280,
+        720,
+        1.0000000447034836
+      ],
+      "observedControlsAndCanvasMs": 173.6,
+      "raf": {
+        "samples": 180,
+        "p50": 8.300000000000011,
+        "p95": 8.5,
+        "over50": 0
+      },
+      "resources": {
+        "count": 96,
+        "transfer": 22500,
+        "decodedBody": 12318738
+      },
+      "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready."
+    }
+  },
+  {
+    "recordedAt": "2026-11-09T16:34:49.275Z",
+    "label": "61b9c75-dev",
+    "scenario": "standard",
+    "round": 0,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 155,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics.",
+    "framesAndResources": {
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "threads": 16,
+      "viewport": [
+        1280,
+        720,
+        1.0000000447034836
+      ],
+      "observedControlsAndCanvasMs": 155,
+      "raf": {
+        "samples": 180,
+        "p50": 8.300000000000068,
+        "p95": 8.5,
+        "over50": 0
+      },
+      "resources": {
+        "count": 104,
+        "transfer": 24900,
+        "decodedBody": 12623053
+      },
+      "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready."
+    }
+  },
+  {
+    "recordedAt": "2026-11-09T16:34:51.025Z",
+    "label": "vf3-dev",
+    "scenario": "standard",
+    "round": 0,
+    "kind": "controls-and-canvas-only",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 153.1,
+    "visibility": "visible",
+    "navigation": [
+      {
+        "type": "navigate"
+      }
+    ],
+    "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics.",
+    "framesAndResources": {
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "threads": 16,
+      "viewport": [
+        1280,
+        720,
+        1.0000000447034836
+      ],
+      "observedControlsAndCanvasMs": 153.1,
+      "raf": {
+        "samples": 180,
+        "p50": 8.300000000000068,
+        "p95": 8.400000000000091,
+        "over50": 0
+      },
+      "resources": {
+        "count": 104,
+        "transfer": 24900,
+        "decodedBody": 12659773
+      },
+      "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready."
+    }
+  }
+]

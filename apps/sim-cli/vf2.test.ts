@@ -2,7 +2,7 @@ import {test,expect} from 'vitest';
 import {loadFullContent} from 'oot-content';
 import {labSession} from '../web/src/office-lab.js';
 import {partnerAvailability} from '../web/src/partner-state.js';
-import {commandFeedbackTarget,feedbackSurface,presentationEvent} from '../web/src/presentation-events.js';
+import {commandFeedbackTarget,feedbackSurface,presentationEvent,nextFeedback} from '../web/src/presentation-events.js';
 import type {UiFeedback} from '../web/src/presentation-events.js';
 
 function evening(){
@@ -33,7 +33,37 @@ test('daytime assignment and evening overtime block life actions independently o
  const actor=night.view.actors.find(a=>a.id==='qwen')!;
  expect(actor.location).toBe('workshop');
  expect(partnerAvailability(night.view,actor)).toMatchObject({lifeBusy:true,canRecall:false});
+ expect(partnerAvailability(night.view,actor).status).toBe('work');
  expect(night.send({type:'campaign',action:'chat',id:'qwen'}).error).toBe('ACTOR_BUSY');
+});
+test('status prioritizes expedition and occupancy over a different scene',()=>{
+ const g=evening();g.send({type:'campaign',action:'visit',id:'workshop'});
+ const actor=g.view.actors.find(a=>a.id==='qwen')!;
+ expect(partnerAvailability(g.view,actor).status).toBe('elsewhere');
+ expect(partnerAvailability(g.view,{...actor,busyUntil:g.view.absoluteSlot+1}).status).toBe('occupied');
+ expect(partnerAvailability(g.view,{...actor,location:'expedition',busyUntil:g.view.absoluteSlot+1}).status).toBe('expedition');
+});
+test('local errors, visits and accept receipts never escape to S1; assign/deliver do',()=>{
+ const base:UiFeedback={id:1,code:'INSUFFICIENT_FUNDS',target:{surface:'actor',id:'qwen'},error:true,receipt:null};
+ const closed={saves:false,modal:false};
+ for(const target of [{surface:'actor',id:'qwen'},{surface:'job',id:'a'},{surface:'saves'}] as const){
+  expect(feedbackSurface({...base,target},closed)).toBeNull();
+  expect(feedbackSurface({...base,target,error:false,code:'DONE'},closed)).toBeNull();
+ }
+ for(const kind of ['accept','assign','deliver'] as const){
+  expect(feedbackSurface({...base,error:false,target:{surface:'job',id:'a'},receipt:{id:2,kind,title:['','']}},closed)).toBe(kind==='accept'?null:'global');
+ }
+});
+test.each(['EXTERNAL_CHANGE','AUTO_PAUSED','STORAGE_UNAVAILABLE','SAVE_CONFLICT','WRITE_UNCERTAIN'])('paused %s stays visible through ordinary success until acknowledgement or recovery',code=>{
+ const error:UiFeedback={id:1,code,target:{surface:'global'},error:true,receipt:null};
+ for(const surface of ['job','actor','saves'] as const){
+  expect(feedbackSurface(error,{job:surface==='job'?'a':undefined,actor:surface==='actor'?'qwen':undefined,saves:surface==='saves',modal:true})).toBe(surface);
+ }
+ const success:UiFeedback={id:2,code:'ACCEPTED',target:{surface:'job',id:'a'},error:false,receipt:null};
+ expect(nextFeedback(error,success,true)).toBe(error);
+ expect(nextFeedback(null,success,true)).toBe(success);
+ expect(nextFeedback(error,success,false)).toBe(success);
+ expect(nextFeedback(error,{...error,id:3},true).id).toBe(3);
 });
 test('recall requires same scene or existing remote software, never expedition or a UI lock',()=>{
  const g=evening();expect(g.send({type:'campaign',action:'visit',id:'workshop'}).error).toBeNull();

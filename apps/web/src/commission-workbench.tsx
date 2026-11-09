@@ -7,8 +7,8 @@ import {Portrait} from './studio-ui.js';
 import {AssignmentForecast,DeliverySummary} from './decision-panels.js';
 import {names} from './presentation.js';
 import {skillText} from './ui-labels.js';
-type Props={view:GameView;job:GameView['jobs'][number];english:boolean;locked:boolean;send:(cmd:Command)=>Promise<boolean>;previewAssignment:GameSession['previewAssignment'];close:()=>void;closePanel:()=>void;messages:Record<string,[string,string]>;notice:ComponentChildren};
-export function CommissionWorkbench({view,job,english,locked,send,previewAssignment,close,closePanel,messages,notice}:Props){
+type Props={locate:(()=>void)|undefined;view:GameView;job:GameView['jobs'][number];english:boolean;locked:boolean;send:(cmd:Command)=>Promise<boolean>;previewAssignment:GameSession['previewAssignment'];close:()=>void;closePanel:()=>void;messages:Record<string,[string,string]>;notice:ComponentChildren};
+export function CommissionWorkbench({view,job,english,locked,send,previewAssignment,close,closePanel,messages,notice,locate}:Props){
  const tr=(zh:string,en:string)=>english?en:zh,p=view.campaign!,skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
  const [workStep,setWorkStep]=useState('brief'),[team,setTeam]=useState<Record<string,{role:'none'|Member['role'];mode:Member['mode']}>>(()=>Object.fromEntries(view.actors.map(a=>{const m=job.team.find(m=>m.character===a.id);return[a.id,{role:m?.role??'none',mode:m?.mode??'cloud'}];})));
  const workLayout=['posted','accepted','working'].includes(job.status)?'tri':'single';
@@ -20,7 +20,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
 <button aria-pressed={workStep===id} onClick={()=>setWorkStep(id)}>{i+1} · {tr(['需求','队伍','预估'][i]!,['Brief','Team','Forecast'][i]!)}</button>)}</nav>
 <section class="work-brief">
 <h3>{workLayout==='tri'?tr('01 · 理解需求','01 · Understand the brief'):tr('委托需求','Commission brief')}</h3>
-<p>{english?job.descriptionEn:job.description}</p>
+{locate&&<button onClick={locate}>{tr('定位到场景','Locate in scene')}</button>}<p>{english?job.descriptionEn:job.description}</p>
 <p>{tr('工作量 / 截止时间 / 及格线','Work / deadline / passing quality')}: {job.work} / {job.status==='posted'?`${job.workSlots} ${tr('白天工作时段（接单时起算）','daytime work periods from acceptance')}`:job.deadline?`${tr('第','Day ')}${Math.floor(job.deadline/4)+1}${tr('天','')} · ${[tr('上午','Morning'),tr('下午','Afternoon'),tr('晚上','Evening'),tr('深夜','Night')][job.deadline%4]}`:'—'} / {job.passQuality}</p>{job.revealedRequirements.map(r=>
 <p>{english?r.labelEn:r.label} +{r.work} WP</p>)}{job.status==='posted'&&<>{job.proposals.length>0&&<section class="campaign-panel">
 <h3>{tr('确认真正需要的范围','Agree on the actual scope')}</h3>

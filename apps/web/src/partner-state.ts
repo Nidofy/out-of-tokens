@@ -6,5 +6,6 @@ export function partnerAvailability(view:GameView,actor:GameView['actors'][numbe
  const activeJobs=view.jobs.filter(j=>['working','review','accepted','waiting'].includes(j.status)&&j.team.some(m=>m.character===actor.id));
  const lifeBusy=actor.busyUntil>view.absoluteSlot||view.overtime.includes(actor.id)||(activeJobs.length>0&&view.absoluteSlot%4<2);
  const canRecall=!locked&&!onExpedition&&!lifeBusy&&actor.location!=='workshop'&&(sameScene||p.software.includes('remote'));
- return {sameScene,onExpedition,activeJobs,lifeBusy,canRecall};
+ const status=onExpedition?'expedition':lifeBusy?(activeJobs.length&&actor.busyUntil<=view.absoluteSlot?'work':'occupied'):!sameScene?'elsewhere':null;
+ return {sameScene,onExpedition,activeJobs,lifeBusy,canRecall,status};
 }

@@ -1,0 +1,425 @@
+[
+  {
+    "viewport": "390x844",
+    "scenario": "standard",
+    "point": [
+      195,
+      385
+    ],
+    "expected": "Qwen",
+    "actual": "Qwen"
+  },
+  {
+    "viewport": "390x844",
+    "scenario": "standard",
+    "point": [
+      175,
+      480
+    ],
+    "expected": "job menu",
+    "actual": "帮楼下奶茶店写个菜单"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard",
+    "point": [
+      500,
+      520
+    ],
+    "expected": "DeepSeek",
+    "actual": "DeepSeek"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard",
+    "point": [
+      1280,
+      520
+    ],
+    "expected": "Qwen",
+    "actual": "Qwen"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard",
+    "point": [
+      848,
+      550
+    ],
+    "expected": "Llama",
+    "actual": "Llama"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard",
+    "point": [
+      992,
+      550
+    ],
+    "expected": "Mistral",
+    "actual": "Mistral"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard",
+    "point": [
+      1530,
+      520
+    ],
+    "expected": "GPT",
+    "actual": "GPT"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard",
+    "point": [
+      1770,
+      520
+    ],
+    "expected": "Claude",
+    "actual": "Claude"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard",
+    "point": [
+      170,
+      740
+    ],
+    "expected": "Kimi",
+    "actual": "Kimi"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard",
+    "point": [
+      400,
+      740
+    ],
+    "expected": "Gemini",
+    "actual": "Gemini"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard",
+    "point": [
+      1500,
+      740
+    ],
+    "expected": "Grok",
+    "actual": "Grok"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard",
+    "point": [
+      640,
+      650
+    ],
+    "expected": "GLM",
+    "actual": "GLM"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard",
+    "point": [
+      1770,
+      740
+    ],
+    "expected": "MiniMax",
+    "actual": "MiniMax"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard",
+    "point": [
+      570,
+      850
+    ],
+    "expected": "Seedance",
+    "actual": "Seedance"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard-focus",
+    "point": [
+      960,
+      512
+    ],
+    "expected": "GLM",
+    "actual": "GLM"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standard",
+    "point": [
+      900,
+      738
+    ],
+    "expected": "OfficeEditor empty desk",
+    "actual": "布置办公室\n¥4903.9 − ¥0 = ¥4903.9\n收起工具\n取消\n保存布置\n标准预设\n镜像预设\nwork-1 ✦+10% 🔒\nwork-2 · Ⅰ\nwork-3 · Ⅰ\nwork-4\nmeeting-1 🔒\nmeeting-2\nlounge-1\nlounge-2\nlounge-3\nserver-1\nserver-2\n可访问的槽位选择\n收回仓库\nwork-1（交换）\nwork-2（交换）\nwork-3（交换）\nwork-4\n家具库存\n标准桌 · 网布椅 · 单屏 · work-1 🔒\n小木桌 · 板凳 · 旧电脑 · work-2\n小木桌 · 板凳 · 旧电脑 · work-3\n协作白板（两席） · meeting-1 🔒\n旧咖啡台 · lounge-1\n收回选中家具\n工位套餐\n会议设施\n休闲家具\n设备外壳\n添购 小木桌 · 板凳 · 旧电脑 ¥180\n添购 标准桌 · 网布椅 · 单屏 ¥550\n\n选中工位 · 执行/负责人产出 +10% · 工作精力消耗修正 +0\n\n工位 3/4 · 基础工位每工作槽额外消耗2精力；标准工位执行者/负责人产出+10%，按实际产出计资源。摸鱼与休闲恢复尚未开放；设备外壳不增加算力。\n\n布局没有变化。"
+  },
+  {
+    "viewport": "560x800",
+    "scenario": "twelve-focus-dark-en",
+    "point": [
+      280,
+      545
+    ],
+    "expected": "GLM",
+    "actual": "GLM"
+  },
+  {
+    "viewport": "844x390",
+    "scenario": "meeting-focus",
+    "point": [
+      422,
+      174
+    ],
+    "expected": "Qwen",
+    "actual": "Qwen"
+  },
+  {
+    "viewport": "844x390",
+    "scenario": "meeting-focus",
+    "point": [
+      567,
+      98
+    ],
+    "expected": "Llama",
+    "actual": "Llama"
+  },
+  {
+    "viewport": "844x390",
+    "scenario": "meeting-focus",
+    "point": [
+      670,
+      98
+    ],
+    "expected": "DeepSeek",
+    "actual": "DeepSeek"
+  },
+  {
+    "viewport": "844x390",
+    "scenario": "meeting-focus",
+    "point": [
+      211,
+      120
+    ],
+    "expected": "Mistral",
+    "actual": "Mistral"
+  },
+  {
+    "viewport": "844x390",
+    "scenario": "meeting-focus",
+    "point": [
+      620,
+      79
+    ],
+    "expected": "job menu whiteboard center",
+    "actual": "帮楼下奶茶店写个菜单"
+  },
+  {
+    "viewport": "1280x720",
+    "scenario": "initial",
+    "point": [
+      223,
+      380
+    ],
+    "expected": "DeepSeek",
+    "actual": "DeepSeek"
+  },
+  {
+    "viewport": "1280x720",
+    "scenario": "initial",
+    "point": [
+      326,
+      380
+    ],
+    "expected": "Qwen",
+    "actual": "Qwen"
+  },
+  {
+    "viewport": "1280x720",
+    "scenario": "initial",
+    "point": [
+      143,
+      534
+    ],
+    "expected": "Llama",
+    "actual": "Llama"
+  },
+  {
+    "viewport": "1280x720",
+    "scenario": "initial",
+    "point": [
+      287,
+      534
+    ],
+    "expected": "Mistral",
+    "actual": "Mistral"
+  },
+  {
+    "viewport": "1280x720",
+    "scenario": "initial-transparent-desk-corner",
+    "point": [
+      500,
+      430
+    ],
+    "expected": "no overlay",
+    "actual": {
+      "dialogs": 0,
+      "editor": false
+    }
+  },
+  {
+    "viewport": "390x844",
+    "scenario": "twelve-basic-focus",
+    "point": [
+      195,
+      385
+    ],
+    "expected": "GLM",
+    "actual": "GLM"
+  },
+  {
+    "viewport": "560x800",
+    "scenario": "twelve-standard-dark-en",
+    "point": [
+      280,
+      365
+    ],
+    "expected": "GLM",
+    "actual": "GLM"
+  },
+  {
+    "viewport": "844x390",
+    "scenario": "twelve-basic-focus",
+    "point": [
+      422,
+      174
+    ],
+    "expected": "GLM",
+    "actual": "GLM"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standing-final",
+    "point": [
+      500,
+      520
+    ],
+    "expected": "DeepSeek",
+    "actual": "DeepSeek"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standing-final",
+    "point": [
+      1280,
+      520
+    ],
+    "expected": "Qwen",
+    "actual": "Qwen"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standing-final",
+    "point": [
+      1530,
+      520
+    ],
+    "expected": "Llama",
+    "actual": "Llama"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standing-final",
+    "point": [
+      1770,
+      520
+    ],
+    "expected": "Mistral",
+    "actual": "Mistral"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standing-final",
+    "point": [
+      170,
+      740
+    ],
+    "expected": "GPT",
+    "actual": "GPT"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standing-final",
+    "point": [
+      400,
+      740
+    ],
+    "expected": "Claude",
+    "actual": "Claude"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standing-final",
+    "point": [
+      1500,
+      740
+    ],
+    "expected": "Kimi",
+    "actual": "Kimi"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standing-final",
+    "point": [
+      1770,
+      740
+    ],
+    "expected": "Gemini",
+    "actual": "Gemini"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standing-final",
+    "point": [
+      570,
+      850
+    ],
+    "expected": "Grok",
+    "actual": "Grok"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standing-final",
+    "point": [
+      810,
+      850
+    ],
+    "expected": "GLM",
+    "actual": "GLM"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standing-final",
+    "point": [
+      1050,
+      850
+    ],
+    "expected": "MiniMax",
+    "actual": "MiniMax"
+  },
+  {
+    "viewport": "1920x1080",
+    "scenario": "twelve-standing-final",
+    "point": [
+      1290,
+      850
+    ],
+    "expected": "Seedance",
+    "actual": "Seedance"
+  }
+]
