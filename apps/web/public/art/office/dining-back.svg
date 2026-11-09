@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-140 -200 280 240"><defs><linearGradient id="wood" x2="0" y2="1"><stop stop-color="#e5ba85"/><stop offset="1" stop-color="#ab724b"/></linearGradient><linearGradient id="panel" x2="0" y2="1"><stop stop-color="#9c6946"/><stop offset="1" stop-color="#7d5236"/></linearGradient><linearGradient id="screen" x2="0.8" y2="1"><stop stop-color="#273e4b"/><stop offset="1" stop-color="#4b697c"/></linearGradient><linearGradient id="cloth" x2="0" y2="1"><stop stop-color="#b2ae94"/><stop offset="1" stop-color="#6c7366"/></linearGradient></defs><g/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-140 -200 280 240"><defs>
+<radialGradient id="sh" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#3a291c" stop-opacity=".26"/><stop offset=".68" stop-color="#3a291c" stop-opacity=".11"/><stop offset="1" stop-color="#3a291c" stop-opacity="0"/></radialGradient>
+<linearGradient id="wood" x1="0" y1="0" x2=".75" y2="1"><stop offset="0" stop-color="#f0cca0"/><stop offset=".55" stop-color="#cf9666"/><stop offset="1" stop-color="#9e6742"/></linearGradient>
+<linearGradient id="wood2" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#f5dab4"/><stop offset=".5" stop-color="#d7a170"/><stop offset="1" stop-color="#a87048"/></linearGradient>
+<linearGradient id="panel" x1="0" y1="0" x2=".4" y2="1"><stop offset="0" stop-color="#9a6845"/><stop offset="1" stop-color="#6d462d"/></linearGradient>
+<linearGradient id="walnut" x1="0" y1="0" x2=".5" y2="1"><stop offset="0" stop-color="#685344"/><stop offset="1" stop-color="#43342a"/></linearGradient>
+<linearGradient id="screen" x1="0" y1="0" x2=".85" y2="1"><stop offset="0" stop-color="#2c4349"/><stop offset="1" stop-color="#4d6d74"/></linearGradient>
+<linearGradient id="cloth" x1="0" y1="0" x2=".65" y2="1"><stop offset="0" stop-color="#c4be9f"/><stop offset="1" stop-color="#7c7a67"/></linearGradient>
+<linearGradient id="mesh" x1="0" y1="0" x2=".5" y2="1"><stop offset="0" stop-color="#968e7b"/><stop offset="1" stop-color="#5d5649"/></linearGradient>
+</defs><g stroke="#654b38" stroke-width="1.25" stroke-opacity=".62" stroke-linejoin="round" stroke-linecap="round"></g></svg>

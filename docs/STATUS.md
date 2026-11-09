@@ -1,3 +1,5 @@
+2026-11-09 未提交UI改动集成复审：方向接受，不能视为Phase 1–3全量视觉验收。已修Qwen屏幕遮脸、标准工位错误加成徽章、层级重复染色、单屏定义不一致、40px触控覆盖与窄屏HUD安全边。35文件234测试通过；定调、A–F详细计划及未验收范围见docs/UI_ART_DIRECTION_1109.md（本目录内为UI_ART_DIRECTION_1109.md）；实机记录harness/ui-art-review-1109/integration-results.md。下一项先做样板A、组件B与构图C，再继续O4-B；engine/content不变。
+
 O4-A固定实现：bdaa11c25bbf8616b0191ca4599b8dc4a711cd2f；UI审阅基线ee9dd843061b90d8dff88340d65f75100d897dc1。验收入口harness/reviews/o4a-handoff.md。
 
 2026-11-09 当前权威入口：UI/美术1109复审基线ee9dd84已接受；O4-A效率/疲劳首闭环完成，engine0.16.0/content office-2，34文件233测试及类型/lint/构建通过。基础工位实际工作+2精力消耗、标准工位执行/负责人WP+10%，预估/预算/结算/显示同步。0.15/office-1旧档明确拒绝，旧数据库保留。实机8.84→9.73WP、83→85精力及390手机升级保存通过。规则/证据/后续见OFFICE_O4_FIRST_LOOP.md；下一项O4-B确定性摸鱼与发现提醒，O4-C/D和O5/O6未完成。以下历史不覆盖本段。

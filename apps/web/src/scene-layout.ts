@@ -1,4 +1,13 @@
 import type {GameView} from 'oot-platform';
+/** Display only an active WP-producing member's reserved station bonus. */
+export function activeStationBonus(view:GameView,id:string){
+ const r=view.office?.reservations[id];
+ const job=view.jobs.find(j=>j.id===r?.job&&j.status==='working');
+ const member=job?.team.find(m=>m.character===id);
+ const item=view.office?.items.find(i=>i.id===r?.item);
+ if(!member||!['worker','planner'].includes(member.role)||r?.zone!=='work'||!item?.slot?.startsWith('work-')||view.absoluteSlot%4>=2&&!view.overtime.includes(id))return 0;
+ return view.office?.catalog.find(d=>d.id===item.kind)?.efficiency??0;
+}
 export function stationLayout(width:number,height:number,count:number){
  if(count<= (width<1000?2:4)){
   const compact=width<1000,available=compact?width:width-330,cell=(available-32)/Math.max(1,count);

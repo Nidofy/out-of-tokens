@@ -3,18 +3,18 @@ import type {Character,Expression,Pose} from './art/types.js';
 import {actorIds} from './studio-ui.js';
 export interface VillageRig {character:Character;textures:Map<string,Texture>}
 export const characterCalibration:Record<string,{scale:number;headY?:number}>={
- bluewhale:{scale:1.08},
- qwen:{scale:.96},
- llama:{scale:1.05},
- mistral:{scale:1.08},
- gpt:{scale:1.04},
- claude:{scale:.96},
- kimi:{scale:.97},
- gemini:{scale:.97},
+ bluewhale:{scale:1.01},
+ qwen:{scale:1},
+ llama:{scale:1.03},
+ mistral:{scale:1.04},
+ gpt:{scale:1.02},
+ claude:{scale:.98},
+ kimi:{scale:.99},
+ gemini:{scale:.99},
  grok:{scale:1},
- glm:{scale:1.02,headY:-22},
+ glm:{scale:.98,headY:-22},
  minimax:{scale:1},
- seedance:{scale:.97},
+ seedance:{scale:.99},
 };
 export function characterHeight(id:string,y:number){
  const depth=.82+.18*Math.max(0,Math.min(1,(y-620)/260));

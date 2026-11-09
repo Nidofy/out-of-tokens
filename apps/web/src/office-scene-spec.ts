@@ -16,10 +16,10 @@ export function officeCamera(width:number,height:number,zone:CameraZone,focus:Of
  return {scale,x:clamp(width/2-cx*scale,width-1920*scale),y:zone==='overview'&&!focus?height-1080*scale:clamp(height/2-cy*scale,height-1080*scale),clip:{x:0,y:0,width,height}};
 }
 export function idlePoint(index:number,count=4){
- if(count<=4){const pts=[{x:165,y:650},{x:375,y:650},{x:215,y:900},{x:430,y:900}] as const;return pts[index%4]!;}
+ if(count<=4){const pts=[{x:335,y:655},{x:490,y:655},{x:215,y:900},{x:430,y:900}] as const;return pts[index%4]!;}
  // Aisles around the furniture, rather than a grid running through desks/whiteboards.
  const pts=[{x:500,y:600},{x:1280,y:600},{x:1530,y:600},{x:1770,y:600},
-  {x:170,y:850},{x:400,y:850},{x:1500,y:850},{x:1770,y:850},
-  {x:570,y:1020},{x:810,y:1020},{x:1050,y:1020},{x:1290,y:1020}];
+  {x:170,y:835},{x:400,y:835},{x:1500,y:835},{x:1770,y:835},
+  {x:570,y:955},{x:810,y:955},{x:1050,y:955},{x:1290,y:955}];
  return pts[index%pts.length]!;
 }
