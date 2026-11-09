@@ -1,3 +1,5 @@
+VF3.1固定实现 `c68541da920b346b02c11b8e27540024c8ea30a5`；独立SHA/Prompt入口 `harness/reviews/vf31-handoff.md`。299测试通过、性能风险开放，两个本地提交后暂停待Gemini。
+
 2026-11-10 VF3.1（当前唯一执行入口）：用户裁决VF2四项PASS、限定VF3 CONDITIONAL PASS。本轮闭环VF3-F-01～03：隔离S1/布置镜头并恢复分区、位置列表Escape/X焦点及模态隐藏、对象局部反馈关闭清理且保留异步visit/跨屏回执/全局告警契约。38文件299测试与类型/lint/Web/DSH构建通过，实机证据及限制见VF3_CHECKPOINT.md当前节、harness/vf31。冻结151文件后两批各72条性能抽检，preview对VF3 -13.84%～+1.59%；dev twelve确认批对VF3+24.37%，风险开放，不宣称预算或整体Visual Freeze 1通过。VF4_PREPARATION.md仅为组件/资产清单与验收计划，未生产。保护路径零改动、生产无诊断、5181–5186已关闭。固定SHA/复审Prompt入口harness/reviews/vf31-handoff.md；两个本地提交后暂停待Gemini，不push/部署/付费调用/自动VF4或O4新玩法。下文为历史，不能覆盖本段。
 
 VF3固定实现 `6f3a19122f4508004aeb1ae3bfe0c1387047e9dc`；独立SHA/Prompt记录入口 `harness/reviews/vf3-handoff.md`。当前暂停待Gemini，两个本地提交，未push。

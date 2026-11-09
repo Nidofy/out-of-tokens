@@ -203,3 +203,5 @@ VF3固定实现 `6f3a19122f4508004aeb1ae3bfe0c1387047e9dc`；独立记录提交�
 默认生产重新构建，19个JS无vf-metrics/vf-startup；保护路径相对VF1.1零diff，engine0.16.0/content office-2不变。5181–5186全部停止，浏览器视口reset、临时tab关闭。只清理新日志的末尾/行末空白，不改失败事实或原始JSON。VF4_PREPARATION只写组件/资产/逐屏矩阵与门禁，未量产/推送/部署/付费调用。双本地提交后暂停等待独立审查。
 
 提交前证据核对首次漏写UTF-8，默认GBK读取中文JSON失败；修正编码后发现文档手工误计24条，实际JSON为23条，断言阻止提交。已据原始JSON改正三处文档计数，23条交互/151文件冻结核对通过，原始JSON未改。
+
+VF3.1固定实现 `c68541da920b346b02c11b8e27540024c8ea30a5`；staged diff --check通过。独立记录提供vf31-handoff及vf31-c68541d-gemini-prompt，明确三项复审范围、性能/VF4门禁与必须回交Codex完整Prompt。151文件Git blob的LF哈希与冻结清单一致，保护路径零diff。本记录不改实现，停于检查点，未push。

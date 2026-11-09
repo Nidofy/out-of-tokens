@@ -1,3 +1,5 @@
+VF3.1固定实现 `c68541da920b346b02c11b8e27540024c8ea30a5`；独立SHA/Prompt入口 `harness/reviews/vf31-handoff.md`。299测试通过、性能风险开放，两个本地提交后暂停待Gemini。
+
 # VF3.1 收尾检查点（当前）
 
 2026-11-10；分支 `codex/m1-foundation`；父提交 `38cce8d`，复审针对固定 VF3 `6f3a19122f4508004aeb1ae3bfe0c1387047e9dc`。用户裁决为 VF2 四项返修 **PASS**、限定 VF3 **CONDITIONAL PASS**。本轮仅执行 VF3-F-01～03，并制定 VF4 准备清单；不称整体 Visual Freeze 1 完成。固定实现SHA与Gemini Prompt由后续独立记录写入 `harness/reviews/vf31-handoff.md`。本节覆盖下方旧“待VF3复审”的执行状态，下方历史证据保留。
