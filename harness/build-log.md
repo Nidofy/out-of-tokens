@@ -134,3 +134,5 @@ O0–O3固定源码：2161a540c472f4610bfb1c310c3520c9bc675a45。提交前仅修
 2026-11-09 Village UI纠正：只读相邻插件f4c2ac6的Hud/Floating/content-style/ui-theme/PanelShell及实际截图。基线213通过；未使用_layout lint、旧layoutZone类型引用已修正；HMR临时slotCamera导出切换错误保留记录。check-v1/final/final-v2通过213；最终final-v3为提交前全量检查。真实浏览器核验1280场景矩阵开关看板不变、390补购保存4820/4工位、680英文暗色浮窗/详情、2560全屏cover无留白，数值材质匹配原版。详情docs/VILLAGE_UI_ALIGNMENT。
 
 Village UI最终final-v3：33文件213测试、类型/lint/Web和DSH构建全部通过。独立新标签冷启动error/warn均空（harness/village-ui/cold-start.json）。临时5173服务已停止；仅规范本轮日志末尾空行，原记录保留。
+
+Village UI固定源码：d285c3b5cd85efc09ef0f0025dd2c14c38a18555。staged diff --check通过；本条与handoff仅记录目标SHA，无额外实现变更。
