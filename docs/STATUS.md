@@ -1,3 +1,5 @@
+VF3固定实现 `6f3a19122f4508004aeb1ae3bfe0c1387047e9dc`；独立SHA/Prompt记录入口 `harness/reviews/vf3-handoff.md`。当前暂停待Gemini，两个本地提交，未push。
+
 2026-11-10 VF3检查点（当前唯一执行入口）：按用户VF2有条件通过裁决，先闭环VF2-F-01～04，再实施显式伙伴/工位定位、返回全景、画外/异地位置引导和名牌/命中核验。38文件291测试及类型/lint/Web/DSH构建通过，42次实机命中检查与五视口相机往返证据见VF3_CHECKPOINT.md、harness/vf3。全部源码/CSS冻结后执行两批各72条同DPR采样；preview两场景对VF2未回退，但dev standard首批对040031e+14.82%、复核对VF2+20.20%，风险保留，不宣称全性能预算通过。保护路径零改动，engine0.16.0/content office-2不变。默认生产已恢复、无诊断指标，5181–5186关闭、浏览器恢复。两个本地提交后暂停，固定SHA/Prompt见harness/reviews/vf3-handoff.md；待Gemini，不push/部署/付费模型、不启动VF4或O4-B/O4-C。下文均为历史，不能覆盖本段。
 
 2026-11-09 VF2检查点（当前唯一执行入口）：用户附件已裁决VF1.1通过并授权VF2。本轮闭环晚间在岗伙伴日常互动/普通召回、S3消息污染，抽出S2/S3，按来源建立单主反馈；现代系统无衬线、纸面/圆角、字级和双环焦点升级为VF2已确认规范。37文件259测试、类型/lint/Web及既有DSH构建通过；五视口证据与性能原始记录见VF2_CHECKPOINT.md、harness/vf2，固定SHA/复审Prompt入口harness/reviews/vf2-handoff.md。优化诊断preview对VF1.1标准+3.57%/十二人-5.07%；dev十二人首批+15.66%越线，复核+5.41%，两批全部保留，不宣称性能预算通过。保护路径零改动，engine0.16.0/content office-2保持。两个本地提交后暂停待Gemini，不进入VF3/VF4/O4-B/O4-C、不push/部署/付费调用。下文为历史，不能覆盖本段。
