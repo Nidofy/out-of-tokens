@@ -162,3 +162,5 @@ VF1固定实现147ddac4d875d421fffefafdd577be091196f83f；36文件242测试通�
 检查日志vf11-check-v1、final、final-v2/v3/v4均保留：final-v2因optional settled显式undefined严格类型失败，修复后v3通过；v3发现main间接常量条件虽移除运行入口但仍产出指标chunk进入离线清单，改成直接编译期条件；最终v4为36文件251测试、类型/lint/默认Web及既有DSH构建全部通过，产物/离线清单无vf-metrics。测试新增2命中+3lab自动案例+4状态/双席断言。仅清理本轮日志尾部空白，不改失败内容。
 
 四个临时端口5181–5184已停止并查询无监听，浏览器视口恢复、验证标签关闭；保留../vf11-perf-baseline审计worktree（含依赖junction，不递归删除）。用户指定两个本地提交后暂停；无push、部署、付费调用、量产或新玩法。Gemini尚未复审本轮。
+
+VF1.1固定实现：2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f；独立记录提交提供harness/reviews/vf11-handoff.md与vf11-2bd6d40-gemini-prompt.md，要求Gemini输出完整回交Codex Prompt。本条不改实现；补充原附件CRLF与Git规范LF的双hash说明，正文未改。当前暂停等待复审，无远端操作。
