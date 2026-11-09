@@ -69,6 +69,7 @@ export interface ProjectDefinition {
 }
 export interface ProjectState {route: string; step: number; job: string; attempts: number; history: string[]; completed: boolean}
 export interface CampaignContent {
+    office?: import('./office.js').OfficeDefinition;
     projects?: ProjectDefinition[];
     openingJobs?: string[];
     starterJobs?: string[];
@@ -91,6 +92,7 @@ export interface Relation {
     hunger: number;
 }
 export interface CampaignState {
+    office?: import('./office.js').OfficeState;
     projects?: Record<string, ProjectState>;
     finale?: import('./finale.js').FinaleState;
     chapter: number;
@@ -193,7 +195,7 @@ export interface State {
     loanGraceWeek?: number;
     campaign?: CampaignState;
 }
-export type Command = {type:'scope';job:string;option:string} | {
+export type Command = import('./office.js').OfficeCommand | {type:'scope';job:string;option:string} | {
     type: 'campaign';
     action: 'project-start' | 'project-next' | 'visit' | 'chat' | 'gift' | 'meal' | 'study' | 'recall' | 'recruit' | 'unlock' | 'switch' | 'train' | 'align' | 'software' | 'hardware' | 'chapter' | 'story' | 'subscribe' | 'expedition' | 'ending' | 'endless' | 'bid' | 'challenge';
     id: string;

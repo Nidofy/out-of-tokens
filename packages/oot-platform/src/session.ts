@@ -15,6 +15,7 @@ export class GameSession {
         const result = accepted?.error ? accepted : dispatchCommand(accepted?.state??this.state, { type: 'assign', job, team }, this.content);
         return { error: result.error, estimate: result.error ? null : getViewModel(result.state, this.content).jobs.find(j => j.id === job)!.resourceEstimate, forecast: result.error ? null : forecastAssignment(result.state,this.content,result.state.jobs.find(j=>j.id===job)!) };
     }
+    previewOffice(command: Extract<Command,{type:'office'}>) {const r=dispatchCommand(this.state,command,this.content);return {error:r.error,cost:r.error?0:this.state.cash-r.state.cash,office:r.error?null:getViewModel(r.state,this.content).office};}
     send(command: Command): {
         error: string | null;
         events: DomainEvent[];

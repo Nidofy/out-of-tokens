@@ -7,3 +7,5 @@ export {worlds,endingReady} from './finale.js';
 export {forecastAssignment} from './preview.js';
 export {chapterGoal} from './chapter-goal.js';
 export {settlement} from './settlement.js';
+
+export * from './office.js';

@@ -1,0 +1,12 @@
+{
+ "catalog":[
+  {"id":"basic","name":"小木桌 · 板凳 · 旧电脑","nameEn":"Wood desk · stool · old PC","zone":"work","price":180,"seats":1},
+  {"id":"standard","name":"标准桌 · 网布椅 · 单屏","nameEn":"Standard desk · mesh chair · monitor","zone":"work","price":550,"seats":1,"upgradeFrom":"basic"},
+  {"id":"whiteboard","name":"协作白板（两席）","nameEn":"Team whiteboard (two seats)","zone":"meeting","price":240,"seats":2},
+  {"id":"coffee","name":"旧咖啡台","nameEn":"Coffee corner","zone":"lounge","price":120,"seats":0},
+  {"id":"sofa","name":"双人休闲沙发","nameEn":"Lounge sofa","zone":"lounge","price":600,"seats":0},
+  {"id":"server","name":"设备机柜外壳","nameEn":"Equipment cabinet","zone":"server","price":200,"seats":0}
+ ],
+ "computerVersions":["gpt.4o","claude.sonnet"],
+ "computerTemplates":["website-phased"]
+}

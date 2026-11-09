@@ -1,3 +1,4 @@
+import {initialOffice,cloneOffice} from './office.js';
 import type { Actor, CampaignState, Command, Content, Relation, Scene, Skill, State, Version } from './model.js';
 import {applyFinale,tickFinale} from './finale.js';
 import {applyProject} from './projects.js';
@@ -7,10 +8,10 @@ const check = (ok: unknown, error: string) => { if (!ok) throw Error(error); };
 const cap = (n: number) => Math.max(0, Math.min(100, n));
 export const newRelation = (): Relation => ({ xp: 0, affinity: 0, location: null, locationUntil: 0, training: null, bonuses: {}, stories: [], stress: 0, hunger: 0 });
 export function initialCampaign(c: Content): CampaignState {
-    return { ...(c.campaign?.projects?{projects:{}}:{}), ...((c.campaign?.maxChapter??0)>=4?{finale:{ending:null,endless:false,endlessAt:0,expeditions:[],souvenirs:[],bids:[],challengeWeek:0,challengeWins:[]}}:{}), chapterStarted: 0, clarifyRng: 1, subscription: 0, incidents: [], chapter: 0, chapterZero: 'pending', completed: [], scene: 'workshop', research: 0, software: [], hardware: { office: 0, compute: 0, storage: 0, network: 0 }, unlocked: c.versions.filter((v, i, all) => all.findIndex(x => x.character === v.character) === i).map(v => v.id), relations: Object.fromEntries(c.campaign!.initial.map(id => [id, newRelation()])) };
+    return { ...(c.campaign?.office?{office:initialOffice()}:{}), ...(c.campaign?.projects?{projects:{}}:{}), ...((c.campaign?.maxChapter??0)>=4?{finale:{ending:null,endless:false,endlessAt:0,expeditions:[],souvenirs:[],bids:[],challengeWeek:0,challengeWins:[]}}:{}), chapterStarted: 0, clarifyRng: 1, subscription: 0, incidents: [], chapter: 0, chapterZero: 'pending', completed: [], scene: 'workshop', research: 0, software: [], hardware: { office: 0, compute: 0, storage: 0, network: 0 }, unlocked: c.versions.filter((v, i, all) => all.findIndex(x => x.character === v.character) === i).map(v => v.id), relations: Object.fromEntries(c.campaign!.initial.map(id => [id, newRelation()])) };
 }
 export function cloneCampaign(p: CampaignState): CampaignState {
-    return { ...p, ...(p.projects?{projects:Object.fromEntries(Object.entries(p.projects).map(([id,value])=>[id,{...value,history:[...value.history]}]))}:{}), ...(p.finale?{finale:{...p.finale,expeditions:p.finale.expeditions.map(x=>({...x})),souvenirs:[...p.finale.souvenirs],bids:p.finale.bids.map(x=>({...x})),challengeWins:[...p.finale.challengeWins]}}:{}), incidents:p.incidents.map(x=>({...x})), completed: [...p.completed], software: [...p.software], hardware: { ...p.hardware }, unlocked: [...p.unlocked], relations: Object.fromEntries(Object.entries(p.relations).map(([id, r]) => [id, { ...r, stories: [...r.stories], training: r.training ? { ...r.training } : null, bonuses: Object.fromEntries(Object.entries(r.bonuses).map(([v, skills]) => [v, { ...skills }])) }])) };
+    return { ...p, ...(p.office?{office:cloneOffice(p.office)}:{}), ...(p.projects?{projects:Object.fromEntries(Object.entries(p.projects).map(([id,value])=>[id,{...value,history:[...value.history]}]))}:{}), ...(p.finale?{finale:{...p.finale,expeditions:p.finale.expeditions.map(x=>({...x})),souvenirs:[...p.finale.souvenirs],bids:p.finale.bids.map(x=>({...x})),challengeWins:[...p.finale.challengeWins]}}:{}), incidents:p.incidents.map(x=>({...x})), completed: [...p.completed], software: [...p.software], hardware: { ...p.hardware }, unlocked: [...p.unlocked], relations: Object.fromEntries(Object.entries(p.relations).map(([id, r]) => [id, { ...r, stories: [...r.stories], training: r.training ? { ...r.training } : null, bonuses: Object.fromEntries(Object.entries(r.bonuses).map(([v, skills]) => [v, { ...skills }])) }])) };
 }
 export const owns = (s: State, id: string) => s.campaign?.software.includes(id) ?? false;
 export function actorScene(s: State, a: Actor): Scene | 'expedition' {
@@ -64,6 +65,7 @@ export function applyCampaign(s: State, c: Content, cmd: Extract<Command, { type
     if (cmd.action === 'hardware') {
         check(Object.hasOwn(p.hardware, cmd.id), 'UNKNOWN_HARDWARE');
         const key = cmd.id as keyof typeof p.hardware, level = p.hardware[key];
+        check(key!=='office'||!p.office,'USE_OFFICE_LAYOUT');
         check(level < spec.maxHardware, 'MAX_LEVEL'); pay([600, 1800, 4500, 10000, 24000][level]!); p.hardware[key]++;
         if (key === 'compute') s.localCapacity = [120, 200, 800, 3000, 10000, 24000][p.hardware.compute]!;
         return;

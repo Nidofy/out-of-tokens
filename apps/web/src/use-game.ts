@@ -1,3 +1,4 @@
+import {LabSaves,labSession} from './office-lab.js';
 import {presentationEvent,enqueuePresentation} from './presentation-events.js';
 import type {PresentationEvent} from './presentation-events.js';
 import {useEffect,useRef,useState} from 'preact/hooks';
@@ -6,12 +7,13 @@ import type {SaveSlot,StoredSave,WritableSlot} from 'oot-platform';
 import type {Command} from 'oot-core';
 import {content} from './content.js';
 export function useGame(){
- const hosted=location.pathname.startsWith('/out-of-tokens/web/')&&new URLSearchParams(location.search).get('dsh')==='1';
- const [session]=useState(()=>new GameSession(content)),[storage]=useState(()=>hosted?new HostSaves():new BrowserSaves('out-of-tokens-'+content.version,import.meta.env.DEV && new URLSearchParams(location.search).get('test-fault')==='storage' ? {open(){throw Error('STORAGE_UNAVAILABLE');}} as unknown as IDBFactory : globalThis.indexedDB));
+ const lab=import.meta.env.DEV?new URLSearchParams(location.search).get('office-lab'):null;
+ const hosted=!lab&&location.pathname.startsWith('/out-of-tokens/web/')&&new URLSearchParams(location.search).get('dsh')==='1';
+ const [session]=useState(()=>lab?labSession(content,lab):new GameSession(content)),[storage]=useState(()=>lab?new LabSaves():hosted?new HostSaves():new BrowserSaves('out-of-tokens-'+content.version,import.meta.env.DEV && new URLSearchParams(location.search).get('test-fault')==='storage' ? {open(){throw Error('STORAGE_UNAVAILABLE');}} as unknown as IDBFactory : globalThis.indexedDB));
  const [view,setView]=useState(session.view),[busy,setBusy]=useState(true),[message,setMessage]=useState(''),[records,setRecords]=useState<(StoredSave|null)[]>([]);
- const [presentations,setPresentations]=useState<PresentationEvent[]>([]),presentationId=useRef(0);
+ const [presentations,setPresentations]=useState<PresentationEvent[]>(()=>{const row=lab==='delivery'?session.view.ledger.find(r=>r.reason.startsWith('delivery:')):undefined;return row?[presentationEvent({type:'deliver',job:row.reason.slice(9)},0,row.amount)!]:[];}),presentationId=useRef(0);
  const dismissPresentation=()=>setPresentations(q=>q.slice(1));
- useEffect(()=>{if(!presentations.length)return;const timer=setTimeout(dismissPresentation,3600);return()=>clearTimeout(timer);},[presentations[0]?.id]);
+ useEffect(()=>{if(!presentations.length||lab==='delivery'&&presentations[0]?.id===0)return;const timer=setTimeout(dismissPresentation,3600);return()=>clearTimeout(timer);},[presentations[0]?.id]);
  const savedAuto=useRef('');
  const desktop=new URLSearchParams(location.search).get('desktop')==='1';
  const active=useRef<Promise<unknown>>(Promise.resolve());
@@ -28,5 +30,5 @@ export function useGame(){
  const importFile=(file:File|undefined)=>run(async()=>{if(!file)return;if(file.size===0||file.size>8000000)throw Error('INVALID_SAVE_SIZE');let available=true;try{revisions.current.auto=(await storage.read('auto'))?.revision??0;}catch{available=false;}await session.importSave(await file.text());paused.current=!available;setView(session.view);setPresentations([]);setMessage(available?'LOADED':'IMPORTED_NO_STORAGE');});
  const reconcileEmpty=()=>run(async()=>{if(!(storage instanceof HostSaves))return;const rows=await storage.reconcileEmpty();revisions.current={};paused.current=false;setRecords(rows);setMessage('RECONCILED_EMPTY');});
  const reconcile=()=>run(async()=>{if(!(storage instanceof HostSaves))return;const text=await session.exportSave();const result=await storage.reconcile('auto',revisions.current.auto??0,text);revisions.current.auto=result.revision;paused.current=false;if(result.committed)savedAuto.current=text;setRecords(result.rows);setMessage('RECONCILED');});
- return{presentations,dismissPresentation,reconcile,reconcileEmpty,hosted,session,view,busy,message,records,send,load,save,exportFile,importFile,refresh:()=>run(list)};
+ return{lab,presentations,dismissPresentation,reconcile,reconcileEmpty,hosted,session,view,busy,message,records,send,load,save,exportFile,importFile,refresh:()=>run(list)};
 }

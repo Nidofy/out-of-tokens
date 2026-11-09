@@ -1,0 +1,29 @@
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/office.test.ts (29 tests | 1 failed) 550ms
+   × clarification claims a meeting seat for one slot, cannot overbook, releases on advance 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/office.test.ts > clarification claims a meeting seat for one slot, cannot overbook, releases on advance
+AssertionError: expected 'NOT_CLARIFIABLE' to be 'NO_MEETING_SEAT' // Object.is equality
+
+Expected: "NO_MEETING_SEAT"
+Received: "NOT_CLARIFIABLE"
+
+ ❯ apps/sim-cli/office.test.ts:34:93
+     32|  const {c,s}=fixture(),job=s.jobs.find(j=>j.template==='website')!;let…
+     33|  for(const character of ['qwen','llama']){const r=dispatchCommand(curr…
+     34|  expect(dispatchCommand(current,{type:'clarify',job:job.id,character:'…
+       |                                                                                             ^
+     35|  const next=dispatchCommand(current,{type:'advance'},c);expect(next.er…
+     36| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 28 passed (29)
+   Start at  10:24:08
+   Duration  1.18s (transform 228ms, setup 0ms, import 428ms, tests 550ms, environment 0ms)

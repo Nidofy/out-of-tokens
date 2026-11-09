@@ -7,7 +7,7 @@ test('synthetic campaign reaches chapters 0–4, expedition, ending and endless 
  const c=loadFullContent();c.events=[];c.balance={...c.balance!,startingCash:100000,debt:1,weekly:1,dailyQuota:10000,eventChance:0};
  for(const v of c.versions){v.skills={code:10,write:10,reason:10,create:10,media:10,recall:10};v.context=100;v.speed=2;}
  c.commissions=c.commissions.filter(t=>t.delivery!=='oneshot').slice(0,6).map((t,i)=>({...t,id:'fixture-'+i,delivery:i%2?'retainer' as const:'multi' as const,phases:3,requirements:[],clarity:100,workload:1,workSlots:10,reward:1000,qualityLines:[1,2,3]}));
- delete c.campaign!.projects;delete c.campaign!.openingJobs;delete c.campaign!.starterJobs;
+ c.campaign!.office!.computerTemplates=[];delete c.campaign!.projects;delete c.campaign!.openingJobs;delete c.campaign!.starterJobs;
  validateContent(c);let s=createInitialState(c,1);const commands:unknown[]=[];
  const send=(cmd:unknown)=>{const r=dispatchCommand(s,cmd,c);if(!r.error){s=r.state;commands.push(cmd);}return r.error;};
  const life=(action:string,id:string,target?:string)=>send({type:'campaign',action,id,target});
