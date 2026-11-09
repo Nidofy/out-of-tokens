@@ -146,3 +146,5 @@ UI/美术源码ee9dd843061b90d8dff88340d65f75100d897dc1。提交时新文档原�
 O4-A固定源码：bdaa11c25bbf8616b0191ca4599b8dc4a711cd2f。最终233/34通过，staged diff --check通过；5173临时服务已停止，所有验证标签关闭。此提交仅记录目标SHA。
 
 2026-11-09 UI工作树复审：修复前233/34、修复后234/35，typecheck/lint/build通过。代码与资产修复、实机范围和后续验收见ui-art-review-1109/integration-results.md及docs/UI_ART_DIRECTION_1109.md。
+
+2026-11-09 附件复审规划修订：归档用户原文，源码核对头像覆盖/关键字号/相机过滤，命中风险保持待运行时复现；新增VISUAL_FREEZE_1，替换UI_ART_DIRECTION原A–F计划，更新STATUS/ROADMAP/D048。仅文档变更；未运行新的浏览器视觉验收。提交前检查记录见harness/reviews/visual-freeze-1-plan-check.log。

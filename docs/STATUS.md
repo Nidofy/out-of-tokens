@@ -1,3 +1,5 @@
+2026-11-09 附件复审规划修订（当前执行入口）：进入Visual Freeze 1，产品方向已接受但整屏风格尚未冻结。下一项VF0基线记录、VF-01头像变体与VF-02命中风险复现，再做主界面/委托工作台/伙伴档案三张可运行样板；VF2/VF3通过后才批量推广，VF5完成后恢复O4-B/O4-C。详见VISUAL_FREEZE_1.md；原A–F顺序与其后续入口被本段覆盖。此次仅修改规划，新缺陷未修、新样板未完成；engine0.16.0/content office-2不变。
+
 2026-11-09 未提交UI改动集成复审：方向接受，不能视为Phase 1–3全量视觉验收。已修Qwen屏幕遮脸、标准工位错误加成徽章、层级重复染色、单屏定义不一致、40px触控覆盖与窄屏HUD安全边。35文件234测试通过；定调、A–F详细计划及未验收范围见docs/UI_ART_DIRECTION_1109.md（本目录内为UI_ART_DIRECTION_1109.md）；实机记录harness/ui-art-review-1109/integration-results.md。下一项先做样板A、组件B与构图C，再继续O4-B；engine/content不变。
 
 O4-A固定实现：bdaa11c25bbf8616b0191ca4599b8dc4a711cd2f；UI审阅基线ee9dd843061b90d8dff88340d65f75100d897dc1。验收入口harness/reviews/o4a-handoff.md。
