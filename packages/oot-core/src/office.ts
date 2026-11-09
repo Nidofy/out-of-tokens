@@ -1,6 +1,6 @@
 import type {Content,Member,State} from './model.js';
 export type OfficeZone='work'|'meeting'|'lounge'|'server';
-export interface FurnitureDefinition {id:string;name:string;nameEn:string;zone:OfficeZone;price:number;seats:number;upgradeFrom?:string;}
+export interface FurnitureDefinition {id:string;name:string;nameEn:string;zone:OfficeZone;price:number;seats:number;upgradeFrom?:string;efficiency?:number;energyCost?:number;}
 export interface OfficeDefinition {catalog:FurnitureDefinition[];computerVersions:string[];computerTemplates:string[];}
 export interface Furniture {id:string;kind:string;slot:string|null;}
 export interface Reservation {item:string;seat:number;job:string;zone:OfficeZone;until?:number;}
@@ -58,3 +58,11 @@ export function applyOffice(s:State,c:Content,cmd:OfficeCommand){
 export function officeView(s:State,c:Content){const o=s.campaign?.office,d=c.campaign?.office;if(!o||!d)return null;return {...cloneOffice(o),catalog:d.catalog.map(x=>({...x})),slots:officeSlots(s.campaign!.chapter),capacity:{work:o.items.filter(i=>i.slot&&slotZone(i.slot)==='work').length,meeting:o.items.filter(i=>i.slot&&slotZone(i.slot)==='meeting').reduce((n,i)=>n+d.catalog.find(x=>x.id===i.kind)!.seats,0)},requirements:s.actors.map(a=>({actor:a.id,computerSupport:d.computerVersions.includes(a.version)})),computerTemplates:[...d.computerTemplates]};}
 export function officeCost(items:Furniture[],original:Furniture[],catalog:FurnitureDefinition[]){return items.reduce((sum,i)=>sum+(catalog.find(d=>d.id===i.kind)?.price??0)-(catalog.find(d=>d.id===original.find(o=>o.id===i.id)?.kind)?.price??0),0);}
 export function officeCommand(items:Furniture[],revision:number):OfficeCommand{return {type:'office',items:items.map(i=>({...i})),revision};}
+
+/** Only the actor's installed, reserved computer applies. No bonuses from inventory or other jobs. */
+export function stationEffects(s:State,c:Content,actor:string,job:string,role:Member['role']){
+ const o=s.campaign?.office,r=o?.reservations[actor],item=o?.items.find(i=>i.id===r?.item);
+ const d=r?.job===job&&r.zone==='work'&&item?.slot?.startsWith('work-')?c.campaign?.office?.catalog.find(d=>d.id===item.kind):undefined;
+ return {efficiency:role==='worker'||role==='planner'?d?.efficiency??0:0,energyCost:d?.energyCost??0,station:d?.id??null};
+}
+export function workEnergyCost(slot:number,extra=0){return Math.max(0,(slot%4===3?22.5:slot%4===2?18:15)+extra);}

@@ -1,4 +1,4 @@
-import office from '../../../content/campaign/office-o3.json';
+import office from '../../../content/campaign/office-o4a.json';
 import {validateContent} from 'oot-content/browser';
 import versions from '../../../content/campaign/versions-m2.json';
 import commissions from '../../../content/campaign/commissions-m5.json';
@@ -7,4 +7,4 @@ import campaign from '../../../content/campaign/m5.json';
 import projects from '../../../content/campaign/projects-b1.json';
 import chapterCommissions from '../../../content/campaign/commissions-b1.json';
 import balance from '../../../content/balance/standard.json';
-export const content=validateContent({version:'office-1',versions,commissions:[...commissions,...chapterCommissions],events,campaign:{...campaign,projects,office},balance});
+export const content=validateContent({version:'office-2',versions,commissions:[...commissions,...chapterCommissions],events,campaign:{...campaign,projects,office},balance});

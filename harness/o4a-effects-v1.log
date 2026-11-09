@@ -1,0 +1,72 @@
+
+ RUN  v4.1.8 D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens
+
+ ❯ apps/sim-cli/office-effects.test.ts (13 tests | 5 failed) 252ms
+   × cloud forecast and partial final work charge only executed output 14ms
+   × local forecast and partial final work charge only executed output 12ms
+   × planner uses its reserved facility; only WP-producing roles gain output 20ms
+   × reviewer uses its reserved facility; only WP-producing roles gain output 19ms
+   × tool uses its reserved facility; only WP-producing roles gain output 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/sim-cli/office-effects.test.ts > cloud forecast and partial final work charge only executed output
+ FAIL  apps/sim-cli/office-effects.test.ts > local forecast and partial final work charge only executed output
+TypeError: Cannot read properties of undefined (reading 'price')
+ ❯ apps/sim-cli/office-effects.test.ts:40:77
+     38|  f.send({type:'advance'});expect(f.s.jobs[0]!.progress).toBe(1);
+     39|  expect(f.s.resources[0]!.units).toBe(forecast.firstSlot[mode]);
+     40|  expect(f.s.resources[0]!.units).toBe(f.c.versions.find(v=>v.id==='qwe…
+       |                                                                             ^
+     41| });
+     42|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  apps/sim-cli/office-effects.test.ts > planner uses its reserved facility; only WP-producing roles gain output
+ FAIL  apps/sim-cli/office-effects.test.ts > reviewer uses its reserved facility; only WP-producing roles gain output
+AssertionError: expected 'INVALID_TEAM' to be null
+
+- Expected:
+null
+
++ Received:
+"INVALID_TEAM"
+
+ ❯ Object.send apps/sim-cli/office-effects.test.ts:12:78
+     10|  for(const t of c.commissions)t.workload=1000;
+     11|  let s=createInitialState(c,1);const commands:Command[]=[];
+     12|  const send=(cmd:Command)=>{const r=dispatchCommand(s,cmd,c);expect(r.…
+       |                                                                              ^
+     13|  if(standard){const o=s.campaign!.office!;send(officeCommand(o.items.m…
+     14|  const id=s.jobs[0]!.id;send({type:'accept',job:id});
+ ❯ apps/sim-cli/office-effects.test.ts:56:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  apps/sim-cli/office-effects.test.ts > tool uses its reserved facility; only WP-producing roles gain output
+AssertionError: expected 'TOOL_LOCKED' to be null
+
+- Expected:
+null
+
++ Received:
+"TOOL_LOCKED"
+
+ ❯ send apps/sim-cli/office-effects.test.ts:12:78
+     10|  for(const t of c.commissions)t.workload=1000;
+     11|  let s=createInitialState(c,1);const commands:Command[]=[];
+     12|  const send=(cmd:Command)=>{const r=dispatchCommand(s,cmd,c);expect(r.…
+       |                                                                              ^
+     13|  if(standard){const o=s.campaign!.office!;send(officeCommand(o.items.m…
+     14|  const id=s.jobs[0]!.id;send({type:'accept',job:id});
+ ❯ fixture apps/sim-cli/office-effects.test.ts:15:2
+ ❯ apps/sim-cli/office-effects.test.ts:51:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 8 passed (13)
+   Start at  12:34:38
+   Duration  647ms (transform 127ms, setup 0ms, import 251ms, tests 252ms, environment 0ms)

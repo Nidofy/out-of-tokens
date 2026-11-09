@@ -20,5 +20,5 @@ export function loadAlphaContent(): Content {
 export function loadFullContent(): Content {
  const campaign=JSON.parse(readFileSync(new URL('../../../content/campaign/m5.json',import.meta.url),'utf8'));
  const read=(name:string)=>JSON.parse(readFileSync(new URL('../../../content/campaign/'+name,import.meta.url),'utf8'));
- return validateContent({...loadAlphaContent(),version:'office-1',campaign:{...campaign,office:read('office-o3.json'),projects:read('projects-b1.json')},commissions:[...read('commissions-m5.json'),...read('commissions-b1.json')],events:read('events-m5.json')});
+ return validateContent({...loadAlphaContent(),version:'office-2',campaign:{...campaign,office:read('office-o4a.json'),projects:read('projects-b1.json')},commissions:[...read('commissions-m5.json'),...read('commissions-b1.json')],events:read('events-m5.json')});
 }

@@ -1,4 +1,4 @@
-import {parseOffice,applyOffice,reserveOffice,reserveClarification,officeView} from './office.js';
+import {parseOffice,applyOffice,reserveOffice,reserveClarification,officeView,stationEffects,workEnergyCost} from './office.js';
 import { initialCampaign, cloneCampaign, effectiveVersion, parseCampaign, applyCampaign, tickCampaign, actorScene, owns, clarifyChance, clarifyRoll, needsFactor } from './campaign.js';
 import { deadlineAfterWorkSlots } from './clock.js';
 import { balance, crisis, liquidCash, moodFactor, fatigueFactor } from './economy.js';
@@ -82,6 +82,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                     continue;
                 if (m.role === 'worker' && j.progress >= j.work)
                     continue;
+                const station=stationEffects(s,c,a.id,j.id,m.role);
                 const energy = a.energy >= 60 ? 1 : a.energy >= 30 ? 0.85 : 0.6;
                 const overloaded = a.load > v.context;
                 const affected = (!eventJob || eventJob === j.id) && (!target || (m.character === target && m.mode === 'cloud'));
@@ -89,7 +90,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                 const teamCost = 1 - (owns(s, 'management') ? 0 : .05) * Math.max(0, j.team.filter(m => m.role === 'worker').length - 2);
                 if (m.role === 'reviewer' && j.progress === progressBefore && j.defects === 0)
                     continue;
-                let units = round((owns(s, 'prompt') && progressBefore === 0 ? 1 + .2 * (toolReady ? 2 : 1) : 1) * 10 * matching * v.speed * (1 + (s.campaign?.hardware.office ?? 0) * .1) * energy * moodFactor(a.mood) * needsFactor(s,a.id) * fatigueFactor(a, s.absoluteSlot) * (v.rhythm[s.absoluteSlot % 4] ?? 1) * (overloaded ? 0.7 : 1) * effect * (m.role === 'worker' ? bonus * teamCost : m.role === 'planner' || m.role === 'tool' ? 0.5 : 0.3));
+                let units = round((owns(s, 'prompt') && progressBefore === 0 ? 1 + .2 * (toolReady ? 2 : 1) : 1) * 10 * matching * v.speed * (1 + (s.campaign?.hardware.office ?? 0) * .1) * (1+station.efficiency) * energy * moodFactor(a.mood) * needsFactor(s,a.id) * fatigueFactor(a, s.absoluteSlot) * (v.rhythm[s.absoluteSlot % 4] ?? 1) * (overloaded ? 0.7 : 1) * effect * (m.role === 'worker' ? bonus * teamCost : m.role === 'planner' || m.role === 'tool' ? 0.5 : 0.3));
                 if (m.role === 'worker' || m.role === 'planner' || m.role === 'tool')
                     units = Math.min(units, round(j.work - j.progress));
                 if (units <= 0)
@@ -107,7 +108,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                         const wf = workerAffected ? multiplier : 1;
                         if (wf === 0)
                             return false;
-                        const wp = Math.min(Math.max(0, round(j.work - j.progress - units)), round((owns(s, 'prompt') && progressBefore === 0 ? 1.2 : 1) * (1 + (s.campaign?.hardware.office ?? 0) * .1) * 10 * match(c, j, wv) * wv.speed * (wv.rhythm[s.absoluteSlot % 4] ?? 1) * (wa.energy >= 60 ? 1 : wa.energy >= 30 ? .85 : .6) * moodFactor(wa.mood) * needsFactor(s,wa.id) * fatigueFactor(wa, s.absoluteSlot) * (wa.load > wv.context ? .7 : 1) * wf * (m.role === 'planner' ? 1 + v.skills.reason * .015 : bonus) * teamCost));
+                        const wp = Math.min(Math.max(0, round(j.work - j.progress - units)), round((owns(s, 'prompt') && progressBefore === 0 ? 1.2 : 1) * (1 + (s.campaign?.hardware.office ?? 0) * .1) * (1+stationEffects(s,c,wa.id,j.id,w.role).efficiency) * 10 * match(c, j, wv) * wv.speed * (wv.rhythm[s.absoluteSlot % 4] ?? 1) * (wa.energy >= 60 ? 1 : wa.energy >= 30 ? .85 : .6) * moodFactor(wa.mood) * needsFactor(s,wa.id) * fatigueFactor(wa, s.absoluteSlot) * (wa.load > wv.context ? .7 : 1) * wf * (m.role === 'planner' ? 1 + v.skills.reason * .015 : bonus) * teamCost));
                         const pool = (w.mode === 'cloud' ? s.quota + s.purchased : local) - (w.mode === m.mode ? cost : 0);
                         return round(pool) >= round(wp * wv.price * (workerAffected ? tokenRate : 1));
                     });
@@ -134,7 +135,7 @@ function resolve(s: State, c: Content, events: DomainEvent[], multiplier = 1, ta
                 s.tokensUsed = round(s.tokensUsed + cost);
                 worked.add(a.id);
                 if (s.campaign) {s.campaign.relations[a.id]!.xp++;if((c.campaign?.maxChapter??0)>=2)s.campaign.relations[a.id]!.stress=clamp(s.campaign.relations[a.id]!.stress+4);}
-                a.energy = clamp(a.energy - (s.absoluteSlot % 4 === 3 ? 22.5 : s.absoluteSlot % 4 === 2 ? 18 : 15));
+                a.energy = clamp(a.energy - workEnergyCost(s.absoluteSlot,station.energyCost));
                 a.mood = clamp(a.mood - (s.absoluteSlot % 4 === 3 ? 20 : s.absoluteSlot % 4 === 2 ? 10 : 1));
                 a.load++;
                 if (m.role === 'tool') toolReady = true;

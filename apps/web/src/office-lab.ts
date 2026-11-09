@@ -2,7 +2,7 @@ import {GameSession,saveSlots} from 'oot-platform';
 import type {SaveSlot,WritableSlot,StoredSave} from 'oot-platform';
 import type {Content,Command} from 'oot-core';
 // Isolated DEV fixtures: same application and commands, no IndexedDB, HostSaves or player files.
-export const labCases=['initial','twelve','working','computer','low-energy','crisis','delivery'] as const;
+export const labCases=['initial','twelve','standard','working','computer','low-energy','crisis','delivery'] as const;
 export function labSession(source:Content,scenario:string){
  const c=structuredClone(source);c.version='office-lab-1';c.events=[];c.balance!.eventChance=0;
  if(scenario==='twelve'||scenario==='computer'){c.campaign!.initial=[...new Set(c.versions.map(v=>v.character))];c.campaign!.recruits=[];}
@@ -11,7 +11,8 @@ export function labSession(source:Content,scenario:string){
  if(scenario==='low-energy'){c.balance!.dailyQuota=100000;c.balance!.startingCash=100000;const t=c.commissions.find(t=>t.id==='menu')!;t.workload=10000;t.workSlots=56;}
  if(scenario==='crisis')c.balance!.startingCash=100;
  const session=new GameSession(c,1),send=(cmd:Command)=>{const r=session.send(cmd);if(r.error)throw Error(`LAB:${r.error}`);};
- if(['working','computer','low-energy','delivery'].includes(scenario)){
+ if(scenario==='standard'){const o=session.view.office!;send({type:'office',revision:o.revision,items:o.items.map(i=>i.id==='f1'?{...i,kind:'standard'}:i)});}
+ if(['working','standard','computer','low-energy','delivery'].includes(scenario)){
   const id=session.view.jobs.find(j=>j.template==='menu')!.id;send({type:'accept',job:id});send({type:'assign',job:id,team:[{character:'qwen',role:'worker',mode:'cloud'},{character:scenario==='computer'?'gpt':'llama',role:'reviewer',mode:'cloud'}]});
   if(scenario==='delivery'){send({type:'advance'});send({type:'deliver',job:id});}
   if(scenario==='low-energy')for(let n=0;n<20&&session.view.actors.find(a=>a.id==='qwen')!.energy>=20;n++){if(session.view.absoluteSlot%4>=2)send({type:'overtime',character:'qwen'});send({type:'advance'});}
