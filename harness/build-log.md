@@ -136,3 +136,5 @@ O0–O3固定源码：2161a540c472f4610bfb1c310c3520c9bc675a45。提交前仅修
 Village UI最终final-v3：33文件213测试、类型/lint/Web和DSH构建全部通过。独立新标签冷启动error/warn均空（harness/village-ui/cold-start.json）。临时5173服务已停止；仅规范本轮日志末尾空行，原记录保留。
 
 Village UI固定源码：d285c3b5cd85efc09ef0f0025dd2c14c38a18555。staged diff --check通过；本条与handoff仅记录目标SHA，无额外实现变更。
+
+2026-11-09 UI/美术1109复审：用户未提交修改基线213通过；实机发现入座屏幕遮脸、待命名牌压头、560英文时间0宽/More越界以及后续槽框交叠。修正后219/33通过，日志ui-art-1109-final。保留十二人中间问题截图，最终截图另存。无外部操作、原始角色资产不变。

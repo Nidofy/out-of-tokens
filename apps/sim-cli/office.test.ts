@@ -5,7 +5,7 @@ import type {Member} from 'oot-core';
 import {GameSession,BrowserSaves} from 'oot-platform';
 import {IDBFactory} from 'fake-indexeddb';
 import {labSession,labCases,LabSaves} from '../web/src/office-lab.js';
-import {officeCamera,slotPoint} from '../web/src/office-scene-spec.js';
+import {officeCamera,slotPoint,idlePoint} from '../web/src/office-scene-spec.js';
 const team=(ids:string[],role:Member['role']='worker'):Member[]=>ids.map(character=>({character,role,mode:'local'}));
 function fixture(){const c=loadFullContent();c.events=[];c.balance!.eventChance=0;let s=createInitialState(c,1);const id=s.jobs[0]!.id;s=dispatchCommand(s,{type:'accept',job:id},c).state;return {c,s,id};}
 test('three stations accept three workers and one meeting planner, rejecting fourth worker atomically',()=>{
@@ -57,6 +57,17 @@ test.each(labCases)('real HUD fixture %s creates isolated reproducible session',
 test('fixture storage is disposable and never opens browser storage',async()=>{const storage=new LabSaves();expect(await storage.list()).toHaveLength(9);await storage.write('manual-1','test',0);expect((await storage.read('manual-1'))?.revision).toBe(1);await storage.close();expect(await storage.read('manual-1')).toBeNull();});
 test.each([[390,844],[680,900],[1280,720],[1920,1080],[2560,1080]])('camera covers the viewport with no HUD gutters; work focus remains visible at %s×%s',(w,h)=>{for(const zone of ['overview','work-left','work-right','meeting','lounge'] as const){const c=officeCamera(w,h,zone);expect(c.clip).toEqual({x:0,y:0,width:w,height:h});expect(c.x).toBeLessThanOrEqual(0);expect(c.y).toBeLessThanOrEqual(0);expect(c.x+1920*c.scale).toBeGreaterThanOrEqual(w-1e-6);expect(c.y+1080*c.scale).toBeGreaterThanOrEqual(h-1e-6);}const cam=officeCamera(w,h,'work-left');for(const id of ['work-1','work-2']){const p=slotPoint(id);const x=cam.x+p.x*cam.scale,y=cam.y+p.y*cam.scale;expect(x).toBeGreaterThan(cam.clip.x);expect(x).toBeLessThan(cam.clip.x+cam.clip.width);expect(y).toBeGreaterThan(cam.clip.y);expect(y+40*cam.scale).toBeLessThan(cam.clip.y+cam.clip.height);}});
 test('view office data is detached',()=>{const {c,s}=fixture(),v=getViewModel(s,c);v.office!.items[0]!.slot=null;expect(s.campaign!.office!.items[0]!.slot).toBe('work-1');});
+
+test.each([0,1,2,3,4])('chapter %s slot selection boxes do not overlap',chapter=>{
+ const points=officeSlots(chapter).map(id=>slotPoint(id,chapter));
+ for(let i=0;i<points.length;i++)for(let j=i+1;j<points.length;j++){
+  const a=points[i]!,b=points[j]!;
+  expect(Math.abs(a.x-b.x)>=196||Math.abs(a.y-b.y)>=100).toBe(true);
+ }
+});
+test('four idle actors leave space between back-row labels and front-row heads',()=>{
+ for(const front of [2,3])for(const back of [0,1])expect(idlePoint(front).y-186).toBeGreaterThan(idlePoint(back).y+44);
+});
 test('office ownership, purchases and reservations survive IndexedDB close/reopen and replay',async()=>{
  const c=loadFullContent(),session=new GameSession(c,1),factory=new IDBFactory(),db=new BrowserSaves('office-reopen',factory),o=session.view.office!;
  expect(session.send(officeCommand([...o.items,{id:'new:0',kind:'basic',slot:'work-4'}],0)).error).toBeNull();

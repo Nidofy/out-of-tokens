@@ -8,22 +8,22 @@ button:hover:not(:disabled){color:var(--green);background:transparent;text-decor
 button.primary,button.primary:hover:not(:disabled),:root[data-theme=dark] button.primary{background:transparent;border:0;color:var(--green);font-weight:700;min-height:44px}
 button[aria-pressed=true],.button-row button[aria-pressed=true]{background:transparent;color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:5px}
 select,input{background:var(--solid)}
-.studio-app{height:100dvh;min-height:0;--hud-ink:#342e28;--hud-halo:#fff6eaaa}
-.studio-app:has(.scene-stage[data-period='3']){--hud-ink:#fff6ea;--hud-halo:#342e28aa}
+.studio-app{height:100dvh;min-height:0;--hud-ink:#2b241e;--hud-halo:#fff8ebf5}
+.studio-app:has(.scene-stage[data-period='3']){--hud-ink:#fff6ea;--hud-halo:#241d18f0}
 .studio-app .scene-stage{inset:0;z-index:0;pointer-events:auto;background:transparent}
 .studio-app .workshop{background-color:transparent}
-.studio-app .studio-hud{position:absolute;inset:12px 12px auto;z-index:55;display:flex;align-items:center;justify-content:start;gap:4px;padding:0;height:40px;pointer-events:none;color:var(--hud-ink);text-shadow:0 1px 2px var(--hud-halo);background:transparent;border:0;box-shadow:none;backdrop-filter:none}
+.studio-app .studio-hud{position:absolute;inset:12px 12px auto;z-index:55;display:flex;align-items:center;justify-content:start;gap:4px;padding:0;height:40px;pointer-events:none;color:var(--hud-ink);text-shadow:0 0 10px var(--hud-halo),0 0 4px var(--hud-halo),0 1px 2px var(--hud-halo);background:transparent;border:0;box-shadow:none;backdrop-filter:none}
 .studio-app .studio-hud button{pointer-events:auto;position:relative;display:inline-flex;justify-content:center;align-items:center;padding:9px;width:40px;height:40px;flex:none;background:transparent;border:0;color:inherit;box-shadow:none;backdrop-filter:none}
-.studio-app .studio-hud svg,.studio-app .studio-dock svg{width:20px;height:20px;filter:drop-shadow(0 1px 1px var(--hud-halo))}
+.studio-app .studio-hud svg,.studio-app .studio-dock svg{width:20px;height:20px;filter:drop-shadow(0 0 4px var(--hud-halo)) drop-shadow(0 1px 1px var(--hud-halo))}
 .studio-app .studio-hud button:hover,.studio-app .studio-dock button:hover{color:var(--hud-ink)}
-.studio-app .village-time{font-size:13px;white-space:nowrap;max-width:124px;overflow:hidden;text-overflow:ellipsis}
+.studio-app .village-time{flex-shrink:0;font-size:13px;white-space:nowrap;max-width:124px;overflow:hidden;text-overflow:ellipsis}
 .studio-app .hud-spacer{flex:1;min-width:0}
 .studio-app .studio-hud .hud-place{font-size:13px;width:auto;max-width:210px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
 .studio-app .hud-resources{display:flex;align-items:center;margin-left:12px;gap:8px}
 .studio-app .hud-resources button{font-size:13px;width:auto;white-space:nowrap}
 .studio-app .studio-hud .advance-period{width:auto;gap:6px;font-size:13px}
 .hud-badge{position:absolute;width:6px;height:6px;right:5px;top:5px;background:#a33e27;border-radius:50%}
-.studio-app .studio-dock{position:absolute;left:12px;right:auto;bottom:12px;transform:none;z-index:40;width:288px;height:48px;display:flex;gap:0;padding:0;margin:0;background:transparent;border:0;box-shadow:none;backdrop-filter:none;color:var(--hud-ink);text-shadow:0 1px 2px var(--hud-halo)}
+.studio-app .studio-dock{position:absolute;left:12px;right:auto;bottom:12px;transform:none;z-index:40;width:288px;height:48px;display:flex;gap:0;padding:0;margin:0;background:transparent;border:0;box-shadow:none;backdrop-filter:none;color:var(--hud-ink);text-shadow:0 0 10px var(--hud-halo),0 0 4px var(--hud-halo),0 1px 2px var(--hud-halo)}
 .studio-app .studio-dock button{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;width:auto;gap:0;padding:0;font-size:13px;line-height:1.1;color:inherit;background:transparent;border:0;box-shadow:none}
 .studio-app .studio-dock button[aria-pressed=true]{background:transparent;color:inherit;text-decoration:underline;text-underline-offset:3px;font-weight:700}
 .studio-app .studio-drawer,.studio-app .hud-popover,.studio-app .priority-rail,.studio-app .office-camera,dialog,.studio-app .presentation-receipt,.studio-app .status-toast,.studio-app .crisis-chip,.studio-app .update-chip{background:var(--glass);backdrop-filter:blur(14px) saturate(1.08);border:1px solid var(--line);border-radius:16px;box-shadow:0 4px 16px #392f251c;color:var(--ink);text-shadow:none}
@@ -65,8 +65,8 @@ dialog::backdrop{background:transparent;backdrop-filter:none}
 .studio-app[data-mode=layout]>.scene-stage{visibility:visible;pointer-events:none}
 .studio-app[data-mode=layout]>.priority-feedback,.studio-app[data-mode=layout]>.hud-popover,.studio-app[data-mode=layout]>.status-toast{visibility:hidden}
 .studio-app .office-editor{position:absolute;inset:0;display:block;padding:0;background:transparent;pointer-events:none;z-index:60;color:var(--hud-ink);text-shadow:0 1px 2px var(--hud-halo)}
-.studio-app .office-editor>header{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:8px;justify-content:space-between;align-items:center;pointer-events:auto}
-.studio-app .office-editor>header h2{font-size:15px}.studio-app .office-editor>header p{display:none}.studio-app .office-editor>header strong{font-size:12px}.studio-app .office-editor>header button{color:var(--hud-ink)}
+.studio-app .office-editor>header{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:8px;justify-content:space-between;align-items:center;padding:4px 12px;pointer-events:auto;background:var(--glass);backdrop-filter:blur(14px) saturate(1.08);border:1px solid var(--line);border-radius:16px;color:var(--ink);text-shadow:none}
+.studio-app .office-editor>header h2{font-size:15px}.studio-app .office-editor>header p{display:none}.studio-app .office-editor>header strong{font-size:12px}.studio-app .office-editor>header button{color:var(--ink)}
 .studio-app .office-plan{position:absolute;inset:0;display:block;overflow:visible;pointer-events:none}
 .studio-app .office-plan svg{position:absolute;inset:0;width:100%;height:100%;min-height:0;pointer-events:none}
 .studio-app .office-plan svg [role=button]{pointer-events:auto}
@@ -76,7 +76,13 @@ dialog::backdrop{background:transparent;backdrop-filter:none}
 .studio-app .office-editor>footer{position:absolute;bottom:12px;left:12px;right:12px;max-height:170px;padding:8px 12px;overflow:auto;pointer-events:auto;background:var(--glass);backdrop-filter:blur(14px) saturate(1.08);border:1px solid var(--line);border-radius:20px;color:var(--ink);text-shadow:none}
 .studio-app .office-inventory{margin-bottom:4px}.studio-app .office-inventory button{min-width:145px;padding:4px}.studio-app .office-inventory button[aria-pressed=true]{border:0;background:transparent}
 .studio-app .office-editor footer p{font-size:12px}.studio-app .office-editor footer .button-row{gap:4px}
-@media(max-width:899px){.studio-app .studio-dock{left:50%;transform:translateX(-50%);max-width:calc(100% - 24px)}.studio-app .studio-drawer{left:50%;right:auto;top:auto;bottom:68px;transform:translateX(-50%);width:360px;max-height:min(320px,52dvh)}.studio-app .drawer-head h2{font-size:16px}.studio-app .hud-resources{display:none}.studio-app .hud-place{max-width:140px}.studio-app .office-editor>footer{max-height:200px}}
-@media(max-width:559px){.studio-app .village-time{font-size:12px}.studio-app .studio-hud .hud-place{display:none}.studio-app .studio-hud .advance-period{width:40px}.studio-app .advance-period span{display:none}.studio-app .studio-dock button{font-size:12px}.studio-app .priority-feedback{top:60px;width:260px}.studio-app .office-editor>header{flex-wrap:wrap}.studio-app .office-editor>header .button-row{margin-left:auto}.studio-app .office-plan-toolbar{top:108px}.studio-app .office-plan>label{top:160px;left:12px;right:auto}.studio-app .office-editor>footer{max-height:184px}.studio-app .office-editor footer p{margin-top:4px}.studio-app .office-editor>header h2{font-size:13px}}
+@media(max-width:899px){.studio-app .studio-dock{left:50%;transform:translateX(-50%);max-width:calc(100% - 24px)}.studio-app .studio-drawer{left:50%;right:auto;top:auto;bottom:68px;transform:translateX(-50%);width:360px;max-height:min(320px,52dvh)}.studio-app .drawer-head h2{font-size:16px}.studio-app .hud-resources{margin-left:4px;gap:4px}.studio-app .studio-hud .hud-place{display:none}.studio-app .studio-hud .advance-period{width:40px}.studio-app .advance-period span{display:none}.studio-app .office-editor>footer{max-height:192px}}
+@media(max-width:559px){.studio-app .village-time{font-size:12px}.studio-app .studio-hud .hud-place,.studio-app .hud-resources{display:none}.studio-app .studio-hud .advance-period{width:40px}.studio-app .advance-period span{display:none}.studio-app .studio-dock button{font-size:12px}.studio-app .priority-feedback{top:60px;width:260px}.studio-app .office-editor>header{flex-wrap:wrap}.studio-app .office-editor>header .button-row{margin-left:auto}.studio-app .office-plan-toolbar{top:108px}.studio-app .office-plan>label{top:160px;left:12px;right:auto}.studio-app .office-editor>footer{max-height:184px}.studio-app .office-editor footer p{margin-top:4px}.studio-app .office-editor>header h2{font-size:13px}}
 @media(max-height:479px){.studio-app .studio-hud{inset:8px 8px auto}.studio-app .studio-dock{bottom:8px}.studio-app .studio-drawer{max-height:52dvh}.studio-app .office-editor>footer{max-height:110px}.studio-app .office-plan-toolbar{top:56px}.studio-app .office-plan>label{top:56px;left:auto;right:8px}}
-@supports not (backdrop-filter:blur(14px)){.studio-app .studio-drawer,.studio-app .hud-popover,.studio-app .priority-rail,.studio-app .office-camera,dialog,.studio-app .office-editor>footer{background:var(--solid)}}
+@supports not (backdrop-filter:blur(14px)){.studio-app .studio-drawer,.studio-app .hud-popover,.studio-app .priority-rail,.studio-app .office-camera,dialog,.studio-app .office-editor>header,.studio-app .office-editor>footer{background:var(--solid)}}
+
+@media(max-width:359px){.studio-app .studio-hud{gap:2px}.studio-app .village-time{max-width:76px;font-size:11px}}
+
+.studio-app .office-editor>footer[hidden]{display:none}
+.studio-app .office-editor>header{flex-wrap:wrap;gap:4px}
+.studio-app .office-editor>header .button-row{margin-left:auto}

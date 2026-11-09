@@ -1,3 +1,5 @@
+2026-11-09 UI/美术1109复审：接受用户改动并修复遮脸、名牌叠字、560英文顶栏越界、后续章节槽框交叠及布置工具遮挡。219测试通过；实机证据harness/ui-art-1109，详细修订见UI_ART_FIXES_1109第四节。下一步按用户确认实施O4首闭环（效率与疲劳）。
+
 AI Village全屏浮窗固定源码：d285c3b5cd85efc09ef0f0025dd2c14c38a18555。验收与复现入口harness/reviews/village-ui-handoff.md；本条为独立SHA记录提交。
 
 2026-11-09 最新UI纠正：已直接对照相邻dsh_plugin的AI Village源码/截图，改为全屏cover场景、透明HUD/四入口、原版68%/74%玻璃浮窗、按需看板/更多/视角、浮层布置。普通浮窗不改变镜头。见VILLAGE_UI_ALIGNMENT.md及harness/village-ui；33文件213测试通过。engine0.15.0/content office-1与存档兼容性不变。O0–O3规则完成状态保留，旧HUD安全留白方案作废；下一玩法仍O4。以下为历史。

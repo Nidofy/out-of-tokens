@@ -2,6 +2,24 @@ import {Assets,Texture} from 'pixi.js';
 import type {Character,Expression,Pose} from './art/types.js';
 import {actorIds} from './studio-ui.js';
 export interface VillageRig {character:Character;textures:Map<string,Texture>}
+export const characterCalibration:Record<string,{scale:number;headY?:number}>={
+ bluewhale:{scale:1.08},
+ qwen:{scale:.96},
+ llama:{scale:1.05},
+ mistral:{scale:1.08},
+ gpt:{scale:1.04},
+ claude:{scale:.96},
+ kimi:{scale:.97},
+ gemini:{scale:.97},
+ grok:{scale:1},
+ glm:{scale:1.02,headY:-22},
+ minimax:{scale:1},
+ seedance:{scale:.97},
+};
+export function characterHeight(id:string,y:number){
+ const depth=.82+.18*Math.max(0,Math.min(1,(y-620)/260));
+ return 172*depth*(characterCalibration[id]?.scale??1);
+}
 const loaded=new Map<string,Promise<VillageRig>>();
 /** Fixed local production assets, copied byte-for-byte from the user's AI Village. */
 export function loadVillageCharacter(id:string):Promise<VillageRig>{
@@ -13,7 +31,8 @@ export function loadVillageCharacter(id:string):Promise<VillageRig>{
  })();loaded.set(id,task);void task.catch(()=>{if(loaded.get(id)===task)loaded.delete(id);});return task;
 }
 export function villagePose(character:Character,y:number,rotation:number,expression:Expression):Pose{
- return {expression,ended:false,transforms:Object.fromEntries(character.parts.map(p=>[p.id,{x:0,y:p.id==='root'?y:0,rotation:p.id==='body'?rotation:0,scaleX:1,scaleY:1}]))};
+ const key=character.id.split('-')[0]??'',headY=characterCalibration[key]?.headY??0;
+ return {expression,ended:false,transforms:Object.fromEntries(character.parts.map(p=>[p.id,{x:0,y:p.id==='root'?y:p.id==='head'?headY:0,rotation:p.id==='body'?rotation:0,scaleX:1,scaleY:1}]))};
 }
 export function activityPose(character:Character,phase:number,activity:string,walking:boolean,expression:Expression,still:boolean):Pose{
  const wave=still?0:Math.sin(phase*(walking?10:activity==='work'?6:2));
