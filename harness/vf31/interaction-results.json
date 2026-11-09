@@ -1,0 +1,260 @@
+[
+  {
+    "case": "390 overview/editor/cancel",
+    "before": {
+      "backgroundPosition": "-555.079px 0px",
+      "backgroundSize": "1500.44px 844px",
+      "reset": false
+    },
+    "preview": {
+      "backgroundPosition": "-605.094px -506.4px",
+      "backgroundSize": "2400.71px 1350.4px",
+      "reset": false
+    },
+    "after": {
+      "backgroundPosition": "-555.079px 0px",
+      "backgroundSize": "1500.44px 844px",
+      "reset": false
+    },
+    "pass": true
+  },
+  {
+    "case": "locations Escape",
+    "focus": "伙伴位置 · 4 画外",
+    "open": false,
+    "toolsVisibility": "visible",
+    "triggerFocused": true
+  },
+  {
+    "case": "locations X",
+    "focus": "伙伴位置 · 4 画外",
+    "open": false,
+    "toolsVisibility": "visible",
+    "triggerFocused": true
+  },
+  {
+    "case": "locations to map",
+    "focus": "去哪里坐坐？",
+    "open": false,
+    "toolsVisibility": "hidden",
+    "triggerFocused": false
+  },
+  {
+    "case": "1280 locate Qwen/editor/cancel",
+    "before": {
+      "backgroundPosition": "0px -221.333px",
+      "backgroundSize": "2048px 1152px",
+      "reset": true
+    },
+    "preview": {
+      "backgroundPosition": "0px 0px",
+      "backgroundSize": "1280px 720px",
+      "reset": false
+    },
+    "after": {
+      "backgroundPosition": "0px -221.333px",
+      "backgroundSize": "2048px 1152px",
+      "reset": true
+    },
+    "pass": true
+  },
+  {
+    "case": "1280 locate/editor/mirror/save",
+    "before": {
+      "backgroundPosition": "0px -221.333px",
+      "backgroundSize": "2048px 1152px",
+      "reset": true
+    },
+    "after": {
+      "backgroundPosition": "0px -221.333px",
+      "backgroundSize": "2048px 1152px",
+      "reset": true
+    },
+    "pass": true
+  },
+  {
+    "case": "560x800 overview/editor/cancel",
+    "before": {
+      "backgroundPosition": "-431.111px 0px",
+      "backgroundSize": "1422.22px 800px",
+      "reset": false
+    },
+    "after": {
+      "backgroundPosition": "-431.111px 0px",
+      "backgroundSize": "1422.22px 800px",
+      "reset": false
+    },
+    "pass": true
+  },
+  {
+    "case": "844x390 overview/editor/cancel",
+    "before": {
+      "backgroundPosition": "0px -84.4643px",
+      "backgroundSize": "844px 474.75px",
+      "reset": false
+    },
+    "after": {
+      "backgroundPosition": "-506.4px -364.007px",
+      "backgroundSize": "1350.4px 759.6px",
+      "reset": false
+    },
+    "pass": false
+  },
+  {
+    "case": "Qwen error close/reopen",
+    "before": "现金或研发点不足。",
+    "afterNotices": []
+  },
+  {
+    "case": "visit Qwen library then immediately reopen",
+    "elapsedMs": 901,
+    "notices": []
+  },
+  {
+    "case": "global warning in S3",
+    "notices": [
+      {
+        "owner": "伙伴档案",
+        "text": "另一窗口更新了存档，自动保存已暂停。请先载入最新档。×"
+      }
+    ]
+  },
+  {
+    "case": "global warning after local success",
+    "notices": [
+      {
+        "owner": "伙伴档案",
+        "text": "另一窗口更新了存档，自动保存已暂停。请先载入最新档。×"
+      }
+    ]
+  },
+  {
+    "case": "global warning on S1",
+    "notices": [
+      {
+        "owner": "S1",
+        "text": "另一窗口更新了存档，自动保存已暂停。请先载入最新档。×"
+      }
+    ]
+  },
+  {
+    "case": "global warning in S2",
+    "notices": [
+      {
+        "owner": "帮楼下奶茶店写个菜单",
+        "text": "另一窗口更新了存档，自动保存已暂停。请先载入最新档。×"
+      }
+    ]
+  },
+  {
+    "case": "global warning in Saves",
+    "notices": [
+      {
+        "owner": "存档与备份",
+        "text": "另一窗口更新了存档，自动保存已暂停。请先载入最新档。×"
+      }
+    ],
+    "presence": {
+      "focus": "存档与备份",
+      "open": false,
+      "toolsVisibility": "hidden",
+      "triggerFocused": false
+    }
+  },
+  {
+    "case": "844 overview/editor/cancel settled",
+    "before": {
+      "backgroundPosition": "0px -84.75px",
+      "backgroundSize": "844px 474.75px",
+      "reset": false
+    },
+    "after": {
+      "backgroundPosition": "0px -84.75px",
+      "backgroundSize": "844px 474.75px",
+      "reset": false
+    },
+    "pass": true
+  },
+  {
+    "case": "844 meeting-zone/editor/cancel",
+    "before": {
+      "backgroundPosition": "0px -64.3542px",
+      "backgroundSize": "844px 474.75px",
+      "reset": true
+    },
+    "after": {
+      "backgroundPosition": "0px -64.3542px",
+      "backgroundSize": "844px 474.75px",
+      "reset": true
+    },
+    "pass": true
+  },
+  {
+    "case": "S2 accept close/reopen",
+    "before": [
+      {
+        "owner": "Tea shop menu",
+        "text": "New commission added to the work board×"
+      }
+    ],
+    "after": []
+  },
+  {
+    "case": "assign automatically closes S2; one S1 receipt",
+    "notices": [
+      {
+        "owner": "S1",
+        "text": "Team assigned and ready to work×"
+      }
+    ]
+  },
+  {
+    "case": "deliver automatically closes S2; one S1 receipt",
+    "notices": [
+      {
+        "owner": "S1",
+        "text": "验收完成 · 资金变动 ¥958.65×"
+      }
+    ]
+  },
+  {
+    "case": "final 1280 meeting-zone/editor/cancel; editor overview matches overlay",
+    "before": {
+      "backgroundPosition": "-268.333px -131.667px",
+      "backgroundSize": "1600px 900px",
+      "reset": true
+    },
+    "preview": {
+      "backgroundPosition": "-1.13687e-13px 0px",
+      "backgroundSize": "1280px 720px",
+      "reset": false
+    },
+    "after": {
+      "backgroundPosition": "-268.333px -131.667px",
+      "backgroundSize": "1600px 900px",
+      "reset": true
+    },
+    "pass": true
+  },
+  {
+    "case": "optimized preview 390 editor/cancel",
+    "before": {
+      "backgroundPosition": "-555.222px 0px",
+      "backgroundSize": "1500.44px 844px",
+      "reset": false
+    },
+    "after": {
+      "backgroundPosition": "-555.222px 0px",
+      "backgroundSize": "1500.44px 844px",
+      "reset": false
+    },
+    "pass": true
+  },
+  {
+    "case": "optimized preview locations Escape",
+    "focus": "伙伴位置 · 4 画外",
+    "open": false,
+    "toolsVisibility": "visible",
+    "triggerFocused": true
+  }
+]

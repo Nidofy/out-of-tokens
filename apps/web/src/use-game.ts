@@ -1,6 +1,6 @@
 import {visualReviewEnabled} from './visual-review.js';
 import {LabSaves,labSession} from './office-lab.js';
-import {presentationEvent,commandFeedbackTarget,nextFeedback} from './presentation-events.js';
+import {presentationEvent,commandFeedbackTarget,nextFeedback,clearLocalFeedback} from './presentation-events.js';
 import type {UiFeedback,FeedbackTarget,PresentationEvent} from './presentation-events.js';
 import {useEffect,useRef,useState} from 'preact/hooks';
 import {BrowserSaves,HostSaves,GameSession,manualSlots} from 'oot-platform';
@@ -17,6 +17,8 @@ export function useGame(){
  const [view,setView]=useState(session.view),[busy,setBusy]=useState(true),[records,setRecords]=useState<(StoredSave|null)[]>([]);
  const [feedback,setFeedback]=useState<UiFeedback|null>(null),feedbackId=useRef(0);
  const dismissFeedback=()=>setFeedback(null);
+ // Read the latest state even when visit's async close callback predates its DONE report.
+ const dismissLocalFeedback=(target:{surface:'job'|'actor';id:string})=>setFeedback(current=>clearLocalFeedback(current,target));
  const report=(code:string,target:FeedbackTarget={surface:'global'},error=false,receipt:PresentationEvent|null=null)=>{const next={id:++feedbackId.current,code,target,error,receipt};setFeedback(previous=>nextFeedback(previous,next,paused.current));};
  // Latest action wins; successful receipts expire, errors require dismissal or another operation.
  useEffect(()=>{if(!feedback||feedback.error)return;const expire=()=>{if(document.activeElement?.closest('.feedback-notice'))timer=setTimeout(expire,1000);else dismissFeedback();};let timer=setTimeout(expire,6000);return()=>clearTimeout(timer);},[feedback?.id]);
@@ -39,5 +41,5 @@ export function useGame(){
  const importFile=(file:File|undefined)=>run(async()=>{if(!file)return;if(file.size===0||file.size>8000000)throw Error('INVALID_SAVE_SIZE');let available=true;try{revisions.current.auto=(await storage.read('auto'))?.revision??0;}catch{available=false;}await session.importSave(await file.text());paused.current=!available;setView(session.view);report(available?'LOADED':'IMPORTED_NO_STORAGE',{surface:'saves'});},{surface:'saves'});
  const reconcileEmpty=()=>run(async()=>{if(!(storage instanceof HostSaves))return;const rows=await storage.reconcileEmpty();revisions.current={};paused.current=false;setRecords(rows);report('RECONCILED_EMPTY',{surface:'saves'});},{surface:'saves'});
  const reconcile=()=>run(async()=>{if(!(storage instanceof HostSaves))return;const text=await session.exportSave();const result=await storage.reconcile('auto',revisions.current.auto??0,text);revisions.current.auto=result.revision;paused.current=false;if(result.committed)savedAuto.current=text;setRecords(result.rows);report('RECONCILED',{surface:'saves'});},{surface:'saves'});
- return{lab,feedback,dismissFeedback,reconcile,reconcileEmpty,hosted,session,view,busy,records,send,load,save,exportFile,importFile,refresh:()=>run(list)};
+ return{lab,feedback,dismissFeedback,dismissLocalFeedback,reconcile,reconcileEmpty,hosted,session,view,busy,records,send,load,save,exportFile,importFile,refresh:()=>run(list)};
 }

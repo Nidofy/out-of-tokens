@@ -189,3 +189,17 @@ VF2固定实现61b9c7594dcf288e7cb0f136aec11911cdc7cbb6；本独立记录提交�
 严格时序：UTC16:28:30.958冻结全部源码/CSS，之后才12预热与72正式+72复核，同1280×720/DPR1.0000000447034836，standard/twelve、dev/优化visual-review preview，六轮正反交替，对040031e及61b9c75。150文件采样前后原始哈希一致，另列LF规范化哈希支持Git检出验证。首批dev standard对040031e+14.82%；复核对VF2+20.20%仍不利，两批保留。preview对VF2首批-2.50%/-1.89%、复核-4.78%/-4.30%。补充三个dev版本180帧p50约8.3/p95约8.4–8.5、>50ms帧0，资源数VF2/VF3均104，载荷+36720B；不能用单次较好启动值关闭风险，根因待专项profile。正常发布产物已重建无vf-metrics/vf-startup；5181–5186无监听、视口reset和标签关闭。旧基线worktree/junction保留。更新六份状态/决策文档，本地双提交后暂停；没有push、部署、付费调用、VF4或O4新玩法。
 
 VF3固定实现 `6f3a19122f4508004aeb1ae3bfe0c1387047e9dc`；独立记录提交写入vf3-handoff与vf3-6f3a191-gemini-prompt（明确审查范围及必须回交Codex完整Prompt）。实现提交前staged diff --check通过；只清理两份新测试日志的末尾空行，源码与原始性能样本未改。记录提交不改实现，当前停止等待独立审查，未push。
+
+## 2026-11-10 VF3.1 收尾修复与VF4准备
+
+用户原文harness/reviews/vf31-user-handoff.txt；原CRLF SHA256 5d9491fead338b2b094a9d7f25d5c430ff253cb477784161e25654eef9c5c1bf，Git LF规范6f569f9402d966471845cbdab34d467d8ee62e3c3520bf57a6a9dbcf5bda1b02。裁决VF2四项PASS、限定VF3条件通过。父38cce8d，上一固定实现6f3a191。基线check 38/291通过。
+
+闭环三项：相机sceneFocus/editorFocus与zone独立，编辑时overview对齐覆盖层、取消/保存恢复原S1；位置列表Escape/X焦点归还与modal自动收起/隐藏；局部反馈按对象关闭清理，函数式setter避开visit异步旧闭包，跨屏assign/deliver/global暂停告警保留。check-final与final-v2均38文件299测试、类型/lint/Web/DSH构建通过。
+
+实机23条记录：390/560/844 overview往返，1280 Qwen定位取消及镜像保存、会议分区往返；Escape/X回触发器，地图/Saves工具隐藏；Qwen错误重开无残留，拜访901ms重开无DONE；S2接单重开清局部，assign/deliver自动关闭各1回执；隔离F9告警S3→聊天→S1→S2→Saves保留。844一次动作后即时读取处于预览帧保留pass:false，分开动作与稳定读数复核相同并截图；首次派遣已自动关窗后查找Close超时，重跑记录实际自动关闭结果，不改产品绕测试。console记录为空。
+
+所有源码/CSS/测试于UTC17:30:50.836冻结151文件，原始与LF哈希均记录，后续零源码变更。040031e旧诊断worktree复用，新6f3a191只读worktree复用junction/包dist，未安装依赖。12预热、72正式+72确认，1280x720/DPR1.0000000447034836，六轮正反交替。首批dev twelve对040+14.40%触发唯一确认，确认对040+24.69%/VF3+24.37%，风险VF31-PERF-01开放；preview相对VF3标准-13.84%/-5.02%，十二人-0.81%/+1.59%。旧dev standard风险不被新较好样本覆盖，完整性能仍留VF5。
+
+默认生产重新构建，19个JS无vf-metrics/vf-startup；保护路径相对VF1.1零diff，engine0.16.0/content office-2不变。5181–5186全部停止，浏览器视口reset、临时tab关闭。只清理新日志的末尾/行末空白，不改失败事实或原始JSON。VF4_PREPARATION只写组件/资产/逐屏矩阵与门禁，未量产/推送/部署/付费调用。双本地提交后暂停等待独立审查。
+
+提交前证据核对首次漏写UTF-8，默认GBK读取中文JSON失败；修正编码后发现文档手工误计24条，实际JSON为23条，断言阻止提交。已据原始JSON改正三处文档计数，23条交互/151文件冻结核对通过，原始JSON未改。

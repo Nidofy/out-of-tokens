@@ -2,8 +2,35 @@ import {test,expect} from 'vitest';
 import {loadFullContent} from 'oot-content';
 import {labSession} from '../web/src/office-lab.js';
 import {partnerAvailability} from '../web/src/partner-state.js';
-import {commandFeedbackTarget,feedbackSurface,presentationEvent,nextFeedback} from '../web/src/presentation-events.js';
+import {commandFeedbackTarget,feedbackSurface,presentationEvent,nextFeedback,clearLocalFeedback} from '../web/src/presentation-events.js';
 import type {UiFeedback} from '../web/src/presentation-events.js';
+
+test.each(['job','actor'] as const)('closing %s removes only matching ephemeral feedback before reopening',surface=>{
+ const target={surface,id:'object-a'},base:UiFeedback={id:1,code:'INSUFFICIENT_RESOURCES',target,error:true,receipt:null};
+ for(const feedback of [base,{...base,error:false,code:'DONE'},{...base,receipt:{id:1,kind:'accept' as const,title:['',''] as [string,string]}}]){
+  expect(clearLocalFeedback(feedback,target)).toBeNull();
+  expect(clearLocalFeedback(feedback,{surface,id:'object-b'})).toBe(feedback);
+ }
+ for(const kind of ['assign','deliver'] as const){
+  const receipt={...base,error:false,receipt:{id:1,kind,title:['',''] as [string,string]}};
+  const after=clearLocalFeedback(receipt,target);
+  expect(after).toBe(receipt);expect(feedbackSurface(after,{saves:false,modal:false})).toBe('global');
+ }
+ for(const code of ['EXTERNAL_CHANGE','AUTO_PAUSED']){
+  const global={...base,target:{surface:'global' as const},code};
+  expect(clearLocalFeedback(global,target)).toBe(global);
+ }
+ expect(clearLocalFeedback(null,target)).toBeNull();
+});
+test('a close updater created before visit completion clears the latest DONE and preserves a later global error',()=>{
+ const target={surface:'actor' as const,id:'qwen'};
+ // useGame passes this updater to setFeedback, never captures the rendered feedback value.
+ const close=(current:UiFeedback|null)=>clearLocalFeedback(current,target);
+ const done:UiFeedback={id:2,code:'DONE',target,error:false,receipt:null};
+ expect(close(done)).toBeNull();
+ const global:UiFeedback={...done,id:3,code:'EXTERNAL_CHANGE',target:{surface:'global'},error:true};
+ expect(close(nextFeedback(global,done,true))).toBe(global);
+});
 
 function evening(){
  const g=labSession(loadFullContent(),'standard');

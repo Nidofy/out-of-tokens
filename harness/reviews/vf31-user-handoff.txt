@@ -1,0 +1,62 @@
+# Codex 执行 Prompt：VF3.1 收尾修复 + 受控进入 VF4 准备
+
+## 1. 背景与当前裁决
+
+独立审查已完成对固定实现 `6f3a19122f4508004aeb1ae3bfe0c1387047e9dc`（记录提交 `38cce8d`）的只读代码、单测与实机浏览器复核：
+
+- **A 节（VF2 四项先决返修 `VF2-F-01`～`VF2-F-04`）**：**`PASS`（4/4 全部闭环）**。
+- **B 节（限定 VF3 检查点）**：**`CONDITIONAL PASS`**。共享锚点显式定位、`返回全景`、窄屏统一 `overview` + `伙伴位置` 列表、电脑前挡板名牌（`workLabelOffset = -32`）、矮横屏双会议席名牌错位（`+22px`）、以及 `office-hit-area.ts` 精确命中均已通过验证，且零领域/存档/RNG 副作用。
+- **遗留问题**：独立实机复现发现 1 项 `P2` 与 2 项 `P3` 收尾问题（`VF3-F-01`～`VF3-F-03`）。
+
+请先在当前分支 `codex/m1-foundation` 上高内聚闭环 `VF3-F-01`～`VF3-F-03`（作为 `VF3.1` 先决收口），补齐对应回归测试与实机验证。**严禁把当前阶段称为完整 `Visual Freeze 1` 冻结**。
+
+## 2. 硬性护栏与保护路径
+
+- 工作目录：`D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens`，分支 `codex/m1-foundation`。
+- 严禁修改保护路径：`packages/`、`pnpm-lock.yaml`、`apps/web/public/art/ai-village`（相对 VF1.1 `2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f` 必须保持零 diff）。
+- 保持 `engineVersion: 0.16.0` 与 `contentPackId: office-2`。
+- 不得回退 VF1.1 / VF2 / VF3 已冻结的 S1/S2/S3 布局、暖木暖纸配色、字体/字级规范、单主反馈跨屏协议、1920×1080 逻辑世界坐标、电脑前挡板名牌与精确 `hitArea`。
+- 不要递归删除任何复用 worktree（`../vf11-perf-baseline`、`../vf2-vf11-baseline`、`../vf3-vf2-baseline`）中的依赖 junction 目标。
+
+## 3. 必做修复项（`VF3-F-01`～`VF3-F-03`）
+
+### 任务 1：`VF3-F-01`（P2）—— 隔离 `OfficeEditor` 布局预览镜头与 S1 显式定位镜头
+- **问题定位**：`apps/web/src/alpha-app.tsx`（第 42、62、77、116 行）与 `apps/web/src/office-editor.tsx`（第 22–37 行）。当前 `AlphaApp` 将 S1 的显式 `locate` 焦点与 `OfficeEditor` 的 `onPreview` 回调共用同一个 `layoutCamera` 状态，且关闭 `OfficeEditor` 时未清理预览镜头：
+  1. 在 `<900px` 视口（如 `390×844`、`560×800`、`844×390`）下，从 `overview` 打开 `布置办公室`（或点击空工位）时，`OfficeEditor` 会调用 `onPreview(items, slotPoint(focusSlot, chapter))` 将 `layoutCamera` 设为 `{x: 640, y: 795}`；点击 `取消` 关闭编辑器后，`layoutCamera` 仍残留 `{x: 640, y: 795}`，导致 S1 镜头被意外放大到 `1.6x` 工位特写且出现 `返回全景` 按钮。
+  2. 在 `>=900px` 桌面视口下，若 S1 已通过 `locate` 聚焦某角色/工位，打开 `布置办公室` 再点 `取消` 会将 `layoutCamera` 覆盖为 `null`，丢失原 S1 定位镜头。
+- **修复要求**：
+  - 将 S1 显式定位镜头状态（例如 `sceneFocus`）与 `OfficeEditor` 内部预览镜头状态（例如 `editorFocus`）彻底分离；
+  - `<Scene camera={arranging ? editorFocus : sceneFocus} ... />`，`.scene-tools` 的 `返回全景` 仅按 `sceneFocus || cameraZone !== 'overview'` 判断；
+  - 在 `OfficeEditor` 关闭（取消或保存退出）时清空 `editorFocus(null)`，确保退出编辑器后 100% 恢复进入编辑器前的 S1 镜头与 `cameraZone`。
+
+### 任务 2：`VF3-F-02`（P3）—— 补齐 `.scene-presence`（`伙伴位置` 列表）的键盘 `Escape`、焦点归还与模态遮罩隐藏
+- **问题定位**：`apps/web/src/alpha-app.tsx`（第 75、78–79、83、86、90–91 行）与 `apps/web/src/village-ui.css`（第 65–66 行）。
+  1. 展开 `.scene-presence` 后按 `Escape` 未关闭列表；
+  2. 点击 `.scene-presence` 内的 `×` 关闭按钮（或按 `Escape` 关闭）后，`document.activeElement` 落回 `document.body`，未归还给 `.scene-tools` 中的位置切换按钮；
+  3. 展开 `.scene-presence` 后直接点击顶栏 `地图`（`setMapOpen(true)`）或打开 `存档`/`设置` 时，`locationsOpen` 未收起，且 `village-ui.css` 的 `.studio-app:has(dialog[open])>:is(...)` 与 `.studio-app[data-mode=layout]>` 选择器未包含 `.scene-tools,.scene-presence`。
+- **修复要求**：
+  - 支持在 `locationsOpen` 打开且无模态框时按 `Escape` 关闭 `.scene-presence`，并在通过 `Escape` 或 `×` 关闭时将焦点归还 `.scene-tools` 的位置列表触发按钮；
+  - 在打开 `mapOpen`、`saves`、`settings`、`jobId`、`actorId`、`arranging` 时自动 `setLocationsOpen(false)`；
+  - 在 `apps/web/src/village-ui.css` 的 `.studio-app:has(dialog[open])>:is(...)` 与 `.studio-app[data-mode=layout]>` 隐藏规则中补入 `.scene-tools,.scene-presence`。
+
+### 任务 3：`VF3-F-03`（P3）—— 手动关闭 S2/S3 弹窗及 `去找伙伴` 切场景时清理陈旧局部反馈
+- **问题定位**：`apps/web/src/alpha-app.tsx`（第 113–114 行）与 `apps/web/src/partner-profile.tsx`（第 47 行）。
+  1. 在 S3（如 Qwen 研发点不足触发 `"现金或研发点不足。"`）或 S2 触发局部反馈后，点击 `×` 关闭弹窗回到 S1（S1 不显示），但若在下一条命令前重新打开同一个角色/委托弹窗，旧的局部 `feedback` 会再次在弹窗内显示；
+  2. 在 S3 点击 `去找伙伴`（`visit`）自动关闭档案并切到目标场景后，6 秒内点开该伙伴档案会在头像下看到上次移动留下的 `"安排好了。"`。
+- **修复要求**：
+  - 当关闭 S2（`setJobId(null)`）或 S3（`setActorId(null)`，含 `PartnerProfile` 内触发 `visit` 关闭档案时）时，若当前 `game.feedback` 属于该弹窗的局部反馈（`target.surface === 'job'` 或 `'actor'`，且不是需要跨屏进入 S1 的 `assign`/`deliver` 收据，也不是 `target.surface === 'global'` 的全局存储告警），同步调用 `game.dismissFeedback()`，防止重开弹窗时旧局部提示复现。
+  - 严禁影响暂停态全局存储告警（`EXTERNAL_CHANGE`/`AUTO_PAUSED`）跨弹窗与 S1 的保留契约，也严禁影响 `assign`/`deliver` 关窗后在 S1 的唯一收据显示。
+
+## 4. 验证与交付要求
+
+1. **自动化测试**：
+   - 在 `apps/sim-cli/vf2.test.ts` 或 `apps/sim-cli/vf3.test.ts` 中补充覆盖 `VF3-F-01`、`VF3-F-02`、`VF3-F-03` 的回归断言。
+   - 运行 `pnpm check`，确保全部测试、TypeScript、ESLint、Web 生产构建、DSH 构建 100% 通过。
+2. **实机浏览器复核**：
+   - `390×844` 下打开 `?office-lab=initial` → 打开 `布置办公室` → 点击 `取消`，验证 `workshop` 的 `backgroundSize` / `backgroundPosition` 与初始 `overview` 完全一致且 `.reset-view` 不出现；`1280×720` 下先 `locate` Qwen → 打开 `布置办公室` → 点击 `取消`，验证仍保持 Qwen 的 `locate` 焦点。
+   - 验证 `.scene-presence` 打开后按 `Escape` 及点 `×` 均可关闭且焦点回到 `.scene-tools` 触发按钮；打开 `地图` 时 `.scene-presence` 自动关闭且 `.scene-tools` 隐藏。
+   - 验证 `?office-lab=initial` 下 Qwen S3 触发研发不足报错 → 关窗 → 重开 Qwen S3 无残留报错；`?office-lab=standard` 推进两槽后点 Qwen `去找伙伴` 切到图书馆 → 立即点开 Qwen S3 无 `"安排好了。"`；同时复核 `?test-fault=storage-events` 下 `Ctrl+Shift+F9` 全局告警跨 S3/S1/S2/Saves 依然完整保留。
+3. **收尾清洁**：
+   - 恢复默认生产构建 `pnpm --filter oot-web build`，确认 `apps/web/dist/assets/*.js` 不含 `vf-metrics` 或 `vf-startup`；
+   - 关闭所有临时开发/预览端口，确认 `git diff 2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f HEAD -- packages pnpm-lock.yaml apps/web/public/art/ai-village` 为空且 `git status -sb` 干净；
+   - 更新 `docs/STATUS.md`、`docs/VF3_CHECKPOINT.md` 与 `harness/build-log.md` 记录本次 `VF3.1` 闭环 SHA。

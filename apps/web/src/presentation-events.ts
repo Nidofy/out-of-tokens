@@ -23,6 +23,11 @@ export function feedbackSurface(feedback:UiFeedback|null,open:{job?:string|undef
 export function nextFeedback(previous:UiFeedback|null,next:UiFeedback,paused:boolean):UiFeedback{
  return paused&&previous?.target.surface==='global'&&previous.error&&!(next.target.surface==='global'&&next.error)?previous:next;
 }
+/** A closing object discards only its own ephemeral feedback, never cross-screen receipts. */
+export function clearLocalFeedback(feedback:UiFeedback|null,target:{surface:'job'|'actor';id:string}):UiFeedback|null{
+ if(feedback?.target.surface!==target.surface||feedback.target.id!==target.id)return feedback;
+ return feedback.receipt?.kind==='assign'||feedback.receipt?.kind==='deliver'?feedback:null;
+}
 export interface PresentationEvent {id:number;kind:'accept'|'assign'|'deliver'|'upgrade';title:[string,string];}
 // A transient, bounded UI queue. No timers, rewards, RNG or save mutations here.
 export function presentationEvent(command:Command,id:number,cashDelta:number):PresentationEvent|null{

@@ -1,3 +1,63 @@
+# VF3.1 收尾检查点（当前）
+
+2026-11-10；分支 `codex/m1-foundation`；父提交 `38cce8d`，复审针对固定 VF3 `6f3a19122f4508004aeb1ae3bfe0c1387047e9dc`。用户裁决为 VF2 四项返修 **PASS**、限定 VF3 **CONDITIONAL PASS**。本轮仅执行 VF3-F-01～03，并制定 VF4 准备清单；不称整体 Visual Freeze 1 完成。固定实现SHA与Gemini Prompt由后续独立记录写入 `harness/reviews/vf31-handoff.md`。本节覆盖下方旧“待VF3复审”的执行状态，下方历史证据保留。
+
+## VF3.1 修复与验证
+
+| 项目 | 最终实现 | 自动化与实机证据 |
+|---|---|---|
+| VF3-F-01 / P2 | `scene-navigation.ts` 相机状态分别保存 sceneFocus/editorFocus/cameraZone；预览只改editorFocus，保存/取消清预览。Scene在编辑时使用编辑器的overview分区，避免覆盖层与场景分区不同；退出恢复S1原focus/zone。返回全景按钮只读S1状态 | vf3.test.ts四视口×全景/定位/会议区，预览/resize/退出/重置且GameView不变；390/560/844取消恢复、1280 Qwen定位取消及镜像保存恢复、会议分区恢复；优化preview390重复验证 |
+| VF3-F-02 / P3 | 位置触发按钮ref；Escape与X显式关闭归还焦点；map/saves/settings/job/actor/arranging/pending打开自动收起，不抢模态焦点。native dialog与layout隐藏规则包含scene-tools/scene-presence | 关闭策略断言；390 Escape/X焦点均回触发器；地图打开列表消失且tools hidden、焦点留地图；Saves隐藏；preview390 Escape再验 |
+| VF3-F-03 / P3 | closeActor/closeJob统一处理手动关闭、visit、locate与组件自动关闭。`dismissLocalFeedback`用setFeedback函数式更新，按surface+id清最新局部状态；不捕获visit前的旧feedback。assign/deliver与global告警保留，明确收起仍用原dismissFeedback | vf2.test.ts对象匹配/非匹配、空值、接单/普通成功/错误、两种跨屏回执、全局告警及异步最新值；Qwen研发不足关窗重开无错，拜访图书馆后901ms重开无DONE，S2接单关闭重开无旧提示，派遣/交付各1个S1回执 |
+
+全局暂停告警通过隔离夹具 `?office-lab=initial&test-fault=storage-events&motion=still`、Ctrl+Shift+F9注入真实通知路径，验证S3→聊天成功→S1→S2→Saves始终只有一份EXTERNAL_CHANGE。AUTO_PAUSED的保留由纯函数回归覆盖，本轮没有将其写成另一条独立实机注入结果。
+
+自动化：`harness/vf31/check-baseline.log` 38文件291测试；`check-final.log` 与 `check-final-v2.log` 均 **38文件299测试**、TypeScript、ESLint、Web生产及既有DSH构建全部通过。v2是在补齐编辑期间overview分区后重跑。没有修改packages/锁文件/原角色资产、经营数值、Command、RNG、存档或engine0.16.0/content office-2。
+
+## VF3.1 实机证据与限制
+
+证据目录 `harness/vf31/`，`interaction-results.json` 包含23条实际记录。截图：
+
+| 文件 | 说明 |
+|---|---|
+| editor-cancel-390.png / editor-cancel-844.png | 取消后全景、没有返回按钮 |
+| editor-cancel-locate-1280.png | 原Qwen显式焦点保留 |
+| locations-map-390.png | 地图模态下位置列表收起、背景工具隐藏 |
+| qwen-error-reopened.png / visit-qwen-reopened.png | S3重开无陈旧局部反馈 |
+| global-warning-saves.png | 存档面板承接全局暂停告警 |
+| preview-editor-cancel-390.png | 优化诊断preview取消恢复，Escape后焦点环在位置触发器 |
+
+早期844批处理的即时computed-style读数仍在前一预览帧（reset已false），原始 `pass:false` 记录保留；随后分开动作与稳定画面读取，overview变换前后完全相同，并留截图。不能把这个即时读数删掉或写成全记录无失败。首次派遣成功已自动关闭S2，再尝试点击Close导致工具无匹配；依据实际界面重跑并即时记录唯一S1回执，没有修改产品来迎合脚本。
+
+本轮代表性浏览器复核覆盖390/560/844/1280，英文深色用于S2接单/派遣；不重做VF3全部42次命中与十二角色×五视口穷举。地图/存档的模态隐藏已实测，settings/事件等共用分支为源码和策略断言，不冒称逐个实点。最终两份console记录为空。浏览器视口已reset、临时tab关闭。
+
+## VF3.1 性能：冻结后两批采样，风险仍开放
+
+采样前协议 `performance-protocol.md`：六轮正反交替，standard/twelve，dev与优化visual-review preview；三版本040031e/固定6f3a191/候选VF3.1。同1280×720与精确DPR `1.0000000447034836`，12组预热到180帧排除于统计。新建 `../vf31-vf3-baseline` 固定6f3a191，依赖junction复用、包构建产物复制；既有三个worktree未删除或重新安装依赖。
+
+UTC `2026-11-09T17:30:50.836133+00:00`（北京时间11月10日01:30）冻结151个源码/CSS/测试文件，source-freeze.json包含原始与LF规范化SHA256；采样后source-freeze-verified.json确认零变化。源码此后不再修改。
+
+| 模式/场景 | 首批：相对040031e / VF3 | 确认批：相对040031e / VF3 |
+|---|---|---|
+| dev standard | -8.45% / -12.85% | -5.79% / -12.30% |
+| dev twelve | **+14.40%** / +4.99% | **+24.69% / +24.37%** |
+| preview standard | -15.38% / -13.84% | -10.30% / -5.02% |
+| preview twelve | -6.11% / -0.81% | -13.04% / +1.59% |
+
+首批dev twelve对长期基线超过+10%触发预定的唯一确认批，确认仍不利。`startup-balanced.json`和`startup-confirmation.json`各72条，`startup-warmup-excluded.json`12条；`node harness/vf31/summarize-startup.mjs`可重算。**VF31-PERF-01：dev twelve明显回退/波动待归因，保持开放**；旧VF3 dev standard不利批次亦不被本轮较好数据抹除。preview两批未出现>10%的增量退化；这不是完整性能预算通过。没有新增纹理/滤镜，不能据此断言性能差异没有实现原因。
+
+下一轮应先固定浏览器/刷新率/电源环境并采主线程长任务、模块解析、组件提交时序，区分开发模块加载与游戏交互；不能无限重复跑分直到通过。本轮只交接风险，不借此扩大成未授权的全面性能重构。冷缓存、全部素材就绪、输入延迟、GPU内存和低端机留VF5。
+
+## VF3.1 清洁、来源与后续门禁
+
+`restore-production-build.log`恢复默认Web生产；`production-restored.json`扫描19个JS文件，无vf-metrics/vf-startup；保护路径相对VF1.1零diff。`cleanup.json`证实5181–5186无监听。只终止本轮记录的Node进程，保留所有审计worktree及依赖junction。
+
+用户原文归档 `harness/reviews/vf31-user-handoff.txt`；原附件CRLF SHA256 `5d9491fead338b2b094a9d7f25d5c430ff253cb477784161e25654eef9c5c1bf`，Git LF规范文本SHA256 `6f569f9402d966471845cbdab34d467d8ee62e3c3520bf57a6a9dbcf5bda1b02`。本轮未取得另一份完整外部报告，不虚构。
+
+后续详见 `VF4_PREPARATION.md`：已盘点复用组件、八类双层家具、十二角色保护范围、食堂/图书馆及逐屏状态矩阵。**准备文档不等于量产放行**。先由Gemini对固定VF3.1实现逐项裁决，并决定性能风险是否阻断下一试点；任何新执行需用户交接。当前两个本地提交后暂停，不push/部署/付费调用，不自动启动VF4或O4-B/O4-C。Gemini报告末尾必须提供完整可复制的交接回Codex执行Prompt。
+
+---
+
 # VF3 检查点：显式定位与场景核验
 
 2026-11-10；分支 `codex/m1-foundation`。本轮依据用户 `harness/reviews/vf3-user-handoff.txt`，接受 VF2 **有条件通过**，先闭环 VF2-F-01～04，再实施限定 VF3。父提交 `e693642215f6406fa6e945144591ef0a8c736720`，上一固定实现 `61b9c7594dcf288e7cb0f136aec11911cdc7cbb6`。本地工程检查点完成，**等待 Gemini 独立裁决，不代表整体 Visual Freeze 1 完成**。固定 SHA 见后续独立记录 `harness/reviews/vf3-handoff.md`。
