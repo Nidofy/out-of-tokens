@@ -1,6 +1,6 @@
 # Gemini VF4-A3.1 closeout review
 
-Review fixed implementation A31_IMPLEMENTATION_SHA_PENDING against base 9ad47c7b67b82cf86e9922f02f7cc398ec5b73bc. Read vf4a3-handoff.md and the current VF4_CHECKPOINT section. Read-only; no edits, push, deployment, performance reruns or VF4-B/C.
+Review fixed implementation d1072f6b2d0f7bd42b3a1078164753b0acc6fec8 against base 9ad47c7b67b82cf86e9922f02f7cc398ec5b73bc. Read vf4a3-handoff.md and the current VF4_CHECKPOINT section. Read-only; no edits, push, deployment, performance reruns or VF4-B/C.
 
 Verify precisely three fixes: FOCUS-01 Studio→Actors route focus followed immediately by one Escape with no intervening header click/refocus; CSS-01 light subtitles and preserved impression background during hover; CSS-02 Claude full-width top strip/title+art row on desktop and 88px art-left/right text stack on narrow screens. Inspect final A31-final-* records and Claude screenshots at all four viewports. Check no overlap, overflow or column swap, upright text/status and inverted art/strip.
 

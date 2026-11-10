@@ -1,6 +1,6 @@
 # VF4-A3.1 收尾检查点（2026-11-10）
 
-固定实现：`A31_IMPLEMENTATION_SHA_PENDING`。基于 `9ad47c7b67b82cf86e9922f02f7cc398ec5b73bc` / A3实现 `b5f521605937a71a04ce4d5a09c14913eb5a1735`。两次本地提交后暂停待复审；不push、不部署、不启动VF4-B/C。
+固定实现：`d1072f6b2d0f7bd42b3a1078164753b0acc6fec8`。基于 `9ad47c7b67b82cf86e9922f02f7cc398ec5b73bc` / A3实现 `b5f521605937a71a04ce4d5a09c14913eb5a1735`。两次本地提交后暂停待复审；不push、不部署、不启动VF4-B/C。
 
 本轮接受用户提供的Gemini独立复审：A3核心/契约/平衡性能通过，CONDITIONAL PASS；VF4A2-PERF-01由A3的n=6证据正式归档CLOSED。历史采样原始数据保持原样，历史小样本数字不改写。VF31-PERF-01完整预算仍OPEN。
 

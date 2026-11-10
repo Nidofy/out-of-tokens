@@ -1,6 +1,6 @@
 # VF4-A3.1 review handoff
 
-Fixed implementation: A31_IMPLEMENTATION_SHA_PENDING
+Fixed implementation: d1072f6b2d0f7bd42b3a1078164753b0acc6fec8
 
 Base record 9ad47c7b67b82cf86e9922f02f7cc398ec5b73bc; A3 implementation b5f521605937a71a04ce4d5a09c14913eb5a1735. Branch codex/m1-foundation. Two local commits only, then pause. No push, deployment, paid API or VF4-B/C.
 

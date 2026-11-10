@@ -1,4 +1,4 @@
-VF4-A3.1 固定实现 `A31_IMPLEMENTATION_SHA_PENDING`；交接 `harness/reviews/vf4a3-handoff.md`，复审 Prompt `harness/reviews/vf4a3-gemini-review-prompt.md`。本轮两次本地提交后暂停；不 push、不部署、不启动 VF4-B/C。
+VF4-A3.1 固定实现 `d1072f6b2d0f7bd42b3a1078164753b0acc6fec8`；交接 `harness/reviews/vf4a3-handoff.md`，复审 Prompt `harness/reviews/vf4a3-gemini-review-prompt.md`。本轮两次本地提交后暂停；不 push、不部署、不启动 VF4-B/C。
 
 2026-11-10 当前入口：VF4-A3 独立复审 CONDITIONAL PASS 已接收，A3.1 修复 FOCUS-01 / CSS-01 / CSS-02，完成 VF4-A 零资源阶段收尾验证。应用仅修改 alpha-app.tsx 路由切换后焦点和 vf1.css 海报选择器；Studio→Actors 四视口焦点在抽屉内，直接一次 Escape 返回原 Studio Dock；版本副标题浅色不再被覆盖，悬停保留海报配色，Claude 桌面/窄屏定位无重叠错列。38文件307测试及全量类型/lint/Web/DSH构建通过；新增26条观察，最终12条四视口门禁全通过。151文件新冻结原始/LF一致、保护路径0diff、生产无探针、端口/缓存/浏览器清理完毕。原72正式+12预热性能证据原样复用未重跑；依用户转述的Gemini独立裁决，VF4A2-PERF-01正式CLOSED。VF31-PERF-01完整预算、Visual Freeze 1、S2全矩阵、VF4-B/C等仍未闭合。下文仅为历史，不能覆盖本段。
 
