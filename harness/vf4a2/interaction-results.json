@@ -1,0 +1,7343 @@
+[
+  {
+    "case": "F03 Settings selected keyboard focus",
+    "at": "2026-11-10T02:32:58.901Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 374,
+        "clientWidth": 739,
+        "scrollHeight": 374,
+        "scrollWidth": 739
+      },
+      "bodyRect": {
+        "bottom": 581.357177734375,
+        "height": 374.1428833007813,
+        "left": 270.5714416503906,
+        "right": 1009.4286193847656,
+        "top": 207.21429443359375,
+        "width": 738.857177734375,
+        "x": 270.5714416503906,
+        "y": 207.21429443359375
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 46.142860412597656,
+          "text": "界面语言中文"
+        },
+        {
+          "disabled": false,
+          "height": 46.142860412597656,
+          "text": "深色界面关闭"
+        },
+        {
+          "disabled": false,
+          "height": 46.142860412597656,
+          "text": "减少动态效果开启"
+        },
+        {
+          "disabled": false,
+          "height": 46.142860412597656,
+          "text": "存档与备份"
+        }
+      ],
+      "focus": "减少动态效果开启",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(67, 104, 77) 3px 0px 0px 0px inset, rgb(255, 250, 240) 0px 0px 0px 3px"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "dialog",
+      "systemNoticeCount": 0,
+      "title": "让这里更合心意",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "F03 Map selected keyboard focus",
+    "at": "2026-11-10T02:33:14.111Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 467,
+        "clientWidth": 739,
+        "scrollHeight": 467,
+        "scrollWidth": 739
+      },
+      "bodyRect": {
+        "bottom": 627.7857513427734,
+        "height": 467.0000305175781,
+        "left": 270.5714416503906,
+        "right": 1009.4286193847656,
+        "top": 160.7857208251953,
+        "width": 738.857177734375,
+        "x": 270.5714416503906,
+        "y": 160.7857208251953
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 202.86607360839844,
+          "text": "工作室接单 · 工作 · 成长"
+        },
+        {
+          "disabled": false,
+          "height": 165.875,
+          "text": "食堂吃饭 · 休息 · 聊天"
+        },
+        {
+          "disabled": false,
+          "height": 165.86607360839844,
+          "text": "图书馆学习 · 阅读 · 找人"
+        }
+      ],
+      "focus": "工作室接单 · 工作 · 成长",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(67, 104, 77) 0px 0px 0px 3px inset, rgb(255, 250, 240) 0px 0px 0px 3px"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "dialog",
+      "systemNoticeCount": 0,
+      "title": "去哪里坐坐？",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "F03 work-steps selected keyboard focus",
+    "at": "2026-11-10T02:33:50.388Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 590,
+        "clientWidth": 355,
+        "scrollHeight": 1400,
+        "scrollWidth": 355
+      },
+      "bodyRect": {
+        "bottom": 759.4286346435547,
+        "height": 590.2857666015625,
+        "left": 12.571429252624512,
+        "right": 377.71431255340576,
+        "top": 169.1428680419922,
+        "width": 365.1428833007813,
+        "x": 12.571429252624512,
+        "y": 169.1428680419922
+      },
+      "controls": [],
+      "focus": "1 · 需求",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(67, 104, 77) 0px -3px 0px 0px inset, rgb(255, 250, 240) 0px 0px 0px 3px"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "dialog",
+      "systemNoticeCount": 0,
+      "title": "帮楼下奶茶店写个菜单",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "F01 valid exported file imported",
+    "at": "2026-11-10T02:47:51.593Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 682,
+        "clientWidth": 340,
+        "scrollHeight": 784,
+        "scrollWidth": 340
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 682.2857666015625,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 145.1428680419922,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 145.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 2"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 自动档"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "备份档 · 5"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "导出当前进度"
+        },
+        {
+          "disabled": false,
+          "height": 53.142860412597656,
+          "text": ""
+        }
+      ],
+      "focus": "",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [
+        "存档已载入。×"
+      ],
+      "slots": [
+        {
+          "id": "manual-1",
+          "loadDisabled": false,
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-2",
+          "loadDisabled": true,
+          "text": "手动档 2空保存载入"
+        },
+        {
+          "id": "manual-3",
+          "loadDisabled": true,
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "id": "auto",
+          "loadDisabled": true,
+          "text": "自动档空载入"
+        },
+        {
+          "id": "backup-1",
+          "loadDisabled": true,
+          "text": "备份 1空载入"
+        },
+        {
+          "id": "backup-2",
+          "loadDisabled": true,
+          "text": "备份 2空载入"
+        },
+        {
+          "id": "backup-3",
+          "loadDisabled": true,
+          "text": "备份 3空载入"
+        },
+        {
+          "id": "backup-4",
+          "loadDisabled": true,
+          "text": "备份 4空载入"
+        },
+        {
+          "id": "backup-5",
+          "loadDisabled": true,
+          "text": "备份 5空载入"
+        }
+      ],
+      "surface": "dialog",
+      "systemNoticeCount": 1,
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "F01 imported memory manually saved to slot2",
+    "at": "2026-11-10T02:48:07.952Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 682,
+        "clientWidth": 340,
+        "scrollHeight": 784,
+        "scrollWidth": 340
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 682.2857666015625,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 145.1428680419922,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 145.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 自动档"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "备份档 · 5"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "导出当前进度"
+        },
+        {
+          "disabled": false,
+          "height": 53.142860412597656,
+          "text": ""
+        }
+      ],
+      "focus": "保存 · 手动档 2",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "rgba(255, 255, 255, 0.3) 0px 1px 0px 0px inset"
+      },
+      "notices": [
+        "进度已保存。×"
+      ],
+      "slots": [
+        {
+          "id": "manual-1",
+          "loadDisabled": false,
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-2",
+          "loadDisabled": false,
+          "text": "手动档 21970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-3",
+          "loadDisabled": true,
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "id": "auto",
+          "loadDisabled": true,
+          "text": "自动档空载入"
+        },
+        {
+          "id": "backup-1",
+          "loadDisabled": true,
+          "text": "备份 1空载入"
+        },
+        {
+          "id": "backup-2",
+          "loadDisabled": true,
+          "text": "备份 2空载入"
+        },
+        {
+          "id": "backup-3",
+          "loadDisabled": true,
+          "text": "备份 3空载入"
+        },
+        {
+          "id": "backup-4",
+          "loadDisabled": true,
+          "text": "备份 4空载入"
+        },
+        {
+          "id": "backup-5",
+          "loadDisabled": true,
+          "text": "备份 5空载入"
+        }
+      ],
+      "surface": "dialog",
+      "systemNoticeCount": 1,
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "F01 malformed JSON error",
+    "at": "2026-11-10T02:48:08.313Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 682,
+        "clientWidth": 340,
+        "scrollHeight": 784,
+        "scrollWidth": 340
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 682.2857666015625,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 145.1428680419922,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 145.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 自动档"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "备份档 · 5"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "导出当前进度"
+        },
+        {
+          "disabled": false,
+          "height": 53.142860412597656,
+          "text": ""
+        }
+      ],
+      "focus": "",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [
+        "JSON格式损坏，当前进度不变。×"
+      ],
+      "slots": [
+        {
+          "id": "manual-1",
+          "loadDisabled": false,
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-2",
+          "loadDisabled": false,
+          "text": "手动档 21970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-3",
+          "loadDisabled": true,
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "id": "auto",
+          "loadDisabled": true,
+          "text": "自动档空载入"
+        },
+        {
+          "id": "backup-1",
+          "loadDisabled": true,
+          "text": "备份 1空载入"
+        },
+        {
+          "id": "backup-2",
+          "loadDisabled": true,
+          "text": "备份 2空载入"
+        },
+        {
+          "id": "backup-3",
+          "loadDisabled": true,
+          "text": "备份 3空载入"
+        },
+        {
+          "id": "backup-4",
+          "loadDisabled": true,
+          "text": "备份 4空载入"
+        },
+        {
+          "id": "backup-5",
+          "loadDisabled": true,
+          "text": "备份 5空载入"
+        }
+      ],
+      "surface": "dialog",
+      "systemNoticeCount": 1,
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "F01 incompatible version error",
+    "at": "2026-11-10T02:48:25.809Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 682,
+        "clientWidth": 340,
+        "scrollHeight": 784,
+        "scrollWidth": 340
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 682.2857666015625,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 145.1428680419922,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 145.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 自动档"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "备份档 · 5"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "导出当前进度"
+        },
+        {
+          "disabled": false,
+          "height": 53.142860412597656,
+          "text": ""
+        }
+      ],
+      "focus": "LAB · initial · isolated memory saves伙伴位置 · 4 画外第1天 · 上午开源车库¥500090 T下一时段伙伴委托工作室手账存档与备份×版本不兼容，请用原版本打开。×3手动档、1自动档、5备份；冲突会拒绝覆盖。旧版本存档须用原版本打开。手动存档手动档 11970/1/1 08:00:00保存载入手动档 21970/1/1 08:00:00保存载入手动档 3空保存载入自动存档由游戏自动保存；有记录后可载入。自动档空载入备份档 · 5保存产生的历史备份；空槽位暂不可载入。备份 1空载入备份 2空载入备份 3空载入备份 4空载入备份 5空载入文件备份导出当前进度导入文件\n",
+      "focusInDialog": false,
+      "focusInSurface": false,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [
+        "版本不兼容，请用原版本打开。×"
+      ],
+      "slots": [
+        {
+          "id": "manual-1",
+          "loadDisabled": false,
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-2",
+          "loadDisabled": false,
+          "text": "手动档 21970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-3",
+          "loadDisabled": true,
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "id": "auto",
+          "loadDisabled": true,
+          "text": "自动档空载入"
+        },
+        {
+          "id": "backup-1",
+          "loadDisabled": true,
+          "text": "备份 1空载入"
+        },
+        {
+          "id": "backup-2",
+          "loadDisabled": true,
+          "text": "备份 2空载入"
+        },
+        {
+          "id": "backup-3",
+          "loadDisabled": true,
+          "text": "备份 3空载入"
+        },
+        {
+          "id": "backup-4",
+          "loadDisabled": true,
+          "text": "备份 4空载入"
+        },
+        {
+          "id": "backup-5",
+          "loadDisabled": true,
+          "text": "备份 5空载入"
+        }
+      ],
+      "surface": "dialog",
+      "systemNoticeCount": 1,
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": false
+    }
+  },
+  {
+    "case": "F01 valid import recovers from error",
+    "at": "2026-11-10T02:48:26.217Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 682,
+        "clientWidth": 340,
+        "scrollHeight": 784,
+        "scrollWidth": 340
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 682.2857666015625,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 145.1428680419922,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 145.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 自动档"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "备份档 · 5"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "导出当前进度"
+        },
+        {
+          "disabled": false,
+          "height": 53.142860412597656,
+          "text": ""
+        }
+      ],
+      "focus": "",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [
+        "存档已载入。×"
+      ],
+      "slots": [
+        {
+          "id": "manual-1",
+          "loadDisabled": false,
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-2",
+          "loadDisabled": false,
+          "text": "手动档 21970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-3",
+          "loadDisabled": true,
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "id": "auto",
+          "loadDisabled": true,
+          "text": "自动档空载入"
+        },
+        {
+          "id": "backup-1",
+          "loadDisabled": true,
+          "text": "备份 1空载入"
+        },
+        {
+          "id": "backup-2",
+          "loadDisabled": true,
+          "text": "备份 2空载入"
+        },
+        {
+          "id": "backup-3",
+          "loadDisabled": true,
+          "text": "备份 3空载入"
+        },
+        {
+          "id": "backup-4",
+          "loadDisabled": true,
+          "text": "备份 4空载入"
+        },
+        {
+          "id": "backup-5",
+          "loadDisabled": true,
+          "text": "备份 5空载入"
+        }
+      ],
+      "surface": "dialog",
+      "systemNoticeCount": 1,
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "F04 simulated locked Map",
+    "at": "2026-11-10T02:48:27.250Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 535,
+        "clientWidth": 355,
+        "scrollHeight": 535,
+        "scrollWidth": 355
+      },
+      "bodyRect": {
+        "bottom": 721.7857208251953,
+        "height": 535,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 186.7857208251953,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 186.7857208251953
+      },
+      "controls": [
+        {
+          "disabled": true,
+          "height": 167.8482208251953,
+          "text": "工作室接单 · 工作 · 成长"
+        },
+        {
+          "disabled": true,
+          "height": 130.8482208251953,
+          "text": "食堂吃饭 · 休息 · 聊天"
+        },
+        {
+          "disabled": true,
+          "height": 130.8482208251953,
+          "text": "图书馆学习 · 阅读 · 找人"
+        }
+      ],
+      "focus": "去哪里坐坐？",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "rgba(255, 250, 240, 0.5) 0px 0px 0px 1px inset, rgba(34, 24, 16, 0.24) 0px 12px 34px 0px"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "dialog",
+      "systemNoticeCount": 0,
+      "title": "去哪里坐坐？",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "lockedCaption": true,
+      "threeDisabled": true
+    }
+  },
+  {
+    "case": "F01 incompatible focus stable reproduction",
+    "at": "2026-11-10T02:49:07.045Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 682,
+        "clientWidth": 340,
+        "scrollHeight": 784,
+        "scrollWidth": 340
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 682.2857666015625,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 145.1428680419922,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 145.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 1"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 2"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 自动档"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "备份档 · 5"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "导出当前进度"
+        },
+        {
+          "disabled": false,
+          "height": 53.142860412597656,
+          "text": ""
+        }
+      ],
+      "focus": "LAB · initial · isolated memory saves伙伴位置 · 4 画外第1天 · 上午开源车库¥500090 T下一时段伙伴委托工作室手账存档与备份×版本不兼容，请用原版本打开。×3手动档、1自动档、5备份；冲突会拒绝覆盖。旧版本存档须用原版本打开。手动存档手动档 1空保存载入手动档 2空保存载入手动档 3空保存载入自动存档由游戏自动保存；有记录后可载入。自动档空载入备份档 · 5保存产生的历史备份；空槽位暂不可载入。备份 1空载入备份 2空载入备份 3空载入备份 4空载入备份 5空载入文件备份导出当前进度导入文件\n",
+      "focusInDialog": false,
+      "focusInSurface": false,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [
+        "版本不兼容，请用原版本打开。×"
+      ],
+      "slots": [
+        {
+          "id": "manual-1",
+          "loadDisabled": true,
+          "text": "手动档 1空保存载入"
+        },
+        {
+          "id": "manual-2",
+          "loadDisabled": true,
+          "text": "手动档 2空保存载入"
+        },
+        {
+          "id": "manual-3",
+          "loadDisabled": true,
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "id": "auto",
+          "loadDisabled": true,
+          "text": "自动档空载入"
+        },
+        {
+          "id": "backup-1",
+          "loadDisabled": true,
+          "text": "备份 1空载入"
+        },
+        {
+          "id": "backup-2",
+          "loadDisabled": true,
+          "text": "备份 2空载入"
+        },
+        {
+          "id": "backup-3",
+          "loadDisabled": true,
+          "text": "备份 3空载入"
+        },
+        {
+          "id": "backup-4",
+          "loadDisabled": true,
+          "text": "备份 4空载入"
+        },
+        {
+          "id": "backup-5",
+          "loadDisabled": true,
+          "text": "备份 5空载入"
+        }
+      ],
+      "surface": "dialog",
+      "systemNoticeCount": 1,
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": false
+    }
+  },
+  {
+    "case": "F01 fixed incompatible focus",
+    "at": "2026-11-10T02:50:59.681Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 682,
+        "clientWidth": 340,
+        "scrollHeight": 784,
+        "scrollWidth": 340
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 682.2857666015625,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 145.1428680419922,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 145.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 2"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 自动档"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "备份档 · 5"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "导出当前进度"
+        },
+        {
+          "disabled": false,
+          "height": 53.142860412597656,
+          "text": ""
+        }
+      ],
+      "focus": "存档与备份",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "rgba(255, 250, 240, 0.5) 0px 0px 0px 1px inset, rgba(34, 24, 16, 0.24) 0px 12px 34px 0px"
+      },
+      "notices": [
+        "版本不兼容，请用原版本打开。×"
+      ],
+      "slots": [
+        {
+          "id": "manual-1",
+          "loadDisabled": false,
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-2",
+          "loadDisabled": true,
+          "text": "手动档 2空保存载入"
+        },
+        {
+          "id": "manual-3",
+          "loadDisabled": true,
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "id": "auto",
+          "loadDisabled": true,
+          "text": "自动档空载入"
+        },
+        {
+          "id": "backup-1",
+          "loadDisabled": true,
+          "text": "备份 1空载入"
+        },
+        {
+          "id": "backup-2",
+          "loadDisabled": true,
+          "text": "备份 2空载入"
+        },
+        {
+          "id": "backup-3",
+          "loadDisabled": true,
+          "text": "备份 3空载入"
+        },
+        {
+          "id": "backup-4",
+          "loadDisabled": true,
+          "text": "备份 4空载入"
+        },
+        {
+          "id": "backup-5",
+          "loadDisabled": true,
+          "text": "备份 5空载入"
+        }
+      ],
+      "surface": "dialog",
+      "systemNoticeCount": 1,
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "F01 fixed bad JSON focus",
+    "at": "2026-11-10T02:51:00.103Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 682,
+        "clientWidth": 340,
+        "scrollHeight": 784,
+        "scrollWidth": 340
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 682.2857666015625,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 145.1428680419922,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 145.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 2"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 自动档"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "备份档 · 5"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "导出当前进度"
+        },
+        {
+          "disabled": false,
+          "height": 53.142860412597656,
+          "text": ""
+        }
+      ],
+      "focus": "存档与备份",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "rgba(255, 250, 240, 0.5) 0px 0px 0px 1px inset, rgba(34, 24, 16, 0.24) 0px 12px 34px 0px"
+      },
+      "notices": [
+        "JSON格式损坏，当前进度不变。×"
+      ],
+      "slots": [
+        {
+          "id": "manual-1",
+          "loadDisabled": false,
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-2",
+          "loadDisabled": true,
+          "text": "手动档 2空保存载入"
+        },
+        {
+          "id": "manual-3",
+          "loadDisabled": true,
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "id": "auto",
+          "loadDisabled": true,
+          "text": "自动档空载入"
+        },
+        {
+          "id": "backup-1",
+          "loadDisabled": true,
+          "text": "备份 1空载入"
+        },
+        {
+          "id": "backup-2",
+          "loadDisabled": true,
+          "text": "备份 2空载入"
+        },
+        {
+          "id": "backup-3",
+          "loadDisabled": true,
+          "text": "备份 3空载入"
+        },
+        {
+          "id": "backup-4",
+          "loadDisabled": true,
+          "text": "备份 4空载入"
+        },
+        {
+          "id": "backup-5",
+          "loadDisabled": true,
+          "text": "备份 5空载入"
+        }
+      ],
+      "surface": "dialog",
+      "systemNoticeCount": 1,
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "F01 fixed valid import focus and slots preserved",
+    "at": "2026-11-10T02:51:00.477Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 682,
+        "clientWidth": 340,
+        "scrollHeight": 784,
+        "scrollWidth": 340
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 682.2857666015625,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 145.1428680419922,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 145.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 2"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 自动档"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "备份档 · 5"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "导出当前进度"
+        },
+        {
+          "disabled": false,
+          "height": 53.142860412597656,
+          "text": ""
+        }
+      ],
+      "focus": "存档与备份",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "rgba(255, 250, 240, 0.5) 0px 0px 0px 1px inset, rgba(34, 24, 16, 0.24) 0px 12px 34px 0px"
+      },
+      "notices": [
+        "存档已载入。×"
+      ],
+      "slots": [
+        {
+          "id": "manual-1",
+          "loadDisabled": false,
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-2",
+          "loadDisabled": true,
+          "text": "手动档 2空保存载入"
+        },
+        {
+          "id": "manual-3",
+          "loadDisabled": true,
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "id": "auto",
+          "loadDisabled": true,
+          "text": "自动档空载入"
+        },
+        {
+          "id": "backup-1",
+          "loadDisabled": true,
+          "text": "备份 1空载入"
+        },
+        {
+          "id": "backup-2",
+          "loadDisabled": true,
+          "text": "备份 2空载入"
+        },
+        {
+          "id": "backup-3",
+          "loadDisabled": true,
+          "text": "备份 3空载入"
+        },
+        {
+          "id": "backup-4",
+          "loadDisabled": true,
+          "text": "备份 4空载入"
+        },
+        {
+          "id": "backup-5",
+          "loadDisabled": true,
+          "text": "备份 5空载入"
+        }
+      ],
+      "surface": "dialog",
+      "systemNoticeCount": 1,
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "F01 fixed imported memory saved slot2",
+    "at": "2026-11-10T02:51:00.867Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 682,
+        "clientWidth": 340,
+        "scrollHeight": 784,
+        "scrollWidth": 340
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 682.2857666015625,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 145.1428680419922,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 145.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 1"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "保存 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 手动档 3"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "载入 · 自动档"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "备份档 · 5"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "导出当前进度"
+        },
+        {
+          "disabled": false,
+          "height": 53.142860412597656,
+          "text": ""
+        }
+      ],
+      "focus": "保存 · 手动档 2",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "rgba(255, 255, 255, 0.3) 0px 1px 0px 0px inset"
+      },
+      "notices": [
+        "进度已保存。×"
+      ],
+      "slots": [
+        {
+          "id": "manual-1",
+          "loadDisabled": false,
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-2",
+          "loadDisabled": false,
+          "text": "手动档 21970/1/1 08:00:00保存载入"
+        },
+        {
+          "id": "manual-3",
+          "loadDisabled": true,
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "id": "auto",
+          "loadDisabled": true,
+          "text": "自动档空载入"
+        },
+        {
+          "id": "backup-1",
+          "loadDisabled": true,
+          "text": "备份 1空载入"
+        },
+        {
+          "id": "backup-2",
+          "loadDisabled": true,
+          "text": "备份 2空载入"
+        },
+        {
+          "id": "backup-3",
+          "loadDisabled": true,
+          "text": "备份 3空载入"
+        },
+        {
+          "id": "backup-4",
+          "loadDisabled": true,
+          "text": "备份 4空载入"
+        },
+        {
+          "id": "backup-5",
+          "loadDisabled": true,
+          "text": "备份 5空载入"
+        }
+      ],
+      "surface": "dialog",
+      "systemNoticeCount": 1,
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "1280 Studio overview",
+    "at": "2026-11-10T02:59:25.141Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 562,
+        "clientWidth": 509,
+        "scrollHeight": 1075,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 695.4286346435547,
+        "height": 562.2857666015625,
+        "left": 748.5714721679688,
+        "right": 1267.4286499023438,
+        "top": 133.1428680419922,
+        "width": 518.857177734375,
+        "x": 748.5714721679688,
+        "y": 133.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "布置办公室"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "第 0 · 开源车库联盟"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "确认章节目标"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "玩法提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "客户项目进度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴招募与人手"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "硬件与软件"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "SLA维护"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "资源方案与贷款"
+        }
+      ],
+      "focus": "返回场景 / Back to scene",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "经营工作室",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "1280 Studio expanded sections",
+    "at": "2026-11-10T02:59:37.817Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 562,
+        "clientWidth": 509,
+        "scrollHeight": 4063,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 695.4286346435547,
+        "height": 562.2857666015625,
+        "left": 748.5714721679688,
+        "right": 1267.4286499023438,
+        "top": 133.1428680419922,
+        "width": 518.857177734375,
+        "x": 748.5714721679688,
+        "y": 133.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "布置办公室"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "第 0 · 开源车库联盟"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "确认章节目标"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "玩法提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "客户项目进度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴招募与人手"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "硬件与软件"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "升级 ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "升级 ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "升级 ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "SLA维护"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "资源方案与贷款"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "买100T ¥50"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "订阅 0: +0T/天 ¥0/周 · 当前"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "订阅 1: +120T/天 ¥120/周"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "订阅 2: +300T/天 ¥420/周"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "借1000元，周息5%"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "还款 ¥0"
+        }
+      ],
+      "focus": "资源方案与贷款",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "经营工作室",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "1280 Journal overview",
+    "at": "2026-11-10T03:08:56.998Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 323,
+        "clientWidth": 519,
+        "scrollHeight": 323,
+        "scrollWidth": 519
+      },
+      "bodyRect": {
+        "bottom": 456.42860412597656,
+        "height": 323.2857360839844,
+        "left": 748.5714721679688,
+        "right": 1267.4286499023438,
+        "top": 133.1428680419922,
+        "width": 518.857177734375,
+        "x": 748.5714721679688,
+        "y": 133.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        }
+      ],
+      "focus": "返回场景 / Back to scene",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "1280 Journal projects populated",
+    "at": "2026-11-10T03:08:57.362Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 562,
+        "clientWidth": 509,
+        "scrollHeight": 830,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 695.4286346435547,
+        "height": 562.2857666015625,
+        "left": 748.5714721679688,
+        "right": 1267.4286499023438,
+        "top": 133.1428680419922,
+        "width": 518.857177734375,
+        "x": 748.5714721679688,
+        "y": 133.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "选择这条路线"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "选择这条路线"
+        }
+      ],
+      "focus": "项目",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(67, 104, 77) 0px -3px 0px 0px inset"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "1280 Journal future expanded",
+    "at": "2026-11-10T03:09:24.149Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 562,
+        "clientWidth": 509,
+        "scrollHeight": 2230,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 695.4286346435547,
+        "height": 562.2857666015625,
+        "left": 748.5714721679688,
+        "right": 1267.4286499023438,
+        "top": 133.1428680419922,
+        "width": 518.857177734375,
+        "x": 748.5714721679688,
+        "y": 133.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "五个结局"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "独立上市"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "被大厂收购"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "开源一切"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "温暖的小店"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "回形针彩蛋"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "异世界远征"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "DeepSeek"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Qwen"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Llama"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Mistral"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "DeepSeek"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Qwen"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Llama"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Mistral"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "DeepSeek"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Qwen"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Llama"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Mistral"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "对手工作室竞标"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "卷王"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "精品"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "套壳救援"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "卷王"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "精品"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "套壳救援"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "卷王"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "精品"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "套壳救援"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "卷王"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "精品"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "套壳救援"
+        }
+      ],
+      "focus": "对手工作室竞标",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "1280 Journal ledger",
+    "at": "2026-11-10T03:09:24.553Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 562,
+        "clientWidth": 509,
+        "scrollHeight": 604,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 695.4286346435547,
+        "height": 562.2857666015625,
+        "left": 748.5714721679688,
+        "right": 1267.4286499023438,
+        "top": 133.1428680419922,
+        "width": 518.857177734375,
+        "x": 748.5714721679688,
+        "y": 133.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        }
+      ],
+      "focus": "收支",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(67, 104, 77) 0px -3px 0px 0px inset"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "1280 Journal selected focus",
+    "at": "2026-11-10T03:09:24.911Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 562,
+        "clientWidth": 509,
+        "scrollHeight": 604,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 695.4286346435547,
+        "height": 562.2857666015625,
+        "left": 748.5714721679688,
+        "right": 1267.4286499023438,
+        "top": 133.1428680419922,
+        "width": 518.857177734375,
+        "x": 748.5714721679688,
+        "y": 133.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        }
+      ],
+      "focus": "收支",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(67, 104, 77) 0px -3px 0px 0px inset, rgb(255, 250, 240) 0px 0px 0px 3px"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "selectedFocus": true
+    }
+  },
+  {
+    "case": "1280 Journal close restores trigger",
+    "at": "2026-11-10T03:09:25.288Z",
+    "expectedSurface": "scene",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 720,
+        "clientWidth": 1280,
+        "scrollHeight": 720,
+        "scrollWidth": 1280
+      },
+      "bodyRect": {
+        "bottom": 720.0000610351562,
+        "height": 720.0000610351562,
+        "left": 0,
+        "right": 1280,
+        "top": 0,
+        "width": 1280,
+        "x": 0,
+        "y": 0
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴位置 · 0 画外"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "工作看板与提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "共享孵化器"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "现金与经营"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "云端额度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "地图"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "下一时段"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "视角"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "更多"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "伙伴"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "委托"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "工作室"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "手账"
+        }
+      ],
+      "focus": "手账",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "false",
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "scene",
+      "systemNoticeCount": 0,
+      "title": null,
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "visible"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "restored": true
+    }
+  },
+  {
+    "case": "390 Studio overview",
+    "at": "2026-11-10T03:09:35.606Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 642,
+        "clientWidth": 355,
+        "scrollHeight": 1156,
+        "scrollWidth": 355
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 642.2857666015625,
+        "left": 12.571429252624512,
+        "right": 377.71431255340576,
+        "top": 185.1428680419922,
+        "width": 365.1428833007813,
+        "x": 12.571429252624512,
+        "y": 185.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "布置办公室"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "第 1 · 第一笔大订单"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "举行融资路演，进入第2章"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "玩法提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "客户项目进度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴招募与人手"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "硬件与软件"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "SLA维护"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "资源方案与贷款"
+        }
+      ],
+      "focus": "返回场景 / Back to scene",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "经营工作室",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "390 Studio expanded",
+    "at": "2026-11-10T03:09:51.926Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 642,
+        "clientWidth": 355,
+        "scrollHeight": 5098,
+        "scrollWidth": 355
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 642.2857666015625,
+        "left": 12.571429252624512,
+        "right": 377.71431255340576,
+        "top": 185.1428680419922,
+        "width": 365.1428833007813,
+        "x": 12.571429252624512,
+        "y": 185.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "布置办公室"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "第 1 · 第一笔大订单"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "举行融资路演，进入第2章"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "玩法提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "客户项目进度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "选择这条路线"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "选择这条路线"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴招募与人手"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "硬件与软件"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "升级 ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "升级 ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "升级 ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "SLA维护"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "资源方案与贷款"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "买100T ¥50"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "订阅 0: +0T/天 ¥0/周 · 当前"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "订阅 1: +120T/天 ¥120/周"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "订阅 2: +300T/天 ¥420/周"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "借1000元，周息5%"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "还款 ¥0"
+        }
+      ],
+      "focus": "客户项目进度",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "经营工作室",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "390 Studio Escape restore",
+    "at": "2026-11-10T03:09:52.033Z",
+    "expectedSurface": "scene",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 844,
+        "clientWidth": 390,
+        "scrollHeight": 844,
+        "scrollWidth": 390
+      },
+      "bodyRect": {
+        "bottom": 844.0000610351562,
+        "height": 844.0000610351562,
+        "left": 0,
+        "right": 390.2857360839844,
+        "top": 0,
+        "width": 390.2857360839844,
+        "x": 0,
+        "y": 0
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴位置 · 4 画外"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "工作看板与提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "现金与经营"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "云端额度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "地图"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "下一时段"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "视角"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "更多"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "伙伴"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "委托"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "工作室"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "手账"
+        }
+      ],
+      "focus": "工作室",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2.85714px",
+        "pressed": "false",
+        "shadow": "rgb(255, 250, 240) 0px 0px 0px 3px"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "scene",
+      "systemNoticeCount": 0,
+      "title": null,
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "visible"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "restored": true
+    }
+  },
+  {
+    "case": "390 Journal 概览",
+    "at": "2026-11-10T03:09:52.700Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 341,
+        "clientWidth": 365,
+        "scrollHeight": 341,
+        "scrollWidth": 365
+      },
+      "bodyRect": {
+        "bottom": 526.4286041259766,
+        "height": 341.2857360839844,
+        "left": 12.571429252624512,
+        "right": 377.71431255340576,
+        "top": 185.1428680419922,
+        "width": 365.1428833007813,
+        "x": 12.571429252624512,
+        "y": 185.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        }
+      ],
+      "focus": "概览",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(67, 104, 77) 0px -3px 0px 0px inset"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "390 Journal 项目",
+    "at": "2026-11-10T03:09:53.038Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 642,
+        "clientWidth": 355,
+        "scrollHeight": 980,
+        "scrollWidth": 355
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 642.2857666015625,
+        "left": 12.571429252624512,
+        "right": 377.71431255340576,
+        "top": 185.1428680419922,
+        "width": 365.1428833007813,
+        "x": 12.571429252624512,
+        "y": 185.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "选择这条路线"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "选择这条路线"
+        }
+      ],
+      "focus": "项目",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(67, 104, 77) 0px -3px 0px 0px inset"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "390 Journal 明天",
+    "at": "2026-11-10T03:09:54.416Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 642,
+        "clientWidth": 355,
+        "scrollHeight": 2448,
+        "scrollWidth": 355
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 642.2857666015625,
+        "left": 12.571429252624512,
+        "right": 377.71431255340576,
+        "top": 185.1428680419922,
+        "width": 365.1428833007813,
+        "x": 12.571429252624512,
+        "y": 185.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "五个结局"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "独立上市"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "被大厂收购"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "开源一切"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "温暖的小店"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "回形针彩蛋"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "异世界远征"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "DeepSeek"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Qwen"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Llama"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Mistral"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "DeepSeek"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Qwen"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Llama"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Mistral"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "DeepSeek"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Qwen"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Llama"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Mistral"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "对手工作室竞标"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "卷王"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "精品"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "套壳救援"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "卷王"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "精品"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "套壳救援"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "卷王"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "精品"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "套壳救援"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "卷王"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "精品"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "套壳救援"
+        }
+      ],
+      "focus": "对手工作室竞标",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "390 Journal 收支",
+    "at": "2026-11-10T03:09:54.795Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 604,
+        "clientWidth": 365,
+        "scrollHeight": 604,
+        "scrollWidth": 365
+      },
+      "bodyRect": {
+        "bottom": 789.1428680419922,
+        "height": 604,
+        "left": 12.571429252624512,
+        "right": 377.71431255340576,
+        "top": 185.1428680419922,
+        "width": 365.1428833007813,
+        "x": 12.571429252624512,
+        "y": 185.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        }
+      ],
+      "focus": "收支",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(67, 104, 77) 0px -3px 0px 0px inset"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "390 Journal close restore",
+    "at": "2026-11-10T03:09:55.125Z",
+    "expectedSurface": "scene",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 844,
+        "clientWidth": 390,
+        "scrollHeight": 844,
+        "scrollWidth": 390
+      },
+      "bodyRect": {
+        "bottom": 844.0000610351562,
+        "height": 844.0000610351562,
+        "left": 0,
+        "right": 390.2857360839844,
+        "top": 0,
+        "width": 390.2857360839844,
+        "x": 0,
+        "y": 0
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴位置 · 4 画外"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "工作看板与提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "现金与经营"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "云端额度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "地图"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "下一时段"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "视角"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "更多"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "伙伴"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "委托"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "工作室"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "手账"
+        }
+      ],
+      "focus": "手账",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "false",
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "scene",
+      "systemNoticeCount": 0,
+      "title": null,
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "visible"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "restored": true
+    }
+  },
+  {
+    "case": "844 Studio overview",
+    "at": "2026-11-10T03:10:12.676Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 257,
+        "clientWidth": 509,
+        "scrollHeight": 1156,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 377.7143020629883,
+        "height": 256.5714416503906,
+        "left": 162.57144165039062,
+        "right": 681.4286193847656,
+        "top": 121.14286041259766,
+        "width": 518.857177734375,
+        "x": 162.57144165039062,
+        "y": 121.14286041259766
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "布置办公室"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "第 1 · 第一笔大订单"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "举行融资路演，进入第2章"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "玩法提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "客户项目进度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴招募与人手"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "硬件与软件"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "SLA维护"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "资源方案与贷款"
+        }
+      ],
+      "focus": "返回场景 / Back to scene",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "经营工作室",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "844 Studio expanded",
+    "at": "2026-11-10T03:10:14.677Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 257,
+        "clientWidth": 509,
+        "scrollHeight": 4843,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 377.7143020629883,
+        "height": 256.5714416503906,
+        "left": 162.57144165039062,
+        "right": 681.4286193847656,
+        "top": 121.14286041259766,
+        "width": 518.857177734375,
+        "x": 162.57144165039062,
+        "y": 121.14286041259766
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "布置办公室"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "第 1 · 第一笔大订单"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "举行融资路演，进入第2章"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "玩法提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "客户项目进度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "选择这条路线"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "选择这条路线"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴招募与人手"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "硬件与软件"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "升级 ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "升级 ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "升级 ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "SLA维护"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "资源方案与贷款"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "买100T ¥50"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "订阅 0: +0T/天 ¥0/周 · 当前"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "订阅 1: +120T/天 ¥120/周"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "订阅 2: +300T/天 ¥420/周"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "借1000元，周息5%"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "还款 ¥0"
+        }
+      ],
+      "focus": "客户项目进度",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "经营工作室",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "844 Studio Escape restore",
+    "at": "2026-11-10T03:10:14.769Z",
+    "expectedSurface": "scene",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 390,
+        "clientWidth": 844,
+        "scrollHeight": 390,
+        "scrollWidth": 844
+      },
+      "bodyRect": {
+        "bottom": 390.2857360839844,
+        "height": 390.2857360839844,
+        "left": 0,
+        "right": 844.0000610351562,
+        "top": 0,
+        "width": 844.0000610351562,
+        "x": 0,
+        "y": 0
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴位置 · 0 画外"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "工作看板与提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "现金与经营"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "云端额度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "地图"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "下一时段"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "视角"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "更多"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "伙伴"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "委托"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "工作室"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "手账"
+        }
+      ],
+      "focus": "工作室",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2.85714px",
+        "pressed": "false",
+        "shadow": "rgb(255, 250, 240) 0px 0px 0px 3px"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "scene",
+      "systemNoticeCount": 0,
+      "title": null,
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "visible"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "restored": true
+    }
+  },
+  {
+    "case": "844 Journal 概览",
+    "at": "2026-11-10T03:10:15.451Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 257,
+        "clientWidth": 509,
+        "scrollHeight": 323,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 377.7143020629883,
+        "height": 256.5714416503906,
+        "left": 162.57144165039062,
+        "right": 681.4286193847656,
+        "top": 121.14286041259766,
+        "width": 518.857177734375,
+        "x": 162.57144165039062,
+        "y": 121.14286041259766
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        }
+      ],
+      "focus": "概览",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(67, 104, 77) 0px -3px 0px 0px inset"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "844 Journal 项目",
+    "at": "2026-11-10T03:10:15.795Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 257,
+        "clientWidth": 509,
+        "scrollHeight": 830,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 377.7143020629883,
+        "height": 256.5714416503906,
+        "left": 162.57144165039062,
+        "right": 681.4286193847656,
+        "top": 121.14286041259766,
+        "width": 518.857177734375,
+        "x": 162.57144165039062,
+        "y": 121.14286041259766
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "选择这条路线"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "选择这条路线"
+        }
+      ],
+      "focus": "项目",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(67, 104, 77) 0px -3px 0px 0px inset"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "844 Journal 明天",
+    "at": "2026-11-10T03:10:17.154Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 257,
+        "clientWidth": 509,
+        "scrollHeight": 2230,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 377.7143020629883,
+        "height": 256.5714416503906,
+        "left": 162.57144165039062,
+        "right": 681.4286193847656,
+        "top": 121.14286041259766,
+        "width": 518.857177734375,
+        "x": 162.57144165039062,
+        "y": 121.14286041259766
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "五个结局"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "独立上市"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "被大厂收购"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "开源一切"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "温暖的小店"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "回形针彩蛋"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "异世界远征"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "DeepSeek"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Qwen"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Llama"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Mistral"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "DeepSeek"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Qwen"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Llama"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Mistral"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "DeepSeek"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Qwen"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Llama"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Mistral"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "对手工作室竞标"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "卷王"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "精品"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "套壳救援"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "卷王"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "精品"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "套壳救援"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "卷王"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "精品"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "套壳救援"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "卷王"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "精品"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "套壳救援"
+        }
+      ],
+      "focus": "对手工作室竞标",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "844 Journal 收支",
+    "at": "2026-11-10T03:10:17.529Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 257,
+        "clientWidth": 509,
+        "scrollHeight": 604,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 377.7143020629883,
+        "height": 256.5714416503906,
+        "left": 162.57144165039062,
+        "right": 681.4286193847656,
+        "top": 121.14286041259766,
+        "width": 518.857177734375,
+        "x": 162.57144165039062,
+        "y": 121.14286041259766
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        }
+      ],
+      "focus": "收支",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(67, 104, 77) 0px -3px 0px 0px inset"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "844 Journal close restore",
+    "at": "2026-11-10T03:10:17.875Z",
+    "expectedSurface": "scene",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 390,
+        "clientWidth": 844,
+        "scrollHeight": 390,
+        "scrollWidth": 844
+      },
+      "bodyRect": {
+        "bottom": 390.2857360839844,
+        "height": 390.2857360839844,
+        "left": 0,
+        "right": 844.0000610351562,
+        "top": 0,
+        "width": 844.0000610351562,
+        "x": 0,
+        "y": 0
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴位置 · 0 画外"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "工作看板与提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "现金与经营"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "云端额度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "地图"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "下一时段"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "视角"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "更多"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "伙伴"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "委托"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "工作室"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "手账"
+        }
+      ],
+      "focus": "手账",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "false",
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "scene",
+      "systemNoticeCount": 0,
+      "title": null,
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "visible"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "restored": true
+    }
+  },
+  {
+    "case": "560 dark Studio overview",
+    "at": "2026-11-10T03:10:38.869Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 598,
+        "clientWidth": 509,
+        "scrollHeight": 1177,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 783.4286346435547,
+        "height": 598.2857666015625,
+        "left": 20.571430206298828,
+        "right": 539.4286079406738,
+        "top": 185.1428680419922,
+        "width": 518.857177734375,
+        "x": 20.571430206298828,
+        "y": 185.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Arrange office"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Chapter  1 · The first large order"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Hold the pitch and enter chapter 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "How to play"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Client project progress"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Recruitment and staffing"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Hardware and software"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "SLA maintenance"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Resources and loans"
+        }
+      ],
+      "focus": "返回场景 / Back to scene",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "Manage studio",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "560 dark Studio expanded",
+    "at": "2026-11-10T03:10:55.794Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 598,
+        "clientWidth": 509,
+        "scrollHeight": 5123,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 783.4286346435547,
+        "height": 598.2857666015625,
+        "left": 20.571430206298828,
+        "right": 539.4286079406738,
+        "top": 185.1428680419922,
+        "width": 518.857177734375,
+        "x": 20.571430206298828,
+        "y": 185.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Arrange office"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Chapter  1 · The first large order"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Hold the pitch and enter chapter 2"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "How to play"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Client project progress"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Choose this route"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Choose this route"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Recruitment and staffing"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Recruit"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Recruit"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Recruit"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Recruit"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Recruit"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Recruit"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Recruit"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Recruit"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Hardware and software"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Upgrade ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Upgrade ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Upgrade ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Research"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "SLA maintenance"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Resources and loans"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Buy 100T ¥50"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Plan 0: +0T/day ¥0/week · Current"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Plan 1: +120T/day ¥120/week"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Plan 2: +300T/day ¥420/week"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Borrow ¥1000; 5% weekly"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Repay ¥0"
+        }
+      ],
+      "focus": "Client project progress",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "Manage studio",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "560 Studio Escape restore",
+    "at": "2026-11-10T03:10:55.900Z",
+    "expectedSurface": "scene",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 800,
+        "clientWidth": 560,
+        "scrollHeight": 800,
+        "scrollWidth": 560
+      },
+      "bodyRect": {
+        "bottom": 800.0000610351562,
+        "height": 800.0000610351562,
+        "left": 0,
+        "right": 560,
+        "top": 0,
+        "width": 560,
+        "x": 0,
+        "y": 0
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Locations · 4 out of view"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Work board and notices"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Cash and management"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Cloud quota"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Map"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Next period"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "View"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "More"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "Team"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "Jobs"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "Studio"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "Journal"
+        }
+      ],
+      "focus": "Studio",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2.85714px",
+        "pressed": "false",
+        "shadow": "rgb(23, 43, 64) 0px 0px 0px 3px"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "scene",
+      "systemNoticeCount": 0,
+      "title": null,
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "visible"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "restored": true
+    }
+  },
+  {
+    "case": "560 dark Journal Overview",
+    "at": "2026-11-10T03:10:56.550Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 323,
+        "clientWidth": 519,
+        "scrollHeight": 323,
+        "scrollWidth": 519
+      },
+      "bodyRect": {
+        "bottom": 508.42860412597656,
+        "height": 323.2857360839844,
+        "left": 20.571430206298828,
+        "right": 539.4286079406738,
+        "top": 185.1428680419922,
+        "width": 518.857177734375,
+        "x": 20.571430206298828,
+        "y": 185.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Overview"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Projects"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Tomorrow"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Ledger"
+        }
+      ],
+      "focus": "Overview",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(139, 194, 154) 0px -3px 0px 0px inset"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "Studio journal",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "560 dark Journal Projects",
+    "at": "2026-11-10T03:10:56.889Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 598,
+        "clientWidth": 509,
+        "scrollHeight": 980,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 783.4286346435547,
+        "height": 598.2857666015625,
+        "left": 20.571430206298828,
+        "right": 539.4286079406738,
+        "top": 185.1428680419922,
+        "width": 518.857177734375,
+        "x": 20.571430206298828,
+        "y": 185.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Overview"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Projects"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Tomorrow"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Ledger"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Choose this route"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Choose this route"
+        }
+      ],
+      "focus": "Projects",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(139, 194, 154) 0px -3px 0px 0px inset"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "Studio journal",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "560 dark Journal Tomorrow",
+    "at": "2026-11-10T03:10:58.230Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 598,
+        "clientWidth": 509,
+        "scrollHeight": 2335,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 783.4286346435547,
+        "height": 598.2857666015625,
+        "left": 20.571430206298828,
+        "right": 539.4286079406738,
+        "top": 185.1428680419922,
+        "width": 518.857177734375,
+        "x": 20.571430206298828,
+        "y": 185.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Overview"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Projects"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Tomorrow"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Ledger"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Five endings"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Independent studio"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Acquired"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Open everything"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "A warm little shop"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Paperclip ending"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Otherworld expeditions"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "DeepSeek"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Qwen"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Llama"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Mistral"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "DeepSeek"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Qwen"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Llama"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Mistral"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "DeepSeek"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Qwen"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Llama"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Mistral"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Rival studio bids"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Budget"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Boutique"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Wrapper rescue"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Budget"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Boutique"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Wrapper rescue"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Budget"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Boutique"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Wrapper rescue"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Budget"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Boutique"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "Wrapper rescue"
+        }
+      ],
+      "focus": "Rival studio bids",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "Studio journal",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "560 dark Journal Ledger",
+    "at": "2026-11-10T03:10:58.606Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 598,
+        "clientWidth": 509,
+        "scrollHeight": 604,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 783.4286346435547,
+        "height": 598.2857666015625,
+        "left": 20.571430206298828,
+        "right": 539.4286079406738,
+        "top": 185.1428680419922,
+        "width": 518.857177734375,
+        "x": 20.571430206298828,
+        "y": 185.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Overview"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Projects"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Tomorrow"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Ledger"
+        }
+      ],
+      "focus": "Ledger",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(139, 194, 154) 0px -3px 0px 0px inset"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "Studio journal",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "560 Journal close restore",
+    "at": "2026-11-10T03:10:58.962Z",
+    "expectedSurface": "scene",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 800,
+        "clientWidth": 560,
+        "scrollHeight": 800,
+        "scrollWidth": 560
+      },
+      "bodyRect": {
+        "bottom": 800.0000610351562,
+        "height": 800.0000610351562,
+        "left": 0,
+        "right": 560,
+        "top": 0,
+        "width": 560,
+        "x": 0,
+        "y": 0
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Locations · 4 out of view"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Work board and notices"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Cash and management"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Cloud quota"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Map"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "Next period"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "View"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "More"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "Team"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "Jobs"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "Studio"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "Journal"
+        }
+      ],
+      "focus": "Journal",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "false",
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "scene",
+      "systemNoticeCount": 0,
+      "title": null,
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "visible"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "restored": true
+    }
+  },
+  {
+    "case": "VF31 390 arrange cancel camera",
+    "at": "2026-11-10T03:11:38.865Z",
+    "expectedSurface": "scene",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 844,
+        "clientWidth": 390,
+        "scrollHeight": 844,
+        "scrollWidth": 390
+      },
+      "bodyRect": {
+        "bottom": 844.0000610351562,
+        "height": 844.0000610351562,
+        "left": 0,
+        "right": 390.2857360839844,
+        "top": 0,
+        "width": 390.2857360839844,
+        "x": 0,
+        "y": 0
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴位置 · 4 画外"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "工作看板与提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "现金与经营"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "云端额度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "地图"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "下一时段"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "视角"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "更多"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "伙伴"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "委托"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "工作室"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "手账"
+        }
+      ],
+      "focus": "LAB · initial · isolated memory saves伙伴位置 · 4 画外第1天 · 上午开源车库¥500090 T下一时段伙伴委托工作室手账\n",
+      "focusInDialog": false,
+      "focusInSurface": false,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "scene",
+      "systemNoticeCount": 0,
+      "title": null,
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "visible"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "sameCamera": true
+    }
+  },
+  {
+    "case": "VF31 locations Escape",
+    "at": "2026-11-10T03:11:50.412Z",
+    "expectedSurface": "scene",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 844,
+        "clientWidth": 390,
+        "scrollHeight": 844,
+        "scrollWidth": 390
+      },
+      "bodyRect": {
+        "bottom": 844.0000610351562,
+        "height": 844.0000610351562,
+        "left": 0,
+        "right": 390.2857360839844,
+        "top": 0,
+        "width": 390.2857360839844,
+        "x": 0,
+        "y": 0
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴位置 · 4 画外"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "工作看板与提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "现金与经营"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "云端额度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "地图"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "下一时段"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "视角"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "更多"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "伙伴"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "委托"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "工作室"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "手账"
+        }
+      ],
+      "focus": "伙伴位置 · 4 画外",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "rgb(255, 250, 240) 0px 0px 0px 3px"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "scene",
+      "systemNoticeCount": 0,
+      "title": null,
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "visible"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "restored": true
+    }
+  },
+  {
+    "case": "VF31 Qwen local error",
+    "at": "2026-11-10T03:12:07.230Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 590,
+        "clientWidth": 355,
+        "scrollHeight": 1526,
+        "scrollWidth": 355
+      },
+      "bodyRect": {
+        "bottom": 759.4286346435547,
+        "height": 590.2857666015625,
+        "left": 12.571429252624512,
+        "right": 377.71431255340576,
+        "top": 169.1428680419922,
+        "width": 365.1428833007813,
+        "x": 12.571429252624512,
+        "y": 169.1428680419922
+      },
+      "controls": [],
+      "focus": "研发 ¥600 / 10RP",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "rgba(255, 255, 255, 0.3) 0px 1px 0px 0px inset"
+      },
+      "notices": [
+        "现金或研发点不足。×"
+      ],
+      "slots": [],
+      "surface": "dialog",
+      "systemNoticeCount": 0,
+      "title": "伙伴档案",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "oneNotice": true
+    }
+  },
+  {
+    "case": "VF31 Qwen reopen clears error",
+    "at": "2026-11-10T03:12:07.932Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 590,
+        "clientWidth": 355,
+        "scrollHeight": 1526,
+        "scrollWidth": 355
+      },
+      "bodyRect": {
+        "bottom": 759.4286346435547,
+        "height": 590.2857666015625,
+        "left": 12.571429252624512,
+        "right": 377.71431255340576,
+        "top": 169.1428680419922,
+        "width": 365.1428833007813,
+        "x": 12.571429252624512,
+        "y": 169.1428680419922
+      },
+      "controls": [],
+      "focus": "伙伴档案",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "rgba(255, 250, 240, 0.5) 0px 0px 0px 1px inset, rgba(34, 24, 16, 0.24) 0px 12px 34px 0px"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "dialog",
+      "systemNoticeCount": 0,
+      "title": "伙伴档案",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "cleared": true
+    }
+  },
+  {
+    "case": "A2 regression Settings",
+    "at": "2026-11-10T03:12:09.229Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 366,
+        "clientWidth": 355,
+        "scrollHeight": 366,
+        "scrollWidth": 355
+      },
+      "bodyRect": {
+        "bottom": 637.357177734375,
+        "height": 366.1428833007813,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 271.21429443359375,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 271.21429443359375
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 46.142860412597656,
+          "text": "界面语言中文"
+        },
+        {
+          "disabled": false,
+          "height": 46.142860412597656,
+          "text": "深色界面关闭"
+        },
+        {
+          "disabled": false,
+          "height": 46.142860412597656,
+          "text": "减少动态效果开启"
+        },
+        {
+          "disabled": false,
+          "height": 46.142860412597656,
+          "text": "存档与备份"
+        }
+      ],
+      "focus": "让这里更合心意",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "rgba(255, 250, 240, 0.5) 0px 0px 0px 1px inset, rgba(34, 24, 16, 0.24) 0px 12px 34px 0px"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "dialog",
+      "systemNoticeCount": 0,
+      "title": "让这里更合心意",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "A2 regression Map",
+    "at": "2026-11-10T03:12:23.570Z",
+    "expectedSurface": "dialog",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 509,
+        "clientWidth": 355,
+        "scrollHeight": 509,
+        "scrollWidth": 355
+      },
+      "bodyRect": {
+        "bottom": 708.7857513427734,
+        "height": 509.0000305175781,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 199.7857208251953,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 199.7857208251953
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 167.8482208251953,
+          "text": "工作室接单 · 工作 · 成长"
+        },
+        {
+          "disabled": false,
+          "height": 130.8482208251953,
+          "text": "食堂吃饭 · 休息 · 聊天"
+        },
+        {
+          "disabled": false,
+          "height": 130.8482208251953,
+          "text": "图书馆学习 · 阅读 · 找人"
+        }
+      ],
+      "focus": "去哪里坐坐？",
+      "focusInDialog": true,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "rgba(255, 250, 240, 0.5) 0px 0px 0px 1px inset, rgba(34, 24, 16, 0.24) 0px 12px 34px 0px"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "dialog",
+      "systemNoticeCount": 0,
+      "title": "去哪里坐坐？",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true
+    }
+  },
+  {
+    "case": "390 Studio HUD entry",
+    "at": "2026-11-10T03:12:24.231Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 642,
+        "clientWidth": 355,
+        "scrollHeight": 1075,
+        "scrollWidth": 355
+      },
+      "bodyRect": {
+        "bottom": 827.4286346435547,
+        "height": 642.2857666015625,
+        "left": 12.571429252624512,
+        "right": 377.71431255340576,
+        "top": 185.1428680419922,
+        "width": 365.1428833007813,
+        "x": 12.571429252624512,
+        "y": 185.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "布置办公室"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "第 0 · 开源车库联盟"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "确认章节目标"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "玩法提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "客户项目进度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴招募与人手"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "硬件与软件"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "SLA维护"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "资源方案与贷款"
+        }
+      ],
+      "focus": "返回场景 / Back to scene",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "经营工作室",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "390 Studio HUD closes to More",
+    "at": "2026-11-10T03:12:24.321Z",
+    "expectedSurface": "scene",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 844,
+        "clientWidth": 390,
+        "scrollHeight": 844,
+        "scrollWidth": 390
+      },
+      "bodyRect": {
+        "bottom": 844.0000610351562,
+        "height": 844.0000610351562,
+        "left": 0,
+        "right": 390.2857360839844,
+        "top": 0,
+        "width": 390.2857360839844,
+        "x": 0,
+        "y": 0
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴位置 · 4 画外"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "工作看板与提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "现金与经营"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "云端额度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "地图"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "下一时段"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "视角"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "更多"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "伙伴"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "委托"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "工作室"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "手账"
+        }
+      ],
+      "focus": "现金与经营",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "scene",
+      "systemNoticeCount": 0,
+      "title": null,
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "visible"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "restored": false
+    }
+  },
+  {
+    "case": "390 Studio HUD restores actual trigger corrected expectation",
+    "at": "2026-11-10T03:12:45.442Z",
+    "expectedSurface": "scene",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 844,
+        "clientWidth": 390,
+        "scrollHeight": 844,
+        "scrollWidth": 390
+      },
+      "bodyRect": {
+        "bottom": 844.0000610351562,
+        "height": 844.0000610351562,
+        "left": 0,
+        "right": 390.2857360839844,
+        "top": 0,
+        "width": 390.2857360839844,
+        "x": 0,
+        "y": 0
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴位置 · 4 画外"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "工作看板与提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "现金与经营"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "云端额度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "地图"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "下一时段"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "视角"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "更多"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "伙伴"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "委托"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "工作室"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "手账"
+        }
+      ],
+      "focus": "现金与经营",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "scene",
+      "systemNoticeCount": 0,
+      "title": null,
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "visible"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "restored": true
+    }
+  },
+  {
+    "case": "1280 Studio final controls",
+    "at": "2026-11-10T03:14:31.098Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 562,
+        "clientWidth": 509,
+        "scrollHeight": 4023,
+        "scrollWidth": 509
+      },
+      "bodyRect": {
+        "bottom": 695.4286346435547,
+        "height": 562.2857666015625,
+        "left": 748.5714721679688,
+        "right": 1267.4286499023438,
+        "top": 133.1428680419922,
+        "width": 518.857177734375,
+        "x": 748.5714721679688,
+        "y": 133.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "布置办公室"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "第 0 · 开源车库联盟"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "确认章节目标"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "玩法提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "客户项目进度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴招募与人手"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "招募"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "硬件与软件"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "升级 ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "升级 ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "升级 ¥600"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "研发"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "SLA维护"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "资源方案与贷款"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "买100T ¥50"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "订阅 0: +0T/天 ¥0/周 · 当前"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "订阅 1: +120T/天 ¥120/周"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "订阅 2: +300T/天 ¥420/周"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "借1000元，周息5%"
+        },
+        {
+          "disabled": true,
+          "height": 44.000003814697266,
+          "text": "还款 ¥0"
+        }
+      ],
+      "focus": "资源方案与贷款",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": null,
+        "shadow": "none"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "经营工作室",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  },
+  {
+    "case": "1280 Studio Escape restore",
+    "at": "2026-11-10T03:14:31.227Z",
+    "expectedSurface": "scene",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 720,
+        "clientWidth": 1280,
+        "scrollHeight": 720,
+        "scrollWidth": 1280
+      },
+      "bodyRect": {
+        "bottom": 720.0000610351562,
+        "height": 720.0000610351562,
+        "left": 0,
+        "right": 1280,
+        "top": 0,
+        "width": 1280,
+        "x": 0,
+        "y": 0
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "伙伴位置 · 0 画外"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "工作看板与提示"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "开源车库"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "现金与经营"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "云端额度"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "地图"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "下一时段"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "视角"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "更多"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "伙伴"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "委托"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "工作室"
+        },
+        {
+          "disabled": false,
+          "height": 44.85714340209961,
+          "text": "手账"
+        }
+      ],
+      "focus": "工作室",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2.85714px",
+        "pressed": "false",
+        "shadow": "rgb(255, 250, 240) 0px 0px 0px 3px"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "scene",
+      "systemNoticeCount": 0,
+      "title": null,
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "visible"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "restored": true
+    }
+  },
+  {
+    "case": "1280 Journal empty projects",
+    "at": "2026-11-10T03:14:31.895Z",
+    "expectedSurface": "drawer",
+    "data": {
+      "bodyMetrics": {
+        "clientHeight": 131,
+        "clientWidth": 519,
+        "scrollHeight": 131,
+        "scrollWidth": 519
+      },
+      "bodyRect": {
+        "bottom": 264.2857360839844,
+        "height": 131.1428680419922,
+        "left": 748.5714721679688,
+        "right": 1267.4286499023438,
+        "top": 133.1428680419922,
+        "width": 518.857177734375,
+        "x": 748.5714721679688,
+        "y": 133.1428680419922
+      },
+      "controls": [
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "概览"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "项目"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "明天"
+        },
+        {
+          "disabled": false,
+          "height": 44.000003814697266,
+          "text": "收支"
+        }
+      ],
+      "focus": "项目",
+      "focusInDialog": false,
+      "focusInSurface": true,
+      "focusStyle": {
+        "focusVisible": false,
+        "outlineStyle": "none",
+        "outlineWidth": "2.85714px",
+        "pressed": "true",
+        "shadow": "rgb(67, 104, 77) 0px -3px 0px 0px inset"
+      },
+      "notices": [],
+      "slots": [],
+      "surface": "drawer",
+      "systemNoticeCount": 0,
+      "title": "工作室手账",
+      "tools": [
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "assertions": {
+      "noHorizontalOverflow": true,
+      "focusOwner": true,
+      "touch44": true,
+      "backgroundHidden": true
+    }
+  }
+]

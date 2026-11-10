@@ -1,3 +1,52 @@
+# VF4-A.1 + VF4-A2 检查点（2026-11-10）
+
+固定实现：`__VF4A2_IMPLEMENTATION_SHA__`；本轮起点记录提交 `f0edf5529ba1c259947f589fe2f6d40d419646b1`，上一固定实现 `d3e0c87d96bf4fe3baa77ab745163d8baa9ca052`。本轮实现与证据已完成，整体裁决仍为 **待独立复审 / HOLD**，不宣称完整视觉或性能冻结。两个本地提交后暂停；不push、不部署、不付费调用、不进入VF4-B/C。
+
+## 串行门禁与实现范围
+
+- A.1门禁于UTC02:53:50写入 `harness/vf4a2/phase1-gate.json`，八项通过后才开始A2。F03补齐Settings/Map/work-steps的选中inset与外焦点环，Map选中边框用selected-indicator。
+- F01真实导出下载再导入。保留导入仅载入内存的原契约（用户明确确认），验证原手动档不被覆盖，随后手动保存更新槽位；合法/损坏/不兼容文件各为单一顶部反馈。发现busy禁用file input后焦点落body，用户明确批准白名单例外：Saves既有onChange中先focus当前dialog，再执行原导入。修复前三个分支中的不兼容失败和稳定帧失败记录保留，修复后全部复验。
+- F04在harness transform中模拟locked，只在office-lab查询开启，不进生产；实际DOM是 `.world-map > button`，不是不存在的 `.map-card`。三个按钮全部disabled且caption可见。
+- F02最多一次24条归因（另有4条排除预热）已结束；同步head与普通探针读数逐条相同，动态导入均早于首Canvas。没有证据支持修改探针，`main.tsx` / `vf-metrics.ts`保持0diff。Vite现有CLI不支持cacheDir参数，启动器接受显式`--cacheDir`并传Vite API配置，各版本独立；日志0 EPERM。
+- A2仅Studio/Journal及其Project/Finale面板：纸面卡片、折叠章节/升级/招募/资源、禁用解释；手账四个aria-pressed分段按钮（不是ARIA tab角色，按普通按钮Tab导航）、概览/项目/明天/收支。项目Command及原禁用条件不变，纯函数测试覆盖负现金时普通项目操作不新增现金门禁。仅重试沿用现金检查。
+- 背景工具隐藏后，经营抽屉保留dock触发器焦点；HUD现金入口回到实际现金按钮或更多。关闭/返回/Escape延续原契约。没有修改S2/S3、领域模型、存档协议、依赖或任何public资产。
+
+## 实机与工程证据
+
+38文件304测试、类型/lint/Web及DSH构建通过（`check-final.log`）。统一JSON共58条，28条抽屉记录，所有记录都有bodyMetrics/bodyRect/focusInDialog；逐条检查，失败有明确后续对应记录，不用缺字段过滤来伪造通过。四视口1280×720中文浅色、390×844中文浅色、560×800英文深色、844×390横屏，Studio所有分区与Journal四栏目（含真实非空项目、展开终局内容）均无水平溢出，可见内容控件≥44px、焦点在抽屉、背景工具隐藏，关闭/Escape回到入口。截图 `harness/vf4a2/studio-*.png`、`journal-*.png`。
+
+项目测试存档来自已有delivery隔离夹具，通过现有Command继续经营到第18天并进入第1章后导出，再真实文件导入UI；`project-fixture.mjs`、proof/save文件保留。停在第14天现金不足以及额外review委托的失败夹具日志保留；这不是平衡性或自然结局验收。初始空项目也已检查。VF3.1核心回归：390布置取消镜头style同值、位置Escape焦点、Qwen局部错误关闭重开清空；A2后Settings/Map回归通过，文件导入A.1证据和A2项目导入共同覆盖Saves。
+
+12px说明文字沿用muted token，最坏背景合成计算：浅色≥5.22:1，深色≥6.74:1（`caption-contrast.json`，非截图像素扫描）。保留一项视觉规范偏差 **VF4A2-TYPE-01 / P3 OPEN**：卡片h3/h4、财务和账本金金额使用现有16px层级；附件要求20/14/12px，不能声称已严格统一。请独立审查确定是否统一至14/20，或明确接纳16px作为既有token的例外。此项在冻结后收尾审阅发现，未静默改源码或追加采样。
+
+## 冻结与性能（不得筛掉不利结果）
+
+151源码/测试文件raw与LF SHA256已冻结，前后全部匹配。正式采样四版本040031e/6f3a191/c68541d/current；每批72条、每版本18、每模式36、每模式/场景18，每细分组4或5条，正反交替+平衡尾轮。附件72与16组×6不相容；已提出可选澄清，未收到回复后采用预先登记的72上限，不能写成各6轮。两批各16预热排除，共32条；归因24条不计入正式批。确认严格由首批preview twelve >10%触发，只有一次，之后停止，无配置或源码调整。样本DPR一致、rAF p50约8.3ms、AC性能电源120Hz。040沿用之前的诊断补丁，完整差异归档于 `040031e-existing-diagnostic.patch`。
+
+| 单元 | 当前首批 ms | 对 c685 首批 | 当前确认 ms | 对 c685 确认 | 对 040 首批 / 确认 |
+|---|---:|---:|---:|---:|---:|
+| dev standard | 189.25 | +1.15% | 206.70 | +1.67% | -0.50% / +2.38% |
+| dev twelve | 187.80 | +2.71% | 197.60 | -0.78% | +7.44% / -4.19% |
+| preview standard | 142.80 | +4.31% | 139.20 | +0.87% | -10.44% / -13.59% |
+| preview twelve | 153.60 | +19.91% | 146.70 | +14.97% | +5.35% / -3.80% |
+
+
+**VF4A2-PERF-01 / P2 HOLD**：preview twelve对c685首批+19.91%、确认+14.97%，两批都超10%。这证明本轮该指标未过阈值，但仅是热缓存首HUD+canvas读数，不能直接归因为本轮抽屉CPU退化，也不能用其他单元改善抵销。两批原始值及200.8/195.6ms等不利样本全部保留；不追加第三批。完整 `VF31-PERF-01` 仍OPEN/HOLD。
+
+## 清洁交付与后续门禁
+
+`verify-delivery.mjs` 18项机器检查通过；它验证完整性/受控流程，不把性能或字体偏差改判PASS。白名单从本轮起点f0edf55核对；保护路径仍对照d3e0c87，packages/lock/ai-village另对照2bd6d40。首次脚本误将上一轮记录提交的build-log/verification当本轮越界，原结果 `delivery-verification-initial.json`保留；修正起点后通过。另保留快捷入口错误预期：本来预期更多，实际返回现金原按钮符合契约，纠正断言而非改产品。
+
+生产dist无vf-metrics/vf-startup/vf-attribution或锁定夹具；5181–5186关闭，自己的临时`.vite-cache`确认绝对路径及无junction后删除，浏览器临时页关闭、视口/可见性恢复。历史worktree和依赖junction保留，无install。应用engine0.16.0/content office-2不变；office-lab-1仅隔离测试内容。
+
+下步仅接收Gemini独立裁决：先评估VF4A2-PERF-01与TYPE-01，明确返修白名单、一次有界测量协议和停止条件，再决定是否允许下一零资源检查点。未获后续裁决前不继续开发。冷缓存/GPU纹理/长会话内存预算、完整Visual Freeze 1（S2完整矩阵、S3对话细化、VF4-B/C资产）、真实DSH端到端冲突、SW更新全分支、200%系统字体、低端移动真机继续未完成。
+
+审查入口：`harness/reviews/vf4a2-gemini-review-prompt.md`，固定SHA交接：`harness/reviews/vf4a2-handoff.md`。本轮不更新白名单外的harness/build-log.md，执行日志置于harness/vf4a2/build-log.md。
+
+---
+
+以下为历史检查点：
+
 # VF4-A：系统弹窗试点检查点
 
 2026-11-10，父提交 d00071a，上一固定实现 c68541da920b346b02c11b8e27540024c8ea30a5。用户指令原文见 `harness/reviews/vf4a-user-handoff.txt`。本轮先完成 VF31-PERF-01 阶段归因，记录限定门禁后再实现 Saves / Settings / Map；两个本地提交后暂停。固定实现 SHA 与独立审查入口由第二次记录提交写入 `harness/reviews/vf4a-handoff.md`。

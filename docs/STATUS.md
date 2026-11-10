@@ -1,3 +1,7 @@
+VF4-A.1 + VF4-A2固定实现 `__VF4A2_IMPLEMENTATION_SHA__`；交接 `harness/reviews/vf4a2-handoff.md`，复审Prompt `harness/reviews/vf4a2-gemini-review-prompt.md`。两个本地提交后暂停待Gemini，不push。
+
+2026-11-10 当前唯一执行入口：A.1串行前置门禁八项通过（含用户授权的Saves导入焦点修复），继而完成零资源Studio/Journal试点及58条统一实机记录。38文件304测试通过；151文件冻结，24条唯一归因无探针延后证据，main/vf-metrics零改动。四版本72正式+唯一72确认，preview twelve相对c68541d分别+19.91%/+14.97%，VF4A2-PERF-01 P2 HOLD，不再采样；其余单元未超10%。16px小标题/金额与附件20/14/12px要求存在TYPE-01 P3待裁决，不声称视觉规范全量PASS。保护路径0diff，生产无探针，端口/独立缓存/测试页已清理。完整VF31-PERF-01、冷缓存/GPU/长会话内存、整体Visual Freeze 1（S2/S3、VF4-B/C）、真实DSH冲突/SW全分支/200%字体/低端真机均未关闭；不自动推进下一检查点。详细证据及计划见VF4_CHECKPOINT.md当前节。以下均为历史。
+
 VF4-A固定实现 `d3e0c87d96bf4fe3baa77ab745163d8baa9ca052`；独立SHA记录/Prompt入口 `harness/reviews/vf4a-handoff.md`。303测试通过，资产与完整性能门禁HOLD；两个本地提交后暂停待Gemini，未push。
 
 2026-11-10 VF4-A（当前唯一执行入口）：已按用户交接先完成VF31-PERF-01的54条阶段归因+24条单因素实验，再进入零资源Saves/Settings/Map试点。稳定槽ID/分组空态、独立顶部反馈、设置选中态、44px控件与模态焦点闭环；保持三屏及四抽屉布局。38文件303测试和类型/lint/Web/DSH构建通过，31条实机观察覆盖四视口。151文件冻结后12预热、72正式+72唯一确认；试点对c68541d两批均未超10%，首批dev standard对040031e+16.85%仍保留，历史性能风险及VF4-B/C资产扩产继续HOLD。默认生产无诊断、5181–5186关闭、浏览器恢复；保护路径零diff、engine0.16.0/content office-2不变。详见VF4_CHECKPOINT.md与harness/vf4a；固定SHA/审查Prompt由harness/reviews/vf4a-handoff.md记录。双本地提交后暂停待Gemini，不push/部署/付费模型，不自动推进下一批，不称完整Visual Freeze 1。下文是历史。

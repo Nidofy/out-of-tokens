@@ -6,6 +6,16 @@ import {commandFeedbackTarget,feedbackSurface,presentationEvent,nextFeedback,cle
 import type {UiFeedback} from '../web/src/presentation-events.js';
 import {saveSlotRows} from '../web/src/dialog.js';
 import type {StoredSave} from 'oot-platform';
+import {projectActionBlock} from '../web/src/project-panel.js';
+
+test('project presentation blockers preserve chapter, busy and retry affordability boundaries',()=>{
+ expect(projectActionBlock(false,1,1,100,100)).toBeNull();
+ expect(projectActionBlock(false,1,1,-1)).toBeNull(); // Starting/advancing has no UI cash gate.
+ expect(projectActionBlock(false,1,1,99,100)).toBe('cash');
+ expect(projectActionBlock(false,2,1,1000)).toBe('chapter');
+ expect(projectActionBlock(true,1,1,1000)).toBe('busy');
+ expect(projectActionBlock(true,2,1,0,100)).toBe('busy');
+});
 
 test('system saves expose nine stable slots, only manual slots can be saved and empty slots cannot load',()=>{
  const rows=saveSlotRows([],false);

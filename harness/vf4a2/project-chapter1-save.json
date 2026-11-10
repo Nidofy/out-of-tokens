@@ -1,0 +1,390 @@
+{
+  "schemaVersion": 1,
+  "engineVersion": "0.16.0",
+  "contentVersion": "office-lab-1",
+  "contentHash": "3828abe03aeefcadb2d57ee4e67731816630171ef0fc2313ef51de1ec0841712",
+  "seed": 1,
+  "commands": [
+    {
+      "type": "accept",
+      "job": "0-0"
+    },
+    {
+      "type": "assign",
+      "job": "0-0",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "0-0"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "4-2"
+    },
+    {
+      "type": "assign",
+      "job": "4-2",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "4-2"
+    },
+    {
+      "type": "accept",
+      "job": "4-4"
+    },
+    {
+      "type": "assign",
+      "job": "4-4",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "4-4"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "20-0"
+    },
+    {
+      "type": "assign",
+      "job": "20-0",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "20-0"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "24-2"
+    },
+    {
+      "type": "assign",
+      "job": "24-2",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "24-2"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "52-1"
+    },
+    {
+      "type": "assign",
+      "job": "52-1",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "52-1"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "accept",
+      "job": "68-4"
+    },
+    {
+      "type": "assign",
+      "job": "68-4",
+      "team": [
+        {
+          "character": "qwen",
+          "role": "worker",
+          "mode": "cloud"
+        },
+        {
+          "character": "llama",
+          "role": "reviewer",
+          "mode": "cloud"
+        }
+      ]
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "deliver",
+      "job": "68-4"
+    },
+    {
+      "type": "campaign",
+      "action": "chapter",
+      "id": "next"
+    }
+  ],
+  "stateHash": "28e6b112afdb5ed0fb2265a7a13e9dc20970aa68c2862ec1d3a5aad27978d98b"
+}

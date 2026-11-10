@@ -1,0 +1,746 @@
+{
+  "cash": 1027.85,
+  "liquidCash": 1027.85,
+  "goal": {
+    "ready": true,
+    "requirements": [
+      {
+        "id": "debt",
+        "label": "结清旧债并完成交付",
+        "labelEn": "Settle inherited debt and deliver a job",
+        "current": 1,
+        "target": 1,
+        "met": true
+      }
+    ]
+  },
+  "campaign": {
+    "office": {
+      "revision": 0,
+      "nextId": 6,
+      "items": [
+        {
+          "id": "f1",
+          "kind": "basic",
+          "slot": "work-1"
+        },
+        {
+          "id": "f2",
+          "kind": "basic",
+          "slot": "work-2"
+        },
+        {
+          "id": "f3",
+          "kind": "basic",
+          "slot": "work-3"
+        },
+        {
+          "id": "f4",
+          "kind": "whiteboard",
+          "slot": "meeting-1"
+        },
+        {
+          "id": "f5",
+          "kind": "coffee",
+          "slot": "lounge-1"
+        }
+      ],
+      "reservations": {}
+    },
+    "projects": {},
+    "finale": {
+      "ending": null,
+      "endless": false,
+      "endlessAt": 0,
+      "expeditions": [],
+      "souvenirs": [],
+      "bids": [],
+      "challengeWeek": 2,
+      "challengeWins": []
+    },
+    "chapterStarted": 0,
+    "clarifyRng": 3709019992,
+    "subscription": 0,
+    "incidents": [],
+    "chapter": 0,
+    "chapterZero": "passed",
+    "completed": [],
+    "scene": "workshop",
+    "research": 0,
+    "software": [],
+    "hardware": {
+      "office": 0,
+      "compute": 0,
+      "storage": 0,
+      "network": 0
+    },
+    "unlocked": [
+      "bluewhale.v3",
+      "qwen.2.5",
+      "llama.3",
+      "mistral.7b",
+      "gpt.3.5",
+      "claude.haiku",
+      "kimi.1.5",
+      "gemini.flash",
+      "grok.base",
+      "glm.base",
+      "minimax.base",
+      "seedance.base"
+    ],
+    "relations": {
+      "bluewhale": {
+        "xp": 0,
+        "affinity": 0,
+        "location": null,
+        "locationUntil": 0,
+        "training": null,
+        "bonuses": {},
+        "stories": [],
+        "stress": 0,
+        "hunger": 100
+      },
+      "qwen": {
+        "xp": 7,
+        "affinity": 0,
+        "location": null,
+        "locationUntil": 0,
+        "training": null,
+        "bonuses": {},
+        "stories": [],
+        "stress": 4,
+        "hunger": 100
+      },
+      "llama": {
+        "xp": 7,
+        "affinity": 0,
+        "location": null,
+        "locationUntil": 0,
+        "training": null,
+        "bonuses": {},
+        "stories": [],
+        "stress": 4,
+        "hunger": 100
+      },
+      "mistral": {
+        "xp": 0,
+        "affinity": 0,
+        "location": null,
+        "locationUntil": 0,
+        "training": null,
+        "bonuses": {},
+        "stories": [],
+        "stress": 0,
+        "hunger": 100
+      }
+    }
+  },
+  "steps": [
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "accept",
+        "job": "4-2"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "assign",
+        "job": "4-2",
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "deliver",
+        "job": "4-2"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "accept",
+        "job": "4-4"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "assign",
+        "job": "4-4",
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "deliver",
+        "job": "4-4"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "accept",
+        "job": "20-0"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "assign",
+        "job": "20-0",
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "deliver",
+        "job": "20-0"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "accept",
+        "job": "24-2"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "assign",
+        "job": "24-2",
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "deliver",
+        "job": "24-2"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "accept",
+        "job": "52-1"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "assign",
+        "job": "52-1",
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "deliver",
+        "job": "52-1"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "accept",
+        "job": "68-4"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "assign",
+        "job": "68-4",
+        "team": [
+          {
+            "character": "qwen",
+            "role": "worker",
+            "mode": "cloud"
+          },
+          {
+            "character": "llama",
+            "role": "reviewer",
+            "mode": "cloud"
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "advance"
+      },
+      "error": null
+    },
+    {
+      "command": {
+        "type": "deliver",
+        "job": "68-4"
+      },
+      "error": null
+    }
+  ]
+}

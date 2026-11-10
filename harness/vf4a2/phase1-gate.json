@@ -1,0 +1,113 @@
+{
+  "at": "2026-11-10T02:53:50.130Z",
+  "checks": {
+    "schemaEveryRecord": true,
+    "focusOrthogonal": true,
+    "imports": true,
+    "slotPreserved": true,
+    "manualSaveUpdates": true,
+    "locked": true,
+    "attribution24": true,
+    "noCacheErrors": true
+  },
+  "groups": [
+    {
+      "label": "040031e",
+      "scenario": "standard",
+      "count": 6,
+      "headCanvasMedian": 236.4,
+      "metricsLoadedMedian": 193.45000004768372,
+      "ordinaryMinusHead": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "leadBeforeCanvas": [
+        63,
+        40.59999990463257,
+        31.800000095367437,
+        58.600000190734875,
+        44.30000000000001,
+        51.09999990463257
+      ]
+    },
+    {
+      "label": "040031e",
+      "scenario": "twelve",
+      "count": 6,
+      "headCanvasMedian": 233,
+      "metricsLoadedMedian": 194.54999995231628,
+      "ordinaryMinusHead": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "leadBeforeCanvas": [
+        48.29999985694883,
+        35.599999999999994,
+        47.999999904632574,
+        72.50000004768373,
+        44.199999856948864,
+        36.40000009536743
+      ]
+    },
+    {
+      "label": "current-a1",
+      "scenario": "standard",
+      "count": 6,
+      "headCanvasMedian": 244.45,
+      "metricsLoadedMedian": 207.85000002384186,
+      "ordinaryMinusHead": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "leadBeforeCanvas": [
+        40.900000047683704,
+        52.30000000000001,
+        37.19999999999999,
+        32.900000047683704,
+        40.29999990463256,
+        33.299999952316284
+      ]
+    },
+    {
+      "label": "current-a1",
+      "scenario": "twelve",
+      "count": 6,
+      "headCanvasMedian": 243.8,
+      "metricsLoadedMedian": 208.35000002384186,
+      "ordinaryMinusHead": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "leadBeforeCanvas": [
+        43.70000009536744,
+        52.89999999999998,
+        34.89999985694885,
+        36.19999990463256,
+        43.099999952316296,
+        34.700000047683716
+      ]
+    }
+  ],
+  "phase2Allowed": true,
+  "mainProbeDiff": "",
+  "knownPreFixFailures": [
+    "F01 incompatible version error",
+    "F01 incompatible focus stable reproduction"
+  ]
+}

@@ -1,0 +1,132 @@
+# Codex 执行指令：VF4-A.1 收尾验证与 VF4-A2 零资源抽屉规范化试点（单检查点串行门禁）
+
+## 1. 仓库、分支与基线锚点
+
+- **工作目录**：`D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens`
+- **当前分支**：`codex/m1-foundation`
+- **已确认本轮固定实现 SHA（VF4-A 基线）**：`d3e0c87d96bf4fe3baa77ab745163d8baa9ca052`（记录提交 `f0edf5529ba1c259947f589fe2f6d40d419646b1`）
+- **对比与保护基线**：
+  - `VF3.1` 固定实现：`c68541da920b346b02c11b8e27540024c8ea30a5`
+  - `VF3` 固定实现：`6f3a19122f4508004aeb1ae3bfe0c1387047e9dc`
+  - 长期性能基线：`040031e`
+  - 保护基线 `VF1.1`：`2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f`
+
+## 2. 上一轮 Gemini 独立复审逐项裁决
+
+- **总裁决**：**`CONDITIONAL PASS`**
+  1. **A. 前置归因与门禁顺序 (`VF31-PERF-01`)**：
+     - **限定门禁（放行零新增资源 UI 试点）**：**`PASS`**（54 条归因数据与 24 条机制实验证实 HUD 提交、Pixi 初始化、首轮 `sync` 与 `preview` 均无同步 CPU 退化；`scene-navigation.ts` 无需合并；`Scene` 改 `useLayoutEffect` 实验未改善首帧且不进生产）。
+     - **完整性能门禁与长期 `dev` 波动 (`VF31-PERF-01`)**：**`OPEN / HOLD`**（正式批 `dev standard` 首批对 `040031e` `+16.85%`、确认批 `+6.81%`；普通 `?vf-metrics` 异步 `import('./vf-metrics.js')` 与动态模块瀑布的竞争差异、以及共享 junction `.vite` 缓存目录竞争尚待单次有界核验，不关闭 `VF31-PERF-01`）。
+  2. **B. VF4-A 系统弹窗试点 (`Saves` / `Settings` / `Map` / `<Dialog>`)**：**`PASS`**（含 P2 浏览器分支补测 `VF4A-F-01` 与 P3 样式合并 `VF4A-F-03`）。
+  3. **C. 试点增量性能**：**`PASS`**（`vf4a` 对 `c68541d` 首批与确认批在 `-8.65%` ～ `+7.45%` 之间，全部 `< +10%`）。
+  4. **D. 保护路径与清洁交付**：**`PASS`**（保护路径 `0 diff`，源码冻结哈希 100% 匹配，生产构建无测试探针残留）。
+- **门禁授权范围**：
+  - 确认接受 `d3e0c87` 进入 `VF4-A` 基线。
+  - **本轮只允许推进一个单检查点（`VF4-A.1 + VF4-A2`）**，且必须严格按下方**串行依赖顺序**执行：先完成 **阶段 1（`VF4-A.1` 遗留问题修复与单次有界归因核验）**，全部达标后才允许在同一检查点内执行 **阶段 2（`VF4-A2`：零新增资源「经营工作室 Studio」与「工作室手账 Journal」抽屉内容及内部子面板 `project-panel` / `finale-panel` 组件规范化试点）**。
+  - **若阶段 1 任一必过项未达标**：本轮必须只停留在 `VF4-A.1` 修复，严禁触碰阶段 2（`VF4-A2`）。
+  - **继续严格阻断 `VF4-B` / `VF4-C`**：禁止任何新美术资产生产、禁止重排 S2（委托工作台）或 S3（伙伴对话抽屉）、禁止修改领域模型与存档协议。
+
+## 3. 严格串行优先级与依赖顺序
+
+1. **Step 1.1（修复 `VF4A-F-03` - P3）**：修复 `apps/web/src/vf1.css` 中 `[aria-pressed=true]` 与 `:focus-visible` 同时触发时的 `box-shadow` 覆盖问题，并为 `.system-dialog .world-map button[aria-pressed=true]` 补齐 `border-color: var(--selected-indicator)`。
+2. **Step 1.2（修复 `VF4A-F-01` & `VF4A-F-04` - P2/P3）**：在浏览器隔离测试环境（`?office-lab=...`）中补齐 `Saves` 真实文件/Blob 导入回环（合法 JSON 导入显示 `LOADED` + 非法/不兼容 JSON 导入在顶部单一 `.system-notice` 显示 `BAD_JSON`/`INCOMPATIBLE_SAVE`）以及 `Map` 在 `locked === true`（例如存在未决事件 `view.pending` 或 `busy`）下渲染 `.system-caption` 且全部 `.map-card` 为 `disabled` 的实机 DOM 断言；统一交互记录 JSON schema。
+3. **Step 1.3（修复 `VF31-PERF-01 / VF4A-F-02` - P2，最多 1 次有界归因实验）**：
+   - 为所有多 worktree Vite `dev` 启动命令/归因配置显式配置独立 `--cacheDir`（如 `harness/vf4a2/.vite-cache/<sha>`，严禁多个 worktree 并发写共享 junction 下的 `node_modules/.vite`）。
+   - 执行**最多 1 次**有界归因实验（上限 `24` 条有效样本：例如 `040031e` 与当前实现各 6 轮 × `dev standard` / `dev twelve`），在归因探针中同时记录 `<head>` 同步 rAF 测得的真实 `firstCanvasRafMs` 与 `main.tsx` 中 `import('./vf-metrics.js')` 加载完成启动 `startVisualMetrics()` 的时间戳 `vfMetricsLoadedMs`，量化动态导入排队对普通 `?vf-metrics` 读数的影响。
+   - **可选最小机制修正（仅当实验证实 `import('./vf-metrics.js')` 动态导入排队导致读数偏高或抖动时）**：允许在 `apps/web/src/main.tsx` / `apps/web/src/vf-metrics.ts` 中调整非生产 `?vf-metrics` 探针的启动方式（确保默认无 `?vf-metrics` 的生产构建依然 0 探针代码、不改变产品运行时模块图），否则只记录归因证据，不改 `main.tsx`。
+4. **Step 2.1（仅在 Step 1.1–1.3 全部通过后执行：`VF4-A2` 零资源抽屉规范化试点）**：
+   - 将 `VF4-A` 已验证的卡片层级、字级（`20/14/12px`）、圆角（`16/12/10px`）、纸面/边框 token、44px 最小触控高度、选中态（`--selected-indicator`）与双焦点环（`--focus-ring` + `--focus-contrast`）正交规则、以及清晰的状态/禁用说明，应用到 **`Studio`（经营工作室抽屉）** 与 **`Journal`（工作室手账抽屉及其内部 `project-panel.tsx` / `finale-panel.tsx`）**。
+   - 保持抽屉触发器、焦点回归、Escape/关闭按钮、背景场景工具隐藏契约不变；严禁新增任何图片/纹理/音频/字体或外部依赖。
+5. **Step 2.2（统一验证、正式启动性能批次、源码冻结与两次本地提交）**：运行 `pnpm check`、浏览器实机交互矩阵（含 `VF4-A.1` 补测项 + `VF4-A2` 抽屉项 + `VF3.1` 回归项）、源码冻结校验与正式启动性能批次（遵循下方停止条件），完成清潔检查与两次本地提交。
+
+## 4. 文件修改白名单与禁止范围
+
+### 允许修改的应用与测试文件白名单
+- `apps/web/src/vf1.css`（必改：修复 `VF4A-F-03` 并在 Step 2.1 承载 `VF4-A2` 的 `Studio` / `Journal` 抽屉样式规范）
+- `apps/web/src/alpha-app.tsx`（仅限 `Studio` 与 `Journal` 抽屉内部结构整理及必要的无障碍/状态属性，不得改动 S2/S3 或领域调度语义）
+- `apps/web/src/project-panel.tsx`（仅限 `VF4-A2` 手账内自研项目面板的卡片/按钮/字级/状态标签规范化）
+- `apps/web/src/finale-panel.tsx`（仅限 `VF4-A2` 手账内终局里程碑面板的卡片/按钮/字级/状态标签规范化）
+- `apps/web/src/main.tsx`、`apps/web/src/vf-metrics.ts`（**仅当** Step 1.3 实验证实需要修复 `?vf-metrics` 探针自身启动方式且不影响生产构建 `0` 探针时才允许最小修改；否则保持 `0 diff`）
+- `apps/sim-cli/vf2.test.ts`（新增纯函数/组件契约测试）
+- 文档与证据目录：`docs/VF4_CHECKPOINT.md`、`docs/STATUS.md`、`harness/vf4a2/**`、`harness/reviews/**`
+
+### 严格禁止修改的保护范围（必须保持 `0 diff`）
+- `packages/**`（エンジン `0.16.0`、content `office-2`、RNG、经济、Command、存档格式）
+- `pnpm-lock.yaml`
+- `apps/web/public/**`（含 `apps/web/public/art/ai-village/**`，严禁新增或修改任何 PNG/WebP/SVG/字体/音频资产）
+- `apps/web/src/commission-workbench.tsx`（S2 委托工作台）、`apps/web/src/partner-profile.tsx`（S3 伙伴详情抽屉）
+- `apps/web/src/scene.ts`、`apps/web/src/office-scene.ts`、`apps/web/src/village-characters.ts`、`apps/web/src/paper-doll.ts`、`apps/web/src/scene-navigation.ts`
+- 严禁执行 `git push`、部署、调用付费外部 API；严禁在共享依赖 junction 的历史 worktree 中运行 `pnpm install` 或删除 `node_modules`。
+
+## 5. 具体修复与实现任务及可复现验收标准
+
+### 任务 1：`VF4-A.1` 收尾修复与补测（必过前置门禁）
+
+1. **`[VF4A-F-03]` 选中态与 `:focus-visible` 样式正交修复（`apps/web/src/vf1.css`）**：
+   - **修复内容**：
+     - 为 `.system-dialog .world-map button[aria-pressed=true]` 增加 `border-color: var(--selected-indicator)`；
+     - 为 `.studio-app .work-steps button[aria-pressed=true]:focus-visible`、`.studio-app .system-dialog .settings-list button[aria-pressed=true]:focus-visible`、`.studio-app .system-dialog .world-map button[aria-pressed=true]:focus-visible`（以及 `VF4-A2` 中任何使用 `aria-pressed=true` 的分段/标签按钮）显式合并 `inset` 绿色选中阴影与外层 `0 0 0 3px var(--focus-contrast)` 焦点对比阴影。
+   - **可复现验收**：
+     - 在 Playwright 实机检查中，分别聚焦 `Settings`、`Map`、`.work-steps` 中 `aria-pressed="true"` 的按钮并触发 `:focus-visible`，断言 `getComputedStyle(btn).boxShadow` 同时包含 `inset` 选中阴影与外层 `3px` 对比环，且 `outlineStyle === 'solid'`。
+
+2. **`[VF4A-F-01]` & `[VF4A-F-04]` `Saves` 文件导入回环与 `Map` `locked` 态实机验证**：
+   - **修复内容**：
+     - 在隔离 URL（`?office-lab=initial&motion=still`）中，通过 Playwright 对 `Saves` 弹窗内的 `<input type="file">` 注入：
+       a) 一份合法导出的存档 JSON payload，断言顶部 `.system-notice` 显示载入成功文案、`.system-notice` 数量为 `1`、手动槽位状态更新且弹窗保持打开；
+       b) 一份损坏 JSON（如 `"{bad"`）与一份不兼容版本 JSON，断言顶部 `.system-notice` 显示对应错误文案、`.system-notice` 数量为 `1`、焦点仍留在 `<dialog>` 内且无水平溢出。
+     - 在存在未决事件（如 `office-lab` 触发 `pending` 事件或模拟 `locked` 状态）时打开 `Map` 弹窗，断言 `.system-caption` 可见且全部 3 张 `.map-card` 的 `disabled === true`。
+     - 统一 `harness/vf4a2/interaction-results.json` 所有记录的 `data.bodyMetrics` / `data.bodyRect` / `data.focusInDialog` 结构，确保 `verify-delivery.mjs` 100% 覆盖无漏检。
+
+3. **`[VF31-PERF-01 / VF4A-F-02]` 独立 Vite 缓存目录与单次 `vf-metrics` 归因核验**：
+   - **修复内容**：
+     - 所有跨 worktree 的 Vite `dev` 测量必须指定独立 `--cacheDir`（测试结束后清理该临时 `--cacheDir` 目录，日志中必须 `0` 条 `EPERM`）。
+     - 运行 **1 次** 24 条有界归因核验（`040031e` vs 当前实现，含 `dev standard` / `dev twelve`），对比 `<head>` 同步 rAF 首帧时间与 `import('./vf-metrics.js')` 启动时间 `vfMetricsLoadedMs`，结果写入 `harness/vf4a2/metrics-probe-attribution.json`。
+
+### 任务 2：`VF4-A2` 经营工作室（`Studio`）与手账（`Journal`）抽屉规范化试点（仅在任务 1 达标后执行）
+
+1. **范围与设计复用约束**：
+   - 仅整顿 `Studio` 抽屉（升级卡、工作站解锁/状态、伙伴招募/工资与操作按钮）与 `Journal` 抽屉（顶部 Tab 切换、概览/自研项目 `project-panel.tsx`/终局模块 `finale-panel.tsx`/事件日志列表）。
+   - 严格复用 `VF4-A` 视觉令牌：暖白/深褐纸面、深胡桃标题/操作色、黄铜细边、`20/14/12px` 字级、`16/12/10px` 圆角、所有可点击按钮/Tab/表单控件高度 `>= 44px`、禁用原因文字清晰可读（`12px` 次级对比度达标）、选中 Tab/卡片与 `:focus-visible` 双层焦点环同时可见。
+2. **可复现验收**：
+   - 在 `1280×720`（中浅色）、`390×844`（中浅色）、`560×800`（英文深色 `locale=en&theme=dark`）、`844×390`（紧凑横屏）四个视口下实机验证 `Studio` 与 `Journal`（含切换内部各子面板 Tab）：
+     - `scrollWidth <= clientWidth`（0 水平溢出）；
+     - 所有可见可交互控件高度 `>= 44px`；
+     - 抽屉打开时背景 `scene-tools` / `scene-presence` / `studio-dock` 隐藏，按 `Escape` 或关闭按钮后抽屉关闭且焦点准确回到触发按钮（或 `更多` 入口）；
+     - 保留并复测 `VF4-A`（`Saves` / `Settings` / `Map`）与 `VF3.1`（390 布置取消镜头同值、位置 `Escape` 焦点、Qwen 错误重开清除）核心回归用例。
+
+## 6. 性能停止条件与采样上限（防无限跑分规则）
+
+1. **归因实验上限**：Step 1.3 仅允许执行 **1 批（最多 24 条有效样本）** 归因核验，严禁反复调参重跑。
+2. **正式启动性能批次上限**：
+   - 在全部代码改动冻结并生成 `harness/vf4a2/source-freeze.json` 后，按既有协议（独立 `--cacheDir`、前台可见校准 `rAF <= 25ms`、剔除预热）运行 **1 批 `72` 条** 四基线（`040031e`、`6f3a191`、`c68541d`、当前固定 SHA）× 四单元（`dev/preview` × `standard/twelve`）正式平衡批。
+   - **唯一确认批规则**：仅当当前实现相对上一固定基线 `c68541d`（或 `d3e0c87`）在任一单元中位数退化 `> +10.00%`，或对 `040031e` 出现新的未解释跳变时，才允许运行 **最多 1 次** `72` 条确认批。之后无论结果如何必须立即停止采样，如实记录并交由下一轮独立复审裁决，严禁通过多次重跑挑选有利批次。
+
+## 7. 需保留的风险说明（不得在文档中谎称已关闭）
+
+在更新 `docs/VF4_CHECKPOINT.md` 与 `docs/STATUS.md` 时，必须继续显式保留以下未关闭风险：
+- `VF31-PERF-01` 完整性能门禁与冷缓存/GPU 纹理/长会话内存预算尚未最终闭环；
+- 整体 `Visual Freeze 1` 尚未完成（S2 完整矩阵、S3 对话抽屉细化、`VF4-B/C` 精灵与场景美术资产仍处于未冻结/未授权状态）；
+- 真实托管宿主 DSH 端到端冲突、Service Worker 更新全分支、200% 系统字体放大与低端移动真机仍属后续待测项。
+
+## 8. 两次本地提交、清洁交付与暂停规则
+
+1. **清洁检查**：
+   - 验证保护路径 `0 diff`：
+     ```powershell
+     git diff 2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f HEAD -- packages pnpm-lock.yaml apps/web/public/art/ai-village
+     git diff d3e0c87d96bf4fe3baa77ab745163d8baa9ca052 HEAD -- packages pnpm-lock.yaml apps/web/public apps/web/src/commission-workbench.tsx apps/web/src/partner-profile.tsx
+     git diff d3e0c87d96bf4fe3baa77ab745163d8baa9ca052 HEAD --check
+     ```
+   - 清理所有测试启动的 Vite/Preview 进程（端口 `5181–5186` 无监听）、清理临时 `.vite-cache` 目录与测试浏览器标签，确认生产构建 `apps/web/dist` 不含 `vf-metrics` / `vf-startup` / `vf-attribution`。
+2. **两次本地提交规则**：
+   - **第 1 次提交（固定实现提交）**：包含全部应用代码、测试、文档与 `harness/vf4a2` 证据，记录该提交的完整 40 位 SHA；
+   - **第 2 次提交（仅记录提交）**：仅将第 1 次提交的固定 40 位 SHA 回填至交接文档与下一轮 Gemini 审查 Prompt 中（严禁在第 2 次提交中再触碰任何源码或重跑采样）。
+3. **暂停规则**：完成第 2 次本地提交后立即暂停，不 `git push`、不自行进入 `VF4-B/C` 或下一阶段开发。
+
+## 9. 下一轮 Gemini 独立审查 Prompt 产出要求
+
+在交付末尾及 `harness/reviews/vf4a2-gemini-review-prompt.md` 中，必须输出一份可直接复制给 Gemini 的独立复审 Prompt，包含：
+- 仓库路径、分支、本轮固定实现 40 位 SHA、上一固定实现 `d3e0c87d96bf4fe3baa77ab745163d8baa9ca052`、`c68541da920b346b02c11b8e27540024c8ea30a5` 及保护基线 `2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f`；
+- 对 `VF4A-F-01`、`VF31-PERF-01 / VF4A-F-02`、`VF4A-F-03`、`VF4A-F-04` 四项问题的逐项修复核验清单；
+- 对 `VF4-A2`（`Studio` 与 `Journal` 抽屉规范化）的代码、4 视口截图、无障碍与焦点回归、以及增量性能的核验清单；
+- 要求 Gemini 给出明确裁决并在末尾输出再下一轮交接回 Codex 的完整执行 Prompt。

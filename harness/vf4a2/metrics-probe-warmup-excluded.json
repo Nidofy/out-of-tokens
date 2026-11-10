@@ -1,0 +1,1378 @@
+[
+  {
+    "at": "2026-11-10T02:51:28.443Z",
+    "label": "040031e",
+    "scenario": "standard",
+    "round": 0,
+    "headProbeMs": 98.59999990463257,
+    "vfMetricsLoadedMs": 559.8999998569489,
+    "firstCanvasRafMs": 750.5,
+    "ordinaryProbe": {
+      "kind": "controls-and-canvas-only",
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "threads": 16,
+      "viewport": [
+        1280,
+        720,
+        1.0000000447034836
+      ],
+      "observedControlsAndCanvasMs": 750.5,
+      "visibility": "visible",
+      "navigation": [
+        {
+          "type": "navigate"
+        }
+      ],
+      "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+    },
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 16.599999999999966
+    },
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "visibility": "visible",
+    "modules": [
+      {
+        "url": "http://127.0.0.1:5182/src/main.tsx",
+        "responseEnd": 208.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/visual-review.ts",
+        "responseEnd": 215.79999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/preact.js?v=da176f08",
+        "responseEnd": 217
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/alpha-app.tsx",
+        "responseEnd": 240.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/preact_jsx-dev-runtime.js?v=48235101",
+        "responseEnd": 224.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/project-panel.tsx",
+        "responseEnd": 274.69999980926514
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/onboarding.tsx",
+        "responseEnd": 274.89999985694885
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/character-profiles.ts",
+        "responseEnd": 279.39999985694885
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/decision-panels.tsx",
+        "responseEnd": 279.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/office-editor.tsx",
+        "responseEnd": 281.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/player-labels.ts",
+        "responseEnd": 279.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/update-observer.ts",
+        "responseEnd": 280.69999980926514
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/icons.tsx",
+        "responseEnd": 289.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/studio-ui.tsx",
+        "responseEnd": 289.2999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/flavor-panel.tsx",
+        "responseEnd": 290.69999980926514
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/finale-panel.tsx",
+        "responseEnd": 290.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/preact_hooks.js?v=947e9e01",
+        "responseEnd": 263
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/updates.ts",
+        "responseEnd": 292.19999980926514
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/index.js",
+        "responseEnd": 294.89999985694885
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/presentation.ts",
+        "responseEnd": 296.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/use-game.ts",
+        "responseEnd": 296.2999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/office-scene-spec.ts",
+        "responseEnd": 311.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/index.js",
+        "responseEnd": 322.2999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/node_modules/.pnpm/vite@8.3.6_@types+node@24.19.2_esbuild@0.28.2_tsx@4.22.4/node_modules/vite/dist/client/env.mjs",
+        "responseEnd": 322.2999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/flavor.ts",
+        "responseEnd": 312.69999980926514
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/storage.js",
+        "responseEnd": 311.39999985694885
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/session.js",
+        "responseEnd": 312.89999985694885
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/host-storage.js",
+        "responseEnd": 322.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/office-lab.ts",
+        "responseEnd": 322.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/presentation-events.ts",
+        "responseEnd": 323.69999980926514
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/content.ts",
+        "responseEnd": 323.7999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-persistence/dist/browser.js",
+        "responseEnd": 336.39999985694885
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/version.js",
+        "responseEnd": 337.69999980926514
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/clock.js",
+        "responseEnd": 338.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/model.js",
+        "responseEnd": 338.69999980926514
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/economy.js",
+        "responseEnd": 353.89999985694885
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/simulation.js",
+        "responseEnd": 355
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/preview.js",
+        "responseEnd": 366.69999980926514
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/chapter-goal.js",
+        "responseEnd": 366.89999985694885
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/office.js",
+        "responseEnd": 378.2999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/finale.js",
+        "responseEnd": 389
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/settlement.js",
+        "responseEnd": 389.2999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-content/dist/browser.js",
+        "responseEnd": 427
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-persistence/dist/shared.js",
+        "responseEnd": 427.19999980926514
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/campaign.js",
+        "responseEnd": 458.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/events.js",
+        "responseEnd": 447.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/jobs.js",
+        "responseEnd": 447.2999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/projects.js",
+        "responseEnd": 457.89999985694885
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/zod.js?v=7d41aeab",
+        "responseEnd": 501.69999980926514
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/rolldown-runtime-SbdDWaPq.js?v=0093e30f",
+        "responseEnd": 517.0999999046326
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/vf-metrics.ts",
+        "responseEnd": 539.1999998092651
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/scene.ts",
+        "responseEnd": 569.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/office-scene.ts",
+        "responseEnd": 577
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/pixi__js.js?v=602be45a",
+        "responseEnd": 641.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/scene-layout.ts",
+        "responseEnd": 588.7999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/art/paper-doll.ts",
+        "responseEnd": 591
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/pixi__js_unsafe-eval.js?v=cec64654",
+        "responseEnd": 602.5999999046326
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/village-characters.ts",
+        "responseEnd": 628.5999999046326
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/ParticleBuffer-CM4zbQGE.js?v=0093e30f",
+        "responseEnd": 698
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/FilterSystem-Dyso-Igq.js?v=0093e30f",
+        "responseEnd": 663.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/FederatedEventTarget-Cl80KGwq.js?v=0093e30f",
+        "responseEnd": 666.7999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/CanvasPool-cFVD1sBE.js?v=0093e30f",
+        "responseEnd": 669
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/Filter-BKu4m7-s.js?v=0093e30f",
+        "responseEnd": 670.6999998092651
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/Cache-DfmVC-OT.js?v=0093e30f",
+        "responseEnd": 675.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/RenderTargetSystem-TZcY_4oV.js?v=0093e30f",
+        "responseEnd": 675.2999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/canvasUtils-u7_DopMs.js?v=0093e30f",
+        "responseEnd": 678.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/GraphicsContext-DdJo4Gma.js?v=0093e30f",
+        "responseEnd": 688.5999999046326
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/GCManagedHash-CzvEwnZM.js?v=0093e30f",
+        "responseEnd": 683.1999998092651
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/getTexelRangeRects-BHOxztZV.js?v=0093e30f",
+        "responseEnd": 688.3999998569489
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/getTextureBatchBindGroup-45RaBWAq.js?v=0093e30f",
+        "responseEnd": 688.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/browserAll-CPmgHi94.js?v=0093e30f",
+        "responseEnd": 741.1999998092651
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/init-5CtWcN5E.js?v=0093e30f",
+        "responseEnd": 745.0999999046326
+      }
+    ]
+  },
+  {
+    "at": "2026-11-10T02:51:30.351Z",
+    "label": "040031e",
+    "scenario": "twelve",
+    "round": 0,
+    "headProbeMs": 76.20000004768372,
+    "vfMetricsLoadedMs": 304.7999999523163,
+    "firstCanvasRafMs": 399.7,
+    "ordinaryProbe": {
+      "kind": "controls-and-canvas-only",
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "threads": 16,
+      "viewport": [
+        1280,
+        720,
+        1.0000000447034836
+      ],
+      "observedControlsAndCanvasMs": 399.7,
+      "visibility": "visible",
+      "navigation": [
+        {
+          "type": "navigate"
+        }
+      ],
+      "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+    },
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 16.600000000000023
+    },
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "visibility": "visible",
+    "modules": [
+      {
+        "url": "http://127.0.0.1:5182/src/main.tsx",
+        "responseEnd": 78.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/visual-review.ts",
+        "responseEnd": 83.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/preact.js?v=da176f08",
+        "responseEnd": 79.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/alpha-app.tsx",
+        "responseEnd": 104
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/preact_jsx-dev-runtime.js?v=48235101",
+        "responseEnd": 79.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/node_modules/.pnpm/vite@8.3.6_@types+node@24.19.2_esbuild@0.28.2_tsx@4.22.4/node_modules/vite/dist/client/env.mjs",
+        "responseEnd": 105
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/office-editor.tsx",
+        "responseEnd": 133.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/project-panel.tsx",
+        "responseEnd": 144.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/onboarding.tsx",
+        "responseEnd": 156.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/decision-panels.tsx",
+        "responseEnd": 167.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/character-profiles.ts",
+        "responseEnd": 167.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/player-labels.ts",
+        "responseEnd": 167.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/update-observer.ts",
+        "responseEnd": 167.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/preact_hooks.js?v=947e9e01",
+        "responseEnd": 105.79999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/icons.tsx",
+        "responseEnd": 168
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/studio-ui.tsx",
+        "responseEnd": 168.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/finale-panel.tsx",
+        "responseEnd": 180.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/flavor-panel.tsx",
+        "responseEnd": 180.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/updates.ts",
+        "responseEnd": 180.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/index.js",
+        "responseEnd": 180.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/use-game.ts",
+        "responseEnd": 193.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/presentation.ts",
+        "responseEnd": 195.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/index.js",
+        "responseEnd": 196.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/office-scene-spec.ts",
+        "responseEnd": 196.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/flavor.ts",
+        "responseEnd": 196.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/session.js",
+        "responseEnd": 197.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/storage.js",
+        "responseEnd": 197.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/host-storage.js",
+        "responseEnd": 198
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/office-lab.ts",
+        "responseEnd": 200.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/presentation-events.ts",
+        "responseEnd": 200.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/content.ts",
+        "responseEnd": 201
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/version.js",
+        "responseEnd": 215
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/clock.js",
+        "responseEnd": 215.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/model.js",
+        "responseEnd": 215.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/finale.js",
+        "responseEnd": 215.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/economy.js",
+        "responseEnd": 215.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/preview.js",
+        "responseEnd": 216
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/simulation.js",
+        "responseEnd": 217.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/office.js",
+        "responseEnd": 216.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/chapter-goal.js",
+        "responseEnd": 216.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/settlement.js",
+        "responseEnd": 216.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-persistence/dist/browser.js",
+        "responseEnd": 216.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-content/dist/browser.js",
+        "responseEnd": 235.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-persistence/dist/shared.js",
+        "responseEnd": 241
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/campaign.js",
+        "responseEnd": 244.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/events.js",
+        "responseEnd": 243.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/jobs.js",
+        "responseEnd": 243.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/projects.js",
+        "responseEnd": 244
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/zod.js?v=7d41aeab",
+        "responseEnd": 236.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/rolldown-runtime-SbdDWaPq.js?v=0093e30f",
+        "responseEnd": 236.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/vf-metrics.ts",
+        "responseEnd": 265.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/scene.ts",
+        "responseEnd": 303.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/office-scene.ts",
+        "responseEnd": 338
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/pixi__js.js?v=602be45a",
+        "responseEnd": 339.2000000476837
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/pixi__js_unsafe-eval.js?v=cec64654",
+        "responseEnd": 339.2000000476837
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/art/paper-doll.ts",
+        "responseEnd": 343.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/village-characters.ts",
+        "responseEnd": 344
+      },
+      {
+        "url": "http://127.0.0.1:5182/src/scene-layout.ts",
+        "responseEnd": 344.2000000476837
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/ParticleBuffer-CM4zbQGE.js?v=0093e30f",
+        "responseEnd": 339.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/FilterSystem-Dyso-Igq.js?v=0093e30f",
+        "responseEnd": 339.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/FederatedEventTarget-Cl80KGwq.js?v=0093e30f",
+        "responseEnd": 339.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/CanvasPool-cFVD1sBE.js?v=0093e30f",
+        "responseEnd": 339.5
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/Filter-BKu4m7-s.js?v=0093e30f",
+        "responseEnd": 339.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/RenderTargetSystem-TZcY_4oV.js?v=0093e30f",
+        "responseEnd": 339.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/Cache-DfmVC-OT.js?v=0093e30f",
+        "responseEnd": 339.7000000476837
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/canvasUtils-u7_DopMs.js?v=0093e30f",
+        "responseEnd": 339.7000000476837
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/GraphicsContext-DdJo4Gma.js?v=0093e30f",
+        "responseEnd": 339.7999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/GCManagedHash-CzvEwnZM.js?v=0093e30f",
+        "responseEnd": 339.7999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/getTexelRangeRects-BHOxztZV.js?v=0093e30f",
+        "responseEnd": 339.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/getTextureBatchBindGroup-45RaBWAq.js?v=0093e30f",
+        "responseEnd": 340
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/browserAll-CPmgHi94.js?v=0093e30f",
+        "responseEnd": 368.2999999523163
+      },
+      {
+        "url": "http://127.0.0.1:5182/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/040031e/deps/init-5CtWcN5E.js?v=0093e30f",
+        "responseEnd": 398.2999999523163
+      }
+    ]
+  },
+  {
+    "at": "2026-11-10T02:51:32.059Z",
+    "label": "current-a1",
+    "scenario": "standard",
+    "round": 0,
+    "headProbeMs": 76,
+    "vfMetricsLoadedMs": 214.10000014305115,
+    "firstCanvasRafMs": 270.1,
+    "ordinaryProbe": {
+      "kind": "controls-and-canvas-only",
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "threads": 16,
+      "viewport": [
+        1280,
+        720,
+        1.0000000447034836
+      ],
+      "observedControlsAndCanvasMs": 270.1,
+      "visibility": "visible",
+      "navigation": [
+        {
+          "type": "navigate"
+        }
+      ],
+      "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+    },
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.699999999999989
+    },
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "visibility": "visible",
+    "modules": [
+      {
+        "url": "http://127.0.0.1:5181/src/main.tsx?t=1794279016212",
+        "responseEnd": 59.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/preact.js?v=54bc0e89",
+        "responseEnd": 77.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/node_modules/.pnpm/vite@8.3.6_@types+node@24.19.2_esbuild@0.28.2_tsx@4.22.4/node_modules/vite/dist/client/env.mjs",
+        "responseEnd": 82.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/alpha-app.tsx?t=1794279016212",
+        "responseEnd": 84.60000014305115
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/preact_jsx-dev-runtime.js?v=8a07caa9",
+        "responseEnd": 77.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/scene-navigation.ts",
+        "responseEnd": 103
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/visual-review.ts",
+        "responseEnd": 103.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/office-scene-spec.ts",
+        "responseEnd": 103.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/office-editor.tsx",
+        "responseEnd": 104.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/project-panel.tsx",
+        "responseEnd": 104.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/onboarding.tsx",
+        "responseEnd": 105.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/character-profiles.ts",
+        "responseEnd": 105.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/player-labels.ts",
+        "responseEnd": 109.10000014305115
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/update-observer.ts",
+        "responseEnd": 109.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/icons.tsx",
+        "responseEnd": 109.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/studio-ui.tsx",
+        "responseEnd": 109.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/finale-panel.tsx",
+        "responseEnd": 110.10000014305115
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/updates.ts",
+        "responseEnd": 110.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/preact_hooks.js?v=1f9b497b",
+        "responseEnd": 96.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/dialog.tsx",
+        "responseEnd": 110.79999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/commission-workbench.tsx",
+        "responseEnd": 110.79999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/partner-profile.tsx",
+        "responseEnd": 110.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/feedback-notice.tsx",
+        "responseEnd": 111
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/use-game.ts",
+        "responseEnd": 111.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/presentation.ts",
+        "responseEnd": 111.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/ui-labels.ts",
+        "responseEnd": 111.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/scene-layout.ts",
+        "responseEnd": 136.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/index.js",
+        "responseEnd": 142
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/index.js",
+        "responseEnd": 147.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/decision-panels.tsx",
+        "responseEnd": 148.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/flavor-panel.tsx",
+        "responseEnd": 148.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/partner-state.ts",
+        "responseEnd": 148.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/presentation-events.ts",
+        "responseEnd": 149.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/office-lab.ts",
+        "responseEnd": 149.60000014305115
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/content.ts",
+        "responseEnd": 150.10000014305115
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/version.js",
+        "responseEnd": 154.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/clock.js",
+        "responseEnd": 154.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/model.js",
+        "responseEnd": 155.10000014305115
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/simulation.js",
+        "responseEnd": 157.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/economy.js",
+        "responseEnd": 155.79999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/finale.js",
+        "responseEnd": 156.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/preview.js",
+        "responseEnd": 156.79999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/chapter-goal.js",
+        "responseEnd": 157.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/settlement.js",
+        "responseEnd": 158.60000014305115
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/office.js",
+        "responseEnd": 158.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/session.js",
+        "responseEnd": 167.10000014305115
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/storage.js",
+        "responseEnd": 167.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/host-storage.js",
+        "responseEnd": 167.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/flavor.ts",
+        "responseEnd": 167.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-content/dist/browser.js",
+        "responseEnd": 167.79999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/campaign.js",
+        "responseEnd": 174.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/events.js",
+        "responseEnd": 174.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/jobs.js",
+        "responseEnd": 174.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/projects.js",
+        "responseEnd": 174.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-persistence/dist/browser.js",
+        "responseEnd": 177.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/zod.js?v=cc643802",
+        "responseEnd": 174
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/rolldown-runtime-SbdDWaPq.js?v=c57057a3",
+        "responseEnd": 174.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-persistence/dist/shared.js",
+        "responseEnd": 181
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/scene.ts",
+        "responseEnd": 198.10000014305115
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/vf-metrics.ts",
+        "responseEnd": 201.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/office-scene.ts",
+        "responseEnd": 219.10000014305115
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/pixi__js.js?v=8d12932e",
+        "responseEnd": 224.10000014305115
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/pixi__js_unsafe-eval.js?v=773e1cc2",
+        "responseEnd": 224.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/art/paper-doll.ts",
+        "responseEnd": 246.79999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/office-hit-area.ts",
+        "responseEnd": 247.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/village-characters.ts",
+        "responseEnd": 247.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/ParticleBuffer-Yc7t2Xxa.js?v=c57057a3",
+        "responseEnd": 224.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/FilterSystem-BEelk9bJ.js?v=c57057a3",
+        "responseEnd": 224.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/FederatedEventTarget-BgBa6xzt.js?v=c57057a3",
+        "responseEnd": 224.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/CanvasPool-DfmfpbHQ.js?v=c57057a3",
+        "responseEnd": 224.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/Filter-ChL9RIgX.js?v=c57057a3",
+        "responseEnd": 224.60000014305115
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/RenderTargetSystem-BDTAG29f.js?v=c57057a3",
+        "responseEnd": 224.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/Cache-B1wPpM6g.js?v=c57057a3",
+        "responseEnd": 224.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/canvasUtils-CAu-Ip_F.js?v=c57057a3",
+        "responseEnd": 224.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/GraphicsContext-OWErTaUQ.js?v=c57057a3",
+        "responseEnd": 224.79999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/GCManagedHash-wvzFAJBw.js?v=c57057a3",
+        "responseEnd": 224.79999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/getTexelRangeRects-DWtqj6h_.js?v=c57057a3",
+        "responseEnd": 224.79999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/getTextureBatchBindGroup-DzmVfB_i.js?v=c57057a3",
+        "responseEnd": 224.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/browserAll-DPExFBmO.js?v=c57057a3",
+        "responseEnd": 264
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/init-BueHw8m6.js?v=c57057a3",
+        "responseEnd": 264.40000009536743
+      }
+    ]
+  },
+  {
+    "at": "2026-11-10T02:51:33.900Z",
+    "label": "current-a1",
+    "scenario": "twelve",
+    "round": 0,
+    "headProbeMs": 61.09999990463257,
+    "vfMetricsLoadedMs": 184.09999990463257,
+    "firstCanvasRafMs": 213.4,
+    "ordinaryProbe": {
+      "kind": "controls-and-canvas-only",
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "threads": 16,
+      "viewport": [
+        1280,
+        720,
+        1.0000000447034836
+      ],
+      "observedControlsAndCanvasMs": 213.4,
+      "visibility": "visible",
+      "navigation": [
+        {
+          "type": "navigate"
+        }
+      ],
+      "note": "First observed HUD controls + canvas, not assets-ready or input-latency. Separate 180-frame output is vf-metrics."
+    },
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 8.699999999999989
+    },
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "visibility": "visible",
+    "modules": [
+      {
+        "url": "http://127.0.0.1:5181/src/main.tsx?t=1794279016212",
+        "responseEnd": 44
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/node_modules/.pnpm/vite@8.3.6_@types+node@24.19.2_esbuild@0.28.2_tsx@4.22.4/node_modules/vite/dist/client/env.mjs",
+        "responseEnd": 65.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/preact.js?v=54bc0e89",
+        "responseEnd": 62.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/alpha-app.tsx?t=1794279016212",
+        "responseEnd": 66.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/preact_jsx-dev-runtime.js?v=8a07caa9",
+        "responseEnd": 62.200000047683716
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/scene-navigation.ts",
+        "responseEnd": 76.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/office-scene-spec.ts",
+        "responseEnd": 77.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/visual-review.ts",
+        "responseEnd": 77.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/office-editor.tsx",
+        "responseEnd": 77.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/project-panel.tsx",
+        "responseEnd": 78
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/onboarding.tsx",
+        "responseEnd": 78.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/character-profiles.ts",
+        "responseEnd": 78.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/player-labels.ts",
+        "responseEnd": 78.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/update-observer.ts",
+        "responseEnd": 78.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/icons.tsx",
+        "responseEnd": 78.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/studio-ui.tsx",
+        "responseEnd": 78.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/finale-panel.tsx",
+        "responseEnd": 78.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/updates.ts",
+        "responseEnd": 78.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/preact_hooks.js?v=1f9b497b",
+        "responseEnd": 68.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/dialog.tsx",
+        "responseEnd": 79.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/commission-workbench.tsx",
+        "responseEnd": 79.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/partner-profile.tsx",
+        "responseEnd": 79.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/feedback-notice.tsx",
+        "responseEnd": 79.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/use-game.ts",
+        "responseEnd": 80.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/presentation.ts",
+        "responseEnd": 80.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/ui-labels.ts",
+        "responseEnd": 80.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/scene-layout.ts",
+        "responseEnd": 89.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/index.js",
+        "responseEnd": 89.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/index.js",
+        "responseEnd": 90.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/decision-panels.tsx",
+        "responseEnd": 90.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/flavor-panel.tsx",
+        "responseEnd": 90.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/partner-state.ts",
+        "responseEnd": 90.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/presentation-events.ts",
+        "responseEnd": 93.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/office-lab.ts",
+        "responseEnd": 93.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/content.ts",
+        "responseEnd": 93.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/version.js",
+        "responseEnd": 102.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/clock.js",
+        "responseEnd": 103.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/model.js",
+        "responseEnd": 103.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/simulation.js",
+        "responseEnd": 105.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/economy.js",
+        "responseEnd": 104.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/finale.js",
+        "responseEnd": 104.79999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/preview.js",
+        "responseEnd": 105.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/chapter-goal.js",
+        "responseEnd": 112.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/settlement.js",
+        "responseEnd": 112.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/office.js",
+        "responseEnd": 113.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/session.js",
+        "responseEnd": 113.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/storage.js",
+        "responseEnd": 114
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/host-storage.js",
+        "responseEnd": 128
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/flavor.ts",
+        "responseEnd": 135.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-content/dist/browser.js",
+        "responseEnd": 139.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/campaign.js",
+        "responseEnd": 145.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/events.js",
+        "responseEnd": 145.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/jobs.js",
+        "responseEnd": 146
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/projects.js",
+        "responseEnd": 146.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-persistence/dist/browser.js",
+        "responseEnd": 146.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/zod.js?v=cc643802",
+        "responseEnd": 142.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/rolldown-runtime-SbdDWaPq.js?v=c57057a3",
+        "responseEnd": 142.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-persistence/dist/shared.js",
+        "responseEnd": 150.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/vf-metrics.ts",
+        "responseEnd": 168.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/scene.ts",
+        "responseEnd": 168.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/office-scene.ts",
+        "responseEnd": 190
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/pixi__js.js?v=8d12932e",
+        "responseEnd": 190.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/pixi__js_unsafe-eval.js?v=773e1cc2",
+        "responseEnd": 191
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/art/paper-doll.ts",
+        "responseEnd": 194.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/ParticleBuffer-Yc7t2Xxa.js?v=c57057a3",
+        "responseEnd": 191.20000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/village-characters.ts",
+        "responseEnd": 194.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/src/office-hit-area.ts",
+        "responseEnd": 195.09999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/FilterSystem-BEelk9bJ.js?v=c57057a3",
+        "responseEnd": 191.29999995231628
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/FederatedEventTarget-BgBa6xzt.js?v=c57057a3",
+        "responseEnd": 191.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/CanvasPool-DfmfpbHQ.js?v=c57057a3",
+        "responseEnd": 191.40000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/Filter-ChL9RIgX.js?v=c57057a3",
+        "responseEnd": 191.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/RenderTargetSystem-BDTAG29f.js?v=c57057a3",
+        "responseEnd": 191.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/Cache-B1wPpM6g.js?v=c57057a3",
+        "responseEnd": 191.5
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/canvasUtils-CAu-Ip_F.js?v=c57057a3",
+        "responseEnd": 191.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/GraphicsContext-OWErTaUQ.js?v=c57057a3",
+        "responseEnd": 191.59999990463257
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/GCManagedHash-wvzFAJBw.js?v=c57057a3",
+        "responseEnd": 191.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/getTexelRangeRects-DWtqj6h_.js?v=c57057a3",
+        "responseEnd": 191.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/getTextureBatchBindGroup-DzmVfB_i.js?v=c57057a3",
+        "responseEnd": 191.70000004768372
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/browserAll-DPExFBmO.js?v=c57057a3",
+        "responseEnd": 210.90000009536743
+      },
+      {
+        "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/.vite-cache/current/deps/init-BueHw8m6.js?v=c57057a3",
+        "responseEnd": 212.70000004768372
+      }
+    ]
+  }
+]

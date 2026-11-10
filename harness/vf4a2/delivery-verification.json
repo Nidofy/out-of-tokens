@@ -1,0 +1,264 @@
+{
+  "at": "2026-11-10T03:33:22.719Z",
+  "base": "d3e0c87d96bf4fe3baa77ab745163d8baa9ca052",
+  "checks": {
+    "whitelist": true,
+    "protectedEmpty": true,
+    "longProtectedEmpty": true,
+    "probeUnchanged": true,
+    "sourceFrozen": true,
+    "schemaEveryRecord": true,
+    "assertionsResolved": true,
+    "drawers": true,
+    "phase1BeforePhase2": true,
+    "attributionSingle24": true,
+    "formal72": true,
+    "confirmationAuthorized72": true,
+    "warmupsExcluded": true,
+    "noCacheErrors": true,
+    "productionNoProbe": true,
+    "portsClosed": true,
+    "cacheRemoved": true,
+    "browserRestored": true
+  },
+  "counts": {
+    "interactions": 58,
+    "drawers": 28,
+    "freeze": 151,
+    "attribution": 24,
+    "formal": 72,
+    "confirmation": 72,
+    "warmup": 32
+  },
+  "outside": [],
+  "protectedDiff": "",
+  "longDiff": "",
+  "probeDiff": "",
+  "freezeChanges": [],
+  "schemaErrors": [],
+  "unexpectedFailures": [],
+  "resolvedFailures": [
+    {
+      "case": "F01 incompatible version error",
+      "failures": [
+        "focusOwner"
+      ],
+      "resolvedBy": "F01 fixed incompatible focus"
+    },
+    {
+      "case": "F01 incompatible focus stable reproduction",
+      "failures": [
+        "focusOwner"
+      ],
+      "resolvedBy": "F01 fixed incompatible focus"
+    },
+    {
+      "case": "390 Studio HUD closes to More",
+      "failures": [
+        "restored"
+      ],
+      "resolvedBy": "390 Studio HUD restores actual trigger corrected expectation"
+    }
+  ],
+  "drawerChecks": [
+    {
+      "case": "1280 Studio overview",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "1280 Studio expanded sections",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "1280 Journal overview",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "1280 Journal projects populated",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "1280 Journal future expanded",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "1280 Journal ledger",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "1280 Journal selected focus",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "390 Studio overview",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "390 Studio expanded",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "390 Journal 概览",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "390 Journal 项目",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "390 Journal 明天",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "390 Journal 收支",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "844 Studio overview",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "844 Studio expanded",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "844 Journal 概览",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "844 Journal 项目",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "844 Journal 明天",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "844 Journal 收支",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "560 dark Studio overview",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "560 dark Studio expanded",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "560 dark Journal Overview",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "560 dark Journal Projects",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "560 dark Journal Tomorrow",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "560 dark Journal Ledger",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "390 Studio HUD entry",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "1280 Studio final controls",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    },
+    {
+      "case": "1280 Journal empty projects",
+      "overflow": true,
+      "touch44": true,
+      "backgroundHidden": true,
+      "focus": true
+    }
+  ],
+  "cacheErrors": [],
+  "diagnostics": [],
+  "performanceBudget": "OPEN / HOLD; primary preview twelve exceeds +10% versus c68541d. Independent review required."
+}

@@ -1,0 +1,9 @@
+file:///D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/project-fixture.mjs:9
+const send=command=>{const result=session.send(command);steps.push({command,error:result.error});if(result.error)throw Error(result.error);};
+                                                                                                                       ^
+
+Error: CHAPTER_LOCKED
+    at send (file:///D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/project-fixture.mjs:9:120)
+    at file:///D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/harness/vf4a2/project-fixture.mjs:18:1
+
+Node.js v24.16.0

@@ -102,9 +102,41 @@
 .save-transfer{border-top:1px solid var(--line);margin-top:20px;padding-top:16px;display:grid;gap:12px}.save-transfer h3{margin:0}.save-transfer>button{justify-self:start}
 .save-transfer label{display:grid;gap:8px;font-size:14px}.save-transfer input{display:block;width:100%;max-width:100%;font-size:12px;border:1px solid var(--line);border-radius:10px;padding:4px;background:var(--card)}
 .save-transfer input::file-selector-button{min-height:44px;font:inherit;font-size:14px;color:var(--ink);background:var(--solid);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-right:8px}
-.system-dialog .world-map small{font-size:12px}.system-dialog .world-map button[aria-pressed=true]{background:var(--card);color:var(--ink);outline:none;box-shadow:inset 0 0 0 3px var(--selected-indicator),0 3px 0 #8c744933}
+.system-dialog .world-map small{font-size:12px}.system-dialog .world-map button[aria-pressed=true]{background:var(--card);color:var(--ink);border-color:var(--selected-indicator);outline:none;box-shadow:inset 0 0 0 3px var(--selected-indicator),0 3px 0 #8c744933}
 .studio-app .system-dialog :is(button,input,summary,a):focus-visible{outline:3px solid var(--focus-ring);outline-offset:3px;box-shadow:0 0 0 3px var(--focus-contrast)}
+.studio-app .work-steps button[aria-pressed=true]:focus-visible{box-shadow:inset 0 -3px var(--selected-indicator),0 0 0 3px var(--focus-contrast)}
+.studio-app .system-dialog .settings-list button[aria-pressed=true]:focus-visible{box-shadow:inset 3px 0 var(--selected-indicator),0 0 0 3px var(--focus-contrast)}
+.studio-app .system-dialog .world-map button[aria-pressed=true]:focus-visible{box-shadow:inset 0 0 0 3px var(--selected-indicator),0 0 0 3px var(--focus-contrast)}
 @media(max-width:559px){.system-dialog>.dialog-head{padding:10px 16px}.system-body{padding:16px}.system-notice{padding:12px 16px 0}.save-row{gap:8px;padding:10px}.save-actions{gap:6px}.save-actions button{padding:8px 10px}}
 @media(max-height:500px){.system-dialog{max-height:calc(100dvh - 16px)}.system-dialog>.dialog-head{padding:6px 16px}.system-body{padding:12px 16px}.system-notice{padding:8px 16px 0}}
 @media(max-width:679px){.scene-tools{top:116px}.scene-presence{top:170px;max-height:calc(100dvh - 264px)}}
 @media(max-height:479px){.scene-tools{top:64px}.scene-presence{top:118px;max-height:calc(100dvh - 200px)}}
+/* VF4-A2: only Studio and Journal adopt this drawer treatment. */
+.studio-app:is([data-panel=studio],[data-panel=journal]) :is(.scene-tools,.scene-presence,.studio-dock){visibility:hidden}
+.studio-app:is([data-panel=studio],[data-panel=journal]) .studio-drawer{width:min(520px,calc(100% - 24px));max-height:calc(100dvh - 88px);border:1px solid var(--line);border-radius:16px;background:var(--paper)}
+.studio-app:is([data-panel=studio],[data-panel=journal]) .drawer-head{padding:12px 16px;background:var(--solid);border-color:var(--line)}
+.studio-app:is([data-panel=studio],[data-panel=journal]) .drawer-head h2{font-size:20px}
+.studio-app:is([data-panel=studio],[data-panel=journal]) .drawer-head button{width:44px;height:44px;flex:0 0 44px;padding:8px}
+.studio-app:is([data-panel=studio],[data-panel=journal]) .drawer-content{padding:16px;scroll-padding:12px}
+.management-content{display:grid;gap:16px;min-width:0;font-size:14px;overflow-wrap:anywhere}
+.management-content :is(p,li){font-size:14px}.management-content p{margin:0 0 12px}.management-content :is(h3,h4){font-size:16px;margin:0 0 8px}.management-content h2{font-size:20px;margin:0 0 12px}
+.management-content :is(.management-caption,.management-intro,small,.eyebrow){font-size:12px;color:var(--muted);line-height:1.5}.management-content small{display:block;margin-top:8px}
+.studio-app .management-content :is(.management-card,.finance-summary){background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin:0;min-width:0}
+.management-content .finance-summary>b{font:700 16px var(--font-sans);font-variant-numeric:tabular-nums;display:block;margin:8px 0;color:var(--ink)}
+.management-content :is(button,summary,select,input){min-height:44px;font-size:14px}.management-content button{border-radius:12px;white-space:normal;max-width:100%}
+.management-content summary{display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px 0;line-height:1.5}.management-content summary::before{content:'▸';flex:none}.management-content details[open]>summary::before{content:'▾'}
+.management-content details details{margin-top:12px;border-color:var(--line)}.management-content .chapter-goals{padding-left:20px;margin:8px 0 12px}.management-content .chapter-goals li{margin:6px 0}
+.management-list{display:grid;gap:8px}.management-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+.management-row>div{min-width:0}.management-row b{font-size:14px}.management-row button{padding:8px 12px}.management-row small{margin-top:4px}
+.management-tabs{display:flex;gap:4px;flex-wrap:wrap;padding:4px;background:var(--solid);border:1px solid var(--line);border-radius:12px}
+.management-tabs button{flex:1;min-width:0;padding:8px 6px;background:transparent;color:var(--ink)}
+.management-content button[aria-pressed=true]{color:var(--ink);background:var(--card);border-color:var(--selected-indicator);box-shadow:inset 0 -3px var(--selected-indicator)}
+.studio-app .management-content :is(button,summary,input,select,a):focus-visible{outline:3px solid var(--focus-ring);outline-offset:3px;box-shadow:0 0 0 3px var(--focus-contrast)}
+.studio-app .management-content button[aria-pressed=true]:focus-visible{box-shadow:inset 0 -3px var(--selected-indicator),0 0 0 3px var(--focus-contrast)}
+.management-content .project-routes{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}.management-content .project-routes article{min-width:0;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--paper)}
+.management-content :is(.project-steps,.project-routes ol){padding-left:20px}.management-content blockquote{margin:12px 0;padding:12px;border-left:3px solid var(--selected-indicator);background:var(--paper)}
+.management-content .ledger-row{gap:12px;font-size:12px;align-items:start}.management-content .ledger-row b{font-size:16px;flex-shrink:0}.management-content .ending-option{padding:12px 0;border-top:1px solid var(--line)}
+.management-content :is(.ending-option img,.ending-art,.world-card img){max-width:100%;border-radius:10px}.management-content .world-card button,.management-content .ending-option button{margin:4px;min-height:44px}
+@media(max-width:899px){.studio-app:is([data-panel=studio],[data-panel=journal]) .studio-drawer{top:116px;bottom:auto;max-height:calc(100dvh - 132px)}}
+@media(max-width:559px){.management-row{padding:10px;gap:8px}.management-row button{padding:8px 10px}.management-tabs{gap:2px}}
+@media(max-height:479px){.studio-app:is([data-panel=studio],[data-panel=journal]) .studio-drawer{top:64px;bottom:auto;max-height:calc(100dvh - 76px)}.studio-app:is([data-panel=studio],[data-panel=journal]) .drawer-head{padding:6px 12px}}
