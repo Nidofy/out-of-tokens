@@ -1,6 +1,6 @@
 # VF4-B1 Gemini 独立只读复审
 
-请仅复审固定实现 `B1_IMPLEMENTATION_SHA_PENDING`，基线 ec59d18ad41c2dc24d875578ae7851d6e3e0a3f4。不要修改、提交、push 或部署；不要启动 B2/C。完整交接见 `vf4b1-handoff.md`，原始证据在 `harness/vf4b1/`。
+请仅复审固定实现 `0a958b8259fa2e4e92da38a10fa5b6923de5b97a`，基线 ec59d18ad41c2dc24d875578ae7851d6e3e0a3f4。不要修改、提交、push 或部署；不要启动 B2/C。完整交接见 `vf4b1-handoff.md`，原始证据在 `harness/vf4b1/`。
 
 前置 A4 用户裁决 PASS，VF4-A 全阶段 CLOSED/PASS，144+24 历史偏离获认可。用户批准四开局 DeepSeek/bluewhale、Qwen、Llama、Mistral + GLM，现有单屏 standard；不要求不存在的 doubao 或双屏。
 

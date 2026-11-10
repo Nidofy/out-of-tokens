@@ -1,6 +1,6 @@
 # VF4-B1 固定实现交接：代表工作角落
 
-固定实现：`B1_IMPLEMENTATION_SHA_PENDING`。执行完成，暂停待 Gemini 独立只读复审；执行者不自行宣布 B1 独立 PASS。基线 `ec59d18ad41c2dc24d875578ae7851d6e3e0a3f4`，A4 实现 `3be52f46586047722e96f759975d36c0eb9ebaf7`。
+固定实现：`0a958b8259fa2e4e92da38a10fa5b6923de5b97a`。执行完成，暂停待 Gemini 独立只读复审；执行者不自行宣布 B1 独立 PASS。基线 `ec59d18ad41c2dc24d875578ae7851d6e3e0a3f4`，A4 实现 `3be52f46586047722e96f759975d36c0eb9ebaf7`。
 
 ## 已接收的前阶段裁决
 

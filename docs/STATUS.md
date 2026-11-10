@@ -1,4 +1,4 @@
-2026-11-10 当前入口：**VF4-B1 已完成实现与验证，暂停待独立复审**。固定实现 `B1_IMPLEMENTATION_SHA_PENDING`；交接 `harness/reviews/vf4b1-handoff.md`，复审 Prompt `harness/reviews/vf4b1-gemini-review-prompt.md`。用户已确认现有四开局 DeepSeek/bluewhale、Qwen、Llama、Mistral + GLM，standard 保持单屏。basic/standard 两个 back 实屏核验通过并原样复用；两个 front 仅显示器水平 +16world；两个 scene 文件补透明像素命中与小比例名牌避让。角色资产、packages/lock、六个封板 UI 全部0diff。
+2026-11-10 当前入口：**VF4-B1 已完成实现与验证，暂停待独立复审**。固定实现 `0a958b8259fa2e4e92da38a10fa5b6923de5b97a`；交接 `harness/reviews/vf4b1-handoff.md`，复审 Prompt `harness/reviews/vf4b1-gemini-review-prompt.md`。用户已确认现有四开局 DeepSeek/bluewhale、Qwen、Llama、Mistral + GLM，standard 保持单屏。basic/standard 两个 back 实屏核验通过并原样复用；两个 front 仅显示器水平 +16world；两个 scene 文件补透明像素命中与小比例名牌避让。角色资产、packages/lock、六个封板 UI 全部0diff。
 
 208配置、1,704实测记录、7,008样本观察；保留16条修复前失败与复验；108次真实点击、64次有效布置保存/取消镜头与焦点恢复通过。38文件313测试、155文件原始/LF冻结、交付23/23 true；最终冻结后新72正式+12预热，相对c68541d四格+0.26%/−0.93%/+5.22%/+2.33%，未触发确认批。生产无探针、端口5181–5186关闭、缓存和浏览器清理完成。harness字段顺序与浮点误报、中断重试、素材许可证声明限制均保留说明。
 
