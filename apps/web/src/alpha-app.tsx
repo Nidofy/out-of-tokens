@@ -60,6 +60,10 @@ export function AlphaApp(){
  const closeDrawer=()=>{const management=panel==='studio'||panel==='journal'||panel==='actors';setPanel(null);if(management)requestAnimationFrame(()=>{if(!document.querySelector('dialog[open]'))(managementTrigger.current??moreTrigger.current)?.focus({preventScroll:true});});};
  const openHud=(next:'board'|'view'|'more')=>{setLocationsOpen(false);setPanel(null);setHud(hud===next?null:next);};
  useEffect(()=>{if(panel){setHud(null);setLocationsOpen(false);}},[panel]);
+ // Drawer stays mounted across routes; the Studio link disappears on entry to Actors.
+ useEffect(()=>{if(panel!=='actors')return;const frame=requestAnimationFrame(()=>{
+  if(!document.querySelector('dialog[open]'))document.querySelector<HTMLButtonElement>('.studio-drawer .drawer-head button')?.focus({preventScroll:true});
+ });return()=>cancelAnimationFrame(frame);},[panel]);
  useEffect(()=>{if(!hud)return;const previous=document.activeElement as HTMLElement|null;document.querySelector<HTMLButtonElement>(hud==='view'?'.office-camera button':'.hud-popover button,.priority-rail button')?.focus({preventScroll:true});return()=>{if(previous?.isConnected)previous.focus({preventScroll:true});};},[hud]);
  const [jobFilter,setJobFilter]=useState<'active'|'posted'|'history'>('active'),[jobSearch,setJobSearch]=useState('');
  const tr:Tr=(zh,en)=>english?en:zh,p=view.campaign!,catalog=view.catalog!,locked=busy||!!view.pending||view.bankrupt,job=view.jobs.find(j=>j.id===jobId),actor=view.actors.find(a=>a.id===actorId);

@@ -1,0 +1,89 @@
+{
+  "method": "Computed opaque foreground and base background; brightest gradient stop is black at alpha 0.2, therefore conservative background = base * 0.8. Actual gradient darkens further.",
+  "colors": [
+    {
+      "background": "rgb(59, 110, 168)",
+      "color": "rgb(255, 248, 236)",
+      "gradient": "linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), none",
+      "id": "bluewhale",
+      "conservativeContrast": 6.944430236661434
+    },
+    {
+      "background": "rgb(78, 103, 200)",
+      "color": "rgb(255, 248, 236)",
+      "gradient": "linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), none",
+      "id": "qwen",
+      "conservativeContrast": 6.779079417648319
+    },
+    {
+      "background": "rgb(75, 127, 82)",
+      "color": "rgb(255, 248, 236)",
+      "gradient": "linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), none",
+      "id": "llama",
+      "conservativeContrast": 6.304893690923776
+    },
+    {
+      "background": "rgb(208, 106, 76)",
+      "color": "rgb(255, 248, 236)",
+      "gradient": "linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), none",
+      "id": "mistral",
+      "conservativeContrast": 4.984856473964135
+    },
+    {
+      "background": "rgb(133, 118, 184)",
+      "color": "rgb(255, 248, 236)",
+      "gradient": "linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), none",
+      "id": "gpt",
+      "conservativeContrast": 5.440916992466407
+    },
+    {
+      "background": "rgb(196, 91, 56)",
+      "color": "rgb(255, 248, 236)",
+      "gradient": "linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), none",
+      "id": "claude",
+      "conservativeContrast": 5.824438184174423
+    },
+    {
+      "background": "rgb(34, 41, 68)",
+      "color": "rgb(255, 248, 236)",
+      "gradient": "linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), none",
+      "id": "kimi",
+      "conservativeContrast": 15.108368071225229
+    },
+    {
+      "background": "rgb(103, 91, 200)",
+      "color": "rgb(255, 248, 236)",
+      "gradient": "linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), none",
+      "id": "gemini",
+      "conservativeContrast": 7.058896468417949
+    },
+    {
+      "background": "rgb(201, 138, 36)",
+      "color": "rgb(255, 248, 236)",
+      "gradient": "linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), none",
+      "id": "grok",
+      "conservativeContrast": 4.164193200825143
+    },
+    {
+      "background": "rgb(74, 78, 87)",
+      "color": "rgb(255, 248, 236)",
+      "gradient": "linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), none",
+      "id": "glm",
+      "conservativeContrast": 10.084250688170778
+    },
+    {
+      "background": "rgb(168, 84, 126)",
+      "color": "rgb(255, 248, 236)",
+      "gradient": "linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), none",
+      "id": "minimax",
+      "conservativeContrast": 6.5970479449362385
+    },
+    {
+      "background": "rgb(44, 122, 123)",
+      "color": "rgb(255, 248, 236)",
+      "gradient": "linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), none",
+      "id": "seedance",
+      "conservativeContrast": 6.669659784918637
+    }
+  ]
+}

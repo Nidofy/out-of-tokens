@@ -13,5 +13,5 @@ if(process.argv.includes('--verify')){
  writeFileSync(dir+'source-freeze-verified.json',JSON.stringify(result,null,2)+'\n');console.log(result);
  if(changed.length||missing.length)process.exitCode=1;
 }else{
- writeFileSync(dir+'source-freeze.json',JSON.stringify({frozenAt:new Date().toISOString(),parent:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),previousImplementation:'ccf3b10339f54cb971070e15682b62bd3498ef21',files},null,2)+'\n');console.log({frozen:files.length});
+ writeFileSync(dir+'source-freeze.json',JSON.stringify({frozenAt:new Date().toISOString(),checkpoint:'VF4-A3.1',parent:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),previousImplementation:'b5f521605937a71a04ce4d5a09c14913eb5a1735',performanceEvidence:'Unchanged A3 startup-*; user authorized reuse for focus/CSS-only changes.',files},null,2)+'\n');console.log({frozen:files.length});
 }

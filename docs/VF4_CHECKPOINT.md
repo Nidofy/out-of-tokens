@@ -1,3 +1,23 @@
+# VF4-A3.1 收尾检查点（2026-11-10）
+
+固定实现：`A31_IMPLEMENTATION_SHA_PENDING`。基于 `9ad47c7b67b82cf86e9922f02f7cc398ec5b73bc` / A3实现 `b5f521605937a71a04ce4d5a09c14913eb5a1735`。两次本地提交后暂停待复审；不push、不部署、不启动VF4-B/C。
+
+本轮接受用户提供的Gemini独立复审：A3核心/契约/平衡性能通过，CONDITIONAL PASS；VF4A2-PERF-01由A3的n=6证据正式归档CLOSED。历史采样原始数据保持原样，历史小样本数字不改写。VF31-PERF-01完整预算仍OPEN。
+
+| 发现 | 修复与实测 | 状态 |
+| --- | --- | --- |
+| VF4A3-FOCUS-01 | AlphaApp进入Actors后渲染帧聚焦返回按钮，路由变化取消回调，有dialog时不抢焦点；四视口直接在当前焦点按一次Escape关闭并回到原Studio Dock | FIXED / verified |
+| VF4A3-CSS-01 | 海报标题副标题优先级提高，计算色rgb(255,248,236)；海报按钮选择器抵抗通用hover底色覆盖，保持印象色 | FIXED / verified |
+| VF4A3-CSS-02 | 桌面顶部全宽倒置勾选栏、第二行标题+倒置立绘、底部全宽状态；窄屏88px左立绘跨行，右侧勾选栏/标题/状态；几何边界无重叠错列/溢出 | FIXED / verified |
+
+应用差异仅alpha-app.tsx与vf1.css，未改studio-ui.tsx、领域规则、资产或S2。完整pnpm check通过：38文件307测试。78条累计记录（历史52+本轮26），最终四视口12条严格断言通过，560为英文深色，其余为中文浅色。新增Claude卡片四视口截图并刷新gallery截图。字幕颜色与保守对比度计算见a31-contrast.json；这是渐变最亮端的保守下界，未声称全状态WCAG认证。
+
+纠正A3记录：原Studio→Actors焦点到body是应用缺陷，旧验收仅检查dialog焦点，错误放行抽屉焦点；不是仅仅Playwright选择器问题。旧记录原样保留，verify-delivery增加四视口跳转焦点与直接Escape门禁。当前全部20项核验通过。
+
+原startup-*文件零diff，无新性能采样；仅焦点/CSS修复按用户授权复用A3已通过72正式+12预热结果。source-freeze-a3.json保留原冻结，source-freeze.json为151文件A3.1冻结，原始/LF核验通过。生产构建无探针，5181–5186无监听，专用缓存已删、浏览器恢复。
+
+本轮完成VF4-A零资源试点的收尾验证，不等同完整Visual Freeze 1冻结。VF31-PERF-01、冷缓存/GPU/长会话/低端/200%字体、S2全矩阵、真实DSH、VF4-B/C仍未闭合。以下均为历史。
+
 # VF4-A3 当前检查点（2026-11-10）
 
 固定实现：`b5f521605937a71a04ce4d5a09c14913eb5a1735`。从 `ccf3b10339f54cb971070e15682b62bd3498ef21` / `73fe7bed4b3bb5ee058227d57721c9756691f780` 开始；本地两提交后暂停待独立复审，不 push、不部署、禁止 VF4-B/C。

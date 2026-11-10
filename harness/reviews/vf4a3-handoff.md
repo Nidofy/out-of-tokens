@@ -1,17 +1,19 @@
-# VF4-A3 independent review handoff
+# VF4-A3.1 review handoff
 
-Fixed implementation: b5f521605937a71a04ce4d5a09c14913eb5a1735
+Fixed implementation: A31_IMPLEMENTATION_SHA_PENDING
 
-Starting implementation ccf3b10339f54cb971070e15682b62bd3498ef21, record 73fe7bed4b3bb5ee058227d57721c9756691f780. Branch codex/m1-foundation. Local commits only; no push/deploy or VF4-B/C.
+Base record 9ad47c7b67b82cf86e9922f02f7cc398ec5b73bc; A3 implementation b5f521605937a71a04ce4d5a09c14913eb5a1735. Branch codex/m1-foundation. Two local commits only, then pause. No push, deployment, paid API or VF4-B/C.
 
-Delivered: twelve CSS-only recruitment posters, 2 columns at >=560px and 1 below; all/recruited/available filters; Studio recruitment entry; recruited/unrecruited S3 with live recruitment, Claude suspended view, default-open model inspector with engineering metrics, six abilities/deltas and rhythm. Original interaction, training, story and flavor controls retained. Recruitment success keeps the same dialog and now moves focus to the selected version tab.
+User-supplied independent Gemini verdict: A3 CONDITIONAL PASS, core/contracts and n=6 performance accepted. VF4A2-PERF-01 officially CLOSED using A3 balanced evidence. Historical raw numbers are preserved; VF31-PERF-01 remains OPEN.
 
-The domain view intentionally exposes only partial version data. Complete read-only specifications come from the Web host's existing content object; no packages/engine/content schema modifications. Training bonuses are separately labelled against current live abilities. Stage A visual resolution always uses existing portraits.
+A3.1 fixes FOCUS-01 (route-change focus in AlphaApp; do not modify shared Drawer), CSS-01 (light version captions survive management rules; impression color survives generic button hover) and CSS-02 (explicit Claude desktop and narrow grid placement). Application edits are confined to alpha-app.tsx and vf1.css. Original recruitment/version/interaction behavior is unchanged.
 
-Validation: 38 files / 307 tests, complete pnpm check; 52 browser observations, four viewports, successful recruitment in each, core S2/map/settings/journal/location smoke checks. One initial recruitment-focus failure retained and resolved. See harness/vf4a3/build-log.md, interaction-results.json and screenshots. Browser test geometry is directly measured; no-dialog focusInDialog is null. Test-only delivery fixture reuses A2's recorded command replay, no real player saves.
+Validation: full pnpm check passes 38 files / 307 tests and Web/DSH builds. 26 added browser observations, 78 total. Final 12 records cover Studio→Actors focus, direct one-key Escape back to the original Studio Dock, and visible Claude geometry at 1280×720, 844×390, 560×800 en/dark, 390×844. All explicit assertions pass: focus in drawer, no body focus, columns, transforms, non-overlap, overflow and 44px controls. Captions compute to rgb(255,248,236). Conservative contrast calculation is recorded separately, not claimed as a full WCAG audit. Gallery and Claude-card screenshots refreshed.
 
-Performance: 3 versions × 4 cells × 6 rounds = 72 formal, 12 excluded warmups. Against c68541d: dev standard +3.88%, dev twelve +1.62%, preview standard +1.35%, preview twelve -3.53%; against 040031e: +7.43%, +6.26%, -0.16%, -1.84%. No cell triggers >10%; no confirmation batch. All samples foreground and rAF p50 <=25ms. No inference of full assets-ready, cold cache, GPU, long-session or low-end budgets.
+Correction: previous A3 evidence already contained body focus after the Studio link. The prior verifier checked dialog focus only and missed the drawer defect; its automation-only explanation was incorrect. Old observations remain intact. The new verifier mandates the final four-viewport focus and immediate Escape matrix.
 
-Protection/cleanup: delivery-verification.json all 16 checks true, source freeze raw/LF unchanged (151 files), whitelist intact, protected paths zero diff, production free of probes, ports 5181–5186 closed, dedicated cache removed, browser viewport restored and test tab closed.
+No performance sampling rerun. startup-* files are byte-for-byte unchanged from 9ad47c7. User explicitly authorized reuse for these focus/CSS-only changes. A3 had 72 formal / 12 warmups, n=6 each cell, no confirmation trigger. Old freeze is source-freeze-a3.json; new 151-file freeze passes raw and LF SHA256. Protected paths remain zero diff, production has no probes, ports 5181–5186 and cache cleaned, browser restored. delivery-verification.json has all 20 checks passing.
 
-Reproduce: pnpm check; node harness/vf4a3/freeze-source.mjs --verify; node harness/vf4a3/verify-delivery.mjs. Sampling protocol and original browser functions are preserved. Do not resample unless separately authorized. Historical VF4A2-PERF-01 remains for reviewer disposition; TYPE-01 accepted as 20/16/14/12 by user. Full VF1, VF4-B/C, cold-cache/GPU/long-session/200%-font/low-end and real DSH limitations are not closed.
+Reproduce: pnpm check; node harness/vf4a3/freeze-source.mjs --verify; node harness/vf4a3/verify-delivery.mjs. Browser measurement method: a31-browser-method.txt. Do not resample startup without new authorization.
+
+VF4-A zero-resource closeout is implemented and verified; full VF31-PERF-01 budget, Visual Freeze 1, S2 full matrix, cold-cache/GPU/long-session/low-end/200% fonts, real DSH and VF4-B/C remain open/blocked. Await independent review of this fixed SHA.

@@ -1,5 +1,6 @@
 {
-  "at": "2026-11-10T04:32:06.689Z",
+  "at": "2026-11-10T05:49:25.965Z",
+  "checkpoint": "VF4-A3.1",
   "checks": {
     "whitelist": true,
     "protectedEmpty": true,
@@ -15,10 +16,17 @@
     "noCacheErrors": true,
     "cacheRemoved": true,
     "portsClosed": true,
-    "browserRestored": true
+    "browserRestored": true,
+    "finalMatrix": true,
+    "actualJumpFocus": true,
+    "singleEscapeRestoresDock": true,
+    "performanceEvidenceUnchanged": true,
+    "onlyFocusAndCss": true
   },
   "counts": {
-    "interactions": 52,
+    "interactions": 78,
+    "a31": 26,
+    "finalMatrix": 12,
     "formal": 72,
     "warmup": 12
   },
@@ -30,6 +38,7 @@
   "diagnostics": [],
   "cacheErrors": [],
   "resolvedFailure": "390-claude-recruited-in-place",
+  "historicalDrawerFocus": "A3 Studio-to-Actors records containing body focus were incorrectly accepted by the old verifier. Retained as historical evidence; superseded by A31-final jump-focus and single-Escape assertions.",
   "performance": {
     "primary": [
       {

@@ -1,7 +1,9 @@
 {
-  "frozenAt": "2026-11-10T04:24:19.509Z",
-  "parent": "73fe7bed4b3bb5ee058227d57721c9756691f780",
-  "previousImplementation": "ccf3b10339f54cb971070e15682b62bd3498ef21",
+  "frozenAt": "2026-11-10T05:47:39.873Z",
+  "checkpoint": "VF4-A3.1",
+  "parent": "9ad47c7b67b82cf86e9922f02f7cc398ec5b73bc",
+  "previousImplementation": "b5f521605937a71a04ce4d5a09c14913eb5a1735",
+  "performanceEvidence": "Unchanged A3 startup-*; user authorized reuse for focus/CSS-only changes.",
   "files": [
     {
       "path": "apps/desktop/Cargo.lock",
@@ -320,8 +322,8 @@
     },
     {
       "path": "apps/web/src/alpha-app.tsx",
-      "sha256": "22d5f11060e65ad5a579ea068998290f4fec962a72005cd288ea2f1c82fb79c3",
-      "lfSha256": "419b5969f1e02e3e24d5adbf24c9f54e7985185c7207157c36df549fc5d8cab9"
+      "sha256": "43e153f6a027022c9a474ef4ea62b9dbf75148e4b6e394604c5fe3c8391394e2",
+      "lfSha256": "137e850af19807e22a1ee3b7519e5722aac2d652298d54f1f31e9e959ab52e35"
     },
     {
       "path": "apps/web/src/art/paper-doll.ts",
@@ -525,8 +527,8 @@
     },
     {
       "path": "apps/web/src/vf1.css",
-      "sha256": "d1e5a72566e5685a54b07b91522dc40fc996116117dbe2b688700cccd164f643",
-      "lfSha256": "459e4827c65ef27fe0e8b98cf393a61c64148538a2c8a978910360a137ef7085"
+      "sha256": "79ae1521004247d04e1506d5e841f14ec93d0e8a1054a20b5e33a396a68c5420",
+      "lfSha256": "bc377ea7bee7b66111408397b427f23abb21b03a21af7f1ee320ece4ae901bbf"
     },
     {
       "path": "apps/web/src/village-characters.ts",
