@@ -1,6 +1,6 @@
 # VF4-A3 independent review handoff
 
-Fixed implementation: IMPLEMENTATION_SHA_PENDING
+Fixed implementation: b5f521605937a71a04ce4d5a09c14913eb5a1735
 
 Starting implementation ccf3b10339f54cb971070e15682b62bd3498ef21, record 73fe7bed4b3bb5ee058227d57721c9756691f780. Branch codex/m1-foundation. Local commits only; no push/deploy or VF4-B/C.
 

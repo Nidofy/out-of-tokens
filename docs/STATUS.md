@@ -1,4 +1,4 @@
-VF4-A3 固定实现 `IMPLEMENTATION_SHA_PENDING`；交接 `harness/reviews/vf4a3-handoff.md`，复审 Prompt `harness/reviews/vf4a3-gemini-review-prompt.md`。两次本地提交后暂停；不 push、部署或推进 VF4-B/C。
+VF4-A3 固定实现 `b5f521605937a71a04ce4d5a09c14913eb5a1735`；交接 `harness/reviews/vf4a3-handoff.md`，复审 Prompt `harness/reviews/vf4a3-gemini-review-prompt.md`。两次本地提交后暂停；不 push、部署或推进 VF4-B/C。
 
 2026-11-10 当前入口：零新增资源伙伴海报墙（>=560 双列、窄屏单列）及 S3 双态角色档案/版本检视器完成。保留原有交互、训练、故事与 FlavorPanel；招募后原位转换并恢复版本按钮焦点。38 文件307测试与类型/lint/Web/DSH构建通过，52条实机观察含四视口招募成功；初次焦点失败保留并修复。151文件原始/LF冻结验证通过。三基线×四格×六轮72正式+12预热；相对c68541d四格+3.88%/+1.62%/+1.35%/-3.53%，未触发唯一确认批，已停止采样。保护路径0diff、生产无探针、端口/缓存/浏览器已清理。VF4A2-PERF-01历史HOLD留待独立裁决；TYPE-01按用户20/16/14/12字阶关闭。完整Visual Freeze 1、VF4-B/C及冷缓存/GPU/长会话/低端/200%字体等限制未关闭。以下为历史。
 

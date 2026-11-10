@@ -1,6 +1,6 @@
 # Gemini independent VF4-A3 review
 
-Review fixed implementation IMPLEMENTATION_SHA_PENDING on codex/m1-foundation. Baseline ccf3b10339f54cb971070e15682b62bd3498ef21 (record 73fe7bed4b3bb5ee058227d57721c9756691f780). Read vf4a3-handoff.md and docs/VF4_CHECKPOINT.md first. Read-only review; do not modify, push, deploy, resample, or start VF4-B/C.
+Review fixed implementation b5f521605937a71a04ce4d5a09c14913eb5a1735 on codex/m1-foundation. Baseline ccf3b10339f54cb971070e15682b62bd3498ef21 (record 73fe7bed4b3bb5ee058227d57721c9756691f780). Read vf4a3-handoff.md and docs/VF4_CHECKPOINT.md first. Read-only review; do not modify, push, deploy, resample, or start VF4-B/C.
 
 Check the five implementation/test files against the user's A3 requirements: all 12 metadata entries and two-stage resolver, responsive 2×N gallery with filters, Studio consolidation, any-character S3, recruitment blocker and in-place transition, engineering and six-skill delta inspection, rhythm/modes, Claude transform and original interactions preserved. Review trained-actor interpretation and English/narrow layouts. Verify no domain, S2, artwork, lockfile or protected scene/dialog instrumentation changes.
 
