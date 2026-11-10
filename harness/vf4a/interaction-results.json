@@ -1,0 +1,2119 @@
+[
+  {
+    "case": "1280 Saves empty",
+    "body": {
+      "client": 618,
+      "scroll": 787,
+      "scrollWidth": 724,
+      "width": 724
+    },
+    "closeSize": {
+      "h": 44.000003814697266,
+      "w": 44.000003814697266
+    },
+    "dialog": {
+      "height": 688.0000610351562,
+      "width": 740.0000610351562,
+      "x": 270,
+      "y": 16
+    },
+    "focus": "存档与备份",
+    "focusInDialog": true,
+    "headFont": "20px",
+    "notices": [],
+    "slots": [
+      {
+        "buttons": [
+          {
+            "disabled": false,
+            "h": 44.000003814697266,
+            "label": "保存 · 手动档 1"
+          },
+          {
+            "disabled": true,
+            "h": 44.000003814697266,
+            "label": "载入 · 手动档 1"
+          }
+        ],
+        "id": "manual-1",
+        "text": "手动档 1空保存载入"
+      },
+      {
+        "buttons": [
+          {
+            "disabled": false,
+            "h": 44.000003814697266,
+            "label": "保存 · 手动档 2"
+          },
+          {
+            "disabled": true,
+            "h": 44.000003814697266,
+            "label": "载入 · 手动档 2"
+          }
+        ],
+        "id": "manual-2",
+        "text": "手动档 2空保存载入"
+      },
+      {
+        "buttons": [
+          {
+            "disabled": false,
+            "h": 44.000003814697266,
+            "label": "保存 · 手动档 3"
+          },
+          {
+            "disabled": true,
+            "h": 44.000003814697266,
+            "label": "载入 · 手动档 3"
+          }
+        ],
+        "id": "manual-3",
+        "text": "手动档 3空保存载入"
+      },
+      {
+        "buttons": [
+          {
+            "disabled": true,
+            "h": 44.000003814697266,
+            "label": "载入 · 自动档"
+          }
+        ],
+        "id": "auto",
+        "text": "自动档空载入"
+      },
+      {
+        "buttons": [
+          {
+            "disabled": true,
+            "h": 44.000003814697266,
+            "label": "载入 · 备份 1"
+          }
+        ],
+        "id": "backup-1",
+        "text": "备份 1空载入"
+      },
+      {
+        "buttons": [
+          {
+            "disabled": true,
+            "h": 44.000003814697266,
+            "label": "载入 · 备份 2"
+          }
+        ],
+        "id": "backup-2",
+        "text": "备份 2空载入"
+      },
+      {
+        "buttons": [
+          {
+            "disabled": true,
+            "h": 44.000003814697266,
+            "label": "载入 · 备份 3"
+          }
+        ],
+        "id": "backup-3",
+        "text": "备份 3空载入"
+      },
+      {
+        "buttons": [
+          {
+            "disabled": true,
+            "h": 44.000003814697266,
+            "label": "载入 · 备份 4"
+          }
+        ],
+        "id": "backup-4",
+        "text": "备份 4空载入"
+      },
+      {
+        "buttons": [
+          {
+            "disabled": true,
+            "h": 44.000003814697266,
+            "label": "载入 · 备份 5"
+          }
+        ],
+        "id": "backup-5",
+        "text": "备份 5空载入"
+      }
+    ],
+    "title": "存档与备份",
+    "tools": [
+      {
+        "class": "scene-tools",
+        "visibility": "hidden"
+      },
+      {
+        "class": "studio-dock",
+        "visibility": "hidden"
+      }
+    ]
+  },
+  {
+    "case": "1280 SAVED",
+    "data": {
+      "body": {
+        "client": 554,
+        "scroll": 787,
+        "scrollWidth": 724,
+        "width": 724
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 688.0000610351562,
+        "width": 740.0000610351562,
+        "x": 270,
+        "y": 16
+      },
+      "focus": "保存 · 手动档 1",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [
+        "进度已保存。×"
+      ],
+      "slots": [
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 1"
+            },
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 1"
+            }
+          ],
+          "id": "manual-1",
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 2"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 2"
+            }
+          ],
+          "id": "manual-2",
+          "text": "手动档 2空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 3"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 3"
+            }
+          ],
+          "id": "manual-3",
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 自动档"
+            }
+          ],
+          "id": "auto",
+          "text": "自动档空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 1"
+            }
+          ],
+          "id": "backup-1",
+          "text": "备份 1空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 2"
+            }
+          ],
+          "id": "backup-2",
+          "text": "备份 2空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 3"
+            }
+          ],
+          "id": "backup-3",
+          "text": "备份 3空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 4"
+            }
+          ],
+          "id": "backup-4",
+          "text": "备份 4空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 5"
+            }
+          ],
+          "id": "backup-5",
+          "text": "备份 5空载入"
+        }
+      ],
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "1280 LOADED",
+    "data": {
+      "body": {
+        "client": 554,
+        "scroll": 787,
+        "scrollWidth": 724,
+        "width": 724
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 688.0000610351562,
+        "width": 740.0000610351562,
+        "x": 270,
+        "y": 16
+      },
+      "focus": "载入 · 手动档 1",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [
+        "存档已载入。×"
+      ],
+      "slots": [
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 1"
+            },
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 1"
+            }
+          ],
+          "id": "manual-1",
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 2"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 2"
+            }
+          ],
+          "id": "manual-2",
+          "text": "手动档 2空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 3"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 3"
+            }
+          ],
+          "id": "manual-3",
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 自动档"
+            }
+          ],
+          "id": "auto",
+          "text": "自动档空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 1"
+            }
+          ],
+          "id": "backup-1",
+          "text": "备份 1空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 2"
+            }
+          ],
+          "id": "backup-2",
+          "text": "备份 2空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 3"
+            }
+          ],
+          "id": "backup-3",
+          "text": "备份 3空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 4"
+            }
+          ],
+          "id": "backup-4",
+          "text": "备份 4空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 5"
+            }
+          ],
+          "id": "backup-5",
+          "text": "备份 5空载入"
+        }
+      ],
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "Saves Escape focus",
+    "data": {
+      "dialogs": 0,
+      "focus": "<button title=\"更多\" aria-label=\"更多\" aria-expanded=\"false\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 11h1v2H5ZM11 11h1v2h-1ZM17 11h1v2h-1Z\"></path></svg></button>"
+    }
+  },
+  {
+    "case": "1280 Settings",
+    "data": {
+      "body": {
+        "client": 374,
+        "scroll": 374,
+        "scrollWidth": 739,
+        "width": 739
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 443.857177734375,
+        "width": 740.0000610351562,
+        "x": 270,
+        "y": 138.07144165039062
+      },
+      "focus": "让这里更合心意",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [],
+      "slots": [],
+      "title": "让这里更合心意",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "Settings full motion",
+    "data": {
+      "buttons": [],
+      "root": "<html lang=\"zh-CN\" data-theme=\"light\" data-motion=\"full\"><head>\n  <script type=\"module\" src=\"/@vite/client\"></script>\n<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0,viewport-fit=cover\"><meta name=\"theme-colo"
+    }
+  },
+  {
+    "case": "Settings to Saves focus",
+    "data": {
+      "body": {
+        "client": 618,
+        "scroll": 787,
+        "scrollWidth": 724,
+        "width": 724
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 688.0000610351562,
+        "width": 740.0000610351562,
+        "x": 270,
+        "y": 16
+      },
+      "focus": "存档与备份",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [],
+      "slots": [
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 1"
+            },
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 1"
+            }
+          ],
+          "id": "manual-1",
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 2"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 2"
+            }
+          ],
+          "id": "manual-2",
+          "text": "手动档 2空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 3"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 3"
+            }
+          ],
+          "id": "manual-3",
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 自动档"
+            }
+          ],
+          "id": "auto",
+          "text": "自动档空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 1"
+            }
+          ],
+          "id": "backup-1",
+          "text": "备份 1空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 2"
+            }
+          ],
+          "id": "backup-2",
+          "text": "备份 2空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 3"
+            }
+          ],
+          "id": "backup-3",
+          "text": "备份 3空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 4"
+            }
+          ],
+          "id": "backup-4",
+          "text": "备份 4空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 5"
+            }
+          ],
+          "id": "backup-5",
+          "text": "备份 5空载入"
+        }
+      ],
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "1280 Map",
+    "data": {
+      "body": {
+        "client": 467,
+        "scroll": 467,
+        "scrollWidth": 739,
+        "width": 739
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 536.7142944335938,
+        "width": 740.0000610351562,
+        "x": 270,
+        "y": 91.64286041259766
+      },
+      "focus": "去哪里坐坐？",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [],
+      "slots": [],
+      "title": "去哪里坐坐？",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "map": {
+      "cards": [
+        {
+          "disabled": false,
+          "pressed": "true",
+          "text": "工作室接单 · 工作 · 成长"
+        },
+        {
+          "disabled": false,
+          "pressed": "false",
+          "text": "食堂吃饭 · 休息 · 聊天"
+        },
+        {
+          "disabled": false,
+          "pressed": "false",
+          "text": "图书馆学习 · 阅读 · 找人"
+        }
+      ],
+      "portraits": [
+        {
+          "h": 32,
+          "w": 28.000001907348633
+        },
+        {
+          "h": 32,
+          "w": 28.000001907348633
+        },
+        {
+          "h": 32,
+          "w": 28.000001907348633
+        },
+        {
+          "h": 32,
+          "w": 28.000001907348633
+        }
+      ]
+    }
+  },
+  {
+    "case": "Map travel closes and resets",
+    "data": {
+      "camera": "background-image: url(\"./art/library.webp\"); background-size: 1280px 720px; background-position: -1.13687e-13px 0px; background-repeat: no-repeat;",
+      "dialogs": 0,
+      "focus": "地图",
+      "reset": 0
+    }
+  },
+  {
+    "case": "390 Map",
+    "data": {
+      "body": {
+        "client": 509,
+        "scroll": 509,
+        "scrollWidth": 355,
+        "width": 355
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 574.7142944335938,
+        "width": 356.2857360839844,
+        "x": 17,
+        "y": 134.6428680419922
+      },
+      "focus": "去哪里坐坐？",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [],
+      "slots": [],
+      "title": "去哪里坐坐？",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "390 Saves",
+    "data": {
+      "body": {
+        "client": 746,
+        "scroll": 784,
+        "scrollWidth": 340,
+        "width": 340
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 812.0000610351562,
+        "width": 356.2857360839844,
+        "x": 17,
+        "y": 16
+      },
+      "focus": "存档与备份",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [],
+      "slots": [
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 1"
+            },
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 1"
+            }
+          ],
+          "id": "manual-1",
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 2"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 2"
+            }
+          ],
+          "id": "manual-2",
+          "text": "手动档 2空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 3"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 3"
+            }
+          ],
+          "id": "manual-3",
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 自动档"
+            }
+          ],
+          "id": "auto",
+          "text": "自动档空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 1"
+            }
+          ],
+          "id": "backup-1",
+          "text": "备份 1空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 2"
+            }
+          ],
+          "id": "backup-2",
+          "text": "备份 2空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 3"
+            }
+          ],
+          "id": "backup-3",
+          "text": "备份 3空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 4"
+            }
+          ],
+          "id": "backup-4",
+          "text": "备份 4空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 5"
+            }
+          ],
+          "id": "backup-5",
+          "text": "备份 5空载入"
+        }
+      ],
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "390 saved",
+    "data": {
+      "body": {
+        "client": 682,
+        "scroll": 784,
+        "scrollWidth": 340,
+        "width": 340
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 812.0000610351562,
+        "width": 356.2857360839844,
+        "x": 17,
+        "y": 16
+      },
+      "focus": "保存 · 手动档 2",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [
+        "进度已保存。×"
+      ],
+      "slots": [
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 1"
+            },
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 1"
+            }
+          ],
+          "id": "manual-1",
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 2"
+            },
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 2"
+            }
+          ],
+          "id": "manual-2",
+          "text": "手动档 21970/1/1 08:00:00保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 3"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 3"
+            }
+          ],
+          "id": "manual-3",
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 自动档"
+            }
+          ],
+          "id": "auto",
+          "text": "自动档空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 1"
+            }
+          ],
+          "id": "backup-1",
+          "text": "备份 1空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 2"
+            }
+          ],
+          "id": "backup-2",
+          "text": "备份 2空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 3"
+            }
+          ],
+          "id": "backup-3",
+          "text": "备份 3空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 4"
+            }
+          ],
+          "id": "backup-4",
+          "text": "备份 4空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 5"
+            }
+          ],
+          "id": "backup-5",
+          "text": "备份 5空载入"
+        }
+      ],
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "390 loaded",
+    "data": {
+      "body": {
+        "client": 682,
+        "scroll": 784,
+        "scrollWidth": 340,
+        "width": 340
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 812.0000610351562,
+        "width": 356.2857360839844,
+        "x": 17,
+        "y": 16
+      },
+      "focus": "载入 · 手动档 2",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [
+        "存档已载入。×"
+      ],
+      "slots": [
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 1"
+            },
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 1"
+            }
+          ],
+          "id": "manual-1",
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 2"
+            },
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 2"
+            }
+          ],
+          "id": "manual-2",
+          "text": "手动档 21970/1/1 08:00:00保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 3"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 3"
+            }
+          ],
+          "id": "manual-3",
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 自动档"
+            }
+          ],
+          "id": "auto",
+          "text": "自动档空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 1"
+            }
+          ],
+          "id": "backup-1",
+          "text": "备份 1空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 2"
+            }
+          ],
+          "id": "backup-2",
+          "text": "备份 2空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 3"
+            }
+          ],
+          "id": "backup-3",
+          "text": "备份 3空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 4"
+            }
+          ],
+          "id": "backup-4",
+          "text": "备份 4空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 5"
+            }
+          ],
+          "id": "backup-5",
+          "text": "备份 5空载入"
+        }
+      ],
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "390 backups expanded import keyboard reachable",
+    "data": {
+      "body": {
+        "bottom": 827.4286346435547,
+        "height": 682.2857666015625,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 145.1428680419922,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 145.1428680419922
+      },
+      "focus": "<input type=\"file\" accept=\"application/json,.json\">",
+      "input": {
+        "bottom": 799.5714492797852,
+        "height": 53.142860412597656,
+        "left": 33.57143020629883,
+        "right": 341.8571662902832,
+        "top": 746.4285888671875,
+        "width": 308.2857360839844,
+        "x": 33.57143020629883,
+        "y": 746.4285888671875
+      },
+      "open": true,
+      "scroll": 493.1428527832031
+    }
+  },
+  {
+    "case": "390 Settings fixed selected contrast",
+    "data": {
+      "body": {
+        "client": 366,
+        "scroll": 366,
+        "scrollWidth": 355,
+        "width": 355
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 431.8571472167969,
+        "width": 356.2857360839844,
+        "x": 17,
+        "y": 206.07144165039065
+      },
+      "focus": "让这里更合心意",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [],
+      "slots": [],
+      "title": "让这里更合心意",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "colors": [
+      {
+        "bg": "rgba(242, 231, 210, 0.86)",
+        "color": "rgb(51, 41, 34)",
+        "pressed": "false",
+        "text": "界面语言中文"
+      },
+      {
+        "bg": "rgba(242, 231, 210, 0.86)",
+        "color": "rgb(51, 41, 34)",
+        "pressed": "false",
+        "text": "深色界面关闭"
+      },
+      {
+        "bg": "rgba(242, 231, 210, 0.86)",
+        "color": "rgb(51, 41, 34)",
+        "pressed": "true",
+        "text": "减少动态效果开启"
+      },
+      {
+        "bg": "rgba(242, 231, 210, 0.86)",
+        "color": "rgb(51, 41, 34)",
+        "pressed": null,
+        "text": "存档与备份"
+      }
+    ]
+  },
+  {
+    "case": "560 English dark Settings",
+    "data": {
+      "body": {
+        "client": 374,
+        "scroll": 374,
+        "scrollWidth": 525,
+        "width": 525
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 443.857177734375,
+        "width": 526,
+        "x": 17,
+        "y": 178.07144165039062
+      },
+      "focus": "Dark interfaceOn",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [],
+      "slots": [],
+      "title": "Make yourself at home",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "state": {
+      "buttons": [
+        {
+          "bg": "rgba(56, 49, 44, 0.88)",
+          "color": "rgb(247, 237, 224)",
+          "pressed": "true",
+          "text": "Interface languageEnglish"
+        },
+        {
+          "bg": "rgba(56, 49, 44, 0.88)",
+          "color": "rgb(247, 237, 224)",
+          "pressed": "true",
+          "text": "Dark interfaceOn"
+        },
+        {
+          "bg": "rgba(56, 49, 44, 0.88)",
+          "color": "rgb(247, 237, 224)",
+          "pressed": "true",
+          "text": "Reduce motionOn"
+        },
+        {
+          "bg": "rgba(56, 49, 44, 0.88)",
+          "color": "rgb(247, 237, 224)",
+          "pressed": null,
+          "text": "Saves and backups"
+        }
+      ],
+      "theme": "dark"
+    }
+  },
+  {
+    "case": "560 English dark Saves",
+    "data": {
+      "body": {
+        "client": 698,
+        "scroll": 808,
+        "scrollWidth": 510,
+        "width": 510
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 768.0000610351562,
+        "width": 526,
+        "x": 17,
+        "y": 16
+      },
+      "focus": "Saves and backups",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [],
+      "slots": [
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "Save · Manual slot 1"
+            },
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "Load · Manual slot 1"
+            }
+          ],
+          "id": "manual-1",
+          "text": "Manual slot 11/1/1970, 8:00:00 AMSaveLoad"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "Save · Manual slot 2"
+            },
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "Load · Manual slot 2"
+            }
+          ],
+          "id": "manual-2",
+          "text": "Manual slot 21/1/1970, 8:00:00 AMSaveLoad"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "Save · Manual slot 3"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "Load · Manual slot 3"
+            }
+          ],
+          "id": "manual-3",
+          "text": "Manual slot 3EmptySaveLoad"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "Load · Autosave"
+            }
+          ],
+          "id": "auto",
+          "text": "AutosaveEmptyLoad"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "Load · Backup 1"
+            }
+          ],
+          "id": "backup-1",
+          "text": "Backup 1EmptyLoad"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "Load · Backup 2"
+            }
+          ],
+          "id": "backup-2",
+          "text": "Backup 2EmptyLoad"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "Load · Backup 3"
+            }
+          ],
+          "id": "backup-3",
+          "text": "Backup 3EmptyLoad"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "Load · Backup 4"
+            }
+          ],
+          "id": "backup-4",
+          "text": "Backup 4EmptyLoad"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "Load · Backup 5"
+            }
+          ],
+          "id": "backup-5",
+          "text": "Backup 5EmptyLoad"
+        }
+      ],
+      "title": "Saves and backups",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "560 English dark Map",
+    "data": {
+      "body": {
+        "client": 538,
+        "scroll": 538,
+        "scrollWidth": 525,
+        "width": 525
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 607.7142944335938,
+        "width": 526,
+        "x": 17,
+        "y": 96.14286041259766
+      },
+      "focus": "Where shall we go?",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [],
+      "slots": [],
+      "title": "Where shall we go?",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "844 Settings language light restored",
+    "data": {
+      "body": {
+        "client": 317,
+        "scroll": 358,
+        "scrollWidth": 724,
+        "width": 724
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 374.2857360839844,
+        "width": 740.0000610351562,
+        "x": 52.000003814697266,
+        "y": 8
+      },
+      "focus": "界面语言中文",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [],
+      "slots": [],
+      "title": "让这里更合心意",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "844 Saves",
+    "data": {
+      "body": {
+        "client": 317,
+        "scroll": 771,
+        "scrollWidth": 724,
+        "width": 724
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 374.2857360839844,
+        "width": 740.0000610351562,
+        "x": 52.000003814697266,
+        "y": 8
+      },
+      "focus": "存档与备份",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [],
+      "slots": [
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 1"
+            },
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 1"
+            }
+          ],
+          "id": "manual-1",
+          "text": "手动档 11970/1/1 08:00:00保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 2"
+            },
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 2"
+            }
+          ],
+          "id": "manual-2",
+          "text": "手动档 21970/1/1 08:00:00保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 3"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 3"
+            }
+          ],
+          "id": "manual-3",
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 自动档"
+            }
+          ],
+          "id": "auto",
+          "text": "自动档空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 1"
+            }
+          ],
+          "id": "backup-1",
+          "text": "备份 1空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 2"
+            }
+          ],
+          "id": "backup-2",
+          "text": "备份 2空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 3"
+            }
+          ],
+          "id": "backup-3",
+          "text": "备份 3空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 4"
+            }
+          ],
+          "id": "backup-4",
+          "text": "备份 4空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 5"
+            }
+          ],
+          "id": "backup-5",
+          "text": "备份 5空载入"
+        }
+      ],
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "844 import reachable",
+    "data": {
+      "body": {
+        "bottom": 381.7143020629883,
+        "height": 316.5714416503906,
+        "left": 52.57143020629883,
+        "right": 791.4286079406738,
+        "top": 65.14286041259766,
+        "width": 738.857177734375,
+        "x": 52.57143020629883,
+        "y": 65.14286041259766
+      },
+      "focus": "INPUT",
+      "input": {
+        "bottom": 357.7143020629883,
+        "height": 53.142860412597656,
+        "left": 68.5714340209961,
+        "right": 760.5714950561523,
+        "top": 304.5714416503906,
+        "width": 692.0000610351562,
+        "x": 68.5714340209961,
+        "y": 304.5714416503906
+      }
+    }
+  },
+  {
+    "case": "844 Map",
+    "data": {
+      "body": {
+        "client": 317,
+        "scroll": 451,
+        "scrollWidth": 724,
+        "width": 724
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 374.2857360839844,
+        "width": 740.0000610351562,
+        "x": 52.000003814697266,
+        "y": 8
+      },
+      "focus": "去哪里坐坐？",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [],
+      "slots": [],
+      "title": "去哪里坐坐？",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "390 Locations Escape returns focus",
+    "data": {
+      "focus": "<button aria-expanded=\"false\">伙伴位置 · 4 画外</button>",
+      "presence": 0
+    }
+  },
+  {
+    "case": "390 editor cancel stable camera",
+    "before": "background-image: url(\"./art/garage.webp\"); background-size: 1500.44px 844px; background-position: -555.222px 0px; background-repeat: no-repeat;",
+    "after": "background-image: url(\"./art/garage.webp\"); background-size: 1500.44px 844px; background-position: -555.222px 0px; background-repeat: no-repeat;"
+  },
+  {
+    "case": "Qwen error",
+    "notices": [
+      "现金或研发点不足。×"
+    ]
+  },
+  {
+    "case": "Qwen reopen cleared",
+    "notices": []
+  },
+  {
+    "case": "390 global EXTERNAL_CHANGE modal",
+    "data": {
+      "body": {
+        "client": 682,
+        "scroll": 784,
+        "scrollWidth": 340,
+        "width": 340
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 812.0000610351562,
+        "width": 356.2857360839844,
+        "x": 17,
+        "y": 16
+      },
+      "focus": "存档与备份",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [
+        "另一窗口更新了存档，自动保存已暂停。请先载入最新档。×"
+      ],
+      "slots": [
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 1"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 1"
+            }
+          ],
+          "id": "manual-1",
+          "text": "手动档 1空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 2"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 2"
+            }
+          ],
+          "id": "manual-2",
+          "text": "手动档 2空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": false,
+              "h": 44.000003814697266,
+              "label": "保存 · 手动档 3"
+            },
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 手动档 3"
+            }
+          ],
+          "id": "manual-3",
+          "text": "手动档 3空保存载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 自动档"
+            }
+          ],
+          "id": "auto",
+          "text": "自动档空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 1"
+            }
+          ],
+          "id": "backup-1",
+          "text": "备份 1空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 2"
+            }
+          ],
+          "id": "backup-2",
+          "text": "备份 2空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 3"
+            }
+          ],
+          "id": "backup-3",
+          "text": "备份 3空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 4"
+            }
+          ],
+          "id": "backup-4",
+          "text": "备份 4空载入"
+        },
+        {
+          "buttons": [
+            {
+              "disabled": true,
+              "h": 44.000003814697266,
+              "label": "载入 · 备份 5"
+            }
+          ],
+          "id": "backup-5",
+          "text": "备份 5空载入"
+        }
+      ],
+      "title": "存档与备份",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  },
+  {
+    "case": "global warning remains above scrolling body",
+    "data": {
+      "bodyScroll": 101.71428680419922,
+      "notice": {
+        "bottom": 145.14286041259766,
+        "height": 64,
+        "left": 17.571430206298828,
+        "right": 372.7143135070801,
+        "top": 81.14286041259766,
+        "width": 355.14288330078125,
+        "x": 17.571430206298828,
+        "y": 81.14286041259766
+      },
+      "text": "另一窗口更新了存档，自动保存已暂停。请先载入最新档。×"
+    }
+  },
+  {
+    "case": "global survives Saves close",
+    "notices": [
+      "另一窗口更新了存档，自动保存已暂停。请先载入最新档。×"
+    ]
+  },
+  {
+    "case": "1280 Map final selected style",
+    "data": {
+      "body": {
+        "client": 467,
+        "scroll": 467,
+        "scrollWidth": 739,
+        "width": 739
+      },
+      "closeSize": {
+        "h": 44.000003814697266,
+        "w": 44.000003814697266
+      },
+      "dialog": {
+        "height": 536.7142944335938,
+        "width": 740.0000610351562,
+        "x": 270,
+        "y": 91.64286041259766
+      },
+      "focus": "去哪里坐坐？",
+      "focusInDialog": true,
+      "headFont": "20px",
+      "notices": [],
+      "slots": [],
+      "title": "去哪里坐坐？",
+      "tools": [
+        {
+          "class": "scene-tools",
+          "visibility": "hidden"
+        },
+        {
+          "class": "studio-dock",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "portraits": [
+      {
+        "height": 32,
+        "width": 28.000001907348633
+      },
+      {
+        "height": 32,
+        "width": 28.000001907348633
+      },
+      {
+        "height": 32,
+        "width": 28.000001907348633
+      },
+      {
+        "height": 32,
+        "width": 28.000001907348633
+      }
+    ]
+  },
+  {
+    "case": "Settings Full state final",
+    "data": {
+      "buttons": [
+        {
+          "pressed": "false",
+          "text": "界面语言中文"
+        },
+        {
+          "pressed": "false",
+          "text": "深色界面关闭"
+        },
+        {
+          "pressed": "false",
+          "text": "减少动态效果关闭"
+        },
+        {
+          "pressed": null,
+          "text": "存档与备份"
+        }
+      ],
+      "motion": "full"
+    }
+  }
+]

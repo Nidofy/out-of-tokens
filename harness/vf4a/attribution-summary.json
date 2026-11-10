@@ -1,0 +1,2246 @@
+{
+  "protocol": "54 samples, six alternating rounds, all samples retained",
+  "groups": [
+    {
+      "label": "040031e",
+      "mode": "dev",
+      "scenario": "standard",
+      "metrics": {
+        "navigationToEntry": {
+          "median": 129.8,
+          "odd": 106.4,
+          "even": 131.6,
+          "oddMinusEven": -25.2
+        },
+        "entryToHud": {
+          "median": 2.8,
+          "odd": 2.8,
+          "even": 3,
+          "oddMinusEven": -0.2
+        },
+        "hudToSceneLoaded": {
+          "median": 38.4,
+          "odd": 41.6,
+          "even": 36.4,
+          "oddMinusEven": 5.2
+        },
+        "sceneLoadedToCanvasRaf": {
+          "median": 31,
+          "odd": 29.5,
+          "even": 32.5,
+          "oddMinusEven": -3
+        },
+        "hudToSceneEffect": {
+          "median": 5.7,
+          "odd": 5.7,
+          "even": 5.7,
+          "oddMinusEven": 0
+        },
+        "pixiInit": {
+          "median": 26.1,
+          "odd": 25.4,
+          "even": 28.9,
+          "oddMinusEven": -3.5
+        },
+        "firstSync": {
+          "median": 3.15,
+          "odd": 3.5,
+          "even": 2.8,
+          "oddMinusEven": 0.7
+        },
+        "syncToRaf": {
+          "median": 0.3,
+          "odd": 0.3,
+          "even": 0.3,
+          "oddMinusEven": 0
+        },
+        "canvas": {
+          "median": 199.95,
+          "odd": 185.5,
+          "even": 203.9,
+          "oddMinusEven": -18.4
+        },
+        "sceneImport": {
+          "median": 32.05,
+          "odd": 35.9,
+          "even": 29.4,
+          "oddMinusEven": 6.5
+        },
+        "effectToInit": {
+          "median": 32.05,
+          "odd": 35.9,
+          "even": 29.4,
+          "oddMinusEven": 6.5
+        },
+        "moduleCount": {
+          "median": 73,
+          "odd": 73,
+          "even": 73,
+          "oddMinusEven": 0
+        },
+        "lastModuleResponse": {
+          "median": 172.55,
+          "odd": 157.2,
+          "even": 176.5,
+          "oddMinusEven": -19.3
+        },
+        "longtaskCount": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        },
+        "longtaskMs": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        }
+      },
+      "samples": [
+        {
+          "round": 1,
+          "marks": {
+            "moduleEntryMs": 129.70000004768372,
+            "firstHudCommitMs": 132.29999995231628,
+            "sceneEffectStartMs": 137.79999995231628,
+            "sceneImportStartMs": 137.79999995231628,
+            "sceneModuleLoadedMs": 174.90000009536743,
+            "pixiInitStartMs": 174.90000009536743,
+            "pixiInitEndMs": 200.29999995231628,
+            "firstSyncStartMs": 200.70000004768372,
+            "firstSyncEndMs": 204.20000004768372,
+            "firstCanvasRafMs": 204.40000009536743
+          },
+          "phases": {
+            "navigationToEntry": 129.70000004768372,
+            "entryToHud": 2.5999999046325684,
+            "hudToSceneLoaded": 42.60000014305115,
+            "sceneLoadedToCanvasRaf": 29.5,
+            "hudToSceneEffect": 5.5,
+            "pixiInit": 25.399999856948853,
+            "firstSync": 3.5,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 2,
+          "marks": {
+            "moduleEntryMs": 129.90000009536743,
+            "firstHudCommitMs": 132.60000014305115,
+            "sceneEffectStartMs": 138.10000014305115,
+            "sceneImportStartMs": 138.10000014305115,
+            "sceneModuleLoadedMs": 163.5,
+            "pixiInitStartMs": 163.5,
+            "pixiInitEndMs": 192.40000009536743,
+            "firstSyncStartMs": 192.79999995231628,
+            "firstSyncEndMs": 195.70000004768372,
+            "firstCanvasRafMs": 196
+          },
+          "phases": {
+            "navigationToEntry": 129.90000009536743,
+            "entryToHud": 2.700000047683716,
+            "hudToSceneLoaded": 30.899999856948853,
+            "sceneLoadedToCanvasRaf": 32.5,
+            "hudToSceneEffect": 5.5,
+            "pixiInit": 28.90000009536743,
+            "firstSync": 2.9000000953674316,
+            "syncToRaf": 0.2999999523162842
+          }
+        },
+        {
+          "round": 3,
+          "marks": {
+            "moduleEntryMs": 106.39999985694885,
+            "firstHudCommitMs": 109.19999980926514,
+            "sceneEffectStartMs": 114.89999985694885,
+            "sceneImportStartMs": 114.89999985694885,
+            "sceneModuleLoadedMs": 150.79999995231628,
+            "pixiInitStartMs": 150.79999995231628,
+            "pixiInitEndMs": 177.59999990463257,
+            "firstSyncStartMs": 178,
+            "firstSyncEndMs": 185.19999980926514,
+            "firstCanvasRafMs": 185.5
+          },
+          "phases": {
+            "navigationToEntry": 106.39999985694885,
+            "entryToHud": 2.799999952316284,
+            "hudToSceneLoaded": 41.60000014305115,
+            "sceneLoadedToCanvasRaf": 34.700000047683716,
+            "hudToSceneEffect": 5.700000047683716,
+            "pixiInit": 26.799999952316284,
+            "firstSync": 7.199999809265137,
+            "syncToRaf": 0.3000001907348633
+          }
+        },
+        {
+          "round": 4,
+          "marks": {
+            "moduleEntryMs": 156.5,
+            "firstHudCommitMs": 159.5,
+            "sceneEffectStartMs": 165.19999980926514,
+            "sceneImportStartMs": 165.19999980926514,
+            "sceneModuleLoadedMs": 199.89999985694885,
+            "pixiInitStartMs": 199.89999985694885,
+            "pixiInitEndMs": 223.29999995231628,
+            "firstSyncStartMs": 223.59999990463257,
+            "firstSyncEndMs": 226.39999985694885,
+            "firstCanvasRafMs": 226.69999980926514
+          },
+          "phases": {
+            "navigationToEntry": 156.5,
+            "entryToHud": 3,
+            "hudToSceneLoaded": 40.39999985694885,
+            "sceneLoadedToCanvasRaf": 26.799999952316284,
+            "hudToSceneEffect": 5.699999809265137,
+            "pixiInit": 23.40000009536743,
+            "firstSync": 2.799999952316284,
+            "syncToRaf": 0.2999999523162842
+          }
+        },
+        {
+          "round": 5,
+          "marks": {
+            "moduleEntryMs": 101.39999985694885,
+            "firstHudCommitMs": 104.20000004768372,
+            "sceneEffectStartMs": 109.89999985694885,
+            "sceneImportStartMs": 109.89999985694885,
+            "sceneModuleLoadedMs": 138,
+            "pixiInitStartMs": 138,
+            "pixiInitEndMs": 162.39999985694885,
+            "firstSyncStartMs": 162.79999995231628,
+            "firstSyncEndMs": 166.20000004768372,
+            "firstCanvasRafMs": 166.5
+          },
+          "phases": {
+            "navigationToEntry": 101.39999985694885,
+            "entryToHud": 2.8000001907348633,
+            "hudToSceneLoaded": 33.799999952316284,
+            "sceneLoadedToCanvasRaf": 28.5,
+            "hudToSceneEffect": 5.699999809265137,
+            "pixiInit": 24.399999856948853,
+            "firstSync": 3.4000000953674316,
+            "syncToRaf": 0.2999999523162842
+          }
+        },
+        {
+          "round": 6,
+          "marks": {
+            "moduleEntryMs": 131.60000014305115,
+            "firstHudCommitMs": 134.70000004768372,
+            "sceneEffectStartMs": 141.70000004768372,
+            "sceneImportStartMs": 141.70000004768372,
+            "sceneModuleLoadedMs": 171.10000014305115,
+            "pixiInitStartMs": 171.10000014305115,
+            "pixiInitEndMs": 200.70000004768372,
+            "firstSyncStartMs": 201,
+            "firstSyncEndMs": 203.79999995231628,
+            "firstCanvasRafMs": 203.90000009536743
+          },
+          "phases": {
+            "navigationToEntry": 131.60000014305115,
+            "entryToHud": 3.0999999046325684,
+            "hudToSceneLoaded": 36.40000009536743,
+            "sceneLoadedToCanvasRaf": 32.799999952316284,
+            "hudToSceneEffect": 7,
+            "pixiInit": 29.59999990463257,
+            "firstSync": 2.799999952316284,
+            "syncToRaf": 0.10000014305114746
+          }
+        }
+      ]
+    },
+    {
+      "label": "040031e",
+      "mode": "dev",
+      "scenario": "twelve",
+      "metrics": {
+        "navigationToEntry": {
+          "median": 136.1,
+          "odd": 130.8,
+          "even": 141,
+          "oddMinusEven": -10.2
+        },
+        "entryToHud": {
+          "median": 2.2,
+          "odd": 2.2,
+          "even": 2.2,
+          "oddMinusEven": 0
+        },
+        "hudToSceneLoaded": {
+          "median": 36.5,
+          "odd": 32.5,
+          "even": 45.5,
+          "oddMinusEven": -13
+        },
+        "sceneLoadedToCanvasRaf": {
+          "median": 34.45,
+          "odd": 35.6,
+          "even": 33.3,
+          "oddMinusEven": 2.3
+        },
+        "hudToSceneEffect": {
+          "median": 6.15,
+          "odd": 6,
+          "even": 18.6,
+          "oddMinusEven": -12.6
+        },
+        "pixiInit": {
+          "median": 29.3,
+          "odd": 30.3,
+          "even": 28.3,
+          "oddMinusEven": 2
+        },
+        "firstSync": {
+          "median": 4,
+          "odd": 3.8,
+          "even": 4.1,
+          "oddMinusEven": -0.3
+        },
+        "syncToRaf": {
+          "median": 0.2,
+          "odd": 0.2,
+          "even": 0.2,
+          "oddMinusEven": 0
+        },
+        "canvas": {
+          "median": 205.15,
+          "odd": 200.4,
+          "even": 222,
+          "oddMinusEven": -21.6
+        },
+        "sceneImport": {
+          "median": 28.05,
+          "odd": 26.5,
+          "even": 31.5,
+          "oddMinusEven": -5
+        },
+        "effectToInit": {
+          "median": 28.1,
+          "odd": 26.5,
+          "even": 31.5,
+          "oddMinusEven": -5
+        },
+        "moduleCount": {
+          "median": 73,
+          "odd": 73,
+          "even": 73,
+          "oddMinusEven": 0
+        },
+        "lastModuleResponse": {
+          "median": 178.25,
+          "odd": 173.7,
+          "even": 195,
+          "oddMinusEven": -21.3
+        },
+        "longtaskCount": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        },
+        "longtaskMs": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        }
+      },
+      "samples": [
+        {
+          "round": 1,
+          "marks": {
+            "moduleEntryMs": 122.20000004768372,
+            "firstHudCommitMs": 124.29999995231628,
+            "sceneEffectStartMs": 129.90000009536743,
+            "sceneImportStartMs": 129.90000009536743,
+            "sceneModuleLoadedMs": 155.5,
+            "pixiInitStartMs": 155.5,
+            "pixiInitEndMs": 187.70000004768372,
+            "firstSyncStartMs": 188,
+            "firstSyncEndMs": 191.79999995231628,
+            "firstCanvasRafMs": 192
+          },
+          "phases": {
+            "navigationToEntry": 122.20000004768372,
+            "entryToHud": 2.0999999046325684,
+            "hudToSceneLoaded": 31.200000047683716,
+            "sceneLoadedToCanvasRaf": 36.5,
+            "hudToSceneEffect": 5.6000001430511475,
+            "pixiInit": 32.200000047683716,
+            "firstSync": 3.799999952316284,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 2,
+          "marks": {
+            "moduleEntryMs": 138.30000019073486,
+            "firstHudCommitMs": 140.40000009536743,
+            "sceneEffectStartMs": 146.5,
+            "sceneImportStartMs": 146.5,
+            "sceneModuleLoadedMs": 178,
+            "pixiInitStartMs": 178,
+            "pixiInitEndMs": 201.80000019073486,
+            "firstSyncStartMs": 202.20000004768372,
+            "firstSyncEndMs": 206.10000014305115,
+            "firstCanvasRafMs": 206.30000019073486
+          },
+          "phases": {
+            "navigationToEntry": 138.30000019073486,
+            "entryToHud": 2.0999999046325684,
+            "hudToSceneLoaded": 37.59999990463257,
+            "sceneLoadedToCanvasRaf": 28.300000190734863,
+            "hudToSceneEffect": 6.099999904632568,
+            "pixiInit": 23.800000190734863,
+            "firstSync": 3.9000000953674316,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 3,
+          "marks": {
+            "moduleEntryMs": 130.79999995231628,
+            "firstHudCommitMs": 133,
+            "sceneEffectStartMs": 139.20000004768372,
+            "sceneImportStartMs": 139.20000004768372,
+            "sceneModuleLoadedMs": 168.39999985694885,
+            "pixiInitStartMs": 168.5,
+            "pixiInitEndMs": 198.79999995231628,
+            "firstSyncStartMs": 199.5,
+            "firstSyncEndMs": 203.79999995231628,
+            "firstCanvasRafMs": 204
+          },
+          "phases": {
+            "navigationToEntry": 130.79999995231628,
+            "entryToHud": 2.200000047683716,
+            "hudToSceneLoaded": 35.39999985694885,
+            "sceneLoadedToCanvasRaf": 35.60000014305115,
+            "hudToSceneEffect": 6.200000047683716,
+            "pixiInit": 30.299999952316284,
+            "firstSync": 4.299999952316284,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 4,
+          "marks": {
+            "moduleEntryMs": 141,
+            "firstHudCommitMs": 143.20000004768372,
+            "sceneEffectStartMs": 161.79999995231628,
+            "sceneImportStartMs": 161.79999995231628,
+            "sceneModuleLoadedMs": 188.70000004768372,
+            "pixiInitStartMs": 188.70000004768372,
+            "pixiInitEndMs": 217,
+            "firstSyncStartMs": 217.39999985694885,
+            "firstSyncEndMs": 221.79999995231628,
+            "firstCanvasRafMs": 222
+          },
+          "phases": {
+            "navigationToEntry": 141,
+            "entryToHud": 2.200000047683716,
+            "hudToSceneLoaded": 45.5,
+            "sceneLoadedToCanvasRaf": 33.299999952316284,
+            "hudToSceneEffect": 18.59999990463257,
+            "pixiInit": 28.299999952316284,
+            "firstSync": 4.400000095367432,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 5,
+          "marks": {
+            "moduleEntryMs": 133.90000009536743,
+            "firstHudCommitMs": 136.10000014305115,
+            "sceneEffectStartMs": 142.10000014305115,
+            "sceneImportStartMs": 142.10000014305115,
+            "sceneModuleLoadedMs": 168.60000014305115,
+            "pixiInitStartMs": 168.60000014305115,
+            "pixiInitEndMs": 196,
+            "firstSyncStartMs": 196.30000019073486,
+            "firstSyncEndMs": 200.10000014305115,
+            "firstCanvasRafMs": 200.40000009536743
+          },
+          "phases": {
+            "navigationToEntry": 133.90000009536743,
+            "entryToHud": 2.200000047683716,
+            "hudToSceneLoaded": 32.5,
+            "sceneLoadedToCanvasRaf": 31.799999952316284,
+            "hudToSceneEffect": 6,
+            "pixiInit": 27.399999856948853,
+            "firstSync": 3.799999952316284,
+            "syncToRaf": 0.2999999523162842
+          }
+        },
+        {
+          "round": 6,
+          "marks": {
+            "moduleEntryMs": 362.60000014305115,
+            "firstHudCommitMs": 365.10000014305115,
+            "sceneEffectStartMs": 386.10000014305115,
+            "sceneImportStartMs": 386.2000000476837,
+            "sceneModuleLoadedMs": 434.2999999523163,
+            "pixiInitStartMs": 434.40000009536743,
+            "pixiInitEndMs": 466.7000000476837,
+            "firstSyncStartMs": 467.10000014305115,
+            "firstSyncEndMs": 471.2000000476837,
+            "firstCanvasRafMs": 471.40000009536743
+          },
+          "phases": {
+            "navigationToEntry": 362.60000014305115,
+            "entryToHud": 2.5,
+            "hudToSceneLoaded": 69.19999980926514,
+            "sceneLoadedToCanvasRaf": 37.10000014305115,
+            "hudToSceneEffect": 21,
+            "pixiInit": 32.299999952316284,
+            "firstSync": 4.099999904632568,
+            "syncToRaf": 0.20000004768371582
+          }
+        }
+      ]
+    },
+    {
+      "label": "040031e",
+      "mode": "preview",
+      "scenario": "twelve",
+      "metrics": {
+        "navigationToEntry": {
+          "median": 63.3,
+          "odd": 66.5,
+          "even": 61.3,
+          "oddMinusEven": 5.2
+        },
+        "entryToHud": {
+          "median": 2.15,
+          "odd": 2.1,
+          "even": 2.3,
+          "oddMinusEven": -0.2
+        },
+        "hudToSceneLoaded": {
+          "median": 60.85,
+          "odd": 56,
+          "even": 65.7,
+          "oddMinusEven": -9.7
+        },
+        "sceneLoadedToCanvasRaf": {
+          "median": 41.3,
+          "odd": 35.4,
+          "even": 42.5,
+          "oddMinusEven": -7.1
+        },
+        "hudToSceneEffect": {
+          "median": 9.15,
+          "odd": 8.5,
+          "even": 9.8,
+          "oddMinusEven": -1.3
+        },
+        "pixiInit": {
+          "median": 35.95,
+          "odd": 29.9,
+          "even": 36.8,
+          "oddMinusEven": -6.9
+        },
+        "firstSync": {
+          "median": 4.9,
+          "odd": 4.8,
+          "even": 5,
+          "oddMinusEven": -0.2
+        },
+        "syncToRaf": {
+          "median": 0.25,
+          "odd": 0.2,
+          "even": 0.3,
+          "oddMinusEven": -0.1
+        },
+        "canvas": {
+          "median": 167,
+          "odd": 162.6,
+          "even": 171.4,
+          "oddMinusEven": -8.8
+        },
+        "sceneImport": {
+          "median": 51.4,
+          "odd": 47.5,
+          "even": 55.3,
+          "oddMinusEven": -7.8
+        },
+        "effectToInit": {
+          "median": 51.4,
+          "odd": 47.5,
+          "even": 55.3,
+          "oddMinusEven": -7.8
+        },
+        "moduleCount": {
+          "median": 15,
+          "odd": 15,
+          "even": 15,
+          "oddMinusEven": 0
+        },
+        "lastModuleResponse": {
+          "median": 134.95,
+          "odd": 136.2,
+          "even": 133.7,
+          "oddMinusEven": 2.5
+        },
+        "longtaskCount": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        },
+        "longtaskMs": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        }
+      },
+      "samples": [
+        {
+          "round": 1,
+          "marks": {
+            "moduleEntryMs": 66.5,
+            "firstHudCommitMs": 68.59999990463257,
+            "sceneEffectStartMs": 79.59999990463257,
+            "sceneImportStartMs": 79.59999990463257,
+            "sceneModuleLoadedMs": 137.89999985694885,
+            "pixiInitStartMs": 137.89999985694885,
+            "pixiInitEndMs": 175.70000004768372,
+            "firstSyncStartMs": 176.39999985694885,
+            "firstSyncEndMs": 182.29999995231628,
+            "firstCanvasRafMs": 183.20000004768372
+          },
+          "phases": {
+            "navigationToEntry": 66.5,
+            "entryToHud": 2.0999999046325684,
+            "hudToSceneLoaded": 69.29999995231628,
+            "sceneLoadedToCanvasRaf": 45.30000019073486,
+            "hudToSceneEffect": 11,
+            "pixiInit": 37.80000019073486,
+            "firstSync": 5.900000095367432,
+            "syncToRaf": 0.9000000953674316
+          }
+        },
+        {
+          "round": 2,
+          "marks": {
+            "moduleEntryMs": 53.89999985694885,
+            "firstHudCommitMs": 56.19999980926514,
+            "sceneEffectStartMs": 66.59999990463257,
+            "sceneImportStartMs": 66.59999990463257,
+            "sceneModuleLoadedMs": 121.89999985694885,
+            "pixiInitStartMs": 121.89999985694885,
+            "pixiInitEndMs": 165.59999990463257,
+            "firstSyncStartMs": 166.09999990463257,
+            "firstSyncEndMs": 171.19999980926514,
+            "firstCanvasRafMs": 171.39999985694885
+          },
+          "phases": {
+            "navigationToEntry": 53.89999985694885,
+            "entryToHud": 2.299999952316284,
+            "hudToSceneLoaded": 65.70000004768372,
+            "sceneLoadedToCanvasRaf": 49.5,
+            "hudToSceneEffect": 10.400000095367432,
+            "pixiInit": 43.700000047683716,
+            "firstSync": 5.099999904632568,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 3,
+          "marks": {
+            "moduleEntryMs": 62.90000009536743,
+            "firstHudCommitMs": 64.90000009536743,
+            "sceneEffectStartMs": 73.40000009536743,
+            "sceneImportStartMs": 73.40000009536743,
+            "sceneModuleLoadedMs": 117,
+            "pixiInitStartMs": 117,
+            "pixiInitEndMs": 146.20000004768372,
+            "firstSyncStartMs": 146.70000004768372,
+            "firstSyncEndMs": 151,
+            "firstCanvasRafMs": 151.20000004768372
+          },
+          "phases": {
+            "navigationToEntry": 62.90000009536743,
+            "entryToHud": 2,
+            "hudToSceneLoaded": 52.09999990463257,
+            "sceneLoadedToCanvasRaf": 34.200000047683716,
+            "hudToSceneEffect": 8.5,
+            "pixiInit": 29.200000047683716,
+            "firstSync": 4.299999952316284,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 4,
+          "marks": {
+            "moduleEntryMs": 61.30000019073486,
+            "firstHudCommitMs": 63.40000009536743,
+            "sceneEffectStartMs": 73.20000004768372,
+            "sceneImportStartMs": 73.20000004768372,
+            "sceneModuleLoadedMs": 113.80000019073486,
+            "pixiInitStartMs": 113.80000019073486,
+            "pixiInitEndMs": 148.90000009536743,
+            "firstSyncStartMs": 149.30000019073486,
+            "firstSyncEndMs": 153.60000014305115,
+            "firstCanvasRafMs": 153.90000009536743
+          },
+          "phases": {
+            "navigationToEntry": 61.30000019073486,
+            "entryToHud": 2.0999999046325684,
+            "hudToSceneLoaded": 50.40000009536743,
+            "sceneLoadedToCanvasRaf": 40.09999990463257,
+            "hudToSceneEffect": 9.799999952316284,
+            "pixiInit": 35.09999990463257,
+            "firstSync": 4.299999952316284,
+            "syncToRaf": 0.2999999523162842
+          }
+        },
+        {
+          "round": 5,
+          "marks": {
+            "moduleEntryMs": 69,
+            "firstHudCommitMs": 71.20000004768372,
+            "sceneEffectStartMs": 79.70000004768372,
+            "sceneImportStartMs": 79.70000004768372,
+            "sceneModuleLoadedMs": 127.20000004768372,
+            "pixiInitStartMs": 127.20000004768372,
+            "pixiInitEndMs": 157.09999990463257,
+            "firstSyncStartMs": 157.59999990463257,
+            "firstSyncEndMs": 162.39999985694885,
+            "firstCanvasRafMs": 162.59999990463257
+          },
+          "phases": {
+            "navigationToEntry": 69,
+            "entryToHud": 2.200000047683716,
+            "hudToSceneLoaded": 56,
+            "sceneLoadedToCanvasRaf": 35.39999985694885,
+            "hudToSceneEffect": 8.5,
+            "pixiInit": 29.899999856948853,
+            "firstSync": 4.799999952316284,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 6,
+          "marks": {
+            "moduleEntryMs": 63.69999980926514,
+            "firstHudCommitMs": 66,
+            "sceneEffectStartMs": 73.5,
+            "sceneImportStartMs": 73.5,
+            "sceneModuleLoadedMs": 137.5,
+            "pixiInitStartMs": 137.5,
+            "pixiInitEndMs": 174.29999995231628,
+            "firstSyncStartMs": 174.69999980926514,
+            "firstSyncEndMs": 179.69999980926514,
+            "firstCanvasRafMs": 180
+          },
+          "phases": {
+            "navigationToEntry": 63.69999980926514,
+            "entryToHud": 2.3000001907348633,
+            "hudToSceneLoaded": 71.5,
+            "sceneLoadedToCanvasRaf": 42.5,
+            "hudToSceneEffect": 7.5,
+            "pixiInit": 36.799999952316284,
+            "firstSync": 5,
+            "syncToRaf": 0.3000001907348633
+          }
+        }
+      ]
+    },
+    {
+      "label": "6f3a191",
+      "mode": "dev",
+      "scenario": "standard",
+      "metrics": {
+        "navigationToEntry": {
+          "median": 157.45,
+          "odd": 161.1,
+          "even": 155.3,
+          "oddMinusEven": 5.8
+        },
+        "entryToHud": {
+          "median": 2.95,
+          "odd": 3,
+          "even": 2.8,
+          "oddMinusEven": 0.2
+        },
+        "hudToSceneLoaded": {
+          "median": 43.8,
+          "odd": 39.6,
+          "even": 48.5,
+          "oddMinusEven": -8.9
+        },
+        "sceneLoadedToCanvasRaf": {
+          "median": 29.25,
+          "odd": 28.8,
+          "even": 29.7,
+          "oddMinusEven": -0.9
+        },
+        "hudToSceneEffect": {
+          "median": 12.6,
+          "odd": 6.2,
+          "even": 19.7,
+          "oddMinusEven": -13.5
+        },
+        "pixiInit": {
+          "median": 25.95,
+          "odd": 25.5,
+          "even": 26.4,
+          "oddMinusEven": -0.9
+        },
+        "firstSync": {
+          "median": 2.75,
+          "odd": 2.8,
+          "even": 2.7,
+          "oddMinusEven": 0.1
+        },
+        "syncToRaf": {
+          "median": 0.2,
+          "odd": 0.2,
+          "even": 0.2,
+          "oddMinusEven": 0
+        },
+        "canvas": {
+          "median": 232.15,
+          "odd": 229.2,
+          "even": 235.1,
+          "oddMinusEven": -5.9
+        },
+        "sceneImport": {
+          "median": 46.6,
+          "odd": 42.4,
+          "even": 51.1,
+          "oddMinusEven": -8.7
+        },
+        "effectToInit": {
+          "median": 32.6,
+          "odd": 33.1,
+          "even": 28.6,
+          "oddMinusEven": 4.5
+        },
+        "moduleCount": {
+          "median": 80,
+          "odd": 80,
+          "even": 80,
+          "oddMinusEven": 0
+        },
+        "lastModuleResponse": {
+          "median": 208.75,
+          "odd": 206.8,
+          "even": 210.7,
+          "oddMinusEven": -3.9
+        },
+        "longtaskCount": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        },
+        "longtaskMs": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        }
+      },
+      "samples": [
+        {
+          "round": 1,
+          "marks": {
+            "moduleEntryMs": 161.10000014305115,
+            "sceneImportStartMs": 161.20000004768372,
+            "firstHudCommitMs": 164.40000009536743,
+            "sceneEffectStartMs": 170.5,
+            "sceneModuleLoadedMs": 202.60000014305115,
+            "pixiInitStartMs": 202.60000014305115,
+            "pixiInitEndMs": 225.40000009536743,
+            "firstSyncStartMs": 225.80000019073486,
+            "firstSyncEndMs": 229,
+            "firstCanvasRafMs": 229.20000004768372
+          },
+          "phases": {
+            "navigationToEntry": 161.10000014305115,
+            "entryToHud": 3.299999952316284,
+            "hudToSceneLoaded": 38.200000047683716,
+            "sceneLoadedToCanvasRaf": 26.59999990463257,
+            "hudToSceneEffect": 6.099999904632568,
+            "pixiInit": 22.799999952316284,
+            "firstSync": 3.1999998092651367,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 2,
+          "marks": {
+            "moduleEntryMs": 123.29999995231628,
+            "sceneImportStartMs": 123.5,
+            "firstHudCommitMs": 126.10000014305115,
+            "sceneEffectStartMs": 147.79999995231628,
+            "sceneModuleLoadedMs": 174.60000014305115,
+            "pixiInitStartMs": 174.70000004768372,
+            "pixiInitEndMs": 201.60000014305115,
+            "firstSyncStartMs": 202,
+            "firstSyncEndMs": 205.10000014305115,
+            "firstCanvasRafMs": 205.29999995231628
+          },
+          "phases": {
+            "navigationToEntry": 123.29999995231628,
+            "entryToHud": 2.8000001907348633,
+            "hudToSceneLoaded": 48.5,
+            "sceneLoadedToCanvasRaf": 30.699999809265137,
+            "hudToSceneEffect": 21.699999809265137,
+            "pixiInit": 26.90000009536743,
+            "firstSync": 3.1000001430511475,
+            "syncToRaf": 0.19999980926513672
+          }
+        },
+        {
+          "round": 3,
+          "marks": {
+            "moduleEntryMs": 163.90000009536743,
+            "sceneImportStartMs": 164.09999990463257,
+            "firstHudCommitMs": 166.90000009536743,
+            "sceneEffectStartMs": 173.09999990463257,
+            "sceneModuleLoadedMs": 207.29999995231628,
+            "pixiInitStartMs": 207.29999995231628,
+            "pixiInitEndMs": 232.79999995231628,
+            "firstSyncStartMs": 233.09999990463257,
+            "firstSyncEndMs": 235.90000009536743,
+            "firstCanvasRafMs": 236.09999990463257
+          },
+          "phases": {
+            "navigationToEntry": 163.90000009536743,
+            "entryToHud": 3,
+            "hudToSceneLoaded": 40.39999985694885,
+            "sceneLoadedToCanvasRaf": 28.799999952316284,
+            "hudToSceneEffect": 6.199999809265137,
+            "pixiInit": 25.5,
+            "firstSync": 2.8000001907348633,
+            "syncToRaf": 0.19999980926513672
+          }
+        },
+        {
+          "round": 4,
+          "marks": {
+            "moduleEntryMs": 155.29999995231628,
+            "sceneImportStartMs": 155.39999985694885,
+            "firstHudCommitMs": 158.19999980926514,
+            "sceneEffectStartMs": 176.79999995231628,
+            "sceneModuleLoadedMs": 205.39999985694885,
+            "pixiInitStartMs": 205.39999985694885,
+            "pixiInitEndMs": 231.79999995231628,
+            "firstSyncStartMs": 232.19999980926514,
+            "firstSyncEndMs": 234.89999985694885,
+            "firstCanvasRafMs": 235.09999990463257
+          },
+          "phases": {
+            "navigationToEntry": 155.29999995231628,
+            "entryToHud": 2.8999998569488525,
+            "hudToSceneLoaded": 47.200000047683716,
+            "sceneLoadedToCanvasRaf": 29.700000047683716,
+            "hudToSceneEffect": 18.600000143051147,
+            "pixiInit": 26.40000009536743,
+            "firstSync": 2.700000047683716,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 5,
+          "marks": {
+            "moduleEntryMs": 146.39999985694885,
+            "sceneImportStartMs": 146.59999990463257,
+            "firstHudCommitMs": 149.39999985694885,
+            "sceneEffectStartMs": 156,
+            "sceneModuleLoadedMs": 189,
+            "pixiInitStartMs": 189.09999990463257,
+            "pixiInitEndMs": 216.09999990463257,
+            "firstSyncStartMs": 216.29999995231628,
+            "firstSyncEndMs": 219,
+            "firstCanvasRafMs": 219.20000004768372
+          },
+          "phases": {
+            "navigationToEntry": 146.39999985694885,
+            "entryToHud": 3,
+            "hudToSceneLoaded": 39.60000014305115,
+            "sceneLoadedToCanvasRaf": 30.200000047683716,
+            "hudToSceneEffect": 6.6000001430511475,
+            "pixiInit": 27,
+            "firstSync": 2.700000047683716,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 6,
+          "marks": {
+            "moduleEntryMs": 159.59999990463257,
+            "sceneImportStartMs": 159.70000004768372,
+            "firstHudCommitMs": 162.40000009536743,
+            "sceneEffectStartMs": 182.09999990463257,
+            "sceneModuleLoadedMs": 216.20000004768372,
+            "pixiInitStartMs": 216.20000004768372,
+            "pixiInitEndMs": 241.5,
+            "firstSyncStartMs": 241.79999995231628,
+            "firstSyncEndMs": 244.5,
+            "firstCanvasRafMs": 244.70000004768372
+          },
+          "phases": {
+            "navigationToEntry": 159.59999990463257,
+            "entryToHud": 2.8000001907348633,
+            "hudToSceneLoaded": 53.799999952316284,
+            "sceneLoadedToCanvasRaf": 28.5,
+            "hudToSceneEffect": 19.699999809265137,
+            "pixiInit": 25.299999952316284,
+            "firstSync": 2.700000047683716,
+            "syncToRaf": 0.20000004768371582
+          }
+        }
+      ]
+    },
+    {
+      "label": "6f3a191",
+      "mode": "dev",
+      "scenario": "twelve",
+      "metrics": {
+        "navigationToEntry": {
+          "median": 132.7,
+          "odd": 129.7,
+          "even": 139.8,
+          "oddMinusEven": -10.1
+        },
+        "entryToHud": {
+          "median": 2.35,
+          "odd": 2.5,
+          "even": 2.2,
+          "oddMinusEven": 0.3
+        },
+        "hudToSceneLoaded": {
+          "median": 33.05,
+          "odd": 24.9,
+          "even": 39.7,
+          "oddMinusEven": -14.8
+        },
+        "sceneLoadedToCanvasRaf": {
+          "median": 32.1,
+          "odd": 36.6,
+          "even": 32.1,
+          "oddMinusEven": 4.5
+        },
+        "hudToSceneEffect": {
+          "median": 6.3,
+          "odd": 5.9,
+          "even": 7,
+          "oddMinusEven": -1.1
+        },
+        "pixiInit": {
+          "median": 27.6,
+          "odd": 31.1,
+          "even": 27.5,
+          "oddMinusEven": 3.6
+        },
+        "firstSync": {
+          "median": 3.8,
+          "odd": 3.7,
+          "even": 3.9,
+          "oddMinusEven": -0.2
+        },
+        "syncToRaf": {
+          "median": 0.4,
+          "odd": 0.9,
+          "even": 0.2,
+          "oddMinusEven": 0.7
+        },
+        "canvas": {
+          "median": 200.55,
+          "odd": 191.7,
+          "even": 214,
+          "oddMinusEven": -22.3
+        },
+        "sceneImport": {
+          "median": 35.3,
+          "odd": 27.2,
+          "even": 41.9,
+          "oddMinusEven": -14.7
+        },
+        "effectToInit": {
+          "median": 26.45,
+          "odd": 19,
+          "even": 32.7,
+          "oddMinusEven": -13.7
+        },
+        "moduleCount": {
+          "median": 80,
+          "odd": 80,
+          "even": 80,
+          "oddMinusEven": 0
+        },
+        "lastModuleResponse": {
+          "median": 173.05,
+          "odd": 165.4,
+          "even": 188.7,
+          "oddMinusEven": -23.3
+        },
+        "longtaskCount": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        },
+        "longtaskMs": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        }
+      },
+      "samples": [
+        {
+          "round": 1,
+          "marks": {
+            "moduleEntryMs": 129.69999980926514,
+            "sceneImportStartMs": 129.79999995231628,
+            "firstHudCommitMs": 132.29999995231628,
+            "sceneEffectStartMs": 137.89999985694885,
+            "sceneModuleLoadedMs": 158.69999980926514,
+            "pixiInitStartMs": 158.69999980926514,
+            "pixiInitEndMs": 189.79999995231628,
+            "firstSyncStartMs": 190.19999980926514,
+            "firstSyncEndMs": 194.29999995231628,
+            "firstCanvasRafMs": 195.29999995231628
+          },
+          "phases": {
+            "navigationToEntry": 129.69999980926514,
+            "entryToHud": 2.6000001430511475,
+            "hudToSceneLoaded": 26.399999856948853,
+            "sceneLoadedToCanvasRaf": 36.60000014305115,
+            "hudToSceneEffect": 5.599999904632568,
+            "pixiInit": 31.100000143051147,
+            "firstSync": 4.1000001430511475,
+            "syncToRaf": 1
+          }
+        },
+        {
+          "round": 2,
+          "marks": {
+            "moduleEntryMs": 131.79999995231628,
+            "sceneImportStartMs": 132,
+            "firstHudCommitMs": 134,
+            "sceneEffectStartMs": 141,
+            "sceneModuleLoadedMs": 173.70000004768372,
+            "pixiInitStartMs": 173.70000004768372,
+            "pixiInitEndMs": 201.20000004768372,
+            "firstSyncStartMs": 201.5,
+            "firstSyncEndMs": 205.59999990463257,
+            "firstCanvasRafMs": 205.79999995231628
+          },
+          "phases": {
+            "navigationToEntry": 131.79999995231628,
+            "entryToHud": 2.200000047683716,
+            "hudToSceneLoaded": 39.700000047683716,
+            "sceneLoadedToCanvasRaf": 32.09999990463257,
+            "hudToSceneEffect": 7,
+            "pixiInit": 27.5,
+            "firstSync": 4.099999904632568,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 3,
+          "marks": {
+            "moduleEntryMs": 133.60000014305115,
+            "sceneImportStartMs": 133.80000019073486,
+            "firstHudCommitMs": 135.90000009536743,
+            "sceneEffectStartMs": 141.90000009536743,
+            "sceneModuleLoadedMs": 159.60000014305115,
+            "pixiInitStartMs": 159.60000014305115,
+            "pixiInitEndMs": 186.40000009536743,
+            "firstSyncStartMs": 186.80000019073486,
+            "firstSyncEndMs": 189.90000009536743,
+            "firstCanvasRafMs": 190.5
+          },
+          "phases": {
+            "navigationToEntry": 133.60000014305115,
+            "entryToHud": 2.299999952316284,
+            "hudToSceneLoaded": 23.700000047683716,
+            "sceneLoadedToCanvasRaf": 30.899999856948853,
+            "hudToSceneEffect": 6,
+            "pixiInit": 26.799999952316284,
+            "firstSync": 3.0999999046325684,
+            "syncToRaf": 0.5999999046325684
+          }
+        },
+        {
+          "round": 4,
+          "marks": {
+            "moduleEntryMs": 139.79999995231628,
+            "sceneImportStartMs": 140,
+            "firstHudCommitMs": 142.20000004768372,
+            "sceneEffectStartMs": 149.79999995231628,
+            "sceneModuleLoadedMs": 181.90000009536743,
+            "pixiInitStartMs": 181.90000009536743,
+            "pixiInitEndMs": 209.60000014305115,
+            "firstSyncStartMs": 209.90000009536743,
+            "firstSyncEndMs": 213.79999995231628,
+            "firstCanvasRafMs": 214
+          },
+          "phases": {
+            "navigationToEntry": 139.79999995231628,
+            "entryToHud": 2.4000000953674316,
+            "hudToSceneLoaded": 39.700000047683716,
+            "sceneLoadedToCanvasRaf": 32.09999990463257,
+            "hudToSceneEffect": 7.599999904632568,
+            "pixiInit": 27.700000047683716,
+            "firstSync": 3.8999998569488525,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 5,
+          "marks": {
+            "moduleEntryMs": 125.70000004768372,
+            "sceneImportStartMs": 125.89999985694885,
+            "firstHudCommitMs": 128.20000004768372,
+            "sceneEffectStartMs": 134.09999990463257,
+            "sceneModuleLoadedMs": 153.09999990463257,
+            "pixiInitStartMs": 153.09999990463257,
+            "pixiInitEndMs": 186.5,
+            "firstSyncStartMs": 187.09999990463257,
+            "firstSyncEndMs": 190.79999995231628,
+            "firstCanvasRafMs": 191.70000004768372
+          },
+          "phases": {
+            "navigationToEntry": 125.70000004768372,
+            "entryToHud": 2.5,
+            "hudToSceneLoaded": 24.899999856948853,
+            "sceneLoadedToCanvasRaf": 38.60000014305115,
+            "hudToSceneEffect": 5.8999998569488525,
+            "pixiInit": 33.40000009536743,
+            "firstSync": 3.700000047683716,
+            "syncToRaf": 0.9000000953674316
+          }
+        },
+        {
+          "round": 6,
+          "marks": {
+            "moduleEntryMs": 375.2999999523163,
+            "sceneImportStartMs": 375.5,
+            "firstHudCommitMs": 377.5,
+            "sceneEffectStartMs": 384.09999990463257,
+            "sceneModuleLoadedMs": 421,
+            "pixiInitStartMs": 421.09999990463257,
+            "pixiInitEndMs": 448.39999985694885,
+            "firstSyncStartMs": 448.7000000476837,
+            "firstSyncEndMs": 452.39999985694885,
+            "firstCanvasRafMs": 452.59999990463257
+          },
+          "phases": {
+            "navigationToEntry": 375.2999999523163,
+            "entryToHud": 2.200000047683716,
+            "hudToSceneLoaded": 43.5,
+            "sceneLoadedToCanvasRaf": 31.59999990463257,
+            "hudToSceneEffect": 6.599999904632568,
+            "pixiInit": 27.299999952316284,
+            "firstSync": 3.6999998092651367,
+            "syncToRaf": 0.20000004768371582
+          }
+        }
+      ]
+    },
+    {
+      "label": "6f3a191",
+      "mode": "preview",
+      "scenario": "twelve",
+      "metrics": {
+        "navigationToEntry": {
+          "median": 64.85,
+          "odd": 64.6,
+          "even": 66.4,
+          "oddMinusEven": -1.8
+        },
+        "entryToHud": {
+          "median": 3.3,
+          "odd": 3.3,
+          "even": 3.4,
+          "oddMinusEven": -0.1
+        },
+        "hudToSceneLoaded": {
+          "median": 36.85,
+          "odd": 41.4,
+          "even": 32.3,
+          "oddMinusEven": 9.1
+        },
+        "sceneLoadedToCanvasRaf": {
+          "median": 42.45,
+          "odd": 42.9,
+          "even": 42,
+          "oddMinusEven": 0.9
+        },
+        "hudToSceneEffect": {
+          "median": 11.95,
+          "odd": 12.6,
+          "even": 11.3,
+          "oddMinusEven": 1.3
+        },
+        "pixiInit": {
+          "median": 37.95,
+          "odd": 38,
+          "even": 37.9,
+          "oddMinusEven": 0.1
+        },
+        "firstSync": {
+          "median": 3.65,
+          "odd": 3.7,
+          "even": 3.6,
+          "oddMinusEven": 0.1
+        },
+        "syncToRaf": {
+          "median": 0.2,
+          "odd": 0.4,
+          "even": 0.2,
+          "oddMinusEven": 0.2
+        },
+        "canvas": {
+          "median": 154.75,
+          "odd": 150.5,
+          "even": 159,
+          "oddMinusEven": -8.5
+        },
+        "sceneImport": {
+          "median": 40.15,
+          "odd": 44.6,
+          "even": 35.7,
+          "oddMinusEven": 8.9
+        },
+        "effectToInit": {
+          "median": 27.45,
+          "odd": 32.3,
+          "even": 22.6,
+          "oddMinusEven": 9.7
+        },
+        "moduleCount": {
+          "median": 15,
+          "odd": 15,
+          "even": 15,
+          "oddMinusEven": 0
+        },
+        "lastModuleResponse": {
+          "median": 124.55,
+          "odd": 124.8,
+          "even": 124.3,
+          "oddMinusEven": 0.5
+        },
+        "longtaskCount": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        },
+        "longtaskMs": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        }
+      },
+      "samples": [
+        {
+          "round": 1,
+          "marks": {
+            "moduleEntryMs": 65.09999990463257,
+            "sceneImportStartMs": 65.09999990463257,
+            "firstHudCommitMs": 68.39999985694885,
+            "sceneEffectStartMs": 81,
+            "sceneModuleLoadedMs": 121.20000004768372,
+            "pixiInitStartMs": 121.20000004768372,
+            "pixiInitEndMs": 159.20000004768372,
+            "firstSyncStartMs": 159.59999990463257,
+            "firstSyncEndMs": 163.5,
+            "firstCanvasRafMs": 164.09999990463257
+          },
+          "phases": {
+            "navigationToEntry": 65.09999990463257,
+            "entryToHud": 3.299999952316284,
+            "hudToSceneLoaded": 52.80000019073486,
+            "sceneLoadedToCanvasRaf": 42.89999985694885,
+            "hudToSceneEffect": 12.600000143051147,
+            "pixiInit": 38,
+            "firstSync": 3.9000000953674316,
+            "syncToRaf": 0.5999999046325684
+          }
+        },
+        {
+          "round": 2,
+          "marks": {
+            "moduleEntryMs": 61,
+            "sceneImportStartMs": 61,
+            "firstHudCommitMs": 65.39999985694885,
+            "sceneEffectStartMs": 78.89999985694885,
+            "sceneModuleLoadedMs": 94.29999995231628,
+            "pixiInitStartMs": 94.29999995231628,
+            "pixiInitEndMs": 154.39999985694885,
+            "firstSyncStartMs": 154.79999995231628,
+            "firstSyncEndMs": 158.79999995231628,
+            "firstCanvasRafMs": 159
+          },
+          "phases": {
+            "navigationToEntry": 61,
+            "entryToHud": 4.3999998569488525,
+            "hudToSceneLoaded": 28.90000009536743,
+            "sceneLoadedToCanvasRaf": 64.70000004768372,
+            "hudToSceneEffect": 13.5,
+            "pixiInit": 60.09999990463257,
+            "firstSync": 4,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 3,
+          "marks": {
+            "moduleEntryMs": 62.299999952316284,
+            "sceneImportStartMs": 62.299999952316284,
+            "firstHudCommitMs": 65.5,
+            "sceneEffectStartMs": 74.59999990463257,
+            "sceneModuleLoadedMs": 106.89999985694885,
+            "pixiInitStartMs": 106.89999985694885,
+            "pixiInitEndMs": 140.19999980926514,
+            "firstSyncStartMs": 140.59999990463257,
+            "firstSyncEndMs": 144.19999980926514,
+            "firstCanvasRafMs": 144.39999985694885
+          },
+          "phases": {
+            "navigationToEntry": 62.299999952316284,
+            "entryToHud": 3.200000047683716,
+            "hudToSceneLoaded": 41.39999985694885,
+            "sceneLoadedToCanvasRaf": 37.5,
+            "hudToSceneEffect": 9.099999904632568,
+            "pixiInit": 33.299999952316284,
+            "firstSync": 3.5999999046325684,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 4,
+          "marks": {
+            "moduleEntryMs": 66.40000009536743,
+            "sceneImportStartMs": 66.40000009536743,
+            "firstHudCommitMs": 69.79999995231628,
+            "sceneEffectStartMs": 79.5,
+            "sceneModuleLoadedMs": 102.10000014305115,
+            "pixiInitStartMs": 102.10000014305115,
+            "pixiInitEndMs": 139.60000014305115,
+            "firstSyncStartMs": 140,
+            "firstSyncEndMs": 143.60000014305115,
+            "firstCanvasRafMs": 143.70000004768372
+          },
+          "phases": {
+            "navigationToEntry": 66.40000009536743,
+            "entryToHud": 3.3999998569488525,
+            "hudToSceneLoaded": 32.30000019073486,
+            "sceneLoadedToCanvasRaf": 41.59999990463257,
+            "hudToSceneEffect": 9.700000047683716,
+            "pixiInit": 37.5,
+            "firstSync": 3.6000001430511475,
+            "syncToRaf": 0.09999990463256836
+          }
+        },
+        {
+          "round": 5,
+          "marks": {
+            "moduleEntryMs": 64.59999990463257,
+            "sceneImportStartMs": 64.59999990463257,
+            "firstHudCommitMs": 67.89999985694885,
+            "sceneEffectStartMs": 85.79999995231628,
+            "sceneModuleLoadedMs": 94.59999990463257,
+            "pixiInitStartMs": 94.70000004768372,
+            "pixiInitEndMs": 146.09999990463257,
+            "firstSyncStartMs": 146.39999985694885,
+            "firstSyncEndMs": 150.09999990463257,
+            "firstCanvasRafMs": 150.5
+          },
+          "phases": {
+            "navigationToEntry": 64.59999990463257,
+            "entryToHud": 3.299999952316284,
+            "hudToSceneLoaded": 26.700000047683716,
+            "sceneLoadedToCanvasRaf": 55.90000009536743,
+            "hudToSceneEffect": 17.90000009536743,
+            "pixiInit": 51.39999985694885,
+            "firstSync": 3.700000047683716,
+            "syncToRaf": 0.40000009536743164
+          }
+        },
+        {
+          "round": 6,
+          "marks": {
+            "moduleEntryMs": 67.09999990463257,
+            "sceneImportStartMs": 67.20000004768372,
+            "firstHudCommitMs": 70.09999990463257,
+            "sceneEffectStartMs": 81.40000009536743,
+            "sceneModuleLoadedMs": 120.20000004768372,
+            "pixiInitStartMs": 120.20000004768372,
+            "pixiInitEndMs": 158.09999990463257,
+            "firstSyncStartMs": 158.59999990463257,
+            "firstSyncEndMs": 162,
+            "firstCanvasRafMs": 162.20000004768372
+          },
+          "phases": {
+            "navigationToEntry": 67.09999990463257,
+            "entryToHud": 3,
+            "hudToSceneLoaded": 50.10000014305115,
+            "sceneLoadedToCanvasRaf": 42,
+            "hudToSceneEffect": 11.300000190734863,
+            "pixiInit": 37.89999985694885,
+            "firstSync": 3.4000000953674316,
+            "syncToRaf": 0.20000004768371582
+          }
+        }
+      ]
+    },
+    {
+      "label": "c68541d",
+      "mode": "dev",
+      "scenario": "standard",
+      "metrics": {
+        "navigationToEntry": {
+          "median": 134.95,
+          "odd": 135.9,
+          "even": 134,
+          "oddMinusEven": 1.9
+        },
+        "entryToHud": {
+          "median": 3.15,
+          "odd": 3.2,
+          "even": 3.1,
+          "oddMinusEven": 0.1
+        },
+        "hudToSceneLoaded": {
+          "median": 35.1,
+          "odd": 35.6,
+          "even": 24.9,
+          "oddMinusEven": 10.7
+        },
+        "sceneLoadedToCanvasRaf": {
+          "median": 31.9,
+          "odd": 31.2,
+          "even": 34.6,
+          "oddMinusEven": -3.4
+        },
+        "hudToSceneEffect": {
+          "median": 6.45,
+          "odd": 6.7,
+          "even": 6.2,
+          "oddMinusEven": 0.5
+        },
+        "pixiInit": {
+          "median": 28.55,
+          "odd": 27.9,
+          "even": 30.2,
+          "oddMinusEven": -2.3
+        },
+        "firstSync": {
+          "median": 2.9,
+          "odd": 2.8,
+          "even": 3.1,
+          "oddMinusEven": -0.3
+        },
+        "syncToRaf": {
+          "median": 0.2,
+          "odd": 0.2,
+          "even": 0.3,
+          "oddMinusEven": -0.1
+        },
+        "canvas": {
+          "median": 204.75,
+          "odd": 208.4,
+          "even": 196.1,
+          "oddMinusEven": 12.3
+        },
+        "sceneImport": {
+          "median": 38,
+          "odd": 38.4,
+          "even": 27.8,
+          "oddMinusEven": 10.6
+        },
+        "effectToInit": {
+          "median": 28.7,
+          "odd": 28.9,
+          "even": 18.7,
+          "oddMinusEven": 10.2
+        },
+        "moduleCount": {
+          "median": 81,
+          "odd": 81,
+          "even": 81,
+          "oddMinusEven": 0
+        },
+        "lastModuleResponse": {
+          "median": 178.75,
+          "odd": 182.7,
+          "even": 167.5,
+          "oddMinusEven": 15.2
+        },
+        "longtaskCount": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        },
+        "longtaskMs": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        }
+      },
+      "samples": [
+        {
+          "round": 1,
+          "marks": {
+            "moduleEntryMs": 138.59999990463257,
+            "sceneImportStartMs": 138.79999995231628,
+            "firstHudCommitMs": 141.59999990463257,
+            "sceneEffectStartMs": 148.39999985694885,
+            "sceneModuleLoadedMs": 177.20000004768372,
+            "pixiInitStartMs": 177.29999995231628,
+            "pixiInitEndMs": 205.20000004768372,
+            "firstSyncStartMs": 205.5,
+            "firstSyncEndMs": 208.20000004768372,
+            "firstCanvasRafMs": 208.39999985694885
+          },
+          "phases": {
+            "navigationToEntry": 138.59999990463257,
+            "entryToHud": 3,
+            "hudToSceneLoaded": 35.60000014305115,
+            "sceneLoadedToCanvasRaf": 31.199999809265137,
+            "hudToSceneEffect": 6.799999952316284,
+            "pixiInit": 27.90000009536743,
+            "firstSync": 2.700000047683716,
+            "syncToRaf": 0.19999980926513672
+          }
+        },
+        {
+          "round": 2,
+          "marks": {
+            "moduleEntryMs": 133.5,
+            "sceneImportStartMs": 133.70000004768372,
+            "firstHudCommitMs": 136.59999990463257,
+            "sceneEffectStartMs": 142.79999995231628,
+            "sceneModuleLoadedMs": 161.5,
+            "pixiInitStartMs": 161.5,
+            "pixiInitEndMs": 191.70000004768372,
+            "firstSyncStartMs": 192.09999990463257,
+            "firstSyncEndMs": 195.20000004768372,
+            "firstCanvasRafMs": 196.09999990463257
+          },
+          "phases": {
+            "navigationToEntry": 133.5,
+            "entryToHud": 3.0999999046325684,
+            "hudToSceneLoaded": 24.90000009536743,
+            "sceneLoadedToCanvasRaf": 34.59999990463257,
+            "hudToSceneEffect": 6.200000047683716,
+            "pixiInit": 30.200000047683716,
+            "firstSync": 3.1000001430511475,
+            "syncToRaf": 0.8999998569488525
+          }
+        },
+        {
+          "round": 3,
+          "marks": {
+            "moduleEntryMs": 135.90000009536743,
+            "sceneImportStartMs": 136.09999990463257,
+            "firstHudCommitMs": 139.20000004768372,
+            "sceneEffectStartMs": 145.90000009536743,
+            "sceneModuleLoadedMs": 179.29999995231628,
+            "pixiInitStartMs": 179.29999995231628,
+            "pixiInitEndMs": 206.09999990463257,
+            "firstSyncStartMs": 206.5,
+            "firstSyncEndMs": 209.29999995231628,
+            "firstCanvasRafMs": 209.5
+          },
+          "phases": {
+            "navigationToEntry": 135.90000009536743,
+            "entryToHud": 3.299999952316284,
+            "hudToSceneLoaded": 40.09999990463257,
+            "sceneLoadedToCanvasRaf": 30.200000047683716,
+            "hudToSceneEffect": 6.700000047683716,
+            "pixiInit": 26.799999952316284,
+            "firstSync": 2.799999952316284,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 4,
+          "marks": {
+            "moduleEntryMs": 134,
+            "sceneImportStartMs": 134.20000004768372,
+            "firstHudCommitMs": 136.89999985694885,
+            "sceneEffectStartMs": 142.70000004768372,
+            "sceneModuleLoadedMs": 161.20000004768372,
+            "pixiInitStartMs": 161.20000004768372,
+            "pixiInitEndMs": 188.70000004768372,
+            "firstSyncStartMs": 188.89999985694885,
+            "firstSyncEndMs": 191.59999990463257,
+            "firstCanvasRafMs": 191.89999985694885
+          },
+          "phases": {
+            "navigationToEntry": 134,
+            "entryToHud": 2.8999998569488525,
+            "hudToSceneLoaded": 24.300000190734863,
+            "sceneLoadedToCanvasRaf": 30.699999809265137,
+            "hudToSceneEffect": 5.800000190734863,
+            "pixiInit": 27.5,
+            "firstSync": 2.700000047683716,
+            "syncToRaf": 0.2999999523162842
+          }
+        },
+        {
+          "round": 5,
+          "marks": {
+            "moduleEntryMs": 130.69999980926514,
+            "sceneImportStartMs": 130.89999985694885,
+            "firstHudCommitMs": 133.89999985694885,
+            "sceneEffectStartMs": 140,
+            "sceneModuleLoadedMs": 168.5,
+            "pixiInitStartMs": 168.5,
+            "pixiInitEndMs": 197.69999980926514,
+            "firstSyncStartMs": 197.89999985694885,
+            "firstSyncEndMs": 200.89999985694885,
+            "firstCanvasRafMs": 201.09999990463257
+          },
+          "phases": {
+            "navigationToEntry": 130.69999980926514,
+            "entryToHud": 3.200000047683716,
+            "hudToSceneLoaded": 34.60000014305115,
+            "sceneLoadedToCanvasRaf": 32.59999990463257,
+            "hudToSceneEffect": 6.1000001430511475,
+            "pixiInit": 29.199999809265137,
+            "firstSync": 3,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 6,
+          "marks": {
+            "moduleEntryMs": 156,
+            "sceneImportStartMs": 156.20000004768372,
+            "firstHudCommitMs": 159.29999995231628,
+            "sceneEffectStartMs": 178.70000004768372,
+            "sceneModuleLoadedMs": 208.70000004768372,
+            "pixiInitStartMs": 208.70000004768372,
+            "pixiInitEndMs": 239.5,
+            "firstSyncStartMs": 240.09999990463257,
+            "firstSyncEndMs": 243.39999985694885,
+            "firstCanvasRafMs": 243.5
+          },
+          "phases": {
+            "navigationToEntry": 156,
+            "entryToHud": 3.299999952316284,
+            "hudToSceneLoaded": 49.40000009536743,
+            "sceneLoadedToCanvasRaf": 34.799999952316284,
+            "hudToSceneEffect": 19.40000009536743,
+            "pixiInit": 30.799999952316284,
+            "firstSync": 3.299999952316284,
+            "syncToRaf": 0.10000014305114746
+          }
+        }
+      ]
+    },
+    {
+      "label": "c68541d",
+      "mode": "dev",
+      "scenario": "twelve",
+      "metrics": {
+        "navigationToEntry": {
+          "median": 146.45,
+          "odd": 142.1,
+          "even": 159.9,
+          "oddMinusEven": -17.8
+        },
+        "entryToHud": {
+          "median": 2.5,
+          "odd": 2.5,
+          "even": 2.5,
+          "oddMinusEven": 0
+        },
+        "hudToSceneLoaded": {
+          "median": 40.55,
+          "odd": 43.2,
+          "even": 40,
+          "oddMinusEven": 3.2
+        },
+        "sceneLoadedToCanvasRaf": {
+          "median": 33.2,
+          "odd": 33.8,
+          "even": 32.3,
+          "oddMinusEven": 1.5
+        },
+        "hudToSceneEffect": {
+          "median": 6.85,
+          "odd": 15.2,
+          "even": 6.7,
+          "oddMinusEven": 8.5
+        },
+        "pixiInit": {
+          "median": 27.5,
+          "odd": 29.7,
+          "even": 26.4,
+          "oddMinusEven": 3.3
+        },
+        "firstSync": {
+          "median": 4.95,
+          "odd": 4.6,
+          "even": 5.4,
+          "oddMinusEven": -0.8
+        },
+        "syncToRaf": {
+          "median": 0.2,
+          "odd": 0.2,
+          "even": 0.2,
+          "oddMinusEven": 0
+        },
+        "canvas": {
+          "median": 226.3,
+          "odd": 222.7,
+          "even": 232.5,
+          "oddMinusEven": -9.8
+        },
+        "sceneImport": {
+          "median": 42.95,
+          "odd": 45.5,
+          "even": 42.5,
+          "oddMinusEven": 3
+        },
+        "effectToInit": {
+          "median": 28,
+          "odd": 26.3,
+          "even": 33,
+          "oddMinusEven": -6.7
+        },
+        "moduleCount": {
+          "median": 81,
+          "odd": 81,
+          "even": 81,
+          "oddMinusEven": 0
+        },
+        "lastModuleResponse": {
+          "median": 198.1,
+          "odd": 194,
+          "even": 207.3,
+          "oddMinusEven": -13.3
+        },
+        "longtaskCount": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        },
+        "longtaskMs": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        }
+      },
+      "samples": [
+        {
+          "round": 1,
+          "marks": {
+            "moduleEntryMs": 150.79999995231628,
+            "sceneImportStartMs": 151,
+            "firstHudCommitMs": 153.29999995231628,
+            "sceneEffectStartMs": 170.29999995231628,
+            "sceneModuleLoadedMs": 196.5,
+            "pixiInitStartMs": 196.59999990463257,
+            "pixiInitEndMs": 226.29999995231628,
+            "firstSyncStartMs": 226.59999990463257,
+            "firstSyncEndMs": 229.69999980926514,
+            "firstCanvasRafMs": 229.89999985694885
+          },
+          "phases": {
+            "navigationToEntry": 150.79999995231628,
+            "entryToHud": 2.5,
+            "hudToSceneLoaded": 43.200000047683716,
+            "sceneLoadedToCanvasRaf": 33.39999985694885,
+            "hudToSceneEffect": 17,
+            "pixiInit": 29.700000047683716,
+            "firstSync": 3.0999999046325684,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 2,
+          "marks": {
+            "moduleEntryMs": 159.90000009536743,
+            "sceneImportStartMs": 160,
+            "firstHudCommitMs": 162.5,
+            "sceneEffectStartMs": 169.5,
+            "sceneModuleLoadedMs": 202.5,
+            "pixiInitStartMs": 202.5,
+            "pixiInitEndMs": 226.90000009536743,
+            "firstSyncStartMs": 227.20000004768372,
+            "firstSyncEndMs": 232.20000004768372,
+            "firstCanvasRafMs": 232.5
+          },
+          "phases": {
+            "navigationToEntry": 159.90000009536743,
+            "entryToHud": 2.5999999046325684,
+            "hudToSceneLoaded": 40,
+            "sceneLoadedToCanvasRaf": 30,
+            "hudToSceneEffect": 7,
+            "pixiInit": 24.40000009536743,
+            "firstSync": 5,
+            "syncToRaf": 0.2999999523162842
+          }
+        },
+        {
+          "round": 3,
+          "marks": {
+            "moduleEntryMs": 142.09999990463257,
+            "sceneImportStartMs": 142.29999995231628,
+            "firstHudCommitMs": 144.5,
+            "sceneEffectStartMs": 159.69999980926514,
+            "sceneModuleLoadedMs": 188.89999985694885,
+            "pixiInitStartMs": 189,
+            "pixiInitEndMs": 217.39999985694885,
+            "firstSyncStartMs": 217.59999990463257,
+            "firstSyncEndMs": 222.5,
+            "firstCanvasRafMs": 222.69999980926514
+          },
+          "phases": {
+            "navigationToEntry": 142.09999990463257,
+            "entryToHud": 2.4000000953674316,
+            "hudToSceneLoaded": 44.39999985694885,
+            "sceneLoadedToCanvasRaf": 33.799999952316284,
+            "hudToSceneEffect": 15.199999809265137,
+            "pixiInit": 28.399999856948853,
+            "firstSync": 4.900000095367432,
+            "syncToRaf": 0.19999980926513672
+          }
+        },
+        {
+          "round": 4,
+          "marks": {
+            "moduleEntryMs": 140.79999995231628,
+            "sceneImportStartMs": 141,
+            "firstHudCommitMs": 143,
+            "sceneEffectStartMs": 149.20000004768372,
+            "sceneModuleLoadedMs": 175.79999995231628,
+            "pixiInitStartMs": 175.90000009536743,
+            "pixiInitEndMs": 202.5,
+            "firstSyncStartMs": 202.79999995231628,
+            "firstSyncEndMs": 208.70000004768372,
+            "firstCanvasRafMs": 208.79999995231628
+          },
+          "phases": {
+            "navigationToEntry": 140.79999995231628,
+            "entryToHud": 2.200000047683716,
+            "hudToSceneLoaded": 32.799999952316284,
+            "sceneLoadedToCanvasRaf": 33,
+            "hudToSceneEffect": 6.200000047683716,
+            "pixiInit": 26.59999990463257,
+            "firstSync": 5.900000095367432,
+            "syncToRaf": 0.09999990463256836
+          }
+        },
+        {
+          "round": 5,
+          "marks": {
+            "moduleEntryMs": 131.40000009536743,
+            "sceneImportStartMs": 131.59999990463257,
+            "firstHudCommitMs": 133.90000009536743,
+            "sceneEffectStartMs": 139.5,
+            "sceneModuleLoadedMs": 160.20000004768372,
+            "pixiInitStartMs": 160.20000004768372,
+            "pixiInitEndMs": 191.09999990463257,
+            "firstSyncStartMs": 191.70000004768372,
+            "firstSyncEndMs": 196.29999995231628,
+            "firstCanvasRafMs": 196.59999990463257
+          },
+          "phases": {
+            "navigationToEntry": 131.40000009536743,
+            "entryToHud": 2.5,
+            "hudToSceneLoaded": 26.299999952316284,
+            "sceneLoadedToCanvasRaf": 36.39999985694885,
+            "hudToSceneEffect": 5.599999904632568,
+            "pixiInit": 30.899999856948853,
+            "firstSync": 4.599999904632568,
+            "syncToRaf": 0.2999999523162842
+          }
+        },
+        {
+          "round": 6,
+          "marks": {
+            "moduleEntryMs": 381.7000000476837,
+            "sceneImportStartMs": 381.90000009536743,
+            "firstHudCommitMs": 384.2000000476837,
+            "sceneEffectStartMs": 390.90000009536743,
+            "sceneModuleLoadedMs": 425.2999999523163,
+            "pixiInitStartMs": 425.40000009536743,
+            "pixiInitEndMs": 451.7999999523163,
+            "firstSyncStartMs": 452,
+            "firstSyncEndMs": 457.40000009536743,
+            "firstCanvasRafMs": 457.59999990463257
+          },
+          "phases": {
+            "navigationToEntry": 381.7000000476837,
+            "entryToHud": 2.5,
+            "hudToSceneLoaded": 41.09999990463257,
+            "sceneLoadedToCanvasRaf": 32.299999952316284,
+            "hudToSceneEffect": 6.700000047683716,
+            "pixiInit": 26.399999856948853,
+            "firstSync": 5.400000095367432,
+            "syncToRaf": 0.19999980926513672
+          }
+        }
+      ]
+    },
+    {
+      "label": "c68541d",
+      "mode": "preview",
+      "scenario": "twelve",
+      "metrics": {
+        "navigationToEntry": {
+          "median": 65.5,
+          "odd": 65.8,
+          "even": 65,
+          "oddMinusEven": 0.8
+        },
+        "entryToHud": {
+          "median": 3.55,
+          "odd": 3.2,
+          "even": 3.7,
+          "oddMinusEven": -0.5
+        },
+        "hudToSceneLoaded": {
+          "median": 45.45,
+          "odd": 46.7,
+          "even": 25.8,
+          "oddMinusEven": 20.9
+        },
+        "sceneLoadedToCanvasRaf": {
+          "median": 41.95,
+          "odd": 40.3,
+          "even": 44.9,
+          "oddMinusEven": -4.6
+        },
+        "hudToSceneEffect": {
+          "median": 10.65,
+          "odd": 8.1,
+          "even": 26.6,
+          "oddMinusEven": -18.5
+        },
+        "pixiInit": {
+          "median": 37.45,
+          "odd": 35.3,
+          "even": 40.3,
+          "oddMinusEven": -5
+        },
+        "firstSync": {
+          "median": 3.85,
+          "odd": 3.3,
+          "even": 4,
+          "oddMinusEven": -0.7
+        },
+        "syncToRaf": {
+          "median": 0.2,
+          "odd": 0.2,
+          "even": 0.2,
+          "oddMinusEven": 0
+        },
+        "canvas": {
+          "median": 157.15,
+          "odd": 155.9,
+          "even": 158.4,
+          "oddMinusEven": -2.5
+        },
+        "sceneImport": {
+          "median": 48.6,
+          "odd": 49.8,
+          "even": 29.2,
+          "oddMinusEven": 20.6
+        },
+        "effectToInit": {
+          "median": 28.25,
+          "odd": 39.1,
+          "even": 18.4,
+          "oddMinusEven": 20.7
+        },
+        "moduleCount": {
+          "median": 15,
+          "odd": 15,
+          "even": 15,
+          "oddMinusEven": 0
+        },
+        "lastModuleResponse": {
+          "median": 126.5,
+          "odd": 130.2,
+          "even": 117.1,
+          "oddMinusEven": 13.1
+        },
+        "longtaskCount": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        },
+        "longtaskMs": {
+          "median": 0,
+          "odd": 0,
+          "even": 0,
+          "oddMinusEven": 0
+        }
+      },
+      "samples": [
+        {
+          "round": 1,
+          "marks": {
+            "moduleEntryMs": 66.60000014305115,
+            "sceneImportStartMs": 66.70000004768372,
+            "firstHudCommitMs": 71.5,
+            "sceneEffectStartMs": 84.70000004768372,
+            "sceneModuleLoadedMs": 128.80000019073486,
+            "pixiInitStartMs": 128.80000019073486,
+            "pixiInitEndMs": 168.40000009536743,
+            "firstSyncStartMs": 168.80000019073486,
+            "firstSyncEndMs": 171.90000009536743,
+            "firstCanvasRafMs": 172.40000009536743
+          },
+          "phases": {
+            "navigationToEntry": 66.60000014305115,
+            "entryToHud": 4.8999998569488525,
+            "hudToSceneLoaded": 57.30000019073486,
+            "sceneLoadedToCanvasRaf": 43.59999990463257,
+            "hudToSceneEffect": 13.200000047683716,
+            "pixiInit": 39.59999990463257,
+            "firstSync": 3.0999999046325684,
+            "syncToRaf": 0.5
+          }
+        },
+        {
+          "round": 2,
+          "marks": {
+            "moduleEntryMs": 60.299999952316284,
+            "sceneImportStartMs": 60.39999985694885,
+            "firstHudCommitMs": 64,
+            "sceneModuleLoadedMs": 86.5,
+            "sceneEffectStartMs": 102.39999985694885,
+            "pixiInitStartMs": 102.59999990463257,
+            "pixiInitEndMs": 154.09999990463257,
+            "firstSyncStartMs": 154.5,
+            "firstSyncEndMs": 158.20000004768372,
+            "firstCanvasRafMs": 158.39999985694885
+          },
+          "phases": {
+            "navigationToEntry": 60.299999952316284,
+            "entryToHud": 3.700000047683716,
+            "hudToSceneLoaded": 22.5,
+            "sceneLoadedToCanvasRaf": 71.89999985694885,
+            "hudToSceneEffect": 38.39999985694885,
+            "pixiInit": 51.5,
+            "firstSync": 3.700000047683716,
+            "syncToRaf": 0.19999980926513672
+          }
+        },
+        {
+          "round": 3,
+          "marks": {
+            "moduleEntryMs": 65.20000004768372,
+            "sceneImportStartMs": 65.20000004768372,
+            "firstHudCommitMs": 68.40000009536743,
+            "sceneEffectStartMs": 76.5,
+            "sceneModuleLoadedMs": 112.60000014305115,
+            "pixiInitStartMs": 112.60000014305115,
+            "pixiInitEndMs": 142.79999995231628,
+            "firstSyncStartMs": 143.20000004768372,
+            "firstSyncEndMs": 146.5,
+            "firstCanvasRafMs": 146.70000004768372
+          },
+          "phases": {
+            "navigationToEntry": 65.20000004768372,
+            "entryToHud": 3.200000047683716,
+            "hudToSceneLoaded": 44.200000047683716,
+            "sceneLoadedToCanvasRaf": 34.09999990463257,
+            "hudToSceneEffect": 8.099999904632568,
+            "pixiInit": 30.199999809265137,
+            "firstSync": 3.299999952316284,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 4,
+          "marks": {
+            "moduleEntryMs": 69.40000009536743,
+            "sceneImportStartMs": 69.40000009536743,
+            "firstHudCommitMs": 72.80000019073486,
+            "sceneEffectStartMs": 80.20000004768372,
+            "sceneModuleLoadedMs": 98.60000014305115,
+            "pixiInitStartMs": 98.60000014305115,
+            "pixiInitEndMs": 132.30000019073486,
+            "firstSyncStartMs": 132.60000014305115,
+            "firstSyncEndMs": 137.10000014305115,
+            "firstCanvasRafMs": 137.20000004768372
+          },
+          "phases": {
+            "navigationToEntry": 69.40000009536743,
+            "entryToHud": 3.4000000953674316,
+            "hudToSceneLoaded": 25.799999952316284,
+            "sceneLoadedToCanvasRaf": 38.59999990463257,
+            "hudToSceneEffect": 7.3999998569488525,
+            "pixiInit": 33.700000047683716,
+            "firstSync": 4.5,
+            "syncToRaf": 0.09999990463256836
+          }
+        },
+        {
+          "round": 5,
+          "marks": {
+            "moduleEntryMs": 65.80000019073486,
+            "sceneImportStartMs": 65.80000019073486,
+            "firstHudCommitMs": 68.90000009536743,
+            "sceneEffectStartMs": 76.5,
+            "sceneModuleLoadedMs": 115.60000014305115,
+            "pixiInitStartMs": 115.60000014305115,
+            "pixiInitEndMs": 150.90000009536743,
+            "firstSyncStartMs": 151.30000019073486,
+            "firstSyncEndMs": 155.70000004768372,
+            "firstCanvasRafMs": 155.90000009536743
+          },
+          "phases": {
+            "navigationToEntry": 65.80000019073486,
+            "entryToHud": 3.0999999046325684,
+            "hudToSceneLoaded": 46.700000047683716,
+            "sceneLoadedToCanvasRaf": 40.299999952316284,
+            "hudToSceneEffect": 7.599999904632568,
+            "pixiInit": 35.299999952316284,
+            "firstSync": 4.3999998569488525,
+            "syncToRaf": 0.20000004768371582
+          }
+        },
+        {
+          "round": 6,
+          "marks": {
+            "moduleEntryMs": 65,
+            "sceneImportStartMs": 65,
+            "firstHudCommitMs": 69.19999980926514,
+            "sceneEffectStartMs": 95.79999995231628,
+            "sceneModuleLoadedMs": 116.19999980926514,
+            "pixiInitStartMs": 116.19999980926514,
+            "pixiInitEndMs": 156.5,
+            "firstSyncStartMs": 156.79999995231628,
+            "firstSyncEndMs": 160.79999995231628,
+            "firstCanvasRafMs": 161.09999990463257
+          },
+          "phases": {
+            "navigationToEntry": 65,
+            "entryToHud": 4.199999809265137,
+            "hudToSceneLoaded": 47,
+            "sceneLoadedToCanvasRaf": 44.90000009536743,
+            "hudToSceneEffect": 26.600000143051147,
+            "pixiInit": 40.30000019073486,
+            "firstSync": 4,
+            "syncToRaf": 0.2999999523162842
+          }
+        }
+      ]
+    }
+  ]
+}

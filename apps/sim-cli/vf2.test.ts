@@ -4,6 +4,37 @@ import {labSession} from '../web/src/office-lab.js';
 import {partnerAvailability} from '../web/src/partner-state.js';
 import {commandFeedbackTarget,feedbackSurface,presentationEvent,nextFeedback,clearLocalFeedback} from '../web/src/presentation-events.js';
 import type {UiFeedback} from '../web/src/presentation-events.js';
+import {saveSlotRows} from '../web/src/dialog.js';
+import type {StoredSave} from 'oot-platform';
+
+test('system saves expose nine stable slots, only manual slots can be saved and empty slots cannot load',()=>{
+ const rows=saveSlotRows([],false);
+ expect(rows.map(r=>r.id)).toEqual(['manual-1','manual-2','manual-3','auto','backup-1','backup-2','backup-3','backup-4','backup-5']);
+ expect(rows.filter(r=>r.canSave).map(r=>r.id)).toEqual(['manual-1','manual-2','manual-3']);
+ expect(rows.some(r=>r.canLoad)).toBe(false);
+});
+test('system save records are matched by ID, including zero timestamps and reordered partial responses',()=>{
+ const manual:StoredSave={id:'manual-2',savedAt:0,revision:1,text:'isolated test'},backup:StoredSave={...manual,id:'backup-5'};
+ const records=[backup,null,manual],before=JSON.stringify(records),rows=saveSlotRows(records,false);
+ expect(rows.find(r=>r.id==='manual-1')).toMatchObject({record:null,canLoad:false});
+ expect(rows.find(r=>r.id==='manual-2')).toMatchObject({record:manual,canLoad:true,canSave:true});
+ expect(rows.find(r=>r.id==='backup-5')).toMatchObject({record:backup,canLoad:true,canSave:false});
+ expect(JSON.stringify(records)).toBe(before);
+});
+test('busy state disables every save and load without hiding existing records',()=>{
+ const record:StoredSave={id:'manual-1',savedAt:0,revision:1,text:'isolated test'};
+ const rows=saveSlotRows([record],true);
+ expect(rows.every(r=>!r.canLoad&&!r.canSave)).toBe(true);
+ expect(rows[0]!.record).toBe(record);
+});
+test('save success and load feedback have one Saves owner; global errors retain priority across it',()=>{
+ const target={surface:'saves' as const},saved:UiFeedback={id:1,code:'SAVED',target,error:false,receipt:null};
+ for(const code of ['SAVED','LOADED'])expect(feedbackSurface({...saved,code},{saves:true,modal:true})).toBe('saves');
+ expect(feedbackSurface(saved,{actor:'qwen',saves:false,modal:true})).toBeNull();
+ const conflict:UiFeedback={...saved,code:'EXTERNAL_CHANGE',target:{surface:'global'},error:true};
+ expect(feedbackSurface(nextFeedback(conflict,saved,true),{saves:true,modal:true})).toBe('saves');
+ expect(nextFeedback(conflict,saved,true)).toBe(conflict);
+});
 
 test.each(['job','actor'] as const)('closing %s removes only matching ephemeral feedback before reopening',surface=>{
  const target={surface,id:'object-a'},base:UiFeedback={id:1,code:'INSUFFICIENT_RESOURCES',target,error:true,receipt:null};

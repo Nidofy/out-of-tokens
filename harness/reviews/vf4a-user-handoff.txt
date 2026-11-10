@@ -1,0 +1,95 @@
+# Codex 执行 Prompt：VF31-PERF-01 可归因定位 + 受控进入 VF4-A 单一系统弹窗组件试点
+
+## 1. 仓库、基线与独立复审裁决
+
+- **仓库目录**：`D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens`
+- **工作分支**：`codex/m1-foundation`
+- **上一固定实现 SHA**：`c68541da920b346b02c11b8e27540024c8ea30a5`（记录提交 `d00071a`，父提交 `38cce8d`）
+- **保护基线 VF1.1**：`2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f`；**长期性能基线**：`040031e`；**VF3 基线**：`6f3a19122f4508004aeb1ae3bfe0c1387047e9dc`。
+- **Gemini 独立复审裁决**：**`CONDITIONAL PASS`**
+  - **A1（`VF3-F-01` 镜头隔离）**：`PASS`（`sceneFocus`/`editorFocus`/`cameraZone` 解耦、编辑期间强制 `'overview'` 与退出恢复、`.reset-view` 隔离均已闭环；早期 `844×390` 即时读数确认为 Preact `useEffect` 执行前的同栈/抢先帧读取时序差，稳定帧 100% 恢复）。
+  - **A2（`VF3-F-02` 位置列表键盘、焦点与模态）**：`PASS`（`Escape`/`×` 归还触发器焦点、原生 `<dialog>` 与非原生 `OfficeEditor` 自动收起且不抢焦点、关闭模态不复活、CSS 隐藏规则均已闭环）。
+  - **A3（`VF3-F-03` 局部反馈退出寿命）**：`PASS`（`clearLocalFeedback` 按 `surface + id` 清理、函数式 `setFeedback` 解决异步 `visit` 滞后、保留 `assign`/`deliver` 唯一回执与暂停态全局告警均已闭环）。
+  - **C（`VF31-PERF-01` 性能门禁）**：**`OPEN / HOLD`**（优化 `preview` 两批相对 VF3 在 `-13.84%`～`+1.59%` 内；但未打包 `dev twelve` 首批对 `040031e` `+14.40%`、确认批对 `040031e` `+24.69%` / 对 VF3 `+24.37%`，且奇偶轮呈现 `~210ms` vs `~176ms` 的 ~2 帧双峰分立，旧 VF3 `dev standard` 波动亦未关闭）。**裁决：`VF31-PERF-01` 阻断任何新增/派生美术资产（`VF4-B`/`VF4-C`）与全站 CSS 重排；本轮必须按下方依赖顺序先执行 `任务 1（VF31-PERF-01 可归因定位与最小治理）`，满足门禁后仅允许在同一检查点推进 `任务 2（VF4-A：Map / Saves / Settings 单一系统弹窗组件试点）`**。
+  - **D（`VF4_PREPARATION.md` 评审）**：`PASS`（仅批准进入下方定义的单一检查点，**严禁把当前或下一检查点称为完整 `Visual Freeze 1` 冻结**）。
+
+## 2. 硬性护栏、保护路径与风格边界
+
+1. **保护路径零 diff**：`packages/`、`pnpm-lock.yaml`、`apps/web/public/art/ai-village` 相对 `2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f` 必须保持 **0 diff**。
+2. **版本与领域契约锁定**：保持 `engineVersion: 0.16.0` 与 `contentPackId: office-2`；严禁修改经营数值、价格、容量、奖励、RNG、Command 或存档格式；严禁启动 `O4-B`（确定性摸鱼）或 `O4-C`（休闲恢复）。
+3. **已批准规范不得回退**：
+   - S1 经营 HUD、S2 桌面三栏/手机分步与草稿寿命、S3 大头像档案（`160/128/112px`）、`Portrait` 四变体（`map/list/candidate/profile`）；
+   - 暖木场景 + 96% 暖白/深褐不透明纸面（`--paper`/`--solid`）+ 深胡桃工具（`--tool-surface`）+ 黄铜细饰（`--brass` 仅作装饰，不作焦点环）；
+   - 现代系统无衬线、`tabular-nums`、`16px` 核心数字 / `14px` 正文 / `12px` 决策说明与标签、`10/12/16/999px` 圆角、蓝色 `3px` 双焦点环（`--focus-ring` + `--focus-contrast`）；
+   - VF3/VF3.1 已闭环的显式定位、`返回全景`、`伙伴位置` 列表、`OfficeEditor` 镜头隔离、电脑前挡板名牌（`workLabelOffset = -32`）、矮横屏双会议席名牌错开（`+22px`）、精确 `hitArea` 与单主反馈寿命契约。
+4. **严禁越界扩产**：本轮**严禁修改或新增任何 SVG/WebP/PNG 资产文件**（不进 `VF4-B`/`VF4-C`），**严禁重排 S2/S3 或 `Studio`/`Journal`/`Team`/`Jobs` 四个抽屉**（抽屉与经营面板留后续独立批次）。
+5. **环境安全**：不得在复用 worktree（`../vf11-perf-baseline`、`../vf2-vf11-baseline`、`../vf3-vf2-baseline`、`../vf31-vf3-baseline`）中执行 `pnpm install` 或递归删除依赖 junction 目标；实机验证仅使用 `?office-lab=...` 隔离内存存档，不触碰真实玩家存档；禁止 `git push`、部署或调用付费模型。
+
+## 3. 任务与依赖顺序（严格串行）
+
+### 任务 1（前置门禁）：`VF31-PERF-01`（P2 调查门禁）—— `dev twelve` / `dev standard` 可归因定位与最小治理
+
+1. **问题 ID 与现象**：
+   - `VF31-PERF-01`：`c68541d` 在 `vite dev` 下 `twelve` 场景相对 `040031e` `+14.40%` / `+24.69%`、相对 VF3（`6f3a191`）`+4.99%` / `+24.37%`（其中确认批奇数轮正序 `209.3–211.4ms`、偶数轮逆序 `173.1–178.5ms`，相差约 2 个 60Hz VSync 帧），而打包后的 `preview twelve` 为 `-0.81%` / `+1.59%`。同时 VF3 遗留的 `dev standard` 波动亦待归因。
+2. **必做可归因诊断（预先固定协议，不靠重复采样刷分）**：
+   - 在 `harness/vf4a/performance-attribution-protocol.md` 中预先写明诊断协议：固定同机 IAB、`1280×720`、相同精确 DPR、相同电源/刷新率环境。
+   - 在仅限 `visual-review` / DEV 诊断路径下，对 `040031e`、`6f3a191`、`c68541d` 的 `dev twelve` 与 `dev standard`（以及 `preview twelve` 对照）采集**阶段细分耗时**并落盘至 `harness/vf4a/dev-attribution.json`：
+     1. `navigationStart -> moduleEntryMs`（入口脚本请求与 ESM 模块图加载完成时间，`performance.getEntriesByType('resource')` 模块请求数量与最后模块响应时间）；
+     2. `moduleEntryMs -> firstHudCommitMs`（`AlphaApp` 首次 Preact 提交与 `.studio-hud` 挂载耗时）；
+     3. `firstHudCommitMs -> sceneModuleLoadedMs`（`preloadWorkshop` / `loadScene()` 动态导入完成耗时）；
+     4. `sceneModuleLoadedMs -> firstCanvasRafMs`（Pixi `app.init` + 初次 `sync()` + 首个 HUD+Canvas 同帧 rAF 耗时）；
+     5. 记录奇偶轮（正序 vs 逆序）各阶段中位数差异及 `PerformanceObserver('longtask')` 长任务计数。
+3. **最小治理与停止条件**：
+   - 若诊断证实 `dev twelve` 的额外耗时/跨帧跳变源于 `vite dev` 下新增独立文件（如 `scene-navigation.ts` 等小模块拆分）带来的未打包 ESM 请求瀑布，可将小模块的运行时实现内聚回既有首屏模块（或让测试通过重导出复用而减少首屏额外模块请求跳数），保持零新增外部资源。
+   - **停止条件**：
+     - 若诊断发现 Preact 组件提交或 Pixi 场景初始化本身存在真实运行时退化且无法在不超范围的前提下消除，**立即在完成修复与性能复核后停止本轮作为 `VF3.2`，不进入任务 2（`VF4-A`）**；
+     - 只有当阶段归因明确（且任何代码调整后未引入新的运行时退化）时，才继续执行任务 2（`VF4-A`）。
+
+### 任务 2（受控单一试点）：`VF4-A` —— 原生 `<dialog>` 系统弹窗组（`Saves` / `Settings` / `Map`）组件与状态规范化试点
+
+1. **试点目标与选型依据**：
+   - 按照 `docs/VF4_PREPARATION.md` 第 2、3、4 节，选择低风险、零新增美术资源的原生 `<dialog>` 系统弹窗组——以 **`Saves`（存档与备份）** 与 **`Settings`（设置）** 为主试点，并用 **`Map`（世界地图）** 验证同一 `<Dialog>` 头部/内边距/纸面层次/焦点/窄屏复用。
+2. **具体实施要求**：
+   - **当前值 → 复用值 → 影响页面映射表**：在产出文档中明确记录 `Dialog` 及 `Saves` / `Settings` / `Map` 的字号、间距、圆角、边框、按钮高度（`≥44px`）、禁用态与焦点环映射。
+   - **`Saves`（存档与备份）结构化规整**：
+     - 将当前纯 `<p>` 行列表升级为符合 VF2/VF3 暖白/深褐纸面规范的紧凑卡片/列表行结构（复用 `--card`/`--paper`、`--line`、`10px/12px` 圆角、`tabular-nums`）；
+     - 清晰区分 `手动档（manual-1..3）`、`自动档（auto）` 与 `备份档（backup-1..5）` 的主次层级、时间戳（`12px` 辅助色）、空槽位态（`空 / Empty`）与操作按钮（`保存` / `载入`）；
+     - 保持顶部全局/局部 `FeedbackNotice`（如 `EXTERNAL_CHANGE`、`SAVED`、`LOADED`、版本更新提示、DSH `只读核对自动档`）的单主反馈位置与醒目度，底部 `导出当前进度` 与 `导入文件` 控件保持 44px 触控高度与清晰双焦点环。
+   - **`Settings`（设置）与 `Map`（世界地图）复用对齐**：
+     - 统一 `Dialog` 头部（`.dialog-head` 标题 `20px`、关闭按钮 `44×44px`）、正文说明（`14px`）与底部版权/状态辅助说明（`12px`）；
+     - `Settings` 的语言、深色模式、减少动态、跳转存档按钮保持清晰的选中态（`aria-pressed`）与焦点环；
+     - `Map` 的三场景卡片保留 `Portrait variant="map"`（`28×32px`）、当前所在场景 `aria-pressed="true"` 状态与禁用态说明。
+   - **严格保持模态契约**：
+     - 开关、`Escape`、`×` 关闭、焦点归还触发器、背景 `.scene-tools`/`.scene-presence`/`.studio-dock` 隐藏（`visibility: hidden`）、不抢模态焦点、不触碰玩家真实存档、不派发额外领域 Command。
+3. **允许修改的文件范围（白名单）**：
+   - `apps/web/src/dialog.tsx`
+   - `apps/web/src/studio-ui.tsx`
+   - `apps/web/src/alpha-app.tsx`
+   - `apps/web/src/scene-navigation.ts`（仅限任务 1 必要的模块瀑布合并/重导出整理）
+   - `apps/web/src/tokens.css`、`apps/web/src/vf1.css`、`apps/web/src/village-ui.css`
+   - `apps/sim-cli/vf2.test.ts`、`apps/sim-cli/vf3.test.ts`
+   - 文档与证据：`docs/STATUS.md`、`docs/VF4_PREPARATION.md`（或新增 `docs/VF4_CHECKPOINT.md`）、`docs/VISUAL_FREEZE_1.md`、`harness/build-log.md`、`harness/vf4a/*`、`harness/reviews/*`
+   - **禁止修改上述白名单以外的应用源码或任何美术资产文件**。
+
+## 4. 验证、性能采样与清洁交付要求
+
+1. **自动化门禁**：
+   - 补充/更新针对 `VF4-A` 试点状态及 `VF3-F-01`～`03` 不回退的单元/逻辑测试；
+   - 运行 `pnpm check` 与 `git diff --check`，确保全部测试、TypeScript、ESLint、Web 生产构建、DSH 构建 100% 通过。
+2. **实机浏览器矩阵复核（`harness/vf4a/`）**：
+   - 覆盖视口：`1280×720`、`390×844`、`560×800`（英文深色）、`844×390`（矮横屏）。
+   - 必测交互并落盘 JSON + 截图：
+     1. `Saves`：空档/有档显示、手动保存（在隔离 `office-lab` 内存档下验证 `SAVED` 局部反馈）、载入、`EXTERNAL_CHANGE` 全局暂停告警承接、长中英与深色模式、窄屏/矮横屏滚动与按钮可达性；
+     2. `Settings`：语言切换（中↔英）、深色切换（Light↔Dark）、减少动态切换（Still↔Full）、从 `Settings` 切换到 `Saves` 时模态焦点与 `.scene-tools` 隐藏状态不闪烁/不泄漏；
+     3. `Map`：当前场景高亮、`Portrait variant="map"` 尺寸（`28×32px`）、切场景后关闭并重置镜头；
+     4. 回归抽检：`390×844` 布置取消镜头恢复、`伙伴位置` `Escape` 焦点归还、Qwen 局部报错关窗重开清理。
+3. **源码冻结后同协议性能采样**：
+   - 所有应用源码/CSS/测试定稿后，生成 `harness/vf4a/source-freeze.json`（含原始与 LF SHA256），此后严禁再修改任何源码/CSS；
+   - 按既有协议（`1280×720`、同精确 DPR、12 组 180 帧预热排除、六轮正反交替 72 条 `040031e` / `c68541d` / `vf4a`、`dev` + `preview`、`standard` + `twelve`）执行采样；若任一组超 `+10%` 仅跑一次 72 条确认批，保留全部原始数据与不利批次，用 `summarize-startup.mjs` 汇总并验证 `source-freeze-verified.json` 零改动。
+4. **收尾清洁与两次提交约定**：
+   - 运行默认生产构建 `pnpm --filter oot-web build`，确认 `apps/web/dist/assets/*.js` 不含 `vf-metrics` 或 `vf-startup`；
+   - 关闭所有临时开发/预览端口（`5181–5186`），恢复浏览器视口并关闭临时标签页；
+   - 确认 `git diff 2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f HEAD -- packages pnpm-lock.yaml apps/web/public/art/ai-village` 为空且 `git status -sb` 干净；
+   - 按惯例创建**两个本地提交**：
+     1. 第一个提交：实现、测试、检查点文档与 `harness/vf4a/` 证据；
+     2. 第二个提交（独立记录提交）：记录固定实现 SHA、更新 `docs/STATUS.md` 与 `harness/reviews/vf4a-handoff.md`，并生成下一轮供用户转交的 **Gemini 独立复审 Prompt**，随后立即暂停等待用户指示。

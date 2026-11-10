@@ -205,3 +205,17 @@ VF3固定实现 `6f3a19122f4508004aeb1ae3bfe0c1387047e9dc`；独立记录提交�
 提交前证据核对首次漏写UTF-8，默认GBK读取中文JSON失败；修正编码后发现文档手工误计24条，实际JSON为23条，断言阻止提交。已据原始JSON改正三处文档计数，23条交互/151文件冻结核对通过，原始JSON未改。
 
 VF3.1固定实现 `c68541da920b346b02c11b8e27540024c8ea30a5`；staged diff --check通过。独立记录提供vf31-handoff及vf31-c68541d-gemini-prompt，明确三项复审范围、性能/VF4门禁与必须回交Codex完整Prompt。151文件Git blob的LF哈希与冻结清单一致，保护路径零diff。本记录不改实现，停于检查点，未push。
+
+## 2026-11-10 VF31-PERF-01归因与VF4-A系统弹窗试点
+
+父d00071a，上一固定实现c68541d；用户原文harness/reviews/vf4a-user-handoff.txt。先预注册协议，再对040031e/6f3a191/c68541d采54条阶段记录与24条effect/layout-effect单因素实验。模块入口/动态导入等待解释主要可复现差异，未见稳定大幅组件/Pixi执行退化；未把scene-navigation请求误判为关键瓶颈，未改生产调度。前台校准发现visibility=visible仍可约1000ms rAF，用户确认前台后恢复8.3ms；不能据此反推历史24.37%全部由遮挡引起。attribution-gate在产品改动前写明只允许零资源弹窗试点，资产/全站/完整预算HOLD保留。初期Vite共享junction缓存rename EPERM和校准记录保留，正式阶段批晚于该错误；没有安装或递归删除依赖。
+
+随后仅改dialog/alpha-app/vf1.css和vf2.test：Saves固定ID与3/1/5分组、空档禁载入、12px时间、顶部唯一回执与正文独立滚动；Settings三种pressed状态及稳定更多触发器；Map共享外框、28x32头像与禁用说明。Dialog layout effect提前确立模态、微任务只在无替代模态时恢复焦点。实机发现pressed旧白字导致浅色低对比，限定设置与地图卡面ink文字修正；未改S2/S3和四抽屉布局、无新美术资产。
+
+基线38文件299测试；首次与最终38文件303测试，类型/lint/Web/DSH构建通过。31条浏览器观察覆盖1280/390/560英文深色/844矮横屏，保存/载入单反馈、空档/备份/导入控件滚动、设置往返与Settings→Saves、Map旅行、EXTERNAL_CHANGE滚动/关闭保留；390布置取消镜头同值、位置Escape焦点、Qwen错误重开清除。真实存档未触碰。文件上传下载、真实DSH/更新分支全矩阵、全部Map锁态未伪称实测。旧对比错误截图保留，final后缀为修正图；Full-motion旧选择器空记录后补有效记录。服务重启后一次对已卸载dialog发Escape定位超时，未产生新样本或产品更改。
+
+UTC02:01:02.946冻结151文件，原始/LF SHA256均记录。固定前台1280x720/DPR1.0000000447034836、同AC/性能方案/120Hz。12组180帧预热p50均8.3，三版本040/c685/vf4a的dev+preview standard+twelve六轮正反72条；首批dev standard对040+16.85%触发唯一确认72条。确认对040+6.81/+2.10/-8.41/+4.78%，对c685+7.45/-4.08/+1.58/+1.71%；首批不利及所有离群值保留，历史风险不关闭。冻结后源码零改，未继续采到通过。
+
+默认生产已恢复且无vf-metrics/vf-startup/vf-attribution；六端口5181–5186关闭、浏览器视口/可见性恢复与tab关闭；保护路径零diff、engine0.16.0/content office-2不变。新检查点及状态/规划文档明确候选规范、完整映射、局限与复审门禁。只修剪新日志行末/文件尾空白以通过diff检查，不删失败事实或原始样本。两个本地提交后暂停待Gemini，不push/部署/付费调用、不扩资产或新玩法。
+
+交付证据脚本首检误把文件控件可达性的DOMRect对象当作含scrollWidth的滚动指标，导致noHorizontalOverflow假阴性；初检JSON保留。限定仅统计有数值scrollWidth的观察后通过，未修改任何产品源码或原始交互数据。

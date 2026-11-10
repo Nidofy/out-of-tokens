@@ -81,5 +81,30 @@
 .scene-presence header,.scene-presence>div{display:flex;align-items:center;gap:8px;justify-content:space-between}
 .scene-presence header{position:sticky;top:-12px;background:var(--solid);padding:4px 0;border-bottom:1px solid var(--line)}
 .scene-presence>div{padding:8px 0}.scene-presence b{font-size:14px}.scene-presence small{display:block;font-size:12px}.scene-presence button{font-size:12px;flex-shrink:0}
+/* VF4-A: scoped system dialogs; S2/S3 and the four drawers keep their layouts. */
+.system-dialog{padding:0;max-height:calc(100dvh - 32px);overflow:hidden;background:var(--paper);border-color:var(--line)}
+.system-dialog[open]{display:flex;flex-direction:column}
+.system-dialog>.dialog-head{position:relative;top:0;margin:0;padding:12px 20px;flex-shrink:0;background:var(--solid)}
+.system-dialog>.dialog-head h2{font-size:20px;margin:0}.system-dialog>.dialog-head button{width:44px;height:44px;padding:0;flex:0 0 44px}
+.system-body{min-height:0;overflow:auto;padding:20px;scroll-padding:12px;overscroll-behavior:contain}
+.system-body p{font-size:14px;margin:0 0 16px}.system-body h3{font-size:16px;margin:0 0 8px}
+.system-notice{flex-shrink:0;padding:12px 20px 0;background:var(--solid)}.system-notice>.feedback-notice{margin:0}
+.system-dialog :is(button,input,summary){min-height:44px}.system-dialog button{border-radius:12px;font-size:14px}
+.system-dialog .system-caption,.system-dialog .system-footer{font-size:12px;color:var(--muted)}
+.system-dialog .system-caption{margin:0 0 8px}.system-footer{border-top:1px solid var(--line);margin-top:20px;padding-top:12px}.system-footer p{font-size:12px;margin:0 0 8px}
+.system-dialog .settings-list{display:grid;gap:12px}.system-dialog .settings-list button{display:flex;justify-content:space-between;align-items:center;gap:16px;width:100%;text-align:left;padding:12px 16px;background:var(--card)}
+.system-dialog .settings-list button[aria-pressed=true]{color:var(--ink);box-shadow:inset 3px 0 var(--selected-indicator);border-color:var(--selected-indicator)}
+.save-groups{display:grid;gap:20px}.save-groups ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.save-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-variant-numeric:tabular-nums}
+.save-meta{min-width:0;overflow-wrap:anywhere}.save-meta b{display:block;font-size:14px}.save-meta time,.save-empty{display:block;font-size:12px;color:var(--muted)}
+.save-actions{display:flex;gap:8px}.save-actions button{padding:8px 12px}
+.save-backups{border-top:1px solid var(--line);padding-top:8px}.save-backups summary{font-size:16px;font-weight:600;cursor:pointer;padding:8px 0}.save-backups[open] summary{margin-bottom:8px}
+.save-transfer{border-top:1px solid var(--line);margin-top:20px;padding-top:16px;display:grid;gap:12px}.save-transfer h3{margin:0}.save-transfer>button{justify-self:start}
+.save-transfer label{display:grid;gap:8px;font-size:14px}.save-transfer input{display:block;width:100%;max-width:100%;font-size:12px;border:1px solid var(--line);border-radius:10px;padding:4px;background:var(--card)}
+.save-transfer input::file-selector-button{min-height:44px;font:inherit;font-size:14px;color:var(--ink);background:var(--solid);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-right:8px}
+.system-dialog .world-map small{font-size:12px}.system-dialog .world-map button[aria-pressed=true]{background:var(--card);color:var(--ink);outline:none;box-shadow:inset 0 0 0 3px var(--selected-indicator),0 3px 0 #8c744933}
+.studio-app .system-dialog :is(button,input,summary,a):focus-visible{outline:3px solid var(--focus-ring);outline-offset:3px;box-shadow:0 0 0 3px var(--focus-contrast)}
+@media(max-width:559px){.system-dialog>.dialog-head{padding:10px 16px}.system-body{padding:16px}.system-notice{padding:12px 16px 0}.save-row{gap:8px;padding:10px}.save-actions{gap:6px}.save-actions button{padding:8px 10px}}
+@media(max-height:500px){.system-dialog{max-height:calc(100dvh - 16px)}.system-dialog>.dialog-head{padding:6px 16px}.system-body{padding:12px 16px}.system-notice{padding:8px 16px 0}}
 @media(max-width:679px){.scene-tools{top:116px}.scene-presence{top:170px;max-height:calc(100dvh - 264px)}}
 @media(max-height:479px){.scene-tools{top:64px}.scene-presence{top:118px;max-height:calc(100dvh - 200px)}}

@@ -1,0 +1,692 @@
+{
+  "marks": {
+    "moduleEntryMs": 121.5,
+    "sceneImportStartMs": 121.69999980926514,
+    "firstHudCommitMs": 124.09999990463257,
+    "sceneEffectStartMs": 130.19999980926514,
+    "sceneModuleLoadedMs": 154,
+    "pixiInitStartMs": 154.09999990463257,
+    "pixiInitEndMs": 180.89999985694885,
+    "firstSyncStartMs": 181.19999980926514,
+    "firstSyncEndMs": 185.29999995231628,
+    "firstCanvasRafMs": 185.39999985694885
+  },
+  "phases": {
+    "navigationToEntry": 121.5,
+    "entryToHud": 2.5999999046325684,
+    "hudToSceneLoaded": 29.90000009536743,
+    "sceneLoadedToCanvasRaf": 31.399999856948853,
+    "hudToSceneEffect": 6.099999904632568,
+    "pixiInit": 26.799999952316284,
+    "firstSync": 4.1000001430511475,
+    "syncToRaf": 0.09999990463256836
+  },
+  "modules": [
+    {
+      "url": "http://127.0.0.1:5181/@vite/client",
+      "initiator": "script",
+      "start": 26.699999809265137,
+      "responseEnd": 44.09999990463257,
+      "duration": 17.40000009536743,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/main.tsx",
+      "initiator": "script",
+      "start": 26.799999952316284,
+      "responseEnd": 43.799999952316284,
+      "duration": 17,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/preact_jsx-dev-runtime.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 54.69999980926514,
+      "responseEnd": 54.69999980926514,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/preact.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 54.69999980926514,
+      "responseEnd": 54.69999980926514,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/node_modules/.pnpm/vite@8.3.6_@types+node@24.19.2_esbuild@0.28.2_tsx@4.22.4/node_modules/vite/dist/client/env.mjs",
+      "initiator": "script",
+      "start": 54.69999980926514,
+      "responseEnd": 69.69999980926514,
+      "duration": 15,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/alpha-app.tsx",
+      "initiator": "script",
+      "start": 54.799999952316284,
+      "responseEnd": 70.69999980926514,
+      "duration": 15.899999856948853,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/preact_hooks.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 72.59999990463257,
+      "responseEnd": 72.59999990463257,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/scene-navigation.ts",
+      "initiator": "script",
+      "start": 72.69999980926514,
+      "responseEnd": 80.69999980926514,
+      "duration": 8,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/visual-review.ts",
+      "initiator": "script",
+      "start": 72.69999980926514,
+      "responseEnd": 81.69999980926514,
+      "duration": 9,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/office-scene-spec.ts",
+      "initiator": "script",
+      "start": 72.69999980926514,
+      "responseEnd": 81.69999980926514,
+      "duration": 9,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/office-editor.tsx",
+      "initiator": "script",
+      "start": 72.69999980926514,
+      "responseEnd": 82,
+      "duration": 9.300000190734863,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/project-panel.tsx",
+      "initiator": "script",
+      "start": 72.69999980926514,
+      "responseEnd": 82.19999980926514,
+      "duration": 9.5,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/onboarding.tsx",
+      "initiator": "script",
+      "start": 72.69999980926514,
+      "responseEnd": 82.29999995231628,
+      "duration": 9.600000143051147,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/character-profiles.ts",
+      "initiator": "script",
+      "start": 72.79999995231628,
+      "responseEnd": 82.29999995231628,
+      "duration": 9.5,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/player-labels.ts",
+      "initiator": "script",
+      "start": 72.89999985694885,
+      "responseEnd": 82.39999985694885,
+      "duration": 9.5,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/icons.tsx",
+      "initiator": "script",
+      "start": 72.89999985694885,
+      "responseEnd": 82.5,
+      "duration": 9.600000143051147,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/update-observer.ts",
+      "initiator": "script",
+      "start": 72.89999985694885,
+      "responseEnd": 82.5,
+      "duration": 9.600000143051147,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/finale-panel.tsx",
+      "initiator": "script",
+      "start": 72.89999985694885,
+      "responseEnd": 82.69999980926514,
+      "duration": 9.799999952316284,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/updates.ts",
+      "initiator": "script",
+      "start": 72.89999985694885,
+      "responseEnd": 82.89999985694885,
+      "duration": 10,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/studio-ui.tsx",
+      "initiator": "script",
+      "start": 72.89999985694885,
+      "responseEnd": 82.5,
+      "duration": 9.600000143051147,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/dialog.tsx",
+      "initiator": "script",
+      "start": 72.89999985694885,
+      "responseEnd": 82.89999985694885,
+      "duration": 10,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/commission-workbench.tsx",
+      "initiator": "script",
+      "start": 72.89999985694885,
+      "responseEnd": 83.09999990463257,
+      "duration": 10.200000047683716,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/partner-profile.tsx",
+      "initiator": "script",
+      "start": 73,
+      "responseEnd": 86,
+      "duration": 13,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/feedback-notice.tsx",
+      "initiator": "script",
+      "start": 73,
+      "responseEnd": 86,
+      "duration": 13,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/use-game.ts",
+      "initiator": "script",
+      "start": 73,
+      "responseEnd": 86.29999995231628,
+      "duration": 13.299999952316284,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/index.js",
+      "initiator": "script",
+      "start": 73,
+      "responseEnd": 86.09999990463257,
+      "duration": 13.099999904632568,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/presentation.ts",
+      "initiator": "script",
+      "start": 73,
+      "responseEnd": 86.29999995231628,
+      "duration": 13.299999952316284,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/ui-labels.ts",
+      "initiator": "script",
+      "start": 73.09999990463257,
+      "responseEnd": 86.39999985694885,
+      "duration": 13.299999952316284,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/scene-layout.ts",
+      "initiator": "script",
+      "start": 86.39999985694885,
+      "responseEnd": 90.89999985694885,
+      "duration": 4.5,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/index.js",
+      "initiator": "script",
+      "start": 86.69999980926514,
+      "responseEnd": 90.89999985694885,
+      "duration": 4.200000047683716,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/decision-panels.tsx",
+      "initiator": "script",
+      "start": 88,
+      "responseEnd": 91.69999980926514,
+      "duration": 3.6999998092651367,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/flavor-panel.tsx",
+      "initiator": "script",
+      "start": 88.39999985694885,
+      "responseEnd": 91.79999995231628,
+      "duration": 3.4000000953674316,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/partner-state.ts",
+      "initiator": "script",
+      "start": 88.39999985694885,
+      "responseEnd": 92.59999990463257,
+      "duration": 4.200000047683716,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/presentation-events.ts",
+      "initiator": "script",
+      "start": 88.59999990463257,
+      "responseEnd": 93,
+      "duration": 4.400000095367432,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/office-lab.ts",
+      "initiator": "script",
+      "start": 88.59999990463257,
+      "responseEnd": 93.09999990463257,
+      "duration": 4.5,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/content.ts",
+      "initiator": "script",
+      "start": 88.69999980926514,
+      "responseEnd": 93.09999990463257,
+      "duration": 4.400000095367432,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/session.js",
+      "initiator": "script",
+      "start": 88.79999995231628,
+      "responseEnd": 93.19999980926514,
+      "duration": 4.3999998569488525,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/storage.js",
+      "initiator": "script",
+      "start": 88.79999995231628,
+      "responseEnd": 94.09999990463257,
+      "duration": 5.299999952316284,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-platform/dist/host-storage.js",
+      "initiator": "script",
+      "start": 88.79999995231628,
+      "responseEnd": 95.19999980926514,
+      "duration": 6.3999998569488525,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/model.js",
+      "initiator": "script",
+      "start": 93.39999985694885,
+      "responseEnd": 99.5,
+      "duration": 6.1000001430511475,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/clock.js",
+      "initiator": "script",
+      "start": 93.39999985694885,
+      "responseEnd": 99.5,
+      "duration": 6.1000001430511475,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/version.js",
+      "initiator": "script",
+      "start": 93.39999985694885,
+      "responseEnd": 99.39999985694885,
+      "duration": 6,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/finale.js",
+      "initiator": "script",
+      "start": 93.5,
+      "responseEnd": 100,
+      "duration": 6.5,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/economy.js",
+      "initiator": "script",
+      "start": 93.5,
+      "responseEnd": 99.69999980926514,
+      "duration": 6.199999809265137,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/simulation.js",
+      "initiator": "script",
+      "start": 93.5,
+      "responseEnd": 101.39999985694885,
+      "duration": 7.8999998569488525,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/chapter-goal.js",
+      "initiator": "script",
+      "start": 93.59999990463257,
+      "responseEnd": 100.29999995231628,
+      "duration": 6.700000047683716,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/preview.js",
+      "initiator": "script",
+      "start": 93.59999990463257,
+      "responseEnd": 100.19999980926514,
+      "duration": 6.599999904632568,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/office.js",
+      "initiator": "script",
+      "start": 93.59999990463257,
+      "responseEnd": 100.5,
+      "duration": 6.900000095367432,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/settlement.js",
+      "initiator": "script",
+      "start": 93.59999990463257,
+      "responseEnd": 100.29999995231628,
+      "duration": 6.700000047683716,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/flavor.ts",
+      "initiator": "script",
+      "start": 94.29999995231628,
+      "responseEnd": 102.89999985694885,
+      "duration": 8.599999904632568,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-content/dist/browser.js",
+      "initiator": "script",
+      "start": 95,
+      "responseEnd": 103.59999990463257,
+      "duration": 8.599999904632568,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-persistence/dist/browser.js",
+      "initiator": "script",
+      "start": 95.29999995231628,
+      "responseEnd": 105.59999990463257,
+      "duration": 10.299999952316284,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/campaign.js",
+      "initiator": "script",
+      "start": 103.19999980926514,
+      "responseEnd": 108.09999990463257,
+      "duration": 4.900000095367432,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/events.js",
+      "initiator": "script",
+      "start": 103.39999985694885,
+      "responseEnd": 107.89999985694885,
+      "duration": 4.5,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/jobs.js",
+      "initiator": "script",
+      "start": 103.39999985694885,
+      "responseEnd": 108,
+      "duration": 4.6000001430511475,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-core/dist/projects.js",
+      "initiator": "script",
+      "start": 103.5,
+      "responseEnd": 108.09999990463257,
+      "duration": 4.599999904632568,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/zod.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 105,
+      "responseEnd": 105,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/rolldown-runtime-SbdDWaPq.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 105.09999990463257,
+      "responseEnd": 105.09999990463257,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/@fs/D:/Documents/FeiyangChen/devApps/ai-game/out-of-tokens/packages/oot-persistence/dist/shared.js",
+      "initiator": "script",
+      "start": 107,
+      "responseEnd": 109.89999985694885,
+      "duration": 2.8999998569488525,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/vf-metrics.ts",
+      "initiator": "script",
+      "start": 121.69999980926514,
+      "responseEnd": 124,
+      "duration": 2.3000001907348633,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/scene.ts",
+      "initiator": "script",
+      "start": 121.69999980926514,
+      "responseEnd": 124.29999995231628,
+      "duration": 2.6000001430511475,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/office-scene.ts",
+      "initiator": "script",
+      "start": 132.79999995231628,
+      "responseEnd": 137.09999990463257,
+      "duration": 4.299999952316284,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/pixi__js.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 137.89999985694885,
+      "responseEnd": 137.89999985694885,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/pixi__js_unsafe-eval.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 137.89999985694885,
+      "responseEnd": 137.89999985694885,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/art/paper-doll.ts",
+      "initiator": "script",
+      "start": 137.89999985694885,
+      "responseEnd": 145.69999980926514,
+      "duration": 7.799999952316284,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/ParticleBuffer-CM4zbQGE.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 138.09999990463257,
+      "responseEnd": 138.09999990463257,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/FilterSystem-Dyso-Igq.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 138.09999990463257,
+      "responseEnd": 138.09999990463257,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/FederatedEventTarget-Cl80KGwq.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 138.09999990463257,
+      "responseEnd": 138.09999990463257,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/CanvasPool-cFVD1sBE.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 138.09999990463257,
+      "responseEnd": 138.09999990463257,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/Filter-BKu4m7-s.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 138.09999990463257,
+      "responseEnd": 138.09999990463257,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/village-characters.ts",
+      "initiator": "script",
+      "start": 138.09999990463257,
+      "responseEnd": 146,
+      "duration": 7.900000095367432,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/src/office-hit-area.ts",
+      "initiator": "script",
+      "start": 138.09999990463257,
+      "responseEnd": 146.5,
+      "duration": 8.400000095367432,
+      "transfer": 300
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/RenderTargetSystem-TZcY_4oV.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 138.29999995231628,
+      "responseEnd": 138.29999995231628,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/Cache-DfmVC-OT.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 138.29999995231628,
+      "responseEnd": 138.29999995231628,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/canvasUtils-u7_DopMs.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 138.29999995231628,
+      "responseEnd": 138.29999995231628,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/GraphicsContext-DdJo4Gma.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 138.29999995231628,
+      "responseEnd": 138.29999995231628,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/GCManagedHash-CzvEwnZM.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 138.39999985694885,
+      "responseEnd": 138.39999985694885,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/getTexelRangeRects-BHOxztZV.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 138.39999985694885,
+      "responseEnd": 138.39999985694885,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/getTextureBatchBindGroup-45RaBWAq.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 138.39999985694885,
+      "responseEnd": 138.39999985694885,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/browserAll-CPmgHi94.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 158.09999990463257,
+      "responseEnd": 158.09999990463257,
+      "duration": 0,
+      "transfer": 0
+    },
+    {
+      "url": "http://127.0.0.1:5181/node_modules/.vite/deps/init-5CtWcN5E.js?v=1961c3b2",
+      "initiator": "script",
+      "start": 158.59999990463257,
+      "responseEnd": 158.59999990463257,
+      "duration": 0,
+      "transfer": 0
+    }
+  ],
+  "moduleCount": 81,
+  "lastModuleResponseMs": 158.59999990463257,
+  "longtaskSupported": true,
+  "longtasks": [],
+  "longtasksBeforeCanvas": [],
+  "raf": {
+    "samples": 180,
+    "p50": 8.300000000000068,
+    "p95": 8.400000000000091
+  },
+  "viewport": [
+    1280,
+    720,
+    1.0000000447034836
+  ],
+  "visibility": "visible",
+  "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+  "threads": 16
+}
