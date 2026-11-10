@@ -2,7 +2,7 @@
 
 仓库 `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens`，分支 `codex/m1-foundation`。
 
-固定实现 `__VF4A2_IMPLEMENTATION_SHA__`。起点记录 `f0edf5529ba1c259947f589fe2f6d40d419646b1`，上一固定实现 `d3e0c87d96bf4fe3baa77ab745163d8baa9ca052`，VF3.1 `c68541da920b346b02c11b8e27540024c8ea30a5`，VF3 `6f3a19122f4508004aeb1ae3bfe0c1387047e9dc`，保护基线 `2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f`，长期040031e。
+固定实现 `ccf3b10339f54cb971070e15682b62bd3498ef21`。起点记录 `f0edf5529ba1c259947f589fe2f6d40d419646b1`，上一固定实现 `d3e0c87d96bf4fe3baa77ab745163d8baa9ca052`，VF3.1 `c68541da920b346b02c11b8e27540024c8ea30a5`，VF3 `6f3a19122f4508004aeb1ae3bfe0c1387047e9dc`，保护基线 `2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f`，长期040031e。
 
 A.1修复验证通过，A2实现与四视口功能验证完成；304测试，58交互记录，151源码冻结，24归因、72正式+72唯一确认。preview twelve增量首批+19.91%、确认+14.97%：VF4A2-PERF-01 HOLD。16px字级严格规范差异TYPE-01 OPEN。当前实现不是整体视觉冻结，也不是性能预算PASS。
 
