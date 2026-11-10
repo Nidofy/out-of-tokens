@@ -2,6 +2,20 @@ import type {GameView} from 'oot-platform';
 import {activityFor} from './scene-layout.js';
 export type OfficeFocus={x:number;y:number}|null;
 export const workLabelOffset=-32;
+/** Ignore SVG padding and low-alpha floor shadows; both layers use the shared (0,0) anchor. */
+export function workFurnitureHitArea(rgba:ArrayLike<number>,width=280,height=240){
+ const mask=Uint8Array.from({length:width*height},(_,i)=>rgba[i*4+3]!>=96?1:0);
+ return {contains(x:number,y:number){const px=Math.floor((x+140)*width/280),py=Math.floor((y+200)*height/240);return px>=0&&py>=0&&px<width&&py<height&&mask[py*width+px]===1;}};
+}
+/** Resolve small same-row label collisions without shrinking the 12px text. */
+export function separateOfficeLabels(rows:{id:string;x:number;y:number;width:number;height:number}[],viewportWidth:number){
+ const placed:typeof rows=[];
+ for(const row of [...rows].sort((a,b)=>a.y-b.y||a.x-b.x)){
+  const next={...row};for(const previous of placed){if(Math.min(next.y+next.height,previous.y+previous.height)<=Math.max(next.y,previous.y))continue;const left=next.x-next.width/2,right=previous.x+previous.width/2;if(left<right+3&&next.x+next.width/2>previous.x-previous.width/2)next.x=right+3+next.width/2;}
+  next.x=Math.min(viewportWidth-next.width/2,next.x);placed.push(next);
+ }
+ return placed;
+}
 export type CameraZone='overview'|'work-left'|'work-right'|'meeting'|'lounge';
 export const zoneNames:Record<CameraZone,[string,string]>={overview:['全景','Overview'],'work-left':['工作区Ⅰ','Work I'],'work-right':['工作区Ⅱ','Work II'],meeting:['会议区','Meeting'],lounge:['休闲区','Lounge']};
 export function slotPoint(slot:string,chapter=0){const n=Number(slot.split('-')[1])-1;

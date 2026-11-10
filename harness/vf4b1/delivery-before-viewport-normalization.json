@@ -1,0 +1,7670 @@
+{
+  "at": "2026-11-10T09:03:02.636Z",
+  "base": "ec59d18ad41c2dc24d875578ae7851d6e3e0a3f4",
+  "checks": {
+    "whitelist": true,
+    "protectedPaths": true,
+    "freeze": true,
+    "recordSchema": true,
+    "finalGeometry": true,
+    "failuresResolved": true,
+    "matrix": true,
+    "actorSlotRoleCoverage": false,
+    "pointerClicks": true,
+    "officeRoundtrips": true,
+    "screenshots": true,
+    "assetLedger": true,
+    "formalBalanced": true,
+    "confirmationRule": true,
+    "performanceGate": true,
+    "environment": true,
+    "warmups": true,
+    "freezeBeforeSamples": true,
+    "fullCheck": true,
+    "productionClean": true,
+    "portsClosed": true,
+    "cacheRemoved": true,
+    "browserRestored": true
+  },
+  "counts": {
+    "records": 1704,
+    "configurations": 208,
+    "observations": 7008,
+    "retainedFailures": 16,
+    "officeFalsePositives": 1,
+    "pointerClicks": 108,
+    "officeRoundtrips": 64,
+    "tests": 313,
+    "formal": 72,
+    "confirmation": 0,
+    "warmups": 12
+  },
+  "outside": [],
+  "protectedDiff": "",
+  "freezeChanges": [],
+  "resolved": [
+    {
+      "label": "before-basic-seated-1280",
+      "index": 0,
+      "failed": [
+        "faceUnoccluded",
+        "transparentCorner"
+      ],
+      "fixedBy": "final-basic-12-2-0-1280-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-basic-idle-1280",
+      "index": 1,
+      "failed": [
+        "transparentCorner"
+      ],
+      "fixedBy": "final-basic-12-2-idle-1280-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-standard-seated-1280",
+      "index": 2,
+      "failed": [
+        "faceUnoccluded",
+        "transparentCorner"
+      ],
+      "fixedBy": "final-standard-12-2-0-1280-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-standard-idle-1280",
+      "index": 3,
+      "failed": [
+        "transparentCorner"
+      ],
+      "fixedBy": "final-standard-12-2-idle-1280-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-basic-seated-844",
+      "index": 4,
+      "failed": [
+        "faceUnoccluded",
+        "transparentCorner"
+      ],
+      "fixedBy": "final-basic-12-2-0-844-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-basic-idle-844",
+      "index": 5,
+      "failed": [
+        "badgeUnoccluded",
+        "transparentCorner"
+      ],
+      "fixedBy": "final-basic-12-2-idle-844-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-standard-seated-844",
+      "index": 6,
+      "failed": [
+        "faceUnoccluded",
+        "badgeUnoccluded",
+        "transparentCorner"
+      ],
+      "fixedBy": "final-standard-12-2-0-844-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-standard-idle-844",
+      "index": 7,
+      "failed": [
+        "badgeUnoccluded",
+        "transparentCorner"
+      ],
+      "fixedBy": "final-standard-12-2-idle-844-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-basic-seated-560",
+      "index": 8,
+      "failed": [
+        "faceUnoccluded",
+        "transparentCorner"
+      ],
+      "fixedBy": "final-basic-12-2-0-560-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-basic-idle-560",
+      "index": 9,
+      "failed": [
+        "transparentCorner"
+      ],
+      "fixedBy": "final-basic-12-2-idle-560-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-standard-seated-560",
+      "index": 10,
+      "failed": [
+        "faceUnoccluded",
+        "transparentCorner"
+      ],
+      "fixedBy": "final-standard-12-2-0-560-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-standard-idle-560",
+      "index": 11,
+      "failed": [
+        "transparentCorner"
+      ],
+      "fixedBy": "final-standard-12-2-idle-560-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-basic-seated-390",
+      "index": 12,
+      "failed": [
+        "faceUnoccluded",
+        "transparentCorner"
+      ],
+      "fixedBy": "final-basic-12-2-0-390-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-basic-idle-390",
+      "index": 13,
+      "failed": [
+        "transparentCorner"
+      ],
+      "fixedBy": "final-basic-12-2-idle-390-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-standard-seated-390",
+      "index": 14,
+      "failed": [
+        "faceUnoccluded",
+        "transparentCorner"
+      ],
+      "fixedBy": "final-standard-12-2-0-390-overview",
+      "resolved": true
+    },
+    {
+      "label": "before-standard-idle-390",
+      "index": 15,
+      "failed": [
+        "transparentCorner"
+      ],
+      "fixedBy": "final-standard-12-2-idle-390-overview",
+      "resolved": true
+    }
+  ],
+  "matrix": [
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-basic-4-0-0-1280-overview",
+        "final-basic-4-0-0-1280-work-left",
+        "final-basic-4-0-0-1280-work-right",
+        "final-basic-4-0-0-1280-locate-bluewhale",
+        "final-basic-4-0-0-1280-locate-qwen",
+        "final-basic-4-0-0-1280-locate-llama",
+        "final-basic-4-0-0-1280-locate-mistral",
+        "final-basic-4-0-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 1,
+      "records": [
+        "final-basic-4-0-1-1280-overview",
+        "final-basic-4-0-1-1280-work-left",
+        "final-basic-4-0-1-1280-work-right",
+        "final-basic-4-0-1-1280-locate-bluewhale",
+        "final-basic-4-0-1-1280-locate-qwen",
+        "final-basic-4-0-1-1280-locate-llama",
+        "final-basic-4-0-1-1280-locate-mistral",
+        "final-basic-4-0-1-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 2,
+      "records": [
+        "final-basic-4-0-2-1280-overview",
+        "final-basic-4-0-2-1280-work-left",
+        "final-basic-4-0-2-1280-work-right",
+        "final-basic-4-0-2-1280-locate-bluewhale",
+        "final-basic-4-0-2-1280-locate-qwen",
+        "final-basic-4-0-2-1280-locate-llama",
+        "final-basic-4-0-2-1280-locate-mistral",
+        "final-basic-4-0-2-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 3,
+      "records": [
+        "final-basic-4-0-3-1280-overview",
+        "final-basic-4-0-3-1280-work-left",
+        "final-basic-4-0-3-1280-work-right",
+        "final-basic-4-0-3-1280-locate-bluewhale",
+        "final-basic-4-0-3-1280-locate-qwen",
+        "final-basic-4-0-3-1280-locate-llama",
+        "final-basic-4-0-3-1280-locate-mistral",
+        "final-basic-4-0-3-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 0,
+      "records": [
+        "final-basic-4-1-0-1280-overview",
+        "final-basic-4-1-0-1280-work-left",
+        "final-basic-4-1-0-1280-work-right",
+        "final-basic-4-1-0-1280-locate-qwen",
+        "final-basic-4-1-0-1280-locate-llama",
+        "final-basic-4-1-0-1280-locate-mistral",
+        "final-basic-4-1-0-1280-locate-glm",
+        "final-basic-4-1-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 1,
+      "records": [
+        "final-basic-4-1-1-1280-overview",
+        "final-basic-4-1-1-1280-work-left",
+        "final-basic-4-1-1-1280-work-right",
+        "final-basic-4-1-1-1280-locate-qwen",
+        "final-basic-4-1-1-1280-locate-llama",
+        "final-basic-4-1-1-1280-locate-mistral",
+        "final-basic-4-1-1-1280-locate-glm",
+        "final-basic-4-1-1-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 2,
+      "records": [
+        "final-basic-4-1-2-1280-overview",
+        "final-basic-4-1-2-1280-work-left",
+        "final-basic-4-1-2-1280-work-right",
+        "final-basic-4-1-2-1280-locate-qwen",
+        "final-basic-4-1-2-1280-locate-llama",
+        "final-basic-4-1-2-1280-locate-mistral",
+        "final-basic-4-1-2-1280-locate-glm",
+        "final-basic-4-1-2-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 3,
+      "records": [
+        "final-basic-4-1-3-1280-overview",
+        "final-basic-4-1-3-1280-work-left",
+        "final-basic-4-1-3-1280-work-right",
+        "final-basic-4-1-3-1280-locate-qwen",
+        "final-basic-4-1-3-1280-locate-llama",
+        "final-basic-4-1-3-1280-locate-mistral",
+        "final-basic-4-1-3-1280-locate-glm",
+        "final-basic-4-1-3-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-basic-4-2-0-1280-overview",
+        "final-basic-4-2-0-1280-work-left",
+        "final-basic-4-2-0-1280-work-right",
+        "final-basic-4-2-0-1280-locate-bluewhale",
+        "final-basic-4-2-0-1280-locate-llama",
+        "final-basic-4-2-0-1280-locate-mistral",
+        "final-basic-4-2-0-1280-locate-glm",
+        "final-basic-4-2-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 1,
+      "records": [
+        "final-basic-4-2-1-1280-overview",
+        "final-basic-4-2-1-1280-work-left",
+        "final-basic-4-2-1-1280-work-right",
+        "final-basic-4-2-1-1280-locate-bluewhale",
+        "final-basic-4-2-1-1280-locate-llama",
+        "final-basic-4-2-1-1280-locate-mistral",
+        "final-basic-4-2-1-1280-locate-glm",
+        "final-basic-4-2-1-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 2,
+      "records": [
+        "final-basic-4-2-2-1280-overview",
+        "final-basic-4-2-2-1280-work-left",
+        "final-basic-4-2-2-1280-work-right",
+        "final-basic-4-2-2-1280-locate-bluewhale",
+        "final-basic-4-2-2-1280-locate-llama",
+        "final-basic-4-2-2-1280-locate-mistral",
+        "final-basic-4-2-2-1280-locate-glm",
+        "final-basic-4-2-2-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 3,
+      "records": [
+        "final-basic-4-2-3-1280-overview",
+        "final-basic-4-2-3-1280-work-left",
+        "final-basic-4-2-3-1280-work-right",
+        "final-basic-4-2-3-1280-locate-bluewhale",
+        "final-basic-4-2-3-1280-locate-llama",
+        "final-basic-4-2-3-1280-locate-mistral",
+        "final-basic-4-2-3-1280-locate-glm",
+        "final-basic-4-2-3-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 0,
+      "records": [
+        "final-basic-4-3-0-1280-overview",
+        "final-basic-4-3-0-1280-work-left",
+        "final-basic-4-3-0-1280-work-right",
+        "final-basic-4-3-0-1280-locate-bluewhale",
+        "final-basic-4-3-0-1280-locate-qwen",
+        "final-basic-4-3-0-1280-locate-mistral",
+        "final-basic-4-3-0-1280-locate-glm",
+        "final-basic-4-3-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 1,
+      "records": [
+        "final-basic-4-3-1-1280-overview",
+        "final-basic-4-3-1-1280-work-left",
+        "final-basic-4-3-1-1280-work-right",
+        "final-basic-4-3-1-1280-locate-bluewhale",
+        "final-basic-4-3-1-1280-locate-qwen",
+        "final-basic-4-3-1-1280-locate-mistral",
+        "final-basic-4-3-1-1280-locate-glm",
+        "final-basic-4-3-1-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 2,
+      "records": [
+        "final-basic-4-3-2-1280-overview",
+        "final-basic-4-3-2-1280-work-left",
+        "final-basic-4-3-2-1280-work-right",
+        "final-basic-4-3-2-1280-locate-bluewhale",
+        "final-basic-4-3-2-1280-locate-qwen",
+        "final-basic-4-3-2-1280-locate-mistral",
+        "final-basic-4-3-2-1280-locate-glm",
+        "final-basic-4-3-2-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 3,
+      "records": [
+        "final-basic-4-3-3-1280-overview",
+        "final-basic-4-3-3-1280-work-left",
+        "final-basic-4-3-3-1280-work-right",
+        "final-basic-4-3-3-1280-locate-bluewhale",
+        "final-basic-4-3-3-1280-locate-qwen",
+        "final-basic-4-3-3-1280-locate-mistral",
+        "final-basic-4-3-3-1280-locate-glm",
+        "final-basic-4-3-3-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 0,
+      "records": [
+        "final-basic-4-4-0-1280-overview",
+        "final-basic-4-4-0-1280-work-left",
+        "final-basic-4-4-0-1280-work-right",
+        "final-basic-4-4-0-1280-locate-bluewhale",
+        "final-basic-4-4-0-1280-locate-qwen",
+        "final-basic-4-4-0-1280-locate-llama",
+        "final-basic-4-4-0-1280-locate-glm",
+        "final-basic-4-4-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 1,
+      "records": [
+        "final-basic-4-4-1-1280-overview",
+        "final-basic-4-4-1-1280-work-left",
+        "final-basic-4-4-1-1280-work-right",
+        "final-basic-4-4-1-1280-locate-bluewhale",
+        "final-basic-4-4-1-1280-locate-qwen",
+        "final-basic-4-4-1-1280-locate-llama",
+        "final-basic-4-4-1-1280-locate-glm",
+        "final-basic-4-4-1-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 2,
+      "records": [
+        "final-basic-4-4-2-1280-overview",
+        "final-basic-4-4-2-1280-work-left",
+        "final-basic-4-4-2-1280-work-right",
+        "final-basic-4-4-2-1280-locate-bluewhale",
+        "final-basic-4-4-2-1280-locate-qwen",
+        "final-basic-4-4-2-1280-locate-llama",
+        "final-basic-4-4-2-1280-locate-glm",
+        "final-basic-4-4-2-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 3,
+      "records": [
+        "final-basic-4-4-3-1280-overview",
+        "final-basic-4-4-3-1280-work-left",
+        "final-basic-4-4-3-1280-work-right",
+        "final-basic-4-4-3-1280-locate-bluewhale",
+        "final-basic-4-4-3-1280-locate-qwen",
+        "final-basic-4-4-3-1280-locate-llama",
+        "final-basic-4-4-3-1280-locate-glm",
+        "final-basic-4-4-3-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-basic-4-0-idle-1280-overview",
+        "final-basic-4-0-idle-1280-work-left",
+        "final-basic-4-0-idle-1280-work-right",
+        "final-basic-4-0-idle-1280-locate-bluewhale",
+        "final-basic-4-0-idle-1280-locate-qwen",
+        "final-basic-4-0-idle-1280-locate-llama",
+        "final-basic-4-0-idle-1280-locate-mistral",
+        "final-basic-4-0-idle-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-basic-4-2-idle-1280-overview",
+        "final-basic-4-2-idle-1280-work-left",
+        "final-basic-4-2-idle-1280-work-right",
+        "final-basic-4-2-idle-1280-locate-bluewhale",
+        "final-basic-4-2-idle-1280-locate-llama",
+        "final-basic-4-2-idle-1280-locate-mistral",
+        "final-basic-4-2-idle-1280-locate-glm",
+        "final-basic-4-2-idle-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 12,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-basic-12-0-idle-1280-overview",
+        "final-basic-12-0-idle-1280-work-left",
+        "final-basic-12-0-idle-1280-work-right",
+        "final-basic-12-0-idle-1280-locate-bluewhale",
+        "final-basic-12-0-idle-1280-locate-qwen",
+        "final-basic-12-0-idle-1280-locate-llama",
+        "final-basic-12-0-idle-1280-locate-mistral",
+        "final-basic-12-0-idle-1280-locate-glm",
+        "final-basic-12-0-idle-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 12,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-basic-12-2-idle-1280-overview",
+        "final-basic-12-2-idle-1280-work-left",
+        "final-basic-12-2-idle-1280-work-right",
+        "final-basic-12-2-idle-1280-locate-bluewhale",
+        "final-basic-12-2-idle-1280-locate-qwen",
+        "final-basic-12-2-idle-1280-locate-llama",
+        "final-basic-12-2-idle-1280-locate-mistral",
+        "final-basic-12-2-idle-1280-locate-glm",
+        "final-basic-12-2-idle-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 12,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-basic-12-0-0-1280-overview",
+        "final-basic-12-0-0-1280-work-left",
+        "final-basic-12-0-0-1280-work-right",
+        "final-basic-12-0-0-1280-locate-bluewhale",
+        "final-basic-12-0-0-1280-locate-qwen",
+        "final-basic-12-0-0-1280-locate-llama",
+        "final-basic-12-0-0-1280-locate-mistral",
+        "final-basic-12-0-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "pop": 12,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-basic-12-2-0-1280-overview",
+        "final-basic-12-2-0-1280-work-left",
+        "final-basic-12-2-0-1280-work-right",
+        "final-basic-12-2-0-1280-locate-bluewhale",
+        "final-basic-12-2-0-1280-locate-llama",
+        "final-basic-12-2-0-1280-locate-mistral",
+        "final-basic-12-2-0-1280-locate-glm",
+        "final-basic-12-2-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-standard-4-0-0-1280-overview",
+        "final-standard-4-0-0-1280-work-left",
+        "final-standard-4-0-0-1280-work-right",
+        "final-standard-4-0-0-1280-locate-bluewhale",
+        "final-standard-4-0-0-1280-locate-qwen",
+        "final-standard-4-0-0-1280-locate-llama",
+        "final-standard-4-0-0-1280-locate-mistral",
+        "final-standard-4-0-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 1,
+      "records": [
+        "final-standard-4-0-1-1280-overview",
+        "final-standard-4-0-1-1280-work-left",
+        "final-standard-4-0-1-1280-work-right",
+        "final-standard-4-0-1-1280-locate-bluewhale",
+        "final-standard-4-0-1-1280-locate-qwen",
+        "final-standard-4-0-1-1280-locate-llama",
+        "final-standard-4-0-1-1280-locate-mistral",
+        "final-standard-4-0-1-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 2,
+      "records": [
+        "final-standard-4-0-2-1280-overview",
+        "final-standard-4-0-2-1280-work-left",
+        "final-standard-4-0-2-1280-work-right",
+        "final-standard-4-0-2-1280-locate-bluewhale",
+        "final-standard-4-0-2-1280-locate-qwen",
+        "final-standard-4-0-2-1280-locate-llama",
+        "final-standard-4-0-2-1280-locate-mistral",
+        "final-standard-4-0-2-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 3,
+      "records": [
+        "final-standard-4-0-3-1280-overview",
+        "final-standard-4-0-3-1280-work-left",
+        "final-standard-4-0-3-1280-work-right",
+        "final-standard-4-0-3-1280-locate-bluewhale",
+        "final-standard-4-0-3-1280-locate-qwen",
+        "final-standard-4-0-3-1280-locate-llama",
+        "final-standard-4-0-3-1280-locate-mistral",
+        "final-standard-4-0-3-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 0,
+      "records": [
+        "final-standard-4-1-0-1280-overview",
+        "final-standard-4-1-0-1280-work-left",
+        "final-standard-4-1-0-1280-work-right",
+        "final-standard-4-1-0-1280-locate-qwen",
+        "final-standard-4-1-0-1280-locate-llama",
+        "final-standard-4-1-0-1280-locate-mistral",
+        "final-standard-4-1-0-1280-locate-glm",
+        "final-standard-4-1-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 1,
+      "records": [
+        "final-standard-4-1-1-1280-overview",
+        "final-standard-4-1-1-1280-work-left",
+        "final-standard-4-1-1-1280-work-right",
+        "final-standard-4-1-1-1280-locate-qwen",
+        "final-standard-4-1-1-1280-locate-llama",
+        "final-standard-4-1-1-1280-locate-mistral",
+        "final-standard-4-1-1-1280-locate-glm",
+        "final-standard-4-1-1-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 2,
+      "records": [
+        "final-standard-4-1-2-1280-overview",
+        "final-standard-4-1-2-1280-work-left",
+        "final-standard-4-1-2-1280-work-right",
+        "final-standard-4-1-2-1280-locate-qwen",
+        "final-standard-4-1-2-1280-locate-llama",
+        "final-standard-4-1-2-1280-locate-mistral",
+        "final-standard-4-1-2-1280-locate-glm",
+        "final-standard-4-1-2-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 3,
+      "records": [
+        "final-standard-4-1-3-1280-overview",
+        "final-standard-4-1-3-1280-work-left",
+        "final-standard-4-1-3-1280-work-right",
+        "final-standard-4-1-3-1280-locate-qwen",
+        "final-standard-4-1-3-1280-locate-llama",
+        "final-standard-4-1-3-1280-locate-mistral",
+        "final-standard-4-1-3-1280-locate-glm",
+        "final-standard-4-1-3-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-standard-4-2-0-1280-overview",
+        "final-standard-4-2-0-1280-work-left",
+        "final-standard-4-2-0-1280-work-right",
+        "final-standard-4-2-0-1280-locate-bluewhale",
+        "final-standard-4-2-0-1280-locate-llama",
+        "final-standard-4-2-0-1280-locate-mistral",
+        "final-standard-4-2-0-1280-locate-glm",
+        "final-standard-4-2-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 1,
+      "records": [
+        "final-standard-4-2-1-1280-overview",
+        "final-standard-4-2-1-1280-work-left",
+        "final-standard-4-2-1-1280-work-right",
+        "final-standard-4-2-1-1280-locate-bluewhale",
+        "final-standard-4-2-1-1280-locate-llama",
+        "final-standard-4-2-1-1280-locate-mistral",
+        "final-standard-4-2-1-1280-locate-glm",
+        "final-standard-4-2-1-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 2,
+      "records": [
+        "final-standard-4-2-2-1280-overview",
+        "final-standard-4-2-2-1280-work-left",
+        "final-standard-4-2-2-1280-work-right",
+        "final-standard-4-2-2-1280-locate-bluewhale",
+        "final-standard-4-2-2-1280-locate-llama",
+        "final-standard-4-2-2-1280-locate-mistral",
+        "final-standard-4-2-2-1280-locate-glm",
+        "final-standard-4-2-2-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 3,
+      "records": [
+        "final-standard-4-2-3-1280-overview",
+        "final-standard-4-2-3-1280-work-left",
+        "final-standard-4-2-3-1280-work-right",
+        "final-standard-4-2-3-1280-locate-bluewhale",
+        "final-standard-4-2-3-1280-locate-llama",
+        "final-standard-4-2-3-1280-locate-mistral",
+        "final-standard-4-2-3-1280-locate-glm",
+        "final-standard-4-2-3-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 0,
+      "records": [
+        "final-standard-4-3-0-1280-overview",
+        "final-standard-4-3-0-1280-work-left",
+        "final-standard-4-3-0-1280-work-right",
+        "final-standard-4-3-0-1280-locate-bluewhale",
+        "final-standard-4-3-0-1280-locate-qwen",
+        "final-standard-4-3-0-1280-locate-mistral",
+        "final-standard-4-3-0-1280-locate-glm",
+        "final-standard-4-3-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 1,
+      "records": [
+        "final-standard-4-3-1-1280-overview",
+        "final-standard-4-3-1-1280-work-left",
+        "final-standard-4-3-1-1280-work-right",
+        "final-standard-4-3-1-1280-locate-bluewhale",
+        "final-standard-4-3-1-1280-locate-qwen",
+        "final-standard-4-3-1-1280-locate-mistral",
+        "final-standard-4-3-1-1280-locate-glm",
+        "final-standard-4-3-1-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 2,
+      "records": [
+        "final-standard-4-3-2-1280-overview",
+        "final-standard-4-3-2-1280-work-left",
+        "final-standard-4-3-2-1280-work-right",
+        "final-standard-4-3-2-1280-locate-bluewhale",
+        "final-standard-4-3-2-1280-locate-qwen",
+        "final-standard-4-3-2-1280-locate-mistral",
+        "final-standard-4-3-2-1280-locate-glm",
+        "final-standard-4-3-2-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 3,
+      "records": [
+        "final-standard-4-3-3-1280-overview",
+        "final-standard-4-3-3-1280-work-left",
+        "final-standard-4-3-3-1280-work-right",
+        "final-standard-4-3-3-1280-locate-bluewhale",
+        "final-standard-4-3-3-1280-locate-qwen",
+        "final-standard-4-3-3-1280-locate-mistral",
+        "final-standard-4-3-3-1280-locate-glm",
+        "final-standard-4-3-3-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 0,
+      "records": [
+        "final-standard-4-4-0-1280-overview",
+        "final-standard-4-4-0-1280-work-left",
+        "final-standard-4-4-0-1280-work-right",
+        "final-standard-4-4-0-1280-locate-bluewhale",
+        "final-standard-4-4-0-1280-locate-qwen",
+        "final-standard-4-4-0-1280-locate-llama",
+        "final-standard-4-4-0-1280-locate-glm",
+        "final-standard-4-4-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 1,
+      "records": [
+        "final-standard-4-4-1-1280-overview",
+        "final-standard-4-4-1-1280-work-left",
+        "final-standard-4-4-1-1280-work-right",
+        "final-standard-4-4-1-1280-locate-bluewhale",
+        "final-standard-4-4-1-1280-locate-qwen",
+        "final-standard-4-4-1-1280-locate-llama",
+        "final-standard-4-4-1-1280-locate-glm",
+        "final-standard-4-4-1-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 2,
+      "records": [
+        "final-standard-4-4-2-1280-overview",
+        "final-standard-4-4-2-1280-work-left",
+        "final-standard-4-4-2-1280-work-right",
+        "final-standard-4-4-2-1280-locate-bluewhale",
+        "final-standard-4-4-2-1280-locate-qwen",
+        "final-standard-4-4-2-1280-locate-llama",
+        "final-standard-4-4-2-1280-locate-glm",
+        "final-standard-4-4-2-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 3,
+      "records": [
+        "final-standard-4-4-3-1280-overview",
+        "final-standard-4-4-3-1280-work-left",
+        "final-standard-4-4-3-1280-work-right",
+        "final-standard-4-4-3-1280-locate-bluewhale",
+        "final-standard-4-4-3-1280-locate-qwen",
+        "final-standard-4-4-3-1280-locate-llama",
+        "final-standard-4-4-3-1280-locate-glm",
+        "final-standard-4-4-3-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-standard-4-0-idle-1280-overview",
+        "final-standard-4-0-idle-1280-work-left",
+        "final-standard-4-0-idle-1280-work-right",
+        "final-standard-4-0-idle-1280-locate-bluewhale",
+        "final-standard-4-0-idle-1280-locate-qwen",
+        "final-standard-4-0-idle-1280-locate-llama",
+        "final-standard-4-0-idle-1280-locate-mistral",
+        "final-standard-4-0-idle-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-standard-4-2-idle-1280-overview",
+        "final-standard-4-2-idle-1280-work-left",
+        "final-standard-4-2-idle-1280-work-right",
+        "final-standard-4-2-idle-1280-locate-bluewhale",
+        "final-standard-4-2-idle-1280-locate-llama",
+        "final-standard-4-2-idle-1280-locate-mistral",
+        "final-standard-4-2-idle-1280-locate-glm",
+        "final-standard-4-2-idle-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 12,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-standard-12-0-idle-1280-overview",
+        "final-standard-12-0-idle-1280-work-left",
+        "final-standard-12-0-idle-1280-work-right",
+        "final-standard-12-0-idle-1280-locate-bluewhale",
+        "final-standard-12-0-idle-1280-locate-qwen",
+        "final-standard-12-0-idle-1280-locate-llama",
+        "final-standard-12-0-idle-1280-locate-mistral",
+        "final-standard-12-0-idle-1280-locate-glm",
+        "final-standard-12-0-idle-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 12,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-standard-12-2-idle-1280-overview",
+        "final-standard-12-2-idle-1280-work-left",
+        "final-standard-12-2-idle-1280-work-right",
+        "final-standard-12-2-idle-1280-locate-bluewhale",
+        "final-standard-12-2-idle-1280-locate-qwen",
+        "final-standard-12-2-idle-1280-locate-llama",
+        "final-standard-12-2-idle-1280-locate-mistral",
+        "final-standard-12-2-idle-1280-locate-glm",
+        "final-standard-12-2-idle-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 12,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-standard-12-0-0-1280-overview",
+        "final-standard-12-0-0-1280-work-left",
+        "final-standard-12-0-0-1280-work-right",
+        "final-standard-12-0-0-1280-locate-bluewhale",
+        "final-standard-12-0-0-1280-locate-qwen",
+        "final-standard-12-0-0-1280-locate-llama",
+        "final-standard-12-0-0-1280-locate-mistral",
+        "final-standard-12-0-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "pop": 12,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-standard-12-2-0-1280-overview",
+        "final-standard-12-2-0-1280-work-left",
+        "final-standard-12-2-0-1280-work-right",
+        "final-standard-12-2-0-1280-locate-bluewhale",
+        "final-standard-12-2-0-1280-locate-llama",
+        "final-standard-12-2-0-1280-locate-mistral",
+        "final-standard-12-2-0-1280-locate-glm",
+        "final-standard-12-2-0-1280-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-basic-4-0-0-844-overview",
+        "final-basic-4-0-0-844-work-left",
+        "final-basic-4-0-0-844-work-right",
+        "final-basic-4-0-0-844-locate-bluewhale",
+        "final-basic-4-0-0-844-locate-qwen",
+        "final-basic-4-0-0-844-locate-llama",
+        "final-basic-4-0-0-844-locate-mistral",
+        "final-basic-4-0-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 1,
+      "records": [
+        "final-basic-4-0-1-844-overview",
+        "final-basic-4-0-1-844-work-left",
+        "final-basic-4-0-1-844-work-right",
+        "final-basic-4-0-1-844-locate-bluewhale",
+        "final-basic-4-0-1-844-locate-qwen",
+        "final-basic-4-0-1-844-locate-llama",
+        "final-basic-4-0-1-844-locate-mistral",
+        "final-basic-4-0-1-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 2,
+      "records": [
+        "final-basic-4-0-2-844-overview",
+        "final-basic-4-0-2-844-work-left",
+        "final-basic-4-0-2-844-work-right",
+        "final-basic-4-0-2-844-locate-bluewhale",
+        "final-basic-4-0-2-844-locate-qwen",
+        "final-basic-4-0-2-844-locate-llama",
+        "final-basic-4-0-2-844-locate-mistral",
+        "final-basic-4-0-2-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 3,
+      "records": [
+        "final-basic-4-0-3-844-overview",
+        "final-basic-4-0-3-844-work-left",
+        "final-basic-4-0-3-844-work-right",
+        "final-basic-4-0-3-844-locate-bluewhale",
+        "final-basic-4-0-3-844-locate-qwen",
+        "final-basic-4-0-3-844-locate-llama",
+        "final-basic-4-0-3-844-locate-mistral",
+        "final-basic-4-0-3-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 0,
+      "records": [
+        "final-basic-4-1-0-844-overview",
+        "final-basic-4-1-0-844-work-left",
+        "final-basic-4-1-0-844-work-right",
+        "final-basic-4-1-0-844-locate-qwen",
+        "final-basic-4-1-0-844-locate-llama",
+        "final-basic-4-1-0-844-locate-mistral",
+        "final-basic-4-1-0-844-locate-glm",
+        "final-basic-4-1-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 1,
+      "records": [
+        "final-basic-4-1-1-844-overview",
+        "final-basic-4-1-1-844-work-left",
+        "final-basic-4-1-1-844-work-right",
+        "final-basic-4-1-1-844-locate-qwen",
+        "final-basic-4-1-1-844-locate-llama",
+        "final-basic-4-1-1-844-locate-mistral",
+        "final-basic-4-1-1-844-locate-glm",
+        "final-basic-4-1-1-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 2,
+      "records": [
+        "final-basic-4-1-2-844-overview",
+        "final-basic-4-1-2-844-work-left",
+        "final-basic-4-1-2-844-work-right",
+        "final-basic-4-1-2-844-locate-qwen",
+        "final-basic-4-1-2-844-locate-llama",
+        "final-basic-4-1-2-844-locate-mistral",
+        "final-basic-4-1-2-844-locate-glm",
+        "final-basic-4-1-2-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 3,
+      "records": [
+        "final-basic-4-1-3-844-overview",
+        "final-basic-4-1-3-844-work-left",
+        "final-basic-4-1-3-844-work-right",
+        "final-basic-4-1-3-844-locate-qwen",
+        "final-basic-4-1-3-844-locate-llama",
+        "final-basic-4-1-3-844-locate-mistral",
+        "final-basic-4-1-3-844-locate-glm",
+        "final-basic-4-1-3-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-basic-4-2-0-844-overview",
+        "final-basic-4-2-0-844-work-left",
+        "final-basic-4-2-0-844-work-right",
+        "final-basic-4-2-0-844-locate-bluewhale",
+        "final-basic-4-2-0-844-locate-llama",
+        "final-basic-4-2-0-844-locate-mistral",
+        "final-basic-4-2-0-844-locate-glm",
+        "final-basic-4-2-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 1,
+      "records": [
+        "final-basic-4-2-1-844-overview",
+        "final-basic-4-2-1-844-work-left",
+        "final-basic-4-2-1-844-work-right",
+        "final-basic-4-2-1-844-locate-bluewhale",
+        "final-basic-4-2-1-844-locate-llama",
+        "final-basic-4-2-1-844-locate-mistral",
+        "final-basic-4-2-1-844-locate-glm",
+        "final-basic-4-2-1-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 2,
+      "records": [
+        "final-basic-4-2-2-844-overview",
+        "final-basic-4-2-2-844-work-left",
+        "final-basic-4-2-2-844-work-right",
+        "final-basic-4-2-2-844-locate-bluewhale",
+        "final-basic-4-2-2-844-locate-llama",
+        "final-basic-4-2-2-844-locate-mistral",
+        "final-basic-4-2-2-844-locate-glm",
+        "final-basic-4-2-2-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 3,
+      "records": [
+        "final-basic-4-2-3-844-overview",
+        "final-basic-4-2-3-844-work-left",
+        "final-basic-4-2-3-844-work-right",
+        "final-basic-4-2-3-844-locate-bluewhale",
+        "final-basic-4-2-3-844-locate-llama",
+        "final-basic-4-2-3-844-locate-mistral",
+        "final-basic-4-2-3-844-locate-glm",
+        "final-basic-4-2-3-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 0,
+      "records": [
+        "final-basic-4-3-0-844-overview",
+        "final-basic-4-3-0-844-work-left",
+        "final-basic-4-3-0-844-work-right",
+        "final-basic-4-3-0-844-locate-bluewhale",
+        "final-basic-4-3-0-844-locate-qwen",
+        "final-basic-4-3-0-844-locate-mistral",
+        "final-basic-4-3-0-844-locate-glm",
+        "final-basic-4-3-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 1,
+      "records": [
+        "final-basic-4-3-1-844-overview",
+        "final-basic-4-3-1-844-work-left",
+        "final-basic-4-3-1-844-work-right",
+        "final-basic-4-3-1-844-locate-bluewhale",
+        "final-basic-4-3-1-844-locate-qwen",
+        "final-basic-4-3-1-844-locate-mistral",
+        "final-basic-4-3-1-844-locate-glm",
+        "final-basic-4-3-1-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 2,
+      "records": [
+        "final-basic-4-3-2-844-overview",
+        "final-basic-4-3-2-844-work-left",
+        "final-basic-4-3-2-844-work-right",
+        "final-basic-4-3-2-844-locate-bluewhale",
+        "final-basic-4-3-2-844-locate-qwen",
+        "final-basic-4-3-2-844-locate-mistral",
+        "final-basic-4-3-2-844-locate-glm",
+        "final-basic-4-3-2-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 3,
+      "records": [
+        "final-basic-4-3-3-844-overview",
+        "final-basic-4-3-3-844-work-left",
+        "final-basic-4-3-3-844-work-right",
+        "final-basic-4-3-3-844-locate-bluewhale",
+        "final-basic-4-3-3-844-locate-qwen",
+        "final-basic-4-3-3-844-locate-mistral",
+        "final-basic-4-3-3-844-locate-glm",
+        "final-basic-4-3-3-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 0,
+      "records": [
+        "final-basic-4-4-0-844-overview",
+        "final-basic-4-4-0-844-work-left",
+        "final-basic-4-4-0-844-work-right",
+        "final-basic-4-4-0-844-locate-bluewhale",
+        "final-basic-4-4-0-844-locate-qwen",
+        "final-basic-4-4-0-844-locate-llama",
+        "final-basic-4-4-0-844-locate-glm",
+        "final-basic-4-4-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 1,
+      "records": [
+        "final-basic-4-4-1-844-overview",
+        "final-basic-4-4-1-844-work-left",
+        "final-basic-4-4-1-844-work-right",
+        "final-basic-4-4-1-844-locate-bluewhale",
+        "final-basic-4-4-1-844-locate-qwen",
+        "final-basic-4-4-1-844-locate-llama",
+        "final-basic-4-4-1-844-locate-glm",
+        "final-basic-4-4-1-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 2,
+      "records": [
+        "final-basic-4-4-2-844-overview",
+        "final-basic-4-4-2-844-work-left",
+        "final-basic-4-4-2-844-work-right",
+        "final-basic-4-4-2-844-locate-bluewhale",
+        "final-basic-4-4-2-844-locate-qwen",
+        "final-basic-4-4-2-844-locate-llama",
+        "final-basic-4-4-2-844-locate-glm",
+        "final-basic-4-4-2-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 3,
+      "records": [
+        "final-basic-4-4-3-844-overview",
+        "final-basic-4-4-3-844-work-left",
+        "final-basic-4-4-3-844-work-right",
+        "final-basic-4-4-3-844-locate-bluewhale",
+        "final-basic-4-4-3-844-locate-qwen",
+        "final-basic-4-4-3-844-locate-llama",
+        "final-basic-4-4-3-844-locate-glm",
+        "final-basic-4-4-3-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-basic-4-0-idle-844-overview",
+        "final-basic-4-0-idle-844-work-left",
+        "final-basic-4-0-idle-844-work-right",
+        "final-basic-4-0-idle-844-locate-bluewhale",
+        "final-basic-4-0-idle-844-locate-qwen",
+        "final-basic-4-0-idle-844-locate-llama",
+        "final-basic-4-0-idle-844-locate-mistral",
+        "final-basic-4-0-idle-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-basic-4-2-idle-844-overview",
+        "final-basic-4-2-idle-844-work-left",
+        "final-basic-4-2-idle-844-work-right",
+        "final-basic-4-2-idle-844-locate-bluewhale",
+        "final-basic-4-2-idle-844-locate-llama",
+        "final-basic-4-2-idle-844-locate-mistral",
+        "final-basic-4-2-idle-844-locate-glm",
+        "final-basic-4-2-idle-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 12,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-basic-12-0-idle-844-overview",
+        "final-basic-12-0-idle-844-work-left",
+        "final-basic-12-0-idle-844-work-right",
+        "final-basic-12-0-idle-844-locate-bluewhale",
+        "final-basic-12-0-idle-844-locate-qwen",
+        "final-basic-12-0-idle-844-locate-llama",
+        "final-basic-12-0-idle-844-locate-mistral",
+        "final-basic-12-0-idle-844-locate-glm",
+        "final-basic-12-0-idle-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 12,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-basic-12-2-idle-844-overview",
+        "final-basic-12-2-idle-844-work-left",
+        "final-basic-12-2-idle-844-work-right",
+        "final-basic-12-2-idle-844-locate-bluewhale",
+        "final-basic-12-2-idle-844-locate-qwen",
+        "final-basic-12-2-idle-844-locate-llama",
+        "final-basic-12-2-idle-844-locate-mistral",
+        "final-basic-12-2-idle-844-locate-glm",
+        "final-basic-12-2-idle-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 12,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-basic-12-0-0-844-overview",
+        "final-basic-12-0-0-844-work-left",
+        "final-basic-12-0-0-844-work-right",
+        "final-basic-12-0-0-844-locate-bluewhale",
+        "final-basic-12-0-0-844-locate-qwen",
+        "final-basic-12-0-0-844-locate-llama",
+        "final-basic-12-0-0-844-locate-mistral",
+        "final-basic-12-0-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "pop": 12,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-basic-12-2-0-844-overview",
+        "final-basic-12-2-0-844-work-left",
+        "final-basic-12-2-0-844-work-right",
+        "final-basic-12-2-0-844-locate-bluewhale",
+        "final-basic-12-2-0-844-locate-llama",
+        "final-basic-12-2-0-844-locate-mistral",
+        "final-basic-12-2-0-844-locate-glm",
+        "final-basic-12-2-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-standard-4-0-0-844-overview",
+        "final-standard-4-0-0-844-work-left",
+        "final-standard-4-0-0-844-work-right",
+        "final-standard-4-0-0-844-locate-bluewhale",
+        "final-standard-4-0-0-844-locate-qwen",
+        "final-standard-4-0-0-844-locate-llama",
+        "final-standard-4-0-0-844-locate-mistral",
+        "final-standard-4-0-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 1,
+      "records": [
+        "final-standard-4-0-1-844-overview",
+        "final-standard-4-0-1-844-work-left",
+        "final-standard-4-0-1-844-work-right",
+        "final-standard-4-0-1-844-locate-bluewhale",
+        "final-standard-4-0-1-844-locate-qwen",
+        "final-standard-4-0-1-844-locate-llama",
+        "final-standard-4-0-1-844-locate-mistral",
+        "final-standard-4-0-1-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 2,
+      "records": [
+        "final-standard-4-0-2-844-overview",
+        "final-standard-4-0-2-844-work-left",
+        "final-standard-4-0-2-844-work-right",
+        "final-standard-4-0-2-844-locate-bluewhale",
+        "final-standard-4-0-2-844-locate-qwen",
+        "final-standard-4-0-2-844-locate-llama",
+        "final-standard-4-0-2-844-locate-mistral",
+        "final-standard-4-0-2-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 3,
+      "records": [
+        "final-standard-4-0-3-844-overview",
+        "final-standard-4-0-3-844-work-left",
+        "final-standard-4-0-3-844-work-right",
+        "final-standard-4-0-3-844-locate-bluewhale",
+        "final-standard-4-0-3-844-locate-qwen",
+        "final-standard-4-0-3-844-locate-llama",
+        "final-standard-4-0-3-844-locate-mistral",
+        "final-standard-4-0-3-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 0,
+      "records": [
+        "final-standard-4-1-0-844-overview",
+        "final-standard-4-1-0-844-work-left",
+        "final-standard-4-1-0-844-work-right",
+        "final-standard-4-1-0-844-locate-qwen",
+        "final-standard-4-1-0-844-locate-llama",
+        "final-standard-4-1-0-844-locate-mistral",
+        "final-standard-4-1-0-844-locate-glm",
+        "final-standard-4-1-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 1,
+      "records": [
+        "final-standard-4-1-1-844-overview",
+        "final-standard-4-1-1-844-work-left",
+        "final-standard-4-1-1-844-work-right",
+        "final-standard-4-1-1-844-locate-qwen",
+        "final-standard-4-1-1-844-locate-llama",
+        "final-standard-4-1-1-844-locate-mistral",
+        "final-standard-4-1-1-844-locate-glm",
+        "final-standard-4-1-1-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 2,
+      "records": [
+        "final-standard-4-1-2-844-overview",
+        "final-standard-4-1-2-844-work-left",
+        "final-standard-4-1-2-844-work-right",
+        "final-standard-4-1-2-844-locate-qwen",
+        "final-standard-4-1-2-844-locate-llama",
+        "final-standard-4-1-2-844-locate-mistral",
+        "final-standard-4-1-2-844-locate-glm",
+        "final-standard-4-1-2-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 3,
+      "records": [
+        "final-standard-4-1-3-844-overview",
+        "final-standard-4-1-3-844-work-left",
+        "final-standard-4-1-3-844-work-right",
+        "final-standard-4-1-3-844-locate-qwen",
+        "final-standard-4-1-3-844-locate-llama",
+        "final-standard-4-1-3-844-locate-mistral",
+        "final-standard-4-1-3-844-locate-glm",
+        "final-standard-4-1-3-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-standard-4-2-0-844-overview",
+        "final-standard-4-2-0-844-work-left",
+        "final-standard-4-2-0-844-work-right",
+        "final-standard-4-2-0-844-locate-bluewhale",
+        "final-standard-4-2-0-844-locate-llama",
+        "final-standard-4-2-0-844-locate-mistral",
+        "final-standard-4-2-0-844-locate-glm",
+        "final-standard-4-2-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 1,
+      "records": [
+        "final-standard-4-2-1-844-overview",
+        "final-standard-4-2-1-844-work-left",
+        "final-standard-4-2-1-844-work-right",
+        "final-standard-4-2-1-844-locate-bluewhale",
+        "final-standard-4-2-1-844-locate-llama",
+        "final-standard-4-2-1-844-locate-mistral",
+        "final-standard-4-2-1-844-locate-glm",
+        "final-standard-4-2-1-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 2,
+      "records": [
+        "final-standard-4-2-2-844-overview",
+        "final-standard-4-2-2-844-work-left",
+        "final-standard-4-2-2-844-work-right",
+        "final-standard-4-2-2-844-locate-bluewhale",
+        "final-standard-4-2-2-844-locate-llama",
+        "final-standard-4-2-2-844-locate-mistral",
+        "final-standard-4-2-2-844-locate-glm",
+        "final-standard-4-2-2-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 3,
+      "records": [
+        "final-standard-4-2-3-844-overview",
+        "final-standard-4-2-3-844-work-left",
+        "final-standard-4-2-3-844-work-right",
+        "final-standard-4-2-3-844-locate-bluewhale",
+        "final-standard-4-2-3-844-locate-llama",
+        "final-standard-4-2-3-844-locate-mistral",
+        "final-standard-4-2-3-844-locate-glm",
+        "final-standard-4-2-3-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 0,
+      "records": [
+        "final-standard-4-3-0-844-overview",
+        "final-standard-4-3-0-844-work-left",
+        "final-standard-4-3-0-844-work-right",
+        "final-standard-4-3-0-844-locate-bluewhale",
+        "final-standard-4-3-0-844-locate-qwen",
+        "final-standard-4-3-0-844-locate-mistral",
+        "final-standard-4-3-0-844-locate-glm",
+        "final-standard-4-3-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 1,
+      "records": [
+        "final-standard-4-3-1-844-overview",
+        "final-standard-4-3-1-844-work-left",
+        "final-standard-4-3-1-844-work-right",
+        "final-standard-4-3-1-844-locate-bluewhale",
+        "final-standard-4-3-1-844-locate-qwen",
+        "final-standard-4-3-1-844-locate-mistral",
+        "final-standard-4-3-1-844-locate-glm",
+        "final-standard-4-3-1-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 2,
+      "records": [
+        "final-standard-4-3-2-844-overview",
+        "final-standard-4-3-2-844-work-left",
+        "final-standard-4-3-2-844-work-right",
+        "final-standard-4-3-2-844-locate-bluewhale",
+        "final-standard-4-3-2-844-locate-qwen",
+        "final-standard-4-3-2-844-locate-mistral",
+        "final-standard-4-3-2-844-locate-glm",
+        "final-standard-4-3-2-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 3,
+      "records": [
+        "final-standard-4-3-3-844-overview",
+        "final-standard-4-3-3-844-work-left",
+        "final-standard-4-3-3-844-work-right",
+        "final-standard-4-3-3-844-locate-bluewhale",
+        "final-standard-4-3-3-844-locate-qwen",
+        "final-standard-4-3-3-844-locate-mistral",
+        "final-standard-4-3-3-844-locate-glm",
+        "final-standard-4-3-3-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 0,
+      "records": [
+        "final-standard-4-4-0-844-overview",
+        "final-standard-4-4-0-844-work-left",
+        "final-standard-4-4-0-844-work-right",
+        "final-standard-4-4-0-844-locate-bluewhale",
+        "final-standard-4-4-0-844-locate-qwen",
+        "final-standard-4-4-0-844-locate-llama",
+        "final-standard-4-4-0-844-locate-glm",
+        "final-standard-4-4-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 1,
+      "records": [
+        "final-standard-4-4-1-844-overview",
+        "final-standard-4-4-1-844-work-left",
+        "final-standard-4-4-1-844-work-right",
+        "final-standard-4-4-1-844-locate-bluewhale",
+        "final-standard-4-4-1-844-locate-qwen",
+        "final-standard-4-4-1-844-locate-llama",
+        "final-standard-4-4-1-844-locate-glm",
+        "final-standard-4-4-1-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 2,
+      "records": [
+        "final-standard-4-4-2-844-overview",
+        "final-standard-4-4-2-844-work-left",
+        "final-standard-4-4-2-844-work-right",
+        "final-standard-4-4-2-844-locate-bluewhale",
+        "final-standard-4-4-2-844-locate-qwen",
+        "final-standard-4-4-2-844-locate-llama",
+        "final-standard-4-4-2-844-locate-glm",
+        "final-standard-4-4-2-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 3,
+      "records": [
+        "final-standard-4-4-3-844-overview",
+        "final-standard-4-4-3-844-work-left",
+        "final-standard-4-4-3-844-work-right",
+        "final-standard-4-4-3-844-locate-bluewhale",
+        "final-standard-4-4-3-844-locate-qwen",
+        "final-standard-4-4-3-844-locate-llama",
+        "final-standard-4-4-3-844-locate-glm",
+        "final-standard-4-4-3-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-standard-4-0-idle-844-overview",
+        "final-standard-4-0-idle-844-work-left",
+        "final-standard-4-0-idle-844-work-right",
+        "final-standard-4-0-idle-844-locate-bluewhale",
+        "final-standard-4-0-idle-844-locate-qwen",
+        "final-standard-4-0-idle-844-locate-llama",
+        "final-standard-4-0-idle-844-locate-mistral",
+        "final-standard-4-0-idle-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-standard-4-2-idle-844-overview",
+        "final-standard-4-2-idle-844-work-left",
+        "final-standard-4-2-idle-844-work-right",
+        "final-standard-4-2-idle-844-locate-bluewhale",
+        "final-standard-4-2-idle-844-locate-llama",
+        "final-standard-4-2-idle-844-locate-mistral",
+        "final-standard-4-2-idle-844-locate-glm",
+        "final-standard-4-2-idle-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 12,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-standard-12-0-idle-844-overview",
+        "final-standard-12-0-idle-844-work-left",
+        "final-standard-12-0-idle-844-work-right",
+        "final-standard-12-0-idle-844-locate-bluewhale",
+        "final-standard-12-0-idle-844-locate-qwen",
+        "final-standard-12-0-idle-844-locate-llama",
+        "final-standard-12-0-idle-844-locate-mistral",
+        "final-standard-12-0-idle-844-locate-glm",
+        "final-standard-12-0-idle-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 12,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-standard-12-2-idle-844-overview",
+        "final-standard-12-2-idle-844-work-left",
+        "final-standard-12-2-idle-844-work-right",
+        "final-standard-12-2-idle-844-locate-bluewhale",
+        "final-standard-12-2-idle-844-locate-qwen",
+        "final-standard-12-2-idle-844-locate-llama",
+        "final-standard-12-2-idle-844-locate-mistral",
+        "final-standard-12-2-idle-844-locate-glm",
+        "final-standard-12-2-idle-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 12,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-standard-12-0-0-844-overview",
+        "final-standard-12-0-0-844-work-left",
+        "final-standard-12-0-0-844-work-right",
+        "final-standard-12-0-0-844-locate-bluewhale",
+        "final-standard-12-0-0-844-locate-qwen",
+        "final-standard-12-0-0-844-locate-llama",
+        "final-standard-12-0-0-844-locate-mistral",
+        "final-standard-12-0-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "pop": 12,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-standard-12-2-0-844-overview",
+        "final-standard-12-2-0-844-work-left",
+        "final-standard-12-2-0-844-work-right",
+        "final-standard-12-2-0-844-locate-bluewhale",
+        "final-standard-12-2-0-844-locate-llama",
+        "final-standard-12-2-0-844-locate-mistral",
+        "final-standard-12-2-0-844-locate-glm",
+        "final-standard-12-2-0-844-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-basic-4-0-0-560-overview",
+        "final-basic-4-0-0-560-work-left",
+        "final-basic-4-0-0-560-work-right",
+        "final-basic-4-0-0-560-locate-bluewhale",
+        "final-basic-4-0-0-560-locate-qwen",
+        "final-basic-4-0-0-560-locate-llama",
+        "final-basic-4-0-0-560-locate-mistral",
+        "final-basic-4-0-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 1,
+      "records": [
+        "final-basic-4-0-1-560-overview",
+        "final-basic-4-0-1-560-work-left",
+        "final-basic-4-0-1-560-work-right",
+        "final-basic-4-0-1-560-locate-bluewhale",
+        "final-basic-4-0-1-560-locate-qwen",
+        "final-basic-4-0-1-560-locate-llama",
+        "final-basic-4-0-1-560-locate-mistral",
+        "final-basic-4-0-1-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 2,
+      "records": [
+        "final-basic-4-0-2-560-overview",
+        "final-basic-4-0-2-560-work-left",
+        "final-basic-4-0-2-560-work-right",
+        "final-basic-4-0-2-560-locate-bluewhale",
+        "final-basic-4-0-2-560-locate-qwen",
+        "final-basic-4-0-2-560-locate-llama",
+        "final-basic-4-0-2-560-locate-mistral",
+        "final-basic-4-0-2-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 3,
+      "records": [
+        "final-basic-4-0-3-560-overview",
+        "final-basic-4-0-3-560-work-left",
+        "final-basic-4-0-3-560-work-right",
+        "final-basic-4-0-3-560-locate-bluewhale",
+        "final-basic-4-0-3-560-locate-qwen",
+        "final-basic-4-0-3-560-locate-llama",
+        "final-basic-4-0-3-560-locate-mistral",
+        "final-basic-4-0-3-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 0,
+      "records": [
+        "final-basic-4-1-0-560-overview",
+        "final-basic-4-1-0-560-work-left",
+        "final-basic-4-1-0-560-work-right",
+        "final-basic-4-1-0-560-locate-qwen",
+        "final-basic-4-1-0-560-locate-llama",
+        "final-basic-4-1-0-560-locate-mistral",
+        "final-basic-4-1-0-560-locate-glm",
+        "final-basic-4-1-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 1,
+      "records": [
+        "final-basic-4-1-1-560-overview",
+        "final-basic-4-1-1-560-work-left",
+        "final-basic-4-1-1-560-work-right",
+        "final-basic-4-1-1-560-locate-qwen",
+        "final-basic-4-1-1-560-locate-llama",
+        "final-basic-4-1-1-560-locate-mistral",
+        "final-basic-4-1-1-560-locate-glm",
+        "final-basic-4-1-1-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 2,
+      "records": [
+        "final-basic-4-1-2-560-overview",
+        "final-basic-4-1-2-560-work-left",
+        "final-basic-4-1-2-560-work-right",
+        "final-basic-4-1-2-560-locate-qwen",
+        "final-basic-4-1-2-560-locate-llama",
+        "final-basic-4-1-2-560-locate-mistral",
+        "final-basic-4-1-2-560-locate-glm",
+        "final-basic-4-1-2-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 3,
+      "records": [
+        "final-basic-4-1-3-560-overview",
+        "final-basic-4-1-3-560-work-left",
+        "final-basic-4-1-3-560-work-right",
+        "final-basic-4-1-3-560-locate-qwen",
+        "final-basic-4-1-3-560-locate-llama",
+        "final-basic-4-1-3-560-locate-mistral",
+        "final-basic-4-1-3-560-locate-glm",
+        "final-basic-4-1-3-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-basic-4-2-0-560-overview",
+        "final-basic-4-2-0-560-work-left",
+        "final-basic-4-2-0-560-work-right",
+        "final-basic-4-2-0-560-locate-bluewhale",
+        "final-basic-4-2-0-560-locate-llama",
+        "final-basic-4-2-0-560-locate-mistral",
+        "final-basic-4-2-0-560-locate-glm",
+        "final-basic-4-2-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 1,
+      "records": [
+        "final-basic-4-2-1-560-overview",
+        "final-basic-4-2-1-560-work-left",
+        "final-basic-4-2-1-560-work-right",
+        "final-basic-4-2-1-560-locate-bluewhale",
+        "final-basic-4-2-1-560-locate-llama",
+        "final-basic-4-2-1-560-locate-mistral",
+        "final-basic-4-2-1-560-locate-glm",
+        "final-basic-4-2-1-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 2,
+      "records": [
+        "final-basic-4-2-2-560-overview",
+        "final-basic-4-2-2-560-work-left",
+        "final-basic-4-2-2-560-work-right",
+        "final-basic-4-2-2-560-locate-bluewhale",
+        "final-basic-4-2-2-560-locate-llama",
+        "final-basic-4-2-2-560-locate-mistral",
+        "final-basic-4-2-2-560-locate-glm",
+        "final-basic-4-2-2-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 3,
+      "records": [
+        "final-basic-4-2-3-560-overview",
+        "final-basic-4-2-3-560-work-left",
+        "final-basic-4-2-3-560-work-right",
+        "final-basic-4-2-3-560-locate-bluewhale",
+        "final-basic-4-2-3-560-locate-llama",
+        "final-basic-4-2-3-560-locate-mistral",
+        "final-basic-4-2-3-560-locate-glm",
+        "final-basic-4-2-3-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 0,
+      "records": [
+        "final-basic-4-3-0-560-overview",
+        "final-basic-4-3-0-560-work-left",
+        "final-basic-4-3-0-560-work-right",
+        "final-basic-4-3-0-560-locate-bluewhale",
+        "final-basic-4-3-0-560-locate-qwen",
+        "final-basic-4-3-0-560-locate-mistral",
+        "final-basic-4-3-0-560-locate-glm",
+        "final-basic-4-3-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 1,
+      "records": [
+        "final-basic-4-3-1-560-overview",
+        "final-basic-4-3-1-560-work-left",
+        "final-basic-4-3-1-560-work-right",
+        "final-basic-4-3-1-560-locate-bluewhale",
+        "final-basic-4-3-1-560-locate-qwen",
+        "final-basic-4-3-1-560-locate-mistral",
+        "final-basic-4-3-1-560-locate-glm",
+        "final-basic-4-3-1-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 2,
+      "records": [
+        "final-basic-4-3-2-560-overview",
+        "final-basic-4-3-2-560-work-left",
+        "final-basic-4-3-2-560-work-right",
+        "final-basic-4-3-2-560-locate-bluewhale",
+        "final-basic-4-3-2-560-locate-qwen",
+        "final-basic-4-3-2-560-locate-mistral",
+        "final-basic-4-3-2-560-locate-glm",
+        "final-basic-4-3-2-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 3,
+      "records": [
+        "final-basic-4-3-3-560-overview",
+        "final-basic-4-3-3-560-work-left",
+        "final-basic-4-3-3-560-work-right",
+        "final-basic-4-3-3-560-locate-bluewhale",
+        "final-basic-4-3-3-560-locate-qwen",
+        "final-basic-4-3-3-560-locate-mistral",
+        "final-basic-4-3-3-560-locate-glm",
+        "final-basic-4-3-3-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 0,
+      "records": [
+        "final-basic-4-4-0-560-overview",
+        "final-basic-4-4-0-560-work-left",
+        "final-basic-4-4-0-560-work-right",
+        "final-basic-4-4-0-560-locate-bluewhale",
+        "final-basic-4-4-0-560-locate-qwen",
+        "final-basic-4-4-0-560-locate-llama",
+        "final-basic-4-4-0-560-locate-glm",
+        "final-basic-4-4-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 1,
+      "records": [
+        "final-basic-4-4-1-560-overview",
+        "final-basic-4-4-1-560-work-left",
+        "final-basic-4-4-1-560-work-right",
+        "final-basic-4-4-1-560-locate-bluewhale",
+        "final-basic-4-4-1-560-locate-qwen",
+        "final-basic-4-4-1-560-locate-llama",
+        "final-basic-4-4-1-560-locate-glm",
+        "final-basic-4-4-1-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 2,
+      "records": [
+        "final-basic-4-4-2-560-overview",
+        "final-basic-4-4-2-560-work-left",
+        "final-basic-4-4-2-560-work-right",
+        "final-basic-4-4-2-560-locate-bluewhale",
+        "final-basic-4-4-2-560-locate-qwen",
+        "final-basic-4-4-2-560-locate-llama",
+        "final-basic-4-4-2-560-locate-glm",
+        "final-basic-4-4-2-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 3,
+      "records": [
+        "final-basic-4-4-3-560-overview",
+        "final-basic-4-4-3-560-work-left",
+        "final-basic-4-4-3-560-work-right",
+        "final-basic-4-4-3-560-locate-bluewhale",
+        "final-basic-4-4-3-560-locate-qwen",
+        "final-basic-4-4-3-560-locate-llama",
+        "final-basic-4-4-3-560-locate-glm",
+        "final-basic-4-4-3-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-basic-4-0-idle-560-overview",
+        "final-basic-4-0-idle-560-work-left",
+        "final-basic-4-0-idle-560-work-right",
+        "final-basic-4-0-idle-560-locate-bluewhale",
+        "final-basic-4-0-idle-560-locate-qwen",
+        "final-basic-4-0-idle-560-locate-llama",
+        "final-basic-4-0-idle-560-locate-mistral",
+        "final-basic-4-0-idle-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-basic-4-2-idle-560-overview",
+        "final-basic-4-2-idle-560-work-left",
+        "final-basic-4-2-idle-560-work-right",
+        "final-basic-4-2-idle-560-locate-bluewhale",
+        "final-basic-4-2-idle-560-locate-llama",
+        "final-basic-4-2-idle-560-locate-mistral",
+        "final-basic-4-2-idle-560-locate-glm",
+        "final-basic-4-2-idle-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 12,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-basic-12-0-idle-560-overview",
+        "final-basic-12-0-idle-560-work-left",
+        "final-basic-12-0-idle-560-work-right",
+        "final-basic-12-0-idle-560-locate-bluewhale",
+        "final-basic-12-0-idle-560-locate-qwen",
+        "final-basic-12-0-idle-560-locate-llama",
+        "final-basic-12-0-idle-560-locate-mistral",
+        "final-basic-12-0-idle-560-locate-glm",
+        "final-basic-12-0-idle-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 12,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-basic-12-2-idle-560-overview",
+        "final-basic-12-2-idle-560-work-left",
+        "final-basic-12-2-idle-560-work-right",
+        "final-basic-12-2-idle-560-locate-bluewhale",
+        "final-basic-12-2-idle-560-locate-qwen",
+        "final-basic-12-2-idle-560-locate-llama",
+        "final-basic-12-2-idle-560-locate-mistral",
+        "final-basic-12-2-idle-560-locate-glm",
+        "final-basic-12-2-idle-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 12,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-basic-12-0-0-560-overview",
+        "final-basic-12-0-0-560-work-left",
+        "final-basic-12-0-0-560-work-right",
+        "final-basic-12-0-0-560-locate-bluewhale",
+        "final-basic-12-0-0-560-locate-qwen",
+        "final-basic-12-0-0-560-locate-llama",
+        "final-basic-12-0-0-560-locate-mistral",
+        "final-basic-12-0-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "pop": 12,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-basic-12-2-0-560-overview",
+        "final-basic-12-2-0-560-work-left",
+        "final-basic-12-2-0-560-work-right",
+        "final-basic-12-2-0-560-locate-bluewhale",
+        "final-basic-12-2-0-560-locate-llama",
+        "final-basic-12-2-0-560-locate-mistral",
+        "final-basic-12-2-0-560-locate-glm",
+        "final-basic-12-2-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-standard-4-0-0-560-overview",
+        "final-standard-4-0-0-560-work-left",
+        "final-standard-4-0-0-560-work-right",
+        "final-standard-4-0-0-560-locate-bluewhale",
+        "final-standard-4-0-0-560-locate-qwen",
+        "final-standard-4-0-0-560-locate-llama",
+        "final-standard-4-0-0-560-locate-mistral",
+        "final-standard-4-0-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 1,
+      "records": [
+        "final-standard-4-0-1-560-overview",
+        "final-standard-4-0-1-560-work-left",
+        "final-standard-4-0-1-560-work-right",
+        "final-standard-4-0-1-560-locate-bluewhale",
+        "final-standard-4-0-1-560-locate-qwen",
+        "final-standard-4-0-1-560-locate-llama",
+        "final-standard-4-0-1-560-locate-mistral",
+        "final-standard-4-0-1-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 2,
+      "records": [
+        "final-standard-4-0-2-560-overview",
+        "final-standard-4-0-2-560-work-left",
+        "final-standard-4-0-2-560-work-right",
+        "final-standard-4-0-2-560-locate-bluewhale",
+        "final-standard-4-0-2-560-locate-qwen",
+        "final-standard-4-0-2-560-locate-llama",
+        "final-standard-4-0-2-560-locate-mistral",
+        "final-standard-4-0-2-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 3,
+      "records": [
+        "final-standard-4-0-3-560-overview",
+        "final-standard-4-0-3-560-work-left",
+        "final-standard-4-0-3-560-work-right",
+        "final-standard-4-0-3-560-locate-bluewhale",
+        "final-standard-4-0-3-560-locate-qwen",
+        "final-standard-4-0-3-560-locate-llama",
+        "final-standard-4-0-3-560-locate-mistral",
+        "final-standard-4-0-3-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 0,
+      "records": [
+        "final-standard-4-1-0-560-overview",
+        "final-standard-4-1-0-560-work-left",
+        "final-standard-4-1-0-560-work-right",
+        "final-standard-4-1-0-560-locate-qwen",
+        "final-standard-4-1-0-560-locate-llama",
+        "final-standard-4-1-0-560-locate-mistral",
+        "final-standard-4-1-0-560-locate-glm",
+        "final-standard-4-1-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 1,
+      "records": [
+        "final-standard-4-1-1-560-overview",
+        "final-standard-4-1-1-560-work-left",
+        "final-standard-4-1-1-560-work-right",
+        "final-standard-4-1-1-560-locate-qwen",
+        "final-standard-4-1-1-560-locate-llama",
+        "final-standard-4-1-1-560-locate-mistral",
+        "final-standard-4-1-1-560-locate-glm",
+        "final-standard-4-1-1-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 2,
+      "records": [
+        "final-standard-4-1-2-560-overview",
+        "final-standard-4-1-2-560-work-left",
+        "final-standard-4-1-2-560-work-right",
+        "final-standard-4-1-2-560-locate-qwen",
+        "final-standard-4-1-2-560-locate-llama",
+        "final-standard-4-1-2-560-locate-mistral",
+        "final-standard-4-1-2-560-locate-glm",
+        "final-standard-4-1-2-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 3,
+      "records": [
+        "final-standard-4-1-3-560-overview",
+        "final-standard-4-1-3-560-work-left",
+        "final-standard-4-1-3-560-work-right",
+        "final-standard-4-1-3-560-locate-qwen",
+        "final-standard-4-1-3-560-locate-llama",
+        "final-standard-4-1-3-560-locate-mistral",
+        "final-standard-4-1-3-560-locate-glm",
+        "final-standard-4-1-3-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-standard-4-2-0-560-overview",
+        "final-standard-4-2-0-560-work-left",
+        "final-standard-4-2-0-560-work-right",
+        "final-standard-4-2-0-560-locate-bluewhale",
+        "final-standard-4-2-0-560-locate-llama",
+        "final-standard-4-2-0-560-locate-mistral",
+        "final-standard-4-2-0-560-locate-glm",
+        "final-standard-4-2-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 1,
+      "records": [
+        "final-standard-4-2-1-560-overview",
+        "final-standard-4-2-1-560-work-left",
+        "final-standard-4-2-1-560-work-right",
+        "final-standard-4-2-1-560-locate-bluewhale",
+        "final-standard-4-2-1-560-locate-llama",
+        "final-standard-4-2-1-560-locate-mistral",
+        "final-standard-4-2-1-560-locate-glm",
+        "final-standard-4-2-1-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 2,
+      "records": [
+        "final-standard-4-2-2-560-overview",
+        "final-standard-4-2-2-560-work-left",
+        "final-standard-4-2-2-560-work-right",
+        "final-standard-4-2-2-560-locate-bluewhale",
+        "final-standard-4-2-2-560-locate-llama",
+        "final-standard-4-2-2-560-locate-mistral",
+        "final-standard-4-2-2-560-locate-glm",
+        "final-standard-4-2-2-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 3,
+      "records": [
+        "final-standard-4-2-3-560-overview",
+        "final-standard-4-2-3-560-work-left",
+        "final-standard-4-2-3-560-work-right",
+        "final-standard-4-2-3-560-locate-bluewhale",
+        "final-standard-4-2-3-560-locate-llama",
+        "final-standard-4-2-3-560-locate-mistral",
+        "final-standard-4-2-3-560-locate-glm",
+        "final-standard-4-2-3-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 0,
+      "records": [
+        "final-standard-4-3-0-560-overview",
+        "final-standard-4-3-0-560-work-left",
+        "final-standard-4-3-0-560-work-right",
+        "final-standard-4-3-0-560-locate-bluewhale",
+        "final-standard-4-3-0-560-locate-qwen",
+        "final-standard-4-3-0-560-locate-mistral",
+        "final-standard-4-3-0-560-locate-glm",
+        "final-standard-4-3-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 1,
+      "records": [
+        "final-standard-4-3-1-560-overview",
+        "final-standard-4-3-1-560-work-left",
+        "final-standard-4-3-1-560-work-right",
+        "final-standard-4-3-1-560-locate-bluewhale",
+        "final-standard-4-3-1-560-locate-qwen",
+        "final-standard-4-3-1-560-locate-mistral",
+        "final-standard-4-3-1-560-locate-glm",
+        "final-standard-4-3-1-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 2,
+      "records": [
+        "final-standard-4-3-2-560-overview",
+        "final-standard-4-3-2-560-work-left",
+        "final-standard-4-3-2-560-work-right",
+        "final-standard-4-3-2-560-locate-bluewhale",
+        "final-standard-4-3-2-560-locate-qwen",
+        "final-standard-4-3-2-560-locate-mistral",
+        "final-standard-4-3-2-560-locate-glm",
+        "final-standard-4-3-2-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 3,
+      "records": [
+        "final-standard-4-3-3-560-overview",
+        "final-standard-4-3-3-560-work-left",
+        "final-standard-4-3-3-560-work-right",
+        "final-standard-4-3-3-560-locate-bluewhale",
+        "final-standard-4-3-3-560-locate-qwen",
+        "final-standard-4-3-3-560-locate-mistral",
+        "final-standard-4-3-3-560-locate-glm",
+        "final-standard-4-3-3-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 0,
+      "records": [
+        "final-standard-4-4-0-560-overview",
+        "final-standard-4-4-0-560-work-left",
+        "final-standard-4-4-0-560-work-right",
+        "final-standard-4-4-0-560-locate-bluewhale",
+        "final-standard-4-4-0-560-locate-qwen",
+        "final-standard-4-4-0-560-locate-llama",
+        "final-standard-4-4-0-560-locate-glm",
+        "final-standard-4-4-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 1,
+      "records": [
+        "final-standard-4-4-1-560-overview",
+        "final-standard-4-4-1-560-work-left",
+        "final-standard-4-4-1-560-work-right",
+        "final-standard-4-4-1-560-locate-bluewhale",
+        "final-standard-4-4-1-560-locate-qwen",
+        "final-standard-4-4-1-560-locate-llama",
+        "final-standard-4-4-1-560-locate-glm",
+        "final-standard-4-4-1-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 2,
+      "records": [
+        "final-standard-4-4-2-560-overview",
+        "final-standard-4-4-2-560-work-left",
+        "final-standard-4-4-2-560-work-right",
+        "final-standard-4-4-2-560-locate-bluewhale",
+        "final-standard-4-4-2-560-locate-qwen",
+        "final-standard-4-4-2-560-locate-llama",
+        "final-standard-4-4-2-560-locate-glm",
+        "final-standard-4-4-2-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 3,
+      "records": [
+        "final-standard-4-4-3-560-overview",
+        "final-standard-4-4-3-560-work-left",
+        "final-standard-4-4-3-560-work-right",
+        "final-standard-4-4-3-560-locate-bluewhale",
+        "final-standard-4-4-3-560-locate-qwen",
+        "final-standard-4-4-3-560-locate-llama",
+        "final-standard-4-4-3-560-locate-glm",
+        "final-standard-4-4-3-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-standard-4-0-idle-560-overview",
+        "final-standard-4-0-idle-560-work-left",
+        "final-standard-4-0-idle-560-work-right",
+        "final-standard-4-0-idle-560-locate-bluewhale",
+        "final-standard-4-0-idle-560-locate-qwen",
+        "final-standard-4-0-idle-560-locate-llama",
+        "final-standard-4-0-idle-560-locate-mistral",
+        "final-standard-4-0-idle-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-standard-4-2-idle-560-overview",
+        "final-standard-4-2-idle-560-work-left",
+        "final-standard-4-2-idle-560-work-right",
+        "final-standard-4-2-idle-560-locate-bluewhale",
+        "final-standard-4-2-idle-560-locate-llama",
+        "final-standard-4-2-idle-560-locate-mistral",
+        "final-standard-4-2-idle-560-locate-glm",
+        "final-standard-4-2-idle-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 12,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-standard-12-0-idle-560-overview",
+        "final-standard-12-0-idle-560-work-left",
+        "final-standard-12-0-idle-560-work-right",
+        "final-standard-12-0-idle-560-locate-bluewhale",
+        "final-standard-12-0-idle-560-locate-qwen",
+        "final-standard-12-0-idle-560-locate-llama",
+        "final-standard-12-0-idle-560-locate-mistral",
+        "final-standard-12-0-idle-560-locate-glm",
+        "final-standard-12-0-idle-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 12,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-standard-12-2-idle-560-overview",
+        "final-standard-12-2-idle-560-work-left",
+        "final-standard-12-2-idle-560-work-right",
+        "final-standard-12-2-idle-560-locate-bluewhale",
+        "final-standard-12-2-idle-560-locate-qwen",
+        "final-standard-12-2-idle-560-locate-llama",
+        "final-standard-12-2-idle-560-locate-mistral",
+        "final-standard-12-2-idle-560-locate-glm",
+        "final-standard-12-2-idle-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 12,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-standard-12-0-0-560-overview",
+        "final-standard-12-0-0-560-work-left",
+        "final-standard-12-0-0-560-work-right",
+        "final-standard-12-0-0-560-locate-bluewhale",
+        "final-standard-12-0-0-560-locate-qwen",
+        "final-standard-12-0-0-560-locate-llama",
+        "final-standard-12-0-0-560-locate-mistral",
+        "final-standard-12-0-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "pop": 12,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-standard-12-2-0-560-overview",
+        "final-standard-12-2-0-560-work-left",
+        "final-standard-12-2-0-560-work-right",
+        "final-standard-12-2-0-560-locate-bluewhale",
+        "final-standard-12-2-0-560-locate-llama",
+        "final-standard-12-2-0-560-locate-mistral",
+        "final-standard-12-2-0-560-locate-glm",
+        "final-standard-12-2-0-560-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-basic-4-0-0-390-overview",
+        "final-basic-4-0-0-390-work-left",
+        "final-basic-4-0-0-390-work-right",
+        "final-basic-4-0-0-390-locate-bluewhale",
+        "final-basic-4-0-0-390-locate-qwen",
+        "final-basic-4-0-0-390-locate-llama",
+        "final-basic-4-0-0-390-locate-mistral",
+        "final-basic-4-0-0-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 1,
+      "records": [
+        "final-basic-4-0-1-390-overview",
+        "final-basic-4-0-1-390-work-left",
+        "final-basic-4-0-1-390-work-right",
+        "final-basic-4-0-1-390-locate-bluewhale",
+        "final-basic-4-0-1-390-locate-qwen",
+        "final-basic-4-0-1-390-locate-llama",
+        "final-basic-4-0-1-390-locate-mistral",
+        "final-basic-4-0-1-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 2,
+      "records": [
+        "final-basic-4-0-2-390-overview",
+        "final-basic-4-0-2-390-work-left",
+        "final-basic-4-0-2-390-work-right",
+        "final-basic-4-0-2-390-locate-bluewhale",
+        "final-basic-4-0-2-390-locate-qwen",
+        "final-basic-4-0-2-390-locate-llama",
+        "final-basic-4-0-2-390-locate-mistral",
+        "final-basic-4-0-2-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": 3,
+      "records": [
+        "final-basic-4-0-3-390-overview",
+        "final-basic-4-0-3-390-work-left",
+        "final-basic-4-0-3-390-work-right",
+        "final-basic-4-0-3-390-locate-bluewhale",
+        "final-basic-4-0-3-390-locate-qwen",
+        "final-basic-4-0-3-390-locate-llama",
+        "final-basic-4-0-3-390-locate-mistral",
+        "final-basic-4-0-3-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 0,
+      "records": [
+        "final-basic-4-1-0-390-overview",
+        "final-basic-4-1-0-390-work-left",
+        "final-basic-4-1-0-390-work-right",
+        "final-basic-4-1-0-390-locate-qwen",
+        "final-basic-4-1-0-390-locate-llama",
+        "final-basic-4-1-0-390-locate-mistral",
+        "final-basic-4-1-0-390-locate-glm",
+        "final-basic-4-1-0-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 1,
+      "records": [
+        "final-basic-4-1-1-390-overview",
+        "final-basic-4-1-1-390-work-left",
+        "final-basic-4-1-1-390-work-right",
+        "final-basic-4-1-1-390-locate-qwen",
+        "final-basic-4-1-1-390-locate-llama",
+        "final-basic-4-1-1-390-locate-mistral",
+        "final-basic-4-1-1-390-locate-glm",
+        "final-basic-4-1-1-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 2,
+      "records": [
+        "final-basic-4-1-2-390-overview",
+        "final-basic-4-1-2-390-work-left",
+        "final-basic-4-1-2-390-work-right",
+        "final-basic-4-1-2-390-locate-qwen",
+        "final-basic-4-1-2-390-locate-llama",
+        "final-basic-4-1-2-390-locate-mistral",
+        "final-basic-4-1-2-390-locate-glm",
+        "final-basic-4-1-2-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 1,
+      "roles": 3,
+      "records": [
+        "final-basic-4-1-3-390-overview",
+        "final-basic-4-1-3-390-work-left",
+        "final-basic-4-1-3-390-work-right",
+        "final-basic-4-1-3-390-locate-qwen",
+        "final-basic-4-1-3-390-locate-llama",
+        "final-basic-4-1-3-390-locate-mistral",
+        "final-basic-4-1-3-390-locate-glm",
+        "final-basic-4-1-3-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-basic-4-2-0-390-overview",
+        "final-basic-4-2-0-390-work-left",
+        "final-basic-4-2-0-390-work-right",
+        "final-basic-4-2-0-390-locate-bluewhale",
+        "final-basic-4-2-0-390-locate-llama",
+        "final-basic-4-2-0-390-locate-mistral",
+        "final-basic-4-2-0-390-locate-glm",
+        "final-basic-4-2-0-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 1,
+      "records": [
+        "final-basic-4-2-1-390-overview",
+        "final-basic-4-2-1-390-work-left",
+        "final-basic-4-2-1-390-work-right",
+        "final-basic-4-2-1-390-locate-bluewhale",
+        "final-basic-4-2-1-390-locate-llama",
+        "final-basic-4-2-1-390-locate-mistral",
+        "final-basic-4-2-1-390-locate-glm",
+        "final-basic-4-2-1-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 2,
+      "records": [
+        "final-basic-4-2-2-390-overview",
+        "final-basic-4-2-2-390-work-left",
+        "final-basic-4-2-2-390-work-right",
+        "final-basic-4-2-2-390-locate-bluewhale",
+        "final-basic-4-2-2-390-locate-llama",
+        "final-basic-4-2-2-390-locate-mistral",
+        "final-basic-4-2-2-390-locate-glm",
+        "final-basic-4-2-2-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": 3,
+      "records": [
+        "final-basic-4-2-3-390-overview",
+        "final-basic-4-2-3-390-work-left",
+        "final-basic-4-2-3-390-work-right",
+        "final-basic-4-2-3-390-locate-bluewhale",
+        "final-basic-4-2-3-390-locate-llama",
+        "final-basic-4-2-3-390-locate-mistral",
+        "final-basic-4-2-3-390-locate-glm",
+        "final-basic-4-2-3-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 0,
+      "records": [
+        "final-basic-4-3-0-390-overview",
+        "final-basic-4-3-0-390-work-left",
+        "final-basic-4-3-0-390-work-right",
+        "final-basic-4-3-0-390-locate-bluewhale",
+        "final-basic-4-3-0-390-locate-qwen",
+        "final-basic-4-3-0-390-locate-mistral",
+        "final-basic-4-3-0-390-locate-glm",
+        "final-basic-4-3-0-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 1,
+      "records": [
+        "final-basic-4-3-1-390-overview",
+        "final-basic-4-3-1-390-work-left",
+        "final-basic-4-3-1-390-work-right",
+        "final-basic-4-3-1-390-locate-bluewhale",
+        "final-basic-4-3-1-390-locate-qwen",
+        "final-basic-4-3-1-390-locate-mistral",
+        "final-basic-4-3-1-390-locate-glm",
+        "final-basic-4-3-1-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 2,
+      "records": [
+        "final-basic-4-3-2-390-overview",
+        "final-basic-4-3-2-390-work-left",
+        "final-basic-4-3-2-390-work-right",
+        "final-basic-4-3-2-390-locate-bluewhale",
+        "final-basic-4-3-2-390-locate-qwen",
+        "final-basic-4-3-2-390-locate-mistral",
+        "final-basic-4-3-2-390-locate-glm",
+        "final-basic-4-3-2-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 3,
+      "roles": 3,
+      "records": [
+        "final-basic-4-3-3-390-overview",
+        "final-basic-4-3-3-390-work-left",
+        "final-basic-4-3-3-390-work-right",
+        "final-basic-4-3-3-390-locate-bluewhale",
+        "final-basic-4-3-3-390-locate-qwen",
+        "final-basic-4-3-3-390-locate-mistral",
+        "final-basic-4-3-3-390-locate-glm",
+        "final-basic-4-3-3-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 0,
+      "records": [
+        "final-basic-4-4-0-390-overview",
+        "final-basic-4-4-0-390-work-left",
+        "final-basic-4-4-0-390-work-right",
+        "final-basic-4-4-0-390-locate-bluewhale",
+        "final-basic-4-4-0-390-locate-qwen",
+        "final-basic-4-4-0-390-locate-llama",
+        "final-basic-4-4-0-390-locate-glm",
+        "final-basic-4-4-0-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 1,
+      "records": [
+        "final-basic-4-4-1-390-overview",
+        "final-basic-4-4-1-390-work-left",
+        "final-basic-4-4-1-390-work-right",
+        "final-basic-4-4-1-390-locate-bluewhale",
+        "final-basic-4-4-1-390-locate-qwen",
+        "final-basic-4-4-1-390-locate-llama",
+        "final-basic-4-4-1-390-locate-glm",
+        "final-basic-4-4-1-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 2,
+      "records": [
+        "final-basic-4-4-2-390-overview",
+        "final-basic-4-4-2-390-work-left",
+        "final-basic-4-4-2-390-work-right",
+        "final-basic-4-4-2-390-locate-bluewhale",
+        "final-basic-4-4-2-390-locate-qwen",
+        "final-basic-4-4-2-390-locate-llama",
+        "final-basic-4-4-2-390-locate-glm",
+        "final-basic-4-4-2-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 4,
+      "roles": 3,
+      "records": [
+        "final-basic-4-4-3-390-overview",
+        "final-basic-4-4-3-390-work-left",
+        "final-basic-4-4-3-390-work-right",
+        "final-basic-4-4-3-390-locate-bluewhale",
+        "final-basic-4-4-3-390-locate-qwen",
+        "final-basic-4-4-3-390-locate-llama",
+        "final-basic-4-4-3-390-locate-glm",
+        "final-basic-4-4-3-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-basic-4-0-idle-390-overview",
+        "final-basic-4-0-idle-390-work-left",
+        "final-basic-4-0-idle-390-work-right",
+        "final-basic-4-0-idle-390-locate-bluewhale",
+        "final-basic-4-0-idle-390-locate-qwen",
+        "final-basic-4-0-idle-390-locate-llama",
+        "final-basic-4-0-idle-390-locate-mistral",
+        "final-basic-4-0-idle-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 4,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-basic-4-2-idle-390-overview",
+        "final-basic-4-2-idle-390-work-left",
+        "final-basic-4-2-idle-390-work-right",
+        "final-basic-4-2-idle-390-locate-bluewhale",
+        "final-basic-4-2-idle-390-locate-llama",
+        "final-basic-4-2-idle-390-locate-mistral",
+        "final-basic-4-2-idle-390-locate-glm",
+        "final-basic-4-2-idle-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 12,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-basic-12-0-idle-390-overview",
+        "final-basic-12-0-idle-390-work-left",
+        "final-basic-12-0-idle-390-work-right",
+        "final-basic-12-0-idle-390-locate-bluewhale",
+        "final-basic-12-0-idle-390-locate-qwen",
+        "final-basic-12-0-idle-390-locate-llama",
+        "final-basic-12-0-idle-390-locate-mistral",
+        "final-basic-12-0-idle-390-locate-glm",
+        "final-basic-12-0-idle-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 12,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-basic-12-2-idle-390-overview",
+        "final-basic-12-2-idle-390-work-left",
+        "final-basic-12-2-idle-390-work-right",
+        "final-basic-12-2-idle-390-locate-bluewhale",
+        "final-basic-12-2-idle-390-locate-qwen",
+        "final-basic-12-2-idle-390-locate-llama",
+        "final-basic-12-2-idle-390-locate-mistral",
+        "final-basic-12-2-idle-390-locate-glm",
+        "final-basic-12-2-idle-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 12,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-basic-12-0-0-390-overview",
+        "final-basic-12-0-0-390-work-left",
+        "final-basic-12-0-0-390-work-right",
+        "final-basic-12-0-0-390-locate-bluewhale",
+        "final-basic-12-0-0-390-locate-qwen",
+        "final-basic-12-0-0-390-locate-llama",
+        "final-basic-12-0-0-390-locate-mistral",
+        "final-basic-12-0-0-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "pop": 12,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-basic-12-2-0-390-overview",
+        "final-basic-12-2-0-390-work-left",
+        "final-basic-12-2-0-390-work-right",
+        "final-basic-12-2-0-390-locate-bluewhale",
+        "final-basic-12-2-0-390-locate-llama",
+        "final-basic-12-2-0-390-locate-mistral",
+        "final-basic-12-2-0-390-locate-glm",
+        "final-basic-12-2-0-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-standard-4-0-0-390-overview",
+        "final-standard-4-0-0-390-work-left",
+        "final-standard-4-0-0-390-work-right",
+        "final-standard-4-0-0-390-locate-bluewhale",
+        "final-standard-4-0-0-390-locate-qwen",
+        "final-standard-4-0-0-390-locate-llama",
+        "final-standard-4-0-0-390-locate-mistral",
+        "final-standard-4-0-0-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 1,
+      "records": [
+        "final-standard-4-0-1-390-overview",
+        "final-standard-4-0-1-390-work-left",
+        "final-standard-4-0-1-390-work-right",
+        "final-standard-4-0-1-390-locate-bluewhale",
+        "final-standard-4-0-1-390-locate-qwen",
+        "final-standard-4-0-1-390-locate-llama",
+        "final-standard-4-0-1-390-locate-mistral",
+        "final-standard-4-0-1-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 2,
+      "records": [
+        "final-standard-4-0-2-390-overview",
+        "final-standard-4-0-2-390-work-left",
+        "final-standard-4-0-2-390-work-right",
+        "final-standard-4-0-2-390-locate-bluewhale",
+        "final-standard-4-0-2-390-locate-qwen",
+        "final-standard-4-0-2-390-locate-llama",
+        "final-standard-4-0-2-390-locate-mistral",
+        "final-standard-4-0-2-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": 3,
+      "records": [
+        "final-standard-4-0-3-390-overview",
+        "final-standard-4-0-3-390-work-left",
+        "final-standard-4-0-3-390-work-right",
+        "final-standard-4-0-3-390-locate-bluewhale",
+        "final-standard-4-0-3-390-locate-qwen",
+        "final-standard-4-0-3-390-locate-llama",
+        "final-standard-4-0-3-390-locate-mistral",
+        "final-standard-4-0-3-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 0,
+      "records": [
+        "final-standard-4-1-0-390-overview",
+        "final-standard-4-1-0-390-work-left",
+        "final-standard-4-1-0-390-work-right",
+        "final-standard-4-1-0-390-locate-qwen",
+        "final-standard-4-1-0-390-locate-llama",
+        "final-standard-4-1-0-390-locate-mistral",
+        "final-standard-4-1-0-390-locate-glm",
+        "final-standard-4-1-0-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 1,
+      "records": [
+        "final-standard-4-1-1-390-overview",
+        "final-standard-4-1-1-390-work-left",
+        "final-standard-4-1-1-390-work-right",
+        "final-standard-4-1-1-390-locate-qwen",
+        "final-standard-4-1-1-390-locate-llama",
+        "final-standard-4-1-1-390-locate-mistral",
+        "final-standard-4-1-1-390-locate-glm",
+        "final-standard-4-1-1-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 2,
+      "records": [
+        "final-standard-4-1-2-390-overview",
+        "final-standard-4-1-2-390-work-left",
+        "final-standard-4-1-2-390-work-right",
+        "final-standard-4-1-2-390-locate-qwen",
+        "final-standard-4-1-2-390-locate-llama",
+        "final-standard-4-1-2-390-locate-mistral",
+        "final-standard-4-1-2-390-locate-glm",
+        "final-standard-4-1-2-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 1,
+      "roles": 3,
+      "records": [
+        "final-standard-4-1-3-390-overview",
+        "final-standard-4-1-3-390-work-left",
+        "final-standard-4-1-3-390-work-right",
+        "final-standard-4-1-3-390-locate-qwen",
+        "final-standard-4-1-3-390-locate-llama",
+        "final-standard-4-1-3-390-locate-mistral",
+        "final-standard-4-1-3-390-locate-glm",
+        "final-standard-4-1-3-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-standard-4-2-0-390-overview",
+        "final-standard-4-2-0-390-work-left",
+        "final-standard-4-2-0-390-work-right",
+        "final-standard-4-2-0-390-locate-bluewhale",
+        "final-standard-4-2-0-390-locate-llama",
+        "final-standard-4-2-0-390-locate-mistral",
+        "final-standard-4-2-0-390-locate-glm",
+        "final-standard-4-2-0-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 1,
+      "records": [
+        "final-standard-4-2-1-390-overview",
+        "final-standard-4-2-1-390-work-left",
+        "final-standard-4-2-1-390-work-right",
+        "final-standard-4-2-1-390-locate-bluewhale",
+        "final-standard-4-2-1-390-locate-llama",
+        "final-standard-4-2-1-390-locate-mistral",
+        "final-standard-4-2-1-390-locate-glm",
+        "final-standard-4-2-1-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 2,
+      "records": [
+        "final-standard-4-2-2-390-overview",
+        "final-standard-4-2-2-390-work-left",
+        "final-standard-4-2-2-390-work-right",
+        "final-standard-4-2-2-390-locate-bluewhale",
+        "final-standard-4-2-2-390-locate-llama",
+        "final-standard-4-2-2-390-locate-mistral",
+        "final-standard-4-2-2-390-locate-glm",
+        "final-standard-4-2-2-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": 3,
+      "records": [
+        "final-standard-4-2-3-390-overview",
+        "final-standard-4-2-3-390-work-left",
+        "final-standard-4-2-3-390-work-right",
+        "final-standard-4-2-3-390-locate-bluewhale",
+        "final-standard-4-2-3-390-locate-llama",
+        "final-standard-4-2-3-390-locate-mistral",
+        "final-standard-4-2-3-390-locate-glm",
+        "final-standard-4-2-3-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 0,
+      "records": [
+        "final-standard-4-3-0-390-overview",
+        "final-standard-4-3-0-390-work-left",
+        "final-standard-4-3-0-390-work-right",
+        "final-standard-4-3-0-390-locate-bluewhale",
+        "final-standard-4-3-0-390-locate-qwen",
+        "final-standard-4-3-0-390-locate-mistral",
+        "final-standard-4-3-0-390-locate-glm",
+        "final-standard-4-3-0-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 1,
+      "records": [
+        "final-standard-4-3-1-390-overview",
+        "final-standard-4-3-1-390-work-left",
+        "final-standard-4-3-1-390-work-right",
+        "final-standard-4-3-1-390-locate-bluewhale",
+        "final-standard-4-3-1-390-locate-qwen",
+        "final-standard-4-3-1-390-locate-mistral",
+        "final-standard-4-3-1-390-locate-glm",
+        "final-standard-4-3-1-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 2,
+      "records": [
+        "final-standard-4-3-2-390-overview",
+        "final-standard-4-3-2-390-work-left",
+        "final-standard-4-3-2-390-work-right",
+        "final-standard-4-3-2-390-locate-bluewhale",
+        "final-standard-4-3-2-390-locate-qwen",
+        "final-standard-4-3-2-390-locate-mistral",
+        "final-standard-4-3-2-390-locate-glm",
+        "final-standard-4-3-2-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 3,
+      "roles": 3,
+      "records": [
+        "final-standard-4-3-3-390-overview",
+        "final-standard-4-3-3-390-work-left",
+        "final-standard-4-3-3-390-work-right",
+        "final-standard-4-3-3-390-locate-bluewhale",
+        "final-standard-4-3-3-390-locate-qwen",
+        "final-standard-4-3-3-390-locate-mistral",
+        "final-standard-4-3-3-390-locate-glm",
+        "final-standard-4-3-3-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 0,
+      "records": [
+        "final-standard-4-4-0-390-overview",
+        "final-standard-4-4-0-390-work-left",
+        "final-standard-4-4-0-390-work-right",
+        "final-standard-4-4-0-390-locate-bluewhale",
+        "final-standard-4-4-0-390-locate-qwen",
+        "final-standard-4-4-0-390-locate-llama",
+        "final-standard-4-4-0-390-locate-glm",
+        "final-standard-4-4-0-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 1,
+      "records": [
+        "final-standard-4-4-1-390-overview",
+        "final-standard-4-4-1-390-work-left",
+        "final-standard-4-4-1-390-work-right",
+        "final-standard-4-4-1-390-locate-bluewhale",
+        "final-standard-4-4-1-390-locate-qwen",
+        "final-standard-4-4-1-390-locate-llama",
+        "final-standard-4-4-1-390-locate-glm",
+        "final-standard-4-4-1-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 2,
+      "records": [
+        "final-standard-4-4-2-390-overview",
+        "final-standard-4-4-2-390-work-left",
+        "final-standard-4-4-2-390-work-right",
+        "final-standard-4-4-2-390-locate-bluewhale",
+        "final-standard-4-4-2-390-locate-qwen",
+        "final-standard-4-4-2-390-locate-llama",
+        "final-standard-4-4-2-390-locate-glm",
+        "final-standard-4-4-2-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 4,
+      "roles": 3,
+      "records": [
+        "final-standard-4-4-3-390-overview",
+        "final-standard-4-4-3-390-work-left",
+        "final-standard-4-4-3-390-work-right",
+        "final-standard-4-4-3-390-locate-bluewhale",
+        "final-standard-4-4-3-390-locate-qwen",
+        "final-standard-4-4-3-390-locate-llama",
+        "final-standard-4-4-3-390-locate-glm",
+        "final-standard-4-4-3-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-standard-4-0-idle-390-overview",
+        "final-standard-4-0-idle-390-work-left",
+        "final-standard-4-0-idle-390-work-right",
+        "final-standard-4-0-idle-390-locate-bluewhale",
+        "final-standard-4-0-idle-390-locate-qwen",
+        "final-standard-4-0-idle-390-locate-llama",
+        "final-standard-4-0-idle-390-locate-mistral",
+        "final-standard-4-0-idle-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 4,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-standard-4-2-idle-390-overview",
+        "final-standard-4-2-idle-390-work-left",
+        "final-standard-4-2-idle-390-work-right",
+        "final-standard-4-2-idle-390-locate-bluewhale",
+        "final-standard-4-2-idle-390-locate-llama",
+        "final-standard-4-2-idle-390-locate-mistral",
+        "final-standard-4-2-idle-390-locate-glm",
+        "final-standard-4-2-idle-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 12,
+      "r": 0,
+      "roles": "idle",
+      "records": [
+        "final-standard-12-0-idle-390-overview",
+        "final-standard-12-0-idle-390-work-left",
+        "final-standard-12-0-idle-390-work-right",
+        "final-standard-12-0-idle-390-locate-bluewhale",
+        "final-standard-12-0-idle-390-locate-qwen",
+        "final-standard-12-0-idle-390-locate-llama",
+        "final-standard-12-0-idle-390-locate-mistral",
+        "final-standard-12-0-idle-390-locate-glm",
+        "final-standard-12-0-idle-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 12,
+      "r": 2,
+      "roles": "idle",
+      "records": [
+        "final-standard-12-2-idle-390-overview",
+        "final-standard-12-2-idle-390-work-left",
+        "final-standard-12-2-idle-390-work-right",
+        "final-standard-12-2-idle-390-locate-bluewhale",
+        "final-standard-12-2-idle-390-locate-qwen",
+        "final-standard-12-2-idle-390-locate-llama",
+        "final-standard-12-2-idle-390-locate-mistral",
+        "final-standard-12-2-idle-390-locate-glm",
+        "final-standard-12-2-idle-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 12,
+      "r": 0,
+      "roles": 0,
+      "records": [
+        "final-standard-12-0-0-390-overview",
+        "final-standard-12-0-0-390-work-left",
+        "final-standard-12-0-0-390-work-right",
+        "final-standard-12-0-0-390-locate-bluewhale",
+        "final-standard-12-0-0-390-locate-qwen",
+        "final-standard-12-0-0-390-locate-llama",
+        "final-standard-12-0-0-390-locate-mistral",
+        "final-standard-12-0-0-390-reset"
+      ],
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "pop": 12,
+      "r": 2,
+      "roles": 0,
+      "records": [
+        "final-standard-12-2-0-390-overview",
+        "final-standard-12-2-0-390-work-left",
+        "final-standard-12-2-0-390-work-right",
+        "final-standard-12-2-0-390-locate-bluewhale",
+        "final-standard-12-2-0-390-locate-llama",
+        "final-standard-12-2-0-390-locate-mistral",
+        "final-standard-12-2-0-390-locate-glm",
+        "final-standard-12-2-0-390-reset"
+      ],
+      "pass": true
+    }
+  ],
+  "coverage": [
+    {
+      "width": 1280,
+      "kind": "basic",
+      "id": "bluewhale",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "id": "qwen",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "id": "llama",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "id": "mistral",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "id": "glm",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "id": "bluewhale",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "id": "qwen",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "id": "llama",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "id": "mistral",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "id": "glm",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "id": "bluewhale",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "id": "qwen",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "id": "llama",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "id": "mistral",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "id": "glm",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "id": "bluewhale",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "id": "qwen",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "id": "llama",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "id": "mistral",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "id": "glm",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "id": "bluewhale",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "id": "qwen",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "id": "llama",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "id": "mistral",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "id": "glm",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "id": "bluewhale",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "id": "qwen",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "id": "llama",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "id": "mistral",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "id": "glm",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "id": "bluewhale",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "id": "qwen",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "id": "llama",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "id": "mistral",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "id": "glm",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "id": "bluewhale",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "id": "qwen",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "id": "llama",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "id": "mistral",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "id": "glm",
+      "slots": [
+        {
+          "slot": "work-1",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-2",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-3",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        },
+        {
+          "slot": "work-4",
+          "roles": [
+            {
+              "role": "worker",
+              "pass": false
+            },
+            {
+              "role": "planner",
+              "pass": false
+            },
+            {
+              "role": "tool",
+              "pass": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "officeFailures": [
+    {
+      "record": {
+        "kind": "basic",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "camera": "overview",
+        "action": "cancel",
+        "before": {
+          "size": "1280px 720px",
+          "position": "-1.13687e-13px 0px"
+        },
+        "preview": {
+          "position": "-1.13687e-13px 0px",
+          "size": "1280px 720px"
+        },
+        "after": {
+          "position": "-1.13687e-13px 0px",
+          "size": "1280px 720px"
+        },
+        "focus": "更多",
+        "pass": false
+      },
+      "reason": "Harness JSON property-order comparison false positive",
+      "resolved": true
+    }
+  ],
+  "officeMatrix": [
+    {
+      "width": 1280,
+      "kind": "basic",
+      "camera": "overview",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "camera": "overview",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "camera": "work-left",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "camera": "work-left",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "camera": "work-right",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "camera": "work-right",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "camera": "locate",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "basic",
+      "camera": "locate",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "camera": "overview",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "camera": "overview",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "camera": "work-left",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "camera": "work-left",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "camera": "work-right",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "camera": "work-right",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "camera": "locate",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "kind": "standard",
+      "camera": "locate",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "camera": "overview",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "camera": "overview",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "camera": "work-left",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "camera": "work-left",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "camera": "work-right",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "camera": "work-right",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "camera": "locate",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "basic",
+      "camera": "locate",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "camera": "overview",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "camera": "overview",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "camera": "work-left",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "camera": "work-left",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "camera": "work-right",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "camera": "work-right",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "camera": "locate",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 844,
+      "kind": "standard",
+      "camera": "locate",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "camera": "overview",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "camera": "overview",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "camera": "work-left",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "camera": "work-left",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "camera": "work-right",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "camera": "work-right",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "camera": "locate",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "basic",
+      "camera": "locate",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "camera": "overview",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "camera": "overview",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "camera": "work-left",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "camera": "work-left",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "camera": "work-right",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "camera": "work-right",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "camera": "locate",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 560,
+      "kind": "standard",
+      "camera": "locate",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "camera": "overview",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "camera": "overview",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "camera": "work-left",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "camera": "work-left",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "camera": "work-right",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "camera": "work-right",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "camera": "locate",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "basic",
+      "camera": "locate",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "camera": "overview",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "camera": "overview",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "camera": "work-left",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "camera": "work-left",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "camera": "work-right",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "camera": "work-right",
+      "action": "save",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "camera": "locate",
+      "action": "cancel",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "kind": "standard",
+      "camera": "locate",
+      "action": "save",
+      "pass": true
+    }
+  ],
+  "diagnostics": [],
+  "screenshots": [
+    "screen-basic-4-1280-overview.png",
+    "screen-basic-12-1280-overview.png",
+    "screen-basic-12-1280-work-left.png",
+    "screen-basic-12-1280-work-right.png",
+    "screen-basic-12-1280-locate.png",
+    "screen-standard-4-1280-overview.png",
+    "screen-standard-12-1280-overview.png",
+    "screen-standard-12-1280-work-left.png",
+    "screen-standard-12-1280-work-right.png",
+    "screen-standard-12-1280-locate.png",
+    "screen-basic-4-844-overview.png",
+    "screen-basic-12-844-overview.png",
+    "screen-basic-12-844-work-left.png",
+    "screen-basic-12-844-work-right.png",
+    "screen-basic-12-844-locate.png",
+    "screen-standard-4-844-overview.png",
+    "screen-standard-12-844-overview.png",
+    "screen-standard-12-844-work-left.png",
+    "screen-standard-12-844-work-right.png",
+    "screen-standard-12-844-locate.png",
+    "screen-basic-4-560-overview.png",
+    "screen-basic-12-560-overview.png",
+    "screen-basic-12-560-work-left.png",
+    "screen-basic-12-560-work-right.png",
+    "screen-basic-12-560-locate.png",
+    "screen-standard-4-560-overview.png",
+    "screen-standard-12-560-overview.png",
+    "screen-standard-12-560-work-left.png",
+    "screen-standard-12-560-work-right.png",
+    "screen-standard-12-560-locate.png",
+    "screen-basic-4-390-overview.png",
+    "screen-basic-12-390-overview.png",
+    "screen-basic-12-390-work-left.png",
+    "screen-basic-12-390-work-right.png",
+    "screen-basic-12-390-locate.png",
+    "screen-standard-4-390-overview.png",
+    "screen-standard-12-390-overview.png",
+    "screen-standard-12-390-work-left.png",
+    "screen-standard-12-390-work-right.png",
+    "screen-standard-12-390-locate.png"
+  ],
+  "performance": {
+    "metric": "observedControlsAndCanvasMs; not complete assetsReady",
+    "primary": [
+      {
+        "mode": "dev",
+        "scenario": "standard",
+        "groups": {
+          "040031e": {
+            "n": 6,
+            "medianMs": 184.85,
+            "values": [
+              217.1,
+              166.3,
+              194.1,
+              212,
+              175.6,
+              159.4
+            ]
+          },
+          "c68541d": {
+            "n": 6,
+            "medianMs": 172.3,
+            "values": [
+              238.7,
+              168.5,
+              176.1,
+              189.9,
+              160.4,
+              148.3
+            ]
+          },
+          "current": {
+            "n": 6,
+            "medianMs": 172.75,
+            "values": [
+              253,
+              187.7,
+              175.2,
+              170.3,
+              149.8,
+              148.7
+            ]
+          }
+        },
+        "changeVs040Percent": -6.545847984852582,
+        "changeVsVf31Percent": 0.2611723737666827
+      },
+      {
+        "mode": "dev",
+        "scenario": "twelve",
+        "groups": {
+          "040031e": {
+            "n": 6,
+            "medianMs": 182.75,
+            "values": [
+              195.4,
+              200.8,
+              156,
+              896.6,
+              150.9,
+              170.1
+            ]
+          },
+          "c68541d": {
+            "n": 6,
+            "medianMs": 172.35,
+            "values": [
+              196.4,
+              202.6,
+              168.6,
+              176.1,
+              136,
+              139.3
+            ]
+          },
+          "current": {
+            "n": 6,
+            "medianMs": 170.75,
+            "values": [
+              169.2,
+              180.6,
+              172.3,
+              178.1,
+              158,
+              153
+            ]
+          }
+        },
+        "changeVs040Percent": -6.566347469220246,
+        "changeVsVf31Percent": -0.9283434870902219
+      },
+      {
+        "mode": "preview",
+        "scenario": "standard",
+        "groups": {
+          "040031e": {
+            "n": 6,
+            "medianMs": 106.69999999999999,
+            "values": [
+              120.1,
+              109.3,
+              102.9,
+              110.8,
+              104.1,
+              100.3
+            ]
+          },
+          "c68541d": {
+            "n": 6,
+            "medianMs": 101.44999999999999,
+            "values": [
+              125.4,
+              93.9,
+              109.5,
+              97,
+              103.3,
+              99.6
+            ]
+          },
+          "current": {
+            "n": 6,
+            "medianMs": 106.75,
+            "values": [
+              119.2,
+              97.9,
+              106.8,
+              111.1,
+              106.7,
+              91
+            ]
+          }
+        },
+        "changeVs040Percent": 0.046860356138722636,
+        "changeVsVf31Percent": 5.224248398225728
+      },
+      {
+        "mode": "preview",
+        "scenario": "twelve",
+        "groups": {
+          "040031e": {
+            "n": 6,
+            "medianMs": 107.6,
+            "values": [
+              110.4,
+              103.6,
+              102.5,
+              119.3,
+              104.8,
+              112.7
+            ]
+          },
+          "c68541d": {
+            "n": 6,
+            "medianMs": 103.05,
+            "values": [
+              93.4,
+              102.6,
+              95,
+              105.4,
+              115.4,
+              103.5
+            ]
+          },
+          "current": {
+            "n": 6,
+            "medianMs": 105.44999999999999,
+            "values": [
+              93,
+              112,
+              101.3,
+              111.4,
+              103.8,
+              107.1
+            ]
+          }
+        },
+        "changeVs040Percent": -1.9981412639405227,
+        "changeVsVf31Percent": 2.328966521106257
+      }
+    ],
+    "confirmationRequired": false
+  }
+}

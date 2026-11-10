@@ -1,4 +1,30 @@
 import {test,expect} from 'vitest';
+import {workFurnitureHitArea,separateOfficeLabels,officeCamera,slotPoint} from '../web/src/office-scene-spec.js';
+test('B1 furniture alpha masks reject transparent padding and shadows at the floor anchor',()=>{
+ const rgba=new Uint8ClampedArray(280*240*4),paint=(x:number,y:number,a:number)=>{rgba[((y+200)*280+x+140)*4+3]=a;};
+ paint(-65,-70,255);paint(98,-108,255);paint(118,12,66);paint(0,-145,0);paint(-140,-200,96);
+ const hit=workFurnitureHitArea(rgba);
+ expect(hit.contains(-65,-70)).toBe(true);expect(hit.contains(98,-108)).toBe(true);
+ expect(hit.contains(118,12)).toBe(false);expect(hit.contains(0,-145)).toBe(false);
+ expect(hit.contains(-140,-200)).toBe(true);expect(hit.contains(-140.01,-200)).toBe(false);expect(hit.contains(140,40)).toBe(false);
+ rgba.fill(0);expect(hit.contains(-65,-70)).toBe(true);
+});
+test('B1 small same-row nameplates separate without shrinking or changing source placements',()=>{
+ const rows=[{id:'bluewhale',x:147,y:295,width:78,height:20},{id:'qwen',x:215,y:295,width:62,height:20},{id:'llama',x:215,y:320,width:62,height:20}],before=JSON.stringify(rows),placed=separateOfficeLabels(rows,844);
+ const first=placed.find(r=>r.id==='bluewhale')!,second=placed.find(r=>r.id==='qwen')!;
+ expect(second.x-second.width/2).toBeGreaterThanOrEqual(first.x+first.width/2+3);expect(second.y).toBe(295);expect(second.width).toBe(62);expect(JSON.stringify(rows)).toBe(before);
+ expect(placed.find(r=>r.id==='llama')!.x).toBe(215);
+});
+test('B1 work-slot world/screen mapping is reversible for all four cameras and viewports',()=>{
+ for(const [width,height] of [[1280,720],[844,390],[560,800],[390,844]])for(let n=1;n<=4;n++){
+  const p=slotPoint(`work-${n}`);expect(p).toEqual({x:640+(n-1)*260,y:795});
+  for(const zone of ['overview','work-left','work-right'] as const)for(const focus of [null,{x:p.x,y:p.y-110}]){
+   const c=officeCamera(width!,height!,zone,focus),screen={x:c.x+p.x*c.scale,y:c.y+p.y*c.scale};
+   expect((screen.x-c.x)/c.scale).toBeCloseTo(p.x,8);expect((screen.y-c.y)/c.scale).toBeCloseTo(p.y,8);
+   expect(c.x).toBeLessThanOrEqual(0);expect(c.x+1920*c.scale).toBeGreaterThanOrEqual(width!-.001);
+  }
+ }
+});
 import {readableSlotLabel} from '../web/src/office-editor.js';
 import {jobMatchesGroup,filterJobs,clarificationWait} from '../web/src/commission-workbench.js';
 test('A4 readable office labels preserve numbers and unknown IDs',()=>{

@@ -1,0 +1,623 @@
+{
+  "at": "2026-11-10T07:43:37.245Z",
+  "scenario": "b1-basic-4-0-idle",
+  "viewport": [
+    1280,
+    720,
+    1.75
+  ],
+  "zone": "overview",
+  "layoutFocus": null,
+  "layout": false,
+  "world": {
+    "x": 0,
+    "y": 0,
+    "scale": 0.6666666666666666
+  },
+  "background": {
+    "size": "1280px 720px",
+    "position": "0px 0px"
+  },
+  "actors": [
+    {
+      "id": "bluewhale",
+      "world": {
+        "x": 335,
+        "y": 655
+      },
+      "height": 146.65976923076923,
+      "renderedHeight": 97.77317948717948,
+      "seated": false,
+      "role": "idle",
+      "slot": null,
+      "face": {
+        "x": 205.40825042735042,
+        "y": 358.23084934472934,
+        "width": 35.85016581196581,
+        "height": 33.67742849002849
+      },
+      "body": {
+        "x": 187.8090781196581,
+        "y": 339.2193977777778,
+        "width": 70.07077863247864,
+        "height": 88.86495646723648
+      },
+      "badge": {
+        "x": 184.51009114583331,
+        "y": 444.8333333333333,
+        "width": 77.646484375,
+        "height": 20
+      },
+      "badgeVisible": true,
+      "z": 655,
+      "frontAabbOverlap": 0,
+      "faceHit": {
+        "x": 223.33333333333331,
+        "y": 375.06956358974355,
+        "actual": "actor:bluewhale"
+      },
+      "bodyHit": {
+        "x": 223.33333333333331,
+        "y": 390,
+        "actual": "actor:bluewhale"
+      },
+      "ready": true
+    },
+    {
+      "id": "qwen",
+      "world": {
+        "x": 490,
+        "y": 655
+      },
+      "height": 145.2076923076923,
+      "renderedHeight": 96.8051282051282,
+      "seated": false,
+      "role": "idle",
+      "slot": null,
+      "face": {
+        "x": 294.18316809116806,
+        "y": 340.72202849002844,
+        "width": 64.96699715099714,
+        "height": 60.23430199430197
+      },
+      "body": {
+        "x": 294.18316809116806,
+        "y": 340.72202849002844,
+        "width": 64.96699715099714,
+        "height": 87.6624216524217
+      },
+      "badge": {
+        "x": 296.16666666666663,
+        "y": 444.8333333333333,
+        "width": 61,
+        "height": 20
+      },
+      "badgeVisible": true,
+      "z": 655,
+      "frontAabbOverlap": 110.7455297260224,
+      "faceHit": {
+        "x": 326.66666666666663,
+        "y": 370.8391794871794,
+        "actual": "actor:qwen"
+      },
+      "bodyHit": {
+        "x": 326.66666666666663,
+        "y": 390,
+        "actual": "actor:qwen"
+      },
+      "ready": true
+    },
+    {
+      "id": "llama",
+      "world": {
+        "x": 215,
+        "y": 900
+      },
+      "height": 177.16,
+      "renderedHeight": 118.10666666666665,
+      "seated": false,
+      "role": "idle",
+      "slot": null,
+      "face": {
+        "x": 103.70198518518518,
+        "y": 482.9431703703703,
+        "width": 79.2626962962963,
+        "height": 73.48859259259262
+      },
+      "body": {
+        "x": 103.70198518518518,
+        "y": 482.9431703703703,
+        "width": 79.2626962962963,
+        "height": 106.95214814814818
+      },
+      "badge": {
+        "x": 112.83333333333331,
+        "y": 608.1666666666666,
+        "width": 61,
+        "height": 20
+      },
+      "badgeVisible": true,
+      "z": 900,
+      "frontAabbOverlap": 0,
+      "faceHit": {
+        "x": 143.33333333333331,
+        "y": 519.6874666666666,
+        "actual": "actor:llama"
+      },
+      "bodyHit": {
+        "x": 143.33333333333331,
+        "y": 553.3333333333333,
+        "actual": "actor:llama"
+      },
+      "ready": true
+    },
+    {
+      "id": "mistral",
+      "world": {
+        "x": 430,
+        "y": 900
+      },
+      "height": 178.88,
+      "renderedHeight": 119.25333333333333,
+      "seated": false,
+      "role": "idle",
+      "slot": null,
+      "face": {
+        "x": 246.65054814814812,
+        "y": 481.80669629629637,
+        "width": 80.03223703703702,
+        "height": 74.20207407407412
+      },
+      "body": {
+        "x": 246.65054814814812,
+        "y": 481.80669629629637,
+        "width": 92.75259259259263,
+        "height": 115.27822222222215
+      },
+      "badge": {
+        "x": 256.16666666666663,
+        "y": 608.1666666666666,
+        "width": 61,
+        "height": 20
+      },
+      "badgeVisible": true,
+      "z": 900,
+      "frontAabbOverlap": 0,
+      "faceHit": {
+        "x": 286.66666666666663,
+        "y": 518.9077333333335,
+        "actual": "actor:mistral"
+      },
+      "bodyHit": {
+        "x": 286.66666666666663,
+        "y": 553.3333333333333,
+        "actual": "actor:mistral"
+      },
+      "ready": true
+    }
+  ],
+  "furniture": [
+    {
+      "id": "f4",
+      "kind": "whiteboard",
+      "anchor": {
+        "x": 920,
+        "y": 635
+      },
+      "back": {
+        "x": 519.9999999999999,
+        "y": 290,
+        "width": 186.66666666666663,
+        "height": 160
+      },
+      "front": {
+        "x": 519.9999999999999,
+        "y": 290,
+        "width": 186.66666666666663,
+        "height": 160
+      },
+      "z": [
+        633,
+        637
+      ],
+      "loaded": true
+    },
+    {
+      "id": "f5",
+      "kind": "coffee",
+      "anchor": {
+        "x": 215,
+        "y": 635
+      },
+      "back": {
+        "x": 49.999999999999986,
+        "y": 290,
+        "width": 186.66666666666663,
+        "height": 160
+      },
+      "front": {
+        "x": 49.999999999999986,
+        "y": 290,
+        "width": 186.66666666666663,
+        "height": 160
+      },
+      "z": [
+        633,
+        637
+      ],
+      "loaded": true
+    },
+    {
+      "id": "f1",
+      "kind": "basic",
+      "anchor": {
+        "x": 640,
+        "y": 795
+      },
+      "back": {
+        "x": 333.3333333333333,
+        "y": 396.6666666666667,
+        "width": 186.66666666666669,
+        "height": 160.00000000000006
+      },
+      "front": {
+        "x": 333.3333333333333,
+        "y": 396.6666666666667,
+        "width": 186.66666666666669,
+        "height": 160.00000000000006
+      },
+      "z": [
+        793,
+        797
+      ],
+      "loaded": true
+    },
+    {
+      "id": "f2",
+      "kind": "basic",
+      "anchor": {
+        "x": 900,
+        "y": 795
+      },
+      "back": {
+        "x": 506.6666666666667,
+        "y": 396.6666666666667,
+        "width": 186.66666666666669,
+        "height": 160.00000000000006
+      },
+      "front": {
+        "x": 506.6666666666667,
+        "y": 396.6666666666667,
+        "width": 186.66666666666669,
+        "height": 160.00000000000006
+      },
+      "z": [
+        793,
+        797
+      ],
+      "loaded": true
+    },
+    {
+      "id": "f3",
+      "kind": "basic",
+      "anchor": {
+        "x": 1160,
+        "y": 795
+      },
+      "back": {
+        "x": 679.9999999999999,
+        "y": 396.6666666666667,
+        "width": 186.66666666666663,
+        "height": 160.00000000000006
+      },
+      "front": {
+        "x": 679.9999999999999,
+        "y": 396.6666666666667,
+        "width": 186.66666666666663,
+        "height": 160.00000000000006
+      },
+      "z": [
+        793,
+        797
+      ],
+      "loaded": true
+    },
+    {
+      "id": "f6",
+      "kind": "basic",
+      "anchor": {
+        "x": 1420,
+        "y": 795
+      },
+      "back": {
+        "x": 853.3333333333333,
+        "y": 396.6666666666667,
+        "width": 186.66666666666674,
+        "height": 160.00000000000006
+      },
+      "front": {
+        "x": 853.3333333333333,
+        "y": 396.6666666666667,
+        "width": 186.66666666666674,
+        "height": 160.00000000000006
+      },
+      "z": [
+        793,
+        797
+      ],
+      "loaded": true
+    }
+  ],
+  "furnitureHits": [
+    {
+      "id": "f1",
+      "kind": "basic",
+      "slot": "work-1",
+      "probes": [
+        {
+          "name": "desk",
+          "local": [
+            -65,
+            -70
+          ],
+          "screen": {
+            "x": 383.3333333333333,
+            "y": 483.3333333333333
+          },
+          "actual": "furniture:f1"
+        },
+        {
+          "name": "monitor",
+          "local": [
+            80,
+            -108
+          ],
+          "screen": {
+            "x": 480,
+            "y": 458
+          },
+          "actual": "furniture:f1"
+        },
+        {
+          "name": "transparent-top",
+          "local": [
+            0,
+            -190
+          ],
+          "screen": {
+            "x": 426.66666666666663,
+            "y": 403.3333333333333
+          },
+          "actual": null
+        },
+        {
+          "name": "transparent-corner",
+          "local": [
+            118,
+            12
+          ],
+          "screen": {
+            "x": 505.3333333333333,
+            "y": 538
+          },
+          "actual": "furniture:f1"
+        },
+        {
+          "name": "chair-gap",
+          "local": [
+            0,
+            -145
+          ],
+          "screen": {
+            "x": 426.66666666666663,
+            "y": 433.3333333333333
+          },
+          "actual": "furniture:f1"
+        }
+      ]
+    },
+    {
+      "id": "f2",
+      "kind": "basic",
+      "slot": "work-2",
+      "probes": [
+        {
+          "name": "desk",
+          "local": [
+            -65,
+            -70
+          ],
+          "screen": {
+            "x": 556.6666666666666,
+            "y": 483.3333333333333
+          },
+          "actual": "furniture:f2"
+        },
+        {
+          "name": "monitor",
+          "local": [
+            80,
+            -108
+          ],
+          "screen": {
+            "x": 653.3333333333333,
+            "y": 458
+          },
+          "actual": "furniture:f2"
+        },
+        {
+          "name": "transparent-top",
+          "local": [
+            0,
+            -190
+          ],
+          "screen": {
+            "x": 600,
+            "y": 403.3333333333333
+          },
+          "actual": null
+        },
+        {
+          "name": "transparent-corner",
+          "local": [
+            118,
+            12
+          ],
+          "screen": {
+            "x": 678.6666666666666,
+            "y": 538
+          },
+          "actual": "furniture:f2"
+        },
+        {
+          "name": "chair-gap",
+          "local": [
+            0,
+            -145
+          ],
+          "screen": {
+            "x": 600,
+            "y": 433.3333333333333
+          },
+          "actual": "furniture:f2"
+        }
+      ]
+    },
+    {
+      "id": "f3",
+      "kind": "basic",
+      "slot": "work-3",
+      "probes": [
+        {
+          "name": "desk",
+          "local": [
+            -65,
+            -70
+          ],
+          "screen": {
+            "x": 730,
+            "y": 483.3333333333333
+          },
+          "actual": "furniture:f3"
+        },
+        {
+          "name": "monitor",
+          "local": [
+            80,
+            -108
+          ],
+          "screen": {
+            "x": 826.6666666666666,
+            "y": 458
+          },
+          "actual": "furniture:f3"
+        },
+        {
+          "name": "transparent-top",
+          "local": [
+            0,
+            -190
+          ],
+          "screen": {
+            "x": 773.3333333333333,
+            "y": 403.3333333333333
+          },
+          "actual": null
+        },
+        {
+          "name": "transparent-corner",
+          "local": [
+            118,
+            12
+          ],
+          "screen": {
+            "x": 852,
+            "y": 538
+          },
+          "actual": "furniture:f3"
+        },
+        {
+          "name": "chair-gap",
+          "local": [
+            0,
+            -145
+          ],
+          "screen": {
+            "x": 773.3333333333333,
+            "y": 433.3333333333333
+          },
+          "actual": "furniture:f3"
+        }
+      ]
+    },
+    {
+      "id": "f6",
+      "kind": "basic",
+      "slot": "work-4",
+      "probes": [
+        {
+          "name": "desk",
+          "local": [
+            -65,
+            -70
+          ],
+          "screen": {
+            "x": 903.3333333333333,
+            "y": 483.3333333333333
+          },
+          "actual": "furniture:f6"
+        },
+        {
+          "name": "monitor",
+          "local": [
+            80,
+            -108
+          ],
+          "screen": {
+            "x": 1000,
+            "y": 458
+          },
+          "actual": "furniture:f6"
+        },
+        {
+          "name": "transparent-top",
+          "local": [
+            0,
+            -190
+          ],
+          "screen": {
+            "x": 946.6666666666666,
+            "y": 403.3333333333333
+          },
+          "actual": null
+        },
+        {
+          "name": "transparent-corner",
+          "local": [
+            118,
+            12
+          ],
+          "screen": {
+            "x": 1025.3333333333333,
+            "y": 538
+          },
+          "actual": "furniture:f6"
+        },
+        {
+          "name": "chair-gap",
+          "local": [
+            0,
+            -145
+          ],
+          "screen": {
+            "x": 946.6666666666666,
+            "y": 433.3333333333333
+          },
+          "actual": "furniture:f6"
+        }
+      ]
+    }
+  ],
+  "ready": true,
+  "labelsAboveWorld": true
+}

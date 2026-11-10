@@ -1,0 +1,182 @@
+{
+  "metric": "observedControlsAndCanvasMs; not complete assetsReady",
+  "primary": [
+    {
+      "mode": "dev",
+      "scenario": "standard",
+      "groups": {
+        "040031e": {
+          "n": 6,
+          "medianMs": 184.85,
+          "values": [
+            217.1,
+            166.3,
+            194.1,
+            212,
+            175.6,
+            159.4
+          ]
+        },
+        "c68541d": {
+          "n": 6,
+          "medianMs": 172.3,
+          "values": [
+            238.7,
+            168.5,
+            176.1,
+            189.9,
+            160.4,
+            148.3
+          ]
+        },
+        "current": {
+          "n": 6,
+          "medianMs": 172.75,
+          "values": [
+            253,
+            187.7,
+            175.2,
+            170.3,
+            149.8,
+            148.7
+          ]
+        }
+      },
+      "changeVs040Percent": -6.545847984852582,
+      "changeVsVf31Percent": 0.2611723737666827
+    },
+    {
+      "mode": "dev",
+      "scenario": "twelve",
+      "groups": {
+        "040031e": {
+          "n": 6,
+          "medianMs": 182.75,
+          "values": [
+            195.4,
+            200.8,
+            156,
+            896.6,
+            150.9,
+            170.1
+          ]
+        },
+        "c68541d": {
+          "n": 6,
+          "medianMs": 172.35,
+          "values": [
+            196.4,
+            202.6,
+            168.6,
+            176.1,
+            136,
+            139.3
+          ]
+        },
+        "current": {
+          "n": 6,
+          "medianMs": 170.75,
+          "values": [
+            169.2,
+            180.6,
+            172.3,
+            178.1,
+            158,
+            153
+          ]
+        }
+      },
+      "changeVs040Percent": -6.566347469220246,
+      "changeVsVf31Percent": -0.9283434870902219
+    },
+    {
+      "mode": "preview",
+      "scenario": "standard",
+      "groups": {
+        "040031e": {
+          "n": 6,
+          "medianMs": 106.69999999999999,
+          "values": [
+            120.1,
+            109.3,
+            102.9,
+            110.8,
+            104.1,
+            100.3
+          ]
+        },
+        "c68541d": {
+          "n": 6,
+          "medianMs": 101.44999999999999,
+          "values": [
+            125.4,
+            93.9,
+            109.5,
+            97,
+            103.3,
+            99.6
+          ]
+        },
+        "current": {
+          "n": 6,
+          "medianMs": 106.75,
+          "values": [
+            119.2,
+            97.9,
+            106.8,
+            111.1,
+            106.7,
+            91
+          ]
+        }
+      },
+      "changeVs040Percent": 0.046860356138722636,
+      "changeVsVf31Percent": 5.224248398225728
+    },
+    {
+      "mode": "preview",
+      "scenario": "twelve",
+      "groups": {
+        "040031e": {
+          "n": 6,
+          "medianMs": 107.6,
+          "values": [
+            110.4,
+            103.6,
+            102.5,
+            119.3,
+            104.8,
+            112.7
+          ]
+        },
+        "c68541d": {
+          "n": 6,
+          "medianMs": 103.05,
+          "values": [
+            93.4,
+            102.6,
+            95,
+            105.4,
+            115.4,
+            103.5
+          ]
+        },
+        "current": {
+          "n": 6,
+          "medianMs": 105.44999999999999,
+          "values": [
+            93,
+            112,
+            101.3,
+            111.4,
+            103.8,
+            107.1
+          ]
+        }
+      },
+      "changeVs040Percent": -1.9981412639405227,
+      "changeVsVf31Percent": 2.328966521106257
+    }
+  ],
+  "confirmationRequired": false
+}

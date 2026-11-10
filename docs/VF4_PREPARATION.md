@@ -1,3 +1,9 @@
+2026-11-10 当前批次：VF4-A 全阶段已获用户转述独立复审 CLOSED/PASS；VF4-B1 代表工作角落已完成，等待独立复审。固定实现与证据索引见 `harness/reviews/vf4b1-handoff.md`。四开局按用户确认采用 DeepSeek/bluewhale、Qwen、Llama、Mistral + GLM，standard单屏。basic/standard back原样复用，front仅显示器+16world x；两scene文件修正透明区命中与名牌间距。第2节“先核验、按需最小修正”已执行，原始前后证据保留；其余资产不扩产。
+
+208配置、四视口、五样本四槽位三职责、4/12人、镜头往返及编辑器恢复，量化与真实点击门禁通过。38文件313测试，155文件冻结；新性能72+12四格均<=+10%，非A4复用；23/23交付门禁通过。A4历史144+24偏离获明确认可，原始产物不改。VF4A2-PERF-01 CLOSED，完整VF31-PERF-01 OPEN；其余六家具、七角色全姿态/完整动态、VF4-C与Stage B、Visual Freeze 1、真实DSH、SW全分支、200%字体继续OPEN/HOLD。B1不能自行宣布独立PASS；两次本地提交后暂停，禁止自动推进B2/C。以下旧“待复审”及“未生产”表述仅属对应历史阶段。
+2026-11-10 最新裁决：用户提供的 Gemini 独立只读复审确认 VF4-A4 固定实现 3be52f46586047722e96f759975d36c0eb9ebaf7 为 PASS（P0/P1/P2/P3 均0）。VF4-A1/A2/A3/A3.1/A4 零资源 UI 全阶段 CLOSED / PASS；A4 两次冻结对应的144正式+24预热偏离已被明确认可，原始批次保留且未混合择优。VF4A2-PERF-01 CLOSED，VF31-PERF-01 OPEN。用户引用记录提交91a444d，本地对象库未找到；本地记录为ec59d18ad41c2dc24d875578ae7851d6e3e0a3f4，实现SHA一致，未改写历史。
+
+当前授权：仅推进 VF4-B1 basic/standard 代表工作角落实屏审核；现有资产先量化核验，按证据最小修正。其余6类家具、其余7位角色全姿态、VF4-C/Stage B、完整Visual Freeze 1、完整性能预算、真实DSH、SW全分支、200%字体继续OPEN/HOLD。完成最多两次本地提交后暂停。以下历史待复审状态不覆盖上述最终裁决。
 # VF4 准备：推广清单与逐批验收门禁
 
 2026-11-10 最新进度：新用户交接已批准先归因再限定VF4-A。54条阶段归因+24条实验后完成Saves/Settings/Map单一系统弹窗组试点，303测试、31条四视口观察与冻结后72+72性能记录见 **VF4_CHECKPOINT.md**。本页旧VF3.1数字为历史，不覆盖该检查点。当前暂停待Gemini裁决；资产VF4-B/C及全站CSS仍HOLD，**未生产任何美术资产，也未完成整体Visual Freeze 1**。

@@ -1,3 +1,11 @@
+2026-11-10 当前入口：**VF4-B1 已完成实现与验证，暂停待独立复审**。固定实现 `B1_IMPLEMENTATION_SHA_PENDING`；交接 `harness/reviews/vf4b1-handoff.md`，复审 Prompt `harness/reviews/vf4b1-gemini-review-prompt.md`。用户已确认现有四开局 DeepSeek/bluewhale、Qwen、Llama、Mistral + GLM，standard 保持单屏。basic/standard 两个 back 实屏核验通过并原样复用；两个 front 仅显示器水平 +16world；两个 scene 文件补透明像素命中与小比例名牌避让。角色资产、packages/lock、六个封板 UI 全部0diff。
+
+208配置、1,704实测记录、7,008样本观察；保留16条修复前失败与复验；108次真实点击、64次有效布置保存/取消镜头与焦点恢复通过。38文件313测试、155文件原始/LF冻结、交付23/23 true；最终冻结后新72正式+12预热，相对c68541d四格+0.26%/−0.93%/+5.22%/+2.33%，未触发确认批。生产无探针、端口5181–5186关闭、缓存和浏览器清理完成。harness字段顺序与浮点误报、中断重试、素材许可证声明限制均保留说明。
+
+VF4-A1/A2/A3/A3.1/A4 用户转述独立复审 CLOSED / PASS；A4两批144正式+24预热偏离获认可。VF4A2-PERF-01保持CLOSED，VF31-PERF-01完整预算（冷缓存、完整assetsReady、GPU纹理上传、长会话内存驻留、输入延迟、低端真机）OPEN。其他六类家具、其余七角色全姿态、完整动态、VF4-C食堂/图书馆/章节背景与Stage B专属立绘、完整Visual Freeze 1、真实DSH冲突流、SW全分支、200%系统字体继续OPEN/HOLD。仅本地实现与四文档SHA回填两次提交，完成暂停，不push、部署或启动B2/C。以下是历史记录，不覆盖本段。
+2026-11-10 最新裁决：用户提供的 Gemini 独立只读复审确认 VF4-A4 固定实现 3be52f46586047722e96f759975d36c0eb9ebaf7 为 PASS（P0/P1/P2/P3 均0）。VF4-A1/A2/A3/A3.1/A4 零资源 UI 全阶段 CLOSED / PASS；A4 两次冻结对应的144正式+24预热偏离已被明确认可，原始批次保留且未混合择优。VF4A2-PERF-01 CLOSED，VF31-PERF-01 OPEN。用户引用记录提交91a444d，本地对象库未找到；本地记录为ec59d18ad41c2dc24d875578ae7851d6e3e0a3f4，实现SHA一致，未改写历史。
+
+当前授权：仅推进 VF4-B1 basic/standard 代表工作角落实屏审核；现有资产先量化核验，按证据最小修正。其余6类家具、其余7位角色全姿态、VF4-C/Stage B、完整Visual Freeze 1、完整性能预算、真实DSH、SW全分支、200%字体继续OPEN/HOLD。完成最多两次本地提交后暂停。以下历史待复审状态不覆盖上述最终裁决。
 2026-11-10 当前入口：**VF4-A4 实现与验证完成，暂停待独立复审**。固定实现 `3be52f46586047722e96f759975d36c0eb9ebaf7`；交接 `harness/reviews/vf4a4-handoff.md`，复审 Prompt `harness/reviews/vf4a4-gemini-review-prompt.md`。Jobs纸面抽屉/数量筛选/空态与跨抽屉焦点通用化，S2全状态四视口验证与44px/底栏修复，OfficeEditor双语可读槽位及保存/取消镜头焦点闭环；零新增资源与领域规则改动。38文件310测试及完整pnpm check通过，261条实机记录保留12条失败与对应复验，151文件原始/LF冻结匹配，交付门禁20/20通过。最终72正式+12预热四格相对c68541d为+2.82%/+0.56%/+4.89%/-0.40%，未触发确认批；另有源码焦点补修前72+12完整归档于pre-final-focus，不冒充最终证据、不隐去额外采样事实。生产无探针，保护路径0diff，端口/专用缓存/浏览器清理完毕。
 
 既有VF4-A + VF4-A.1/A2 + VF4-A3/A3.1独立复审PASS封板状态不变，Actors/S3保持已通过实现。VF4A2-PERF-01保持CLOSED。S2/Jobs/Office本轮所需矩阵已实施并待独立验收，不能由执行者直接宣告整体封板；VF31-PERF-01完整预算（冷缓存、完整assetsReady、GPU纹理上传、长会话驻留、输入延迟、低端移动真机）、完整Visual Freeze 1、VF4-B/C（含Stage B版本专属立绘）、真实DSH宿主冲突流、Service Worker更新全分支、200%系统字体缩放继续OPEN / HOLD。仅两次本地提交后暂停，不push、不部署、不启动下一阶段。以下为历史记录，不覆盖本段。
