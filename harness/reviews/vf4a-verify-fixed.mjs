@@ -1,0 +1,10 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+const implementation='d3e0c87d96bf4fe3baa77ab745163d8baa9ca052';
+const freeze=JSON.parse(readFileSync('harness/vf4a/source-freeze.json','utf8'));
+const mismatches=freeze.files.filter(f=>createHash('sha256').update(execFileSync('git',['show',`${implementation}:${f.path}`]).toString('utf8').replaceAll('\r\n','\n')).digest('hex')!==f.lfSha256).map(f=>f.path);
+const protectedDiff=execFileSync('git',['diff','2bd6d40733d6ffcd575a3bbcef59d89f5887cf9f',implementation,'--','packages','pnpm-lock.yaml','apps/web/public/art/ai-village'],{encoding:'utf8'});
+const result={at:new Date().toISOString(),implementation,frozenFileCount:freeze.files.length,normalizedBlobMismatches:mismatches,protectedDiffEmpty:protectedDiff===''};
+writeFileSync('harness/vf4a/implementation-verification.json',JSON.stringify(result,null,2)+'\n');console.log(result);
+if(mismatches.length||protectedDiff)process.exitCode=1;

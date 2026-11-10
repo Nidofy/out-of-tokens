@@ -219,3 +219,5 @@ UTC02:01:02.946冻结151文件，原始/LF SHA256均记录。固定前台1280x72
 默认生产已恢复且无vf-metrics/vf-startup/vf-attribution；六端口5181–5186关闭、浏览器视口/可见性恢复与tab关闭；保护路径零diff、engine0.16.0/content office-2不变。新检查点及状态/规划文档明确候选规范、完整映射、局限与复审门禁。只修剪新日志行末/文件尾空白以通过diff检查，不删失败事实或原始样本。两个本地提交后暂停待Gemini，不push/部署/付费调用、不扩资产或新玩法。
 
 交付证据脚本首检误把文件控件可达性的DOMRect对象当作含scrollWidth的滚动指标，导致noHorizontalOverflow假阴性；初检JSON保留。限定仅统计有数值scrollWidth的观察后通过，未修改任何产品源码或原始交互数据。
+
+VF4-A固定实现 d3e0c87d96bf4fe3baa77ab745163d8baa9ca052；实现提交前staged diff --check通过，151文件固定Git blob的LF哈希与冻结清单一致，保护路径零diff。独立记录提供vf4a-handoff及vf4a-d3e0c87-gemini-prompt，明确归因/试点/性能/保护审查及必须回交Codex完整执行Prompt。本记录不改产品实现，双本地提交后暂停，未push。
