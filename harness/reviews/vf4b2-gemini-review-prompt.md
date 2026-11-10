@@ -1,6 +1,6 @@
 # VF4-B2 Gemini 独立只读复审
 
-请固定审查实现`B2_IMPLEMENTATION_SHA_PENDING`，对比基线`69b8d83b1d2b3b79400da4dd0dd41c75ab39480b`；记录提交仅回填四份文档SHA。先阅读vf4b2-handoff.md及harness/vf4b2/protocol.md，不修改仓库、不重新采样、不push或部署。输出PASS/CONDITIONAL PASS/FAIL、P0/P1/P2/P3与证据路径，不能把执行者25/25门禁直接当独立裁决。
+请固定审查实现`30e35cdbe3ac5c9c45a6dc9509ff47c46111b05e`，对比基线`69b8d83b1d2b3b79400da4dd0dd41c75ab39480b`；记录提交仅回填四份文档SHA。先阅读vf4b2-handoff.md及harness/vf4b2/protocol.md，不修改仓库、不重新采样、不push或部署。输出PASS/CONDITIONAL PASS/FAIL、P0/P1/P2/P3与证据路径，不能把执行者25/25门禁直接当独立裁决。
 
 1. 确认B1独立PASS已登记，VF4-A/B1/VF4A2-PERF-01仍CLOSED；角色资源、packages/lock、六个封板UI、B1四SVG及harness/vf4b1严格0diff，改动在B2白名单内。
 2. 检查68条before及3条first-fix失败、同视角图与resolved映射；空闲站位避障是否保持定位映射/槽位，名牌右边界纵向避让是否可靠，alpha>=96是否覆盖实心支腿并排除透明/阴影。四目标SVG原样复用与空front层null bbox应有真实证据，不能要求无问题资产重绘。

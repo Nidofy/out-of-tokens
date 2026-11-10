@@ -1,4 +1,4 @@
-2026-11-11 当前入口：**VF4-B2 实现与验证完成，暂停待独立只读复审**。固定实现 `B2_IMPLEMENTATION_SHA_PENDING`，基线69b8d83。交接见 `harness/reviews/vf4b2-handoff.md`，复审指令见 `harness/reviews/vf4b2-gemini-review-prompt.md`。用户提供B1独立PASS已登记；VF4-A全阶段、VF4-B1、VF4A2-PERF-01保持CLOSED/PASS。
+2026-11-11 当前入口：**VF4-B2 实现与验证完成，暂停待独立只读复审**。固定实现 `30e35cdbe3ac5c9c45a6dc9509ff47c46111b05e`，基线69b8d83。交接见 `harness/reviews/vf4b2-handoff.md`，复审指令见 `harness/reviews/vf4b2-gemini-review-prompt.md`。用户提供B1独立PASS已登记；VF4-A全阶段、VF4-B1、VF4A2-PERF-01保持CLOSED/PASS。
 
 whiteboard/coffee四张SVG实屏核验通过、原样复用。仅两个scene文件修正alpha命中、空闲角色绕开家具和右边界名牌纵向避让，vf2新增3项回归。208配置、1922条记录、8020正式样本观察（含重复）、320会议席位职责组合、140真实指针记录、64次OfficeEditor往返；68条before及3条first-fix失败和1条指针探针误判全部保留并有明确复验映射。四视口最终几何/点击/背景与焦点恢复通过。用户确认仅审核合法lounge-1～3，lounge-4不可达／未验收，等待后续授权。
 
