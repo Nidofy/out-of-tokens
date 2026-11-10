@@ -1,6 +1,6 @@
 # VF4-A4 当前检查点（2026-11-10）
 
-固定实现：`A4_IMPLEMENTATION_SHA_PENDING`。起点 `bb2fa10e2598b0dc1eff1dab2051ba0685c9ee75`，本地分支 codex/m1-foundation；两次本地提交后暂停待独立复审，不push、不部署、不启动VF4-B/C。既有A3/A3.1独立复审PASS与Actors/S3封板状态保持不变。
+固定实现：`3be52f46586047722e96f759975d36c0eb9ebaf7`。起点 `bb2fa10e2598b0dc1eff1dab2051ba0685c9ee75`，本地分支 codex/m1-foundation；两次本地提交后暂停待独立复审，不push、不部署、不启动VF4-B/C。既有A3/A3.1独立复审PASS与Actors/S3封板状态保持不变。
 
 ## 实现与实机验收
 

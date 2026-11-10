@@ -1,6 +1,6 @@
 # VF4-A4 复审交接
 
-固定实现：`A4_IMPLEMENTATION_SHA_PENDING`。起点 `bb2fa10e2598b0dc1eff1dab2051ba0685c9ee75`，分支 codex/m1-foundation。状态：实现及本地验证完成，**待独立复审**；实现提交后仅四份文档回填SHA，再暂停。未push、部署、付费调用或启动VF4-B/C。
+固定实现：`3be52f46586047722e96f759975d36c0eb9ebaf7`。起点 `bb2fa10e2598b0dc1eff1dab2051ba0685c9ee75`，分支 codex/m1-foundation。状态：实现及本地验证完成，**待独立复审**；实现提交后仅四份文档回填SHA，再暂停。未push、部署、付费调用或启动VF4-B/C。
 
 用户提供的Gemini裁决已确认A3/A3.1独立复审PASS：实现d1072f6b2d0f7bd42b3a1078164753b0acc6fec8，记录7b7b5faa937b4415cf1bc63e0a7c1d68a582fe0c。FOCUS-01/CSS-01/CSS-02、历史完整性均CLOSED/PASS；Actors海报墙与S3封板，A4未更改它们。VF4A2-PERF-01保持CLOSED。
 

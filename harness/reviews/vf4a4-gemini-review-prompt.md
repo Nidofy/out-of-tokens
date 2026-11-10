@@ -1,6 +1,6 @@
 # Gemini 独立只读复审：VF4-A4
 
-请只读审查固定实现 `A4_IMPLEMENTATION_SHA_PENDING`，起点bb2fa10e2598b0dc1eff1dab2051ba0685c9ee75，分支codex/m1-foundation。随后记录提交仅回填四份文档SHA；不要将浮动HEAD当实现锚点。不要修改代码或证据，不push、部署或启动VF4-B/C。以实际diff与原始数据裁决，允许PASS/CONDITIONAL PASS/FAIL并给出P0–P3、精确路径、复现步骤及最小修复。
+请只读审查固定实现 `3be52f46586047722e96f759975d36c0eb9ebaf7`，起点bb2fa10e2598b0dc1eff1dab2051ba0685c9ee75，分支codex/m1-foundation。随后记录提交仅回填四份文档SHA；不要将浮动HEAD当实现锚点。不要修改代码或证据，不push、部署或启动VF4-B/C。以实际diff与原始数据裁决，允许PASS/CONDITIONAL PASS/FAIL并给出P0–P3、精确路径、复现步骤及最小修复。
 
 先读vf4a4-handoff.md、docs/VF4_CHECKPOINT.md当前节、harness/vf4a4/protocol.md。既有VF4-A3/A3.1独立复审PASS已确认，Actors/S3封板；VF4A2-PERF-01保持CLOSED。A4尚无独立裁决，不把执行者的门禁全绿当最终PASS。
 
