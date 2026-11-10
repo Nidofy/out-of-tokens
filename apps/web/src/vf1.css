@@ -112,6 +112,28 @@
 @media(max-width:679px){.scene-tools{top:116px}.scene-presence{top:170px;max-height:calc(100dvh - 264px)}}
 @media(max-height:479px){.scene-tools{top:64px}.scene-presence{top:118px;max-height:calc(100dvh - 200px)}}
 /* VF4-A2: only Studio and Journal adopt this drawer treatment. */
+/* VF4-A3: CSS-only recruitment posters, original portrait assets. */
+.studio-app[data-panel=actors] :is(.scene-tools,.scene-presence,.studio-dock){visibility:hidden}
+.studio-app[data-panel=actors] .studio-drawer{width:min(820px,calc(100% - 24px));max-height:calc(100dvh - 88px);background:var(--paper);border:1px solid var(--line);border-radius:16px}
+.studio-app[data-panel=actors] .drawer-content{padding:16px}
+.studio-app[data-panel=actors] .drawer-head h2{font-size:20px}
+.studio-app[data-panel=actors] .drawer-head button{min-width:44px;min-height:44px}
+.poster-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.studio-app .poster-card{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 88px;gap:8px;min-width:0;min-height:168px;padding:12px 12px 0;border-radius:12px;border:1px solid #fff8ec88;background:linear-gradient(135deg,#0003,#0006),var(--poster-color);color:#fff8ec;box-shadow:inset 0 0 0 3px #fff8ec22;text-align:left;overflow:hidden;align-items:start}
+.poster-title{display:flex;flex-direction:column;gap:4px;min-width:0;overflow-wrap:anywhere;font-size:14px}
+.poster-title b{font-size:16px}.poster-title small{color:inherit;font-size:12px}.poster-word{font-size:20px;line-height:1.2}.poster-word::first-letter{font-size:28px}
+.poster-art{width:88px;height:112px;object-fit:contain;image-rendering:auto;filter:none;grid-column:2;grid-row:1}
+.poster-check-strip{display:flex;gap:6px;flex-wrap:wrap;font-size:12px;grid-column:1/-1;align-items:center}.poster-stamp{writing-mode:vertical-rl;font-size:12px;letter-spacing:1px}
+.poster-status-bar{grid-column:1/-1;display:block;background:#0005;margin:0 -12px;padding:8px 12px;font-size:12px;line-height:1.5;align-self:end}
+.poster-card[data-mirror=true] .poster-art{transform:scaleX(-1)}
+.poster-card[data-character=claude] :is(.poster-art,.poster-check-strip){transform:rotate(180deg)}
+.poster-card[data-character=claude] .poster-title{grid-column:1/-1;grid-row:3}.poster-card[data-character=claude] .poster-check-strip{grid-row:1;grid-column:1}.poster-card[data-character=claude] .poster-status-bar{grid-row:4}
+.poster-profile-heading{border-top:8px solid var(--poster-color);border-radius:12px;background:var(--card);padding:16px;gap:16px}
+.profile-art-frame{width:160px;height:160px;flex:0 0 160px;background:var(--poster-color);border-radius:12px;overflow:hidden}.profile-art-frame img{width:100%;height:100%;object-fit:contain}.profile-art-frame[data-inverted=true] img{transform:rotate(180deg)}
+.profile-dialog :is(button,summary){min-height:44px;white-space:normal}.profile-dialog h3{font-size:16px}.profile-dialog p{font-size:14px}.profile-dialog small{font-size:12px}
+.version-inspector{padding:16px;border:1px solid var(--line);border-radius:12px;margin:16px 0}.version-inspector .profile-vitals{margin:0}.version-inspector b{font-variant-numeric:tabular-nums;font-size:14px}.version-inspector .skill-list small{display:block}.version-inspector .skill-list>div{grid-template-columns:90px minmax(0,1fr) auto}.version-inspector .management-tabs button[aria-pressed=true]{box-shadow:inset 0 -3px var(--selected-indicator)}
+.profile-dialog :is(button,summary):focus-visible{outline:3px solid var(--focus-ring);outline-offset:3px;box-shadow:0 0 0 3px var(--focus-contrast)}.profile-dialog button[aria-pressed=true]:focus-visible{box-shadow:inset 0 -3px var(--selected-indicator),0 0 0 3px var(--focus-contrast)}
+@media(max-width:559px){.poster-grid{grid-template-columns:minmax(0,1fr)}.poster-profile-heading{flex-wrap:wrap}.profile-art-frame{width:128px;height:128px;flex-basis:128px}.version-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.version-inspector{padding:12px}}
 .studio-app:is([data-panel=studio],[data-panel=journal]) :is(.scene-tools,.scene-presence,.studio-dock){visibility:hidden}
 .studio-app:is([data-panel=studio],[data-panel=journal]) .studio-drawer{width:min(520px,calc(100% - 24px));max-height:calc(100dvh - 88px);border:1px solid var(--line);border-radius:16px;background:var(--paper)}
 .studio-app:is([data-panel=studio],[data-panel=journal]) .drawer-head{padding:12px 16px;background:var(--solid);border-color:var(--line)}

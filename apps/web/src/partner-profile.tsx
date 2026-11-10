@@ -2,29 +2,37 @@ import type {ComponentChildren} from 'preact';
 import type {Command} from 'oot-core';
 import type {GameView} from 'oot-platform';
 import {Dialog} from './dialog.js';
-import {Portrait} from './studio-ui.js';
+import {useState,useRef} from 'preact/hooks';
+import {content} from './content.js';
 import {FlavorPanel} from './flavor-panel.js';
-import {characterProfiles} from './character-profiles.js';
+import {characterProfiles,resolveCharacterVisual,versionDelta,recruitmentBlock,recruitmentReasons} from './character-profiles.js';
 import {names} from './presentation.js';
 import {sceneText,skillText} from './ui-labels.js';
 import {partnerAvailability} from './partner-state.js';
-type Props={locate:(()=>void)|undefined;view:GameView;actor:GameView['actors'][number];english:boolean;locked:boolean;send:(cmd:Command)=>Promise<boolean>;close:()=>void;closePanel:()=>void;openJob:(id:string)=>void;notice:ComponentChildren};
-export function PartnerProfile({view,actor,english,locked,send,close,closePanel,openJob,notice,locate}:Props){
+type Props={locate:(()=>void)|undefined;view:GameView;characterId:string;actor:GameView['actors'][number]|undefined;english:boolean;locked:boolean;send:(cmd:Command)=>Promise<boolean>;close:()=>void;closePanel:()=>void;openJob:(id:string)=>void;notice:ComponentChildren};
+export function PartnerProfile({view,actor,characterId,english,locked,send,close,closePanel,openJob,notice,locate}:Props){
  const tr=(zh:string,en:string)=>english?en:zh,p=view.campaign!,catalog=view.catalog!;
- const {sameScene,onExpedition,activeJobs,lifeBusy,canRecall,status}=partnerAvailability(view,actor,locked);
+ const {sameScene,onExpedition,activeJobs,lifeBusy,canRecall,status}=actor?partnerAvailability(view,actor,locked):{sameScene:false,onExpedition:false,activeJobs:[],lifeBusy:false,canRecall:false,status:null};
  const scene=(id:keyof typeof sceneText|'expedition')=>id==='expedition'?tr('远征中','On expedition'):sceneText[id][english?1:0],skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
  const life=(action:Extract<Command,{type:'campaign'}>['action'],id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
+ const versions=content.versions.filter(v=>v.character===characterId),base=versions.find(v=>v.id===actor?.version)??versions[0]!;
+ const [previewVersionId,setPreviewVersionId]=useState(base.id),[inverted,setInverted]=useState(false),inspectorRef=useRef<HTMLElement>(null);
+ const v=versions.find(v=>v.id===previewVersionId)??base,visual=resolveCharacterVisual(characterId,v.id,'profile'),delta=versionDelta(v,base),recruit=catalog.recruits.find(r=>r.character===characterId),block=recruit?recruitmentBlock(view,recruit,locked):null;
+ const diff=(n:number)=>`Δ ${n>0?'+':''}${n}`,different=v.id!==base.id;
+ const inspector=<section ref={inspectorRef} class="profile-section management-content version-inspector"><h3>{tr('模型版本切换与规格细节检视器','Model Version Inspector')}</h3>
+ <div class="management-tabs">{versions.map((item,i)=><button aria-pressed={v.id===item.id} onClick={()=>setPreviewVersionId(item.id)}>{item.name} · {actor?.version===item.id?tr('当前','Current'):p.unlocked.includes(item.id)?tr('已解锁','Unlocked'):i===0?tr('初始','Initial'):tr('待研发','Research required')}</button>)}</div>
+ <div class="profile-vitals version-metrics"><div><small>{tr('算力单价','Cost')}</small><b>{v.price} T/WP</b>{different&&<small>{diff(delta.price)}</small>}</div><div><small>{tr('推理速度','Speed')}</small><b>×{v.speed}</b>{different&&<small>{diff(delta.speed)}</small>}</div><div><small>{tr('稳定性 / 上下文','Stability / Context')}</small><b>{v.stability} / {v.context}</b>{different&&<small>{diff(delta.stability)} / {diff(delta.context)}</small>}</div><div><small>{tr('部署方式','Modes')}</small><b>{v.modes.map(m=>m==='cloud'?tr('☁ 云端','☁ Cloud'):tr('▣ 本地','▣ Local')).join(' · ')}</b></div></div>
+ <div class="skill-list">{(Object.keys(skillText) as (keyof typeof skillText)[]).map(k=><div><span>{skill(k)}</span><meter min="0" max="10" value={v.skills[k]}/><b>{v.skills[k]} {different&&<small>{diff(delta.skills[k])}</small>}</b></div>)}</div>
+ {actor&&<p>{tr('当前训练加成（已计入实时能力）','Current training bonus (included in live skills)')}: {(Object.keys(skillText) as (keyof typeof skillText)[]).filter(k=>actor.skills[k]!==base.skills[k]).map(k=>`${skill(k)} ${diff(actor.skills[k]-base.skills[k])}`).join(' · ')||'—'}</p>}
+ <p class="version-rhythm">{v.rhythm.map((n,i)=>`${[tr('上午','Morning'),tr('下午','Afternoon'),tr('晚上','Evening'),tr('深夜','Night')][i]} ×${n}`).join(' · ')}</p>
+ {actor?<><button class="primary" disabled={locked||actor.busy||actor.version===v.id} onClick={()=>p.unlocked.includes(v.id)?life('switch',actor.id,v.id):life('unlock',v.id)}>{actor.version===v.id?tr('当前版本','Current version'):p.unlocked.includes(v.id)?tr('切换至此版本','Switch to this version'):tr('研发解锁 ¥600 / 10RP','Research ¥600 / 10RP')}</button>{(locked||actor.busy)&&<p>{tr('当前状态或伙伴忙碌，暂不可研发或切换。','Resolve the current state and wait for this teammate to be free.')}</p>}</>:<button disabled>{tr('招募伙伴后可研发或切换版本','Recruit this teammate to research or switch versions')}</button>}</section>;
  return (
 <Dialog className="profile-dialog" title={tr('伙伴档案','Team profile')} close={()=>close()}>
-<div class="resume-heading">
-<Portrait id={actor.id} variant="profile"/>
-<div>
-<h3>{names[actor.id]}</h3>
-<p>{characterProfiles[actor.id]?.[english?1:0]??tr('每位伙伴都有适合自己的工作。按能力选择委托，也记得照顾心情和精力。','Match skills to the brief and leave room to recharge.') }</p>
-<p>{tr('擅长','Strengths')}: {Object.entries(actor.skills).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([k])=>skill(k as keyof typeof skillText)).join(' · ')}</p>
-<p>{tr('当前版本','Version')}: {catalog.versions.find(v=>v.id===actor.version)?.name}</p>
-</div>
-</div>
+<div class="resume-heading poster-profile-heading" style={{'--poster-color':visual.themeColor}}>
+<div class="profile-art-frame" data-inverted={inverted}><img src={visual.src} alt=""/></div><div><h3>{names[characterId]} · {visual.sWord}</h3><b>{visual.versionBadge}</b><p>{characterProfiles[characterId]?.[english?1:0]}</p>{characterId==='claude'&&<button aria-pressed={inverted} onClick={()=>setInverted(!inverted)}>{tr('🙃 切换封号倒置视角','🙃 Toggle suspended view')}</button>}</div></div>
+{!actor&&recruit&&<><div class="profile-vitals"><div><small>{tr('开放章节','Chapter')}</small><b>{recruit.minChapter??0}</b></div><div><small>{tr('所需声望','Reputation')}</small><b>{recruit.reputation}</b></div><div><small>{tr('招募费用','Cost')}</small><b>¥{recruit.cost}</b></div><div><small>{tr('当前状态','Status')}</small><b>{block?recruitmentReasons[block][english?1:0]:tr('可招募','Eligible')}</b></div></div><button class="primary" disabled={!!block} onClick={()=>{void send({type:'campaign',action:'recruit',id:characterId}).then(ok=>{if(ok)requestAnimationFrame(()=>inspectorRef.current?.querySelector<HTMLButtonElement>('button[aria-pressed=true]')?.focus({preventScroll:true}));});}}>{tr('立即招募','Recruit now')} (¥{recruit.cost})</button>{notice}</>}
+{inspector}
+{actor&&<>
 <div class="profile-vitals">
 <div>
 <small>{tr('所在场景','Location')}</small>
@@ -56,14 +64,7 @@ export function PartnerProfile({view,actor,english,locked,send,close,closePanel,
 <details class="profile-section">
 <summary>{tr('能力、版本与成长','Skills, versions and growth')}</summary>
 <p>{tr('好感 / 经验 / 压力 / 饥饿','Affinity / XP / stress / hunger')}: {p.relations[actor.id]!.affinity} / {p.relations[actor.id]!.xp} / {p.relations[actor.id]!.stress} / {p.relations[actor.id]!.hunger}</p>
-<div class="skill-list">{Object.entries(actor.skills).map(([id,v])=>
-<div>
-<span>{skill(id as keyof typeof skillText)}</span>
-<meter min="0" max="10" value={v}/>
-<b>{v}</b>
-</div>)}</div>{catalog.versions.filter(v=>v.character===actor.id).map(v=>
-<p>{v.name} · {v.price}T/WP / ×{v.speed} <button disabled={locked||actor.version===v.id||(p.unlocked.includes(v.id)&&actor.busy)} onClick={()=>p.unlocked.includes(v.id)?life('switch',actor.id,v.id):life('unlock',v.id)}>{actor.version===v.id?tr('当前','Current'):p.unlocked.includes(v.id)?tr('切换','Switch'):tr('研发 ¥600 / 10RP','Research ¥600 / 10RP')}</button>
-</p>)}<details>
+<details>
 <summary>{tr('开源训练（微调8槽/对齐4槽，¥300 + 5RP）','Open-source training (8 slots; alignment 4 slots; ¥300 + 5RP)')}</summary>{(Object.keys(skillText) as (keyof typeof skillText)[]).map(k=>
 <button disabled={locked||actor.busy} onClick={()=>life('train',actor.id,k)}>{skill(k)} +1</button>)}<button disabled={locked||actor.busy} onClick={()=>life('align',actor.id)}>{tr('对齐','Align')}</button>
 </details>
@@ -74,6 +75,7 @@ export function PartnerProfile({view,actor,english,locked,send,close,closePanel,
 <summary>{tr('好感','Affinity')} {st.affinity} {p.relations[actor.id]!.stories.includes(st.id)?'✓':''}</summary>{p.relations[actor.id]!.affinity>=st.affinity?<p>{english?st.textEn:st.text}</p>:<p>{tr('再熟悉一些，就能听到这段故事。','Get to know this teammate to unlock the story.')}</p>}{p.relations[actor.id]!.affinity>=st.affinity&&st.choices.map((c,i)=>
 <button disabled={locked||p.relations[actor.id]!.affinity<st.affinity||p.relations[actor.id]!.stories.includes(st.id)} onClick={()=>life('story',st.id,String(i))}>{english?c.labelEn:c.label} · {tr('好感','Affinity')} +{c.affinity} / {tr('心情','Mood')} {c.mood} / RP +{c.research}</button>)}</details>)}</details>
 <FlavorPanel context={{actor:actor.id,scene:actor.location,slot:view.absoluteSlot,language:english?'en':'zh',mood:actor.mood,version:actor.version}}/>
+</>}{!actor&&<p>{tr('伙伴故事（招募并提升好感后解锁）','Character stories unlock after recruitment and growing affinity.')}</p>}
 </Dialog>
  );
 }

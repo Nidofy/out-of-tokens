@@ -1,0 +1,190 @@
+{
+  "at": "2026-11-10T04:32:06.689Z",
+  "checks": {
+    "whitelist": true,
+    "protectedEmpty": true,
+    "longProtectedEmpty": true,
+    "sourceFrozen": true,
+    "interactionChecks": true,
+    "recruitFocusFixed": true,
+    "equalN6": true,
+    "formal72": true,
+    "environment": true,
+    "noConfirmationRequired": true,
+    "productionNoProbe": true,
+    "noCacheErrors": true,
+    "cacheRemoved": true,
+    "portsClosed": true,
+    "browserRestored": true
+  },
+  "counts": {
+    "interactions": 52,
+    "formal": 72,
+    "warmup": 12
+  },
+  "outside": [],
+  "protectedDiff": "",
+  "longProtectedDiff": "",
+  "freezeChanges": [],
+  "errors": [],
+  "diagnostics": [],
+  "cacheErrors": [],
+  "resolvedFailure": "390-claude-recruited-in-place",
+  "performance": {
+    "primary": [
+      {
+        "mode": "dev",
+        "scenario": "standard",
+        "n": 6,
+        "samples": {
+          "040031e": [
+            168.8,
+            169.3,
+            186.7,
+            190,
+            194.8,
+            216.2
+          ],
+          "c68541d": [
+            170.3,
+            171.9,
+            194.3,
+            195.3,
+            198.4,
+            212.3
+          ],
+          "current": [
+            177.5,
+            179.3,
+            192.3,
+            212.4,
+            218.6,
+            220.5
+          ]
+        },
+        "medians": {
+          "040031e": 188.35,
+          "c68541d": 194.8,
+          "current": 202.35000000000002
+        },
+        "changeVs040": 7.432970533581118,
+        "changeVsVf31": 3.8757700205338974
+      },
+      {
+        "mode": "dev",
+        "scenario": "twelve",
+        "n": 6,
+        "samples": {
+          "040031e": [
+            156.8,
+            163.4,
+            164.2,
+            166.4,
+            174.7,
+            179.4
+          ],
+          "c68541d": [
+            162.4,
+            171.1,
+            172.1,
+            173.6,
+            176.5,
+            193.7
+          ],
+          "current": [
+            155.5,
+            161.1,
+            173.8,
+            177.5,
+            183.3,
+            195.1
+          ]
+        },
+        "medians": {
+          "040031e": 165.3,
+          "c68541d": 172.85,
+          "current": 175.65
+        },
+        "changeVs040": 6.261343012704179,
+        "changeVsVf31": 1.6199016488284812
+      },
+      {
+        "mode": "preview",
+        "scenario": "standard",
+        "n": 6,
+        "samples": {
+          "040031e": [
+            105.6,
+            126.6,
+            127.2,
+            128,
+            128.2,
+            135.8
+          ],
+          "c68541d": [
+            117.4,
+            121.8,
+            124.5,
+            126.9,
+            133.9,
+            148.3
+          ],
+          "current": [
+            114,
+            121.3,
+            126.8,
+            128,
+            132.5,
+            141.1
+          ]
+        },
+        "medians": {
+          "040031e": 127.6,
+          "c68541d": 125.7,
+          "current": 127.4
+        },
+        "changeVs040": -0.15673981191222097,
+        "changeVsVf31": 1.352426412092278
+      },
+      {
+        "mode": "preview",
+        "scenario": "twelve",
+        "n": 6,
+        "samples": {
+          "040031e": [
+            116.7,
+            121.8,
+            121.8,
+            123.1,
+            123.3,
+            128.3
+          ],
+          "c68541d": [
+            108.3,
+            111,
+            122.7,
+            126.5,
+            129,
+            136.3
+          ],
+          "current": [
+            112.9,
+            118.6,
+            118.9,
+            121.5,
+            138.1,
+            139.5
+          ]
+        },
+        "medians": {
+          "040031e": 122.44999999999999,
+          "c68541d": 124.6,
+          "current": 120.2
+        },
+        "changeVs040": -1.8374846876275885,
+        "changeVsVf31": -3.5313001605136396
+      }
+    ],
+    "confirmationRequired": false
+  }
+}

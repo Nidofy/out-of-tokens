@@ -1,4 +1,26 @@
 import {test,expect} from 'vitest';
+import {characterPosters,resolveCharacterVisual,versionDelta,recruitmentBlock} from '../web/src/character-profiles.js';
+test('VF4-A3 all twelve portraits preserve Stage A contract and profile stays upright',()=>{
+ expect(Object.keys(characterPosters)).toHaveLength(12);
+ for(const id of Object.keys(characterPosters)){
+  expect(resolveCharacterVisual(id)).toMatchObject({src:`./art/ai-village/portraits/${id}.png`,versionBadge:'BASE',isInvertedGag:id==='claude',sWord:characterPosters[id]!.sWord,themeColor:characterPosters[id]!.themeColor});
+  expect(resolveCharacterVisual(id,`${id}.v2.test`,'profile')).toMatchObject({versionBadge:'V2.TEST',isInvertedGag:false});
+ }
+});
+test('VF4-A3 deltas cover six skills and engineering metrics without mutation',async()=>{
+ const c=await loadFullContent(),base=c.versions[0]!,before=JSON.stringify(base),v={...base,skills:{code:9,write:8,reason:7,create:6,media:5,recall:4},price:base.price+2,speed:base.speed-0.1,stability:base.stability+1,context:base.context-1};
+ const d=versionDelta(v,base);expect(d).toMatchObject({price:2,speed:-0.1,stability:1,context:-1});
+ for(const k of Object.keys(v.skills) as (keyof typeof v.skills)[])expect(d.skills[k]).toBe(v.skills[k]-base.skills[k]);
+ expect(versionDelta(base,base).skills).toEqual({code:0,write:0,reason:0,create:0,media:0,recall:0});expect(JSON.stringify(base)).toBe(before);
+});
+test('VF4-A3 recruitment respects equality boundaries and every blocker',async()=>{
+ const view=labSession(await loadFullContent(),'standard').view,r={character:'claude',cost:100,reputation:10,minChapter:1};
+ const ready={...view,cash:100,reputation:10,campaign:{...view.campaign!,chapter:1}};
+ expect(recruitmentBlock(ready,r)).toBeNull();expect(recruitmentBlock(ready,r,true)).toBe('locked');
+ expect(recruitmentBlock({...ready,cash:99},r)).toBe('cash');expect(recruitmentBlock({...ready,reputation:9},r)).toBe('reputation');
+ expect(recruitmentBlock({...ready,campaign:{...ready.campaign,chapter:0}},r)).toBe('chapter');
+ expect(recruitmentBlock(ready,{...r,character:ready.actors[0]!.id})).toBe('recruited');
+});
 import {loadFullContent} from 'oot-content';
 import {labSession} from '../web/src/office-lab.js';
 import {partnerAvailability} from '../web/src/partner-state.js';

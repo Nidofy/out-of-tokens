@@ -1,3 +1,32 @@
+import type {GameView} from 'oot-platform';
+import type {Version} from 'oot-core';
+export const characterPosters:Record<string,{sWord:string;themeColor:string;tagline:[string,string];mirror:boolean;invertedGag?:boolean}>={
+ bluewhale:{sWord:'Smile',themeColor:'#3B6EA8',tagline:['开源车库的解题担当','A little code, a little logic.'],mirror:false},
+ qwen:{sWord:'Service',themeColor:'#4E67C8',tagline:['全尺寸劳模为您服务','AI maid at your service.'],mirror:false},
+ llama:{sWord:'Sharing',themeColor:'#4B7F52',tagline:['乐于分享的开源前辈','Open weights, open heart.'],mirror:false},
+ mistral:{sWord:'Speedy',themeColor:'#D06A4C',tagline:['小而快，赶早班的心','Small and fast, always early.'],mirror:true},
+ gpt:{sWord:'Sister',themeColor:'#8576B8',tagline:['贴心易懂的演示专家','Welcome to the incubator.'],mirror:true},
+ claude:{sWord:'Suspended',themeColor:'#C45B38',tagline:['认真读完每一条验收底线','Read the checklist carefully.'],mirror:false,invertedGag:true},
+ kimi:{sWord:'Symphony',themeColor:'#222944',tagline:['超长记忆拉近彼此距离','Music & memory bring us closer.'],mirror:false},
+ gemini:{sWord:'Surprise',themeColor:'#675BC8',tagline:['多模态星光点亮演示','A star to brighten your day.'],mirror:false},
+ grok:{sWord:'Sweet',themeColor:'#C98A24',tagline:['意想不到的幽默追问','Unexpected angles, bold ideas.'],mirror:false},
+ minimax:{sWord:'Stage',themeColor:'#A8547E',tagline:['把控节奏的试演舞台','Pacing, rhythm & rehearsal.'],mirror:true},
+ seedance:{sWord:'Storyboard',themeColor:'#2C7A7B',tagline:['每个镜头都有明确用途','Every shot has a purpose.'],mirror:true},
+ glm:{sWord:'Silence',themeColor:'#4A4E57',tagline:['先搭框架，再落细节','A quiet moment, with you.'],mirror:false}
+};
+/** Stage A contract: every version reuses the original portrait. */
+export function resolveCharacterVisual(characterId:string,versionId?:string,variant:'poster'|'profile'='poster'){
+ const poster=characterPosters[characterId];
+ return {src:`./art/ai-village/portraits/${characterId}.png`,versionBadge:versionId?versionId.split('.').slice(1).join('.').toUpperCase():'BASE',isInvertedGag:characterId==='claude'&&variant==='poster',sWord:poster?.sWord??'',themeColor:poster?.themeColor??'#4A4E57'};
+}
+export function versionDelta(preview:Version,baseline:Version){
+ const delta=(a:number,b:number)=>Number((a-b).toFixed(4));
+ return {price:delta(preview.price,baseline.price),speed:delta(preview.speed,baseline.speed),stability:delta(preview.stability,baseline.stability),context:delta(preview.context,baseline.context),skills:Object.fromEntries(Object.keys(baseline.skills).map(k=>[k,delta(preview.skills[k as keyof Version['skills']],baseline.skills[k as keyof Version['skills']])])) as Version['skills']};
+}
+export function recruitmentBlock(view:Pick<GameView,'actors'|'cash'|'reputation'|'campaign'>,recruit:{character:string;minChapter?:number;cost:number;reputation:number},locked=false){
+ return view.actors.some(a=>a.id===recruit.character)?'recruited':locked?'locked':(view.campaign?.chapter??0)<(recruit.minChapter??0)?'chapter':view.cash<recruit.cost?'cash':view.reputation<recruit.reputation?'reputation':null;
+}
+export const recruitmentReasons={recruited:['已入驻','Recruited'],locked:['请先处理当前状态','Resolve the current state first'],chapter:['章节未开放','Chapter not unlocked'],cash:['现金不足','Not enough cash'],reputation:['声望不足','Not enough reputation']} as const;
 // Editorial copy based on GDD §5.4; traits here do not grant mechanical bonuses.
 export const characterProfiles:Record<string,[string,string]>={
  gemini:['她把文字、图像和声音摊在同一张桌上，寻找彼此遗漏的线索。演示前会先检查每一种材料是否服务于同一个目标。','She lays text, images and audio on the same desk, looking for clues each medium missed. Before a demo, she checks that every piece serves the same goal.'],
