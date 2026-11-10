@@ -1,0 +1,2090 @@
+[
+  {
+    "label": "040031e",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 1,
+    "batch": "primary",
+    "at": "2026-11-10T06:25:52.139Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 245.7,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 96,
+      "transfer": 22500,
+      "decodedBody": 12545012
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 1,
+    "batch": "primary",
+    "at": "2026-11-10T06:25:53.954Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 205.7,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.599999999999909,
+      "over50": 0
+    },
+    "resources": {
+      "count": 102,
+      "transfer": 24300,
+      "decodedBody": 12329140
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 1,
+    "batch": "primary",
+    "at": "2026-11-10T06:25:55.757Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 235,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.400000000000091,
+      "over50": 0
+    },
+    "resources": {
+      "count": 105,
+      "transfer": 25200,
+      "decodedBody": 12644246
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 1,
+    "batch": "primary",
+    "at": "2026-11-10T06:25:57.537Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 214.5,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 111,
+      "transfer": 27000,
+      "decodedBody": 12428374
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 1,
+    "batch": "primary",
+    "at": "2026-11-10T06:25:59.390Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 240.5,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 105,
+      "transfer": 25200,
+      "decodedBody": 12775530
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 1,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:01.189Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 231.7,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 111,
+      "transfer": 27000,
+      "decodedBody": 12559658
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 2,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:02.985Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 218.8,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 111,
+      "transfer": 27000,
+      "decodedBody": 12559658
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 2,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:04.760Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 226.4,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.700000000000045,
+      "over50": 0
+    },
+    "resources": {
+      "count": 105,
+      "transfer": 25200,
+      "decodedBody": 12538152
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 2,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:06.567Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 237,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 111,
+      "transfer": 27000,
+      "decodedBody": 12665752
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 2,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:08.425Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 236.1,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 105,
+      "transfer": 25200,
+      "decodedBody": 12406868
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 2,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:10.192Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 216,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 102,
+      "transfer": 24300,
+      "decodedBody": 12566518
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 2,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:11.970Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 215.1,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.599999999999909,
+      "over50": 0
+    },
+    "resources": {
+      "count": 96,
+      "transfer": 22500,
+      "decodedBody": 12307634
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 3,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:27.205Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 213.9,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.599999999999966,
+      "over50": 0
+    },
+    "resources": {
+      "count": 96,
+      "transfer": 22500,
+      "decodedBody": 12307634
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 3,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:29.045Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 214.9,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.599999999999966,
+      "over50": 0
+    },
+    "resources": {
+      "count": 102,
+      "transfer": 24300,
+      "decodedBody": 12329140
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 3,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:30.907Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 240.7,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 105,
+      "transfer": 25200,
+      "decodedBody": 12644246
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 3,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:32.811Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 259.1,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 111,
+      "transfer": 27000,
+      "decodedBody": 12428374
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 3,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:34.741Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 300.1,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.699999999999932,
+      "over50": 0
+    },
+    "resources": {
+      "count": 105,
+      "transfer": 25200,
+      "decodedBody": 12775530
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 3,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:36.613Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 244.9,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.700000000000045,
+      "over50": 0
+    },
+    "resources": {
+      "count": 111,
+      "transfer": 27000,
+      "decodedBody": 12559658
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 4,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:38.458Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 234.5,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.700000000000045,
+      "over50": 0
+    },
+    "resources": {
+      "count": 111,
+      "transfer": 27000,
+      "decodedBody": 12559658
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 4,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:40.279Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 244.5,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 105,
+      "transfer": 25200,
+      "decodedBody": 12538152
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 4,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:42.151Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 235.2,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 111,
+      "transfer": 27000,
+      "decodedBody": 12665752
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 4,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:43.964Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 247,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 105,
+      "transfer": 25200,
+      "decodedBody": 12406868
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 4,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:45.829Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 233.7,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 102,
+      "transfer": 24300,
+      "decodedBody": 12566518
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 4,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:47.589Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 212.1,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 96,
+      "transfer": 22500,
+      "decodedBody": 12307634
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 5,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:49.334Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 227.6,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 96,
+      "transfer": 22500,
+      "decodedBody": 9526002
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 5,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:51.112Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 211.9,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.700000000000045,
+      "over50": 0
+    },
+    "resources": {
+      "count": 102,
+      "transfer": 24300,
+      "decodedBody": 12329140
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 5,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:52.884Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 223.6,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 105,
+      "transfer": 25200,
+      "decodedBody": 12644246
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 5,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:54.688Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 190.8,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 111,
+      "transfer": 27000,
+      "decodedBody": 12428374
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 5,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:56.475Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 234.5,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 105,
+      "transfer": 25200,
+      "decodedBody": 12775530
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 5,
+    "batch": "primary",
+    "at": "2026-11-10T06:26:58.255Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 225.5,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 111,
+      "transfer": 27000,
+      "decodedBody": 12559658
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 6,
+    "batch": "primary",
+    "at": "2026-11-10T06:27:23.449Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 262,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.5,
+      "over50": 0
+    },
+    "resources": {
+      "count": 111,
+      "transfer": 27000,
+      "decodedBody": 12559658
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 6,
+    "batch": "primary",
+    "at": "2026-11-10T06:27:25.248Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 237.2,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.5,
+      "over50": 0
+    },
+    "resources": {
+      "count": 105,
+      "transfer": 25200,
+      "decodedBody": 12538152
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 6,
+    "batch": "primary",
+    "at": "2026-11-10T06:27:27.040Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 239.6,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.599999999999909,
+      "over50": 0
+    },
+    "resources": {
+      "count": 111,
+      "transfer": 27000,
+      "decodedBody": 12665752
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 6,
+    "batch": "primary",
+    "at": "2026-11-10T06:27:28.821Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 218.8,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.5,
+      "over50": 0
+    },
+    "resources": {
+      "count": 105,
+      "transfer": 25200,
+      "decodedBody": 12406868
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "dev",
+    "scenario": "twelve",
+    "round": 6,
+    "batch": "primary",
+    "at": "2026-11-10T06:27:30.628Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 260.4,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.5,
+      "over50": 0
+    },
+    "resources": {
+      "count": 102,
+      "transfer": 24300,
+      "decodedBody": 12566518
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "dev",
+    "scenario": "standard",
+    "round": 6,
+    "batch": "primary",
+    "at": "2026-11-10T06:27:32.424Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 246.1,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.400000000000091,
+      "over50": 0
+    },
+    "resources": {
+      "count": 96,
+      "transfer": 22500,
+      "decodedBody": 12307634
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 1,
+    "batch": "primary",
+    "at": "2026-11-10T06:28:29.089Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 180,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1322028
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 1,
+    "batch": "primary",
+    "at": "2026-11-10T06:28:30.817Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 165,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1106156
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 1,
+    "batch": "primary",
+    "at": "2026-11-10T06:28:32.538Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 175.4,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.699999999999989,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1345787
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 1,
+    "batch": "primary",
+    "at": "2026-11-10T06:28:34.296Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 177.8,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1129915
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 1,
+    "batch": "primary",
+    "at": "2026-11-10T06:28:36.055Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 186.1,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.699999999999989,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1378129
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 1,
+    "batch": "primary",
+    "at": "2026-11-10T06:28:37.799Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 161.5,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.699999999999989,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1162257
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 2,
+    "batch": "primary",
+    "at": "2026-11-10T06:28:39.585Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 205.2,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1162257
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 2,
+    "batch": "primary",
+    "at": "2026-11-10T06:28:41.363Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 140.9,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1140751
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 2,
+    "batch": "primary",
+    "at": "2026-11-10T06:28:43.083Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 154.7,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1367293
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 2,
+    "batch": "primary",
+    "at": "2026-11-10T06:28:44.887Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 127.6,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1108409
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 2,
+    "batch": "primary",
+    "at": "2026-11-10T06:28:46.592Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 295.4,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1343534
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 2,
+    "batch": "primary",
+    "at": "2026-11-10T06:28:48.305Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 167.7,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.400000000000091,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1084650
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 3,
+    "batch": "primary",
+    "at": "2026-11-10T06:31:52.419Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 205.2,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1084650
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 3,
+    "batch": "primary",
+    "at": "2026-11-10T06:31:54.131Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 148.4,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1106156
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 3,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:00.376Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 151.2,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1345787
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 3,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:02.080Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 141.9,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1129915
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 3,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:10.979Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 168.4,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.699999999999932,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1378129
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 3,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:12.669Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 129.3,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.699999999999932,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1162257
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 4,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:14.462Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 132.5,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1162257
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 4,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:16.156Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 130.8,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.699999999999989,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1140751
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 4,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:17.870Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 138.3,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1367293
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 4,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:19.557Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 146.6,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1108409
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 4,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:21.243Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 161.5,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1343534
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 4,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:22.926Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 166.7,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1084650
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 5,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:24.616Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 133.6,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000182,
+      "p95": 8.700000000000045,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 33779
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 5,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:26.317Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 159.9,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1063510
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 5,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:28.128Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 156.1,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1345787
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 5,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:29.826Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 129.2,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1129915
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 5,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:31.513Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 142.3,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1378129
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 5,
+    "batch": "primary",
+    "at": "2026-11-10T06:32:33.206Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 122.2,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1162257
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 6,
+    "batch": "primary",
+    "at": "2026-11-10T06:33:06.766Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 160.6,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1162257
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "current",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 6,
+    "batch": "primary",
+    "at": "2026-11-10T06:33:08.448Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 128.1,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.700000000000017,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1140751
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 6,
+    "batch": "primary",
+    "at": "2026-11-10T06:33:10.144Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 137.1,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1367293
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "c68541d",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 6,
+    "batch": "primary",
+    "at": "2026-11-10T06:33:11.853Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 162.8,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.5,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1108409
+    },
+    "note": "Diagnostic navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "preview",
+    "scenario": "twelve",
+    "round": 6,
+    "batch": "primary",
+    "at": "2026-11-10T06:33:13.565Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 165.1,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000011,
+      "p95": 8.600000000000136,
+      "over50": 0
+    },
+    "resources": {
+      "count": 35,
+      "transfer": 10500,
+      "decodedBody": 1343534
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  },
+  {
+    "label": "040031e",
+    "mode": "preview",
+    "scenario": "standard",
+    "round": 6,
+    "batch": "primary",
+    "at": "2026-11-10T06:33:15.282Z",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "threads": 16,
+    "viewport": [
+      1280,
+      720,
+      1.0000000447034836
+    ],
+    "observedControlsAndCanvasMs": 167.8,
+    "raf": {
+      "samples": 180,
+      "p50": 8.300000000000068,
+      "p95": 8.600000000000023,
+      "over50": 0
+    },
+    "resources": {
+      "count": 29,
+      "transfer": 8700,
+      "decodedBody": 1084650
+    },
+    "note": "DEV navigation sample; decodedBody is network payload, not decoded texture/GPU memory; first controls+canvas is not all assets ready.",
+    "visibility": "visible"
+  }
+]

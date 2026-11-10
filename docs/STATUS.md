@@ -1,3 +1,7 @@
+2026-11-10 当前入口：**VF4-A4 实现与验证完成，暂停待独立复审**。固定实现 `A4_IMPLEMENTATION_SHA_PENDING`；交接 `harness/reviews/vf4a4-handoff.md`，复审 Prompt `harness/reviews/vf4a4-gemini-review-prompt.md`。Jobs纸面抽屉/数量筛选/空态与跨抽屉焦点通用化，S2全状态四视口验证与44px/底栏修复，OfficeEditor双语可读槽位及保存/取消镜头焦点闭环；零新增资源与领域规则改动。38文件310测试及完整pnpm check通过，261条实机记录保留12条失败与对应复验，151文件原始/LF冻结匹配，交付门禁20/20通过。最终72正式+12预热四格相对c68541d为+2.82%/+0.56%/+4.89%/-0.40%，未触发确认批；另有源码焦点补修前72+12完整归档于pre-final-focus，不冒充最终证据、不隐去额外采样事实。生产无探针，保护路径0diff，端口/专用缓存/浏览器清理完毕。
+
+既有VF4-A + VF4-A.1/A2 + VF4-A3/A3.1独立复审PASS封板状态不变，Actors/S3保持已通过实现。VF4A2-PERF-01保持CLOSED。S2/Jobs/Office本轮所需矩阵已实施并待独立验收，不能由执行者直接宣告整体封板；VF31-PERF-01完整预算（冷缓存、完整assetsReady、GPU纹理上传、长会话驻留、输入延迟、低端移动真机）、完整Visual Freeze 1、VF4-B/C（含Stage B版本专属立绘）、真实DSH宿主冲突流、Service Worker更新全分支、200%系统字体缩放继续OPEN / HOLD。仅两次本地提交后暂停，不push、不部署、不启动下一阶段。以下为历史记录，不覆盖本段。
+
 2026-11-10 当前裁决登记：独立复审 **PASS（VF4-A零资源试点阶段已封板）**。用户提供的Gemini最终只读裁决确认VF4-A3.1固定实现 `d1072f6b2d0f7bd42b3a1078164753b0acc6fec8`（记录提交 `7b7b5faa937b4415cf1bc63e0a7c1d68a582fe0c`）通过；VF4A3-FOCUS-01、VF4A3-CSS-01、VF4A3-CSS-02均CLOSED / PASS，验证器与历史记录完整性PASS。封板范围为VF4-A + VF4-A.1/A2 + VF4-A3/A3.1零新增资源规范化试点系列。
 
 VF4A2-PERF-01保持CLOSED，由VF4-A3等样本n=6验证闭合，历史原始小样本记录保留备查。VF31-PERF-01完整性能预算（冷缓存、完整assetsReady、GPU纹理上传、长会话内存驻留、输入延迟、低端移动真机）保持OPEN；完整Visual Freeze 1认证、S2（CommissionWorkbench / Jobs委托抽屉与工作台）全矩阵验证、VF4-B / VF4-C美术资产生产与替换（含Stage B版本专属立绘）保持OPEN / HOLD；真实DSH宿主端到端冲突流、Service Worker更新全分支、200%系统字体缩放继续未闭合。
@@ -121,7 +125,7 @@ M3复审修复检查点完整SHA：224bbbe8cda5076b759ab3788c38895a79d28b81；0.
 
 M4工程检查点 9ab9281762c3689abff40ee79226f9283c866286；19文件122测试与Tauri离线构建通过，diff --check退出0。WEB-03失败日志保留，PWA两版浏览器验证未完成。桌面实测首屏/Pixi/Qwen面板/气泡开关与模板文本显示通过，未宣称存档重启/跨平台验证。下一任务按GDD继续M5；M05-03、真人0/10、真实DSH仍未验收。
 
-M5工程完整SHA 9e485100dfe22e31a6894022f3664e971c4818b7；22文件132测试，diff --check退出0。新包901文件解压校验/HTTP启动通过，ZIP6203568字节，SHA256 88bfcf5d3259c1dd8d91ab5504a8a013ab96068257ad462c8e860759c1611259。桌面真实首屏/英文/手动保存/刷新后载入通过。下一任务见m5-continuation-prompt；保留M05-03及验收缺口。
+M5工程完整SHA 9e485100dfe22e31a6894022f3664e971c4818b7；22文件132测试，diff --check退出0。新包901文件解压校验/HTTP启动通过，ZIP6203568字节，SHA256 88bfcf5d3259c1dd8d91ab5504a8a013ab96068261ad462c8e860759c1611259。桌面真实首屏/英文/手动保存/刷新后载入通过。下一任务见m5-continuation-prompt；保留M05-03及验收缺口。
 
 1107 Web体验代码检查点：61b24333af4573a0bec322b304b912352fcf7c37。27文件143测试，git diff --check通过；随后仅记录提交。未打新跨平台包。
 

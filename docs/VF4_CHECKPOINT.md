@@ -1,3 +1,34 @@
+# VF4-A4 当前检查点（2026-11-10）
+
+固定实现：`A4_IMPLEMENTATION_SHA_PENDING`。起点 `bb2fa10e2598b0dc1eff1dab2051ba0685c9ee75`，本地分支 codex/m1-foundation；两次本地提交后暂停待独立复审，不push、不部署、不启动VF4-B/C。既有A3/A3.1独立复审PASS与Actors/S3封板状态保持不变。
+
+## 实现与实机验收
+
+- Jobs接入management-content/jobs-content，项目入口纸面卡片；三个分组显示实时数量、搜索trim/大小写不敏感、各空态双语说明与16/14/12字阶。panel路由切换统一在没有原生dialog且焦点掉出抽屉时恢复返回按钮，保留最初Dock入口；四视口Jobs→Studio、Studio→Actors均直接一次Escape返回各自原Dock。
+- S2桌面三栏/窄屏分步草稿与原派遣、交付逻辑不变。澄清等待/夜间禁用给出原因；控件>=44px；矮横屏调整高度与滚动区域，底栏不遮挡正文区域。接单/返工后焦点到队伍选择；澄清/范围后焦点到工作台，避免操作按钮消失导致body焦点。
+- OfficeEditor纯展示函数readableSlotLabel用于SVG/option/inventory，底层slot ID/officeCommand不变。纸面header/footer/tools、焦点环与触控尺寸，修复横屏层叠和平板面板重叠。SVG使用实际可聚焦的tabindex；撤销采购恢复库存焦点。布置关闭后的effect在渲染帧恢复More或原Dock；相机状态分离与领域命令不改。
+- 四视口1280×720、844×390、560×800英文深色、390×844中文浅色：261条DOM/几何观察，12条历史失败保留且均有后续复验对应。posted/澄清/等待/夜间/范围/accepted/working/waiting/review/返工/交付/delivered/breached全状态，以及草稿保留/丢弃、错误、单回执、关闭与焦点；Office交换/收回/预设/采购/撤销/锁定/保存/取消覆盖。保存非默认镜头分区和.workshop样式前后同值。完整覆盖边界和夹具构造见harness/vf4a4/protocol.md。
+- 38文件310测试，完整pnpm check通过（check-release.log）；151文件raw+LF哈希冻结及复验通过。交付验证20/20 true，生产构建无探针，5181–5186关闭、专用缓存删除、浏览器恢复。
+
+## 性能与偏离记录
+
+最终冻结版3版本×2模式×2场景×6轮=72正式，12预热另存；每格n=6，前台可见rAF p50<=25ms。
+
+| 单元 | 当前中位数ms | 对c68541d | 对040031e |
+| --- | ---: | ---: | ---: |
+| dev standard | 209.50 | +2.82% | +7.96% |
+| dev twelve | 198.25 | +0.56% | -0.97% |
+| preview standard | 151.20 | +4.89% | -14.33% |
+| preview twelve | 150.50 | -0.40% | -9.88% |
+
+未触发唯一确认批，停止采样。另有一个旧冻结版72正式+12预热：完成采样后补验发现Studio→Office保存焦点问题，源码修正并重新完整check/冻结，故不能将原批作为最终实现性能证据；原始数据与哈希完整保存在pre-final-focus/。实际总采样144正式+24预热，不隐去这项偏离、不择优选批；由独立复审评估重新冻结后额外采样的合理性。指标仅首控件+Canvas，非完整assetsReady或冷缓存预算。
+
+## 边界与交接
+
+应用/测试只改alpha-app.tsx、commission-workbench.tsx、office-editor.tsx、vf1.css、vf2.test.ts。packages/lock/public对两个保护基线0diff，共享dialog/studio-ui/main/vf-metrics/scenes与renderer对d3e0c87零diff；S3以已通过的bb2fa10基线保持零diff（真实character-profiles.ts，附件.tsx为路径笔误；d3e0c87早于A3，不能回退其已封板实现）。无新资源/付费调用/依赖变化；原A3证据不修改。
+
+VF4A2-PERF-01保持CLOSED（A3等样本n=6独立裁决），历史小样本保留。VF31-PERF-01完整预算（冷缓存、完整assetsReady、GPU纹理上传、长会话内存驻留、输入延迟、低端移动真机）、完整Visual Freeze 1认证、VF4-B/C及Stage B版本专属立绘继续OPEN/HOLD；真实DSH端到端冲突、Service Worker更新全分支、200%系统字体缩放未闭合。S2/Jobs/Office本轮矩阵已完成但待独立验收，不自行宣告整体PASS。交接与只读Prompt见harness/reviews/vf4a4-*。以下均为历史，不覆盖当前状态。
+
 # VF4-A3.1 最终独立复审 PASS / VF4-A零资源阶段封板（2026-11-10）
 
 固定实现：`d1072f6b2d0f7bd42b3a1078164753b0acc6fec8`。基于 `9ad47c7b67b82cf86e9922f02f7cc398ec5b73bc` / A3实现 `b5f521605937a71a04ce4d5a09c14913eb5a1735`。记录提交 `7b7b5faa937b4415cf1bc63e0a7c1d68a582fe0c`。用户提供的Gemini最终独立只读复审裁决：**PASS（VF4-A零资源试点阶段已封板）**。封板范围为VF4-A + VF4-A.1/A2 + VF4-A3/A3.1；本轮仅一次本地docs(review)裁决登记提交后暂停，等待下一阶段指令；不push、不部署、不启动VF4-B/C。

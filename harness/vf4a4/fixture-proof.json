@@ -1,0 +1,944 @@
+[
+  {
+    "scenario": "a4-project",
+    "slot": 69,
+    "chapter": 1,
+    "jobs": [
+      {
+        "id": "0-0",
+        "template": "menu",
+        "status": "delivered",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "4-2",
+        "template": "menu",
+        "status": "delivered",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "4-4",
+        "template": "menu",
+        "status": "delivered",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "20-0",
+        "template": "menu",
+        "status": "delivered",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "24-2",
+        "template": "menu",
+        "status": "delivered",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "52-1",
+        "template": "menu",
+        "status": "delivered",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "68-0",
+        "template": "translation",
+        "status": "posted",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "68-1",
+        "template": "story",
+        "status": "posted",
+        "hidden": 2,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "68-2",
+        "template": "signup",
+        "status": "posted",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "68-3",
+        "template": "translation",
+        "status": "posted",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "68-4",
+        "template": "menu",
+        "status": "delivered",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      }
+    ],
+    "save": {
+      "schemaVersion": 1,
+      "engineVersion": "0.16.0",
+      "contentVersion": "office-lab-1",
+      "contentHash": "3828abe03aeefcadb2d57ee4e67731816630171ef0fc2313ef51de1ec0841712",
+      "seed": 1,
+      "commands": [
+        {
+          "type": "accept",
+          "job": "0-0"
+        },
+        {
+          "type": "assign",
+          "job": "0-0",
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "reviewer",
+              "mode": "cloud"
+            }
+          ]
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "deliver",
+          "job": "0-0"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "accept",
+          "job": "4-2"
+        },
+        {
+          "type": "assign",
+          "job": "4-2",
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "reviewer",
+              "mode": "cloud"
+            }
+          ]
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "deliver",
+          "job": "4-2"
+        },
+        {
+          "type": "accept",
+          "job": "4-4"
+        },
+        {
+          "type": "assign",
+          "job": "4-4",
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "reviewer",
+              "mode": "cloud"
+            }
+          ]
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "deliver",
+          "job": "4-4"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "accept",
+          "job": "20-0"
+        },
+        {
+          "type": "assign",
+          "job": "20-0",
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "reviewer",
+              "mode": "cloud"
+            }
+          ]
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "deliver",
+          "job": "20-0"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "accept",
+          "job": "24-2"
+        },
+        {
+          "type": "assign",
+          "job": "24-2",
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "reviewer",
+              "mode": "cloud"
+            }
+          ]
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "deliver",
+          "job": "24-2"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "accept",
+          "job": "52-1"
+        },
+        {
+          "type": "assign",
+          "job": "52-1",
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "reviewer",
+              "mode": "cloud"
+            }
+          ]
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "deliver",
+          "job": "52-1"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "accept",
+          "job": "68-4"
+        },
+        {
+          "type": "assign",
+          "job": "68-4",
+          "team": [
+            {
+              "character": "qwen",
+              "role": "worker",
+              "mode": "cloud"
+            },
+            {
+              "character": "llama",
+              "role": "reviewer",
+              "mode": "cloud"
+            }
+          ]
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "deliver",
+          "job": "68-4"
+        },
+        {
+          "type": "campaign",
+          "action": "chapter",
+          "id": "next"
+        }
+      ],
+      "stateHash": "28e6b112afdb5ed0fb2265a7a13e9dc20970aa68c2862ec1d3a5aad27978d98b"
+    }
+  },
+  {
+    "scenario": "a4-rework",
+    "slot": 1,
+    "chapter": 0,
+    "jobs": [
+      {
+        "id": "0-0",
+        "template": "menu",
+        "status": "review",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": true
+      },
+      {
+        "id": "0-1",
+        "template": "bugs",
+        "status": "posted",
+        "hidden": 2,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-2",
+        "template": "website",
+        "status": "posted",
+        "hidden": 2,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-3",
+        "template": "backup",
+        "status": "posted",
+        "hidden": 1,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-4",
+        "template": "review",
+        "status": "posted",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      }
+    ],
+    "save": {
+      "schemaVersion": 1,
+      "engineVersion": "0.16.0",
+      "contentVersion": "office-lab-1",
+      "contentHash": "99a0cb86ff715e1139775b420b903b2f81ce5d2071da0928720996bebc3e5e36",
+      "seed": 1,
+      "commands": [
+        {
+          "type": "accept",
+          "job": "0-0"
+        },
+        {
+          "type": "assign",
+          "job": "0-0",
+          "team": [
+            {
+              "character": "mistral",
+              "role": "worker",
+              "mode": "local"
+            }
+          ]
+        },
+        {
+          "type": "advance"
+        }
+      ],
+      "stateHash": "94ee1ca6bed6a37822715f859d99a490b6a39412397897fc629943b90ea8dde7"
+    }
+  },
+  {
+    "scenario": "a4-breached",
+    "slot": 12,
+    "chapter": 0,
+    "jobs": [
+      {
+        "id": "0-0",
+        "template": "menu",
+        "status": "breached",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "12-0",
+        "template": "translation",
+        "status": "posted",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "12-1",
+        "template": "survey",
+        "status": "posted",
+        "hidden": 2,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "12-2",
+        "template": "website",
+        "status": "posted",
+        "hidden": 2,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "12-3",
+        "template": "website",
+        "status": "posted",
+        "hidden": 2,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "12-4",
+        "template": "speech",
+        "status": "posted",
+        "hidden": 1,
+        "clarifyingUntil": 0,
+        "canRework": false
+      }
+    ],
+    "save": {
+      "schemaVersion": 1,
+      "engineVersion": "0.16.0",
+      "contentVersion": "office-lab-1",
+      "contentHash": "10009a1d5f28684cc22f629cee490951a709a8c49011b2c5ccbc9c75e499d12f",
+      "seed": 1,
+      "commands": [
+        {
+          "type": "accept",
+          "job": "0-0"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        }
+      ],
+      "stateHash": "c35eb31770def99970de81628eb41113cc887633ff6a716c517c09f8c999b0aa"
+    }
+  },
+  {
+    "scenario": "a4-night",
+    "slot": 2,
+    "chapter": 0,
+    "jobs": [
+      {
+        "id": "0-0",
+        "template": "menu",
+        "status": "posted",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-1",
+        "template": "bugs",
+        "status": "posted",
+        "hidden": 2,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-2",
+        "template": "website",
+        "status": "posted",
+        "hidden": 2,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-3",
+        "template": "backup",
+        "status": "posted",
+        "hidden": 1,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-4",
+        "template": "review",
+        "status": "posted",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      }
+    ],
+    "save": {
+      "schemaVersion": 1,
+      "engineVersion": "0.16.0",
+      "contentVersion": "office-lab-1",
+      "contentHash": "10009a1d5f28684cc22f629cee490951a709a8c49011b2c5ccbc9c75e499d12f",
+      "seed": 1,
+      "commands": [
+        {
+          "type": "advance"
+        },
+        {
+          "type": "advance"
+        }
+      ],
+      "stateHash": "71e5dda8de2c8d4eb3eeca2e3887f0a57cdbcdfa2b22f2f686162984c3f88e17"
+    }
+  },
+  {
+    "scenario": "a4-clarified",
+    "slot": 0,
+    "chapter": 0,
+    "jobs": [
+      {
+        "id": "0-0",
+        "template": "menu",
+        "status": "posted",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-1",
+        "template": "bugs",
+        "status": "posted",
+        "hidden": 2,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-2",
+        "template": "website",
+        "status": "posted",
+        "hidden": 0,
+        "clarifyingUntil": 1,
+        "canRework": false
+      },
+      {
+        "id": "0-3",
+        "template": "backup",
+        "status": "posted",
+        "hidden": 1,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-4",
+        "template": "review",
+        "status": "posted",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      }
+    ],
+    "save": {
+      "schemaVersion": 1,
+      "engineVersion": "0.16.0",
+      "contentVersion": "office-lab-1",
+      "contentHash": "10009a1d5f28684cc22f629cee490951a709a8c49011b2c5ccbc9c75e499d12f",
+      "seed": 1,
+      "commands": [
+        {
+          "type": "clarify",
+          "job": "0-2",
+          "character": "bluewhale"
+        },
+        {
+          "type": "clarify",
+          "job": "0-2",
+          "character": "qwen"
+        }
+      ],
+      "stateHash": "946bc4faea0b28bf7bee1129c4f5e2fea6058780e28302dde574fd8a100d2379"
+    }
+  },
+  {
+    "scenario": "a4-scope",
+    "slot": 1,
+    "chapter": 0,
+    "jobs": [
+      {
+        "id": "0-0",
+        "template": "menu",
+        "status": "posted",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-1",
+        "template": "bugs",
+        "status": "posted",
+        "hidden": 2,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-2",
+        "template": "website",
+        "status": "posted",
+        "hidden": 0,
+        "clarifyingUntil": 1,
+        "canRework": false
+      },
+      {
+        "id": "0-3",
+        "template": "backup",
+        "status": "posted",
+        "hidden": 1,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-4",
+        "template": "review",
+        "status": "posted",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      }
+    ],
+    "save": {
+      "schemaVersion": 1,
+      "engineVersion": "0.16.0",
+      "contentVersion": "office-lab-1",
+      "contentHash": "10009a1d5f28684cc22f629cee490951a709a8c49011b2c5ccbc9c75e499d12f",
+      "seed": 1,
+      "commands": [
+        {
+          "type": "clarify",
+          "job": "0-2",
+          "character": "bluewhale"
+        },
+        {
+          "type": "clarify",
+          "job": "0-2",
+          "character": "qwen"
+        },
+        {
+          "type": "advance"
+        }
+      ],
+      "stateHash": "ce62af821a539ee572d87fe4f0b7867493f927fda42e65a9a90165599e5c5e10"
+    }
+  },
+  {
+    "scenario": "a4-no-posted",
+    "slot": 0,
+    "chapter": 0,
+    "jobs": [
+      {
+        "id": "0-0",
+        "template": "menu",
+        "status": "accepted",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-1",
+        "template": "bugs",
+        "status": "accepted",
+        "hidden": 2,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-2",
+        "template": "website",
+        "status": "accepted",
+        "hidden": 2,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-3",
+        "template": "backup",
+        "status": "accepted",
+        "hidden": 1,
+        "clarifyingUntil": 0,
+        "canRework": false
+      },
+      {
+        "id": "0-4",
+        "template": "review",
+        "status": "accepted",
+        "hidden": 0,
+        "clarifyingUntil": 0,
+        "canRework": false
+      }
+    ],
+    "save": {
+      "schemaVersion": 1,
+      "engineVersion": "0.16.0",
+      "contentVersion": "office-lab-1",
+      "contentHash": "10009a1d5f28684cc22f629cee490951a709a8c49011b2c5ccbc9c75e499d12f",
+      "seed": 1,
+      "commands": [
+        {
+          "type": "accept",
+          "job": "0-0"
+        },
+        {
+          "type": "accept",
+          "job": "0-1"
+        },
+        {
+          "type": "accept",
+          "job": "0-2"
+        },
+        {
+          "type": "accept",
+          "job": "0-3"
+        },
+        {
+          "type": "accept",
+          "job": "0-4"
+        }
+      ],
+      "stateHash": "3cd45c0cdebf7e2d72c4d26736d592ade551e18c545d83bfc285cc2472a7010e"
+    }
+  }
+]

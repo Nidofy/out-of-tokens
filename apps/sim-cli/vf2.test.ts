@@ -1,4 +1,22 @@
 import {test,expect} from 'vitest';
+import {readableSlotLabel} from '../web/src/office-editor.js';
+import {jobMatchesGroup,filterJobs,clarificationWait} from '../web/src/commission-workbench.js';
+test('A4 readable office labels preserve numbers and unknown IDs',()=>{
+ for(const [zone,zh,en] of [['work','工位','Station'],['meeting','会议席','Meeting'],['lounge','休闲位','Lounge'],['server','机柜位','Server']]){
+  expect(readableSlotLabel(`${zone}-12`,false)).toBe(`${zh} 12`);expect(readableSlotLabel(`${zone}-12`,true)).toBe(`${en} 12`);
+ }
+ for(const id of ['work-x','unknown-1','work-1-extra',''])expect(readableSlotLabel(id,true)).toBe(id);
+});
+test('A4 job groups include every displayed lifecycle state and search respects locale',()=>{
+ const jobs=['posted','accepted','working','waiting','review','delivered','breached','expired','rejected'].map(status=>({status,title:'菜单文案',titleEn:'Cafe MENU'})),before=JSON.stringify(jobs);
+ expect(filterJobs(jobs,'active','',false).map(j=>j.status)).toEqual(['accepted','working','waiting','review']);
+ expect(filterJobs(jobs,'history','',false).map(j=>j.status)).toEqual(['delivered','breached']);
+ expect(filterJobs(jobs,'posted',' menu ',true)).toHaveLength(1);expect(filterJobs(jobs,'posted','menu',false)).toHaveLength(0);
+ expect(filterJobs(jobs,'posted','菜单',false)).toHaveLength(1);expect(jobMatchesGroup('rejected','history')).toBe(false);expect(JSON.stringify(jobs)).toBe(before);
+});
+test('A4 clarification wait ends exactly at the next available period',()=>{
+ expect(clarificationWait({status:'posted',clarifyingUntil:2},1)).toBe(true);expect(clarificationWait({status:'posted',clarifyingUntil:2},2)).toBe(false);expect(clarificationWait({status:'accepted',clarifyingUntil:2},1)).toBe(false);
+});
 import {characterPosters,resolveCharacterVisual,versionDelta,recruitmentBlock} from '../web/src/character-profiles.js';
 test('VF4-A3 all twelve portraits preserve Stage A contract and profile stays upright',()=>{
  expect(Object.keys(characterPosters)).toHaveLength(12);

@@ -1,4 +1,4 @@
-import {useState} from 'preact/hooks';
+import {useState,useRef} from 'preact/hooks';
 import type {ComponentChildren} from 'preact';
 import type {Command,Member} from 'oot-core';
 import type {GameSession,GameView} from 'oot-platform';
@@ -7,15 +7,21 @@ import {Portrait} from './studio-ui.js';
 import {AssignmentForecast,DeliverySummary} from './decision-panels.js';
 import {names} from './presentation.js';
 import {skillText} from './ui-labels.js';
+export type JobFilter='active'|'posted'|'history';
+export function jobMatchesGroup(status:string,filter:JobFilter){return (filter==='active'?['accepted','working','waiting','review']:filter==='posted'?['posted']:['delivered','breached']).includes(status);}
+export function filterJobs<T extends {status:string;title:string;titleEn:string}>(jobs:T[],filter:JobFilter,search:string,english:boolean){return jobs.filter(j=>jobMatchesGroup(j.status,filter)&&(english?j.titleEn:j.title).toLowerCase().includes(search.trim().toLowerCase()));}
+export function clarificationWait(job:{status:string;clarifyingUntil:number},slot:number){return job.status==='posted'&&job.clarifyingUntil>slot;}
 type Props={locate:(()=>void)|undefined;view:GameView;job:GameView['jobs'][number];english:boolean;locked:boolean;send:(cmd:Command)=>Promise<boolean>;previewAssignment:GameSession['previewAssignment'];close:()=>void;closePanel:()=>void;messages:Record<string,[string,string]>;notice:ComponentChildren};
 export function CommissionWorkbench({view,job,english,locked,send,previewAssignment,close,closePanel,messages,notice,locate}:Props){
  const tr=(zh:string,en:string)=>english?en:zh,p=view.campaign!,skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
  const [workStep,setWorkStep]=useState('brief'),[team,setTeam]=useState<Record<string,{role:'none'|Member['role'];mode:Member['mode']}>>(()=>Object.fromEntries(view.actors.map(a=>{const m=job.team.find(m=>m.character===a.id);return[a.id,{role:m?.role??'none',mode:m?.mode??'cloud'}];})));
+ const workbenchRef=useRef<HTMLDivElement>(null);
+ const focusTeam=()=>{setWorkStep('team');requestAnimationFrame(()=>workbenchRef.current?.querySelector<HTMLSelectElement>('.work-team select')?.focus({preventScroll:true}));};
  const workLayout=['posted','accepted','working'].includes(job.status)?'tri':'single';
  const members=Object.entries(team).filter(([,v])=>v.role!=='none').map(([character,v])=>({character,role:v.role as Member['role'],mode:v.mode})),preview=workLayout==='tri'?previewAssignment(job.id,members):null;
  return (
 <Dialog layout={workLayout} className="workbench-dialog" title={english?job.titleEn:job.title} close={()=>close()}>
-<div class="workbench" data-layout={workLayout} data-step={workStep}>
+<div ref={workbenchRef} tabIndex={-1} class="workbench" data-layout={workLayout} data-step={workStep}>
 <nav class="work-steps" aria-label={tr('委托步骤','Commission steps')}>{(['brief','team','result'] as const).map((id,i)=>
 <button aria-pressed={workStep===id} onClick={()=>setWorkStep(id)}>{i+1} · {tr(['需求','队伍','预估'][i]!,['Brief','Team','Forecast'][i]!)}</button>)}</nav>
 <section class="work-brief">
@@ -25,8 +31,8 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
 <p>{english?r.labelEn:r.label} +{r.work} WP</p>)}{job.status==='posted'&&<>{job.proposals.length>0&&<section class="campaign-panel">
 <h3>{tr('确认真正需要的范围','Agree on the actual scope')}</h3>
 <p>{tr('澄清全部需求后，下个时段可选择方案；选择后不能切回原方案，也不会自动接单。','After clarifying all requirements, choose a plan next period. The choice cannot be reversed and does not accept the job automatically.')}</p>{job.proposals.map(o=>
-<button disabled={locked||job.hidden>0||job.clarifyingUntil>view.absoluteSlot} onClick={()=>void send({type:'scope',job:job.id,option:o.id})}>{english?o.labelEn:o.label} · {o.phases} {tr('期','phases')} × {o.work} WP · ¥{o.reward}/{tr('期','phase')} · {o.workSlots} {tr('工作时段/期','work periods/phase')}</button>)}</section>}{job.hidden>0&&<p>{tr('澄清成功率：知识影响揭示；每次占1槽/15精力，失败不揭示。','Clarification success depends on knowledge. Each attempt uses one personal slot and 15 energy, even on failure.')}</p>}{job.hidden===0&&<p>{tr('甲方需求已明确，可以直接接单。','The brief is clear. You can accept directly.')}</p>}<div class="button-row">{job.hidden>0&&view.actors.map(a=>
-<button disabled={locked||a.busy||view.absoluteSlot%4>=2} onClick={()=>void send({type:'clarify',job:job.id,character:a.id})}>{names[a.id]} {Math.round(a.clarifyChance*100)}%</button>)}</div>
+<button disabled={locked||job.hidden>0||job.clarifyingUntil>view.absoluteSlot} onClick={()=>{void send({type:'scope',job:job.id,option:o.id}).then(ok=>{if(ok)requestAnimationFrame(()=>workbenchRef.current?.focus({preventScroll:true}));});}}>{english?o.labelEn:o.label} · {o.phases} {tr('期','phases')} × {o.work} WP · ¥{o.reward}/{tr('期','phase')} · {o.workSlots} {tr('工作时段/期','work periods/phase')}</button>)}</section>}{job.hidden>0&&<p>{tr('澄清成功率：知识影响揭示；每次占1槽/15精力，失败不揭示。','Clarification success depends on knowledge. Each attempt uses one personal slot and 15 energy, even on failure.')}</p>}{job.hidden>0&&view.absoluteSlot%4>=2&&<p class="work-disabled-reason">{tr('夜晚不能澄清需求，请等到下个白天工作时段。','Clarification is unavailable at night. Wait for the next daytime work period.')}</p>}{job.hidden===0&&!clarificationWait(job,view.absoluteSlot)&&<p>{tr('甲方需求已明确，可以直接接单。','The brief is clear. You can accept directly.')}</p>}<div class="button-row">{job.hidden>0&&view.actors.map(a=>
+<button disabled={locked||a.busy||view.absoluteSlot%4>=2} onClick={()=>{void send({type:'clarify',job:job.id,character:a.id}).then(ok=>{if(ok)requestAnimationFrame(()=>workbenchRef.current?.focus({preventScroll:true}));});}}>{names[a.id]} {Math.round(a.clarifyChance*100)}%</button>)}</div>
 </>}{['review','delivered','breached'].includes(job.status)&&<>
 <DeliverySummary job={job} english={english} settled={[...view.ledger].reverse().find(r=>r.reason===`${job.status==='breached'?'breach':'delivery'}:${job.id}`)}/>
 <div class="quality-result">
@@ -58,10 +64,11 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
 <footer class="work-confirm">{job.status==='posted'?<>
 <span>{notice}<b>{tr('报酬','Reward')} ¥{job.reward} · {job.work} WP · {job.workSlots} {tr('工作时段','work periods')}</b>
 <small>{tr('队伍仅供试算；关闭后丢弃未提交草稿。','Team is a preview; closing discards the draft.')}</small>
+{clarificationWait(job,view.absoluteSlot)&&<small class="work-disabled-reason">{tr('刚澄清过，请等下一时段再接单或确认范围。','Just clarified: wait until the next period to accept or agree on scope.')}</small>}
 </span>
 <button onClick={()=>close()}>{tr('取消','Cancel')}</button>
 <button disabled={locked} onClick={()=>{void send({type:'reject',job:job.id}).then(ok=>{if(ok)close();});}}>{tr('拒绝','Decline')}</button>
-<button class="primary" disabled={locked||job.clarifyingUntil>view.absoluteSlot} onClick={()=>{void send({type:'accept',job:job.id}).then(ok=>{if(ok)setWorkStep('team');});}}>{tr('接单','Accept')}</button>
+<button class="primary" disabled={locked||job.clarifyingUntil>view.absoluteSlot} onClick={()=>{void send({type:'accept',job:job.id}).then(ok=>{if(ok)focusTeam();});}}>{tr('接单','Accept')}</button>
 </>:<>
 <span>{notice}<b>{members.length} {tr('位伙伴','teammates')}</b>
 <small>{preview?.error?tr(...(messages[preview.error]??[preview.error,preview.error])):tr('关闭后未提交的队伍草稿会丢弃。','Closing discards the unsubmitted team draft.')}</small>
@@ -74,7 +81,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
 <span>{notice}<b>{job.status==='review'?tr('核对结算后交付','Check settlement before delivery'):job.status==='waiting'?tr('等待下一阶段','Waiting for the next phase'):tr('委托已结束','Commission closed')}</b>
 </span>
 <button onClick={()=>close()}>{tr('关闭','Close')}</button>{job.status==='review'&&<>
-<button disabled={locked||!job.settlement.canRework} onClick={()=>void send({type:'rework',job:job.id})}>{tr('返工','Rework')}</button>
+<button disabled={locked||!job.settlement.canRework} onClick={()=>{void send({type:'rework',job:job.id}).then(ok=>{if(ok)focusTeam();});}}>{tr('返工','Rework')}</button>
 <button class="primary" disabled={locked||!job.settlement.canDeliver} onClick={()=>{void send({type:'deliver',job:job.id}).then(ok=>{if(ok){close();closePanel();}});}}>{tr('验收结算','Deliver')}</button>
 </>}</footer>}
  </div>
