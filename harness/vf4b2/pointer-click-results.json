@@ -1,0 +1,3343 @@
+[
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "bluewhale",
+    "part": "face",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 639.9999713897718,
+      "y": 380.39434918991935,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "bluewhale",
+    "part": "body",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 639.9999713897718,
+      "y": 402.66664866606476,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "qwen",
+    "part": "face",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 665.3866159291937,
+      "y": 373.77025972632936,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "qwen",
+    "part": "body",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 663.4666370073967,
+      "y": 402.66664866606476,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "llama",
+    "part": "face",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 639.9999713897716,
+      "y": 370.6288494008301,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "llama",
+    "part": "body",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 639.9999713897718,
+      "y": 402.66664866606476,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "mistral",
+    "part": "face",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 665.4634150860657,
+      "y": 369.6277376355878,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "mistral",
+    "part": "body",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 663.4666370073967,
+      "y": 402.66664866606476,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "glm",
+    "part": "face",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 639.9999713897719,
+      "y": 375.89162264476795,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "glm",
+    "part": "body",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 639.9999713897718,
+      "y": 402.66664866606476,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "bluewhale",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 335,
+      "y": 655
+    },
+    "point": {
+      "x": 357.33331735928925,
+      "y": 378.7779514775625,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "bluewhale",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 335,
+      "y": 655
+    },
+    "point": {
+      "x": 357.3333173592893,
+      "y": 402.66664866606476,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "qwen",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 490,
+      "y": 655
+    },
+    "point": {
+      "x": 522.6666433016471,
+      "y": 372.00933721604054,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "qwen",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 490,
+      "y": 655
+    },
+    "point": {
+      "x": 522.6666433016471,
+      "y": 402.66664866606476,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "llama",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 215,
+      "y": 900
+    },
+    "point": {
+      "x": 229.33332308133498,
+      "y": 399.49992880762824,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "llama",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 215,
+      "y": 900
+    },
+    "point": {
+      "x": 229.33332308133495,
+      "y": 453.33331306775506,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "mistral",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 458.66664616266985,
+      "y": 398.25235553006576,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "mistral",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 458.6666461626699,
+      "y": 453.33331306775506,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "glm",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 458.6666461626699,
+      "y": 405.83768259838257,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "id": "glm",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 458.6666461626699,
+      "y": 453.33331306775506,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "bluewhale",
+    "part": "face",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 421.9999811351308,
+      "y": 208.44752589141302,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "bluewhale",
+    "part": "body",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 421.9999811351308,
+      "y": 223.13332335849645,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "qwen",
+    "part": "face",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 438.73929987831207,
+      "y": 204.07976690135848,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "qwen",
+    "part": "body",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 437.4733137767522,
+      "y": 223.13332335849645,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "llama",
+    "part": "face",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 421.99998113513084,
+      "y": 202.00839946798237,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "llama",
+    "part": "body",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 421.9999811351308,
+      "y": 223.13332335849645,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "mistral",
+    "part": "face",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 438.7899393223745,
+      "y": 201.34829139777565,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "mistral",
+    "part": "body",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 437.4733137767522,
+      "y": 223.13332335849645,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "glm",
+    "part": "face",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 421.9999811351307,
+      "y": 205.47854057570396,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "glm",
+    "part": "body",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 421.9999811351308,
+      "y": 223.13332335849645,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "bluewhale",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 335,
+      "y": 655
+    },
+    "point": {
+      "x": 235.61665613378136,
+      "y": 207.38171364982782,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "bluewhale",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 335,
+      "y": 655
+    },
+    "point": {
+      "x": 235.61665613378136,
+      "y": 223.13332335849645,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "qwen",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 490,
+      "y": 655
+    },
+    "point": {
+      "x": 344.63331792702354,
+      "y": 202.91865862113679,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "qwen",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 490,
+      "y": 655
+    },
+    "point": {
+      "x": 344.6333179270235,
+      "y": 223.13332335849645,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "llama",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 215,
+      "y": 900
+    },
+    "point": {
+      "x": 151.2166599067552,
+      "y": 187.6369356119753,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "llama",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 215,
+      "y": 900
+    },
+    "point": {
+      "x": 151.2166599067552,
+      "y": 223.1333233584964,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "mistral",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 302.4333198135104,
+      "y": 186.8143169820826,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "mistral",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 302.4333198135104,
+      "y": 223.1333233584964,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "glm",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 302.4333198135104,
+      "y": 191.81589201775395,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "id": "glm",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 302.4333198135104,
+      "y": 223.1333233584964,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "bluewhale",
+    "part": "face",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 279.99998748302505,
+      "y": 422.66038798879924,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "bluewhale",
+    "part": "body",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 279.99998748302505,
+      "y": 447.4073874067386,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "qwen",
+    "part": "face",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 282.133297396133,
+      "y": 415.30028858481046,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "qwen",
+    "part": "body",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 279.9999874830253,
+      "y": 447.4073874067386,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "llama",
+    "part": "face",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 279.99998748302505,
+      "y": 411.80983266758903,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "llama",
+    "part": "body",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 279.99998748302505,
+      "y": 447.4073874067386,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "mistral",
+    "part": "face",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 282.2186297926573,
+      "y": 410.69748626176414,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "mistral",
+    "part": "body",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 279.9999874830253,
+      "y": 447.4073874067386,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "glm",
+    "part": "face",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 279.99998748302505,
+      "y": 417.65735849418684,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "glm",
+    "part": "body",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 279.99998748302505,
+      "y": 447.4073874067386,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "bluewhale",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 335,
+      "y": 655
+    },
+    "point": {
+      "x": 279.99998748302517,
+      "y": 420.86439053062486,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "bluewhale",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 335,
+      "y": 655
+    },
+    "point": {
+      "x": 279.99998748302517,
+      "y": 447.4073874067386,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "qwen",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 490,
+      "y": 655
+    },
+    "point": {
+      "x": 279.99998748302517,
+      "y": 413.3437080178229,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "qwen",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 490,
+      "y": 655
+    },
+    "point": {
+      "x": 279.99998748302517,
+      "y": 447.4073874067386,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "llama",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 215,
+      "y": 900
+    },
+    "point": {
+      "x": 254.81480342370548,
+      "y": 443.8888097862533,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "llama",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 215,
+      "y": 900
+    },
+    "point": {
+      "x": 254.81480342370546,
+      "y": 503.7036811863943,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "mistral",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 279.99998748302517,
+      "y": 442.50261725562837,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "mistral",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 279.99998748302517,
+      "y": 503.7036811863943,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "glm",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 279.99998748302517,
+      "y": 450.93075844264706,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "id": "glm",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 279.99998748302517,
+      "y": 503.7036811863943,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "bluewhale",
+    "part": "face",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 194.99999128282116,
+      "y": 445.9067093281832,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "bluewhale",
+    "part": "body",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 194.99999128282116,
+      "y": 472.0147937141092,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "qwen",
+    "part": "face",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 197.25063324114984,
+      "y": 438.1418044569751,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "qwen",
+    "part": "body",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 194.99999128282116,
+      "y": 472.0147937141092,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "llama",
+    "part": "face",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 194.99999128282116,
+      "y": 434.45937346430645,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "llama",
+    "part": "body",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 194.99999128282116,
+      "y": 472.0147937141092,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "mistral",
+    "part": "face",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 197.34065891948296,
+      "y": 433.28584800616113,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "mistral",
+    "part": "body",
+    "role": "reviewer",
+    "seat": 1,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1342,
+      "y": 635
+    },
+    "point": {
+      "x": 194.99999128282116,
+      "y": 472.0147937141092,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "glm",
+    "part": "face",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 194.99999128282116,
+      "y": 440.62851321136714,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "glm",
+    "part": "body",
+    "role": "planner",
+    "seat": 0,
+    "slot": "meeting-2",
+    "world": {
+      "x": 1198,
+      "y": 635
+    },
+    "point": {
+      "x": 194.99999128282116,
+      "y": 472.0147937141092,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "bluewhale",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 335,
+      "y": 655
+    },
+    "point": {
+      "x": 194.9999912828211,
+      "y": 444.0119320098094,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "bluewhale",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 335,
+      "y": 655
+    },
+    "point": {
+      "x": 194.9999912828211,
+      "y": 472.0147937141092,
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "qwen",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 490,
+      "y": 655
+    },
+    "point": {
+      "x": 194.9999912828211,
+      "y": 436.0776119588032,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "qwen",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 490,
+      "y": 655
+    },
+    "point": {
+      "x": 194.9999912828211,
+      "y": 472.0147937141092,
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "llama",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 215,
+      "y": 900
+    },
+    "point": {
+      "x": 194.9999912828211,
+      "y": 468.3026943244975,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "llama",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 215,
+      "y": 900
+    },
+    "point": {
+      "x": 194.9999912828211,
+      "y": 531.4073836516462,
+      "actual": "actor:llama"
+    },
+    "title": "Llama · Sharing",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "mistral",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 194.9999912828211,
+      "y": 466.8402612046882,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "mistral",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 194.9999912828211,
+      "y": 531.4073836516462,
+      "actual": "actor:mistral"
+    },
+    "title": "Mistral · Speedy",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "glm",
+    "part": "face",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 194.9999912828211,
+      "y": 475.7319501569928,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "glm",
+    "part": "body",
+    "role": "idle",
+    "seat": null,
+    "slot": null,
+    "world": {
+      "x": 430,
+      "y": 900
+    },
+    "point": {
+      "x": 194.9999912828211,
+      "y": 531.4073836516462,
+      "actual": "actor:glm"
+    },
+    "title": "GLM · Silence",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "meeting-2",
+    "part": "transparent-corner",
+    "point": {
+      "name": "transparent-corner",
+      "local": [
+        -111,
+        -175
+      ],
+      "screen": {
+        "x": 697.4999688193216,
+        "y": 251.6666554162905
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "meeting-2",
+    "part": "gap",
+    "point": {
+      "name": "gap",
+      "local": [
+        0,
+        -30
+      ],
+      "screen": {
+        "x": 789.9999646842496,
+        "y": 372.49998334795316
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "meeting-2",
+    "part": "shadow",
+    "point": {
+      "name": "shadow",
+      "local": [
+        0,
+        18
+      ],
+      "screen": {
+        "x": 789.9999646842496,
+        "y": 412.4999815598139
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "meeting-2",
+    "part": "solid",
+    "point": {
+      "name": "solid",
+      "local": [
+        0,
+        -120
+      ],
+      "screen": {
+        "x": 789.9999646842496,
+        "y": 297.49998670071426
+      },
+      "actual": "furniture:f4"
+    },
+    "title": "布置办公室",
+    "expected": "布置办公室",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "meeting-2",
+    "part": "leg",
+    "point": {
+      "name": "leg",
+      "local": [
+        -94,
+        0
+      ],
+      "screen": {
+        "x": 711.666634852689,
+        "y": 397.49998223036613
+      },
+      "actual": "furniture:f4"
+    },
+    "title": "布置办公室",
+    "expected": "布置办公室",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "meeting-2",
+    "part": "transparent-corner",
+    "point": {
+      "name": "transparent-corner",
+      "local": [
+        -111,
+        -175
+      ],
+      "screen": {
+        "x": 697.4999688193216,
+        "y": 251.6666554162905
+      },
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "expected": "DeepSeek",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "meeting-2",
+    "part": "gap",
+    "point": {
+      "name": "gap",
+      "local": [
+        0,
+        -30
+      ],
+      "screen": {
+        "x": 789.9999646842496,
+        "y": 372.49998334795316
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "meeting-2",
+    "part": "shadow",
+    "point": {
+      "name": "shadow",
+      "local": [
+        0,
+        18
+      ],
+      "screen": {
+        "x": 789.9999646842496,
+        "y": 412.4999815598139
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "meeting-2",
+    "part": "solid",
+    "point": {
+      "name": "solid",
+      "local": [
+        0,
+        -120
+      ],
+      "screen": {
+        "x": 789.9999646842496,
+        "y": 297.49998670071426
+      },
+      "actual": "furniture:f4"
+    },
+    "title": "帮楼下奶茶店写个菜单",
+    "expected": "帮楼下奶茶店写个菜单",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "lounge-2",
+    "part": "transparent-corner",
+    "point": {
+      "name": "transparent-corner",
+      "local": [
+        70,
+        -145
+      ],
+      "screen": {
+        "x": 441.666646922629,
+        "y": 228.3333231260384
+      },
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "expected": "Qwen",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "lounge-2",
+    "part": "gap",
+    "point": {
+      "name": "gap",
+      "local": [
+        0,
+        -180
+      ],
+      "screen": {
+        "x": 383.33331619699874,
+        "y": 199.16665776322327
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "lounge-2",
+    "part": "shadow",
+    "point": {
+      "name": "shadow",
+      "local": [
+        0,
+        22
+      ],
+      "screen": {
+        "x": 383.33331619699874,
+        "y": 367.4999835714706
+      },
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "expected": "Qwen",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "lounge-2",
+    "part": "solid",
+    "point": {
+      "name": "solid",
+      "local": [
+        0,
+        -65
+      ],
+      "screen": {
+        "x": 383.33331619699874,
+        "y": 294.99998681247297
+      },
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "expected": "布置办公室",
+    "pass": false,
+    "reason": "Probe covered by Qwen; real pointer correctly selected foreground actor. Retest at exposed cabinet pixel required."
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "lounge-2",
+    "part": "transparent-corner",
+    "point": {
+      "name": "transparent-corner",
+      "local": [
+        70,
+        -145
+      ],
+      "screen": {
+        "x": 441.666646922629,
+        "y": 228.3333231260384
+      },
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "expected": "Qwen",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "lounge-2",
+    "part": "gap",
+    "point": {
+      "name": "gap",
+      "local": [
+        0,
+        -180
+      ],
+      "screen": {
+        "x": 383.33331619699874,
+        "y": 199.16665776322327
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "lounge-2",
+    "part": "shadow",
+    "point": {
+      "name": "shadow",
+      "local": [
+        0,
+        22
+      ],
+      "screen": {
+        "x": 383.33331619699874,
+        "y": 367.4999835714706
+      },
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "expected": "Qwen",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "lounge-2",
+    "part": "solid",
+    "point": {
+      "name": "solid",
+      "local": [
+        -65,
+        -65
+      ],
+      "screen": {
+        "x": 329.16665195177063,
+        "y": 294.99998681247297
+      },
+      "actual": "furniture:f5"
+    },
+    "title": "布置办公室",
+    "expected": "布置办公室",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "slot": "lounge-2",
+    "part": "machine",
+    "point": {
+      "name": "machine",
+      "local": [
+        -20,
+        -140
+      ],
+      "screen": {
+        "x": 366.6666502753901,
+        "y": 232.49998960644058
+      },
+      "actual": "furniture:f5"
+    },
+    "title": "布置办公室",
+    "expected": "布置办公室",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "meeting-2",
+    "part": "transparent-corner",
+    "point": {
+      "name": "transparent-corner",
+      "local": [
+        -111,
+        -175
+      ],
+      "screen": {
+        "x": 509.47706055793395,
+        "y": 137.85416050410547
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "meeting-2",
+    "part": "gap",
+    "point": {
+      "name": "gap",
+      "local": [
+        0,
+        -30
+      ],
+      "screen": {
+        "x": 558.2708083766835,
+        "y": 201.5937409880575
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "meeting-2",
+    "part": "shadow",
+    "point": {
+      "name": "shadow",
+      "local": [
+        0,
+        18
+      ],
+      "screen": {
+        "x": 558.2708083766835,
+        "y": 222.6937400448141
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "meeting-2",
+    "part": "solid",
+    "point": {
+      "name": "solid",
+      "local": [
+        0,
+        -120
+      ],
+      "screen": {
+        "x": 558.2708083766835,
+        "y": 162.03124275663902
+      },
+      "actual": "furniture:f4"
+    },
+    "title": "布置办公室",
+    "expected": "布置办公室",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "meeting-2",
+    "part": "leg",
+    "point": {
+      "name": "leg",
+      "local": [
+        -94,
+        0
+      ],
+      "screen": {
+        "x": 516.9499768905353,
+        "y": 214.78124039853037
+      },
+      "actual": "furniture:f4"
+    },
+    "title": "布置办公室",
+    "expected": "布置办公室",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "meeting-2",
+    "part": "transparent-corner",
+    "point": {
+      "name": "transparent-corner",
+      "local": [
+        -111,
+        -175
+      ],
+      "screen": {
+        "x": 509.47706055793395,
+        "y": 137.85416050410547
+      },
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "expected": "DeepSeek",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "meeting-2",
+    "part": "gap",
+    "point": {
+      "name": "gap",
+      "local": [
+        0,
+        -30
+      ],
+      "screen": {
+        "x": 558.2708083766835,
+        "y": 201.5937409880575
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "meeting-2",
+    "part": "shadow",
+    "point": {
+      "name": "shadow",
+      "local": [
+        0,
+        18
+      ],
+      "screen": {
+        "x": 558.2708083766835,
+        "y": 222.6937400448141
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "meeting-2",
+    "part": "solid",
+    "point": {
+      "name": "solid",
+      "local": [
+        0,
+        -120
+      ],
+      "screen": {
+        "x": 558.2708083766835,
+        "y": 162.03124275663902
+      },
+      "actual": "furniture:f4"
+    },
+    "title": "帮楼下奶茶店写个菜单",
+    "expected": "帮楼下奶茶店写个菜单",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "lounge-2",
+    "part": "transparent-corner",
+    "point": {
+      "name": "transparent-corner",
+      "local": [
+        70,
+        -145
+      ],
+      "screen": {
+        "x": 232.9791562516868,
+        "y": 130.64582749300973
+      },
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "expected": "Qwen",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "lounge-2",
+    "part": "gap",
+    "point": {
+      "name": "gap",
+      "local": [
+        0,
+        -180
+      ],
+      "screen": {
+        "x": 202.20832429391683,
+        "y": 115.26041151412477
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "lounge-2",
+    "part": "shadow",
+    "point": {
+      "name": "shadow",
+      "local": [
+        0,
+        22
+      ],
+      "screen": {
+        "x": 202.20832429391683,
+        "y": 204.0562408779752
+      },
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "expected": "Qwen",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "lounge-2",
+    "part": "solid",
+    "point": {
+      "name": "solid",
+      "local": [
+        -65,
+        -65
+      ],
+      "screen": {
+        "x": 173.63540890455903,
+        "y": 165.81249258760397
+      },
+      "actual": "furniture:f5"
+    },
+    "title": "布置办公室",
+    "expected": "布置办公室",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "slot": "lounge-2",
+    "part": "machine",
+    "point": {
+      "name": "machine",
+      "local": [
+        -20,
+        -140
+      ],
+      "screen": {
+        "x": 193.41665802026827,
+        "y": 132.8437440614219
+      },
+      "actual": "furniture:f5"
+    },
+    "title": "布置办公室",
+    "expected": "布置办公室",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "meeting-2",
+    "part": "transparent-corner",
+    "point": {
+      "name": "transparent-corner",
+      "local": [
+        -111,
+        -175
+      ],
+      "screen": {
+        "x": 331.1110963092917,
+        "y": 340.7407255084433
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "meeting-2",
+    "part": "gap",
+    "point": {
+      "name": "gap",
+      "local": [
+        0,
+        -30
+      ],
+      "screen": {
+        "x": 413.3333148558943,
+        "y": 448.14812811436565
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "meeting-2",
+    "part": "shadow",
+    "point": {
+      "name": "shadow",
+      "local": [
+        0,
+        18
+      ],
+      "screen": {
+        "x": 413.3333148558943,
+        "y": 483.7036820804641
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "meeting-2",
+    "part": "solid",
+    "point": {
+      "name": "solid",
+      "local": [
+        0,
+        -120
+      ],
+      "screen": {
+        "x": 413.3333148558943,
+        "y": 381.4814644279311
+      },
+      "actual": "furniture:f4"
+    },
+    "title": "Arrange office",
+    "expected": "Arrange office",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "meeting-2",
+    "part": "leg",
+    "point": {
+      "name": "leg",
+      "local": [
+        -94,
+        0
+      ],
+      "screen": {
+        "x": 343.70368833895157,
+        "y": 470.37034934317717
+      },
+      "actual": "furniture:f4"
+    },
+    "title": "Arrange office",
+    "expected": "Arrange office",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "meeting-2",
+    "part": "transparent-corner",
+    "point": {
+      "name": "transparent-corner",
+      "local": [
+        -111,
+        -175
+      ],
+      "screen": {
+        "x": 331.1110963092917,
+        "y": 340.7407255084433
+      },
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "expected": "DeepSeek",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "meeting-2",
+    "part": "gap",
+    "point": {
+      "name": "gap",
+      "local": [
+        0,
+        -30
+      ],
+      "screen": {
+        "x": 413.3333148558943,
+        "y": 448.14812811436565
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "meeting-2",
+    "part": "shadow",
+    "point": {
+      "name": "shadow",
+      "local": [
+        0,
+        18
+      ],
+      "screen": {
+        "x": 413.3333148558943,
+        "y": 483.7036820804641
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "meeting-2",
+    "part": "solid",
+    "point": {
+      "name": "solid",
+      "local": [
+        0,
+        -120
+      ],
+      "screen": {
+        "x": 413.3333148558943,
+        "y": 381.4814644279311
+      },
+      "actual": "furniture:f4"
+    },
+    "title": "Tea shop menu",
+    "expected": "Tea shop menu",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "lounge-2",
+    "part": "transparent-corner",
+    "point": {
+      "name": "transparent-corner",
+      "local": [
+        70,
+        -145
+      ],
+      "screen": {
+        "x": 392.5925750423369,
+        "y": 362.9629467372548
+      },
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "expected": "Qwen",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "lounge-2",
+    "part": "gap",
+    "point": {
+      "name": "gap",
+      "local": [
+        0,
+        -180
+      ],
+      "screen": {
+        "x": 340.7407255084433,
+        "y": 337.03702197030805
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "lounge-2",
+    "part": "shadow",
+    "point": {
+      "name": "shadow",
+      "local": [
+        0,
+        22
+      ],
+      "screen": {
+        "x": 340.7407255084433,
+        "y": 486.6666449109723
+      },
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "expected": "Qwen",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "lounge-2",
+    "part": "solid",
+    "point": {
+      "name": "solid",
+      "local": [
+        -65,
+        -65
+      ],
+      "screen": {
+        "x": 292.592579512685,
+        "y": 422.2222033474189
+      },
+      "actual": "furniture:f5"
+    },
+    "title": "Arrange office",
+    "expected": "Arrange office",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 560,
+      "height": 800
+    },
+    "slot": "lounge-2",
+    "part": "machine",
+    "point": {
+      "name": "machine",
+      "local": [
+        -20,
+        -140
+      ],
+      "screen": {
+        "x": 325.9259113559023,
+        "y": 366.6666502753901
+      },
+      "actual": "furniture:f5"
+    },
+    "title": "Arrange office",
+    "expected": "Arrange office",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "meeting-2",
+    "part": "transparent-corner",
+    "point": {
+      "name": "transparent-corner",
+      "local": [
+        -111,
+        -175
+      ],
+      "screen": {
+        "x": 248.92221109453226,
+        "y": 359.4814654114077
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "meeting-2",
+    "part": "gap",
+    "point": {
+      "name": "gap",
+      "local": [
+        0,
+        -30
+      ],
+      "screen": {
+        "x": 335.666651661198,
+        "y": 472.7962751606558
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "meeting-2",
+    "part": "shadow",
+    "point": {
+      "name": "shadow",
+      "local": [
+        0,
+        18
+      ],
+      "screen": {
+        "x": 335.666651661198,
+        "y": 510.30738459488964
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "meeting-2",
+    "part": "solid",
+    "point": {
+      "name": "solid",
+      "local": [
+        0,
+        -120
+      ],
+      "screen": {
+        "x": 335.666651661198,
+        "y": 402.4629449714673
+      },
+      "actual": "furniture:f4"
+    },
+    "title": "布置办公室",
+    "expected": "布置办公室",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-idle",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "meeting-2",
+    "part": "leg",
+    "point": {
+      "name": "leg",
+      "local": [
+        -94,
+        0
+      ],
+      "screen": {
+        "x": 262.20739568582337,
+        "y": 496.24071855705193
+      },
+      "actual": "furniture:f4"
+    },
+    "title": "布置办公室",
+    "expected": "布置办公室",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "meeting-2",
+    "part": "transparent-corner",
+    "point": {
+      "name": "transparent-corner",
+      "local": [
+        -111,
+        -175
+      ],
+      "screen": {
+        "x": 248.92221109453226,
+        "y": 359.4814654114077
+      },
+      "actual": "actor:bluewhale"
+    },
+    "title": "DeepSeek · Smile",
+    "expected": "DeepSeek",
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "meeting-2",
+    "part": "gap",
+    "point": {
+      "name": "gap",
+      "local": [
+        0,
+        -30
+      ],
+      "screen": {
+        "x": 335.666651661198,
+        "y": 472.7962751606558
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "meeting-2",
+    "part": "shadow",
+    "point": {
+      "name": "shadow",
+      "local": [
+        0,
+        18
+      ],
+      "screen": {
+        "x": 335.666651661198,
+        "y": 510.30738459488964
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "whiteboard-busy",
+    "kind": "whiteboard",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "meeting-2",
+    "part": "solid",
+    "point": {
+      "name": "solid",
+      "local": [
+        0,
+        -120
+      ],
+      "screen": {
+        "x": 335.666651661198,
+        "y": 402.4629449714673
+      },
+      "actual": "furniture:f4"
+    },
+    "title": "帮楼下奶茶店写个菜单",
+    "expected": "帮楼下奶茶店写个菜单",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "lounge-2",
+    "part": "transparent-corner",
+    "point": {
+      "name": "transparent-corner",
+      "local": [
+        70,
+        -145
+      ],
+      "screen": {
+        "x": 351.2962805921288,
+        "y": 382.92590880780386
+      },
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "expected": "Qwen",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "lounge-2",
+    "part": "gap",
+    "point": {
+      "name": "gap",
+      "local": [
+        0,
+        -180
+      ],
+      "screen": {
+        "x": 296.59257933387113,
+        "y": 355.57405817867505
+      },
+      "actual": null
+    },
+    "title": null,
+    "expected": null,
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "lounge-2",
+    "part": "shadow",
+    "point": {
+      "name": "shadow",
+      "local": [
+        0,
+        22
+      ],
+      "screen": {
+        "x": 296.59257933387113,
+        "y": 513.4333103810758
+      },
+      "actual": "actor:qwen"
+    },
+    "title": "Qwen · Service",
+    "expected": "Qwen",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "lounge-2",
+    "part": "solid",
+    "point": {
+      "name": "solid",
+      "local": [
+        -65,
+        -65
+      ],
+      "screen": {
+        "x": 245.7962853083461,
+        "y": 445.4444245315269
+      },
+      "actual": "furniture:f5"
+    },
+    "title": "布置办公室",
+    "expected": "布置办公室",
+    "pass": true
+  },
+  {
+    "route": "coffee-idle",
+    "kind": "coffee",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "slot": "lounge-2",
+    "part": "machine",
+    "point": {
+      "name": "machine",
+      "local": [
+        -20,
+        -140
+      ],
+      "screen": {
+        "x": 280.96295040294035,
+        "y": 386.83331604053654
+      },
+      "actual": "furniture:f5"
+    },
+    "title": "布置办公室",
+    "expected": "布置办公室",
+    "pass": true
+  }
+]

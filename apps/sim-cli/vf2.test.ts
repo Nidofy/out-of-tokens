@@ -1,5 +1,20 @@
 import {test,expect} from 'vitest';
-import {workFurnitureHitArea,separateOfficeLabels,officeCamera,slotPoint} from '../web/src/office-scene-spec.js';
+import {workFurnitureHitArea,separateOfficeLabels,officeCamera,slotPoint,clearIdleFurniture} from '../web/src/office-scene-spec.js';
+test('B2 idle actors clear occupied second-corner furniture without moving existing B1 aisles',()=>{
+ const whiteboard={kind:'whiteboard',x:1270,y:635},coffee={kind:'coffee',x:460,y:635};
+ expect(clearIdleFurniture({x:1280,y:600},[whiteboard],[{x:1198,y:635},{x:1342,y:635},{x:1530,y:600}])).toEqual({x:1078,y:600});
+ expect(clearIdleFurniture({x:500,y:600},[coffee],[{x:1280,y:600}])).toEqual({x:622,y:600});
+ for(const p of [{x:335,y:655},{x:490,y:655},{x:215,y:900},{x:430,y:900},{x:500,y:600},{x:1280,y:600}])expect(clearIdleFurniture(p,[{kind:'coffee',x:215,y:635},{kind:'whiteboard',x:920,y:635}],[])).toEqual(p);
+});
+test('B2 edge nameplates stay near their actor and avoid clamped collisions',()=>{
+ const rows=[{id:'a',x:760,y:204,width:61,height:20},{id:'b',x:810,y:219,width:61,height:35},{id:'c',x:810,y:241,width:61,height:35}],placed=separateOfficeLabels(rows,844,390);
+ for(const a of placed){expect(a.x-a.width/2).toBeGreaterThanOrEqual(0);expect(a.x+a.width/2).toBeLessThanOrEqual(844);expect(a.y+a.height).toBeLessThanOrEqual(390);for(const b of placed.filter(b=>b.id!==a.id))expect(Math.max(0,Math.min(a.x+a.width/2,b.x+b.width/2)-Math.max(a.x-a.width/2,b.x-b.width/2))*Math.max(0,Math.min(a.y+a.height,b.y+b.height)-Math.max(a.y,b.y))).toBe(0);}
+});
+test('B2 meeting seat offsets and legal lounge anchors map through every review camera',()=>{
+ for(const [width,height]of [[1280,720],[844,390],[560,800],[390,844]])for(const slot of ['meeting-1','meeting-2','lounge-1','lounge-2','lounge-3'])for(const seat of slot.startsWith('meeting')?[-72,72]:[0]){
+  const anchor=slotPoint(slot),p={x:anchor.x+seat,y:anchor.y};for(const zone of ['overview','meeting','lounge'] as const)for(const focus of [null,{x:p.x,y:p.y-110}]){const c=officeCamera(width!,height!,zone,focus);expect((c.x+p.x*c.scale-c.x)/c.scale).toBeCloseTo(p.x,8);expect((c.y+p.y*c.scale-c.y)/c.scale).toBeCloseTo(p.y,8);}
+ }
+});
 test('B1 furniture alpha masks reject transparent padding and shadows at the floor anchor',()=>{
  const rgba=new Uint8ClampedArray(280*240*4),paint=(x:number,y:number,a:number)=>{rgba[((y+200)*280+x+140)*4+3]=a;};
  paint(-65,-70,255);paint(98,-108,255);paint(118,12,66);paint(0,-145,0);paint(-140,-200,96);

@@ -8,11 +8,18 @@ export function workFurnitureHitArea(rgba:ArrayLike<number>,width=280,height=240
  return {contains(x:number,y:number){const px=Math.floor((x+140)*width/280),py=Math.floor((y+200)*height/240);return px>=0&&py>=0&&px<width&&py<height&&mask[py*width+px]===1;}};
 }
 /** Resolve small same-row label collisions without shrinking the 12px text. */
-export function separateOfficeLabels(rows:{id:string;x:number;y:number;width:number;height:number}[],viewportWidth:number){
+export function separateOfficeLabels(rows:{id:string;x:number;y:number;width:number;height:number}[],viewportWidth:number,viewportHeight=Infinity){
  const placed:typeof rows=[];
  for(const row of [...rows].sort((a,b)=>a.y-b.y||a.x-b.x)){
   const next={...row};for(const previous of placed){if(Math.min(next.y+next.height,previous.y+previous.height)<=Math.max(next.y,previous.y))continue;const left=next.x-next.width/2,right=previous.x+previous.width/2;if(left<right+3&&next.x+next.width/2>previous.x-previous.width/2)next.x=right+3+next.width/2;}
-  next.x=Math.min(viewportWidth-next.width/2,next.x);placed.push(next);
+  next.x=Math.min(viewportWidth-next.width/2,next.x);
+  const overlaps=(a:typeof row,b:typeof row)=>Math.min(a.y+a.height,b.y+b.height)>Math.max(a.y,b.y)&&Math.min(a.x+a.width/2,b.x+b.width/2)>Math.max(a.x-a.width/2,b.x-b.width/2);
+  if(Math.abs(next.x-row.x)>40||placed.some(p=>overlaps(next,p))){
+   next.x=Math.max(row.width/2,Math.min(viewportWidth-row.width/2,row.x));next.y=row.y;
+   for(let n=0;n<=placed.length;n++){const hits=placed.filter(p=>overlaps(next,p));if(!hits.length)break;next.y=Math.max(...hits.map(p=>p.y+p.height))+3;}
+   if(next.y+next.height>viewportHeight){next.y=row.y;for(let n=0;n<=placed.length;n++){const hits=placed.filter(p=>overlaps(next,p));if(!hits.length)break;next.y=Math.min(...hits.map(p=>p.y))-next.height-3;}}
+  }
+  placed.push(next);
  }
  return placed;
 }
@@ -40,16 +47,32 @@ export function idlePoint(index:number,count=4){
   {x:570,y:955},{x:810,y:955},{x:1050,y:955},{x:1290,y:955}];
  return pts[index%pts.length]!;
 }
+/** Keep idle faces out of newly occupied meeting/lounge furniture without moving slot anchors. */
+export function clearIdleFurniture(point:{x:number;y:number},furniture:{kind:string;x:number;y:number}[],others:{x:number;y:number}[]){
+ const p={...point},half=(kind:string)=>kind==='whiteboard'?112:82;
+ const blocks=(q:typeof p,f:typeof furniture[number])=>q.y<f.y&&q.y>f.y-200&&Math.abs(q.x-f.x)<half(f.kind)+80;
+ for(const f of furniture){if(!blocks(p,f))continue;
+  const candidates=[{x:f.x-half(f.kind)-80,y:p.y},{x:f.x+half(f.kind)+80,y:p.y}].sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x));
+  const free=candidates.find(q=>!furniture.some(f=>blocks(q,f))&&!others.some(o=>Math.abs(o.x-q.x)<120&&Math.abs(o.y-q.y)<100));
+  if(free)p.x=free.x;else p.y=f.y+100;
+ }
+ return p;
+}
 /** Shared render anchors: locating and presence use exactly the renderer's placement. */
 export function actorPlacements(view:GameView){
  const scene=view.campaign?.scene??'workshop',chapter=view.campaign?.chapter??0;
  const members=view.actors.filter(a=>a.location===scene);let idle=0;
- return members.map(a=>{
+ const placements=members.map(a=>{
   const reservation=view.office?.reservations[a.id],item=reservation&&view.office?.items.find(i=>i.id===reservation.item),activity=activityFor(view,a.id);
   const seated=!!(scene==='workshop'&&item?.slot&&['work','review','think'].includes(activity));
   const p=seated?slotPoint(item!.slot!,chapter):scene==='workshop'?idlePoint(idle++,members.length):{x:600+(idle%4)*300,y:750+Math.floor(idle++/4)*130};
   return {id:a.id,x:p.x+(seated&&reservation?.zone==='meeting'?(reservation.seat===0?-72:72):0),y:p.y,activity,seated,zone:seated?reservation!.zone:'lounge'};
  });
+ if(scene==='workshop'){
+  const furniture=(view.office?.items??[]).filter(i=>i.slot&&['whiteboard','coffee'].includes(i.kind)).map(i=>({kind:i.kind,...slotPoint(i.slot!,chapter)}));
+  for(const p of placements.filter(p=>!p.seated))Object.assign(p,clearIdleFurniture(p,furniture,placements.filter(o=>o!==p)));
+ }
+ return placements;
 }
 export function actorFocus(view:GameView,id:string):OfficeFocus{
  if(view.campaign?.scene!=='workshop')return null;

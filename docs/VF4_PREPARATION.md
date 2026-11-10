@@ -1,3 +1,11 @@
+2026-11-11 当前批次：VF4-A全阶段、VF4-B1与VF4A2-PERF-01已独立CLOSED/PASS。**VF4-B2执行完成，暂停待独立复审**，固定实现与证据索引见 `harness/reviews/vf4b2-handoff.md`。第2～4节的whiteboard/coffee代表角落批次已按“先实屏诊断、按需最小修正”执行：四SVG原样复用，两个scene文件修正命中、空闲角色遮挡和名牌碰撞；角色母版与B1资产/证据均0diff。
+
+208配置、四视口、五角色、4/12人、320会议座位职责组合、1922记录/8020正式观察（含重复）、140指针记录与64布置往返完成；71条历史几何失败及1条探针误判有复验映射。用户明确只验lounge-1～3，lounge-4真实规则不可达／未验收。38文件316测试、167文件冻结、25/25交付门禁通过。冻结后性能首批72+12的preview/twelve +12.69%，唯一完整确认72+12四格+1.48%/+3.74%/-2.34%/+2.44%，两批原始数据完整保留。
+
+本批不等于完整Visual Freeze 1；VF31-PERF-01冷缓存/完整assetsReady/GPU上传/长会话/输入延迟/低端真机、其余sofa/dining/reading/server、其余七角色全姿态、完整动态、VF4-C食堂/图书馆/章节背景、Stage B版本专属立绘、真实DSH、SW全分支、200%系统字体保持OPEN/HOLD。完成最多两次本地提交后暂停；不push、不部署、不进入B3/C。以下旧状态仅为对应历史。
+2026-11-10 最新裁决：用户提供 Gemini 独立只读复审确认 VF4-B1 固定实现 0a958b8259fa2e4e92da38a10fa5b6923de5b97a（记录69b8d83，基线ec59d18）PASS，P0/P1/P2/P3均0，basic/standard代表工作角落正式封板。208配置/1704记录/7008样本、108真实点击、64布置往返、155文件冻结后72+12均通过；派生链/许可边界与harness口径修正获认可。VF4-A全阶段与VF4A2-PERF-01保持CLOSED/PASS；VF31-PERF-01完整预算保持OPEN。B1 SVG与harness/vf4b1后续只读零diff。
+
+当前仅授权VF4-B2：whiteboard/coffee先实屏量化，再按证据最小修正；四开局DeepSeek/bluewhale、Qwen、Llama、Mistral+GLM，四视口与4/12人。其余四家具sofa/dining/reading/server、七角色全姿态、完整动态、VF4-C/Stage B、完整Visual Freeze 1、真实DSH、SW全分支、200%字体继续OPEN/HOLD。最多两次本地提交后暂停待独立复审，不push、部署或跨B3/C。以下旧待复审状态属于历史，不覆盖本段。
 2026-11-10 当前批次：VF4-A 全阶段已获用户转述独立复审 CLOSED/PASS；VF4-B1 代表工作角落已完成，等待独立复审。固定实现与证据索引见 `harness/reviews/vf4b1-handoff.md`。四开局按用户确认采用 DeepSeek/bluewhale、Qwen、Llama、Mistral + GLM，standard单屏。basic/standard back原样复用，front仅显示器+16world x；两scene文件修正透明区命中与名牌间距。第2节“先核验、按需最小修正”已执行，原始前后证据保留；其余资产不扩产。
 
 208配置、四视口、五样本四槽位三职责、4/12人、镜头往返及编辑器恢复，量化与真实点击门禁通过。38文件313测试，155文件冻结；新性能72+12四格均<=+10%，非A4复用；23/23交付门禁通过。A4历史144+24偏离获明确认可，原始产物不改。VF4A2-PERF-01 CLOSED，完整VF31-PERF-01 OPEN；其余六家具、七角色全姿态/完整动态、VF4-C与Stage B、Visual Freeze 1、真实DSH、SW全分支、200%字体继续OPEN/HOLD。B1不能自行宣布独立PASS；两次本地提交后暂停，禁止自动推进B2/C。以下旧“待复审”及“未生产”表述仅属对应历史阶段。

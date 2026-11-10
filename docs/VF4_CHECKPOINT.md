@@ -1,3 +1,13 @@
+2026-11-11 当前入口：**VF4-B2 实现与验证完成，暂停待独立只读复审**。固定实现 `B2_IMPLEMENTATION_SHA_PENDING`，基线69b8d83。交接见 `harness/reviews/vf4b2-handoff.md`，复审指令见 `harness/reviews/vf4b2-gemini-review-prompt.md`。用户提供B1独立PASS已登记；VF4-A全阶段、VF4-B1、VF4A2-PERF-01保持CLOSED/PASS。
+
+whiteboard/coffee四张SVG实屏核验通过、原样复用。仅两个scene文件修正alpha命中、空闲角色绕开家具和右边界名牌纵向避让，vf2新增3项回归。208配置、1922条记录、8020正式样本观察（含重复）、320会议席位职责组合、140真实指针记录、64次OfficeEditor往返；68条before及3条first-fix失败和1条指针探针误判全部保留并有明确复验映射。四视口最终几何/点击/背景与焦点恢复通过。用户确认仅审核合法lounge-1～3，lounge-4不可达／未验收，等待后续授权。
+
+完整pnpm check：38文件316测试通过；151源码+16office SVG共167文件原始/LF冻结匹配；交付25/25 true。首批72+12的preview/twelve为+12.69%，触发唯一完整确认72+12；确认对c68541d四格+1.48%/+3.74%/-2.34%/+2.44%，均<=+10%。实际144正式+24预热，两批完整保留、不混合择优。生产dist无探针、5181–5186关闭、专用缓存删除、浏览器恢复。
+
+保护路径0diff，包括全部角色资源、packages/lock、六个VF4-A UI、B1四SVG及harness/vf4b1。VF31-PERF-01完整预算（冷缓存、完整assetsReady、GPU上传、长会话驻留、输入延迟、低端移动真机）、其余四家具sofa/dining/reading/server、其余七角色全姿态、完整动态、VF4-C食堂/图书馆/章节背景与Stage B专属立绘、完整Visual Freeze 1、真实DSH冲突流、SW更新全分支、200%系统字体均OPEN/HOLD。本轮至多两次本地提交后暂停，不push、部署或跨B3/C。以下为历史，旧“当前授权/待复审”不覆盖本段。
+2026-11-10 最新裁决：用户提供 Gemini 独立只读复审确认 VF4-B1 固定实现 0a958b8259fa2e4e92da38a10fa5b6923de5b97a（记录69b8d83，基线ec59d18）PASS，P0/P1/P2/P3均0，basic/standard代表工作角落正式封板。208配置/1704记录/7008样本、108真实点击、64布置往返、155文件冻结后72+12均通过；派生链/许可边界与harness口径修正获认可。VF4-A全阶段与VF4A2-PERF-01保持CLOSED/PASS；VF31-PERF-01完整预算保持OPEN。B1 SVG与harness/vf4b1后续只读零diff。
+
+当前仅授权VF4-B2：whiteboard/coffee先实屏量化，再按证据最小修正；四开局DeepSeek/bluewhale、Qwen、Llama、Mistral+GLM，四视口与4/12人。其余四家具sofa/dining/reading/server、七角色全姿态、完整动态、VF4-C/Stage B、完整Visual Freeze 1、真实DSH、SW全分支、200%字体继续OPEN/HOLD。最多两次本地提交后暂停待独立复审，不push、部署或跨B3/C。以下旧待复审状态属于历史，不覆盖本段。
 2026-11-10 当前入口：**VF4-B1 已完成实现与验证，暂停待独立复审**。固定实现 `0a958b8259fa2e4e92da38a10fa5b6923de5b97a`；交接 `harness/reviews/vf4b1-handoff.md`，复审 Prompt `harness/reviews/vf4b1-gemini-review-prompt.md`。用户已确认现有四开局 DeepSeek/bluewhale、Qwen、Llama、Mistral + GLM，standard 保持单屏。basic/standard 两个 back 实屏核验通过并原样复用；两个 front 仅显示器水平 +16world；两个 scene 文件补透明像素命中与小比例名牌避让。角色资产、packages/lock、六个封板 UI 全部0diff。
 
 208配置、1,704实测记录、7,008样本观察；保留16条修复前失败与复验；108次真实点击、64次有效布置保存/取消镜头与焦点恢复通过。38文件313测试、155文件原始/LF冻结、交付23/23 true；最终冻结后新72正式+12预热，相对c68541d四格+0.26%/−0.93%/+5.22%/+2.33%，未触发确认批。生产无探针、端口5181–5186关闭、缓存和浏览器清理完成。harness字段顺序与浮点误报、中断重试、素材许可证声明限制均保留说明。
