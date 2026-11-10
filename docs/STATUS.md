@@ -1,3 +1,9 @@
+2026-11-10 当前裁决登记：独立复审 **PASS（VF4-A零资源试点阶段已封板）**。用户提供的Gemini最终只读裁决确认VF4-A3.1固定实现 `d1072f6b2d0f7bd42b3a1078164753b0acc6fec8`（记录提交 `7b7b5faa937b4415cf1bc63e0a7c1d68a582fe0c`）通过；VF4A3-FOCUS-01、VF4A3-CSS-01、VF4A3-CSS-02均CLOSED / PASS，验证器与历史记录完整性PASS。封板范围为VF4-A + VF4-A.1/A2 + VF4-A3/A3.1零新增资源规范化试点系列。
+
+VF4A2-PERF-01保持CLOSED，由VF4-A3等样本n=6验证闭合，历史原始小样本记录保留备查。VF31-PERF-01完整性能预算（冷缓存、完整assetsReady、GPU纹理上传、长会话内存驻留、输入延迟、低端移动真机）保持OPEN；完整Visual Freeze 1认证、S2（CommissionWorkbench / Jobs委托抽屉与工作台）全矩阵验证、VF4-B / VF4-C美术资产生产与替换（含Stage B版本专属立绘）保持OPEN / HOLD；真实DSH宿主端到端冲突流、Service Worker更新全分支、200%系统字体缩放继续未闭合。
+
+本轮仅登记上述裁决，更新三份指定文档并执行一次本地docs(review)提交；无应用/测试/验证产物改动，无构建或采样重跑，不push、不部署。源码冻结验证沿用现有脚本，验证时间戳文件恢复原始字节。完成后暂停，等待下一阶段指令。交接：harness/reviews/vf4a3-handoff.md。以下均为历史执行记录，“待复审”等旧状态不覆盖本段最终裁决。
+
 VF4-A3.1 固定实现 `d1072f6b2d0f7bd42b3a1078164753b0acc6fec8`；交接 `harness/reviews/vf4a3-handoff.md`，复审 Prompt `harness/reviews/vf4a3-gemini-review-prompt.md`。本轮两次本地提交后暂停；不 push、不部署、不启动 VF4-B/C。
 
 2026-11-10 当前入口：VF4-A3 独立复审 CONDITIONAL PASS 已接收，A3.1 修复 FOCUS-01 / CSS-01 / CSS-02，完成 VF4-A 零资源阶段收尾验证。应用仅修改 alpha-app.tsx 路由切换后焦点和 vf1.css 海报选择器；Studio→Actors 四视口焦点在抽屉内，直接一次 Escape 返回原 Studio Dock；版本副标题浅色不再被覆盖，悬停保留海报配色，Claude 桌面/窄屏定位无重叠错列。38文件307测试及全量类型/lint/Web/DSH构建通过；新增26条观察，最终12条四视口门禁全通过。151文件新冻结原始/LF一致、保护路径0diff、生产无探针、端口/缓存/浏览器清理完毕。原72正式+12预热性能证据原样复用未重跑；依用户转述的Gemini独立裁决，VF4A2-PERF-01正式CLOSED。VF31-PERF-01完整预算、Visual Freeze 1、S2全矩阵、VF4-B/C等仍未闭合。下文仅为历史，不能覆盖本段。

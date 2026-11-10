@@ -1,14 +1,14 @@
-# VF4-A3.1 收尾检查点（2026-11-10）
+# VF4-A3.1 最终独立复审 PASS / VF4-A零资源阶段封板（2026-11-10）
 
-固定实现：`d1072f6b2d0f7bd42b3a1078164753b0acc6fec8`。基于 `9ad47c7b67b82cf86e9922f02f7cc398ec5b73bc` / A3实现 `b5f521605937a71a04ce4d5a09c14913eb5a1735`。两次本地提交后暂停待复审；不push、不部署、不启动VF4-B/C。
+固定实现：`d1072f6b2d0f7bd42b3a1078164753b0acc6fec8`。基于 `9ad47c7b67b82cf86e9922f02f7cc398ec5b73bc` / A3实现 `b5f521605937a71a04ce4d5a09c14913eb5a1735`。记录提交 `7b7b5faa937b4415cf1bc63e0a7c1d68a582fe0c`。用户提供的Gemini最终独立只读复审裁决：**PASS（VF4-A零资源试点阶段已封板）**。封板范围为VF4-A + VF4-A.1/A2 + VF4-A3/A3.1；本轮仅一次本地docs(review)裁决登记提交后暂停，等待下一阶段指令；不push、不部署、不启动VF4-B/C。
 
-本轮接受用户提供的Gemini独立复审：A3核心/契约/平衡性能通过，CONDITIONAL PASS；VF4A2-PERF-01由A3的n=6证据正式归档CLOSED。历史采样原始数据保持原样，历史小样本数字不改写。VF31-PERF-01完整预算仍OPEN。
+最终裁决确认A3.1三项修复和验证器门禁全部验收通过，历史记录完整性PASS。VF4A2-PERF-01保持CLOSED，由VF4-A3等样本n=6证据闭合；历史原始小样本记录保留备查。此处更新取代先前CONDITIONAL PASS/待复审状态。
 
 | 发现 | 修复与实测 | 状态 |
 | --- | --- | --- |
-| VF4A3-FOCUS-01 | AlphaApp进入Actors后渲染帧聚焦返回按钮，路由变化取消回调，有dialog时不抢焦点；四视口直接在当前焦点按一次Escape关闭并回到原Studio Dock | FIXED / verified |
-| VF4A3-CSS-01 | 海报标题副标题优先级提高，计算色rgb(255,248,236)；海报按钮选择器抵抗通用hover底色覆盖，保持印象色 | FIXED / verified |
-| VF4A3-CSS-02 | 桌面顶部全宽倒置勾选栏、第二行标题+倒置立绘、底部全宽状态；窄屏88px左立绘跨行，右侧勾选栏/标题/状态；几何边界无重叠错列/溢出 | FIXED / verified |
+| VF4A3-FOCUS-01 | AlphaApp进入Actors后渲染帧聚焦返回按钮，路由变化取消回调，有dialog时不抢焦点；四视口直接在当前焦点按一次Escape关闭并回到原Studio Dock | CLOSED / PASS |
+| VF4A3-CSS-01 | 海报标题副标题优先级提高，计算色rgb(255,248,236)；海报按钮选择器抵抗通用hover底色覆盖，保持印象色 | CLOSED / PASS |
+| VF4A3-CSS-02 | 桌面顶部全宽倒置勾选栏、第二行标题+倒置立绘、底部全宽状态；窄屏88px左立绘跨行，右侧勾选栏/标题/状态；几何边界无重叠错列/溢出 | CLOSED / PASS |
 
 应用差异仅alpha-app.tsx与vf1.css，未改studio-ui.tsx、领域规则、资产或S2。完整pnpm check通过：38文件307测试。78条累计记录（历史52+本轮26），最终四视口12条严格断言通过，560为英文深色，其余为中文浅色。新增Claude卡片四视口截图并刷新gallery截图。字幕颜色与保守对比度计算见a31-contrast.json；这是渐变最亮端的保守下界，未声称全状态WCAG认证。
 
@@ -16,7 +16,9 @@
 
 原startup-*文件零diff，无新性能采样；仅焦点/CSS修复按用户授权复用A3已通过72正式+12预热结果。source-freeze-a3.json保留原冻结，source-freeze.json为151文件A3.1冻结，原始/LF核验通过。生产构建无探针，5181–5186无监听，专用缓存已删、浏览器恢复。
 
-本轮完成VF4-A零资源试点的收尾验证，不等同完整Visual Freeze 1冻结。VF31-PERF-01、冷缓存/GPU/长会话/低端/200%字体、S2全矩阵、真实DSH、VF4-B/C仍未闭合。以下均为历史。
+VF4-A零资源试点阶段正式封板，不等同完整Visual Freeze 1认证。VF31-PERF-01完整性能预算（冷缓存、完整assetsReady、GPU纹理上传、长会话内存驻留、输入延迟、低端移动真机）保持OPEN；完整Visual Freeze 1认证、S2（CommissionWorkbench / Jobs委托抽屉与工作台）全矩阵验证、VF4-B / VF4-C美术资产生产与替换（含Stage B版本专属立绘）保持OPEN / HOLD；真实DSH宿主端到端冲突流、Service Worker更新全分支、200%系统字体缩放继续未闭合。
+
+本轮仅文档裁决登记，不修改应用、测试或harness/vf4a3产物；上述307测试、20/20核验与实机结果为独立复审确认的既有证据，未重跑构建/测试/采样。执行freeze-source.mjs --verify后恢复其时间戳输出原始字节，保持验证产物不变。以下均为历史，不覆盖本段最终裁决。
 
 # VF4-A3 当前检查点（2026-11-10）
 

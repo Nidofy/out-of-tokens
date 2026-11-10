@@ -1,10 +1,10 @@
-# VF4-A3.1 review handoff
+# VF4-A3.1 independent review PASS — VF4-A zero-resource phase sealed
 
 Fixed implementation: d1072f6b2d0f7bd42b3a1078164753b0acc6fec8
 
-Base record 9ad47c7b67b82cf86e9922f02f7cc398ec5b73bc; A3 implementation b5f521605937a71a04ce4d5a09c14913eb5a1735. Branch codex/m1-foundation. Two local commits only, then pause. No push, deployment, paid API or VF4-B/C.
+Base record 9ad47c7b67b82cf86e9922f02f7cc398ec5b73bc; A3 implementation b5f521605937a71a04ce4d5a09c14913eb5a1735. Branch codex/m1-foundation. Implementation record: 7b7b5faa937b4415cf1bc63e0a7c1d68a582fe0c. Final verdict registration is one local docs(review) commit, then pause awaiting next-stage instructions. No push, deployment, paid API or VF4-B/C.
 
-User-supplied independent Gemini verdict: A3 CONDITIONAL PASS, core/contracts and n=6 performance accepted. VF4A2-PERF-01 officially CLOSED using A3 balanced evidence. Historical raw numbers are preserved; VF31-PERF-01 remains OPEN.
+User-supplied final independent read-only Gemini verdict (2026-11-10): **PASS** for A3.1 and its verifier/history gates. VF4A3-FOCUS-01, VF4A3-CSS-01 and VF4A3-CSS-02 are CLOSED / PASS. The VF4-A zero-resource normalization pilot series (VF4-A + VF4-A.1/A2 + VF4-A3/A3.1) is formally sealed. VF4A2-PERF-01 officially CLOSED using A3 balanced evidence. Historical raw numbers are preserved; VF31-PERF-01 remains OPEN.
 
 A3.1 fixes FOCUS-01 (route-change focus in AlphaApp; do not modify shared Drawer), CSS-01 (light version captions survive management rules; impression color survives generic button hover) and CSS-02 (explicit Claude desktop and narrow grid placement). Application edits are confined to alpha-app.tsx and vf1.css. Original recruitment/version/interaction behavior is unchanged.
 
@@ -14,6 +14,6 @@ Correction: previous A3 evidence already contained body focus after the Studio l
 
 No performance sampling rerun. startup-* files are byte-for-byte unchanged from 9ad47c7. User explicitly authorized reuse for these focus/CSS-only changes. A3 had 72 formal / 12 warmups, n=6 each cell, no confirmation trigger. Old freeze is source-freeze-a3.json; new 151-file freeze passes raw and LF SHA256. Protected paths remain zero diff, production has no probes, ports 5181–5186 and cache cleaned, browser restored. delivery-verification.json has all 20 checks passing.
 
-Reproduce: pnpm check; node harness/vf4a3/freeze-source.mjs --verify; node harness/vf4a3/verify-delivery.mjs. Browser measurement method: a31-browser-method.txt. Do not resample startup without new authorization.
+Registration scope: only docs/STATUS.md, docs/VF4_CHECKPOINT.md and this handoff. No source, test or harness/vf4a3 artifact changes; no build, test or sampling rerun. Existing 307 tests, 20/20 verification and browser evidence above were accepted by the independent review. Run only node harness/vf4a3/freeze-source.mjs --verify and restore its timestamp output to the original bytes. Browser measurement method remains a31-browser-method.txt.
 
-VF4-A zero-resource closeout is implemented and verified; full VF31-PERF-01 budget, Visual Freeze 1, S2 full matrix, cold-cache/GPU/long-session/low-end/200% fonts, real DSH and VF4-B/C remain open/blocked. Await independent review of this fixed SHA.
+VF4-A is sealed; this does not certify full Visual Freeze 1. VF31-PERF-01 full budget remains OPEN: cold cache, complete assetsReady, GPU texture upload, long-session memory residency, input latency and low-end mobile hardware. Full Visual Freeze 1 certification, S2 CommissionWorkbench / Jobs drawer and workbench full matrix, and VF4-B / VF4-C art production/replacement (including Stage B version-specific portraits) remain OPEN / HOLD. Real DSH host end-to-end conflict flows, all Service Worker update branches and 200% system-font scaling remain unclosed. VF4A2-PERF-01 stays CLOSED via A3 balanced n=6 evidence; historical raw small-sample records remain available. Pause awaiting the next-stage instruction.
