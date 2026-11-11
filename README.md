@@ -21,3 +21,9 @@ M0.0–M0.2已经逐项验收，证据见 docs/M0.0-M0.2_ACCEPTANCE.md。
 规则见docs/M0_RULES_FINAL.md，平衡协议见docs/BALANCE.md，外部意见逐项处理见docs/REVIEW_RESPONSE.md。
 JSON内容为当前唯一数据源；历史内容生成器已删除以免覆盖调参结果，旧配方在29862c2可查。
 M0.5工程检查点为73222ef，验收见docs/M0.5_ACCEPTANCE.md；56测试、5000局未见种子和14例回放通过。三份独立审查已收到，当前整改见docs/REVIEW_M05_INTEGRATION.md；M1基础宿主已实现，完整M1未完成。`node scripts/verify-m05.mjs` 仅在历史a8fb63c检出复核旧证据；当前用 node scripts/verify-m06.mjs。
+
+## GitHub Pages 试玩部署
+
+在仓库设置中将 Pages 来源设为 **GitHub Actions**。推送此配置到 `codex/m1-foundation` 后，该分支每次 push 自动构建和部署，也可在 Actions 中手动运行 Deploy game to GitHub Pages。更换发布分支时，请修改 `.github/workflows/pages.yml`。部署地址以 Actions 输出为准，通常为 `https://nidofy.github.io/out-of-tokens/`；仓库可见性和 GitHub 套餐须支持 Pages。
+
+存档保存在当前浏览器中，换设备或清除数据前请在游戏内导出备份。当前版本仍处于开发和独立复审阶段。
