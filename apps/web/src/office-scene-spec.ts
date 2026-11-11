@@ -49,12 +49,18 @@ export function idlePoint(index:number,count=4){
 }
 /** Keep idle faces out of newly occupied meeting/lounge furniture without moving slot anchors. */
 export function clearIdleFurniture(point:{x:number;y:number},furniture:{kind:string;x:number;y:number}[],others:{x:number;y:number}[]){
- const p={...point},half=(kind:string)=>kind==='whiteboard'?112:82;
- const blocks=(q:typeof p,f:typeof furniture[number])=>q.y<f.y&&q.y>f.y-200&&Math.abs(q.x-f.x)<half(f.kind)+80;
+ const p={...point},half=(kind:string)=>(({whiteboard:112,coffee:82,sofa:120,server:62} as Record<string,number>)[kind]??82),top=(kind:string)=>(({whiteboard:176,coffee:158.4,sofa:138,server:182} as Record<string,number>)[kind]??158.4);
+ // Use the painted top, not the transparent 200-unit texture padding.
+ const blocks=(q:typeof p,f:typeof furniture[number])=>q.y<f.y&&q.y>f.y-top(f.kind)&&Math.abs(q.x-f.x)<half(f.kind)+80;
  for(const f of furniture){if(!blocks(p,f))continue;
   const candidates=[{x:f.x-half(f.kind)-80,y:p.y},{x:f.x+half(f.kind)+80,y:p.y}].sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x));
-  const free=candidates.find(q=>!furniture.some(f=>blocks(q,f))&&!others.some(o=>Math.abs(o.x-q.x)<120&&Math.abs(o.y-q.y)<100));
-  if(free)p.x=free.x;else p.y=f.y+100;
+  const free=candidates.find(q=>q.x>=170&&q.x<=1770&&!furniture.some(f=>blocks(q,f))&&!others.some(o=>Math.abs(o.x-q.x)<120&&Math.abs(o.y-q.y)<100));
+  if(free)p.x=free.x;else{
+   // A forward fallback also needs an aisle: do not stack a body over the next row.
+   const front=[p.x,...others.flatMap(o=>[o.x-128,o.x+128])].map(x=>({x,y:f.y+100})).sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x));
+   const gap=front.find(q=>q.x>=170&&q.x<=1770&&!furniture.some(f=>blocks(q,f))&&!others.some(o=>Math.abs(o.x-q.x)<96&&Math.abs(o.y-q.y)<160));
+   if(gap)Object.assign(p,gap);else p.y=f.y+100;
+  }
  }
  return p;
 }
@@ -69,7 +75,7 @@ export function actorPlacements(view:GameView){
   return {id:a.id,x:p.x+(seated&&reservation?.zone==='meeting'?(reservation.seat===0?-72:72):0),y:p.y,activity,seated,zone:seated?reservation!.zone:'lounge'};
  });
  if(scene==='workshop'){
-  const furniture=(view.office?.items??[]).filter(i=>i.slot&&['whiteboard','coffee'].includes(i.kind)).map(i=>({kind:i.kind,...slotPoint(i.slot!,chapter)}));
+  const furniture=(view.office?.items??[]).filter(i=>i.slot&&['whiteboard','coffee','sofa','server'].includes(i.kind)).map(i=>({kind:i.kind,...slotPoint(i.slot!,chapter)}));
   for(const p of placements.filter(p=>!p.seated))Object.assign(p,clearIdleFurniture(p,furniture,placements.filter(o=>o!==p)));
  }
  return placements;

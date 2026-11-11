@@ -1,3 +1,12 @@
+2026-11-11 当前入口：**VF4-B2 复审项已本地闭环，VF4-B3 实现与验证完成，暂停待联合独立只读复审**。本次固定实现直接读取git log/HEAD，交接见 `harness/reviews/vf4b3-handoff.md`。用户提供B2（30e35cd）独立CONDITIONAL PASS（P0=0/P1=0/P2=2/P3=2），并授权本地闭环后直推B3及仅一次本地提交；不再PENDING/二次SHA回填或raw+LF重复源码哈希台账。VF4-A全阶段、B1与VF4A2-PERF-01保持CLOSED/PASS。
+
+B2修复coffee lounge-3误避障、画内名牌边界隐藏；44配置复验与联合修改后12关键配置复查通过。24张错误overview复验图已保留旧版并更换为带返回全景的真实lounge图；清理字段改为明确成功布尔值。README.md与.github/workflows/pages.yml为用户独立改动，先stash隔离、本轮提交不包含，提交后原样恢复；恢复后这两项工作区改动是预期状态，严禁清理。
+
+B3完成sofa/lounge-1～3、server/server-1～2及canteen dining/library reading的限定家具审核；八SVG原样复用，全部16office SVG零diff，仅两个scene文件与vf2测试按实测修正。角色资源、packages/lock、scripts、六封板UI、B1证据及B1/B2 SVG零diff。240最终配置、967联合记录、3240最终样本观察；97条历史失败与复验映射保留；469真实指针、80编辑器交换/采购往返通过。公共场景使用隔离在场夹具，不扩产背景、不新增公共桌面业务行为；服务器外壳不增加算力。
+
+完整pnpm check：38文件318测试全绿。最终定稿后仅72正式+12预热，对c68541d四格-7.61%/-5.02%/-3.60%/-2.17%，无需确认批；没有B2中途采样。交付26/26 true，正常生产dist无探针，5181–5186关闭、缓存删除、浏览器恢复。初次测试预期错误、文件占用/工具超时、画外探针和沙发暴露扶手覆盖补验均保留说明；补验未改源码或重跑性能。
+
+继续OPEN/HOLD：其余七角色全姿态、完整动态、VF4-C背景/全员推广、Stage B专属立绘、完整Visual Freeze 1、VF31-PERF-01完整预算（冷缓存、完整assetsReady、GPU上传、长会话驻留、输入延迟、低端真机）、真实DSH、SW更新全分支、200%系统字体、lounge-4不可达/未验收。本轮仅一次本地提交后暂停，不push、不部署、不跨VF4-C。下文旧状态为历史，不覆盖本段。
 2026-11-11 当前入口：**VF4-B2 实现与验证完成，暂停待独立只读复审**。固定实现 `30e35cdbe3ac5c9c45a6dc9509ff47c46111b05e`，基线69b8d83。交接见 `harness/reviews/vf4b2-handoff.md`，复审指令见 `harness/reviews/vf4b2-gemini-review-prompt.md`。用户提供B1独立PASS已登记；VF4-A全阶段、VF4-B1、VF4A2-PERF-01保持CLOSED/PASS。
 
 whiteboard/coffee四张SVG实屏核验通过、原样复用。仅两个scene文件修正alpha命中、空闲角色绕开家具和右边界名牌纵向避让，vf2新增3项回归。208配置、1922条记录、8020正式样本观察（含重复）、320会议席位职责组合、140真实指针记录、64次OfficeEditor往返；68条before及3条first-fix失败和1条指针探针误判全部保留并有明确复验映射。四视口最终几何/点击/背景与焦点恢复通过。用户确认仅审核合法lounge-1～3，lounge-4不可达／未验收，等待后续授权。

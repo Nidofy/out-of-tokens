@@ -6,9 +6,22 @@ test('B2 idle actors clear occupied second-corner furniture without moving exist
  expect(clearIdleFurniture({x:500,y:600},[coffee],[{x:1280,y:600}])).toEqual({x:622,y:600});
  for(const p of [{x:335,y:655},{x:490,y:655},{x:215,y:900},{x:430,y:900},{x:500,y:600},{x:1280,y:600}])expect(clearIdleFurniture(p,[{kind:'coffee',x:215,y:635},{kind:'whiteboard',x:920,y:635}],[])).toEqual(p);
 });
+test('B2 lounge-3 transparent padding leaves the four-person aisle unchanged',()=>{
+ const coffee={kind:'coffee',x:215,y:815};
+ expect(clearIdleFurniture({x:335,y:655},[coffee],[{x:490,y:655},{x:215,y:900},{x:430,y:900}])).toEqual({x:335,y:655});
+ expect(clearIdleFurniture({x:215,y:780},[coffee],[]).x).toBeGreaterThanOrEqual(170);
+});
 test('B2 edge nameplates stay near their actor and avoid clamped collisions',()=>{
+ const edge=separateOfficeLabels([{id:'long',x:524.44,y:710,width:84,height:20}],560,800)[0]!;
+ expect(edge.x+edge.width/2).toBeLessThanOrEqual(560);
  const rows=[{id:'a',x:760,y:204,width:61,height:20},{id:'b',x:810,y:219,width:61,height:35},{id:'c',x:810,y:241,width:61,height:35}],placed=separateOfficeLabels(rows,844,390);
  for(const a of placed){expect(a.x-a.width/2).toBeGreaterThanOrEqual(0);expect(a.x+a.width/2).toBeLessThanOrEqual(844);expect(a.y+a.height).toBeLessThanOrEqual(390);for(const b of placed.filter(b=>b.id!==a.id))expect(Math.max(0,Math.min(a.x+a.width/2,b.x+b.width/2)-Math.max(a.x-a.width/2,b.x-b.width/2))*Math.max(0,Math.min(a.y+a.height,b.y+b.height)-Math.max(a.y,b.y))).toBe(0);}
+});
+test('B3 painted sofa/server envelopes clear occupied aisles without pushing actors into walls',()=>{
+ expect(clearIdleFurniture({x:500,y:600},[{kind:'sofa',x:460,y:635},{kind:'coffee',x:215,y:635}],[])).toEqual({x:660,y:600});
+ const gap=clearIdleFurniture({x:1770,y:600},[{kind:'server',x:1740,y:635}],[{x:1530,y:600},{x:1500,y:835},{x:1770,y:835}]);
+ expect(gap.y).toBe(735);expect(gap.x).toBeGreaterThanOrEqual(1596);expect(gap.x).toBeLessThanOrEqual(1674);
+ expect(clearIdleFurniture({x:335,y:655},[{kind:'sofa',x:215,y:815}],[])).toEqual({x:335,y:655});
 });
 test('B2 meeting seat offsets and legal lounge anchors map through every review camera',()=>{
  for(const [width,height]of [[1280,720],[844,390],[560,800],[390,844]])for(const slot of ['meeting-1','meeting-2','lounge-1','lounge-2','lounge-3'])for(const seat of slot.startsWith('meeting')?[-72,72]:[0]){
