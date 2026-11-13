@@ -13,4 +13,7 @@
 .journal-content .management-tabs button{flex:1 0 auto;white-space:nowrap;overflow-wrap:normal}
 .empty-art{display:block;width:160px;height:96px;max-width:100%;object-fit:contain;margin:8px auto;opacity:.45;pointer-events:none}
 .management-row button{min-width:44px;min-height:44px}
+:root[data-theme=dark] .world-map{background:radial-gradient(ellipse at 20% 25%,#414735 0 15%,transparent 16%),radial-gradient(ellipse at 85% 75%,#35463e 0 20%,transparent 21%),#393329;border-color:#817052}
+:root[data-theme=dark] .world-map .map-road{border-color:#786447}
+:root[data-theme=dark] .world-map .map-road path{stroke:#a78c63}
 @media(max-height:450px){.empty-art{height:64px;margin:4px auto}}
