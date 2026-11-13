@@ -8,7 +8,7 @@ export function workFurnitureHitArea(rgba:ArrayLike<number>,width=280,height=240
  return {contains(x:number,y:number){const px=Math.floor((x+140)*width/280),py=Math.floor((y+200)*height/240);return px>=0&&py>=0&&px<width&&py<height&&mask[py*width+px]===1;}};
 }
 /** Resolve small same-row label collisions without shrinking the 12px text. */
-export function separateOfficeLabels(rows:{id:string;x:number;y:number;width:number;height:number}[],viewportWidth:number,viewportHeight=Infinity){
+export function separateOfficeLabels(rows:{id:string;x:number;y:number;width:number;height:number}[],viewportWidth:number,viewportHeight=Infinity,faces:{x:number;y:number;width:number;height:number}[]=[]){
  const placed:typeof rows=[];
  for(const row of [...rows].sort((a,b)=>a.y-b.y||a.x-b.x)){
   const next={...row};for(const previous of placed){if(Math.min(next.y+next.height,previous.y+previous.height)<=Math.max(next.y,previous.y))continue;const left=next.x-next.width/2,right=previous.x+previous.width/2;if(left<right+3&&next.x+next.width/2>previous.x-previous.width/2)next.x=right+3+next.width/2;}
@@ -18,6 +18,15 @@ export function separateOfficeLabels(rows:{id:string;x:number;y:number;width:num
    next.x=Math.max(row.width/2,Math.min(viewportWidth-row.width/2,row.x));next.y=row.y;
    for(let n=0;n<=placed.length;n++){const hits=placed.filter(p=>overlaps(next,p));if(!hits.length)break;next.y=Math.max(...hits.map(p=>p.y+p.height))+3;}
    if(next.y+next.height>viewportHeight){next.y=row.y;for(let n=0;n<=placed.length;n++){const hits=placed.filter(p=>overlaps(next,p));if(!hits.length)break;next.y=Math.min(...hits.map(p=>p.y))-next.height-3;}}
+  }
+  const blocks=faces.map((f,i)=>({id:`face-${i}`,x:f.x+f.width/2,y:f.y,width:f.width,height:f.height}));
+  if(blocks.some(f=>overlaps(next,f))){
+   const candidates=[...blocks,...placed].flatMap(b=>[
+    {...next,x:b.x-b.width/2-next.width/2-3},{...next,x:b.x+b.width/2+next.width/2+3},
+    {...next,y:b.y-next.height-3},{...next,y:b.y+b.height+3}
+   ]).sort((a,b)=>Math.hypot(a.x-row.x,a.y-row.y)-Math.hypot(b.x-row.x,b.y-row.y));
+   const free=candidates.find(p=>p.x-p.width/2>=0&&p.x+p.width/2<=viewportWidth&&p.y>=0&&p.y+p.height<=viewportHeight&&![...blocks,...placed].some(b=>overlaps(p,b)));
+   if(free)Object.assign(next,free);
   }
   placed.push(next);
  }
@@ -49,7 +58,7 @@ export function idlePoint(index:number,count=4){
 }
 /** Keep idle faces out of newly occupied meeting/lounge furniture without moving slot anchors. */
 export function clearIdleFurniture(point:{x:number;y:number},furniture:{kind:string;x:number;y:number}[],others:{x:number;y:number}[]){
- const p={...point},half=(kind:string)=>(({whiteboard:112,coffee:82,sofa:120,server:62} as Record<string,number>)[kind]??82),top=(kind:string)=>(({whiteboard:176,coffee:158.4,sofa:138,server:182} as Record<string,number>)[kind]??158.4);
+ const p={...point},half=(kind:string)=>(({basic:140,standard:140,whiteboard:112,coffee:82,sofa:120,server:62} as Record<string,number>)[kind]??82),top=(kind:string)=>(({basic:200,standard:200,whiteboard:176,coffee:158.4,sofa:138,server:182} as Record<string,number>)[kind]??158.4);
  // Use the painted top, not the transparent 200-unit texture padding.
  const blocks=(q:typeof p,f:typeof furniture[number])=>q.y<f.y&&q.y>f.y-top(f.kind)&&Math.abs(q.x-f.x)<half(f.kind)+80;
  for(const f of furniture){if(!blocks(p,f))continue;
@@ -71,11 +80,12 @@ export function actorPlacements(view:GameView){
  const placements=members.map(a=>{
   const reservation=view.office?.reservations[a.id],item=reservation&&view.office?.items.find(i=>i.id===reservation.item),activity=activityFor(view,a.id);
   const seated=!!(scene==='workshop'&&item?.slot&&['work','review','think'].includes(activity));
-  const p=seated?slotPoint(item!.slot!,chapter):scene==='workshop'?idlePoint(idle++,members.length):{x:600+(idle%4)*300,y:750+Math.floor(idle++/4)*130};
+  // Public rows leave a full body and label gap; the left aisle clears the desktop dock.
+  const p=seated?slotPoint(item!.slot!,chapter):scene==='workshop'?idlePoint(idle++,members.length):{x:540+(idle%6)*230,y:750+Math.floor(idle++/6)*220};
   return {id:a.id,x:p.x+(seated&&reservation?.zone==='meeting'?(reservation.seat===0?-72:72):0),y:p.y,activity,seated,zone:seated?reservation!.zone:'lounge'};
  });
  if(scene==='workshop'){
-  const furniture=(view.office?.items??[]).filter(i=>i.slot&&['whiteboard','coffee','sofa','server'].includes(i.kind)).map(i=>({kind:i.kind,...slotPoint(i.slot!,chapter)}));
+  const furniture=(view.office?.items??[]).filter(i=>i.slot&&(['whiteboard','coffee','sofa','server'].includes(i.kind)||(chapter>0&&['basic','standard'].includes(i.kind)))).map(i=>({kind:i.kind,...slotPoint(i.slot!,chapter)}));
   for(const p of placements.filter(p=>!p.seated))Object.assign(p,clearIdleFurniture(p,furniture,placements.filter(o=>o!==p)));
  }
  return placements;

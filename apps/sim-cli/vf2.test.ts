@@ -72,12 +72,23 @@ test('A4 clarification wait ends exactly at the next available period',()=>{
  expect(clarificationWait({status:'posted',clarifyingUntil:2},1)).toBe(true);expect(clarificationWait({status:'posted',clarifyingUntil:2},2)).toBe(false);expect(clarificationWait({status:'accepted',clarifyingUntil:2},1)).toBe(false);
 });
 import {characterPosters,resolveCharacterVisual,versionDelta,recruitmentBlock} from '../web/src/character-profiles.js';
-test('VF4-A3 all twelve portraits preserve Stage A contract and profile stays upright',()=>{
+test('VF4-C all twelve base portraits preserve fallback and profile stays upright',()=>{
  expect(Object.keys(characterPosters)).toHaveLength(12);
  for(const id of Object.keys(characterPosters)){
   expect(resolveCharacterVisual(id)).toMatchObject({src:`./art/ai-village/portraits/${id}.png`,versionBadge:'BASE',isInvertedGag:id==='claude',sWord:characterPosters[id]!.sWord,themeColor:characterPosters[id]!.themeColor});
   expect(resolveCharacterVisual(id,`${id}.v2.test`,'profile')).toMatchObject({versionBadge:'V2.TEST',isInvertedGag:false});
  }
+});
+test('VF4-C only the eight authored advanced versions select dedicated art',async()=>{
+ const c=await loadFullContent();
+ const advanced=new Set(['bluewhale.r1','qwen.qwq','llama.3.1','mistral.large','gpt.4o','claude.sonnet','kimi.k2','gemini.pro']);
+ for(const v of c.versions){
+  const visual=resolveCharacterVisual(v.character,v.id,'profile');
+  expect(visual.src).toBe(advanced.has(v.id)?`./art/stage-b/${v.id}.svg`:`./art/ai-village/portraits/${v.character}.png`);
+  expect(visual.isInvertedGag).toBe(false);
+ }
+ expect(resolveCharacterVisual('qwen','gpt.4o').src).toBe('./art/ai-village/portraits/qwen.png');
+ expect(resolveCharacterVisual('qwen','../../bad').src).toBe('./art/ai-village/portraits/qwen.png');
 });
 test('VF4-A3 deltas cover six skills and engineering metrics without mutation',async()=>{
  const c=await loadFullContent(),base=c.versions[0]!,before=JSON.stringify(base),v={...base,skills:{code:9,write:8,reason:7,create:6,media:5,recall:4},price:base.price+2,speed:base.speed-0.1,stability:base.stability+1,context:base.context-1};

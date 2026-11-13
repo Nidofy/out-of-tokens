@@ -14,10 +14,11 @@ export const characterPosters:Record<string,{sWord:string;themeColor:string;tagl
  seedance:{sWord:'Storyboard',themeColor:'#2C7A7B',tagline:['每个镜头都有明确用途','Every shot has a purpose.'],mirror:true},
  glm:{sWord:'Silence',themeColor:'#4A4E57',tagline:['先搭框架，再落细节','A quiet moment, with you.'],mirror:false}
 };
-/** Stage A contract: every version reuses the original portrait. */
+const advancedPortraits:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'qwen.qwq',llama:'llama.3.1',mistral:'mistral.large',gpt:'gpt.4o',claude:'claude.sonnet',kimi:'kimi.k2',gemini:'gemini.pro'};
+/** Stage B: authored versions opt in; base/unknown versions retain the original. */
 export function resolveCharacterVisual(characterId:string,versionId?:string,variant:'poster'|'profile'='poster'){
  const poster=characterPosters[characterId];
- return {src:`./art/ai-village/portraits/${characterId}.png`,versionBadge:versionId?versionId.split('.').slice(1).join('.').toUpperCase():'BASE',isInvertedGag:characterId==='claude'&&variant==='poster',sWord:poster?.sWord??'',themeColor:poster?.themeColor??'#4A4E57'};
+ return {src:versionId&&advancedPortraits[characterId]===versionId?`./art/stage-b/${versionId}.svg`:`./art/ai-village/portraits/${characterId}.png`,versionBadge:versionId?versionId.split('.').slice(1).join('.').toUpperCase():'BASE',isInvertedGag:characterId==='claude'&&variant==='poster',sWord:poster?.sWord??'',themeColor:poster?.themeColor??'#4A4E57'};
 }
 export function versionDelta(preview:Version,baseline:Version){
  const delta=(a:number,b:number)=>Number((a-b).toFixed(4));

@@ -221,3 +221,5 @@ UTC02:01:02.946冻结151文件，原始/LF SHA256均记录。固定前台1280x72
 交付证据脚本首检误把文件控件可达性的DOMRect对象当作含scrollWidth的滚动指标，导致noHorizontalOverflow假阴性；初检JSON保留。限定仅统计有数值scrollWidth的观察后通过，未修改任何产品源码或原始交互数据。
 
 VF4-A固定实现 d3e0c87d96bf4fe3baa77ab745163d8baa9ca052；实现提交前staged diff --check通过，151文件固定Git blob的LF哈希与冻结清单一致，保护路径零diff。独立记录提供vf4a-handoff及vf4a-d3e0c87-gemini-prompt，明确归因/试点/性能/保护审查及必须回交Codex完整执行Prompt。本记录不改产品实现，双本地提交后暂停，未push。
+
+2026-11-13 VF4-C / 阶段2本地工程验证完成：用户已允许Stage B最小解析契约调整。八进阶版本使用原部件派生独立SVG，基础/未知/跨角色版本保留原图回退；原AI Village目录与partner-profile.tsx零diff。公共场景改为两排避脸与底栏，后续章节空闲角色避开基础/标准桌面，名牌按实际面部边界避让。7背景原样复用；lounge-4保留不可达，证据覆盖chapter0–4。最终冻结批次112场景+384固定相位姿态+224真实双工位坐姿+128版本档案=848配置，四视口×双语×双主题；28真实面部点击，汇总失败0。41文件333测试、完整构建与git diff --check通过。详见docs/VF4C_CHECKPOINT.md及仓库外../commission-checkpoints-20261113/vf4c-final-verdict.json。不是独立复审PASS或完整Visual Freeze 1：新增SVG17,181,555字节，完整冷缓存/驻留/输入/字体/离线门禁留待紧接的阶段3。旧等待Stage B授权段落已被本次用户“允许”解除。
