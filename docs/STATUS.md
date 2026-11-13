@@ -1,3 +1,5 @@
+2026-11-13 阶段0：用户提供当前工作区委托 UI 独立只读验收 PASS（P0/P1/P2/P3 均0）已收口。代码提交 c67b336e4bc9c05f71fa5fd2e7fcd39825c5dd7f，仅指定7文件，未改写业务代码。以用户指定的会话初始工作区为验收基线，提交前9文件（含README/workflow）SHA256复核一致；没有另一个独立验收哈希清单，不声称外部哈希比对。pnpm check：39文件327测试及完整构建通过，git diff --check通过。首次沙箱Vite临时文件EPERM与成功提权重跑日志均保存在仓库外 ../commission-checkpoints-20261113/。README.md与.github/workflows/pages.yml在当前HEAD无未提交差异，全程未触碰。按新用户授权连续推进阶段1，旧文档暂停指令为历史。
+
 2026-11-11 当前入口：**VF4-B2 复审项已本地闭环，VF4-B3 实现与验证完成，暂停待联合独立只读复审**。本次固定实现直接读取git log/HEAD，交接见 `harness/reviews/vf4b3-handoff.md`。用户提供B2（30e35cd）独立CONDITIONAL PASS（P0=0/P1=0/P2=2/P3=2），并授权本地闭环后直推B3及仅一次本地提交；不再PENDING/二次SHA回填或raw+LF重复源码哈希台账。VF4-A全阶段、B1与VF4A2-PERF-01保持CLOSED/PASS。
 
 B2修复coffee lounge-3误避障、画内名牌边界隐藏；44配置复验与联合修改后12关键配置复查通过。24张错误overview复验图已保留旧版并更换为带返回全景的真实lounge图；清理字段改为明确成功布尔值。README.md与.github/workflows/pages.yml为用户独立改动，先stash隔离、本轮提交不包含，提交后原样恢复；恢复后这两项工作区改动是预期状态，严禁清理。
