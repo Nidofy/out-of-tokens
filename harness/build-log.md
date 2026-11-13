@@ -1,3 +1,5 @@
+2026-11-13 Art-Batch 1：8 张模型新绘进阶立绘接入 WebP，8 张旧 SVG 原样移至 art/stage-b/legacy-svg；PWA 192/512/maskable PNG 与 favicon、离线列表对齐。41 文件334测试及完整构建通过；四视口×中英×亮暗，144张 Actors/PartnerProfile 截图，HTTP/破图/页面横向溢出失败0。证据 ../commission-evidence/art-tools/art-gen-batch-1。保护路径零diff；无规则变更。像素身份一致性为人工抽查，非独立复审；继续 Batch 2。
+
 # 实施日志
 
 2026-11-07 UI轮前复审集成：Gemini/Opus固定9e48510报告已归档，逐项见REVIEW_M5_INTEGRATION。0.11.0修复有效属性、远征位置/补给、章节迟到补救、Host只读对账、桌面自动保存与打包来源链。M05-03仍开放。接下来实施AI Village形式UI与现代场景；未收到本轮Sonnet报告。

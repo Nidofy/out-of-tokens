@@ -5,7 +5,7 @@ export default defineConfig({
     base: './',
     plugins: [{name:'offline-build',closeBundle(){
  const art=readdirSync('dist/art',{recursive:true,withFileTypes:true}).filter(e=>e.isFile()).map(e=>(e.parentPath+'/'+e.name).replaceAll('\\','/').replace(/^dist\//,''));
- const assets=[...art,'index.html','icon.svg','manifest.webmanifest','PAPER-DOLL-LICENSE.txt',...readdirSync('dist/assets').map(f=>'assets/'+f)];
+ const assets=[...art,'index.html','icon.svg','icon-192.png','icon-512.png','icon-maskable-512.png','manifest.webmanifest','PAPER-DOLL-LICENSE.txt',...readdirSync('dist/assets').map(f=>'assets/'+f)];
  const key='oot-alpha-'+createHash('sha256').update(assets.map(f=>f+createHash('sha256').update(readFileSync('dist/'+f)).digest('hex')).join('|')).digest('hex').slice(0,12);
  const script=`const CACHE=${JSON.stringify(key)},FILES=${JSON.stringify(assets)};
  self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES.map(f=>new URL(f,self.registration.scope).href)))));

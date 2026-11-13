@@ -18,7 +18,7 @@ const advancedPortraits:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1
 /** Stage B: authored versions opt in; base/unknown versions retain the original. */
 export function resolveCharacterVisual(characterId:string,versionId?:string,variant:'poster'|'profile'='poster'){
  const poster=characterPosters[characterId];
- return {src:versionId&&advancedPortraits[characterId]===versionId?`./art/stage-b/${versionId}.svg`:`./art/ai-village/portraits/${characterId}.png`,versionBadge:versionId?versionId.split('.').slice(1).join('.').toUpperCase():'BASE',isInvertedGag:characterId==='claude'&&variant==='poster',sWord:poster?.sWord??'',themeColor:poster?.themeColor??'#4A4E57'};
+ return {src:versionId&&advancedPortraits[characterId]===versionId?`./art/stage-b/${versionId}.webp`:`./art/ai-village/portraits/${characterId}.png`,versionBadge:versionId?versionId.split('.').slice(1).join('.').toUpperCase():'BASE',isInvertedGag:characterId==='claude'&&variant==='poster',sWord:poster?.sWord??'',themeColor:poster?.themeColor??'#4A4E57'};
 }
 export function versionDelta(preview:Version,baseline:Version){
  const delta=(a:number,b:number)=>Number((a-b).toFixed(4));

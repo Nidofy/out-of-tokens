@@ -84,7 +84,7 @@ test('VF4-C only the eight authored advanced versions select dedicated art',asyn
  const advanced=new Set(['bluewhale.r1','qwen.qwq','llama.3.1','mistral.large','gpt.4o','claude.sonnet','kimi.k2','gemini.pro']);
  for(const v of c.versions){
   const visual=resolveCharacterVisual(v.character,v.id,'profile');
-  expect(visual.src).toBe(advanced.has(v.id)?`./art/stage-b/${v.id}.svg`:`./art/ai-village/portraits/${v.character}.png`);
+  expect(visual.src).toBe(advanced.has(v.id)?`./art/stage-b/${v.id}.webp`:`./art/ai-village/portraits/${v.character}.png`);
   expect(visual.isInvertedGag).toBe(false);
  }
  expect(resolveCharacterVisual('qwen','gpt.4o').src).toBe('./art/ai-village/portraits/qwen.png');

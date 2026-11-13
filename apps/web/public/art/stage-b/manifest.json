@@ -1,470 +1,210 @@
 [
   {
-    "version": "bluewhale.r1",
-    "file": "bluewhale.r1.svg",
-    "sha256": "f75933f9437d425613f79a8d29b523dd5cde0b11c5928c9bfcb24ca8e0769051",
-    "bytes": 6323795,
-    "sourceCommit": "f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352",
+    "file": "bluewhale.r1.webp",
+    "purpose": "Stage B 512 square candidate; proportional resize and transparent padding only",
+    "id": "bluewhale.r1",
+    "width": 512,
+    "height": 512,
+    "bytes": 94624,
+    "sha256": "8ea8181da3380a8f776ba0786791da695552abd171921d2bd54a69c2b09f56c4",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "model": "OpenAI built-in image_gen (exact model/version not exposed)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "source": "exec-86720760-404a-4b29-a3b3-3bcac96de9d8.png",
+    "prompt": "Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character bluewhale.r1, using the provided original bluewhale portrait as identity reference. Preserve blue curled hair, blue eyes, white frilled maid headpiece, dark blue and white maid costume, theme color #3B6EA8, youthful chibi proportions and expressive face. Polished hand-painted anime game art; friendly confident analytical pose holding a small luminous reasoning notebook, restrained blue holographic geometric accents. Centered waist-up composition with full headpiece and hair visible, generous transparent margin, square canvas suitable for 512x512 runtime portrait. Genuine transparent background. No text, no logo, no border, no other characters. Preserve identity; upgrade details and pose only.",
+    "status": "candidate; not integrated or visually accepted",
     "sources": [
       {
-        "file": "bluewhale/character.json",
-        "sha256": "a463fcc63680251cae884264bfd4281eddd71916500147ef5c2932bbe8094652"
-      },
-      {
-        "file": "bluewhale/parts/tail-root.png",
-        "sha256": "c398730ca65e755ca7c7f0df8c43bf5d698f9101faf1cf6f966cd45caad86000"
-      },
-      {
-        "file": "bluewhale/parts/tail-fin.png",
-        "sha256": "43445a0e929d3c5dae02c5fbd3f0c27d37ae0fc0a55c35b5652acd36f85e02d5"
-      },
-      {
-        "file": "bluewhale/parts/leg-left.png",
-        "sha256": "0166bffe16b481f225b57b94d550d5b475b27629525f886fdcdca20bf8f95285"
-      },
-      {
-        "file": "bluewhale/parts/leg-right.png",
-        "sha256": "c0cbbcdcf61d5bb9269bb91f199de92b6013b90b67158d6d9460515b87b4ac72"
-      },
-      {
-        "file": "bluewhale/parts/back-hair.png",
-        "sha256": "9a1b94abcf0b6baa106d6f5f81022f8c7292f16a0b2c882df08e01d254ca6b81"
-      },
-      {
-        "file": "bluewhale/parts/arm-left.png",
-        "sha256": "a9f4c816d936c213c468f64f4c689f5c4d5785d0abcc1a4145440c3b71d8a31d"
-      },
-      {
-        "file": "bluewhale/parts/arm-right.png",
-        "sha256": "b10b9f324f8416e83cd83f1b45202ca6324b3ac070d0a7d4fb2d9db7e135a1ee"
-      },
-      {
-        "file": "bluewhale/parts/skirt.png",
-        "sha256": "9f579115623627a1b58fcd57e10cc773908639a225208ffca35c90c6a46f7211"
-      },
-      {
-        "file": "bluewhale/parts/torso.png",
-        "sha256": "51df6259a50511633fbc092e3dbe844b75f273c83ad9f91455d246aef2d7313e"
-      },
-      {
-        "file": "bluewhale/parts/ear-left.png",
-        "sha256": "faa3ec252ff1795f5c9b2a185975d8b44f130d8f662acac8ba5e125900f97095"
-      },
-      {
-        "file": "bluewhale/parts/ear-right.png",
-        "sha256": "81db0d20de076b4249011b2c12111d11e755d509754112450ac492d360c4eea2"
-      },
-      {
-        "file": "bluewhale/parts/face-happy.png",
-        "sha256": "fc4b43ae66d5f1b2ac056a281a43382bcc5248f727a01e5eaa246cb4eafc45b1"
-      },
-      {
-        "file": "bluewhale/parts/front-hair.png",
-        "sha256": "64cbfc4e5e0c8ace47e113495a08d44e42faa6f4dc4743c5556349ad430455ce"
-      },
-      {
-        "file": "bluewhale/parts/headband.png",
-        "sha256": "20e90cab0d1be583dd1e1bbb10c74bd79d00716d1e8b82ac7cbe118f6e000496"
-      },
-      {
-        "file": "bluewhale/parts/ahoge.png",
-        "sha256": "8f903e7ee482290a66cd456389aa5514abffe1c14002e493abf33562f4dd80aa"
-      },
-      {
-        "file": "bluewhale/parts/curl-left.png",
-        "sha256": "ab9c962460846d126edc2173df6a61fe3a0d6a72c01b53a407f5b2ad7f421333"
-      },
-      {
-        "file": "bluewhale/parts/curl-right.png",
-        "sha256": "11279b404a5a061877bc34c2d19c7b69060502418cfb78e5572145244dfd2592"
+        "file": "portraits/bluewhale.png",
+        "sha256": "c2b5f342ac03ac19612c0cb5f5450534fcbfd7526a37dece89a0a299cd43e68b"
       }
-    ],
-    "pose": {
-      "expression": "happy",
-      "angles": {
-        "arm-left": -12,
-        "arm-right": 12,
-        "head": -2
-      }
-    },
-    "license": "MIT; see LICENSE.txt; no additional trademark or character-rights claim"
+    ]
   },
   {
-    "version": "qwen.qwq",
-    "file": "qwen.qwq.svg",
-    "sha256": "d207e98a3a7d30cea4bc2d39f47103bf59c1d5a14bcea74e638a6311ae25617e",
-    "bytes": 1325301,
-    "sourceCommit": "f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352",
+    "file": "qwen.qwq.webp",
+    "purpose": "Stage B 512 square candidate; proportional resize and transparent padding only",
+    "id": "qwen.qwq",
+    "width": 512,
+    "height": 512,
+    "bytes": 77950,
+    "sha256": "6aef0ea101701c048c0f77e1e29a1fd8951790a7860eef0d15aa7de33df8a83a",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "model": "OpenAI built-in image_gen (exact model/version not exposed)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "source": "exec-1f6691f5-f22b-4789-b08c-442f943b9ea7.png",
+    "prompt": "Use case: identity-preserve. Standalone upgraded Stage B game portrait qwen.qwq for Out of Tokens. Input image is original character identity reference. Strictly preserve blue lavender wavy hair, purple eyes, blue beret and white flower, blue white ornate service dress, original accessories, outfit identity and chibi proportions. Theme accent #4E67C8. Confident upgraded pose holding a small elegant luminous planning tablet. Polished hand-painted chibi anime game illustration. Square centered waist-up portrait, full hair and headwear visible, generous 8% transparent margins all around. Genuine transparent background. No text, border, logos or other characters.",
+    "status": "candidate; not integrated or visually accepted",
     "sources": [
       {
-        "file": "qwen/character.json",
-        "sha256": "830ae524d01d192983945835405eb4a7c697e67e6af1a24b97c29ce2343011ee"
-      },
-      {
-        "file": "qwen/parts/leg-left.png",
-        "sha256": "cc4c1c52b35a8dabe23122837c98188daaba9dab836966224204dbc5c8495840"
-      },
-      {
-        "file": "qwen/parts/leg-right.png",
-        "sha256": "5b780025461fed45b06293dd2f82ca0da5fa6d7b4f882822d69ab2785d5d7480"
-      },
-      {
-        "file": "qwen/parts/back-hair.png",
-        "sha256": "c6e27ea5ef6faa6ea3e50df76dfd5724d70fdb9782f2640a6d729cbe0371275c"
-      },
-      {
-        "file": "qwen/parts/arm-right.png",
-        "sha256": "b064fbbf4f53cb310ee48bf4d87c9ee1a74d8a0af1a83fd5535727bcb214f280"
-      },
-      {
-        "file": "qwen/parts/arm-left.png",
-        "sha256": "2d22eeaa7c3f984c4135a024a192a5a7c4a5e7290ee5b95bcf900bdf898f9cfc"
-      },
-      {
-        "file": "qwen/parts/torso.png",
-        "sha256": "7f7daebc19a899601189c2b2c76a0af520ee009f01e8731f292cd45af8a51130"
-      },
-      {
-        "file": "qwen/parts/face-happy.png",
-        "sha256": "b424dbdfc747ed8a238138de640a72c94a2318e38b4b82b30a4c93a0ea2f667f"
-      },
-      {
-        "file": "qwen/parts/ornament.png",
-        "sha256": "e39d99c8a1a6e604cb884d3fdfd227fae6c28fceb737c8181475d1a13f601f7d"
+        "file": "portraits/qwen.png",
+        "sha256": "d927c9d574cd75d7846e0d1ea3d07f8c7820c694e7fc70bda21a5c72e63141cf"
       }
-    ],
-    "pose": {
-      "expression": "happy",
-      "angles": {
-        "arm-left": -12,
-        "arm-right": 12,
-        "head": -2
-      }
-    },
-    "license": "MIT; see LICENSE.txt; no additional trademark or character-rights claim"
+    ]
   },
   {
-    "version": "llama.3.1",
-    "file": "llama.3.1.svg",
-    "sha256": "cd29fbc6a4625c517122068c26f328f060a73801f6c45dd411e15d0670ede47e",
-    "bytes": 1061404,
-    "sourceCommit": "f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352",
+    "file": "llama.3.1.webp",
+    "purpose": "Stage B 512 square candidate; proportional resize and transparent padding only",
+    "id": "llama.3.1",
+    "width": 512,
+    "height": 512,
+    "bytes": 87526,
+    "sha256": "27994a6dcc899c0927ad436331e16354f8b7efd68c0f2d35baf765b5e1a034c5",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "model": "OpenAI built-in image_gen (exact model/version not exposed)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "source": "exec-a0b773c1-dacb-4ff4-8178-751fb8d5a640.png",
+    "prompt": "Use case: identity-preserve. Standalone upgraded Stage B game portrait llama.3.1 for Out of Tokens. Input image is original character identity reference. Strictly preserve cream hair, fluffy llama ears, blue eyes, pale frilled dress and blue hair clip, original accessories, outfit identity and chibi proportions. Theme accent #4B7F52. Confident upgraded pose holding an open notebook with small green sharing light motifs. Polished hand-painted chibi anime game illustration. Square centered waist-up portrait, full hair and headwear visible, generous 8% transparent margins all around. Genuine transparent background. No text, border, logos or other characters.",
+    "status": "candidate; not integrated or visually accepted",
     "sources": [
       {
-        "file": "llama/character.json",
-        "sha256": "2338cf4292e83f81fae5dfaf9c59d1c646220a6f760406d74929e60a88e9eb26"
-      },
-      {
-        "file": "llama/parts/leg-left.png",
-        "sha256": "244276cb98a7fed4d558fe8b861be9fff14719c53c305d93418ecf5bc61f4bcc"
-      },
-      {
-        "file": "llama/parts/leg-right.png",
-        "sha256": "1729c2d487b0f46d097724850837d9cfa425c79061e73bf833cdae61712a7bb4"
-      },
-      {
-        "file": "llama/parts/back-hair.png",
-        "sha256": "4a9dc513facd5f7b922facf007a4e58fed14daeb046b94c2bf97b35fa4b714ea"
-      },
-      {
-        "file": "llama/parts/arm-left.png",
-        "sha256": "967adf98c3e66cc752a561ff5421d83efba6d6cb6fd4ef04bfd48f86eedfec8a"
-      },
-      {
-        "file": "llama/parts/arm-right.png",
-        "sha256": "d2b00a1916c52eba9b2112a8e66d960a5aab218c2c06ba9c83a5129b6e14bc33"
-      },
-      {
-        "file": "llama/parts/torso.png",
-        "sha256": "5d1bdefbebb45f8ac97219d896c2e959059bc2d1175b4d429c3bba09116a7ab8"
-      },
-      {
-        "file": "llama/parts/ornament.png",
-        "sha256": "03d64e5e6faa6d1219378f2db76d67e801cde4a1d3741a1cb4affe696772f615"
-      },
-      {
-        "file": "llama/parts/face-happy.png",
-        "sha256": "fd0b6c9fb5e217aef6a2eb0fb95cc6e988a0471f718dc4685b5045bb66816cfc"
+        "file": "portraits/llama.png",
+        "sha256": "b8db7042184bc54ab3da81d6a4b0d84f99b676d2e865a9b4c945d404ebabccdb"
       }
-    ],
-    "pose": {
-      "expression": "happy",
-      "angles": {
-        "arm-left": -12,
-        "arm-right": 12,
-        "head": -2
-      }
-    },
-    "license": "MIT; see LICENSE.txt; no additional trademark or character-rights claim"
+    ]
   },
   {
-    "version": "mistral.large",
-    "file": "mistral.large.svg",
-    "sha256": "1d147e0bdf724e19ecaaa3aa457c279303be684fd70da1738040bc474761018b",
-    "bytes": 3151035,
-    "sourceCommit": "f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352",
+    "file": "mistral.large.webp",
+    "purpose": "Stage B 512 square candidate; proportional resize and transparent padding only",
+    "id": "mistral.large",
+    "width": 512,
+    "height": 512,
+    "bytes": 95232,
+    "sha256": "907bfdacf2faa90c3f57903e5e086dd88a8e92b9604b54576f9e14d8fb2fd374",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "model": "OpenAI built-in image_gen (exact model/version not exposed)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "source": "exec-1350993f-4bff-4f6c-8c1e-a9c666efc094.png",
+    "prompt": "Use case: identity-preserve. Standalone upgraded Stage B game portrait mistral.large for Out of Tokens. Input image is original character identity reference. Strictly preserve orange wavy hair, amber eyes, red wide witch hat with cream curled horn, red and cream dress, original accessories, outfit identity and chibi proportions. Theme accent #D06A4C. Confident upgraded pose holding a small polished spellbook and restrained warm breeze trails. Polished hand-painted chibi anime game illustration. Square centered waist-up portrait, full hair and headwear visible, generous 8% transparent margins all around. Genuine transparent background. No text, border, logos or other characters.",
+    "status": "candidate; not integrated or visually accepted",
     "sources": [
       {
-        "file": "mistral/character.json",
-        "sha256": "b3aa9f329bfdd62e6eec8c44b718e3e2f51e2d89f2d1b943453e82910916ad5c"
-      },
-      {
-        "file": "mistral/parts/leg-left.png",
-        "sha256": "ca8d15b18992d1af11b713d9b9efadd58b689840d2211f25296a20fb8517c720"
-      },
-      {
-        "file": "mistral/parts/leg-right.png",
-        "sha256": "562b0a8071f5eec1f9537808bea9bef08fff52b22fea1892016f78762f9d0c67"
-      },
-      {
-        "file": "mistral/parts/back-hair.png",
-        "sha256": "6d208ca844d642bbad62fce3e402a47bcc264319c7ba55c9bbcf59facd9f204d"
-      },
-      {
-        "file": "mistral/parts/ornament.png",
-        "sha256": "90f797e0a791f55aa0e08cb930dda168c7925e3da452efd6c51c014ed0a2d411"
-      },
-      {
-        "file": "mistral/parts/arm-left.png",
-        "sha256": "dc2b2d005e4b1ced4e5acdd6800a8f29da522708b8b34c8161b569cf2863b958"
-      },
-      {
-        "file": "mistral/parts/arm-right.png",
-        "sha256": "63b3de9a662da7b58445b940b23873d0c60a6b362de03a642b0f30d0f8afb371"
-      },
-      {
-        "file": "mistral/parts/torso.png",
-        "sha256": "767a5961ebec292242da95b24c7aa5e42c8df186b5b1c027e8748b85eff2a526"
-      },
-      {
-        "file": "mistral/parts/face-happy.png",
-        "sha256": "cbad5b533d483172baa56bd973f2b7204ad6959c5cfe7ed1b61aca5f525f31cb"
+        "file": "portraits/mistral.png",
+        "sha256": "a6f67e90cafb26a70590229e4ce6fc8c44b18ee0d54d13170028bf6ba94a08cb"
       }
-    ],
-    "pose": {
-      "expression": "happy",
-      "angles": {
-        "arm-left": -12,
-        "arm-right": 12,
-        "head": -2
-      }
-    },
-    "license": "MIT; see LICENSE.txt; no additional trademark or character-rights claim"
+    ]
   },
   {
-    "version": "gpt.4o",
-    "file": "gpt.4o.svg",
-    "sha256": "8784d485acc8470ffe8c5797b2fae14e5b1012abcfc6fa50bb19eababa77c237",
-    "bytes": 1247486,
-    "sourceCommit": "f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352",
+    "file": "gpt.4o.webp",
+    "purpose": "Stage B 512 square candidate; proportional resize and transparent padding only",
+    "id": "gpt.4o",
+    "width": 512,
+    "height": 512,
+    "bytes": 88654,
+    "sha256": "e99b8d697b01cd27cfa0d6ab129e4ffbbd67fac32594d6ba6a07b5dd4662454e",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "model": "OpenAI built-in image_gen (exact model/version not exposed)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "source": "exec-a50536d6-a05f-4f5e-8df2-d1645a1862b1.png",
+    "prompt": "Use case: identity-preserve. Standalone upgraded Stage B game portrait gpt.4o for Out of Tokens. Input is original character identity reference. Strictly preserve white lavender hair, violet eyes, white horn-like hair ornaments and white rose, white and lavender frilled dress, original accessories, outfit identity and chibi proportions. Theme accent #8576B8. Confident upgraded pose holding a small glowing demonstration tablet. Polished hand-painted chibi anime game illustration. Square centered waist-up portrait, full hair and headwear visible, generous 8% transparent margins all around. Genuine transparent background. No text, border, logos or other characters.",
+    "status": "candidate; not integrated or visually accepted",
     "sources": [
       {
-        "file": "gpt/character.json",
-        "sha256": "622f0a838f0e03b240991468661e59e15f2a3ac22be93a99a3649f0176d42409"
-      },
-      {
-        "file": "gpt/parts/leg-left.png",
-        "sha256": "1bfc2e990361cdb2ab38b080f30dd3d7c713b574609135387a01df120fadc337"
-      },
-      {
-        "file": "gpt/parts/leg-right.png",
-        "sha256": "9f4cfb4f1a49f917e46c0d7050de59e7d242cc21f1c0f47c53adc9b1a66f6735"
-      },
-      {
-        "file": "gpt/parts/back-hair.png",
-        "sha256": "d7e3d0d0fe99596aa3b5107e4cd056ccb88c88ecd76540f6f0a37a55ad014061"
-      },
-      {
-        "file": "gpt/parts/ornament.png",
-        "sha256": "ff87c0434138a7ecb115a5b50701b9c1b9741979190b13249a6c82fb43b2e82e"
-      },
-      {
-        "file": "gpt/parts/arm-right.png",
-        "sha256": "1bdfddb6b1d6cd68dcdbd291a914c3d32725f8dc2088f4ef72b1911dcf66cbaa"
-      },
-      {
-        "file": "gpt/parts/arm-left.png",
-        "sha256": "10152d19d4cc3ce43675b5294d25757e8b0cd624a35278dea0d452bdfa70c3d7"
-      },
-      {
-        "file": "gpt/parts/torso.png",
-        "sha256": "525458cfb737f5f8a3536175d560abc1e706d849761bdd96ceeafc5cc9bd859b"
-      },
-      {
-        "file": "gpt/parts/face-happy.png",
-        "sha256": "9a56e2b3278f530e5fc82182c917e358158a12f4e4254f8ef250c2a79ea4c97f"
+        "file": "portraits/gpt.png",
+        "sha256": "1adf1bf17fbb0d4d8faadabeb1e34b2b380d2fbcb1b7895a32f1ef7c421a4476"
       }
-    ],
-    "pose": {
-      "expression": "happy",
-      "angles": {
-        "arm-left": -12,
-        "arm-right": 12,
-        "head": -2
-      }
-    },
-    "license": "MIT; see LICENSE.txt; no additional trademark or character-rights claim"
+    ]
   },
   {
-    "version": "claude.sonnet",
-    "file": "claude.sonnet.svg",
-    "sha256": "040ad56357e0a448c77e726a1c9548b4e147d901b9daa4925dd7de1fa9a89d4a",
-    "bytes": 1322045,
-    "sourceCommit": "f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352",
+    "file": "claude.sonnet.webp",
+    "purpose": "Stage B 512 square candidate; proportional resize and transparent padding only",
+    "id": "claude.sonnet",
+    "width": 512,
+    "height": 512,
+    "bytes": 87946,
+    "sha256": "efcccbfbff9562c8fae8f83e45e1035ca0793ffebcc37d94869c401745ec4bbb",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "model": "OpenAI built-in image_gen (exact model/version not exposed)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "source": "exec-4d80cde1-1bc4-4afb-bb0b-533c1f8d674f.png",
+    "prompt": "Use case: identity-preserve. Standalone upgraded Stage B game portrait claude.sonnet for Out of Tokens. Input is original character identity reference. Strictly preserve long orange hair, orange eyes, orange flower hair ornament and black bow, cream and dark dress, original accessories, outfit identity and chibi proportions. Theme accent #C45B38. Confident upgraded pose holding an open checklist notebook; upright image because the application supplies the upside-down poster gag. Polished hand-painted chibi anime game illustration. Square centered waist-up portrait, full hair and headwear visible, generous 8% transparent margins all around. Genuine transparent background. No text, border, logos or other characters.",
+    "status": "candidate; not integrated or visually accepted",
     "sources": [
       {
-        "file": "claude/character.json",
-        "sha256": "10b87e85cd4f5190fd740eb6ca3426dccfdbe04bc7cd14d4687593cb86ccfce8"
-      },
-      {
-        "file": "claude/parts/leg-left.png",
-        "sha256": "cbbd1465135f34dd470fd00875c3234f31eb2e24fd125c4f5a00de92f0410f17"
-      },
-      {
-        "file": "claude/parts/leg-right.png",
-        "sha256": "22678d983c4e05ea9d968254c7afe3117dd47c98c7ca41cb438151872f05d3d3"
-      },
-      {
-        "file": "claude/parts/back-hair.png",
-        "sha256": "117e75a0c0eb3c59c3629c1a064c002ff4ba4a7ef71018c449735e1b94b953ce"
-      },
-      {
-        "file": "claude/parts/ornament.png",
-        "sha256": "2eaa618a56933cd64328284c7751e566e9ba364075502acdea4a786310126332"
-      },
-      {
-        "file": "claude/parts/arm-left.png",
-        "sha256": "d0f55b58c3197b704078677b9715400d7945006715f0af6c604fc239b87dc5de"
-      },
-      {
-        "file": "claude/parts/arm-right.png",
-        "sha256": "d23df1b6af757eb17a7e2bdbd37d8b12105bf3660d276846bf9d2f60e2486c1b"
-      },
-      {
-        "file": "claude/parts/torso.png",
-        "sha256": "d6c26a58c188f61f06c04ccceddfc75ade22c58c0d7b06a5d686ed214a47ee1a"
-      },
-      {
-        "file": "claude/parts/face-happy.png",
-        "sha256": "3da0845f98cca118a09a6493685f3dcf738172edae447ea9bfa5c53a2a456742"
+        "file": "portraits/claude.png",
+        "sha256": "2613cb3d3cd03b4d53ff0c86b93afb3a3df677b04915ff0472f4220de14cacbd"
       }
-    ],
-    "pose": {
-      "expression": "happy",
-      "angles": {
-        "arm-left": -12,
-        "arm-right": 12,
-        "head": -2
-      }
-    },
-    "license": "MIT; see LICENSE.txt; no additional trademark or character-rights claim"
+    ]
   },
   {
-    "version": "kimi.k2",
-    "file": "kimi.k2.svg",
-    "sha256": "a4edaf142c3b650f7d12a5155457e3c541b700985c39d6db24062083ba196ff3",
-    "bytes": 1380383,
-    "sourceCommit": "f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352",
+    "file": "kimi.k2.webp",
+    "purpose": "Stage B 512 square candidate; proportional resize and transparent padding only",
+    "id": "kimi.k2",
+    "width": 512,
+    "height": 512,
+    "bytes": 94248,
+    "sha256": "d6c65d74591095893a5c90742b46403156e8c97b40c660c100febb4b0bc06479",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "model": "OpenAI built-in image_gen (exact model/version not exposed)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "source": "exec-c5724e26-da81-4e3a-b006-1fd87c9fb24b.png",
+    "prompt": "Use case: identity-preserve. Standalone upgraded Stage B game portrait kimi.k2 for Out of Tokens. Input is original character identity reference. Strictly preserve silver lavender hair, blue eyes, white maid headdress and dark star hair ornament, navy and white maid dress, original accessories, outfit identity and chibi proportions. Theme accent #222944. Confident upgraded pose holding a compact memory notebook with subtle musical constellation accents. Polished hand-painted chibi anime game illustration. Square centered waist-up portrait, full hair and headwear visible, generous 8% transparent margins all around. Genuine transparent background. No text, border, logos or other characters.",
+    "status": "candidate; not integrated or visually accepted",
     "sources": [
       {
-        "file": "kimi/character.json",
-        "sha256": "a6d5fd002f30be5aaf9fd52a823d86cfb2976ed3c88701c01a0ac8de9149bbd8"
-      },
-      {
-        "file": "kimi/parts/leg-left.png",
-        "sha256": "33449d9c6469d6472609f0f491091b35e44a0bbd22f3f2d626f01ceff12a0b34"
-      },
-      {
-        "file": "kimi/parts/leg-right.png",
-        "sha256": "16220dc31128a235c7f3757661230b327fd1c173a7597de64d9eddac1a53b836"
-      },
-      {
-        "file": "kimi/parts/back-hair.png",
-        "sha256": "7417ed3767435ed07e3f514a6137f6a2548240d5e7d66bea0d444d6224971537"
-      },
-      {
-        "file": "kimi/parts/ornament.png",
-        "sha256": "00ce390521fe2a53ae956f3509d485172343fc1ddf8ac9dad0ea7b2261fe679b"
-      },
-      {
-        "file": "kimi/parts/arm-left.png",
-        "sha256": "6f1f427461551f87e0357bb32376ea6c2a02ab7886a1556d233d72e66b88dce9"
-      },
-      {
-        "file": "kimi/parts/arm-right.png",
-        "sha256": "645bb84bc05f097de751577a5f3f0f75c9191bd99acf3d90d4e2ff0ad85edb0b"
-      },
-      {
-        "file": "kimi/parts/torso.png",
-        "sha256": "54a20566f91494b5b4aaba89d78caf720ec95d36dca9a9eae8a036213fe973c4"
-      },
-      {
-        "file": "kimi/parts/face-happy.png",
-        "sha256": "5655a709d9c9899e54bbdd7bbd60214ef873434c5027ab22bacd2238dd2f4ef4"
+        "file": "portraits/kimi.png",
+        "sha256": "1e49a295539b96499cf8df90df5c2c95b248395e23158a763483d2c18c1f85f4"
       }
-    ],
-    "pose": {
-      "expression": "happy",
-      "angles": {
-        "arm-left": -12,
-        "arm-right": 12,
-        "head": -2
-      }
-    },
-    "license": "MIT; see LICENSE.txt; no additional trademark or character-rights claim"
+    ]
   },
   {
-    "version": "gemini.pro",
-    "file": "gemini.pro.svg",
-    "sha256": "d32be39fc14d922f6d8af91709371de8d639d86b60749393b7ab347f52615080",
-    "bytes": 1370106,
-    "sourceCommit": "f4c2ac633d5ad5e9ee0f7c2cd66bd1af9fc90352",
+    "file": "gemini.pro.webp",
+    "purpose": "Stage B 512 square candidate; proportional resize and transparent padding only",
+    "id": "gemini.pro",
+    "width": 512,
+    "height": 512,
+    "bytes": 95320,
+    "sha256": "aa32fe47ce5605f1b4d42ccb6b9934cfbf638c6203f2c6b5761b46df68c488c9",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "model": "OpenAI built-in image_gen (exact model/version not exposed)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "source": "exec-d9504d9a-1a2c-4151-99ad-6783564c554e.png",
+    "prompt": "Use case: identity-preserve. Standalone upgraded Stage B game portrait gemini.pro for Out of Tokens. Input is original character identity reference. Strictly preserve blue purple hair, cat ears, pink and gold heterochromatic eyes, star hair ornament, purple magical dress, original accessories, outfit identity and chibi proportions. Theme accent #675BC8. Confident upgraded pose holding a small glowing multimedia prism with a few star lights. Polished hand-painted chibi anime game illustration. Square centered waist-up portrait, full hair and headwear visible, generous 8% transparent margins all around. Genuine transparent background. No text, border, logos or other characters.",
+    "status": "candidate; not integrated or visually accepted",
     "sources": [
       {
-        "file": "gemini/character.json",
-        "sha256": "8816dd3317310b198caf10a15796e5bc917e6a1025d98e87508fd4f9e42f3541"
-      },
-      {
-        "file": "gemini/parts/leg-left.png",
-        "sha256": "ff260e9d3d4a1c7bba6ef0ca9d38aa61ef1973fc70d7d1e4d4bf754a5db8b2bf"
-      },
-      {
-        "file": "gemini/parts/leg-right.png",
-        "sha256": "278fb0ec569397ccd9d5c0b86e1a7ba836e18c730a8dd8f3e71de724625b1a21"
-      },
-      {
-        "file": "gemini/parts/back-hair.png",
-        "sha256": "3938573142575308e809d34cae95e6dcf96db4de2bf23301658eec2bed7b0eab"
-      },
-      {
-        "file": "gemini/parts/ornament.png",
-        "sha256": "e144319dbd33f9f2d9ea1faebd8ad004413515229942f4d84e2691476a7d3ee1"
-      },
-      {
-        "file": "gemini/parts/arm-left.png",
-        "sha256": "db5f30d3dc0edc6321172527abdc360986d7e2c9a6b521c91e57e954c80f3dc0"
-      },
-      {
-        "file": "gemini/parts/arm-right.png",
-        "sha256": "d2921cfc6deac13e2a3bcdd464bedeb791eef9a26506741f40cefd369a068121"
-      },
-      {
-        "file": "gemini/parts/torso.png",
-        "sha256": "9c729b12b1b5c424700d378a74f11e2e5a78b944b0dab4be96450ef4899d66ce"
-      },
-      {
-        "file": "gemini/parts/face-happy.png",
-        "sha256": "b4985256f9d571dcf9072c4a7094db841712adf5da099eb5426ec78faa9695d2"
+        "file": "portraits/gemini.png",
+        "sha256": "d25b5b368bd7161e625742545e1d1ee3824c71d9c914157576f5d4b7ac5f8cc3"
       }
-    ],
-    "pose": {
-      "expression": "happy",
-      "angles": {
-        "arm-left": -12,
-        "arm-right": 12,
-        "head": -2
-      }
-    },
-    "license": "MIT; see LICENSE.txt; no additional trademark or character-rights claim"
+    ]
   }
 ]
