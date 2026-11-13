@@ -170,9 +170,9 @@
 .management-content :is(.project-steps,.project-routes ol){padding-left:20px}.management-content blockquote{margin:12px 0;padding:12px;border-left:3px solid var(--selected-indicator);background:var(--paper)}
 .management-content .ledger-row{gap:12px;font-size:12px;align-items:start}.management-content .ledger-row b{font-size:16px;flex-shrink:0}.management-content .ending-option{padding:12px 0;border-top:1px solid var(--line)}
 .management-content :is(.ending-option img,.ending-art,.world-card img){max-width:100%;border-radius:10px}.management-content .world-card button,.management-content .ending-option button{margin:4px;min-height:44px}
-@media(max-width:899px){.studio-app:is([data-panel=studio],[data-panel=journal]) .studio-drawer{top:116px;bottom:auto;max-height:calc(100dvh - 132px)}}
+@media(max-width:899px){.studio-app:is([data-panel=studio],[data-panel=journal],[data-panel=actors]) .studio-drawer{top:116px;bottom:auto;max-height:calc(100dvh - 132px)}}
 @media(max-width:559px){.management-row{padding:10px;gap:8px}.management-row button{padding:8px 10px}.management-tabs{gap:2px}}
-@media(max-height:479px){.studio-app:is([data-panel=studio],[data-panel=journal]) .studio-drawer{top:64px;bottom:auto;max-height:calc(100dvh - 76px)}.studio-app:is([data-panel=studio],[data-panel=journal]) .drawer-head{padding:6px 12px}}
+@media(max-height:479px){.studio-app:is([data-panel=studio],[data-panel=journal],[data-panel=actors]) .studio-drawer{top:64px;bottom:auto;max-height:calc(100dvh - 76px)}.studio-app:is([data-panel=studio],[data-panel=journal]) .drawer-head{padding:6px 12px}}
 /* VF4-A4: Jobs paper drawer, S2 controls and office tools. */
 .workbench-dialog>.dialog-head button{min-height:44px;height:44px}.workbench-dialog>.dialog-head{min-height:60px}
 @media(max-height:479px){.workbench-dialog .workbench{height:calc(96dvh - 64px)}}
