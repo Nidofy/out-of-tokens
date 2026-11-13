@@ -1,5 +1,9 @@
 # Art Batch 1 candidate prompts
 
+Integration status (2026-11-13 closure): all eight WebP portraits are integrated in the Web runtime. Local checks are recorded separately from independent visual acceptance; the original generation notes below are historical.
+
+PWA icon composition: `icon-maskable-512.png` and `icon-512.png` intentionally share the same padded safe-area composition and identical bytes (SHA256 `f3c2f9b4d19afeb7d65c00837e003e277286f2c3dba3b1aeb4ee603423fb502f`). The manifest uses separate `maskable` and `any` entries; these names do not imply two independently drawn variants. Host-specific masking/installation remains a separate verification gate.
+
 Generated 2026-11-13 with built-in image_gen. Exact model ID, seed and quality are not exposed by the tool. One call per asset. Character references: existing apps/web/public/art/ai-village/portraits/<id>.png; original sources and license remain unchanged. No external reference images. These are candidates, not an accepted release.
 
 ## bluewhale.r1

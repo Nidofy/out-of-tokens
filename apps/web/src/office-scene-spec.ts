@@ -4,7 +4,8 @@ export type OfficeFocus={x:number;y:number}|null;
 export const workLabelOffset=-32;
 /** Ignore SVG padding and low-alpha floor shadows; both layers use the shared (0,0) anchor. */
 export function workFurnitureHitArea(rgba:ArrayLike<number>,width=280,height=240){
- const mask=Uint8Array.from({length:width*height},(_,i)=>rgba[i*4+3]!>=96?1:0);
+ const mask=new Uint8Array(width*height);
+ for(let i=0;i<mask.length;i++)mask[i]=rgba[i*4+3]!>=96?1:0;
  return {contains(x:number,y:number){const px=Math.floor((x+140)*width/280),py=Math.floor((y+200)*height/240);return px>=0&&py>=0&&px<width&&py<height&&mask[py*width+px]===1;}};
 }
 /** Resolve small same-row label collisions without shrinking the 12px text. */
