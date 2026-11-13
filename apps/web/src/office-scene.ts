@@ -20,7 +20,17 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
  const fixed=visualReviewEnabled?Number(new URLSearchParams(location.search).get('animation-time')??NaN):NaN;
  let lastPresence='';
  const objects=new Map<string,{back:Container;front:Container;kind:string}>(),walkers=new Map<string,Walker>(),textures=new Map<string,Texture>(),requested=new Set<string>(),workHits=new Map<string,ReturnType<typeof workFurnitureHitArea>>();
- function furniture(kind:string,layer:string){const key=kind+'-'+layer;if(!requested.has(key)){requested.add(key);void Assets.load<Texture>(`./art/office/${key}.svg`).then(t=>{if(!dead){textures.set(key,t);if(['basic','standard','whiteboard','coffee','sofa','server','dining','reading'].includes(kind)){const canvas=document.createElement('canvas');canvas.width=280;canvas.height=240;const context=canvas.getContext('2d')!;context.drawImage(t.source.resource as CanvasImageSource,0,0,280,240);workHits.set(key,workFurnitureHitArea(context.getImageData(0,0,280,240).data));}for(const [id,obj] of objects)if(obj.kind===kind){obj.back.destroy({children:true});obj.front.destroy({children:true});objects.delete(id);}sync();}}).catch(()=>{requested.delete(key);});}const node=new Container(),t=textures.get(key);if(t){const sprite=new Sprite(t);sprite.position.set(-140,-200);sprite.width=280;sprite.height=240;node.addChild(sprite);}return node;}
+ function mountFurniture(node:Container,t:Texture,key:string){const sprite=new Sprite(t);sprite.position.set(-140,-200);sprite.width=280;sprite.height=240;node.addChild(sprite);const hit=workHits.get(key);if(hit)node.hitArea=hit;}
+ function furniture(kind:string,layer:'front'|'back'){
+  const key=kind+'-'+layer;
+  if(!requested.has(key)){requested.add(key);void Assets.load<Texture>(`./art/office/${key}.svg`).then(t=>{
+   if(dead)return;textures.set(key,t);
+   if(['basic','standard','whiteboard','coffee','sofa','server','dining','reading'].includes(kind)){const canvas=document.createElement('canvas');canvas.width=280;canvas.height=240;const context=canvas.getContext('2d')!;context.drawImage(t.source.resource as CanvasImageSource,0,0,280,240);workHits.set(key,workFurnitureHitArea(context.getImageData(0,0,280,240).data));}
+   // Preserve the sibling layer, listeners, camera position and layout event mode.
+   for(const obj of objects.values())if(obj.kind===kind)mountFurniture(obj[layer],t,key);
+  }).catch(()=>{requested.delete(key);});}
+  const node=new Container(),t=textures.get(key);if(t)mountFurniture(node,t,key);return node;
+ }
  function sync(){if(!latest||dead)return;const v=latest,scene=v.campaign?.scene??'workshop',chapter=v.campaign?.chapter??0;layout=host.closest('[data-mode="layout"]')!==null;
   if(scene!==lastScene){for(const a of walkers.values()){a.x=100;a.y=980;}lastScene=scene;}
   const cam=officeCamera(app.screen.width,app.screen.height,layout?'overview':zone,layoutFocus);world.position.set(cam.x,cam.y);world.scale.set(cam.scale);mask.clear().rect(cam.clip.x,cam.clip.y,cam.clip.width,cam.clip.height).fill(0xffffff);
