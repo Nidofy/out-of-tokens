@@ -9,3 +9,14 @@ export function eventArt(id:string){
  const category=Object.entries(groups).find(([,ids])=>ids.includes(id))?.[0]??'daily';
  return `./art/cards/event-${category}.webp`;
 }
+
+export function softwareArt(id:string){
+ const groups:Record<string,string[]>={
+  mcp:['mcp','sandbox','remote'],
+  explain:['explain','search','rag','analyst','filter'],
+  monitor:['monitor','ci','autotest'],
+  messenger:['messenger','crm','multiagent']
+ };
+ const category=Object.entries(groups).find(([,ids])=>ids.includes(id))?.[0]??'tools';
+ return `./art/upgrades/software-${category}.webp`;
+}

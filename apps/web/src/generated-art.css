@@ -6,3 +6,8 @@
 .project-cover,.event-cover{display:block;width:100%;height:clamp(80px,18vh,144px);object-fit:cover;border-radius:10px;margin:0 0 12px;pointer-events:none}
 .pending-choice>button,.finale-panel button{min-width:44px;min-height:44px}
 @media(max-height:450px){.project-cover,.event-cover{height:72px}}
+
+.upgrade-icon{float:inline-start;margin-inline-end:10px;margin-block-end:4px}
+.empty-art{display:block;width:160px;height:96px;max-width:100%;object-fit:contain;margin:8px auto;opacity:.45;pointer-events:none}
+.management-row button{min-width:44px;min-height:44px}
+@media(max-height:450px){.empty-art{height:64px;margin:4px auto}}

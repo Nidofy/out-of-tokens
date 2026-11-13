@@ -14,6 +14,7 @@ export function FinalePanel({view,english,busy,send}:{view:GameView;english:bool
  const p=view.campaign,f=p?.finale;if(!p||!f)return null;const tr=(zh:string,en:string)=>english?en:zh;
  const act=(action:'expedition'|'ending'|'endless'|'bid'|'challenge',id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
  return <section class="campaign-panel management-card finale-panel"><h2>{tr('事务所的明天','Tomorrow at the studio')}</h2>
+ {!f.ending&&!f.souvenirs.length&&!f.expeditions.length&&<img class="empty-art" src="./art/upgrades/empty-desk.webp" alt=""/>}
  {busy&&<p class="management-caption">{tr('请先完成当前操作或处理经营状态。','Finish the current operation or resolve the studio state first.')}</p>}
  {f.ending?<><img class="ending-art" src={`./art/${f.ending}.webp`} alt=""/><h3>{endings.find(e=>e[0]===f.ending)?.[english?2:1]}</h3><p>{endings.find(e=>e[0]===f.ending)?.[english?6:5]}</p><button disabled={busy||f.endless} onClick={()=>act('endless','continue')}>{tr('继续无尽经营','Continue in endless mode')}</button></>:<p>{tr('完成第4章后选择结局。尚未完成的条件会由规则明确拒绝。','Choose an ending after chapter 4. Unmet conditions are rejected without cost.')}</p>}
  {!f.ending&&<details><summary>{tr('五个结局','Five endings')}</summary>{endings.map(e=><div class="ending-option"><img src={`./art/${e[0]}.webp`} alt=""/><p><button disabled={busy||!p.completed.includes(4)} onClick={()=>act('ending',e[0])}>{e[english?2:1]}</button> {e[english?4:3]}</p></div>)}</details>}
