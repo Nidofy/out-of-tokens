@@ -1,5 +1,14 @@
 # VF4-C checkpoint — 2026-11-13
 
+## 2026-11-13 收口实现后的状态
+
+当前实现 bc39ecef8d24a69d5f5015cfefe1a72506c41767（基线b62b1ab）。本次第一步UI/清单修复已通过390英文亮暗及桌面/中文实屏。随后进行了命中掩码等价循环优化和两张背景请求LRU、取消alternate预解码；改变的是资源准备策略，不改图像、相机、骨架、alpha命中阈值或规则。新异步背景测试及完整42文件337测试通过，当前生产离线昼夜与单个进阶立绘实屏通过。
+
+**第三步最终集成态VF4-C回归尚未开始**：用户明确暂时无法提供稳定前台负载，正式VF5性能/600秒长驻暂缓；系统字体控制授权超时，200%字体仍HOLD。严格按先第一步、第二步、再第三步执行，不把8进阶立绘、14日夜背景、指针和代表性自然长局状态的旧证据改称本次最终回归。不能宣称最终failures为空或VF4-C已封板。
+
+本次所有新日志、截图、报告在仓库外 ../commission-evidence/vf-closure-1113/；vf5-verdict.json逐项记录PASS/HOLD与第三步未启动。保护路径零diff，未生成新大图或接入Tier2/3。后续只有在第二步满足门禁后才冻结最终代码并重拍集成矩阵。以下1745653的SVG/背景原样复用及848配置是历史实现记录；当前b62b1ab四批美术已是WebP/日夜背景，勿混用资产代际或验收结论。
+
+
 Baseline: 73035787a535b3b7c5e488f8619114fd836b2c9b. User explicitly allowed the minimal Stage A to Stage B resolver transition. No rule/version/economy changes.
 
 Implementation: character-profiles.ts selects eight authored advanced images, retaining original images for base/unknown/mismatched versions and preserving return fields. partner-profile.tsx is unchanged. Stage B is a derived pose assembled from original licensed parts, not new costumes. See art/stage-b/README.md and the public manifest for source/output SHA256, pose, source commit and exact MIT notices. Existing canteen/library and five chapter backgrounds remain unchanged; source records are art/studio-v1/manifest.json and external background-reuse-hashes.json.
