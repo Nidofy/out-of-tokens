@@ -1,0 +1,281 @@
+[
+  {
+    "file": "masters/canteen-day.png",
+    "purpose": "generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2462889,
+    "sha256": "cd536fe2f9ece1a2cfe0498c3aed4706b7f057f30b5ea36b029839ead8f051df",
+    "prompt": "Use case: precise-object-edit. Edit this exact Out of Tokens canteen game background. Preserve the exact 16:9 camera, perspective, architecture, floor grid and every structural pixel placement. Remove the foreground bottom-right and bottom-left encroaching planter foliage, extend the same existing empty terrazzo floor into those corner areas. Preserve serving counter and fixed back-wall kitchen. No characters, no movable foreground furniture, no text. Warm modern wood studio hand-painted style exactly matching input. Output 1920x1080 landscape. Do not reframe or alter room proportions.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-e2b2969a-e77a-4739-801c-e51f098f42a1.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "proportional 16:9 resize and WebP q85 only; geometry visually matched, not a pixel identity assertion"
+  },
+  {
+    "file": "runtime/canteen-day.webp",
+    "purpose": "1920x1080 scene",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 276238,
+    "sha256": "ff80a487b356b32936fc2ed19994e5c474319043be795fbcc77a9d8dd57b3451",
+    "prompt": "Use case: precise-object-edit. Edit this exact Out of Tokens canteen game background. Preserve the exact 16:9 camera, perspective, architecture, floor grid and every structural pixel placement. Remove the foreground bottom-right and bottom-left encroaching planter foliage, extend the same existing empty terrazzo floor into those corner areas. Preserve serving counter and fixed back-wall kitchen. No characters, no movable foreground furniture, no text. Warm modern wood studio hand-painted style exactly matching input. Output 1920x1080 landscape. Do not reframe or alter room proportions.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-e2b2969a-e77a-4739-801c-e51f098f42a1.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "proportional 16:9 resize and WebP q85 only; geometry visually matched, not a pixel identity assertion",
+    "publicFile": "art/canteen.webp"
+  },
+  {
+    "file": "masters/library-day.png",
+    "purpose": "generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2122369,
+    "sha256": "571e4c11240b10239463aec488c5ec42bc9476337910ffebd76c1901a92ac7a1",
+    "prompt": "Use case: precise-object-edit. Edit this exact Out of Tokens library game background. Preserve the exact 16:9 camera, perspective, architecture, floor grid and every structural pixel placement. Replace only the freestanding chair and writing desktop inside the right rear arched alcove with built-in lower bookshelves; keep the brass warm reading lamp as fixed architectural decor. Clear the small bottom corner foliage to preserve character foot space. Preserve all window frames and floor lines. No characters, no movable foreground furniture, no text. Warm modern wood studio hand-painted style exactly matching input. Output 1920x1080 landscape. Do not reframe or alter room proportions.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-265c8037-08f2-4d78-af2e-47c0c38c7f9f.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "proportional 16:9 resize and WebP q85 only; geometry visually matched, not a pixel identity assertion"
+  },
+  {
+    "file": "runtime/library-day.webp",
+    "purpose": "1920x1080 scene",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 218580,
+    "sha256": "0b5b162ea08ff11a19629f8451599db7b385f0401a9e99e6a48ff5d90c8dd564",
+    "prompt": "Use case: precise-object-edit. Edit this exact Out of Tokens library game background. Preserve the exact 16:9 camera, perspective, architecture, floor grid and every structural pixel placement. Replace only the freestanding chair and writing desktop inside the right rear arched alcove with built-in lower bookshelves; keep the brass warm reading lamp as fixed architectural decor. Clear the small bottom corner foliage to preserve character foot space. Preserve all window frames and floor lines. No characters, no movable foreground furniture, no text. Warm modern wood studio hand-painted style exactly matching input. Output 1920x1080 landscape. Do not reframe or alter room proportions.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-265c8037-08f2-4d78-af2e-47c0c38c7f9f.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "proportional 16:9 resize and WebP q85 only; geometry visually matched, not a pixel identity assertion",
+    "publicFile": "art/library.webp"
+  },
+  {
+    "file": "masters/garage-night.png",
+    "purpose": "generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2109634,
+    "sha256": "c32cd0753fe0fb1caedcbd96fa3f04cf9c043890b9eca6b4e1ffc7aea977fb15",
+    "prompt": "Use case: lighting-weather. Edit this exact garage room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-0d3f7b65-1b42-4cbe-98be-1a1529741aea.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "proportional 16:9 resize and WebP q85 only; geometry visually matched, not a pixel identity assertion"
+  },
+  {
+    "file": "runtime/garage-night.webp",
+    "purpose": "1920x1080 scene",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 154756,
+    "sha256": "e3adae7ac9348c6380cf0f65643f6625133acc85082908670c2ed3a73003214a",
+    "prompt": "Use case: lighting-weather. Edit this exact garage room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-0d3f7b65-1b42-4cbe-98be-1a1529741aea.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "1920x1080 resize, SIFT/RANSAC affine registration to daytime image, WebP q85. Residual structural error recorded in alignment.json; not guaranteed identical fine detail.",
+    "publicFile": "art/garage-night.webp"
+  },
+  {
+    "file": "masters/incubator-night.png",
+    "purpose": "generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2232078,
+    "sha256": "466fba946f5d618422785f9d35508e3ed82daa690e59da4353842b470879cf1b",
+    "prompt": "Use case: lighting-weather. Edit this exact incubator room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-d54db681-a1ad-4a9e-b16d-fb265f043173.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "proportional 16:9 resize and WebP q85 only; geometry visually matched, not a pixel identity assertion"
+  },
+  {
+    "file": "runtime/incubator-night.webp",
+    "purpose": "1920x1080 scene",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 208924,
+    "sha256": "785b1b3df0bf154967ca4bed38eda6b3579f6c20eefa70018357116fcb84620a",
+    "prompt": "Use case: lighting-weather. Edit this exact incubator room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-d54db681-a1ad-4a9e-b16d-fb265f043173.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "1920x1080 resize, SIFT/RANSAC affine registration to daytime image, WebP q85. Residual structural error recorded in alignment.json; not guaranteed identical fine detail.",
+    "publicFile": "art/incubator-night.webp"
+  },
+  {
+    "file": "masters/office-night.png",
+    "purpose": "generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 1986470,
+    "sha256": "d352577d3cefb2a6ac287cc6a2cd3386dfb6a599ece3d573b7d9d2c6cce0802b",
+    "prompt": "Use case: lighting-weather. Edit this exact office room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-172f7592-dc37-4643-a142-057fe21551dc.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "proportional 16:9 resize and WebP q85 only; geometry visually matched, not a pixel identity assertion"
+  },
+  {
+    "file": "runtime/office-night.webp",
+    "purpose": "1920x1080 scene",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 158648,
+    "sha256": "10b60823dc13c9bb23d97e9ba902b30311fa6827aa168d0aed08305900e87ba1",
+    "prompt": "Use case: lighting-weather. Edit this exact office room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-172f7592-dc37-4643-a142-057fe21551dc.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "1920x1080 resize, SIFT/RANSAC affine registration to daytime image, WebP q85. Residual structural error recorded in alignment.json; not guaranteed identical fine detail.",
+    "publicFile": "art/office-night.webp"
+  },
+  {
+    "file": "masters/campus-night.png",
+    "purpose": "generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2203442,
+    "sha256": "60fb2fd86fbeb1fad0ff5178a5b10a8b05ef45b4e356af6ca1e140e84e5310c5",
+    "prompt": "Use case: lighting-weather. Edit this exact campus room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-47fd7017-4a29-4a39-a6b3-6a028577e2fa.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "proportional 16:9 resize and WebP q85 only; geometry visually matched, not a pixel identity assertion"
+  },
+  {
+    "file": "runtime/campus-night.webp",
+    "purpose": "1920x1080 scene",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 174568,
+    "sha256": "5f42e81eb86c26ec3ea8abdb2c37990a6dca44c2fb8fbca67d4162cb84614f05",
+    "prompt": "Use case: lighting-weather. Edit this exact campus room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-47fd7017-4a29-4a39-a6b3-6a028577e2fa.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "1920x1080 resize, SIFT/RANSAC affine registration to daytime image, WebP q85. Residual structural error recorded in alignment.json; not guaranteed identical fine detail.",
+    "publicFile": "art/campus-night.webp"
+  },
+  {
+    "file": "masters/lab-night.png",
+    "purpose": "generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2061651,
+    "sha256": "8031fdd89f7dd684aea3688bb092678a7deb2a99de7a975737e8015177319a3a",
+    "prompt": "Use case: lighting-weather. Edit this exact lab room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-0d86c476-6f8d-418a-bb6c-0d75e341a87c.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "proportional 16:9 resize and WebP q85 only; geometry visually matched, not a pixel identity assertion"
+  },
+  {
+    "file": "runtime/lab-night.webp",
+    "purpose": "1920x1080 scene",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 146324,
+    "sha256": "d0c1ded6b0396c554ac3fcf99a5acec29a8c9b244559da61e321e2afc7cf5edf",
+    "prompt": "Use case: lighting-weather. Edit this exact lab room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-0d86c476-6f8d-418a-bb6c-0d75e341a87c.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "1920x1080 resize, SIFT/RANSAC affine registration to daytime image, WebP q85. Residual structural error recorded in alignment.json; not guaranteed identical fine detail.",
+    "publicFile": "art/lab-night.webp"
+  },
+  {
+    "file": "masters/canteen-night.png",
+    "purpose": "generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2335396,
+    "sha256": "cf47314c0c09eb68d415dcd69ce29312f5118dc50c0cb55f313dd47db36f2bf2",
+    "prompt": "Use case: lighting-weather. Edit this exact canteen room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-1871d031-e065-4182-8938-430f9af50d70.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "proportional 16:9 resize and WebP q85 only; geometry visually matched, not a pixel identity assertion"
+  },
+  {
+    "file": "runtime/canteen-night.webp",
+    "purpose": "1920x1080 scene",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 218574,
+    "sha256": "c84036a5c39ff2bec1d384bf111f48bfbee93f7570df6a8d21e175cddecb15d2",
+    "prompt": "Use case: lighting-weather. Edit this exact canteen room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-1871d031-e065-4182-8938-430f9af50d70.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "1920x1080 resize, SIFT/RANSAC affine registration to daytime image, WebP q85. Residual structural error recorded in alignment.json; not guaranteed identical fine detail.",
+    "publicFile": "art/canteen-night.webp"
+  },
+  {
+    "file": "masters/library-night.png",
+    "purpose": "generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2057675,
+    "sha256": "db7917010f7c869dee95629a44b422ea3ed7c35d16b453a1ca218468ac43bdee",
+    "prompt": "Use case: lighting-weather. Edit this exact library room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-3b06f188-33ee-4422-ad3f-9a9dec3cc142.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "proportional 16:9 resize and WebP q85 only; geometry visually matched, not a pixel identity assertion"
+  },
+  {
+    "file": "runtime/library-night.webp",
+    "purpose": "1920x1080 scene",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 173092,
+    "sha256": "ab6708b203ab324c9e8dc07b37867d9d7b1b09638e9eed3f67a90468fbcd9c61",
+    "prompt": "Use case: lighting-weather. Edit this exact library room image to nighttime. LOCK pixel geometry: camera, crop, perspective, window mullions, floor seams, architecture, every furniture and plant silhouette must stay in precisely the same position, no added or removed objects. Change illumination only: exterior through existing windows is deep blue nighttime with subdued city lights; existing interior pendant lamps, brass desk lamps and screens cast localized warm amber pools and gentle blue screen glow. Remove strong daylight patches from floor; retain readable softly lit open floor for game characters. Cozy modern AI studio, same painted style. Not a uniform darkness filter. No characters, text, new lamps or furniture. 1920x1080 landscape, exactly aligned with input.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1d2ce-a71c-7362-8d10-d0c757d672c9\\exec-3b06f188-33ee-4422-ad3f-9a9dec3cc142.png",
+    "model": "OpenAI built-in image_gen; exact backend not exposed",
+    "parameters": {
+      "transparent_background": false
+    },
+    "processing": "1920x1080 resize, SIFT/RANSAC affine registration to daytime image, WebP q85. Residual structural error recorded in alignment.json; not guaranteed identical fine detail.",
+    "publicFile": "art/library-night.webp"
+  }
+]

@@ -1,5 +1,5 @@
 import {it,expect} from 'vitest';
-import {readFileSync,mkdtempSync,mkdirSync,writeFileSync,rmSync} from 'node:fs';
+import {readdirSync,readFileSync,mkdtempSync,mkdirSync,writeFileSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,dirname,resolve} from 'node:path';
 import {createHash} from 'node:crypto';
@@ -26,4 +26,16 @@ it('includes generated PWA icons and Stage B portraits in the offline bundle',()
  for(const icon of manifest.icons){const path=icon.src.replace('./','');expect(offline.assets).toContain(path);expect(readFileSync(join(dist,path))).toEqual(readFileSync(join(publicRoot,path)));}
  const portraits=JSON.parse(readFileSync(join(publicRoot,'art/stage-b/manifest.json'),'utf8')) as {file:string;sha256:string;bytes:number}[];
  for(const entry of portraits){const path='art/stage-b/'+entry.file;expect(offline.assets).toContain(path);expect(createHash('sha256').update(readFileSync(join(dist,path))).digest('hex')).toBe(entry.sha256);expect(entry.bytes).toBeLessThan(200000);}
+});
+
+it('verifies each generated runtime asset and its offline copy against provenance',()=>{
+ for(const dir of readdirSync(resolve('art')).filter(name=>/^art-batch-[234]$/.test(name))){
+  const manifest=JSON.parse(readFileSync(resolve('art',dir,'manifest.json'),'utf8')) as {file:string;publicFile?:string;sha256:string;bytes:number}[];
+  const offline=JSON.parse(readFileSync(resolve('apps/web/dist/offline-assets.json'),'utf8')) as {assets:string[]};
+  for(const entry of manifest.filter(e=>e.publicFile)){
+   expect(offline.assets).toContain(entry.publicFile);
+   for(const folder of ['public','dist']){const bytes=readFileSync(resolve('apps/web',folder,entry.publicFile!));expect(bytes.length).toBe(entry.bytes);expect(createHash('sha256').update(bytes).digest('hex')).toBe(entry.sha256);}
+   expect(entry.bytes).toBeLessThan(400000);
+  }
+ }
 });

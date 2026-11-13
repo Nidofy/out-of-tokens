@@ -1,3 +1,4 @@
+import {sceneBackground} from './scene-background.js';
 import {visualReviewEnabled} from './visual-review.js';
 import {Application,Assets,Container,Graphics,Sprite,Text,Texture} from 'pixi.js';
 import 'pixi.js/unsafe-eval';
@@ -15,6 +16,7 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
  const app=new Application();await app.init({resizeTo:host,backgroundAlpha:0,antialias:true,resolution:Math.min(devicePixelRatio||1,2),autoDensity:true,preference:'webgl'});host.appendChild(app.canvas);app.canvas.setAttribute('aria-hidden','true');
  const world=new Container(),labels=new Container(),mask=new Graphics();world.sortableChildren=true;app.stage.addChild(world,labels,mask);world.mask=mask;labels.mask=mask;
  let latest:GameView|undefined,english=false,dead=false,elapsed=0,zone:CameraZone='overview',size='',layout=false,lastScene='',layoutFocus:OfficeFocus=null;
+ const background=sceneBackground(host);
  const fixed=visualReviewEnabled?Number(new URLSearchParams(location.search).get('animation-time')??NaN):NaN;
  let lastPresence='';
  const objects=new Map<string,{back:Container;front:Container;kind:string}>(),walkers=new Map<string,Walker>(),textures=new Map<string,Texture>(),requested=new Set<string>(),workHits=new Map<string,ReturnType<typeof workFurnitureHitArea>>();
@@ -22,7 +24,7 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
  function sync(){if(!latest||dead)return;const v=latest,scene=v.campaign?.scene??'workshop',chapter=v.campaign?.chapter??0;layout=host.closest('[data-mode="layout"]')!==null;
   if(scene!==lastScene){for(const a of walkers.values()){a.x=100;a.y=980;}lastScene=scene;}
   const cam=officeCamera(app.screen.width,app.screen.height,layout?'overview':zone,layoutFocus);world.position.set(cam.x,cam.y);world.scale.set(cam.scale);mask.clear().rect(cam.clip.x,cam.clip.y,cam.clip.width,cam.clip.height).fill(0xffffff);
-  host.style.backgroundImage=`url("${sceneArt(scene,chapter)}")`;host.style.backgroundSize=`${1920*cam.scale}px ${1080*cam.scale}px`;host.style.backgroundPosition=`${cam.x}px ${cam.y}px`;host.style.backgroundRepeat='no-repeat';
+  background.set(sceneArt(scene,chapter,v.absoluteSlot%4>=2),v.absoluteSlot%4>=2,sceneArt(scene,chapter,v.absoluteSlot%4<2));host.style.backgroundSize=`${1920*cam.scale}px ${1080*cam.scale}px`;host.style.backgroundPosition=`${cam.x}px ${cam.y}px`;host.style.backgroundRepeat='no-repeat';
   const items=scene==='workshop'?(v.office?.items??[]):[{id:'public-table',kind:scene==='canteen'?'dining':'reading',slot:'meeting-1'}];
   const present=new Set(items.filter(i=>i.slot).map(i=>i.id));for(const [id,o] of objects)if(!present.has(id)){o.back.destroy({children:true});o.front.destroy({children:true});objects.delete(id);}
   for(const i of items){if(!i.slot)continue;let object=objects.get(i.id);if(object&&object.kind!==i.kind){object.back.destroy({children:true});object.front.destroy({children:true});objects.delete(i.id);object=undefined;}if(!object){object={kind:i.kind,back:furniture(i.kind,'back'),front:furniture(i.kind,'front')};objects.set(i.id,object);world.addChild(object.back,object.front);for(const layer of [object.back,object.front]){layer.eventMode='static';layer.cursor='pointer';layer.hitArea=['basic','standard','whiteboard','coffee','sofa','server','dining','reading'].includes(i.kind)?(workHits.get(i.kind+'-'+(layer===object.front?'front':'back'))??{contains:()=>false}):furnitureHitArea(i.kind,layer===object.front?'front':'back');layer.on('pointertap',()=>onFurniture?.(i.id));}}const p=slotPoint(i.slot,chapter);object.back.position.set(p.x,p.y);object.front.position.set(p.x,p.y);object.back.zIndex=p.y-2;object.front.zIndex=p.y+2;object.back.eventMode=layout?'none':'static';object.front.eventMode=layout?'none':'static';}
@@ -48,5 +50,5 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
   const presence=outside.join('|');if(presence!==lastPresence){lastPresence=presence;onPresence?.(outside);}
  }
  app.ticker.add(t=>{if(dead||document.hidden)return;const current=`${app.screen.width}/${app.screen.height}/${host.closest('[data-mode="layout"]')!==null}`;if(current!==size){size=current;sync();}elapsed+=Math.min(t.deltaMS,50)/1000;tick(Math.min(t.deltaMS,50));});
- return {update(view:GameView,locale:'zh'|'en'='zh',previewFocus:OfficeFocus=null,cameraZone:CameraZone='overview'){layoutFocus=previewFocus;zone=cameraZone;latest=view;english=locale==='en';sync();},destroy(){dead=true;app.destroy(true,{children:true});}};
+ return {update(view:GameView,locale:'zh'|'en'='zh',previewFocus:OfficeFocus=null,cameraZone:CameraZone='overview'){layoutFocus=previewFocus;zone=cameraZone;latest=view;english=locale==='en';sync();},destroy(){dead=true;background.destroy();app.destroy(true,{children:true});}};
 }
