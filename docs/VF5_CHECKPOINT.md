@@ -1,5 +1,18 @@
 # VF5 / 阶段 3：性能 HOLD 与并行基线变化
 
+## 2026-11-14 原位挂载优化及静态掩码硬门禁 HOLD
+
+2026-11-14 VF5启动优化受阻检查点（本轮实测，未封板）：入场b7de8e528b0e1ff3d9bb166b06174c78fe636b07；安全代码提交c3a7aa49232cf007f55b0dfa4079e44f2d28f868。仅修改office-scene.ts：已加载家具纹理直接挂入现有对应层，保留兄弟层、事件监听、相机位置与layout模式；移除每层加载后的双层销毁、objects.delete和全量sync。原有280×240 Canvas读回与workFurnitureHitArea(alpha>=96)完全保留，不能宣称已消除约24.20ms冷启动成本。
+
+静态掩码候选未入库：同一Edge/Chromium156的隔离无头测试，在--disable-gpu与默认GPU启动参数下分别采集同16张冻结SVG，均经Pixi 175×150资源→280×240 Canvas；共414像素跨alpha96阈值（10/16层，standard-back 121）。例如basic-back(115,77) alpha83/99。差异与图形路径配置相关，未取得GPU因果trace，不扩大到所有浏览器。单套预计算掩码不能据此证明逐像素普适等价；候选代码、真实RGBA与失败集成样本完整移至仓库外rejected-static-candidate/，没有静态数据或候选单测残留。原既有单测完整保留。
+
+安全子项复验：相同当前源码、仅office-scene换回入场版本的外部对照构建，standard/twelve两场景均ready，前景Pixi stage提取RGBA差异0、当前/基线命中掩码差异0；当前容器身份不变、每层1个Sprite/1个pointertap监听器。此为隔离组件集成回归，图片为stage边界提取（非1280×720整页实屏），不含CSS背景，也没有受信任原生指针操作；不冒充线上全量点击验收或VF5性能数据。
+
+完整pnpm check通过42文件337测试及类型/Lint/Web/DSH构建，git diff --check通过，保护路径相对入场零diff，生产dist无外部probe/previewSession。当前工具无历史IAB入口；原生Edge控制授权超时，未将隔离headless结果混入正式性能协议。VF5首屏assetsReady<1500ms与相对+10%门槛、180帧前台预检、36/确认36批、600s长驻均本轮未测/HOLD；Windows200%系统字体、真机无障碍、真实DSH安装态继续HOLD/OPEN。按严格顺序及硬门禁停止于任务1受阻检查点，任务3入座过渡432组和DSH宿主浏览器回归未启动。
+
+新证据 ../commission-evidence/vf5-closure-1114/REPORT.txt、vf5-verdict.json、raster-renderer-comparison.json、inplace-regression.json及SHA256清单；历史目录零写入。结束时关闭5240及全部本轮隔离测试浏览器，删除本轮独立浏览器profile（含测试缓存/SW），不触碰用户原浏览器或存档。后续先审查静态栅格边界；可恢复同IAB协议测量仅原位挂载版本的实际收益，仍不得删功能、改命中阈值或刷样本。本轮不宣告Visual Freeze 1正式封板。
+
+
 ## 2026-11-13 续测：正式首批与唯一确认后继续 HOLD
 
 本轮源码仍为bc39ecef8d24a69d5f5015cfefe1a72506c41767，文档入场HEAD 56f5079；无额外业务diff。外部独立目录 ../commission-evidence/vf-closure-1113/resume-01/，未覆盖父目录历史证据。348个Web/packages/lock受测文件冻结复核一致。浏览器预检180帧p95 8.6ms且无降频后，执行事先写入protocol.json的三版本×两场景×六轮交错正式36与唯一确认36；12,960帧、864次真实伙伴面板开关点击，无缺样/visibility事件/>=250ms帧。使用相同外部生产模式插桩、5ms就绪轮询、唯一HTTP路径/no-store；没有清空OS文件缓存或每样本重启浏览器。诊断100ms探针数据未混入本轮。
