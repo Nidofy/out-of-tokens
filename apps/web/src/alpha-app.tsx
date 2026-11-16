@@ -1,4 +1,4 @@
-import {eventArt} from './generated-art.js';
+import {chapterBannerArt,eventArt,ritualBackdropArt} from './generated-art.js';
 import './generated-art.css';
 import {sceneCamera,initialSceneCamera,dismissPresence} from './scene-navigation.js';
 import {visualReviewEnabled} from './visual-review.js';
@@ -7,7 +7,7 @@ import type {CameraPan,OfficeFocus,CameraZone} from './office-scene-spec.js';
 import {OfficeEditor,officeErrors} from './office-editor.js';
 import type {Furniture} from 'oot-core';
 import {Onboarding} from './onboarding.js';
-import {characterPosters,resolveCharacterVisual,recruitmentBlock,recruitmentReasons} from './character-profiles.js';
+import {characterPosters,resolveCharacterVisual,stageBPortrait,recruitmentBlock,recruitmentReasons} from './character-profiles.js';
 import {effectLabel} from './player-labels.js';
 import {controllerTracker} from './update-observer.js';
 import {Icon} from './icons.js';
@@ -34,7 +34,7 @@ import {StudioHub} from './studio-hub.js';
 import type {StudioTab} from './studio-hub.js';
 import {JournalHub} from './journal-hub.js';
 import type {JournalTab} from './journal-hub.js';
-import {advancePeriodInfo,resolveGlobalShortcut} from './ui2-logic.js';
+import {advancePeriodInfo,isFlagshipUnlocked,resolveGlobalShortcut} from './ui2-logic.js';
 import type {HubPanel,ProfileTab} from './ui2-logic.js';
 
 type Tr=(zh:string,en:string)=>string;
@@ -111,7 +111,9 @@ export function AlphaApp(){
 
  const moreTrigger=useRef<HTMLButtonElement>(null),boardTrigger=useRef<HTMLButtonElement>(null),jobsTrigger=useRef<HTMLButtonElement>(null);
  const commissionTrigger=useRef<HTMLElement|null>(null),officeTrigger=useRef<HTMLElement|null>(null),officeDockIndex=useRef(-1),managementTrigger=useRef<HTMLElement|null>(null);
- const prevSnap=useRef<{cash:number;quota:number;rp:number;unlocked:string[];actors:string[];chapter:number}|null>(null);
+ const prevSnap=useRef<{cash:number;quota:number;rp:number;actors:string[];chapter:number;versions:Record<string,string>;awakened:string[]}|null>(null);
+ const seenRituals=useRef<Set<string>>(new Set());
+ const hydrated=useRef(false);
  const deltaSeq=useRef(0);
 
  const [trackedJobId,setTrackedJobId]=useState<string|null>(()=>{if(game.lab)return null;try{return readTrackingPin(false,localStorage);}catch{return null;}});
@@ -119,7 +121,7 @@ export function AlphaApp(){
  const tracking=trackingState(view,trackedJobId),tracked=tracking.id;
  useEffect(()=>{if(trackedJobId&&!tracking.pinned)setTrackedJobId(null);},[tracking.pinned,trackedJobId]);
 
- const resetTracking=async(action:()=>Promise<boolean>)=>{setTrackedJobId(null);setDraftTeams({});setReturnTo(null);await action();};
+ const resetTracking=async(action:()=>Promise<boolean>)=>{prevSnap.current=null;seenRituals.current.clear();setTrackedJobId(null);setDraftTeams({});setReturnTo(null);try{await action();}finally{prevSnap.current=null;seenRituals.current.clear();}};
  const commissionReturnFocus=()=>[commissionTrigger.current,jobsTrigger.current,boardTrigger.current].find(e=>e?.isConnected&&!e.closest('dialog,.studio-drawer,.priority-rail'))??boardTrigger.current;
  const selectCommission=(id:string|null)=>{if(jobId!==id&&jobId)game.dismissLocalFeedback({surface:'job',id:jobId});updateJobId(id);setJobInDetail(!!id);};
  const setJobId=(id:string|null)=>{if(id){if(panel!=='jobs')commissionTrigger.current=document.activeElement as HTMLElement;setHud(null);setActorId(null);updatePanel('jobs');}selectCommission(id);};
@@ -181,6 +183,15 @@ export function AlphaApp(){
 
  useEffect(()=>{
   const curActors=view.actors.map(a=>a.id),curQuota=view.quota+view.purchased,curRp=p.research;
+  const curVersions=Object.fromEntries(view.actors.map(a=>[a.id,a.version]));
+  const curAwakened=(['grok','glm','minimax','seedance'] as const).filter(id=>view.actors.some(a=>a.id===id)&&isFlagshipUnlocked(view,id,null));
+  const snap={cash:view.cash,quota:curQuota,rp:curRp,actors:curActors,chapter:p.chapter,versions:curVersions,awakened:curAwakened};
+  if(!hydrated.current){
+   if(busy)return;
+   hydrated.current=true;
+   prevSnap.current=snap;
+   return;
+  }
   const prev=prevSnap.current;
   if(prev){
    const nextDeltas:FloatDelta[]=[];
@@ -191,27 +202,35 @@ export function AlphaApp(){
    if(nextDeltas.length>0&&!still)setDeltas(list=>[...list,...nextDeltas].slice(-3));
 
    if(!visualReviewEnabled&&!game.lab){
-    const addedActor=curActors.find(id=>!prev.actors.includes(id));
+    const addedActor=curActors.find(id=>!prev.actors.includes(id)&&!seenRituals.current.has(`rec:${id}`));
     if(addedActor){
+     seenRituals.current.add(`rec:${addedActor}`);
      const pos=characterPosters[addedActor]!;
      setRitual({kind:'recruit',title:names[addedActor]??addedActor,subtitle:pos.tagline[english?1:0],badge:tr('新伙伴入驻','New teammate'),img:`./art/ai-village/portraits/${addedActor}.png`,themeColor:pos.themeColor,sWord:pos.sWord});
-    }else if(p.chapter>prev.chapter){
+    }else if(p.chapter>prev.chapter&&!seenRituals.current.has(`ch:${p.chapter}`)){
+     seenRituals.current.add(`ch:${p.chapter}`);
      const chapterNames=[tr('开源车库联盟','Open-source garage'),tr('第一笔大订单','The first large order'),tr('模型更新之夜','Model release night'),tr('429危机','The 429 crisis'),tr('最后一个Token','The last token')];
-     setRitual({kind:'chapter',title:chapterNames[p.chapter]??'',subtitle:tr('工作室迈入全新阶段','Your studio reached a new stage'),badge:`CHAPTER ${p.chapter}`,img:sceneArt('workshop',p.chapter,false),themeColor:'#9a6318'});
+     setRitual({kind:'chapter',title:chapterNames[p.chapter]??'',subtitle:tr('工作室迈入全新阶段','Your studio reached a new stage'),badge:`CHAPTER ${p.chapter}`,img:chapterBannerArt(p.chapter),themeColor:'#9a6318'});
     }else{
-     const switchedAdv=view.actors.find(a=>{
-      const v=resolveCharacterVisual(a.id,a.version,'profile');
-      return v.src.includes('/art/stage-b/')&&prev.unlocked.includes(a.version)===false&&p.unlocked.includes(a.version);
-     });
+     const switchedAdv=view.actors.find(a=>prev.versions[a.id]&&prev.versions[a.id]!==a.version&&resolveCharacterVisual(a.id,a.version,'profile').src.includes('/art/stage-b/')&&!seenRituals.current.has(`ver:${a.version}`));
      if(switchedAdv){
+      seenRituals.current.add(`ver:${switchedAdv.version}`);
       const pos=characterPosters[switchedAdv.id]!;
       setRitual({kind:'version',title:`${names[switchedAdv.id]} · ${switchedAdv.version}`,subtitle:pos.tagline[english?1:0],badge:tr('进阶版本觉醒','Advanced version'),img:resolveCharacterVisual(switchedAdv.id,switchedAdv.version,'profile').src,themeColor:pos.themeColor,sWord:pos.sWord});
+     }else{
+      const awakenedId=curAwakened.find(id=>!prev.awakened.includes(id)&&!seenRituals.current.has(`awk:${id}`));
+      const awakenedArt=awakenedId?stageBPortrait(awakenedId):null;
+      if(awakenedId&&awakenedArt){
+       seenRituals.current.add(`awk:${awakenedId}`);
+       const pos=characterPosters[awakenedId]!;
+       setRitual({kind:'version',title:names[awakenedId]??awakenedId,subtitle:pos.tagline[english?1:0],badge:tr('旗舰共鸣觉醒','Flagship resonance'),img:awakenedArt,themeColor:pos.themeColor,sWord:pos.sWord});
+      }
      }
     }
    }
   }
-  prevSnap.current={cash:view.cash,quota:curQuota,rp:curRp,unlocked:[...p.unlocked],actors:curActors,chapter:p.chapter};
- },[view.cash,view.quota,view.purchased,p.research,p.chapter,view.actors.length,p.unlocked.length]);
+  prevSnap.current=snap;
+ },[view,busy,still]);
 
  useEffect(()=>{
   if(!ritual){setRitualReady(false);return;}
@@ -500,6 +519,7 @@ export function AlphaApp(){
 
    {ritual&&<Dialog className="ui2-ritual-dialog" title={ritual.badge} close={()=>{if(ritualReady)setRitual(null);}}>
     <div class="ui2-ritual-stage" style={{'--poster-color':ritual.themeColor}} onClick={()=>{if(ritualReady)setRitual(null);}}>
+     <img class="ui2-ritual-backdrop" src={ritualBackdropArt} alt="" aria-hidden="true"/>
      <div class="ui2-ritual-beam" aria-hidden="true"/>
      <img class="ui2-ritual-art" src={ritual.img} alt=""/>
      <div class="ui2-ritual-copy">

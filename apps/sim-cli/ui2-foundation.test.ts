@@ -1,6 +1,8 @@
 import {expect,test} from 'vitest';
 import {loadFullContent} from 'oot-content';
 import {labSession} from '../web/src/office-lab.js';
+import {stageBPortrait} from '../web/src/character-profiles.js';
+import {actorIds} from '../web/src/studio-ui.js';
 import {advancePeriodInfo,resolveGlobalShortcut,resolveProfileTab,isFlagshipUnlocked,topJobSkillWeights,ledgerWindowSummary,stepDampedCamera} from '../web/src/ui2-logic.js';
 
 test('advancePeriodInfo surfaces disabled blockers and urgent review alerts accurately',()=>{
@@ -57,4 +59,22 @@ test('stepDampedCamera snaps instantly on bypass and converges smoothly otherwis
  expect(step1.values.x).toBeLessThan(200);
  const near={x:199.8,y:99.9,scale:1.3999};
  expect(stepDampedCamera(near,target,16,false)).toEqual({values:target,settled:true});
+});
+
+test('all 12 actorIds have valid stageBPortrait paths paired with dual-track flagship unlock',()=>{
+ const stageBIds=new Set(['bluewhale','qwen','llama','mistral','gpt','claude','kimi','gemini']);
+ const g=labSession(loadFullContent(),'twelve'),v=g.view;
+ for(const id of actorIds){
+  const src=stageBPortrait(id);
+  expect(src).toMatch(/^\.\/art\/stage-b\/.+\.webp$/);
+  const stageBId=stageBIds.has(id)?`${id}.${({bluewhale:'r1',qwen:'qwq',llama:'3.1',mistral:'large',gpt:'4o',claude:'sonnet',kimi:'k2',gemini:'pro'} as Record<string,string>)[id]}`:null;
+  expect(isFlagshipUnlocked(v,id,stageBId)).toBe(false);
+  if(stageBId){
+   const unlocked={...v,campaign:{...v.campaign!,unlocked:[...v.campaign!.unlocked,stageBId]}};
+   expect(isFlagshipUnlocked(unlocked,id,stageBId)).toBe(true);
+  }else{
+   const storied={...v,campaign:{...v.campaign!,relations:{...v.campaign!.relations,[id]:{...v.campaign!.relations[id]!,stories:['s1']}}}};
+   expect(isFlagshipUnlocked(storied,id,null)).toBe(true);
+  }
+ }
 });

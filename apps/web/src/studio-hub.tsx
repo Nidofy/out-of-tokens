@@ -1,11 +1,10 @@
 import type {Command} from 'oot-core';
 import type {GameView} from 'oot-platform';
-import {useState} from 'preact/hooks';
 import {Icon} from './icons.js';
 import {PipTrack} from './ornaments.js';
-import {softwareArt} from './generated-art.js';
+import {chapterBannerArt,financeArt,softwareArt} from './generated-art.js';
 import {names} from './presentation.js';
-import {actorIds,sceneArt} from './studio-ui.js';
+import {actorIds} from './studio-ui.js';
 import {recruitmentBlock} from './character-profiles.js';
 import type {HubPanel} from './ui2-logic.js';
 
@@ -51,7 +50,7 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
    {tab==='overview'&&(
     <div class="ui2-studio-overview">
      <section class="ui2-card ui2-chapter-card">
-      <img class="ui2-chapter-banner" src={sceneArt('workshop',p.chapter,view.absoluteSlot%4>=2)} alt=""/>
+      <img class="ui2-chapter-banner" src={chapterBannerArt(p.chapter)} alt=""/>
       <div class="ui2-card-body">
        <span class="ui2-eyebrow">{tr(`第 ${p.chapter} 章`,`Chapter ${p.chapter}`)}</span>
        <h3>{chapterTitles[p.chapter]}</h3>
@@ -121,13 +120,13 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
       <p class="ui2-muted-note">{tr('临购 ¥0.5/T 跨日保留；订阅按日追加额度，升级按剩余周比例补差；本地算力由硬件提供，电费 ¥0.1/单位随周结扣除。','Purchased quota costs ¥0.5/T and carries over. Subscriptions add daily quota; upgrades prepay remaining week diff.')}</p>
       <div class="ui2-plan-grid">
        <article class="ui2-plan-card">
-        <Icon name="bolt"/>
+        <img class="art-icon" src={financeArt('quota-pack')} alt=""/>
         <b>{tr('临购算力包 100T','Spot pack 100T')}</b>
         <small>{tr('即时到账 · 跨日不清空','Instant · Carries over')}</small>
         <button class="primary" disabled={locked||view.cash<50} onClick={()=>void send({type:'buy',amount:100})}>{tr('购买 ¥50','Buy ¥50')}</button>
        </article>
        {[0,1,2].map(n=><article key={n} class="ui2-plan-card" data-active={p.subscription===n}>
-        <Icon name={n===2?'spark':n===1?'layers':'chip'}/>
+        {n===0?<Icon name="chip"/>:<img class="art-icon" src={financeArt(n===2?'plan-pro':'plan-basic')} alt=""/>}
         <b>{tr('订阅方案','Plan')} {n}</b>
         <small>+{[0,120,300][n]} T/{tr('天','day')} · ¥{[0,120,420][n]}/{tr('周','wk')}</small>
         <button aria-pressed={p.subscription===n} disabled={locked||p.subscription===n} onClick={()=>life('subscribe',String(n))}>{p.subscription===n?tr('当前生效','Active'):tr('切换方案','Switch')}</button>
@@ -136,9 +135,12 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
      </section>
 
      <section class="ui2-card ui2-loan-card">
-      <div>
-       <h4>{tr('经营周转信贷','Studio working loan')}</h4>
-       <p class="ui2-muted-note">{tr('每笔借入 ¥1000（周息 5%），现金宽裕时可随时分批偿还以降低周结利息。','Borrow ¥1000 at 5% weekly interest; repay in chunks anytime.')}</p>
+      <div class="ui2-card-head">
+       <img class="art-icon" src={financeArt('ledger-loan')} alt=""/>
+       <div>
+        <h4>{tr('经营周转信贷','Studio working loan')}</h4>
+        <p class="ui2-muted-note">{tr('每笔借入 ¥1000（周息 5%），现金宽裕时可随时分批偿还以降低周结利息。','Borrow ¥1000 at 5% weekly interest; repay in chunks anytime.')}</p>
+       </div>
       </div>
       <div class="button-row">
        <button disabled={locked} onClick={()=>void send({type:'loan',amount:1000})}>{tr('借入 ¥1000','Borrow ¥1000')}</button>
@@ -200,9 +202,4 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
    )}
   </div>
  );
-}
-
-export function JournalDefaultTab(){
- const [tab,setTab]=useState<'chronicle'|'ledger'|'bids'|'expedition'>('chronicle');
- return {tab,setTab};
 }

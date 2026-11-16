@@ -1,4 +1,5 @@
 import {Icon} from './icons.js';
+import {stampSealCrestArt} from './generated-art.js';
 
 export function PeriodClockIcon({slot}:{slot:number}){
  const kinds=['dawn','noon','dusk','moon'] as const;
@@ -25,5 +26,5 @@ export function PipTrack({used,total,label}:{used:number;total:number;label:stri
 
 export function QualitySealSvg({score,passLine,tier,english}:{score:number;passLine:number;tier:'excellent'|'good'|'pass'|'fail';english:boolean}){
  const titles={excellent:english?'EXCELLENT':'出色',good:english?'GOOD':'优良',pass:english?'ACCEPTED':'达标',fail:english?'REWORK':'待返工'};
- return <div class="ui2-seal" data-tier={tier}><svg class="ui2-seal-ring" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/><circle cx="60" cy="60" r="46" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M60 4 63 11 60 15 57 11ZM60 116 63 109 60 105 57 109ZM4 60 11 63 15 60 11 57ZM116 60 109 63 105 60 109 57Z" fill="currentColor"/></svg><div class="ui2-seal-core"><small>{titles[tier]}</small><strong>{score}</strong><span>{english?'Pass':'及格'} {passLine}</span></div></div>;
+ return <div class="ui2-seal" data-tier={tier}><img class="ui2-seal-bg" src={stampSealCrestArt} alt=""/><svg class="ui2-seal-ring" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/><circle cx="60" cy="60" r="46" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M60 4 63 11 60 15 57 11ZM60 116 63 109 60 105 57 109ZM4 60 11 63 15 60 11 57ZM116 60 109 63 105 60 109 57Z" fill="currentColor"/></svg><div class="ui2-seal-core"><small>{titles[tier]}</small><strong>{score}</strong><span>{english?'Pass':'及格'} {passLine}</span></div></div>;
 }

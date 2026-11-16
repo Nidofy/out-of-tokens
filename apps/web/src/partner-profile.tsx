@@ -1,10 +1,10 @@
 import type {ComponentChildren} from 'preact';
 import type {Command} from 'oot-core';
 import type {GameView} from 'oot-platform';
-import {useState,useRef} from 'preact/hooks';
+import {useEffect,useState,useRef} from 'preact/hooks';
 import {content} from './content.js';
 import {FlavorPanel} from './flavor-panel.js';
-import {characterProfiles,characterPosters,resolveCharacterVisual,versionDelta,recruitmentBlock,recruitmentReasons} from './character-profiles.js';
+import {characterProfiles,characterPosters,resolveCharacterVisual,stageBPortrait,versionDelta,recruitmentBlock,recruitmentReasons} from './character-profiles.js';
 import {names} from './presentation.js';
 import {sceneText,skillText} from './ui-labels.js';
 import {partnerAvailability} from './partner-state.js';
@@ -43,16 +43,20 @@ export function PartnerProfile(props:Props){
  const scene=(id:keyof typeof sceneText|'expedition')=>id==='expedition'?tr('远征中','On expedition'):sceneText[id][english?1:0],skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
  const life=(action:Extract<Command,{type:'campaign'}>['action'],id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
  const versions=content.versions.filter(v=>v.character===characterId),base=versions.find(v=>v.id===actor?.version)??versions[0]!;
- const [previewVersionId,setPreviewVersionId]=useState(base.id),[inverted,setInverted]=useState(false),[flagshipPreview,setFlagshipPreview]=useState(false);
+ const [previewVersionId,setPreviewVersionId]=useState(base.id),[inverted,setInverted]=useState(false),[stageForm,setStageForm]=useState<'auto'|'standard'|'flagship'>('auto');
  const stageRef=useRef<HTMLDivElement>(null);
+ useEffect(()=>{setPreviewVersionId(base.id);setInverted(false);setStageForm('auto');},[characterId,actor?.version,base.id]);
 
  const activeTab=resolveProfileTab(preferredTab,!!actor);
  const v=versions.find(item=>item.id===previewVersionId)??base;
  const stageBId=stageBMap[characterId]??null;
+ const flagshipSrc=stageBPortrait(characterId);
  const flagshipReady=isFlagshipUnlocked(view,characterId,stageBId);
- const visualVersionId=flagshipPreview&&stageBId?stageBId:v.id;
- const visual=resolveCharacterVisual(characterId,visualVersionId,'profile');
- const silhouetteLock=flagshipPreview&&!flagshipReady;
+ const isFlagshipShown=!!flagshipSrc&&(stageForm==='flagship'?true:stageForm==='standard'?false:stageBId?v.id===stageBId:flagshipReady);
+ const baseVisual=resolveCharacterVisual(characterId,stageBId&&v.id===stageBId?undefined:v.id,'profile');
+ const stageArtSrc=isFlagshipShown&&flagshipSrc?flagshipSrc:baseVisual.src;
+ const stageWatermark=isFlagshipShown&&flagshipSrc?(flagshipSrc.split('/').pop()?.replace('.webp','').split('.').slice(1).join('.').toUpperCase()||'FLAGSHIP'):baseVisual.versionBadge;
+ const silhouetteLock=isFlagshipShown&&!flagshipReady;
  const delta=versionDelta(v,base),recruit=catalog.recruits.find(r=>r.character===characterId),block=recruit?recruitmentBlock(view,recruit,locked):null;
  const diff=(n:number)=>`${n>0?'▲ +':n<0?'▼ ':'— '}${n}`;
  const different=v.id!==base.id;
@@ -82,9 +86,9 @@ export function PartnerProfile(props:Props){
 
    <div class="ui2-profile-columns">
     <aside ref={stageRef} class="ui2-profile-stage" style={{'--poster-color':poster.themeColor}}>
-     <span class="ui2-stage-watermark" aria-hidden="true">{visual.versionBadge}</span>
+     <span class="ui2-stage-watermark" aria-hidden="true">{stageWatermark}</span>
      <div class="ui2-stage-art" data-inverted={inverted} data-locked-silhouette={silhouetteLock}>
-      <img src={visual.src} alt=""/>
+      <img src={stageArtSrc} alt=""/>
       {silhouetteLock&&(
        <div class="ui2-silhouette-lock">
         <Icon name="lock"/>
@@ -101,7 +105,7 @@ export function PartnerProfile(props:Props){
       <OrnamentDivider/>
       <p class="ui2-stage-bio">{characterProfiles[characterId]?.[english?1:0]}</p>
       <div class="ui2-stage-controls">
-       {stageBId&&<button aria-pressed={flagshipPreview} onClick={()=>setFlagshipPreview(!flagshipPreview)}><Icon name="spark"/><span>{flagshipPreview?tr('返回当前立绘','Current form'):tr('进阶形态','Advanced form')}</span></button>}
+       {flagshipSrc&&<button aria-pressed={isFlagshipShown} onClick={()=>setStageForm(isFlagshipShown?'standard':'flagship')}><Icon name="spark"/><span>{isFlagshipShown?tr('标准形态','Standard form'):tr('旗舰形态','Flagship form')}</span></button>}
        {characterId==='claude'&&<button aria-pressed={inverted} onClick={()=>setInverted(!inverted)}><Icon name="refresh"/><span>{tr('封号倒置视角','Inverted view')}</span></button>}
        {actor&&locate&&<button onClick={locate}><Icon name="pin"/><span>{tr('定位到场景','Locate')}</span></button>}
        {actor&&!sameScene&&!onExpedition&&<button class="primary" disabled={locked} onClick={()=>{void send({type:'campaign',action:'visit',id:actor.location}).then(ok=>{if(ok){close();closePanel();}});}}><Icon name="map"/><span>{tr(`前往${scene(actor.location)}`,`Visit ${scene(actor.location)}`)}</span></button>}
@@ -167,7 +171,7 @@ export function PartnerProfile(props:Props){
         )}
 
         <div class="ui2-version-tabs" role="tablist" aria-label={tr('模型版本','Model versions')}>
-         {versions.map((item,i)=><button key={item.id} role="tab" aria-selected={v.id===item.id} onClick={()=>setPreviewVersionId(item.id)}>
+         {versions.map((item,i)=><button key={item.id} role="tab" aria-selected={v.id===item.id} onClick={()=>{setPreviewVersionId(item.id);setStageForm('auto');}}>
           <b>{item.name}</b>
           <small>{actor?.version===item.id?tr('当前启用','Current'):p.unlocked.includes(item.id)?tr('已解锁','Unlocked'):i===0?tr('初始版本','Base'):tr('待研发','Research')}</small>
          </button>)}
