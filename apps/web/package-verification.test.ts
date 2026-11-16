@@ -1,10 +1,46 @@
-import {it,expect} from 'vitest';
+import {it,expect,vi} from 'vitest';
 import {readdirSync,readFileSync,mkdtempSync,mkdirSync,writeFileSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,dirname,resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {chapterBannerArt,projectCoverArt,financeArt,ritualBackdropArt,stampSealCrestArt} from './src/generated-art.js';
+import {emoteArt,giftArt,clientArt,teaBreakArt} from './src/living-art.js';
+
+// Full-batch byte comparisons exceeded 5s before Batch 6 on this Windows host.
+// This is an integrity test, not a performance gate; retain every byte assertion.
+vi.setConfig({testTimeout:15000});
+
+it('ships all nineteen Living assets, original masters and whitelist paths with verified provenance',()=>{
+ const emotes=['coffee','idea','sweat','sleepy','rice','sparkle'];
+ const gifts=['rice-bento','espresso-pods','fountain-pen','prism-sketchbook','vinyl-coaster','keycap-artisan'];
+ const clients=['tea-lin','book-zhou','tech-yan','curator-su','oss-zhe','vc-lu'];
+ const paths=[...emotes.map(emoteArt),...gifts.map(giftArt),...clients.map(clientArt),teaBreakArt];
+ expect(paths).toEqual([...emotes.map(id=>`./art/living/emote-${id}.webp`),...gifts.map(id=>`./art/living/gift-${id}.webp`),...clients.map(id=>`./art/living/client-${id}.webp`),'./art/living/card-tea-break.webp']);
+ for(const id of ['','../coffee','../../office/basic','constructor','__proto__','toString','coffee/../../x','%2e%2e','COFFEE']){
+  expect(emoteArt(id)).toBe('./art/living/emote-sparkle.webp');expect(giftArt(id)).toBe('./art/living/gift-keycap-artisan.webp');expect(clientArt(id)).toBe('./art/living/client-book-zhou.webp');
+ }
+ type Entry={file:string;publicFile?:string;sha256:string;bytes:number;width:number;height:number;alphaRange:[number,number];model:string};
+ const entries=JSON.parse(readFileSync(resolve('art/art-batch-6/manifest.json'),'utf8')) as Entry[];
+ const runtime=entries.filter(e=>e.publicFile),masters=entries.filter(e=>e.file.startsWith('masters/'));
+ expect(runtime).toHaveLength(19);expect(masters).toHaveLength(19);expect(new Set(entries.map(e=>e.file)).size).toBe(38);
+ expect(runtime.map(e=>'./'+e.publicFile).sort()).toEqual([...paths].sort());
+ expect(readdirSync(resolve('apps/web/public/art/living')).sort()).toEqual(paths.map(p=>p.split('/').at(-1)!).sort());
+ const offline=JSON.parse(readFileSync(resolve('apps/web/dist/offline-assets.json'),'utf8')) as {assets:string[]};
+ const sha=(bytes:Buffer)=>createHash('sha256').update(bytes).digest('hex');
+ for(const e of entries){
+  const bytes=readFileSync(resolve('art/art-batch-6',e.file));expect(bytes.length).toBe(e.bytes);expect(sha(bytes)).toBe(e.sha256);expect(e.model).toMatch(/unknown|not exposed/i);
+  if(e.file.startsWith('masters/')){expect(bytes.subarray(1,4).toString()).toBe('PNG');expect([bytes.readUInt32BE(16),bytes.readUInt32BE(20)]).toEqual([e.width,e.height]);}
+  if(!e.publicFile)continue;
+  const banner=e.publicFile.endsWith('card-tea-break.webp'),client=e.publicFile.includes('/client-'),emote=e.publicFile.includes('/emote-');
+  expect([e.width,e.height]).toEqual(banner?[640,360]:client?[256,256]:[128,128]);
+  expect(e.bytes).toBeLessThan(banner?160000:client?60000:emote?30000:35000);
+  if(!banner)expect(e.alphaRange).toEqual([0,255]);
+  expect(offline.assets).toContain(e.publicFile);
+  for(const folder of ['public','dist']){const copy=readFileSync(resolve('apps/web',folder,e.publicFile));expect(copy.length).toBe(e.bytes);expect(sha(copy)).toBe(e.sha256);}
+  const master=masters.find(m=>m.file===e.file.replace('runtime/','masters/').replace('.webp','.png'));expect(master).toBeDefined();
+ }
+});
 
 it('maps chapter, project, finance and ritual art to shipped offline assets',()=>{
  const offline=JSON.parse(readFileSync(resolve('apps/web/dist/offline-assets.json'),'utf8')) as {assets:string[]};

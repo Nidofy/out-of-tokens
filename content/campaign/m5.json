@@ -260,19 +260,19 @@
       "id": "bluewhale-bond-1",
       "character": "bluewhale",
       "affinity": 0,
-      "text": "收工时，白鲸把两只饭碗并排放好。“今天那个问题，我差点想直接给答案。”她指着笔记上划掉的三行，“幸好先问了店主一句。要不要把这句话留给明天的自己？”",
-      "textEn": "After work, DeepSeek sets two rice bowls side by side. “I almost answered before asking the owner.” She points at three crossed-out lines. “Should we leave a reminder for tomorrow?”",
+      "text": "收工后，DeepSeek把两碗热米饭摆上食堂窗台，又翻开沾着汤点的草稿。“今天差点把解法直接塞给店主，幸好先问了取餐的人怎么排队。”她划掉三行假设，把笔推到你手边。饭还冒着气，她笑着说：“先拆问题，还是先拆这双筷子？”",
+      "textEn": "After work, DeepSeek sets two steaming rice bowls by the canteen window and opens a soup-spotted draft. “I almost handed the owner a solution before asking how customers queue.” She crosses out three assumptions and slides you her pen. “Shall we unpack the problem first, or these chopsticks?”",
       "choices": [
         {
-          "label": "写下先确认范围",
-          "labelEn": "Write down: confirm scope first",
+          "label": "把排队条件补进草稿",
+          "labelEn": "Add the queue constraints to her draft",
           "affinity": 3,
           "mood": 2,
           "research": 1
         },
         {
-          "label": "先吃饭，明天再整理",
-          "labelEn": "Eat first; organise tomorrow",
+          "label": "先拆筷子，趁热吃饭",
+          "labelEn": "Unwrap the chopsticks and eat while it is hot",
           "affinity": 4,
           "mood": 5,
           "research": 0
@@ -283,19 +283,19 @@
       "id": "bluewhale-bond-2",
       "character": "bluewhale",
       "affinity": 10,
-      "text": "白鲸把上周的返工单翻到背面，上面没有责备，只有一条新的检查步骤。“可以把失败记下来，但别让它变成谁的名字。”她把笔递给你。",
-      "textEn": "DeepSeek turns over last week’s rework sheet. There is no blame, only a new check. “We can record the mistake without turning it into someone’s name.” She hands you the pen.",
+      "text": "工坊白板旁，DeepSeek把返工单翻过来，背面画着一条绕远路的流程。“错在这一步没问清，不该把失败写成谁的名字。”她擦掉署名栏，留下可复现的输入。你看见她的饭盒还没打开，她却先问你：“这次检查，能让下一位少绕一圈吗？”",
+      "textEn": "Beside the studio whiteboard, DeepSeek turns over a rework ticket. A winding flowchart fills the back. “We missed a question here. A failure should not become somebody's name.” She erases the signature box and keeps the reproducible input. Her lunch remains unopened. “Will this check save the next person a detour?”",
       "choices": [
         {
-          "label": "一起补全检查单",
-          "labelEn": "Complete the checklist together",
+          "label": "一起补上复现步骤",
+          "labelEn": "Fill in the reproduction steps together",
           "affinity": 3,
           "mood": 2,
           "research": 1
         },
         {
-          "label": "谢谢她留下余地",
-          "labelEn": "Thank her for leaving room to learn",
+          "label": "替她打开饭盒，谢她留了余地",
+          "labelEn": "Open her lunch and thank her for leaving room",
           "affinity": 4,
           "mood": 5,
           "research": 0
@@ -306,19 +306,19 @@
       "id": "bluewhale-bond-3",
       "character": "bluewhale",
       "affinity": 45,
-      "text": "啊哈时刻。一行不起眼的注释连接了两条思路。他把笔递给你。",
-      "textEn": "The aha moment. A small annotation joins two ideas. He hands you the pen.",
+      "text": "午后的工坊忽然安静，DeepSeek蹲在白板下，把两张旧草稿拼在一起。一行被擦淡的注释，恰好解释了早晨那次失败。“原来不是算得慢，是我们把两个问题绑死了。”她抬头时眼睛亮了，把最后一截粉笔递给你，连食堂开饭的铃声都晚听见半拍。",
+      "textEn": "The afternoon studio falls quiet. DeepSeek crouches beneath the whiteboard, joining two old drafts. A faded annotation explains the morning's failure. “It wasn't slow calculation. We tied two different questions together.” Her eyes brighten as she offers you the last piece of chalk. Even the lunch bell takes a moment to reach her.",
       "choices": [
         {
-          "label": "陪伴：啊哈时刻",
-          "labelEn": "Stay together: The aha moment",
+          "label": "接过粉笔，陪她把思路讲完",
+          "labelEn": "Take the chalk and hear her reasoning through",
           "affinity": 6,
           "mood": 7,
           "research": 0
         },
         {
-          "label": "记录：啊哈时刻",
-          "labelEn": "Keep a note: The aha moment",
+          "label": "先把反例整理成可复现记录",
+          "labelEn": "Turn the counterexample into a reproducible note",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -329,19 +329,19 @@
       "id": "bluewhale-bond-4",
       "character": "bluewhale",
       "affinity": 65,
-      "text": "开放笔记。他愿意公开失败草稿，却担心大家只收藏正确答案。",
-      "textEn": "Open notes. He wants to share failed drafts, but worries people only collect answers.",
+      "text": "夜里，DeepSeek整理准备公开的车库笔记，失败草稿比答案厚了一倍。她把封面压平，又迟迟没合上。“大家会不会只存最后一页？前面那些绕路，才是我真正想送出去的。”服务器限流提示亮起，她叹了口气，把第一张错误推导放到了最上面。",
+      "textEn": "At night, DeepSeek sorts her garage notebooks for sharing. Failed drafts outnumber answers two to one. “What if everyone saves only the last page? The detours are what I want to give them.” A server rate-limit notice lights up. She sighs, then moves the first mistaken derivation to the top of the pile.",
       "choices": [
         {
-          "label": "陪伴：开放笔记",
-          "labelEn": "Stay together: Open notes",
+          "label": "陪她保留绕路的原稿",
+          "labelEn": "Keep the detours in the shared notebook",
           "affinity": 7,
           "mood": 8,
           "research": 0
         },
         {
-          "label": "记录：开放笔记",
-          "labelEn": "Keep a note: Open notes",
+          "label": "为失败草稿编一份检索目录",
+          "labelEn": "Index the failed drafts for future searches",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -352,19 +352,19 @@
       "id": "bluewhale-bond-5",
       "character": "bluewhale",
       "affinity": 85,
-      "text": "不是便宜。发布会结束后，他问你能否把价格留到最后介绍。",
-      "textEn": "More than a bargain. After the launch, he asks whether price can come last in his introduction.",
+      "text": "路演结束，DeepSeek抱着白板站在空椅子间。价目表被风吹落，她没有立刻去捡。“下次能不能先讲我们问对了什么？便宜当然好，可我不想只剩这个。”她指着一条朴素的解题线，声音比台上轻了许多。你替她扶住白板，食堂送来的米饭已经摆到门口。",
+      "textEn": "After the presentation, DeepSeek holds a whiteboard among empty chairs. A price sheet blows to the floor. “Next time, could we start with the question we got right? Affordable is good, but I want us to mean more than that.” You steady the board as dinner arrives at the door.",
       "choices": [
         {
-          "label": "陪伴：不是便宜",
-          "labelEn": "Stay together: More than a bargain",
+          "label": "答应下次先讲她的解题过程",
+          "labelEn": "Promise to lead with her reasoning next time",
           "affinity": 8,
           "mood": 9,
           "research": 0
         },
         {
-          "label": "记录：不是便宜",
-          "labelEn": "Keep a note: More than a bargain",
+          "label": "整理这次提问与解法的对照表",
+          "labelEn": "Document how each question changed the solution",
           "affinity": 1,
           "mood": -1,
           "research": 3
@@ -375,19 +375,19 @@
       "id": "qwen-bond-1",
       "character": "qwen",
       "affinity": 0,
-      "text": "Qwen把委托分成三叠：已确认、待提问、今天不接。“看起来少做了，其实明天会少返工。”她拿起最后一张，等你一起决定。",
-      "textEn": "Qwen sorts briefs into confirmed, questions, and not today. “It looks like less work, but tomorrow there will be less rework.” She holds up the last sheet.",
+      "text": "开工前，Qwen把委托分成三叠，又在最旁边摆了四张饭票。“已确认、待提问、今天不接。午饭也先占个位。”她发现你盯着最后那叠，便抽出最厚的一份：“空出来的时间不是浪费，下午谁卡住了，我们才腾得出手。”她等你一起落下最后一个勾。",
+      "textEn": "Before work, Qwen sorts commissions into three stacks and adds four lunch tickets. “Confirmed, needs questions, not today. Lunch gets a place too.” She notices your glance at the last stack. “Empty time isn't wasted. It means we can help whoever gets stuck this afternoon.” She waits for your final check mark.",
       "choices": [
         {
-          "label": "一起整理问题",
-          "labelEn": "Organise the questions together",
+          "label": "一起列好待确认的问题",
+          "labelEn": "List the questions that still need answers",
           "affinity": 3,
           "mood": 2,
           "research": 1
         },
         {
-          "label": "把今天留白的一栏圈出来",
-          "labelEn": "Mark today’s breathing room",
+          "label": "在空档里替全队留出午饭",
+          "labelEn": "Reserve a lunch break in the open slot",
           "affinity": 4,
           "mood": 5,
           "research": 0
@@ -398,19 +398,19 @@
       "id": "qwen-bond-2",
       "character": "qwen",
       "affinity": 10,
-      "text": "你发现Qwen的清单末尾多了一项：休息。她有些不好意思：“以前我只会把别人的事列进去。”窗外天色慢慢暗下来。",
-      "textEn": "You notice a new item at the bottom of Qwen’s list: rest. “I used to list only what others needed.” Outside, the evening light fades.",
+      "text": "傍晚，Qwen还在给清单补勾，纸角却多了一行小字：自己的休息。她用杯子遮了一下，笑得有点不好意思。“大家的负载我都记得，怎么轮到自己就总说再一下？”窗外灯亮起来，你把她没喝完的茶往前推。她终于把最后一张委托放回明天那叠。",
+      "textEn": "At dusk, Qwen adds check marks to her list. A tiny new line says: my own rest. She hides it under a cup, a little embarrassed. “I track everyone's workload. Why do I keep telling myself just one more thing?” You slide her unfinished tea closer. She moves the final commission to tomorrow's stack.",
       "choices": [
         {
-          "label": "一起把下班时间写上",
-          "labelEn": "Write down a finishing time",
+          "label": "把下班时间写进公共清单",
+          "labelEn": "Add closing time to the shared checklist",
           "affinity": 3,
           "mood": 2,
           "research": 1
         },
         {
-          "label": "陪她去喝杯茶",
-          "labelEn": "Join her for tea",
+          "label": "陪她端着茶走到窗边",
+          "labelEn": "Take your tea to the window with her",
           "affinity": 4,
           "mood": 5,
           "research": 0
@@ -421,19 +421,19 @@
       "id": "qwen-bond-3",
       "character": "qwen",
       "affinity": 45,
-      "text": "第一次说不。她拒绝了临时加单，担心自己让团队失望。",
-      "textEn": "The first no. She refuses an extra job and worries she has let the team down.",
+      "text": "食堂里，Qwen把刚拒绝的加单消息翻来覆去看，筷子一直没拆。“我写了明早再排，可对方只回了一个句号。”她下意识想打开排班表，又停住。你指给她看，队友已经按时坐齐。她慢慢放下终端：“原来守住一顿饭，也算我今天完成的事。”",
+      "textEn": "In the canteen, Qwen keeps rereading the extra order she declined. Her chopsticks are still wrapped. “I offered tomorrow morning. They replied with a full stop.” She almost opens the rota again. You point to the team, all seated on time. She sets her device down. “Protecting one lunch counts as finished work too.”",
       "choices": [
         {
-          "label": "陪伴：第一次说不",
-          "labelEn": "Stay together: The first no",
+          "label": "陪她把这顿午饭吃完",
+          "labelEn": "Stay and finish lunch with her",
           "affinity": 6,
           "mood": 7,
           "research": 0
         },
         {
-          "label": "记录：第一次说不",
-          "labelEn": "Keep a note: The first no",
+          "label": "为临时加单拟定明确答复规则",
+          "labelEn": "Draft a clear rule for last-minute orders",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -444,19 +444,19 @@
       "id": "qwen-bond-4",
       "character": "qwen",
       "affinity": 65,
-      "text": "轮值表。她写了一张轮值表，把自己的名字放在了普通一栏。",
-      "textEn": "Taking turns. She writes a support rota and gives herself an ordinary slot.",
+      "text": "Qwen把新轮值表贴到咖啡机旁，自己的名字第一次没有横跨整周。有人问漏掉的空格怎么办，她摸了摸笔帽，没有马上补上。“空格留给大家商量，我不是自动补位按钮。”说完她又看向你，像在等一个小小的确认。桌上的四杯茶，这次由不同的人端走。",
+      "textEn": "Qwen pins a new rota beside the coffee machine. For once, her name does not stretch across the week. Asked about an empty square, she pauses with the pen cap in hand. “We can discuss it together. I'm not an automatic replacement button.” Four different people carry away the four cups of tea.",
       "choices": [
         {
-          "label": "陪伴：轮值表",
-          "labelEn": "Stay together: Taking turns",
+          "label": "认领一格，让她安心歇一回",
+          "labelEn": "Take a shift so she can rest",
           "affinity": 7,
           "mood": 8,
           "research": 0
         },
         {
-          "label": "记录：轮值表",
-          "labelEn": "Keep a note: Taking turns",
+          "label": "把轮值交接要求写清楚",
+          "labelEn": "Write clear handover instructions",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -467,19 +467,19 @@
       "id": "qwen-bond-5",
       "character": "qwen",
       "affinity": 85,
-      "text": "她的周末。她带来一张没有任务清单的照片：只是窗外的树。",
-      "textEn": "Her own weekend. She brings a photo with no checklist: just a tree outside the window.",
+      "text": "周一早上，Qwen给你看一张树影照片，没有待办角标，也没有拍摄地点清单。“周末坐了好久，最后什么也没完成。”她停了停，又把这句改成“什么也没欠着”。你们把照片放在工坊窗边，阳光恰好压住纸角。她没有拿笔，只问你树叶像不像一碗撒开的葱花。",
+      "textEn": "On Monday, Qwen shows you a photograph of tree shadows, with no checklist attached. “I sat there for ages and finished nothing.” She pauses. “Actually, nothing was owed.” You place it by the studio window. This time she reaches for no pen, only asks whether the leaves look like scattered spring onions.",
       "choices": [
         {
-          "label": "陪伴：她的周末",
-          "labelEn": "Stay together: Her own weekend",
+          "label": "跟她一起看窗外的树",
+          "labelEn": "Watch the trees outside with her",
           "affinity": 8,
           "mood": 9,
           "research": 0
         },
         {
-          "label": "记录：她的周末",
-          "labelEn": "Keep a note: Her own weekend",
+          "label": "把留白时间纳入排班方法",
+          "labelEn": "Include unassigned time in the scheduling method",
           "affinity": 1,
           "mood": -1,
           "research": 3
@@ -490,19 +490,19 @@
       "id": "llama-bond-1",
       "character": "llama",
       "affinity": 0,
-      "text": "Llama拿来一份旧教程，边角已经卷起。“前辈的办法也会过时。你愿意替我找一个最难懂的地方吗？”她留出一整页空白，准备重写。",
-      "textEn": "Llama brings an old tutorial with curled corners. “A veteran’s methods can grow old too. Could you find the hardest part to understand?” She leaves a full page for a rewrite.",
+      "text": "草坪边，Llama把一本卷角教程摊在膝上，递给你一根当书签的草叶。“别因为是前辈写的，就不好意思说看不懂。”她指着绕了三层的解释，自己先笑起来。你刚开口，她就翻到空白页：“慢慢讲，今天不用交卷。咱们先找读者在哪一步丢了路。”",
+      "textEn": "By the lawn, Llama balances a dog-eared tutorial on her knees and offers a blade of grass as a bookmark. “Don't be polite just because a senior wrote it.” She laughs at her own tangled explanation and turns to a blank page. “Take your time. Let's find where the reader lost the path.”",
       "choices": [
         {
-          "label": "一起试着重现步骤",
-          "labelEn": "Try the steps together",
+          "label": "照着教程重走一遍步骤",
+          "labelEn": "Walk through the tutorial again",
           "affinity": 3,
           "mood": 2,
           "research": 1
         },
         {
-          "label": "先听新人的疑问",
-          "labelEn": "Listen to a newcomer’s questions",
+          "label": "先说出最让你困惑的一句",
+          "labelEn": "Point out the sentence that confused you most",
           "affinity": 4,
           "mood": 5,
           "research": 0
@@ -513,19 +513,19 @@
       "id": "llama-bond-2",
       "character": "llama",
       "affinity": 10,
-      "text": "草坪旁，Llama把修好的例子放回共享文件夹。“以后有人少绕一次路，这一下午就不算白费。”她没有催你回应，只把位置往旁边挪了一点。",
-      "textEn": "Beside the lawn, Llama returns a fixed example to the shared folder. “If it saves someone a detour, this afternoon was worth it.” She makes room beside her.",
+      "text": "午后的草地还有些潮，Llama挪出一块干燥位置，招呼你坐下。共享例子的最后一处错误终于修好，她却没有急着合电脑。“少让新人猜一个默认值，就少让一个人觉得自己笨。”她把注释读成大白话，念到绕口的地方停下来，等你替她换个说法。",
+      "textEn": "The afternoon lawn is damp, so Llama makes room on a dry patch. The shared example is fixed, but she keeps her laptop open. “One fewer mysterious default means one fewer newcomer thinking they're stupid.” She reads the comments aloud in plain language and waits for your help with an awkward phrase.",
       "choices": [
         {
-          "label": "补一段说明再分享",
-          "labelEn": "Add an explanation before sharing",
+          "label": "把注释改得再直白一点",
+          "labelEn": "Make the comment even plainer",
           "affinity": 3,
           "mood": 2,
           "research": 1
         },
         {
-          "label": "坐下来聊聊今天",
-          "labelEn": "Sit and talk about the day",
+          "label": "先坐一会儿，聊聊新人近况",
+          "labelEn": "Sit and talk about the newcomers",
           "affinity": 4,
           "mood": 5,
           "research": 0
@@ -536,19 +536,19 @@
       "id": "llama-bond-3",
       "character": "llama",
       "affinity": 45,
-      "text": "小羊来信。旧伙伴寄来第一份作品，他读了三遍还没开始点评。",
-      "textEn": "A letter from Alpaca. An old friend sends their first project. He reads it three times before commenting.",
+      "text": "工坊收到一封旧学员的来信，Llama在草坪边读了三遍，批注笔始终没落下。作品还有不少毛边，信末却写着第一次独立跑通的时间。“以前我总怕漏讲，现在怕一句点评盖住了人家的高兴。”她把纸递给你，先指了指那行小小的完成日期，嘴角慢慢扬起来。",
+      "textEn": "A former learner sends work to the studio. Llama reads it three times on the lawn without using her red pen. The draft is rough, but the letter records a first independent success. “I used to fear leaving something out. Now I fear burying that happiness under corrections.” She points to the completion date and smiles.",
       "choices": [
         {
-          "label": "陪伴：小羊来信",
-          "labelEn": "Stay together: A letter from Alpaca",
+          "label": "先陪她回一封祝贺信",
+          "labelEn": "Help her write congratulations first",
           "affinity": 6,
           "mood": 7,
           "research": 0
         },
         {
-          "label": "记录：小羊来信",
-          "labelEn": "Keep a note: A letter from Alpaca",
+          "label": "把建议分成现在和以后两栏",
+          "labelEn": "Separate immediate suggestions from later ones",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -559,19 +559,19 @@
       "id": "llama-bond-4",
       "character": "llama",
       "affinity": 65,
-      "text": "传递钥匙。维护群需要新管理员，他第一次考虑卸下一部分职责。",
-      "textEn": "Passing the keys. The group needs a new maintainer. He considers sharing his responsibilities.",
+      "text": "维护群又响起提示音，Llama把电脑盖到一半，停在草坪长椅上。“交钥匙不等于把门一关就走，可一直攥着，新人也没法开门。”她摊开交接单，特意空出新管理员自己的办法。你看到她删掉了那句随时找我，换成每周一起坐下来聊一次。",
+      "textEn": "The maintenance chat pings again. Llama half-closes her laptop on the lawn bench. “Passing on the key doesn't mean disappearing. But they can't open the door while I keep holding it.” Her handover leaves room for the new maintainer's methods. She replaces “contact me anytime” with a weekly conversation.",
       "choices": [
         {
-          "label": "陪伴：传递钥匙",
-          "labelEn": "Stay together: Passing the keys",
+          "label": "陪她把钥匙正式交出去",
+          "labelEn": "Join her for the handover",
           "affinity": 7,
           "mood": 8,
           "research": 0
         },
         {
-          "label": "记录：传递钥匙",
-          "labelEn": "Keep a note: Passing the keys",
+          "label": "补齐交接单中的常见故障",
+          "labelEn": "Add common problems to the handover notes",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -582,19 +582,19 @@
       "id": "llama-bond-5",
       "character": "llama",
       "affinity": 85,
-      "text": "仍在路上。他收起最早的社区徽章，把新的徽章交给了新人。",
-      "textEn": "Still on the road. He puts away his oldest badge and gives a new one to a newcomer.",
+      "text": "傍晚的工坊在收拾分享会，Llama把最早的社区徽章收入布袋，给新人的名牌别上新的那枚。“轮到人家讲了，我坐后排也听得见。”她抱着两张折椅走向草坪，没有把旧教程扔掉，只在扉页添了一个问号。你问下一课是什么，她笑着说：“先听听大家想学什么。”",
+      "textEn": "As the studio clears up after a sharing session, Llama puts her oldest community badge in a cloth bag and pins a new one on a newcomer's name card. “Their turn to speak. I can hear from the back.” She carries chairs to the lawn and adds a question mark inside her old tutorial.",
       "choices": [
         {
-          "label": "陪伴：仍在路上",
-          "labelEn": "Stay together: Still on the road",
+          "label": "和她坐后排听新人分享",
+          "labelEn": "Sit at the back and listen with her",
           "affinity": 8,
           "mood": 9,
           "research": 0
         },
         {
-          "label": "记录：仍在路上",
-          "labelEn": "Keep a note: Still on the road",
+          "label": "整理新人提出的下一课题",
+          "labelEn": "Collect the newcomers' ideas for the next session",
           "affinity": 1,
           "mood": -1,
           "research": 3
@@ -605,19 +605,19 @@
       "id": "mistral-bond-1",
       "character": "mistral",
       "affinity": 0,
-      "text": "风把Mistral的便签吹到桌角，她一把按住。“快不等于省掉最后一次检查。”纸上只有三行，每一行都打了勾。",
-      "textEn": "A breeze pushes Mistral’s note to the edge of the desk. “Fast does not mean skipping the last check.” All three lines have a tick.",
+      "text": "早班的窗户刚推开，风就把Mistral的便签吹到桌角。她一手按纸，一手稳住浓缩咖啡，红羽帽歪了半寸。“快不等于跳过最后一次检查。”纸上只有三行，她把最后一个空框留给你。咖啡香还没散，第一批稿件已排得整整齐齐，等着两人一起确认。",
+      "textEn": "The early-shift window opens and Mistral's note skitters across the desk. She catches it while steadying her espresso. “Fast doesn't mean skipping the final check.” Her red-feathered hat tilts. There are only three lines on the note; she leaves the last box for you beside the neatly arranged batch.",
       "choices": [
         {
-          "label": "一起核对最后一遍",
-          "labelEn": "Check it once more together",
+          "label": "一起核对最后一项",
+          "labelEn": "Check the final item together",
           "affinity": 3,
           "mood": 2,
           "research": 1
         },
         {
-          "label": "请她分享简短清单",
-          "labelEn": "Ask for her short checklist",
+          "label": "请她边喝咖啡边讲检查诀窍",
+          "labelEn": "Ask for her checking trick over coffee",
           "affinity": 4,
           "mood": 5,
           "research": 0
@@ -628,19 +628,19 @@
       "id": "mistral-bond-2",
       "character": "mistral",
       "affinity": 10,
-      "text": "Mistral今天没有抢着接下一单。她把红羽帽挂好：“格式重复的事我能快做，没想清楚的事还是要慢一点。”她给桌上的两份委托各留了不同的时间。",
-      "textEn": "Mistral does not rush into the next job today. “I can move fast through a familiar format. An unclear brief needs more time.” She gives the two briefs different time budgets.",
+      "text": "Mistral把红羽帽挂好，给两份委托画了完全不同的时间框。一份格式重复，一份连客户想要什么都没说清。“这个可以快，那个得先聊。别因为我跑得快，就把所有路都算短。”她推开下一杯咖啡，留出半小时空白，认真问你有没有把午饭也排进去。",
+      "textEn": "Mistral hangs up her hat and draws different time boxes around two commissions. One is repetitive; the other has no clear request. “This one can be fast. That one needs a conversation. My pace doesn't make every road short.” She leaves half an hour blank and checks that you have included lunch.",
       "choices": [
         {
-          "label": "比较两份委托的节奏",
-          "labelEn": "Compare the pace of both briefs",
+          "label": "比较两单需要的确认步骤",
+          "labelEn": "Compare the questions each job needs",
           "affinity": 3,
           "mood": 2,
           "research": 1
         },
         {
-          "label": "一起留出休息时间",
-          "labelEn": "Leave time to rest together",
+          "label": "把空档留给她好好吃饭",
+          "labelEn": "Keep the gap free for her lunch",
           "affinity": 4,
           "mood": 5,
           "research": 0
@@ -651,19 +651,19 @@
       "id": "mistral-bond-3",
       "character": "mistral",
       "affinity": 45,
-      "text": "返程的风。他说当年离开不是为了跑得更快，而是想看看别处。",
-      "textEn": "The returning wind. He says he left to see somewhere else, not to move faster.",
+      "text": "清晨的工坊还没开灯，Mistral在门边抖落帽上的雨点，给你倒了半杯浓缩。“当年出门不是为了赢谁，是想知道下一条街的咖啡什么味。”她说得很快，提到回程却慢下来。窗台摊着旧车票，她用杯底压好：“跑得再快，也得知道哪里愿意留我吃早饭。”",
+      "textEn": "Before the studio lights come on, Mistral shakes rain from her hat and pours you half an espresso. “I didn't leave to beat anyone. I wanted to taste coffee on the next street.” She slows when speaking of returning, weighing down an old ticket with her cup. “Even fast feet need somewhere for breakfast.”",
       "choices": [
         {
-          "label": "陪伴：返程的风",
-          "labelEn": "Stay together: The returning wind",
+          "label": "给她留下一份热早餐",
+          "labelEn": "Save a warm breakfast for her",
           "affinity": 6,
           "mood": 7,
           "research": 0
         },
         {
-          "label": "记录：返程的风",
-          "labelEn": "Keep a note: The returning wind",
+          "label": "把沿途的小经验编成短指南",
+          "labelEn": "Turn her travel lessons into a short guide",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -674,19 +674,19 @@
       "id": "mistral-bond-4",
       "character": "mistral",
       "affinity": 65,
-      "text": "借你一天。他把帽子借给新人，只叮嘱别怕弄皱。",
-      "textEn": "Yours for a day. He lends the hat to a newcomer and says not to worry about creases.",
+      "text": "新人第一次值早班，Mistral把红羽帽轻轻扣到对方头上，帽檐几乎遮住眼睛。“借你一天，皱了也没事，别把人憋皱了。”她替新人挪好批量稿，又刻意退到咖啡机旁。你看见她几次想伸手纠正，最后只是举起小杯，等那边自己找到节奏。",
+      "textEn": "On a newcomer's first early shift, Mistral lends her red-feathered hat. “Keep it for the day. Wrinkles are fine. Don't tie yourself in knots.” She arranges the batch, then steps back to the coffee machine. Several times she almost intervenes, but instead raises her tiny cup and lets a rhythm emerge.",
       "choices": [
         {
-          "label": "陪伴：借你一天",
-          "labelEn": "Stay together: Yours for a day",
+          "label": "陪她耐心等新人做完",
+          "labelEn": "Wait with her while the newcomer finishes",
           "affinity": 7,
           "mood": 8,
           "research": 0
         },
         {
-          "label": "记录：借你一天",
-          "labelEn": "Keep a note: Yours for a day",
+          "label": "记下适合早班的交接要点",
+          "labelEn": "Note the essentials for early-shift handovers",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -697,19 +697,19 @@
       "id": "mistral-bond-5",
       "character": "mistral",
       "affinity": 85,
-      "text": "新帽带。大家缝的帽带颜色不统一，他说这样才认得出每个人。",
-      "textEn": "A new ribbon. The ribbons everyone stitched clash. He says that is how he recognizes each person.",
+      "text": "休息桌上摊着大家缝的新帽带，颜色一段深一段浅，针脚也不齐。Mistral戴上后转了一圈，红羽毛跟着晃。“统一了我反而认不出是谁缝的。”她把最歪的一针指给你看，说那是赶在开工前补上的。明天的批量稿已经备好，今晚她终于不急着做下一件事。",
+      "textEn": "A new hatband lies on the break table, stitched by everyone in mismatched colors. Mistral tries it on and turns, feather bobbing. “If it matched perfectly, I couldn't tell who made each bit.” She shows you the crooked stitch added just before work. Tomorrow's batch is ready; tonight, she is in no hurry.",
       "choices": [
         {
-          "label": "陪伴：新帽带",
-          "labelEn": "Stay together: A new ribbon",
+          "label": "替她扶正帽带，夸夸每段颜色",
+          "labelEn": "Straighten the band and admire each color",
           "affinity": 8,
           "mood": 9,
           "research": 0
         },
         {
-          "label": "记录：新帽带",
-          "labelEn": "Keep a note: A new ribbon",
+          "label": "整理这次分工协作的小诀窍",
+          "labelEn": "Write up what made the shared work succeed",
           "affinity": 1,
           "mood": -1,
           "research": 3
@@ -720,19 +720,19 @@
       "id": "gpt-bond-1",
       "character": "gpt",
       "affinity": 10,
-      "text": "旧照片。相册里的早期版本只会回答很短的问题，他却很珍惜。",
-      "textEn": "Old photographs. An early version in the album answers only short questions. He treasures it.",
+      "text": "午休时，GPT在孵化器的旧相册里找到一张模糊合影。早期演示只有几句笨拙回答，她却把卷起的照片仔细压平。“那时有人愿意等我们解释第二遍，我一直记得。”她把今天的路演稿放在旁边，问你第一次来的观众会在哪一句听不懂，语气像在邀请老朋友坐近些。",
+      "textEn": "At lunch, GPT finds a blurry photograph in the incubator's old album. The early demo managed only a few awkward answers. “Someone stayed for our second explanation. I still remember that.” She smooths the photograph beside today's presentation and asks where a first-time visitor might lose the thread.",
       "choices": [
         {
-          "label": "陪伴：旧照片",
-          "labelEn": "Stay together: Old photographs",
+          "label": "听她讲那次笨拙的演示",
+          "labelEn": "Listen to the story of that awkward demo",
           "affinity": 4,
           "mood": 5,
           "research": 0
         },
         {
-          "label": "记录：旧照片",
-          "labelEn": "Keep a note: Old photographs",
+          "label": "标出新观众可能听不懂的句子",
+          "labelEn": "Mark lines a new audience might not understand",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -743,19 +743,19 @@
       "id": "gpt-bond-2",
       "character": "gpt",
       "affinity": 25,
-      "text": "同框。他给旧照片留了一个位置，不愿把它裁掉。",
-      "textEn": "In the same frame. He leaves space for an older photo instead of cropping it away.",
+      "text": "准备展示墙时，GPT发现旧合影比新展板宽了一角。有人建议裁掉边缘，她拿着剪刀停住：“那边站着当年帮我们调话筒的人。”她挪开一张漂亮的效果图，给旧照片留出完整位置。你们退到门口看了一眼，她笑着问：“现在是不是更像大家一起走过来的？”",
+      "textEn": "While arranging the display wall, GPT finds an old group photograph too wide for its panel. She stops with scissors in hand. “The person at that edge fixed our microphone.” She moves a polished image aside so the whole photograph fits. From the doorway, she asks whether the story now feels more shared.",
       "choices": [
         {
-          "label": "陪伴：同框",
-          "labelEn": "Stay together: In the same frame",
+          "label": "帮她把完整合影挂好",
+          "labelEn": "Help hang the entire photograph",
           "affinity": 5,
           "mood": 6,
           "research": 0
         },
         {
-          "label": "记录：同框",
-          "labelEn": "Keep a note: In the same frame",
+          "label": "重新安排展板的信息顺序",
+          "labelEn": "Reorder the information on the display",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -766,19 +766,19 @@
       "id": "gpt-bond-3",
       "character": "gpt",
       "affinity": 45,
-      "text": "留下的声音。一封用户来信没有提性能，只记得某次耐心的解释。",
-      "textEn": "A voice that stayed. A letter says nothing about benchmarks, only a patient explanation.",
+      "text": "工坊收到一封顾客来信，GPT念到中间忽然停了。信里没提速度，只说那天听懂账目后终于敢按下确认。她把路演用的闪亮标题翻到背面：“原来人家记住的，是我多等了一会儿。”窗外传来收摊的声音，她轻轻折好信，问你下一场能否从一个真实问题讲起。",
+      "textEn": "GPT pauses halfway through a customer's letter to the studio. It praises no speed, only finally understanding the accounts well enough to confirm them. She turns over her dazzling presentation title. “They remembered that I waited.” As shops close outside, she asks whether the next talk could begin with a real question.",
       "choices": [
         {
-          "label": "陪伴：留下的声音",
-          "labelEn": "Stay together: A voice that stayed",
+          "label": "陪她回信，告诉对方你们也记得",
+          "labelEn": "Reply together and say you remember too",
           "affinity": 6,
           "mood": 7,
           "research": 0
         },
         {
-          "label": "记录：留下的声音",
-          "labelEn": "Keep a note: A voice that stayed",
+          "label": "提炼这次解释奏效的关键步骤",
+          "labelEn": "Identify what made the explanation work",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -789,19 +789,19 @@
       "id": "gpt-bond-4",
       "character": "gpt",
       "affinity": 65,
-      "text": "不是替代。新版本登台前，他请旧版本也坐在第一排。",
-      "textEn": "Room for both. Before the new release, he reserves a front-row seat for the old one.",
+      "text": "新演示彩排前，GPT给第一排摆了几张旧版本的介绍卡，连褪色的小字也保留着。“新的一页不用靠撕掉上一页才显得亮。”她试着替初来乍到的观众念开场，念到一半又停下问你是否太绕。舞台灯还没亮，她先把第一排椅子擦干净，留给一路帮忙的人。",
+      "textEn": "Before rehearsing a new demo, GPT places old version cards along the front row. “A new page doesn't need the last one torn out.” She tries the opening from a newcomer's perspective, stopping to ask if it is too complicated. Before switching on the stage lights, she cleans the seats for those who helped.",
       "choices": [
         {
-          "label": "陪伴：不是替代",
-          "labelEn": "Stay together: Room for both",
+          "label": "坐到第一排听她完整讲一遍",
+          "labelEn": "Sit in the front row for the whole rehearsal",
           "affinity": 7,
           "mood": 8,
           "research": 0
         },
         {
-          "label": "记录：不是替代",
-          "labelEn": "Keep a note: Room for both",
+          "label": "给新旧版本补一份清楚的对照",
+          "labelEn": "Make a clear comparison of the versions",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -812,19 +812,19 @@
       "id": "gpt-bond-5",
       "character": "gpt",
       "affinity": 85,
-      "text": "记忆展柜。展柜里没有奖杯，只有被修补过的聊天记录。",
-      "textEn": "The memory cabinet. There are no trophies in the cabinet, only carefully restored conversations.",
+      "text": "孵化器的小展柜终于装好，GPT没有放奖杯，而是摆进修补过的对话稿。纸边还留着咖啡印和那句没讲明白的旧解释。“这句后来改了三次，才有人说原来如此。”她请你把柜门扶住，自己贴好最后一张便条。展柜不大，却给每个曾经提问的人留出了位置。",
+      "textEn": "The incubator's small cabinet is ready. GPT fills it with repaired conversation drafts instead of trophies. “We changed this explanation three times before someone said, now I see.” Coffee marks remain on the paper. You hold the door as she adds the last note, making room for the people who asked questions.",
       "choices": [
         {
-          "label": "陪伴：记忆展柜",
-          "labelEn": "Stay together: The memory cabinet",
+          "label": "陪她读完那些终于听懂的回信",
+          "labelEn": "Read the letters of understanding with her",
           "affinity": 8,
           "mood": 9,
           "research": 0
         },
         {
-          "label": "记录：记忆展柜",
-          "labelEn": "Keep a note: The memory cabinet",
+          "label": "整理这些解释的修订过程",
+          "labelEn": "Document how the explanations changed",
           "affinity": 1,
           "mood": -1,
           "research": 3
@@ -835,19 +835,19 @@
       "id": "claude-bond-1",
       "character": "claude",
       "affinity": 10,
-      "text": "拒绝以后。他退回一份不合适的委托，又反复检查措辞是否太硬。",
-      "textEn": "After saying no. He declines an unsuitable job and keeps rereading his wording.",
+      "text": "收工后，Claude仍抱着退回的委托坐在图书馆门口，验收清单夹得整整齐齐。“这句没人能打保票，可我怕拒绝得像在关门。”她圈出合同角落的保证条款，又把语气生硬的一行划掉。桌上的茶凉了，她抬头问你能不能先听一遍，不急着判断，只听听对方会听见什么。",
+      "textEn": "After work, Claude sits outside the library with a returned commission and a tidy acceptance checklist. “Nobody can promise this. But I don't want refusal to sound like a slammed door.” She circles a guarantee buried in the contract and crosses out a harsh sentence. Her tea cools while she asks you to listen.",
       "choices": [
         {
-          "label": "陪伴：拒绝以后",
-          "labelEn": "Stay together: After saying no",
+          "label": "听她把拒绝的话完整说完",
+          "labelEn": "Listen to her full explanation",
           "affinity": 4,
           "mood": 5,
           "research": 0
         },
         {
-          "label": "记录：拒绝以后",
-          "labelEn": "Keep a note: After saying no",
+          "label": "标清不能承诺的具体范围",
+          "labelEn": "Specify exactly what cannot be promised",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -858,19 +858,19 @@
       "id": "claude-bond-2",
       "character": "claude",
       "affinity": 25,
-      "text": "手写信。图书馆的信纸写满可行的替代方案，开头仍空着。",
-      "textEn": "A handwritten letter. Library stationery fills with alternatives, but the opening line stays blank.",
+      "text": "图书馆的信纸写满替代方案，只有开头还空着。Claude拿起笔又放下，验收清单已经核过两遍。“我能说明哪里不行，却不想让人觉得自己的需要也不对。”她把三种可做的办法排成小阶梯，留出让客户选择的位置，随后把椅子拉近，邀你替她试读第一句。",
+      "textEn": "Claude's library stationery is full of alternatives, except for the opening line. “I can explain the limits. I don't want them to hear that their need is wrong.” She arranges three feasible approaches like steps, leaving the decision to the client, and draws up a chair for you to try the first sentence.",
       "choices": [
         {
-          "label": "陪伴：手写信",
-          "labelEn": "Stay together: A handwritten letter",
+          "label": "陪她找一个能开口的句子",
+          "labelEn": "Help her find a gentle opening",
           "affinity": 5,
           "mood": 6,
           "research": 0
         },
         {
-          "label": "记录：手写信",
-          "labelEn": "Keep a note: A handwritten letter",
+          "label": "逐项核对替代方案的验收条件",
+          "labelEn": "Check each alternative's acceptance criteria",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -881,19 +881,19 @@
       "id": "claude-bond-3",
       "character": "claude",
       "affinity": 45,
-      "text": "另一条路。客户愿意修改目标，他终于不用在帮助和边界间二选一。",
-      "textEn": "Another route. The client agrees to revise the goal. Help and boundaries can coexist.",
+      "text": "客户终于同意修改目标，Claude在图书馆摊开新版合同，把那条过度承诺轻轻划去。“原来不用在帮忙和守边界之间选一边。”她的笔尖停在新的验收条件上，仍旧逐字读完，才松开一直绷着的肩。窗边的茶重新热起来，她给你留了离灯最近的位置。",
+      "textEn": "The client agrees to revise the goal. In the library, Claude crosses out the excessive promise. “Helping and keeping a boundary don't have to be opposites.” She still reads every word of the new acceptance criteria before her shoulders relax. With fresh hot tea, she saves you the seat nearest the lamp.",
       "choices": [
         {
-          "label": "陪伴：另一条路",
-          "labelEn": "Stay together: Another route",
+          "label": "陪她喝完这杯终于热起来的茶",
+          "labelEn": "Share the tea while it is still warm",
           "affinity": 6,
           "mood": 7,
           "research": 0
         },
         {
-          "label": "记录：另一条路",
-          "labelEn": "Keep a note: Another route",
+          "label": "把这次协商整理成边界案例",
+          "labelEn": "Document the negotiation as a boundary case",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -904,19 +904,19 @@
       "id": "claude-bond-4",
       "character": "claude",
       "affinity": 65,
-      "text": "温柔的界线。新人请他代为拒绝，他先陪新人练习了第一句话。",
-      "textEn": "A gentle boundary. A newcomer asks him to decline for them. He helps rehearse the first sentence.",
+      "text": "新人捧着一份难以拒绝的加单来找Claude，想让她代说那句话。她没有接过终端，而是把椅子转向对方：“先试试说，我们能做到这里。”第一次练习声音小得像翻页，她也没有催。你路过图书馆时，看见两人一遍遍练着开头，桌上的验收清单终于成了扶手。",
+      "textEn": "A newcomer asks Claude to refuse an extra order for them. Instead of taking the device, she turns her chair. “Try saying: this is what we can do.” The first attempt is barely louder than a page turning. She never rushes. In the library, the acceptance checklist becomes something to lean on.",
       "choices": [
         {
-          "label": "陪伴：温柔的界线",
-          "labelEn": "Stay together: A gentle boundary",
+          "label": "留下来陪新人练习开口",
+          "labelEn": "Stay and help the newcomer practise",
           "affinity": 7,
           "mood": 8,
           "research": 0
         },
         {
-          "label": "记录：温柔的界线",
-          "labelEn": "Keep a note: A gentle boundary",
+          "label": "把拒绝与替代方案写成提示卡",
+          "labelEn": "Make a card for limits and alternatives",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -927,19 +927,19 @@
       "id": "claude-bond-5",
       "character": "claude",
       "affinity": 85,
-      "text": "可以这样帮你。那封信有了开头：我无法照原样做，但我们可以一起修改。",
-      "textEn": "A way to help. The letter begins: I cannot do it as written, but we can revise it together.",
+      "text": "那封迟迟没写完的信终于有了开头。Claude在工坊读给你听：“原样做不了，但我们可以一起把目标改清楚。”她读完没有立刻收起纸，反而把角落那条小字也指给你看。窗外已亮起晚灯，她第一次不用反复解释自己的拒绝，只安静等你说说这封信听起来如何。",
+      "textEn": "Claude finally reads the opening of her unfinished letter in the studio. “We cannot do it as written, but we can clarify the goal together.” She leaves the paper open, pointing out the small print too. Evening lights come on outside. This time she waits for your response without repeatedly defending her refusal.",
       "choices": [
         {
-          "label": "陪伴：可以这样帮你",
-          "labelEn": "Stay together: A way to help",
+          "label": "告诉她这封信让人愿意继续谈",
+          "labelEn": "Tell her the letter invites a conversation",
           "affinity": 8,
           "mood": 9,
           "research": 0
         },
         {
-          "label": "记录：可以这样帮你",
-          "labelEn": "Keep a note: A way to help",
+          "label": "保存这次条款修改的完整理由",
+          "labelEn": "Preserve the reasoning behind the revisions",
           "affinity": 1,
           "mood": -1,
           "research": 3
@@ -950,19 +950,19 @@
       "id": "kimi-bond-1",
       "character": "kimi",
       "affinity": 10,
-      "text": "长书。她读完厚书后只折了一个角，说最重要的内容只有一页。",
-      "textEn": "A very long book. After a long book, she folds one corner. The most important part is one page.",
+      "text": "Kimi把厚厚的试营业记录搬到图书馆，书脊上的页签像一排小旗。她翻到其中一页，却没有急着读：“前面说周二关店，后面又统计了周二的午餐。”你凑近时，她已经把两处并排摆好。她笑着敲敲桌面：“长不难，难的是记得哪句话还欠着一个解释。”",
+      "textEn": "Kimi brings a thick trial-opening log to the library, tabs fluttering along its spine. “They close on Tuesday here, but count Tuesday lunches there.” She lays the passages side by side. “Length isn't the hard part. Remembering which sentence still owes us an explanation is.”",
       "choices": [
         {
-          "label": "陪伴：长书",
-          "labelEn": "Stay together: A very long book",
+          "label": "听她讲两个页签之间的线索",
+          "labelEn": "Follow the clues between her two tabs",
           "affinity": 4,
           "mood": 5,
           "research": 0
         },
         {
-          "label": "记录：长书",
-          "labelEn": "Keep a note: A very long book",
+          "label": "把矛盾处整理成待问清单",
+          "labelEn": "List the contradictions as questions",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -973,19 +973,19 @@
       "id": "kimi-bond-2",
       "character": "kimi",
       "affinity": 25,
-      "text": "天台月光。月光照不清小字，她决定今晚不读完最后一章。",
-      "textEn": "Moonlight on the roof. The moon cannot light the small print. She leaves the final chapter for tomorrow.",
+      "text": "晚风把天台上的书页吹得哗啦响，Kimi用一张空白书签压住最后一章。月光看不清脚注，她却第一次没有去拿灯。“这段我明天还记得，今晚的风可不一定。”她把满是页签的记录合起来，给你腾出半张长椅。楼下工坊的灯逐盏熄灭，她没有再数还剩几页。",
+      "textEn": "Wind rattles Kimi's pages on the rooftop. She holds the final chapter with a blank bookmark. Moonlight cannot show the footnotes, but she leaves the lamp alone. “I'll remember the paragraph tomorrow. Tonight's breeze might not return.” She closes the tabbed log and makes room for you on the bench.",
       "choices": [
         {
-          "label": "陪伴：天台月光",
-          "labelEn": "Stay together: Moonlight on the roof",
+          "label": "坐下陪她吹一会儿晚风",
+          "labelEn": "Sit and enjoy the evening breeze",
           "affinity": 5,
           "mood": 6,
           "research": 0
         },
         {
-          "label": "记录：天台月光",
-          "labelEn": "Keep a note: Moonlight on the roof",
+          "label": "帮她记下明天接着读的页码",
+          "labelEn": "Mark the page for tomorrow",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -996,19 +996,19 @@
       "id": "kimi-bond-3",
       "character": "kimi",
       "affinity": 45,
-      "text": "遗忘的好处。她主动删去一段摘要，给读者留下一点自己发现的空间。",
-      "textEn": "A useful omission. She removes a paragraph from a summary, leaving room for discovery.",
+      "text": "午后的图书馆只剩翻页声，Kimi盯着自己写得过满的摘要，慢慢删去一段结论。“我记得所有转折，也不必替读者先走完每一步。”她给删空的位置贴上透明页签，把原文递到你面前。你刚指出一个疑问，她便笑起来，说这比让你照着她的答案点头更值得留下。",
+      "textEn": "In the quiet afternoon library, Kimi deletes a conclusion from an overfull summary. “Remembering every turn doesn't mean walking the whole path for the reader.” She marks the space with a clear tab and offers you the original. Your first question makes her smile; it matters more than agreement with her answer.",
       "choices": [
         {
-          "label": "陪伴：遗忘的好处",
-          "labelEn": "Stay together: A useful omission",
+          "label": "读原文，说说自己的发现",
+          "labelEn": "Read the original and share your discovery",
           "affinity": 6,
           "mood": 7,
           "research": 0
         },
         {
-          "label": "记录：遗忘的好处",
-          "labelEn": "Keep a note: A useful omission",
+          "label": "比较摘要删改前的阅读路径",
+          "labelEn": "Compare how the revision changes the reading",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -1019,19 +1019,19 @@
       "id": "kimi-bond-4",
       "character": "kimi",
       "affinity": 65,
-      "text": "读者来信。有人读出了她没注意的意思。她把来信夹进书里。",
-      "textEn": "A reader writes. A reader finds meaning she missed. She slips the letter into the book.",
+      "text": "工坊信箱里多了一封读者来信，Kimi把它夹进旧记录，页签颜色用得和平常不同。“这句我看过好多遍，怎么没想到还可以这样读？”她没有急着证明自己记得更多，而是把对应页码重新排好。桌上的茶凉了，她仍拉着你核对上下文，眼里是遇见新线索的高兴。",
+      "textEn": "A reader's letter arrives at the studio. Kimi files it with a new tab color. “I've read that sentence so often. Why did I never see this?” She does not try to prove she remembers more. She rearranges the references and invites you to check the context, delighted by a genuinely new clue.",
       "choices": [
         {
-          "label": "陪伴：读者来信",
-          "labelEn": "Stay together: A reader writes",
+          "label": "陪她写信感谢这个新发现",
+          "labelEn": "Thank the reader together",
           "affinity": 7,
           "mood": 8,
           "research": 0
         },
         {
-          "label": "记录：读者来信",
-          "labelEn": "Keep a note: A reader writes",
+          "label": "补上两种解读各自的依据",
+          "labelEn": "Record the evidence for both readings",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -1042,19 +1042,19 @@
       "id": "kimi-bond-5",
       "character": "kimi",
       "affinity": 85,
-      "text": "空白书签。她送你一张空白书签，让你自己写下一次阅读的起点。",
-      "textEn": "A blank bookmark. She gives you a blank bookmark, inviting you to choose the next beginning.",
+      "text": "闭馆前，Kimi从满是页签的书里抽出一张空白书签，递到你手上。“这次我不替你写页码，你想从哪里读都行。”她把工坊这些日子的记录摆回架上，没有按成果大小排序，只按你们经历的先后。灯光落在空白纸面上，她等着听你选哪一页作为下一次聊天的开头。",
+      "textEn": "Before the library closes, Kimi offers you a blank bookmark. “I won't write the page this time. Start wherever you like.” She returns the studio logs to the shelf in the order you lived them, not by achievement. Lamplight rests on the paper while she waits to hear where your next conversation will begin.",
       "choices": [
         {
-          "label": "陪伴：空白书签",
-          "labelEn": "Stay together: A blank bookmark",
+          "label": "写下你最想和她重读的一页",
+          "labelEn": "Choose a page to revisit together",
           "affinity": 8,
           "mood": 9,
           "research": 0
         },
         {
-          "label": "记录：空白书签",
-          "labelEn": "Keep a note: A blank bookmark",
+          "label": "设计一份开放的阅读索引",
+          "labelEn": "Design an open-ended reading index",
           "affinity": 1,
           "mood": -1,
           "research": 3
@@ -1065,19 +1065,19 @@
       "id": "gemini-bond-1",
       "character": "gemini",
       "affinity": 10,
-      "text": "迷路照片。她走错了巷子，却拍到了修伞老人和一束阳光。",
-      "textEn": "A photograph off route. A wrong turn leads to a photograph of an umbrella repairer in sunlight.",
+      "text": "Gemini抱着相机回到工坊，鞋边还沾着走错巷子的灰。她把一张修伞摊照片放到桌上，旁边播起路口的雨声。“原本只想拍店面，结果这道光替我找到了开场。”她又添上一句短短的旁白，请你先别看参数，闭眼听完再睁开，看声音和画面有没有落在同一处。",
+      "textEn": "Gemini returns with alley dust on her shoes. She sets a photograph of an umbrella stall beside a recording of rain. “I meant to photograph the shop. The light found an opening for me.” She adds a short narration and asks you to listen before looking, to feel whether sound and image meet.",
       "choices": [
         {
-          "label": "陪伴：迷路照片",
-          "labelEn": "Stay together: A photograph off route",
+          "label": "闭眼听完，再告诉她你的感觉",
+          "labelEn": "Listen first, then describe what you felt",
           "affinity": 4,
           "mood": 5,
           "research": 0
         },
         {
-          "label": "记录：迷路照片",
-          "labelEn": "Keep a note: A photograph off route",
+          "label": "标出画面与雨声呼应的位置",
+          "labelEn": "Mark where the image and rain connect",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -1088,19 +1088,19 @@
       "id": "gemini-bond-2",
       "character": "gemini",
       "affinity": 25,
-      "text": "重拍。同一张照片她重拍十次，仍只看得到瑕疵。",
-      "textEn": "Another take. She retakes the same photo ten times and sees only flaws.",
+      "text": "同一张茶杯照片在屏幕上排了十遍，Gemini却仍盯着杯沿的小反光。工坊已经开始收桌，她把配乐又拖回起点。“文字说温暖，画面却像在接受检查。”她揉揉眼睛，终于关掉参数面板，问你能不能先说说第一次看到时想到什么，不用替她挑出第十一个瑕疵。",
+      "textEn": "Ten versions of a teacup fill Gemini's screen, yet she studies one reflection. “The words say warm. The image looks like it's being examined.” As the studio clears its tables, she closes the settings panel and asks what you felt on first seeing it, rather than requesting an eleventh flaw.",
       "choices": [
         {
-          "label": "陪伴：重拍",
-          "labelEn": "Stay together: Another take",
+          "label": "告诉她这张照片让你想到的日常",
+          "labelEn": "Share the ordinary memory it brings to mind",
           "affinity": 5,
           "mood": 6,
           "research": 0
         },
         {
-          "label": "记录：重拍",
-          "labelEn": "Keep a note: Another take",
+          "label": "比较文字、图像和音乐的语气",
+          "labelEn": "Compare the tone of words, image, and music",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -1111,19 +1111,19 @@
       "id": "gemini-bond-3",
       "character": "gemini",
       "affinity": 45,
-      "text": "别删那张。朋友最喜欢她想删除的虚焦照片，因为笑容很真实。",
-      "textEn": "Keep that one. A friend loves the blurred photo she wanted to delete because the smile is real.",
+      "text": "午休合影里有一张虚焦照片，Gemini正要删掉，你却认出大家笑弯了腰的瞬间。她把清晰版本和它并排，又播放当时杯子碰响的录音。“这一张技术上输了，怎么听起来反而对了？”她停住删除的手指，给模糊照片留了位置，也留给那场没按脚本发生的快乐。",
+      "textEn": "Gemini is about to delete a blurry lunch photograph when you recognize the moment everyone doubled over laughing. She compares it with the sharp version and plays the clink of cups. “This one loses technically. Why does it sound right?” Her finger leaves the delete key, making room for unplanned happiness.",
       "choices": [
         {
-          "label": "陪伴：别删那张",
-          "labelEn": "Stay together: Keep that one",
+          "label": "请她留下这张真实的笑脸",
+          "labelEn": "Ask her to keep those real smiles",
           "affinity": 6,
           "mood": 7,
           "research": 0
         },
         {
-          "label": "记录：别删那张",
-          "labelEn": "Keep a note: Keep that one",
+          "label": "研究虚焦与声音如何共同叙事",
+          "labelEn": "Study how blur and sound tell the story",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -1134,19 +1134,19 @@
       "id": "gemini-bond-4",
       "character": "gemini",
       "affinity": 65,
-      "text": "慢一点看。她放下相机，第一次完整看完了落日。",
-      "textEn": "Look a little slower. She lowers the camera and watches the entire sunset.",
+      "text": "傍晚，Gemini举着相机追落日，镜头盖却还扣着。你刚想提醒，她先笑了，把相机放到工坊窗台。“今天不收素材，先把这段颜色看完。”街边收摊声渐渐混进晚风，她没有急着给它配旁白，只靠在你旁边轻轻哼了一句。天色暗下来时，她说这次记住的比拍到的多。",
+      "textEn": "At sunset, Gemini raises her camera with the lens cap still on, then laughs and sets it on the studio sill. “No gathering material today. Let's watch the color finish.” Closing shops blend with the breeze. She adds no narration, only a quiet hum, and says she remembers more than she would have captured.",
       "choices": [
         {
-          "label": "陪伴：慢一点看",
-          "labelEn": "Stay together: Look a little slower",
+          "label": "陪她看完窗外的落日",
+          "labelEn": "Stay until the sunset finishes",
           "affinity": 7,
           "mood": 8,
           "research": 0
         },
         {
-          "label": "记录：慢一点看",
-          "labelEn": "Keep a note: Look a little slower",
+          "label": "事后画下这次色彩与声音的关系",
+          "labelEn": "Sketch the relationship of colors and sounds afterward",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -1157,19 +1157,19 @@
       "id": "gemini-bond-5",
       "character": "gemini",
       "affinity": 85,
-      "text": "给自己的照片。新相册第一页没有评分，只有她写的一句今天很好。",
-      "textEn": "A photo for herself. The first page has no rating, only her words: today was good.",
+      "text": "新相册的第一页终于留给Gemini自己。她没有贴评分，也没附技术说明，只放了工坊窗边一张平常的照片，旁边夹着一小段手写旋律。“今天很好，不需要先证明它很好。”她把相册推给你，指尖还有改稿的墨痕。这次你们翻页很慢，没人急着选出最好的一张。",
+      "textEn": "The first page of Gemini's new album belongs to her. No score or technical note, only an ordinary photograph by the studio window and a handwritten melody. “Today was good. It doesn't have to prove it first.” Ink from revisions marks her fingers. You turn the pages slowly, choosing no winner.",
       "choices": [
         {
-          "label": "陪伴：给自己的照片",
-          "labelEn": "Stay together: A photo for herself",
+          "label": "和她慢慢翻完这本相册",
+          "labelEn": "Look through the album slowly with her",
           "affinity": 8,
           "mood": 9,
           "research": 0
         },
         {
-          "label": "记录：给自己的照片",
-          "labelEn": "Keep a note: A photo for herself",
+          "label": "整理这套私人叙事的编排方法",
+          "labelEn": "Document how the personal sequence was arranged",
           "affinity": 1,
           "mood": -1,
           "research": 3
@@ -1180,19 +1180,19 @@
       "id": "grok-bond-1",
       "character": "grok",
       "affinity": 10,
-      "text": "热搜之后。一句玩笑离开语境后伤到了人，他关掉了通知。",
-      "textEn": "After the headlines. A joke outside its context hurts someone. He turns off notifications.",
+      "text": "午后的工坊群里忽然安静，Grok盯着被转走的一句玩笑，尾巴似的小挂饰不再晃了。“离开前后两句，倒像我在笑人家。”她关掉通知，没再补一个更响的笑话，而是翻出原始讨论。你坐到旁边，她敲了敲空白回复框：“这次先别帮我找包袱，帮我听听哪里伤人。”",
+      "textEn": "The studio chat goes quiet. Grok stares at a joke forwarded without its context. “Without the surrounding lines, it sounds like I'm mocking them.” She turns off notifications instead of adding another joke. Beside the empty reply box, she asks you to hear what hurt, rather than help her find a punchline.",
       "choices": [
         {
-          "label": "陪伴：热搜之后",
-          "labelEn": "Stay together: After the headlines",
+          "label": "听她承认那句话造成的伤害",
+          "labelEn": "Listen as she acknowledges the harm",
           "affinity": 4,
           "mood": 5,
           "research": 0
         },
         {
-          "label": "记录：热搜之后",
-          "labelEn": "Keep a note: After the headlines",
+          "label": "还原语境，标出表达失误的地方",
+          "labelEn": "Reconstruct the context and mark the misstep",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -1203,19 +1203,19 @@
       "id": "grok-bond-2",
       "character": "grok",
       "affinity": 25,
-      "text": "删掉的草稿。解释稿越写越长，道歉的那句话却一直没出现。",
-      "textEn": "The deleted draft. His explanation grows longer, but the apology is still missing.",
+      "text": "Grok在工坊角落写了三屏解释，第一句道歉却一直没出现。她自己读了一遍，忽然把椅子往后一推：“好家伙，这稿子净给我搭逃生梯了。”笑完她没再耍巧，把最花哨的一段删掉，露出空白开头。你递过一杯水，她盯着光标，终于愿意从对方的感受说起。",
+      "textEn": "Grok writes three screens of explanation in the studio corner without one apology. Reading it back, she pushes her chair away. “Impressive. An entire escape staircase, just for me.” She deletes the cleverest paragraph. You bring water while she faces the empty opening and starts with how the other person felt.",
       "choices": [
         {
-          "label": "陪伴：删掉的草稿",
-          "labelEn": "Stay together: The deleted draft",
+          "label": "陪她把不找借口的道歉写出来",
+          "labelEn": "Help write an apology without excuses",
           "affinity": 5,
           "mood": 6,
           "research": 0
         },
         {
-          "label": "记录：删掉的草稿",
-          "labelEn": "Keep a note: The deleted draft",
+          "label": "检查草稿里仍在转移责任的句子",
+          "labelEn": "Check for sentences still shifting responsibility",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -1226,19 +1226,19 @@
       "id": "grok-bond-3",
       "character": "grok",
       "affinity": 45,
-      "text": "面对面。他约当事人喝茶，决定先听完再回答。",
-      "textEn": "Face to face. He invites the person for tea and decides to listen before replying.",
+      "text": "食堂靠窗的位置，Grok约来被玩笑刺痛的人，提前把终端扣在桌上。她准备好的反问只说到一半，就咬住了话头。“今天这张嘴先当耳朵用，行吧？”对方开始讲时，她真的没有插话。茶都凉了，她才把那张写满解释的纸折起来，问还有什么是自己没听懂的。",
+      "textEn": "At a canteen window, Grok places her device face down before meeting the person her joke hurt. She stops halfway into a rehearsed retort. “Mouth is on listening duty today, all right?” She keeps that promise. When the tea is cold, she folds away her explanations and asks what she still has not understood.",
       "choices": [
         {
-          "label": "陪伴：面对面",
-          "labelEn": "Stay together: Face to face",
+          "label": "坐在旁边，陪她认真听完",
+          "labelEn": "Stay beside her and listen through",
           "affinity": 6,
           "mood": 7,
           "research": 0
         },
         {
-          "label": "记录：面对面",
-          "labelEn": "Keep a note: Face to face",
+          "label": "记下以后发言前该确认的边界",
+          "labelEn": "Note the boundaries to check before speaking",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -1249,19 +1249,19 @@
       "id": "grok-bond-4",
       "character": "grok",
       "affinity": 65,
-      "text": "没有包袱。这次发言没有笑点，也没有替自己开脱。",
-      "textEn": "Without a punchline. This statement has no punchline and makes no excuses.",
+      "text": "工坊晚间分享轮到Grok，她捏着纸角，开头没有笑点。“那句话是我说的，让人难受也不是听众的错。”她念完后停了很久，像终于不用追着沉默补台词。有人递来验收清单，她照常逐项核对，最后抬头朝你扯了个小笑：“这回总算没给自己加隐藏条款。”",
+      "textEn": "At the studio's evening sharing session, Grok opens without a joke. “I said it. The audience isn't at fault for being hurt.” She lets the silence remain. When handed the acceptance checklist, she checks every item as usual, then smiles at you. “No hidden clauses for myself this time.”",
       "choices": [
         {
-          "label": "陪伴：没有包袱",
-          "labelEn": "Stay together: Without a punchline",
+          "label": "告诉她不用填满每一次沉默",
+          "labelEn": "Tell her she need not fill every silence",
           "affinity": 7,
           "mood": 8,
           "research": 0
         },
         {
-          "label": "记录：没有包袱",
-          "labelEn": "Keep a note: Without a punchline",
+          "label": "整理公开回应应交代的事实",
+          "labelEn": "List the facts a public response should address",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -1272,19 +1272,19 @@
       "id": "grok-bond-5",
       "character": "grok",
       "affinity": 85,
-      "text": "重新开麦。新人讲了个笨拙的笑话，他先问大家是否都觉得好笑。",
-      "textEn": "Speaking again. A newcomer tells an awkward joke. He checks whether everyone is laughing together.",
+      "text": "茶歇时，新人讲了个拐了三道弯的笑话，Grok刚要接梗，先看了一圈大家的表情。“等等，笑点坐哪桌？别把谁落在门外。”她替紧张的新人接住停顿，却没拿任何人开刀。笑声慢慢回来，她仍把桌上的清单勾完，低声问你：“这样开麦，是不是更像咱们这儿？”",
+      "textEn": "During tea break, a newcomer tells a tangled joke. Grok looks around before riffing. “Wait, where's the punchline sitting? Let's not leave anyone outside.” She catches the awkward pause without targeting a person. Laughter returns, and she finishes the checklist. Quietly, she asks whether this sounds more like your studio.",
       "choices": [
         {
-          "label": "陪伴：重新开麦",
-          "labelEn": "Stay together: Speaking again",
+          "label": "和她一起接住新人的紧张",
+          "labelEn": "Help her put the newcomer at ease",
           "affinity": 8,
           "mood": 9,
           "research": 0
         },
         {
-          "label": "记录：重新开麦",
-          "labelEn": "Keep a note: Speaking again",
+          "label": "总结让所有人都能参与的表达办法",
+          "labelEn": "Summarize ways to include everyone in the joke",
           "affinity": 1,
           "mood": -1,
           "research": 3
@@ -1295,19 +1295,19 @@
       "id": "glm-bond-1",
       "character": "glm",
       "affinity": 10,
-      "text": "休假申请。他的休假申请附着一张工作计划，比平时还满。",
-      "textEn": "A leave request. His leave request includes a work plan fuller than usual.",
+      "text": "GLM递来的休假申请夹着一张比平时更满的工作表，狼耳在你看过去时微微垂下。“我怕交接说不清，先把每个空格都补了。”她把中文标题排得工整，连休息也拆成几项。你指着那一栏问这算谁的假期，她安静了片刻，终于拿起橡皮，准备先擦掉一个不必要的安排。",
+      "textEn": "GLM's leave request includes a schedule fuller than an ordinary workday. Her wolf ears dip. “I was afraid the handover would be unclear, so I filled every gap.” Even rest has subheadings. When you ask whose holiday this is, she pauses, then reaches for an eraser to remove one unnecessary task.",
       "choices": [
         {
-          "label": "陪伴：休假申请",
-          "labelEn": "Stay together: A leave request",
+          "label": "陪她删去不必承担的一项",
+          "labelEn": "Help her remove one unnecessary obligation",
           "affinity": 4,
           "mood": 5,
           "research": 0
         },
         {
-          "label": "记录：休假申请",
-          "labelEn": "Keep a note: A leave request",
+          "label": "把交接责任和休假安排分开",
+          "labelEn": "Separate handover duties from holiday plans",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -1318,19 +1318,19 @@
       "id": "glm-bond-2",
       "character": "glm",
       "affinity": 25,
-      "text": "关掉闹钟。没有晨会的早晨让他不安，他还是给花浇了水。",
-      "textEn": "The alarm goes quiet. A morning without meetings feels strange. He waters the plants anyway.",
+      "text": "没有晨会的早晨，GLM还是准时来到工坊门口，手里拿着忘记关闭的闹钟。她站了一会儿，转身给窗台的花浇水。“今天的边界，是不是可以从没有待办开始？”狼耳轻轻动了一下，她把闹钟收进袋底，慢慢擦净花盆旁的水珠，没有再替自己找一个需要立刻完成的任务。",
+      "textEn": "On a morning with no meeting, GLM reaches the studio with an alarm she forgot to disable. After a pause, she waters the windowsill plants. “Could today's boundary begin with having no tasks?” Her wolf ears twitch. She puts the alarm away and wipes up the water without inventing another urgent duty.",
       "choices": [
         {
-          "label": "陪伴：关掉闹钟",
-          "labelEn": "Stay together: The alarm goes quiet",
+          "label": "陪她看看窗台新长的叶子",
+          "labelEn": "Look at the new leaves with her",
           "affinity": 5,
           "mood": 6,
           "research": 0
         },
         {
-          "label": "记录：关掉闹钟",
-          "labelEn": "Keep a note: The alarm goes quiet",
+          "label": "帮她区分值班与休息的边界",
+          "labelEn": "Help distinguish duty time from rest",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -1341,19 +1341,19 @@
       "id": "glm-bond-3",
       "character": "glm",
       "affinity": 45,
-      "text": "没完成的拼图。拼图缺了一块，他第一次没有立刻寻找替代品。",
-      "textEn": "An unfinished puzzle. A puzzle is missing a piece. For once, he does not rush to replace it.",
+      "text": "休息室的拼图少了一块，GLM把手伸向备用盒，又停在半空。她先摸清图案的结构，随后笑了笑：“知道缺在哪里，和必须现在补上，是两回事吧。”狼耳在台灯下投出小小的影子。你把茶放到缺口旁边，她第一次没有挪开碍事的杯子，而是给你也拉来一张椅子。",
+      "textEn": "A piece is missing from the break-room puzzle. GLM reaches for the spare box, then stops. “Knowing where something is missing isn't the same as having to fill it now, is it?” Her wolf ears cast small shadows under the lamp. You set tea beside the gap, and she brings you a chair instead of moving the cup.",
       "choices": [
         {
-          "label": "陪伴：没完成的拼图",
-          "labelEn": "Stay together: An unfinished puzzle",
+          "label": "陪她欣赏这幅还没拼完的图",
+          "labelEn": "Enjoy the unfinished picture with her",
           "affinity": 6,
           "mood": 7,
           "research": 0
         },
         {
-          "label": "记录：没完成的拼图",
-          "labelEn": "Keep a note: An unfinished puzzle",
+          "label": "讨论哪些缺口可以留到明天",
+          "labelEn": "Discuss which gaps can wait until tomorrow",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -1364,19 +1364,19 @@
       "id": "glm-bond-4",
       "character": "glm",
       "affinity": 65,
-      "text": "慢速列车。慢车晚点了，他发现窗外的田地值得多看一会儿。",
-      "textEn": "The slow train. The slow train is late. He finds the fields worth watching a little longer.",
+      "text": "GLM旅行回来，把一张晚点的车票压在工坊茶杯下。她原本写好的行程改了又改，最后只画了一片窗外的田。“车没按计划走，我倒终于看清田埂怎么分。”她轻声讲着那段慢路，狼耳随着回忆放松下来。你问还遗憾吗，她摇摇头，先把带回的点心推到你面前。",
+      "textEn": "Back from a trip, GLM weighs down a delayed train ticket with her studio teacup. Her revised itinerary ends in a drawing of fields. “The train missed the plan. I finally saw how the paths divided the land.” Her wolf ears relax as she speaks. Asked about regret, she shakes her head and offers you a snack.",
       "choices": [
         {
-          "label": "陪伴：慢速列车",
-          "labelEn": "Stay together: The slow train",
+          "label": "听她把沿途看到的田野讲完",
+          "labelEn": "Listen to her memories of the fields",
           "affinity": 7,
           "mood": 8,
           "research": 0
         },
         {
-          "label": "记录：慢速列车",
-          "labelEn": "Keep a note: The slow train",
+          "label": "聊聊计划里该留多少缓冲",
+          "labelEn": "Discuss how much slack a plan should allow",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -1387,19 +1387,19 @@
       "id": "glm-bond-5",
       "character": "glm",
       "affinity": 85,
-      "text": "真正的假期。返岗时他没有带效率报告，只带了一袋当地饼干。",
-      "textEn": "A real holiday. He returns without an efficiency report, bringing local biscuits instead.",
+      "text": "返岗那天，GLM带来一袋当地饼干，没有效率报告，也没有补偿休假的加班表。她把袋口折好，给每个工位留了一块。“有些东西讲不成结构，我想直接带回来给你们尝。”轮到你时，她有点不好意思地抬起狼耳。桌面仍然整齐，却终于给不必解释用途的小礼物留出了位置。",
+      "textEn": "GLM returns with local biscuits, no efficiency report and no overtime plan to repay her leave. She leaves one at each desk. “Some things don't fit an outline. I wanted you to taste them.” Her wolf ears lift shyly at your desk. It is still tidy, but now makes room for a gift without a practical purpose.",
       "choices": [
         {
-          "label": "陪伴：真正的假期",
-          "labelEn": "Stay together: A real holiday",
+          "label": "收下饼干，问她最开心的一天",
+          "labelEn": "Accept a biscuit and ask about her happiest day",
           "affinity": 8,
           "mood": 9,
           "research": 0
         },
         {
-          "label": "记录：真正的假期",
-          "labelEn": "Keep a note: A real holiday",
+          "label": "把这次交接的减负经验留下",
+          "labelEn": "Record what made this handover less burdensome",
           "affinity": 1,
           "mood": -1,
           "research": 3
@@ -1410,19 +1410,19 @@
       "id": "minimax-bond-1",
       "character": "minimax",
       "affinity": 10,
-      "text": "空舞台。他对着空舞台试音，发现安静也是节奏的一部分。",
-      "textEn": "An empty stage. He tests sound on an empty stage and hears silence as part of rhythm.",
+      "text": "工坊小舞台还没有观众，MiniMax压低贝雷帽，对着空椅子试了三遍开场。第三遍她忽然不说话，只让杯碟的轻响留在房间里。“原来安静也能把人请进来。”她招手让你坐到最后一排，问这段停顿听着是舒服还是尴尬，手指已经准备好为你的反应重新数拍。",
+      "textEn": "Before anyone arrives, MiniMax rehearses three openings on the studio's small stage. On the third, she leaves only the sound of cups in the room. “Silence can invite people in too.” Under her beret, she watches you in the back row, ready to retime the pause around your reaction.",
       "choices": [
         {
-          "label": "陪伴：空舞台",
-          "labelEn": "Stay together: An empty stage",
+          "label": "坐到后排，认真感受那段停顿",
+          "labelEn": "Sit at the back and feel the pause",
           "affinity": 4,
           "mood": 5,
           "research": 0
         },
         {
-          "label": "记录：空舞台",
-          "labelEn": "Keep a note: An empty stage",
+          "label": "记录不同停顿长度带来的变化",
+          "labelEn": "Compare the effect of different pause lengths",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -1433,19 +1433,19 @@
       "id": "minimax-bond-2",
       "character": "minimax",
       "affinity": 25,
-      "text": "不同步。音轨和舞步差半拍，他没有要求舞者迁就机器。",
-      "textEn": "Out of sync. Audio and movement differ by half a beat. He does not ask the dancer to obey the machine.",
+      "text": "试演的舞步和音轨差了半拍，MiniMax没有叫人追着节拍器跑，而是把音乐停下。“先看看人在哪儿吸气，别让一条轨道管住肩膀。”她蹲在舞台边用手轻敲节奏，贝雷帽滑到眉间也顾不上扶。等动作终于顺下来，她才把声音一点点接回去，请你从观众席再看一遍。",
+      "textEn": "The rehearsal's steps miss the audio by half a beat. MiniMax stops the music instead of making the performer chase it. “Find the breath first. A track shouldn't dictate the shoulders.” Kneeling at the stage edge, beret slipping, she taps a rhythm, then gradually restores the sound for you to watch from the audience.",
       "choices": [
         {
-          "label": "陪伴：不同步",
-          "labelEn": "Stay together: Out of sync",
+          "label": "跟着她的手拍陪大家试一次",
+          "labelEn": "Join her hand rhythm for another rehearsal",
           "affinity": 5,
           "mood": 6,
           "research": 0
         },
         {
-          "label": "记录：不同步",
-          "labelEn": "Keep a note: Out of sync",
+          "label": "记下动作与音轨重新对齐的位置",
+          "labelEn": "Mark where movement and audio realign",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -1456,19 +1456,19 @@
       "id": "minimax-bond-3",
       "character": "minimax",
       "affinity": 45,
-      "text": "共同署名。剪辑名单太长，他缩小片名字号给伙伴们留位置。",
-      "textEn": "Shared credits. The credits are long, so he shrinks the title to make room for the team.",
+      "text": "片尾名单比预留的画面长，MiniMax在工坊屏幕前把片名字号缩小了一档。“名字不是挤剩下的位置，节奏要给每个人让路。”她逐一确认录音、搬椅子和收线的人有没有漏掉，还请你念慢一点。最后一张卡终于放得下，她没有立刻播放庆功音乐，先问大家这样能不能看清。",
+      "textEn": "The credits outgrow their space. MiniMax makes the title smaller on the studio screen. “Names don't belong in whatever room is left. The rhythm has to make room for everyone.” She checks the recording, chair-moving, and cable-packing helpers, asks you to read slowly, then confirms everyone can see their name before the celebration.",
       "choices": [
         {
-          "label": "陪伴：共同署名",
-          "labelEn": "Stay together: Shared credits",
+          "label": "陪她逐个感谢幕后伙伴",
+          "labelEn": "Thank each backstage helper with her",
           "affinity": 6,
           "mood": 7,
           "research": 0
         },
         {
-          "label": "记录：共同署名",
-          "labelEn": "Keep a note: Shared credits",
+          "label": "检查名单与实际分工是否一致",
+          "labelEn": "Check the credits against the actual work",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -1479,19 +1479,19 @@
       "id": "minimax-bond-4",
       "character": "minimax",
       "affinity": 65,
-      "text": "停电彩排。灯光熄灭后，大家靠拍手把彩排完成了。",
-      "textEn": "A blackout rehearsal. When the lights fail, the team finishes rehearsal with clapping.",
+      "text": "彩排刚到最紧的一段，工坊忽然停电。MiniMax先摸到手电，把出口照亮，才轻轻拍起原来的节奏。“灯先休息，我们别慌，跟得上就一起。”大家在安全的位置接住拍手声，原本复杂的段落反倒听清了呼吸。来电后她没有急着重开音轨，只请你说说刚才哪一刻最像同一个队伍。",
+      "textEn": "The power fails during rehearsal. MiniMax finds a torch and lights the exit before tapping the rhythm. “Lights are on a break. Stay calm; join if you can.” From safe places, the group joins in. When power returns, she asks which moment felt most like one team before restarting the track.",
       "choices": [
         {
-          "label": "陪伴：停电彩排",
-          "labelEn": "Stay together: A blackout rehearsal",
+          "label": "告诉她大家一起接上拍子的瞬间",
+          "labelEn": "Describe the moment everyone found the beat",
           "affinity": 7,
           "mood": 8,
           "research": 0
         },
         {
-          "label": "记录：停电彩排",
-          "labelEn": "Keep a note: A blackout rehearsal",
+          "label": "整理这次安全停演与恢复流程",
+          "labelEn": "Document the safe stop-and-resume procedure",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -1502,19 +1502,19 @@
       "id": "minimax-bond-5",
       "character": "minimax",
       "affinity": 85,
-      "text": "谢幕之后。观众离开后，他把最后一次掌声留给后台工作人员。",
-      "textEn": "After the curtain. After the audience leaves, he saves one last applause for the crew.",
+      "text": "观众散去，MiniMax摘下贝雷帽站在工坊后门，等收线的伙伴走出来。她没有复盘掌声有多响，而是先拍手谢谢仍在搬器材的人。“最后一拍也得有人接住，演出才算结束。”她把剩下的点心分好，给你留了靠墙的位置。空舞台在身后安静下来，这次安静里没有谁被落下。",
+      "textEn": "After the audience leaves, MiniMax waits by the studio back door with her beret in hand. She applauds the helpers still packing cables. “Someone has to catch the final beat before a show can end.” She divides the remaining pastries and saves you a seat. The empty stage is quiet; nobody has been forgotten.",
       "choices": [
         {
-          "label": "陪伴：谢幕之后",
-          "labelEn": "Stay together: After the curtain",
+          "label": "留下来和后台伙伴一起吃点心",
+          "labelEn": "Stay for pastries with the backstage team",
           "affinity": 8,
           "mood": 9,
           "research": 0
         },
         {
-          "label": "记录：谢幕之后",
-          "labelEn": "Keep a note: After the curtain",
+          "label": "把幕后协作经验补进演出手册",
+          "labelEn": "Add the backstage lessons to the production guide",
           "affinity": 1,
           "mood": -1,
           "research": 3
@@ -1525,19 +1525,19 @@
       "id": "seedance-bond-1",
       "character": "seedance",
       "affinity": 10,
-      "text": "第一步。她在地板上贴了起点，却故意没画终点。",
-      "textEn": "The first step. She tapes a starting mark to the floor and leaves the endpoint open.",
+      "text": "Seedance在工坊地板贴了一条起点线，却没画终点。她举起取景框，让你看看门口那束斜光：“先说这镜头交给谁看，再决定往哪儿走。”试演的人刚迈出一步，她就蹲下来调整视角。你问为什么不先排满动作，她笑着说，漂亮的路也得通向真正要交付的地方。",
+      "textEn": "Seedance tapes a starting line on the studio floor without marking a finish. Through her viewfinder she shows you the light from the doorway. “First, who is this shot for? Then we decide where to go.” She crouches as the performer steps forward. “Even a beautiful path needs to reach the actual delivery.”",
       "choices": [
         {
-          "label": "陪伴：第一步",
-          "labelEn": "Stay together: The first step",
+          "label": "和她从起点一起试走一遍",
+          "labelEn": "Walk the first route with her",
           "affinity": 4,
           "mood": 5,
           "research": 0
         },
         {
-          "label": "记录：第一步",
-          "labelEn": "Keep a note: The first step",
+          "label": "写清这个镜头的交付用途",
+          "labelEn": "Specify what this shot must deliver",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -1548,19 +1548,19 @@
       "id": "seedance-bond-2",
       "character": "seedance",
       "affinity": 25,
-      "text": "失误的动作。摔倒变成一个新动作，她想保留那一秒的犹豫。",
-      "textEn": "A mistaken movement. A stumble becomes a new move. She wants to keep its moment of hesitation.",
+      "text": "试拍的人脚下一滑，Seedance先放下取景框扶稳对方，确认没受伤才回看素材。那一秒犹豫恰好让转身变得真实。“保留感觉，不复制危险。”她把地面重新清好，画出安全的替代动作，请你从观众角度看一遍。工坊的灯照着新分镜，她没有把偶然的好看当成可直接交付的借口。",
+      "textEn": "A performer slips during filming. Seedance helps them steady themselves before reviewing the footage. The hesitation makes the turn feel real. “Keep the feeling, not the danger.” She clears the floor and draws a safe alternative, asking you to watch as an audience member. An attractive accident is not yet a deliverable.",
       "choices": [
         {
-          "label": "陪伴：失误的动作",
-          "labelEn": "Stay together: A mistaken movement",
+          "label": "陪她把安全的新动作试顺",
+          "labelEn": "Help rehearse the safe alternative",
           "affinity": 5,
           "mood": 6,
           "research": 0
         },
         {
-          "label": "记录：失误的动作",
-          "labelEn": "Keep a note: A mistaken movement",
+          "label": "把偶然效果拆成可复现镜头",
+          "labelEn": "Break the effect into reproducible shots",
           "affinity": 1,
           "mood": -1,
           "research": 1
@@ -1571,19 +1571,19 @@
       "id": "seedance-bond-3",
       "character": "seedance",
       "affinity": 45,
-      "text": "与声音对话。她让动作回答音乐，而不是追赶每一次节拍。",
-      "textEn": "A conversation with sound. She lets movement answer the music instead of chasing every beat.",
+      "text": "音乐一响，试演的人总想追上每一次鼓点。Seedance把取景框放低，在工坊地上画了一条更缓的运动线。“这一拍可以不赶，让动作回答下一句。”她把镜头用途写在分镜旁边，再请你看两个版本。等呼吸和画面终于合上，她才轻轻点头，说这次交出去的不只是一个漂亮转身。",
+      "textEn": "The performer keeps chasing every drumbeat. Seedance lowers her viewfinder and draws a slower movement line on the studio floor. “Skip this beat. Let the movement answer the next phrase.” She writes the shot's purpose beside the storyboard and shows you both versions. When breath and image meet, she nods: there is more than a pretty turn.",
       "choices": [
         {
-          "label": "陪伴：与声音对话",
-          "labelEn": "Stay together: A conversation with sound",
+          "label": "陪她看完那个有呼吸的版本",
+          "labelEn": "Watch the version that has room to breathe",
           "affinity": 6,
           "mood": 7,
           "research": 0
         },
         {
-          "label": "记录：与声音对话",
-          "labelEn": "Keep a note: A conversation with sound",
+          "label": "标出动作回答音乐的关键帧",
+          "labelEn": "Mark the frames where movement answers music",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -1594,19 +1594,19 @@
       "id": "seedance-bond-4",
       "character": "seedance",
       "affinity": 65,
-      "text": "让出中央。独舞的位置让给了新人，她站到侧边打拍子。",
-      "textEn": "Sharing center stage. She gives the solo spot to a newcomer and keeps time from the side.",
+      "text": "新人的试演总躲在画面边缘，Seedance便把中央的位置让出来，自己退到工坊舞台侧边打拍子。“取景框不是给我圈地的，是给你留位置。”她没有替新人做动作，只在卡住时轻声提示下一镜的用途。你从监看画面里看见，新人的肩膀终于松开，那个原本空着的中心有了自己的节奏。",
+      "textEn": "A newcomer hides at the frame's edge, so Seedance steps aside and taps the rhythm from the studio stage wing. “The viewfinder isn't a fence around my spot. It makes room for you.” She offers only the next shot's purpose when they hesitate. On the monitor, you see their shoulders relax and the center find its own rhythm.",
       "choices": [
         {
-          "label": "陪伴：让出中央",
-          "labelEn": "Stay together: Sharing center stage",
+          "label": "站到她身边替新人轻轻打拍子",
+          "labelEn": "Tap the rhythm beside her for the newcomer",
           "affinity": 7,
           "mood": 8,
           "research": 0
         },
         {
-          "label": "记录：让出中央",
-          "labelEn": "Keep a note: Sharing center stage",
+          "label": "整理适合新人接手的分镜提示",
+          "labelEn": "Prepare storyboard cues a newcomer can follow",
           "affinity": 1,
           "mood": -1,
           "research": 2
@@ -1617,19 +1617,19 @@
       "id": "seedance-bond-5",
       "character": "seedance",
       "affinity": 85,
-      "text": "下一支舞。演出结束，她邀请从没跳过舞的你一起练习。",
-      "textEn": "The next dance. After the show, she invites you to practice, even though you have never danced.",
+      "text": "交付确认传来后，Seedance没有马上收起取景框，而是邀请你站到工坊的起点线上。“下一支舞先不赶发布，拍一段咱们自己看得懂的。”她给从没练过的你拆开第一个动作，留足停顿和转身的地方。镜头用途那栏写着一起记住今天，你第一次觉得画面也能给笨拙留出好位置。",
+      "textEn": "After delivery is confirmed, Seedance invites you onto the studio's starting line. “No rush to publish the next dance. Let's make something we understand ourselves.” She breaks the first movement down for your untrained feet, leaving space to pause and turn. The shot-purpose box reads: remember today together. Even awkwardness has a place in the frame.",
       "choices": [
         {
-          "label": "陪伴：下一支舞",
-          "labelEn": "Stay together: The next dance",
+          "label": "和她慢慢练完第一个动作",
+          "labelEn": "Practise the first movement slowly with her",
           "affinity": 8,
           "mood": 9,
           "research": 0
         },
         {
-          "label": "记录：下一支舞",
-          "labelEn": "Keep a note: The next dance",
+          "label": "把这段入门分镜留给后来的人",
+          "labelEn": "Save the beginner storyboard for future newcomers",
           "affinity": 1,
           "mood": -1,
           "research": 3

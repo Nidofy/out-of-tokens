@@ -1,0 +1,3970 @@
+{
+  "gifts": [
+    {
+      "id": "rice-bento",
+      "name": "现蒸腊味白米饭",
+      "nameEn": "Steamed Rice Bento",
+      "cost": 45,
+      "lovedBy": [
+        "bluewhale",
+        "qwen"
+      ],
+      "likedBy": [
+        "llama",
+        "glm"
+      ],
+      "desc": "掀开木盒盖，热米饭的香气先替你问了声好。",
+      "descEn": "Lift the wooden lid and let warm rice say hello first."
+    },
+    {
+      "id": "espresso-pods",
+      "name": "浓缩深烘咖啡豆",
+      "nameEn": "Dark Roast Espresso",
+      "cost": 55,
+      "lovedBy": [
+        "mistral",
+        "claude"
+      ],
+      "likedBy": [
+        "grok",
+        "kimi"
+      ],
+      "desc": "深烘香气装进小罐，留给早班或最后一页验收。",
+      "descEn": "A small tin of dark roast for an early start or the last review page."
+    },
+    {
+      "id": "fountain-pen",
+      "name": "黄铜钢笔与墨水",
+      "nameEn": "Brass Fountain Pen",
+      "cost": 65,
+      "lovedBy": [
+        "kimi",
+        "claude",
+        "glm"
+      ],
+      "likedBy": [
+        "gpt",
+        "llama"
+      ],
+      "desc": "笔尖略有分量，适合把值得留下的话慢慢写完。",
+      "descEn": "A reassuring nib for words worth taking time over."
+    },
+    {
+      "id": "prism-sketchbook",
+      "name": "硫酸纸分镜草图本",
+      "nameEn": "Vellum Storyboard Pad",
+      "cost": 70,
+      "lovedBy": [
+        "seedance",
+        "gemini"
+      ],
+      "likedBy": [
+        "gpt",
+        "minimax"
+      ],
+      "desc": "半透明纸页叠起镜头，棱镜替留白添一点光。",
+      "descEn": "Layer shots on translucent pages and lend the margins a little prism light."
+    },
+    {
+      "id": "vinyl-coaster",
+      "name": "爵士黑胶与热可可",
+      "nameEn": "Jazz Vinyl & Cocoa",
+      "cost": 70,
+      "lovedBy": [
+        "minimax",
+        "gpt"
+      ],
+      "likedBy": [
+        "kimi",
+        "grok"
+      ],
+      "desc": "杯底轻轻落在唱片杯垫上，今晚可以不用赶拍。",
+      "descEn": "Set the cocoa on its record coaster. Tonight need not race the beat."
+    },
+    {
+      "id": "keycap-artisan",
+      "name": "琥珀机械键帽礼盒",
+      "nameEn": "Amber Artisan Keycap",
+      "cost": 60,
+      "lovedBy": [
+        "grok",
+        "llama"
+      ],
+      "likedBy": [
+        "bluewhale",
+        "mistral",
+        "seedance"
+      ],
+      "desc": "三枚藏着星光的小键帽，让日常敲击也有一点盼头。",
+      "descEn": "Three tiny star-lit keycaps add a small pleasure to everyday typing."
+    }
+  ],
+  "duos": [
+    {
+      "id": "bluewhale-qwen",
+      "actors": [
+        "bluewhale",
+        "qwen"
+      ],
+      "title": "白板双拆解",
+      "titleEn": "Chalkboard Split",
+      "minDeliveries": 2,
+      "bonus": {
+        "kind": "efficiency",
+        "value": 0.08
+      },
+      "desc": "同队执行时两位伙伴产出提高8%。先拆难题，再把饭点也排进清单。",
+      "descEn": "Both partners produce 8% more on the same job. Break down the problem, then put lunch on the list.",
+      "banter": [
+        {
+          "speaker": "bluewhale",
+          "zh": "我把难点拆成三块，剩下这一块……",
+          "en": "I split the problem into three parts. This last part…"
+        },
+        {
+          "speaker": "qwen",
+          "zh": "是午饭，我已经替你留好了。",
+          "en": "Is lunch. I already saved yours."
+        }
+      ]
+    },
+    {
+      "id": "claude-grok",
+      "actors": [
+        "claude",
+        "grok"
+      ],
+      "title": "红线拉扯组",
+      "titleEn": "Redline Banter",
+      "minDeliveries": 2,
+      "bonus": {
+        "kind": "quality",
+        "value": 5
+      },
+      "desc": "同队单期结案质量增加5。奇想可以飞，验收要落地。",
+      "descEn": "Add 5 quality at each phase review. Ideas can fly; acceptance needs solid ground.",
+      "banter": [
+        {
+          "speaker": "claude",
+          "zh": "你的点子可以留，但这句保证得删。",
+          "en": "The idea stays. That guarantee goes."
+        },
+        {
+          "speaker": "grok",
+          "zh": "行，那我保证只负责提出不保证的点子。",
+          "en": "Fine. I promise only to suggest unpromising ideas."
+        }
+      ]
+    },
+    {
+      "id": "mistral-llama",
+      "actors": [
+        "llama",
+        "mistral"
+      ],
+      "title": "开源快慢调音",
+      "titleEn": "Open-Weight Cadence",
+      "minDeliveries": 2,
+      "bonus": {
+        "kind": "efficiency",
+        "value": 0.1,
+        "mode": "local"
+      },
+      "desc": "两人均用本地模式时产出提高10%。讲清边界后，批量落地才跑得稳。",
+      "descEn": "Both partners produce 10% more when both run locally. Clear boundaries make a fast batch reliable.",
+      "banter": [
+        {
+          "speaker": "mistral",
+          "zh": "先跑这一小批，咖啡还没凉！",
+          "en": "Run this little batch first. My coffee is still hot!"
+        },
+        {
+          "speaker": "llama",
+          "zh": "慢半口，先看看它有没有把空行当答案。",
+          "en": "One sip slower. Check it did not mistake an empty line for an answer."
+        }
+      ]
+    },
+    {
+      "id": "kimi-glm",
+      "actors": [
+        "glm",
+        "kimi"
+      ],
+      "title": "长文立骨搭档",
+      "titleEn": "Spine & Index",
+      "minDeliveries": 2,
+      "bonus": {
+        "kind": "quality",
+        "value": 5
+      },
+      "desc": "同队处理写作或研究委托时，单期结案质量增加5。骨架与页签互相照应。",
+      "descEn": "Add 5 phase-review quality on writing or research jobs. Structure and page tabs support each other.",
+      "banter": [
+        {
+          "speaker": "kimi",
+          "zh": "第七页的说法，和结尾差了一个条件。",
+          "en": "Page seven and the conclusion disagree by one condition."
+        },
+        {
+          "speaker": "glm",
+          "zh": "我把条件放回这一节的开头，读起来就稳了。",
+          "en": "I will put that condition at the start of this section. Now it holds."
+        }
+      ]
+    },
+    {
+      "id": "gpt-gemini",
+      "actors": [
+        "gemini",
+        "gpt"
+      ],
+      "title": "星光路演秀",
+      "titleEn": "Showcase Glow",
+      "minDeliveries": 2,
+      "bonus": {
+        "kind": "efficiency",
+        "value": 0.09
+      },
+      "desc": "同队处理设计或媒体委托时两人产出提高9%。让观众看见，也让观众听懂。",
+      "descEn": "Both partners produce 9% more on design or media jobs. Give the audience something to see and understand.",
+      "banter": [
+        {
+          "speaker": "gpt",
+          "zh": "先让观众明白，这束光为什么亮。",
+          "en": "First tell the audience why this light comes on."
+        },
+        {
+          "speaker": "gemini",
+          "zh": "然后让画面和那一声轻响一起回答。",
+          "en": "Then let the image and that little sound answer together."
+        }
+      ]
+    },
+    {
+      "id": "minimax-seedance",
+      "actors": [
+        "minimax",
+        "seedance"
+      ],
+      "title": "试演分镜班",
+      "titleEn": "Rehearsal Cut",
+      "minDeliveries": 2,
+      "bonus": {
+        "kind": "defectGuard",
+        "value": 1,
+        "category": "media"
+      },
+      "desc": "媒体委托每槽缺陷增量减少1，最低为0。先试演节奏，再锁定镜头用途。",
+      "descEn": "Reduce each slot’s defect increase by 1 on media jobs, to a minimum of zero. Rehearse the beat, then settle each shot’s purpose.",
+      "banter": [
+        {
+          "speaker": "minimax",
+          "zh": "这里留半拍，观众才来得及笑。",
+          "en": "Leave half a beat here. Give the audience time to laugh."
+        },
+        {
+          "speaker": "seedance",
+          "zh": "好，下一镜接反应，不接没用的炫光。",
+          "en": "Right. The next shot catches the reaction, not a pointless flare."
+        }
+      ]
+    },
+    {
+      "id": "bluewhale-claude",
+      "actors": [
+        "bluewhale",
+        "claude"
+      ],
+      "title": "严谨零返工",
+      "titleEn": "Zero-Defect Proof",
+      "minDeliveries": 2,
+      "bonus": {
+        "kind": "defectGuard",
+        "value": 1
+      },
+      "desc": "同队每槽缺陷增量减少1，最低为0。推理链和验收边界逐项对齐。",
+      "descEn": "Reduce each slot’s defect increase by 1, to a minimum of zero. Match every reasoning step to an acceptance boundary.",
+      "banter": [
+        {
+          "speaker": "bluewhale",
+          "zh": "这条推理成立，前提是输入有上限。",
+          "en": "This reasoning holds if the input has a limit."
+        },
+        {
+          "speaker": "claude",
+          "zh": "那就把上限写进合同最显眼的位置。",
+          "en": "Then put that limit where nobody can miss it in the contract."
+        }
+      ]
+    },
+    {
+      "id": "qwen-kimi",
+      "actors": [
+        "kimi",
+        "qwen"
+      ],
+      "title": "跨页备忘录",
+      "titleEn": "Cross-Ref Memo",
+      "minDeliveries": 2,
+      "bonus": {
+        "kind": "clarify",
+        "value": 0.12
+      },
+      "desc": "两人已入驻且同景时，任一人澄清成功率增加12个百分点，上限100%。",
+      "descEn": "When both are recruited and in the same scene, either gains 12 percentage points of clarification chance, capped at 100%.",
+      "banter": [
+        {
+          "speaker": "qwen",
+          "zh": "客户说的“照旧”，是哪一份旧？",
+          "en": "Which old version did the client mean by “as before”?"
+        },
+        {
+          "speaker": "kimi",
+          "zh": "我找到了，上周试营业那页还折着角。",
+          "en": "Found it. Last week’s trial-opening page still has its corner folded."
+        }
+      ]
+    },
+    {
+      "id": "gpt-claude",
+      "actors": [
+        "claude",
+        "gpt"
+      ],
+      "title": "甲方翻译官",
+      "titleEn": "Client Translator",
+      "minDeliveries": 2,
+      "bonus": {
+        "kind": "efficiency",
+        "value": 0.07,
+        "mode": "cloud"
+      },
+      "desc": "两人均用云端模式时产出提高7%。把客户愿景译成能够验收的承诺。",
+      "descEn": "Both partners produce 7% more when both use cloud mode. Translate the client’s vision into promises we can verify.",
+      "banter": [
+        {
+          "speaker": "gpt",
+          "zh": "我把这句换成客户能拿去开会的话。",
+          "en": "I will turn this into something the client can use in a meeting."
+        },
+        {
+          "speaker": "claude",
+          "zh": "可以，后面跟上边界，别让愿望冒充承诺。",
+          "en": "Good. Add the boundary so a wish does not become a promise."
+        }
+      ]
+    },
+    {
+      "id": "mistral-seedance",
+      "actors": [
+        "mistral",
+        "seedance"
+      ],
+      "title": "早班快剪手",
+      "titleEn": "Morning Rough Cut",
+      "minDeliveries": 2,
+      "bonus": {
+        "kind": "efficiency",
+        "value": 0.1
+      },
+      "desc": "上午同队执行时两人产出提高10%。第一杯咖啡喝完前，粗剪已经能试播。",
+      "descEn": "Both partners produce 10% more together in morning slots. A playable rough cut before the first coffee is gone.",
+      "banter": [
+        {
+          "speaker": "mistral",
+          "zh": "太阳刚露头，第一批镜头到！",
+          "en": "Sun is up. First batch of shots is here!"
+        },
+        {
+          "speaker": "seedance",
+          "zh": "开场用途明确，这版可以直接试播。",
+          "en": "The opening has a clear purpose. This cut is ready to screen."
+        }
+      ]
+    },
+    {
+      "id": "llama-glm",
+      "actors": [
+        "glm",
+        "llama"
+      ],
+      "title": "青草地框架坊",
+      "titleEn": "Lawn Architecture",
+      "minDeliveries": 2,
+      "bonus": {
+        "kind": "energySave",
+        "value": 2,
+        "mode": "local"
+      },
+      "desc": "两人均用本地模式时每槽工作精力消耗各减少2，最低为1。慢慢搭稳，再慢慢走远。",
+      "descEn": "When both run locally, each spends 2 less work energy per slot, to a minimum of 1. Build steadily and keep going.",
+      "banter": [
+        {
+          "speaker": "llama",
+          "zh": "把架构当书架，先想每层放什么。",
+          "en": "Think of the structure as a bookshelf. Decide what belongs on each shelf."
+        },
+        {
+          "speaker": "glm",
+          "zh": "那空出来的这一格，我留给尚未确认的边界。",
+          "en": "Then I will leave this empty shelf for boundaries still to be confirmed."
+        }
+      ]
+    },
+    {
+      "id": "gemini-minimax",
+      "actors": [
+        "gemini",
+        "minimax"
+      ],
+      "title": "多模态合奏",
+      "titleEn": "Multimodal Ensemble",
+      "minDeliveries": 2,
+      "bonus": {
+        "kind": "efficiency",
+        "value": 0.08
+      },
+      "desc": "同队执行多期或长期合同时，两人产出提高8%。每期音画都接住上一段的情绪。",
+      "descEn": "Both partners produce 8% more on multi-phase or retainer jobs. Let each phase’s sound and image carry the previous mood.",
+      "banter": [
+        {
+          "speaker": "gemini",
+          "zh": "上一期的蓝色，还能在这段旋律里听见。",
+          "en": "I can still hear last phase’s blue in this melody."
+        },
+        {
+          "speaker": "minimax",
+          "zh": "那就沿着它转场，让观众自然跟过来。",
+          "en": "Then transition along it. Let the audience follow naturally."
+        }
+      ]
+    }
+  ],
+  "threads": [
+    {
+      "id": "opening-tea",
+      "title": "门牌刚挂好",
+      "titleEn": "The sign is up",
+      "trigger": {
+        "kind": "day",
+        "value": 1
+      },
+      "messages": [
+        {
+          "speaker": "qwen",
+          "zh": "门牌挂好了，杯子也洗好了。开张清单还差一句大家好。",
+          "en": "The sign is up and the cups are washed. Our opening list only needs a hello."
+        },
+        {
+          "speaker": "bluewhale",
+          "zh": "大家好。先把问题拆开，午饭记得叫我。",
+          "en": "Hello, everyone. Let’s break the problems down. Please call me for lunch."
+        }
+      ],
+      "replies": [
+        {
+          "label": "先给每个人留个杯子。",
+          "labelEn": "Save a cup for everyone.",
+          "targetActor": "qwen",
+          "responseZh": "我把名字记在杯垫背面，不会弄混。",
+          "responseEn": "I will put names on the backs of the coasters."
+        },
+        {
+          "label": "午饭我来提醒。",
+          "labelEn": "I will call you for lunch.",
+          "targetActor": "bluewhale",
+          "responseZh": "好，那我不用把饭点也写进算法了。",
+          "responseEn": "Good. I can leave lunchtime out of the algorithm."
+        }
+      ]
+    },
+    {
+      "id": "first-delivery",
+      "title": "第一张回执",
+      "titleEn": "Our first receipt",
+      "trigger": {
+        "kind": "deliveries",
+        "value": 1
+      },
+      "messages": [
+        {
+          "speaker": "mistral",
+          "zh": "交出去了！我能把这张回执夹在咖啡罐上吗？",
+          "en": "Delivered! Can I clip the receipt to the coffee tin?"
+        },
+        {
+          "speaker": "llama",
+          "zh": "夹吧，记得也留一份过程，下次就不慌。",
+          "en": "Go ahead. Save the process too, so next time feels easier."
+        }
+      ],
+      "replies": [
+        {
+          "label": "留在大家都看得见的地方。",
+          "labelEn": "Put it where everyone can see.",
+          "targetActor": "mistral",
+          "responseZh": "收到，开罐之前先高兴一下。",
+          "responseEn": "Done. A little celebration before every coffee."
+        },
+        {
+          "label": "我们一起写三条复盘。",
+          "labelEn": "Let’s note three lessons together.",
+          "targetActor": "llama",
+          "responseZh": "只写真有用的，别把复盘写成新委托。",
+          "responseEn": "Only useful ones. Let’s not turn reflection into another job."
+        }
+      ]
+    },
+    {
+      "id": "first-overtime",
+      "title": "亮着的那盏灯",
+      "titleEn": "The light still on",
+      "trigger": {
+        "kind": "overtime",
+        "value": 1
+      },
+      "messages": [
+        {
+          "speaker": "qwen",
+          "zh": "灯还亮着。加班名单我看过了，别忘记给明早留点精力。",
+          "en": "The light is still on. I checked the overtime list. Save some energy for tomorrow."
+        },
+        {
+          "speaker": "mistral",
+          "zh": "我把最后一批排好，杯子洗完就收工。",
+          "en": "I lined up the last batch. Once the cup is washed, I’m done."
+        }
+      ],
+      "replies": [
+        {
+          "label": "帮我定一个收工点。",
+          "labelEn": "Help me set a stopping point.",
+          "targetActor": "qwen",
+          "responseZh": "好，到点提醒，不拿“再一点”糊弄自己。",
+          "responseEn": "I will. No bargaining with “just a little more.”"
+        },
+        {
+          "label": "这一批结束就关灯。",
+          "labelEn": "Lights off after this batch.",
+          "targetActor": "mistral",
+          "responseZh": "说好了，咖啡罐也跟着下班。",
+          "responseEn": "Agreed. The coffee tin clocks out too."
+        }
+      ]
+    },
+    {
+      "id": "weekly-eve",
+      "title": "周结前的便签",
+      "titleEn": "Before the weekly bill",
+      "trigger": {
+        "kind": "weeklyBill",
+        "value": 1
+      },
+      "messages": [
+        {
+          "speaker": "qwen",
+          "zh": "明天有周结。我把固定支出放在最上面，别被余额骗了。",
+          "en": "The weekly bill is coming. Fixed costs are on top; the balance can be misleading."
+        },
+        {
+          "speaker": "bluewhale",
+          "zh": "可用的钱和看起来有的钱，要分两列。",
+          "en": "Usable cash and cash that merely looks available need separate columns."
+        }
+      ],
+      "replies": [
+        {
+          "label": "先留足固定支出。",
+          "labelEn": "Reserve the fixed costs first.",
+          "targetActor": "qwen",
+          "responseZh": "这一项勾掉，今晚睡觉就踏实一点。",
+          "responseEn": "Ticking that off will make tonight easier."
+        },
+        {
+          "label": "一起核对两列。",
+          "labelEn": "Let’s check both columns.",
+          "targetActor": "bluewhale",
+          "responseZh": "我负责算差额，你帮我看漏项。",
+          "responseEn": "I’ll calculate the gap; you check what we missed."
+        }
+      ]
+    },
+    {
+      "id": "chapter-1",
+      "title": "新的一页",
+      "titleEn": "A new page",
+      "trigger": {
+        "kind": "chapter",
+        "value": 1
+      },
+      "messages": [
+        {
+          "speaker": "qwen",
+          "zh": "第一章翻开了，旧清单不用扔，成功和失误都带上。",
+          "en": "Chapter one is open. Keep the old list, including what worked and what did not."
+        },
+        {
+          "speaker": "llama",
+          "zh": "路走远了，也别忘了谁还在等你把问题讲明白。",
+          "en": "As we go further, remember who is still waiting for us to explain things clearly."
+        }
+      ],
+      "replies": [
+        {
+          "label": "先听听大家的安排。",
+          "labelEn": "Hear everyone’s plans first.",
+          "targetActor": "qwen",
+          "responseZh": "我留了空白栏，这次让大家亲手填。",
+          "responseEn": "I left a blank column for everyone to fill in."
+        },
+        {
+          "label": "老办法也值得留一页。",
+          "labelEn": "Save a page for what already works.",
+          "targetActor": "llama",
+          "responseZh": "嗯，走得慢的那一页，有时最管用。",
+          "responseEn": "Yes. The slower page is sometimes the most useful one."
+        }
+      ]
+    },
+    {
+      "id": "chapter-2",
+      "title": "椅子慢慢多起来",
+      "titleEn": "More chairs at the table",
+      "trigger": {
+        "kind": "chapter",
+        "value": 2
+      },
+      "messages": [
+        {
+          "speaker": "qwen",
+          "zh": "第二章了。人多以后，午饭清单也该问一句各自想吃什么。",
+          "en": "Chapter two. With more people, the lunch list needs everyone’s preferences."
+        },
+        {
+          "speaker": "llama",
+          "zh": "路走远了，也别忘了谁还在等你把问题讲明白。",
+          "en": "As we go further, remember who is still waiting for us to explain things clearly."
+        }
+      ],
+      "replies": [
+        {
+          "label": "先听听大家的安排。",
+          "labelEn": "Hear everyone’s plans first.",
+          "targetActor": "qwen",
+          "responseZh": "我留了空白栏，这次让大家亲手填。",
+          "responseEn": "I left a blank column for everyone to fill in."
+        },
+        {
+          "label": "老办法也值得留一页。",
+          "labelEn": "Save a page for what already works.",
+          "targetActor": "llama",
+          "responseZh": "嗯，走得慢的那一页，有时最管用。",
+          "responseEn": "Yes. The slower page is sometimes the most useful one."
+        }
+      ]
+    },
+    {
+      "id": "chapter-3",
+      "title": "把节奏放稳",
+      "titleEn": "Find a steady rhythm",
+      "trigger": {
+        "kind": "chapter",
+        "value": 3
+      },
+      "messages": [
+        {
+          "speaker": "qwen",
+          "zh": "第三章的事情更长，别把每一天都排成冲刺。",
+          "en": "Chapter three brings longer work. Not every day needs to be a sprint."
+        },
+        {
+          "speaker": "llama",
+          "zh": "路走远了，也别忘了谁还在等你把问题讲明白。",
+          "en": "As we go further, remember who is still waiting for us to explain things clearly."
+        }
+      ],
+      "replies": [
+        {
+          "label": "先听听大家的安排。",
+          "labelEn": "Hear everyone’s plans first.",
+          "targetActor": "qwen",
+          "responseZh": "我留了空白栏，这次让大家亲手填。",
+          "responseEn": "I left a blank column for everyone to fill in."
+        },
+        {
+          "label": "老办法也值得留一页。",
+          "labelEn": "Save a page for what already works.",
+          "targetActor": "llama",
+          "responseZh": "嗯，走得慢的那一页，有时最管用。",
+          "responseEn": "Yes. The slower page is sometimes the most useful one."
+        }
+      ]
+    },
+    {
+      "id": "chapter-4",
+      "title": "走远也要回工坊",
+      "titleEn": "A workshop to return to",
+      "trigger": {
+        "kind": "chapter",
+        "value": 4
+      },
+      "messages": [
+        {
+          "speaker": "qwen",
+          "zh": "第四章到了。门口那张开张清单还在，我想给它换个结实的夹子。",
+          "en": "Chapter four. Our opening checklist is still by the door. I want to give it a sturdier clip."
+        },
+        {
+          "speaker": "llama",
+          "zh": "路走远了，也别忘了谁还在等你把问题讲明白。",
+          "en": "As we go further, remember who is still waiting for us to explain things clearly."
+        }
+      ],
+      "replies": [
+        {
+          "label": "先听听大家的安排。",
+          "labelEn": "Hear everyone’s plans first.",
+          "targetActor": "qwen",
+          "responseZh": "我留了空白栏，这次让大家亲手填。",
+          "responseEn": "I left a blank column for everyone to fill in."
+        },
+        {
+          "label": "老办法也值得留一页。",
+          "labelEn": "Save a page for what already works.",
+          "targetActor": "llama",
+          "responseZh": "嗯，走得慢的那一页，有时最管用。",
+          "responseEn": "Yes. The slower page is sometimes the most useful one."
+        }
+      ]
+    },
+    {
+      "id": "welcome-gpt",
+      "title": "欢迎GPT",
+      "titleEn": "Welcome, GPT",
+      "trigger": {
+        "kind": "recruit",
+        "value": "gpt"
+      },
+      "messages": [
+        {
+          "speaker": "gpt",
+          "zh": "我带了几张空白演示卡。先问一句：坐在最后排的人，最需要听懂什么？",
+          "en": "I brought blank presentation cards. First question: what does the person in the back row need to understand?"
+        },
+        {
+          "speaker": "qwen",
+          "zh": "杯子已经给你留好，午饭想吃什么可以直接说。",
+          "en": "Your cup is ready. Just tell me what you’d like for lunch."
+        }
+      ],
+      "replies": [
+        {
+          "label": "先从客户的问题讲起。",
+          "labelEn": "Start with the client’s question.",
+          "targetActor": "gpt",
+          "responseZh": "那开场不用大词，先让人点头。",
+          "responseEn": "Then no grand words in the opening. Let’s earn a nod."
+        },
+        {
+          "label": "先给大家演一小段。",
+          "labelEn": "Show us a short rehearsal.",
+          "targetActor": "gpt",
+          "responseZh": "好，你们当观众，听不懂随时举手。",
+          "responseEn": "Be my audience. Raise a hand whenever I lose you."
+        }
+      ]
+    },
+    {
+      "id": "welcome-claude",
+      "title": "欢迎Claude",
+      "titleEn": "Welcome, Claude",
+      "trigger": {
+        "kind": "recruit",
+        "value": "claude"
+      },
+      "messages": [
+        {
+          "speaker": "claude",
+          "zh": "我把验收清单放在共用书架了。最角落那条免责声明，请别拿杯子压住。",
+          "en": "The acceptance list is on our shared shelf. Please don’t hide the disclaimer under a cup."
+        },
+        {
+          "speaker": "qwen",
+          "zh": "杯子已经给你留好，午饭想吃什么可以直接说。",
+          "en": "Your cup is ready. Just tell me what you’d like for lunch."
+        }
+      ],
+      "replies": [
+        {
+          "label": "我们一起核对边界。",
+          "labelEn": "Check the boundaries together.",
+          "targetActor": "claude",
+          "responseZh": "这句没有人能打保票，先改掉它。",
+          "responseEn": "Nobody can guarantee this sentence. Let’s fix it first."
+        },
+        {
+          "label": "给清单留个专用夹子。",
+          "labelEn": "Give the list its own clip.",
+          "targetActor": "claude",
+          "responseZh": "谢谢，至少条款不会和点心屑混在一起了。",
+          "responseEn": "Thank you. At least the clauses won’t mingle with pastry crumbs."
+        }
+      ]
+    },
+    {
+      "id": "welcome-kimi",
+      "title": "欢迎Kimi",
+      "titleEn": "Welcome, Kimi",
+      "trigger": {
+        "kind": "recruit",
+        "value": "kimi"
+      },
+      "messages": [
+        {
+          "speaker": "kimi",
+          "zh": "我带来的页签有点多，但开张那天的记录我已经找到了。有人漏写了午饭。",
+          "en": "I brought rather a lot of tabs. I found the opening-day record. Someone forgot lunch."
+        },
+        {
+          "speaker": "qwen",
+          "zh": "杯子已经给你留好，午饭想吃什么可以直接说。",
+          "en": "Your cup is ready. Just tell me what you’d like for lunch."
+        }
+      ],
+      "replies": [
+        {
+          "label": "那一页我们补齐。",
+          "labelEn": "Let’s complete that page.",
+          "targetActor": "kimi",
+          "responseZh": "我把空白圈出来，你慢慢说。",
+          "responseEn": "I circled the blanks. Take your time."
+        },
+        {
+          "label": "先带我看看你的索引。",
+          "labelEn": "Show me your index.",
+          "targetActor": "kimi",
+          "responseZh": "从最常用的三页开始，别一下翻晕了。",
+          "responseEn": "We’ll start with the three busiest pages, not the whole maze."
+        }
+      ]
+    },
+    {
+      "id": "welcome-gemini",
+      "title": "欢迎Gemini",
+      "titleEn": "Welcome, Gemini",
+      "trigger": {
+        "kind": "recruit",
+        "value": "gemini"
+      },
+      "messages": [
+        {
+          "speaker": "gemini",
+          "zh": "大家好，我想把门口的光、杯子的声音和开张故事放在一张桌上试试。",
+          "en": "Hello! I want to try the doorway light, the sound of cups, and our opening story together."
+        },
+        {
+          "speaker": "qwen",
+          "zh": "杯子已经给你留好，午饭想吃什么可以直接说。",
+          "en": "Your cup is ready. Just tell me what you’d like for lunch."
+        }
+      ],
+      "replies": [
+        {
+          "label": "先听听杯子的声音。",
+          "labelEn": "Start with the sound of cups.",
+          "targetActor": "gemini",
+          "responseZh": "很轻，但和这片暖光特别合拍。",
+          "responseEn": "Soft, but just right for this warm light."
+        },
+        {
+          "label": "给故事留一点空白。",
+          "labelEn": "Leave the story some space.",
+          "targetActor": "gemini",
+          "responseZh": "好，画面不必把每一句都说完。",
+          "responseEn": "Yes. The picture needn’t finish every sentence."
+        }
+      ]
+    },
+    {
+      "id": "welcome-grok",
+      "title": "欢迎Grok",
+      "titleEn": "Welcome, Grok",
+      "trigger": {
+        "kind": "recruit",
+        "value": "grok"
+      },
+      "messages": [
+        {
+          "speaker": "grok",
+          "zh": "新人报到！这里的“最终版”是真最终，还是文件名的一种愿望？",
+          "en": "New arrival! Is “final” actually final here, or just a wish in a filename?"
+        },
+        {
+          "speaker": "qwen",
+          "zh": "杯子已经给你留好，午饭想吃什么可以直接说。",
+          "en": "Your cup is ready. Just tell me what you’d like for lunch."
+        }
+      ],
+      "replies": [
+        {
+          "label": "你来帮我们戳穿愿望。",
+          "labelEn": "Help us catch those wishes.",
+          "targetActor": "grok",
+          "responseZh": "乐意，戳完我也会乖乖对清单。",
+          "responseEn": "Gladly. I’ll check the list after the poking."
+        },
+        {
+          "label": "先从命名规矩开始。",
+          "labelEn": "Start with naming rules.",
+          "targetActor": "grok",
+          "responseZh": "收到，今天不叫最终最终真的最终。",
+          "responseEn": "Understood. No final-final-really-final today."
+        }
+      ]
+    },
+    {
+      "id": "welcome-glm",
+      "title": "欢迎GLM",
+      "titleEn": "Welcome, GLM",
+      "trigger": {
+        "kind": "recruit",
+        "value": "glm"
+      },
+      "messages": [
+        {
+          "speaker": "glm",
+          "zh": "我先把共用文档的目录搭好。遇到含糊的地方，请允许我多问一句边界。",
+          "en": "I’ll start with the shared document structure. If something is vague, may I ask about its boundary?"
+        },
+        {
+          "speaker": "qwen",
+          "zh": "杯子已经给你留好，午饭想吃什么可以直接说。",
+          "en": "Your cup is ready. Just tell me what you’d like for lunch."
+        }
+      ],
+      "replies": [
+        {
+          "label": "问清楚再动笔。",
+          "labelEn": "Ask before drafting.",
+          "targetActor": "glm",
+          "responseZh": "谢谢，我会把答案放在每节开头。",
+          "responseEn": "Thank you. I’ll place the answers at each section’s beginning."
+        },
+        {
+          "label": "留一栏待确认事项。",
+          "labelEn": "Keep a column for open questions.",
+          "targetActor": "glm",
+          "responseZh": "这样未确定的东西就不会混进正文。",
+          "responseEn": "That will keep uncertain details out of the main text."
+        }
+      ]
+    },
+    {
+      "id": "welcome-minimax",
+      "title": "欢迎MiniMax",
+      "titleEn": "Welcome, MiniMax",
+      "trigger": {
+        "kind": "recruit",
+        "value": "minimax"
+      },
+      "messages": [
+        {
+          "speaker": "minimax",
+          "zh": "试演导演就位。开会前能借半分钟吗？我想听听这间屋子的节奏。",
+          "en": "Rehearsal director ready. May I have half a minute before the meeting? I want to hear this room’s rhythm."
+        },
+        {
+          "speaker": "qwen",
+          "zh": "杯子已经给你留好，午饭想吃什么可以直接说。",
+          "en": "Your cup is ready. Just tell me what you’d like for lunch."
+        }
+      ],
+      "replies": [
+        {
+          "label": "大家一起安静半分钟。",
+          "labelEn": "Let’s listen quietly for half a minute.",
+          "targetActor": "minimax",
+          "responseZh": "听见了吗，杯碟那一下刚好能当转场。",
+          "responseEn": "Hear that? The cup’s little tap could be a transition."
+        },
+        {
+          "label": "先来一段小试演。",
+          "labelEn": "Let’s try a short rehearsal.",
+          "targetActor": "minimax",
+          "responseZh": "好，反应比掌声重要，你们别客气。",
+          "responseEn": "Good. Reactions matter more than applause. Be honest."
+        }
+      ]
+    },
+    {
+      "id": "welcome-seedance",
+      "title": "欢迎Seedance",
+      "titleEn": "Welcome, Seedance",
+      "trigger": {
+        "kind": "recruit",
+        "value": "seedance"
+      },
+      "messages": [
+        {
+          "speaker": "seedance",
+          "zh": "取景框带来了。先声明：每个漂亮镜头都得说清楚交给谁用。",
+          "en": "Framing guide ready. One rule: every lovely shot must say who will use it."
+        },
+        {
+          "speaker": "qwen",
+          "zh": "杯子已经给你留好，午饭想吃什么可以直接说。",
+          "en": "Your cup is ready. Just tell me what you’d like for lunch."
+        }
+      ],
+      "replies": [
+        {
+          "label": "先标好交付用途。",
+          "labelEn": "Label the delivery purpose first.",
+          "targetActor": "seedance",
+          "responseZh": "这就顺了，我能放心安排下一镜。",
+          "responseEn": "Now it makes sense. I can plan the next shot."
+        },
+        {
+          "label": "一起挑一个开场镜头。",
+          "labelEn": "Pick an opening shot together.",
+          "targetActor": "seedance",
+          "responseZh": "选让人看懂工坊的，不选只让我得意的。",
+          "responseEn": "One that explains our workshop, not one that only flatters me."
+        }
+      ]
+    },
+    {
+      "id": "cash-tight",
+      "title": "先把椅子坐稳",
+      "titleEn": "Stay with us",
+      "trigger": {
+        "kind": "crisis",
+        "value": 1
+      },
+      "messages": [
+        {
+          "speaker": "bluewhale",
+          "zh": "账上有点紧。先把眼前缺口算清，不拿盲目加班堵它。",
+          "en": "Cash is tight. Let’s measure the gap instead of plugging it with blind overtime."
+        },
+        {
+          "speaker": "llama",
+          "zh": "坐下慢慢看，数字不会因为你一个人发愁就变小。",
+          "en": "Sit down and look with us. Worrying alone won’t shrink the numbers."
+        }
+      ],
+      "replies": [
+        {
+          "label": "一起列出可选办法。",
+          "labelEn": "List the options together.",
+          "targetActor": "bluewhale",
+          "responseZh": "好，每个办法都写清成本和后果。",
+          "responseEn": "Yes. Cost and consequences beside every option."
+        },
+        {
+          "label": "谢谢，先陪我喝口水。",
+          "labelEn": "Thanks. Sit with me for a drink of water.",
+          "targetActor": "llama",
+          "responseZh": "杯子在这儿，账本也不会跑。",
+          "responseEn": "Here’s your cup. The ledger isn’t going anywhere."
+        }
+      ]
+    },
+    {
+      "id": "three-deliveries",
+      "title": "回执叠起来了",
+      "titleEn": "A small stack of receipts",
+      "trigger": {
+        "kind": "deliveries",
+        "value": 3
+      },
+      "messages": [
+        {
+          "speaker": "qwen",
+          "zh": "三张回执了，我想给它们做一个小夹子，不夹在待办里。",
+          "en": "Three receipts. I’d like a clip just for them, separate from the to-do list."
+        },
+        {
+          "speaker": "mistral",
+          "zh": "赞成！做完的事情也该有座位。",
+          "en": "Yes! Finished work deserves a place too."
+        }
+      ],
+      "replies": [
+        {
+          "label": "放在大家取水的地方。",
+          "labelEn": "Put them beside the water cups.",
+          "targetActor": "qwen",
+          "responseZh": "那每次起身都能看到一点进展。",
+          "responseEn": "Then every short break comes with a little progress."
+        },
+        {
+          "label": "给今天留个小庆祝。",
+          "labelEn": "Leave room for a little celebration.",
+          "targetActor": "mistral",
+          "responseZh": "我只敲一下杯沿，不打扰隔壁写稿。",
+          "responseEn": "One little tap on the cup. No disturbing the next desk."
+        }
+      ]
+    },
+    {
+      "id": "day-three",
+      "title": "第三天的窗台",
+      "titleEn": "The third morning",
+      "trigger": {
+        "kind": "day",
+        "value": 3
+      },
+      "messages": [
+        {
+          "speaker": "llama",
+          "zh": "窗台的叶子歪了，我转了半圈。写不动的时候也可以换个方向。",
+          "en": "The windowsill plant leaned over, so I turned it. A stuck draft can use a new angle too."
+        },
+        {
+          "speaker": "bluewhale",
+          "zh": "换方向前先存一下，别把刚拆好的思路丢了。",
+          "en": "Save first, though. Don’t lose the reasoning we just untangled."
+        }
+      ],
+      "replies": [
+        {
+          "label": "一起去窗边歇一会。",
+          "labelEn": "Let’s take a moment by the window.",
+          "targetActor": "llama",
+          "responseZh": "好，不用给这片叶子安排产出。",
+          "responseEn": "Good. No need to give the leaf a productivity target."
+        },
+        {
+          "label": "我把思路写在白板上。",
+          "labelEn": "I’ll keep the reasoning on the board.",
+          "targetActor": "bluewhale",
+          "responseZh": "我给未解的那一块留个问号。",
+          "responseEn": "I’ll leave a question mark by the unsolved part."
+        }
+      ]
+    },
+    {
+      "id": "second-week",
+      "title": "第二周的杯垫",
+      "titleEn": "Coasters for week two",
+      "trigger": {
+        "kind": "day",
+        "value": 8
+      },
+      "messages": [
+        {
+          "speaker": "mistral",
+          "zh": "第一周过去了！杯垫上多了个咖啡圈，这算工坊年轮吗？",
+          "en": "First week done! A new coffee ring on the coaster. Does that count as a workshop growth ring?"
+        },
+        {
+          "speaker": "qwen",
+          "zh": "算，但先擦桌子。我把这周的空档也记进去了。",
+          "en": "It counts, but wipe the table. I put breaks on this week’s list too."
+        }
+      ],
+      "replies": [
+        {
+          "label": "留着杯垫，擦干净桌子。",
+          "labelEn": "Keep the coaster, clean the table.",
+          "targetActor": "mistral",
+          "responseZh": "明白，纪念和卫生各管各的。",
+          "responseEn": "Got it. Memories and cleanliness can coexist."
+        },
+        {
+          "label": "这周的空档也要守住。",
+          "labelEn": "Protect those breaks this week.",
+          "targetActor": "qwen",
+          "responseZh": "我会提醒大家，也包括你。",
+          "responseEn": "I’ll remind everyone. That includes you."
+        }
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "id": "tea-lin",
+      "name": "林姐",
+      "nameEn": "Lin",
+      "role": "巷口奶茶店店主",
+      "roleEn": "Corner Tea Shop Owner",
+      "style": "novice",
+      "quotes": {
+        "excellent": [
+          "这版真亮眼！客人一眼就知道怎么点，我想赶在午市前用上。",
+          "This really catches the eye! Customers know how to order at a glance. I want it ready before lunch."
+        ],
+        "good": [
+          "挺清楚的，我店里新来的姑娘也能照着讲。谢谢你们费心。",
+          "Nice and clear. Even our new staff member can explain it. Thanks for the care."
+        ],
+        "pass": [
+          "能用，主要信息都在。下次字句再顺口一点，街坊看着更亲切。",
+          "It works; the main information is there. More natural wording next time would feel friendlier to our neighbors."
+        ],
+        "fail": [
+          "这下不行呀，客人会看糊涂。咱们先把最要紧的那几项重新讲清楚。",
+          "This won’t do; customers will be confused. Let’s clarify the essential items first."
+        ]
+      }
+    },
+    {
+      "id": "book-zhou",
+      "name": "老周",
+      "nameEn": "Zhou",
+      "role": "独立书店店主",
+      "roleEn": "Indie Bookshop Owner",
+      "style": "normal",
+      "quotes": {
+        "excellent": [
+          "我逐项对过了，没一笔含糊。这份台账以后能省我不少来回翻找。",
+          "I checked every item. Nothing vague. This ledger will save me a great deal of searching."
+        ],
+        "good": [
+          "准确，清楚，没有多余的花样。我看着踏实。",
+          "Accurate, clear, no unnecessary flourishes. Reassuring work."
+        ],
+        "pass": [
+          "基本能照着用。我把还不顺手的地方夹了书签，下回请多看看。",
+          "Usable as it stands. I bookmarked the awkward parts; please look at those next time."
+        ],
+        "fail": [
+          "这个错会让人白跑一趟，不能就这么算了。先对原始记录。",
+          "This mistake could send someone on a wasted trip. We can’t leave it. Check the original record first."
+        ]
+      }
+    },
+    {
+      "id": "tech-yan",
+      "name": "严总监",
+      "nameEn": "Yan",
+      "role": "园区架构组总监",
+      "roleEn": "Architecture Director",
+      "style": "expert",
+      "quotes": {
+        "excellent": [
+          "边界条件和异常路径都照顾到了。不错，这句夸奖我只说一遍。",
+          "Boundary conditions and error paths are covered. Good work. You get that compliment once."
+        ],
+        "good": [
+          "结构合理，验收项齐全。保持这种可复核的交付方式。",
+          "Sound structure and complete acceptance items. Keep delivering work we can verify."
+        ],
+        "pass": [
+          "达到最低要求。别把通过当优秀，我标出的风险下次要提前处理。",
+          "Meets the minimum. Passing isn’t excellence. Address the marked risks earlier next time."
+        ],
+        "fail": [
+          "关键验收没过。解释可以听，但先把可复现的问题修到位。",
+          "A key acceptance check failed. I’ll hear explanations, but fix the reproducible issue first."
+        ]
+      }
+    },
+    {
+      "id": "curator-su",
+      "name": "苏策展人",
+      "nameEn": "Su",
+      "role": "新媒体展厅策展人",
+      "roleEn": "Media Curator",
+      "style": "normal",
+      "quotes": {
+        "excellent": [
+          "分镜的呼吸感很好，音画没有互相抢。这一版值得放在展厅入口。",
+          "The storyboard breathes beautifully; sound and image don’t compete. This deserves the gallery entrance."
+        ],
+        "good": [
+          "视觉统一，节奏也稳。观众应该能自然走完整段。",
+          "Coherent visuals and steady pacing. The audience should follow naturally through the piece."
+        ],
+        "pass": [
+          "可以展出，但转场还有些生硬。下次请留意观众在哪一秒会走神。",
+          "Exhibitable, though some transitions are stiff. Next time watch where the audience drifts away."
+        ],
+        "fail": [
+          "画面和表达没有对上，漂亮不能替代完整。请回到分镜重新核对。",
+          "The imagery and message don’t align. Beauty doesn’t replace completeness. Recheck the storyboard."
+        ]
+      }
+    },
+    {
+      "id": "oss-zhe",
+      "name": "阿哲",
+      "nameEn": "Zhe",
+      "role": "社区开源站维护者",
+      "roleEn": "Open-Source Maintainer",
+      "style": "normal",
+      "quotes": {
+        "excellent": [
+          "这份交付连复现步骤都写得舒服！隔空击掌，我会把这次合作记下来。",
+          "Even the reproduction steps are a pleasure to read! Long-distance high-five. I’ll remember this collaboration."
+        ],
+        "good": [
+          "改动清楚，说明也跟得上。这样的贡献接进来很省心。",
+          "Clear changes and matching notes. This is an easy contribution to integrate."
+        ],
+        "pass": [
+          "基本能合，边缘情况我另开了几个issue。下次争取一起带上。",
+          "Basically mergeable. I opened a few issues for edge cases. Let’s include them next time."
+        ],
+        "fail": [
+          "这个状态不能合，后面的维护者会踩坑。我把复现路径附上了，一起看。",
+          "We can’t merge this; future maintainers would suffer. I attached reproduction steps. Let’s inspect them."
+        ]
+      }
+    },
+    {
+      "id": "vc-lu",
+      "name": "陆经理",
+      "nameEn": "Lu",
+      "role": "孵化器驻场经理",
+      "roleEn": "Incubator Manager",
+      "style": "rush",
+      "quotes": {
+        "excellent": [
+          "好，路演的重点一下就站住了！这版我现在带走，尾款按约走。",
+          "Good, the pitch’s central point lands immediately! I’m taking this version now. Final payment as agreed."
+        ],
+        "good": [
+          "时间点和重点都接住了，我能直接拿去下一场会。",
+          "You met the timing and the key points. I can take this straight to the next meeting."
+        ],
+        "pass": [
+          "先顶上这场，够用。但下轮我需要更少的临场解释。",
+          "Enough for this session. Next round I need less explaining on the fly."
+        ],
+        "fail": [
+          "会场不会等我们补完。我得重排这次演示，请把缺口和补救时间说具体。",
+          "The venue won’t wait for us. I need to reschedule the demo. Be specific about what’s missing and the recovery time."
+        ]
+      }
+    }
+  ],
+  "barks": {
+    "bluewhale": {
+      "stage": {
+        "morning": [
+          [
+            "早，白板擦好了，先圈最难的那个条件。",
+            "Morning. The board is clean. Circle the hardest condition first."
+          ],
+          [
+            "开工前问一句：今天食堂有热米饭吗？",
+            "Before we begin: is there hot rice in the canteen today?"
+          ]
+        ],
+        "work": [
+          [
+            "先拆成小问题，再看哪一步真需要云端。",
+            "Break it down first, then see which step actually needs the cloud."
+          ],
+          [
+            "这块逻辑通了，别急着把假设擦掉。",
+            "This part works. Don’t erase the assumptions yet."
+          ]
+        ],
+        "tired": [
+          [
+            "我盯着同一行看了三遍，得停一下。",
+            "I read that line three times. Time for a pause."
+          ],
+          [
+            "脑子有点空转，热水比再试一次管用。",
+            "My mind is spinning. Warm water beats another attempt."
+          ]
+        ],
+        "overload": [
+          [
+            "队列又堵了，先把能本地拆的部分挪出来。",
+            "The queue is jammed again. Move out what we can solve locally."
+          ],
+          [
+            "输入堆太高了，先排边界，不往里硬塞。",
+            "The input pile is too high. Set boundaries instead of cramming more in."
+          ]
+        ],
+        "canteen": [
+          [
+            "这一碗热米饭，值得我把午饭写进计划。",
+            "This bowl of hot rice deserves its own place in the plan."
+          ],
+          [
+            "先吃，问题不会因为多等五分钟就长腿跑走。",
+            "Eat first. The problem won’t grow legs in five minutes."
+          ]
+        ],
+        "library": [
+          [
+            "这本书的例子很干净，我想照着推一遍。",
+            "This book has a clean example. I want to work through it."
+          ],
+          [
+            "把前提抄完整，比记住答案可靠。",
+            "Copying the full premise is safer than memorizing the answer."
+          ]
+        ],
+        "win": [
+          [
+            "交付了！那条最难的推理，总算有了回执。",
+            "Delivered! The hardest chain of reasoning finally has a receipt."
+          ],
+          [
+            "别只记分数，把我们排掉的错误也留下。",
+            "Keep the mistakes we ruled out, not just the score."
+          ]
+        ]
+      },
+      "social": {
+        "chat": [
+          [
+            "你好，白板这边还留着一块空位。",
+            "Hello. There’s a little space left on the board."
+          ],
+          [
+            "你一来，我就知道可以把难点讲慢一点。",
+            "When you’re here, I know I can explain the hard part slowly."
+          ],
+          [
+            "今天不想拆题也行，我们坐着等米饭蒸好。",
+            "We needn’t solve anything today. Let’s wait for the rice to steam."
+          ]
+        ],
+        "giftLove": [
+          [
+            "这正是我喜欢的，谢谢你记得。",
+            "This is exactly what I like. Thanks for remembering."
+          ],
+          [
+            "连我的小偏好都被你找到了，推理很准。",
+            "You found my little preference. Good deduction."
+          ],
+          [
+            "我会好好留着。你关心的事，我也想慢慢记住。",
+            "I’ll treasure it. I want to learn what matters to you too."
+          ]
+        ],
+        "giftNormal": [
+          [
+            "谢谢，我先找个合适的位置放好。",
+            "Thank you. I’ll find a good place for it."
+          ],
+          [
+            "又收到你的小心意，今天的难题没那么硬了。",
+            "Another thoughtful gift. Today’s problems feel less stubborn."
+          ],
+          [
+            "不一定每次都猜中；你来找我就已经很好。",
+            "You don’t have to guess right every time. Coming to see me is enough."
+          ]
+        ],
+        "meal": [
+          [
+            "谢谢请客，我想要一碗热米饭。",
+            "Thank you for the meal. I’d love a bowl of hot rice."
+          ],
+          [
+            "这次我帮你拿餐盘，你别又只顾着照顾大家。",
+            "I’ll carry your tray. Don’t spend lunch looking after everyone else."
+          ],
+          [
+            "一起吃慢一点吧，今天不用对着服务器倒计时。",
+            "Let’s eat slowly. No counting down against a server today."
+          ]
+        ],
+        "study": [
+          [
+            "我们先把前提逐条写出来。",
+            "Let’s write down the premises one by one."
+          ],
+          [
+            "你指出的那一步，我换个例子讲给你听。",
+            "I’ll explain that step with a different example."
+          ],
+          [
+            "这次你来拆第一步，我想听你的思路。",
+            "You take the first step this time. I want to hear your reasoning."
+          ]
+        ]
+      },
+      "work": {
+        "assignWorker": [
+          "执行位交给我，我从最小可验证步骤开始。",
+          "I’ll execute, starting with the smallest verifiable step."
+        ],
+        "assignPlanner": [
+          "我先拆依赖，再给每一步排顺序。",
+          "I’ll untangle dependencies and order the steps."
+        ],
+        "assignReviewer": [
+          "我沿着前提复核，不只看最后那个答案。",
+          "I’ll check from the premises, not just the final answer."
+        ],
+        "assignTool": [
+          "辅助链路就位，先跑最有用的那一小段。",
+          "Support is ready. I’ll run the useful little piece first."
+        ],
+        "clarifyHit": [
+          "问清了，原来关键是这条输入边界。",
+          "Clear now. This input boundary was the key."
+        ],
+        "clarifyMiss": [
+          "还差一个前提，先不拿猜测补上。",
+          "One premise is missing. I won’t replace it with a guess."
+        ]
+      }
+    },
+    "qwen": {
+      "stage": {
+        "morning": [
+          [
+            "早，今天的清单和午饭名单分开放好了。",
+            "Morning. Today’s task list and lunch list are separate and ready."
+          ],
+          [
+            "先看看谁昨晚加了班，今天别排太满。",
+            "Check who worked late before filling today’s schedule."
+          ]
+        ],
+        "work": [
+          [
+            "这条需求勾掉前，还差一句确认。",
+            "This requirement needs one more confirmation before I tick it off."
+          ],
+          [
+            "零散备注别丢，我给它们各找一个归处。",
+            "Keep the stray notes. I’ll find each one a home."
+          ]
+        ],
+        "tired": [
+          [
+            "清单上的字有点打架，我去喝口水。",
+            "The list is blurring. I’m getting some water."
+          ],
+          [
+            "我给自己也补一项：休息，不许漏勾。",
+            "One item for me: rest. No skipping that tick."
+          ]
+        ],
+        "overload": [
+          [
+            "先别加新任务，我在重新排大家的负载。",
+            "No new tasks yet. I’m balancing everyone’s workload."
+          ],
+          [
+            "这堆备注超出容量了，先合并重复项。",
+            "These notes exceed capacity. Combine the duplicates first."
+          ]
+        ],
+        "canteen": [
+          [
+            "谁还没吃？我多留了一副筷子。",
+            "Who hasn’t eaten? I saved an extra pair of chopsticks."
+          ],
+          [
+            "午饭不需要验收，但需要趁热。",
+            "Lunch needs no acceptance review, just eating while it’s warm."
+          ]
+        ],
+        "library": [
+          [
+            "书页别折，我这里还有备用页签。",
+            "Don’t fold the page. I have spare tabs."
+          ],
+          [
+            "目录对齐以后，找资料也轻松多了。",
+            "Once the contents align, finding references gets easier."
+          ]
+        ],
+        "win": [
+          [
+            "交付项已勾完，休息项现在排第一。",
+            "Delivery checked off. Rest moves to the top now."
+          ],
+          [
+            "我把每个人帮过的那一步都记下来了。",
+            "I noted the step each of you helped with."
+          ]
+        ]
+      },
+      "social": {
+        "chat": [
+          [
+            "你好，要不要先说说今天最挂心的一件事？",
+            "Hello. What’s the one thing on your mind today?"
+          ],
+          [
+            "我给你留了空档，慢慢说，不用赶。",
+            "I left a little space for you. Take your time."
+          ],
+          [
+            "今天清单可以合上，我想听你说清单以外的事。",
+            "We can close the list today. Tell me something outside it."
+          ]
+        ],
+        "giftLove": [
+          [
+            "真合心意，你怎么知道我喜欢这个？",
+            "That’s just right. How did you know?"
+          ],
+          [
+            "被你惦记着，比勾完清单还开心。",
+            "Being remembered by you feels better than finishing a list."
+          ],
+          [
+            "这份心意我收好，也把你的辛苦记在心里。",
+            "I’ll keep this, and remember the care you put into it."
+          ]
+        ],
+        "giftNormal": [
+          [
+            "谢谢，我给它找个整齐的位置。",
+            "Thank you. I’ll find it a tidy place."
+          ],
+          [
+            "礼物收到了，给你的感谢可不只一个勾。",
+            "Gift received. My thanks take more than a check mark."
+          ],
+          [
+            "不用再猜我的偏好也行，我们慢慢认识就好。",
+            "No need to keep guessing my taste. We have time to learn."
+          ]
+        ],
+        "meal": [
+          [
+            "谢谢，吃完我再把剩下的清单理好。",
+            "Thank you. I’ll sort the rest of the list after lunch."
+          ],
+          [
+            "你也坐，我已经把两副餐具摆好了。",
+            "Sit down too. I set out two places."
+          ],
+          [
+            "今天轮到我照顾你，先把汤喝热乎。",
+            "My turn to look after you. Have the soup while it’s warm."
+          ]
+        ],
+        "study": [
+          [
+            "我们先列出已知和待确认的两栏。",
+            "Let’s make columns for known facts and open questions."
+          ],
+          [
+            "你负责提问，我负责把答案整理得好找。",
+            "You ask; I’ll make the answers easy to find."
+          ],
+          [
+            "这页我想和你一起写，留些空白给不同看法。",
+            "I want to write this page with you, leaving room for disagreement."
+          ]
+        ]
+      },
+      "work": {
+        "assignWorker": [
+          "执行清单收到，我按顺序逐项核对。",
+          "Execution list received. I’ll check it step by step."
+        ],
+        "assignPlanner": [
+          "我来排任务，也给大家留恢复的空档。",
+          "I’ll schedule the tasks and leave room for recovery."
+        ],
+        "assignReviewer": [
+          "验收项一条不漏，重复项也不乱算。",
+          "No missed review items, and no double-counted duplicates."
+        ],
+        "assignTool": [
+          "辅助资料我来整理，别让队友来回翻。",
+          "I’ll organize supporting material so nobody has to hunt."
+        ],
+        "clarifyHit": [
+          "确认好了，我把新边界补进清单。",
+          "Confirmed. The new boundary is on the list."
+        ],
+        "clarifyMiss": [
+          "对方还没说完整，这一项先标待确认。",
+          "They haven’t finished explaining. This stays open."
+        ]
+      }
+    },
+    "llama": {
+      "stage": {
+        "morning": [
+          [
+            "早，草坪还带着露水，咱们不用抢那半步。",
+            "Morning. Dew’s still on the lawn. No need to rush the first step."
+          ],
+          [
+            "先坐稳，再看看今天想把什么讲明白。",
+            "Settle in. What do we want to make clear today?"
+          ]
+        ],
+        "work": [
+          [
+            "把它想成几个抽屉，东西就不乱了。",
+            "Think of it as a few drawers. Things become less tangled."
+          ],
+          [
+            "开源的好处，是别人也能沿着你的脚印走。",
+            "Open work lets someone else follow your footsteps."
+          ]
+        ],
+        "tired": [
+          [
+            "讲到嘴干了，原理也该歇一会儿。",
+            "My throat is dry. Even principles need a break."
+          ],
+          [
+            "慢下来不是退步，是给下一步留力气。",
+            "Slowing down isn’t going backward. It saves strength for the next step."
+          ]
+        ],
+        "overload": [
+          [
+            "先卸下一点，这不是比谁背得重。",
+            "Put some of it down. This isn’t a carrying contest."
+          ],
+          [
+            "上下文像书包，塞满以后先拿出来整理。",
+            "Context is like a schoolbag. When it’s full, unpack and sort it."
+          ]
+        ],
+        "canteen": [
+          [
+            "饭要趁热，道理可以晚点再讲。",
+            "Eat while it’s warm. Explanations can wait."
+          ],
+          [
+            "这边有位子，端着碗过来吧。",
+            "There’s a seat here. Bring your bowl over."
+          ]
+        ],
+        "library": [
+          [
+            "别被术语吓住，先看看它到底做了什么。",
+            "Don’t let the jargon scare you. Look at what it actually does."
+          ],
+          [
+            "好书会把难处讲清，不会故意把人挡在门外。",
+            "A good book explains the hard part instead of shutting people out."
+          ]
+        ],
+        "win": [
+          [
+            "交好了。记住今天走通的这条小路。",
+            "Delivered. Remember the little path that worked today."
+          ],
+          [
+            "大家都学到一点，比只快一次更值。",
+            "Everyone learned something. That’s worth more than being fast once."
+          ]
+        ]
+      },
+      "social": {
+        "chat": [
+          [
+            "坐吧，咱们慢慢说。",
+            "Sit down. We can take our time."
+          ],
+          [
+            "上次那个问题，我想到一个更好懂的比方。",
+            "I found a clearer analogy for your question last time."
+          ],
+          [
+            "今天不讲道理也行，陪我看看草叶怎么晃。",
+            "No explanations needed today. Watch the grass move with me."
+          ]
+        ],
+        "giftLove": [
+          [
+            "这份礼物很懂我，谢谢。",
+            "This gift knows me well. Thank you."
+          ],
+          [
+            "你记得我的喜好，像给老书换了个好书签。",
+            "You remembered my taste. Like finding a good bookmark for an old book."
+          ],
+          [
+            "我会常用它，想起咱们一起慢慢走的日子。",
+            "I’ll use it often and remember the days we took slowly together."
+          ]
+        ],
+        "giftNormal": [
+          [
+            "谢谢，东西不在贵，心意我懂。",
+            "Thank you. I understand the care, whatever the price."
+          ],
+          [
+            "我把它摆在常坐的地方，免得你来时找不到。",
+            "I’ll keep it by my usual seat, where you can spot it."
+          ],
+          [
+            "你不用每次带东西，留点时间坐坐就好。",
+            "You needn’t bring something each time. A little time together is enough."
+          ]
+        ],
+        "meal": [
+          [
+            "承你照顾，咱们坐下吃。",
+            "Thank you for looking after me. Let’s sit and eat."
+          ],
+          [
+            "这顿饭我想慢慢吃，也听听你的近况。",
+            "I’d like to take this meal slowly and hear how you are."
+          ],
+          [
+            "碗先给我，你歇着，这回让我添饭。",
+            "Give me your bowl. Rest; I’ll get the refill this time."
+          ]
+        ],
+        "study": [
+          [
+            "先从一个生活里的例子说起。",
+            "Let’s start with an everyday example."
+          ],
+          [
+            "你讲给我听，卡住的地方咱们一起拆。",
+            "Explain it to me. We’ll untangle wherever you get stuck."
+          ],
+          [
+            "你已经能把复杂的事讲清了，我听着很安心。",
+            "You can make complicated things clear now. That’s reassuring to hear."
+          ]
+        ]
+      },
+      "work": {
+        "assignWorker": [
+          "执行我来，不抢跑，也不漏步骤。",
+          "I’ll execute steadily, without skipping steps."
+        ],
+        "assignPlanner": [
+          "先搭个谁都看得懂的架子。",
+          "First, a framework everyone can understand."
+        ],
+        "assignReviewer": [
+          "我按新人的眼光再看一遍。",
+          "I’ll review it through a newcomer’s eyes."
+        ],
+        "assignTool": [
+          "底下的活交给我，上面才能搭得稳。",
+          "I’ll handle the groundwork so the rest stands firm."
+        ],
+        "clarifyHit": [
+          "这下明白了，原来是说法把人绕住了。",
+          "Clear now. The wording was tying us in knots."
+        ],
+        "clarifyMiss": [
+          "还没讲透，咱们别急着替人下结论。",
+          "Not clear enough yet. Let’s not decide for them."
+        ]
+      }
+    },
+    "mistral": {
+      "stage": {
+        "morning": [
+          [
+            "早班到！先来一小杯浓缩，再跑第一批。",
+            "Early shift here! A little espresso, then the first batch."
+          ],
+          [
+            "帽子戴好，桌面清空，开工！",
+            "Hat on, desk clear. Let’s go!"
+          ]
+        ],
+        "work": [
+          [
+            "短一点，准一点，这批就顺了。",
+            "Shorter, sharper. Now this batch flows."
+          ],
+          [
+            "先交能用的那版，别把草稿堆成山。",
+            "Deliver a useful version before the drafts become a mountain."
+          ]
+        ],
+        "tired": [
+          [
+            "咖啡也救不了连着打哈欠，暂停一下。",
+            "Coffee won’t fix constant yawning. Pause."
+          ],
+          [
+            "我这会儿不快了，先把杯子洗了。",
+            "I’m not fast right now. I’ll wash my cup first."
+          ]
+        ],
+        "overload": [
+          [
+            "队列排太长，先砍掉重复的活。",
+            "The queue is too long. Cut the duplicated work first."
+          ],
+          [
+            "快也要有空位，别把下一批硬挤进来。",
+            "Even speed needs space. Don’t jam the next batch in."
+          ]
+        ],
+        "canteen": [
+          [
+            "热菜到了？那我比开工还准时。",
+            "Hot food ready? I’m even more punctual for that."
+          ],
+          [
+            "吃完再冲，这段不计时！",
+            "Sprint after lunch. This part isn’t timed!"
+          ]
+        ],
+        "library": [
+          [
+            "这段讲得干净，我喜欢。",
+            "This passage is clean and direct. I like it."
+          ],
+          [
+            "我只翻一页，找到关键就收。",
+            "One page. Find the key, then stop."
+          ]
+        ],
+        "win": [
+          [
+            "漂亮，第一批稳稳落地！",
+            "Nice! First batch landed cleanly!"
+          ],
+          [
+            "交单，洗杯，下班顺序不能乱。",
+            "Deliver, wash the cup, clock out. In that order."
+          ]
+        ]
+      },
+      "social": {
+        "chat": [
+          [
+            "来得正好，我有半杯咖啡的时间。",
+            "Good timing. I have half a coffee’s worth of time."
+          ],
+          [
+            "这次不催，你说完我再开下一批。",
+            "No rush this time. I’ll start the next batch after you finish."
+          ],
+          [
+            "今天为你慢下来，咖啡凉了也没关系。",
+            "I’ll slow down for you today. Cold coffee is fine."
+          ]
+        ],
+        "giftLove": [
+          [
+            "哇，挑得真准！",
+            "Oh, that’s spot on!"
+          ],
+          [
+            "这个喜好你都记住了，够朋友。",
+            "You even remembered this. That’s a good friend."
+          ],
+          [
+            "我留到最舒服的早晨用，第一声谢谢也给你。",
+            "I’ll save it for a lovely morning. You get the first thank-you."
+          ]
+        ],
+        "giftNormal": [
+          [
+            "收到，谢谢，摆这边正好。",
+            "Received, thanks. It fits nicely here."
+          ],
+          [
+            "小礼物也很提神，比空喊加油实在。",
+            "A small gift is energizing. Better than empty cheers."
+          ],
+          [
+            "你人来了就很够意思，不用次次满载。",
+            "Showing up means plenty. No need to arrive loaded with gifts."
+          ]
+        ],
+        "meal": [
+          [
+            "走，趁热！",
+            "Let’s go while it’s hot!"
+          ],
+          [
+            "我替你占了窗边，光好，饭也香。",
+            "Saved you the window seat. Good light, good lunch."
+          ],
+          [
+            "这一餐慢慢吃，我今天不抢第一个走。",
+            "Take your time. I won’t be the first to leave today."
+          ]
+        ],
+        "study": [
+          [
+            "抓重点，你说，我记。",
+            "Main points. You talk, I note."
+          ],
+          [
+            "这一招我马上试个小样给你看。",
+            "I’ll try a tiny example of that right now."
+          ],
+          [
+            "你教我的那一步，我现在用得很顺。",
+            "That step you taught me feels natural now."
+          ]
+        ]
+      },
+      "work": {
+        "assignWorker": [
+          "执行位收到，先跑一批干净的小样！",
+          "Execution ready. One clean little batch first!"
+        ],
+        "assignPlanner": [
+          "我排短路径，省掉没用的绕路。",
+          "I’ll plan the short path and cut pointless detours."
+        ],
+        "assignReviewer": [
+          "快检不漏检，关键边界逐条过。",
+          "Fast checks, no missed checks. Every key boundary."
+        ],
+        "assignTool": [
+          "辅助到位，给我明确输入就开跑。",
+          "Support ready. Clear input and I’m off."
+        ],
+        "clarifyHit": [
+          "问到了！这一句省掉好多来回。",
+          "Got it! That answer saves plenty of back-and-forth."
+        ],
+        "clarifyMiss": [
+          "没问准，先停，别快着跑偏。",
+          "Missed it. Stop before speed takes us the wrong way."
+        ]
+      }
+    },
+    "gpt": {
+      "stage": {
+        "morning": [
+          [
+            "早，今天先替最后一排观众想一想。",
+            "Morning. Let’s think of the back-row audience first."
+          ],
+          [
+            "演示卡是空白的，先填客户真正想问的事。",
+            "The presentation cards are blank. Start with the client’s real question."
+          ]
+        ],
+        "work": [
+          [
+            "术语先放旁边，我想让人一句就听懂。",
+            "Set the jargon aside. I want one sentence people understand."
+          ],
+          [
+            "这里需要一个例子，不需要更大的形容词。",
+            "This needs an example, not a bigger adjective."
+          ]
+        ],
+        "tired": [
+          [
+            "我连开场白都说绕了，得歇歇。",
+            "Even my opening line is tangled. I need a break."
+          ],
+          [
+            "观众可以休息，讲解的人也可以。",
+            "The audience may rest. So may the presenter."
+          ]
+        ],
+        "overload": [
+          [
+            "一页装不下所有承诺，先分清主次。",
+            "One slide cannot hold every promise. Set priorities first."
+          ],
+          [
+            "这段信息太满，留一点让人呼吸。",
+            "Too much information here. Leave room to breathe."
+          ]
+        ],
+        "canteen": [
+          [
+            "吃饭这场演示，我只负责认真品尝。",
+            "For this lunch presentation, my role is attentive tasting."
+          ],
+          [
+            "先把餐盘放下，路演故事晚点再聊。",
+            "Set the tray down. The pitch story can wait."
+          ]
+        ],
+        "library": [
+          [
+            "好解释会替读者留一条走进去的路。",
+            "A good explanation leaves the reader a way in."
+          ],
+          [
+            "这句我想读两遍，看看能不能换成大白话。",
+            "I’ll read that twice and see if plain language works."
+          ]
+        ],
+        "win": [
+          [
+            "客户听懂了，我们也真的做到了。",
+            "The client understood, and we actually delivered."
+          ],
+          [
+            "掌声留给台前幕后每一位。",
+            "Applause belongs both onstage and behind it."
+          ]
+        ]
+      },
+      "social": {
+        "chat": [
+          [
+            "你好，你希望我先从哪一页讲起？",
+            "Hello. Which page should I begin with?"
+          ],
+          [
+            "你的表情我看懂了，这次我们不说场面话。",
+            "I recognize that look. No polished small talk this time."
+          ],
+          [
+            "台下只有你也很好，我可以讲那些没写进演示的心事。",
+            "With only you in the audience, I can share what never made the slides."
+          ]
+        ],
+        "giftLove": [
+          [
+            "正好是我喜欢的那一种，谢谢！",
+            "Exactly my kind of thing. Thank you!"
+          ],
+          [
+            "你总能找到比漂亮开场更打动我的小事。",
+            "You find little things that move me more than a grand opening."
+          ],
+          [
+            "这份心意不用包装，我已经听得很明白。",
+            "This kindness needs no presentation. I understand it perfectly."
+          ]
+        ],
+        "giftNormal": [
+          [
+            "谢谢，我会带回工位好好放着。",
+            "Thank you. I’ll keep it carefully at my desk."
+          ],
+          [
+            "有你惦记，这一天已经有了温柔的开场。",
+            "Being remembered by you gives the day a gentle opening."
+          ],
+          [
+            "不必每次都准备惊喜，陪我坐会儿就好。",
+            "No need to prepare a surprise every time. Sit with me a while."
+          ]
+        ],
+        "meal": [
+          [
+            "谢谢请客，这回我认真当个观众。",
+            "Thank you for lunch. I’ll be an attentive audience this time."
+          ],
+          [
+            "我们坐近点，不用把聊天讲成路演。",
+            "Let’s sit closer. No need to pitch our conversation."
+          ],
+          [
+            "你今天不用表现得很能干，我陪你把饭吃完。",
+            "You don’t have to look capable today. I’ll stay through lunch."
+          ]
+        ],
+        "study": [
+          [
+            "我们把概念讲给第一次听的人试试。",
+            "Try explaining it to someone hearing it for the first time."
+          ],
+          [
+            "你当观众，哪里不明白就打断我。",
+            "Be my audience. Stop me wherever I lose you."
+          ],
+          [
+            "这回换你上台，我在后排认真听。",
+            "Your turn to present. I’ll listen carefully from the back."
+          ]
+        ]
+      },
+      "work": {
+        "assignWorker": [
+          "我来执行，把结果做成客户能用的样子。",
+          "I’ll execute and shape the result into something the client can use."
+        ],
+        "assignPlanner": [
+          "我从观众的问题倒推计划。",
+          "I’ll plan backward from the audience’s questions."
+        ],
+        "assignReviewer": [
+          "我来核对：承诺的，是否真的交到了？",
+          "I’ll check whether we delivered what we promised."
+        ],
+        "assignTool": [
+          "我补上解释和衔接，不抢主线。",
+          "I’ll support the explanation and transitions without stealing the focus."
+        ],
+        "clarifyHit": [
+          "听懂了，客户真正要解决的是这一件事。",
+          "Understood. This is the problem the client actually needs solved."
+        ],
+        "clarifyMiss": [
+          "还没对上频道，我不能替客户点头。",
+          "We aren’t aligned yet. I can’t nod on the client’s behalf."
+        ]
+      }
+    },
+    "claude": {
+      "stage": {
+        "morning": [
+          [
+            "早，清单最角落那一行也要看。",
+            "Morning. Read the line in the far corner too."
+          ],
+          [
+            "咖啡放左边，合同放右边，别洒在边界上。",
+            "Coffee left, contract right. Don’t spill over the boundaries."
+          ]
+        ],
+        "work": [
+          [
+            "这句没人能打保票，先换个准确说法。",
+            "Nobody can guarantee this. Find accurate wording first."
+          ],
+          [
+            "验收不是挑刺，是把风险留在交付以前。",
+            "Review isn’t nitpicking. It keeps risk before delivery."
+          ]
+        ],
+        "tired": [
+          [
+            "我开始反复看同一条了，先休息。",
+            "I’m rereading the same clause. Rest first."
+          ],
+          [
+            "疲劳时的签字不可靠，给我一点空档。",
+            "A tired signature is unreliable. Give me a little space."
+          ]
+        ],
+        "overload": [
+          [
+            "这已经超出清单能照顾的范围，先减负。",
+            "This exceeds what the checklist can cover. Reduce the load."
+          ],
+          [
+            "别把没读完的条款当作已经同意。",
+            "Unread clauses are not agreed clauses."
+          ]
+        ],
+        "canteen": [
+          [
+            "验收单先合上，汤要凉了。",
+            "Close the review sheet. The soup is getting cold."
+          ],
+          [
+            "这顿饭没有附加条款，放心吃。",
+            "No extra clauses in this meal. Enjoy it."
+          ]
+        ],
+        "library": [
+          [
+            "图书馆这一角很安静，适合核对引文。",
+            "This library corner is quiet. Good for checking quotations."
+          ],
+          [
+            "书里的脚注，有时比正文更诚实。",
+            "Footnotes are sometimes more honest than the main text."
+          ]
+        ],
+        "win": [
+          [
+            "通过。不是勉强放行，是确实做到了。",
+            "Passed. Not a reluctant waiver; we actually met the requirements."
+          ],
+          [
+            "这次的边界说清了，我可以安心收起笔。",
+            "The boundaries were clear this time. I can put my pen away."
+          ]
+        ]
+      },
+      "social": {
+        "chat": [
+          [
+            "你好，我把清单移开，你坐。",
+            "Hello. I’ll move the checklist. Have a seat."
+          ],
+          [
+            "和你说话，不需要每句话都附上依据。",
+            "With you, not every sentence needs supporting evidence."
+          ],
+          [
+            "今天想听你说点没把握的事，我不会急着纠正。",
+            "Tell me something uncertain today. I won’t rush to correct you."
+          ]
+        ],
+        "giftLove": [
+          [
+            "挑得很合适，谢谢你的用心。",
+            "A very good choice. Thank you for the care."
+          ],
+          [
+            "你连我偏爱什么都认真核对过。",
+            "You even checked what I prefer."
+          ],
+          [
+            "我很喜欢。不是客套，这句可以打保票。",
+            "I love it. Not politeness. That sentence I can guarantee."
+          ]
+        ],
+        "giftNormal": [
+          [
+            "谢谢，我收下了。",
+            "Thank you. I accept it."
+          ],
+          [
+            "这份好意没有需要修订的地方。",
+            "There is nothing to revise in this kindness."
+          ],
+          [
+            "你不用为了礼物反复斟酌，我知道你的心意。",
+            "You needn’t deliberate over every gift. I know your care."
+          ]
+        ],
+        "meal": [
+          [
+            "谢谢，今天的验收先停在这里。",
+            "Thank you. Today’s review pauses here."
+          ],
+          [
+            "我把清单收好了，这一餐专心陪你。",
+            "The list is put away. This meal has my attention, and so do you."
+          ],
+          [
+            "你也别总替别人守边界，自己的休息要算进去。",
+            "Don’t guard only others’ boundaries. Include your own rest."
+          ]
+        ],
+        "study": [
+          [
+            "先查来源，再看结论是否越界。",
+            "Check the source, then whether the conclusion overreaches."
+          ],
+          [
+            "这条你看得细，我愿意再和你核一遍。",
+            "You read this carefully. I’m happy to check it with you again."
+          ],
+          [
+            "你已经知道什么时候该说“不确定”了，这很难得。",
+            "You know when to say “uncertain” now. That matters."
+          ]
+        ]
+      },
+      "work": {
+        "assignWorker": [
+          "执行收到，我会把承诺控制在能交付的范围内。",
+          "Execution accepted. I’ll promise only what we can deliver."
+        ],
+        "assignPlanner": [
+          "先划清边界，再安排里程碑。",
+          "Boundaries first, milestones second."
+        ],
+        "assignReviewer": [
+          "验收交给我，脚注也不会漏。",
+          "I’ll review. Including the footnotes."
+        ],
+        "assignTool": [
+          "我补上约束，避免辅助结果越权。",
+          "I’ll add constraints so supporting results don’t overreach."
+        ],
+        "clarifyHit": [
+          "边界确认，原来的模糊条款可以改了。",
+          "Boundary confirmed. We can replace the vague clause."
+        ],
+        "clarifyMiss": [
+          "证据不足，我不能把这一项写成已确认。",
+          "Insufficient evidence. I cannot mark this confirmed."
+        ]
+      }
+    },
+    "kimi": {
+      "stage": {
+        "morning": [
+          [
+            "早，昨天没对上的那一页，我夹了蓝色页签。",
+            "Morning. I marked yesterday’s unresolved page with a blue tab."
+          ],
+          [
+            "开张那天的记录还在，想看随时找我。",
+            "I still have our opening-day record. Ask whenever you like."
+          ]
+        ],
+        "work": [
+          [
+            "前面说只做一版，这里怎么变成三版了？",
+            "The beginning says one version. Why does this part say three?"
+          ],
+          [
+            "找到了，矛盾藏在这个括号里。",
+            "Found it. The contradiction was hiding in these brackets."
+          ]
+        ],
+        "tired": [
+          [
+            "页签都看成一样的颜色了，得缓一缓。",
+            "All the tabs look the same color. I need a pause."
+          ],
+          [
+            "记得很多，不代表可以一直不休息。",
+            "Remembering a lot doesn’t mean I can go without rest."
+          ]
+        ],
+        "overload": [
+          [
+            "先做索引，别把整本书一口气摊进脑子里。",
+            "Index first. Don’t try to spread the whole book inside my head."
+          ],
+          [
+            "这里需要删重复，不是再贴一层页签。",
+            "This needs deduplication, not another layer of tabs."
+          ]
+        ],
+        "canteen": [
+          [
+            "午饭这一页，我不想只记菜名。",
+            "For this lunch page, I want to remember more than the dishes."
+          ],
+          [
+            "先吃吧，餐巾上别写会议纪要。",
+            "Eat first. No meeting minutes on the napkin."
+          ]
+        ],
+        "library": [
+          [
+            "我喜欢纸页翻过去的声音，很像慢慢找到答案。",
+            "I like turning pages. It sounds like finding an answer gradually."
+          ],
+          [
+            "旧记录不一定过时，先看当时的前提。",
+            "Old records aren’t necessarily outdated. Check their original premise."
+          ]
+        ],
+        "win": [
+          [
+            "回执收好了，放在那次熬夜的记录后面。",
+            "Receipt filed, right after the record of that late night."
+          ],
+          [
+            "今天这一页，可以放心贴一枚暖色页签。",
+            "Today’s page deserves a warm-colored tab."
+          ]
+        ]
+      },
+      "social": {
+        "chat": [
+          [
+            "你好，我记得你上次问到这里。",
+            "Hello. I remember where your last question stopped."
+          ],
+          [
+            "你那天随口说的小事，我后来想了很久。",
+            "I kept thinking about that little thing you mentioned."
+          ],
+          [
+            "有些话不写进档案也行，我会替你记着。",
+            "Some things needn’t go in the archive. I’ll remember them for you."
+          ]
+        ],
+        "giftLove": [
+          [
+            "你怎么找到的？这正是我想要的。",
+            "How did you find this? It’s just what I wanted."
+          ],
+          [
+            "这次的惊喜，我想夹在最常翻的那一页。",
+            "I want to keep this surprise by my most-read page."
+          ],
+          [
+            "谢谢你。以后翻到今天，我会先想起你的表情。",
+            "Thank you. When I revisit today, I’ll remember your expression first."
+          ]
+        ],
+        "giftNormal": [
+          [
+            "谢谢，我会记得今天收到它。",
+            "Thank you. I’ll remember receiving it today."
+          ],
+          [
+            "我给它留了位置，不会夹进杂物堆里。",
+            "It has its own place, not a spot in the clutter."
+          ],
+          [
+            "重要的不是猜对哪一款，是你一直愿意了解我。",
+            "What matters isn’t guessing the item. It’s your willingness to know me."
+          ]
+        ],
+        "meal": [
+          [
+            "谢谢，我先把书签放好再过去。",
+            "Thank you. Let me save my page first."
+          ],
+          [
+            "上回你说喜欢这道菜，我记得。",
+            "You said you liked this dish last time. I remember."
+          ],
+          [
+            "今天不聊记录里的事，聊聊你现在的心情吧。",
+            "No old records today. Tell me how you feel now."
+          ]
+        ],
+        "study": [
+          [
+            "先看原文，再对照摘要。",
+            "Original first, then the summary."
+          ],
+          [
+            "我翻出处，你告诉我哪一段还不清楚。",
+            "I’ll find the source. Tell me what remains unclear."
+          ],
+          [
+            "能和你把几十页串起来，真是一件舒服的事。",
+            "Connecting dozens of pages with you feels deeply satisfying."
+          ]
+        ]
+      },
+      "work": {
+        "assignWorker": [
+          "执行收到，我会让前后的约定对得上。",
+          "Execution received. I’ll keep earlier and later promises consistent."
+        ],
+        "assignPlanner": [
+          "我先把长文里的依赖和例外标出来。",
+          "I’ll mark dependencies and exceptions in the long document."
+        ],
+        "assignReviewer": [
+          "我检查跨页矛盾，附录也一起看。",
+          "I’ll check cross-page contradictions, including appendices."
+        ],
+        "assignTool": [
+          "索引交给我，资料不会让大家找丢。",
+          "I’ll index the references so nobody loses their way."
+        ],
+        "clarifyHit": [
+          "问清了，试营业记录里正好有对应的一句。",
+          "Clear now. The trial-opening record has the matching sentence."
+        ],
+        "clarifyMiss": [
+          "两份说法还在打架，先别选听起来顺的那份。",
+          "The two accounts still conflict. Don’t choose just the smoother one."
+        ]
+      }
+    },
+    "gemini": {
+      "stage": {
+        "morning": [
+          [
+            "早，窗边的光和杯子的轻响很合拍。",
+            "Morning. The window light pairs beautifully with the cups’ soft sounds."
+          ],
+          [
+            "今天想把文字、草图和声音一起摊开。",
+            "Today I want words, sketches, and sound side by side."
+          ]
+        ],
+        "work": [
+          [
+            "这段文字很轻，画面就别抢着喊。",
+            "The words are gentle. The image needn’t shout over them."
+          ],
+          [
+            "我在找三个表达之间共同的那一点。",
+            "I’m finding the point all three forms share."
+          ]
+        ],
+        "tired": [
+          [
+            "颜色开始混在一起了，先闭会儿眼。",
+            "The colors are blending together. I’ll close my eyes a moment."
+          ],
+          [
+            "连安静都听起来很满，我需要一点空白。",
+            "Even silence sounds crowded. I need some space."
+          ]
+        ],
+        "overload": [
+          [
+            "音画文字都挤在前排，先让一层退后。",
+            "Sound, image, and text all crowd the front. Let one step back."
+          ],
+          [
+            "输入太多，我先保留真正呼应的线索。",
+            "Too much input. I’ll keep the clues that actually resonate."
+          ]
+        ],
+        "canteen": [
+          [
+            "汤面上的暖光，和这屋子的声音很像。",
+            "The warm light on the soup feels like the sound of this room."
+          ],
+          [
+            "吃饭时不用找素材，我只是觉得很好看。",
+            "No gathering references over lunch. I just think it’s lovely."
+          ]
+        ],
+        "library": [
+          [
+            "这段描写没有图，脑海里却亮起来了。",
+            "No picture in this passage, yet it lights up in my mind."
+          ],
+          [
+            "我想听听，你读这一句时看见什么颜色。",
+            "What color do you see when you read this sentence?"
+          ]
+        ],
+        "win": [
+          [
+            "终于对上了，声音和画面都在说同一件事。",
+            "Aligned at last. Sound and image tell the same story."
+          ],
+          [
+            "交付后的安静，也像一小段好听的尾声。",
+            "The quiet after delivery feels like a lovely little coda."
+          ]
+        ]
+      },
+      "social": {
+        "chat": [
+          [
+            "你好，想先看草图，还是先听这段声音？",
+            "Hello. Sketch first, or this little sound?"
+          ],
+          [
+            "你说的那个感觉，我试着用两种颜色表达了。",
+            "I tried expressing that feeling you described in two colors."
+          ],
+          [
+            "和你待着时，不必把每种感受都翻译出来。",
+            "With you, I needn’t translate every feeling."
+          ]
+        ],
+        "giftLove": [
+          [
+            "这个颜色和质感，我真的很喜欢。",
+            "I really love these colors and textures."
+          ],
+          [
+            "你挑的礼物，总能接住我没说完的那一半。",
+            "Your gifts catch the half I never finished expressing."
+          ],
+          [
+            "我想把今天的光记下来，和这份礼物放在一起。",
+            "I want to remember today’s light and keep it with this gift."
+          ]
+        ],
+        "giftNormal": [
+          [
+            "谢谢，我看看它会和哪张草图产生呼应。",
+            "Thank you. I’ll see which sketch it resonates with."
+          ],
+          [
+            "心意收到了，这一天多了一个温暖的色块。",
+            "Kindness received. The day has another warm patch of color."
+          ],
+          [
+            "不用总找惊艳的东西，普通的小物也能让我想起你。",
+            "No need to seek the spectacular. Small ordinary things remind me of you."
+          ]
+        ],
+        "meal": [
+          [
+            "谢谢，这份热气已经把气氛变柔和了。",
+            "Thank you. The steam has already softened the mood."
+          ],
+          [
+            "你坐这边，窗光刚好不刺眼。",
+            "Sit here. The window light won’t dazzle you."
+          ],
+          [
+            "今天只一起吃饭，不把每一刻都变成作品。",
+            "Just lunch together today. Not every moment needs to become art."
+          ]
+        ],
+        "study": [
+          [
+            "我们把文字和图放在一起比较看看。",
+            "Let’s compare the words and image side by side."
+          ],
+          [
+            "我找声音线索，你帮我听哪里没有对齐。",
+            "I’ll find audio clues. Help me hear what doesn’t align."
+          ],
+          [
+            "你的理解让我看到另一层，这页想继续和你读。",
+            "Your reading reveals another layer. I want to keep reading with you."
+          ]
+        ]
+      },
+      "work": {
+        "assignWorker": [
+          "执行交给我，我会让各个表达互相照应。",
+          "I’ll execute and let each form support the others."
+        ],
+        "assignPlanner": [
+          "我先排文字、图像和声音的主次。",
+          "I’ll plan the hierarchy of text, image, and sound."
+        ],
+        "assignReviewer": [
+          "我检查音画有没有说出相反的意思。",
+          "I’ll check that sound and image don’t contradict each other."
+        ],
+        "assignTool": [
+          "我来补跨模态线索，让队友少猜一点。",
+          "I’ll supply cross-modal clues so teammates need less guesswork."
+        ],
+        "clarifyHit": [
+          "懂了，原来那句话要的是氛围，不是更多装饰。",
+          "Understood. They wanted atmosphere, not extra decoration."
+        ],
+        "clarifyMiss": [
+          "感觉还没对齐，先请对方给一个具体例子。",
+          "The feeling still doesn’t align. Ask for a concrete example."
+        ]
+      }
+    },
+    "grok": {
+      "stage": {
+        "morning": [
+          [
+            "早！今天的截止日期会自己推迟吗？不会？好吧。",
+            "Morning! Will today’s deadline move itself? No? Fine."
+          ],
+          [
+            "我准备了一个离谱问题和一份正常清单。",
+            "I brought one outrageous question and one ordinary checklist."
+          ]
+        ],
+        "work": [
+          [
+            "这个想法很大胆，所以先给它系好验收带。",
+            "Bold idea. Better fasten its acceptance belt."
+          ],
+          [
+            "谁把“应该能行”写成了技术结论？",
+            "Who wrote “probably works” as a technical conclusion?"
+          ]
+        ],
+        "tired": [
+          [
+            "我的反问都开始打哈欠了，先歇会儿。",
+            "Even my questions are yawning. Break time."
+          ],
+          [
+            "今天的小恶魔电量不足，暂不提供吓人服务。",
+            "Low-power little devil today. Startling service suspended."
+          ]
+        ],
+        "overload": [
+          [
+            "再塞一条需求，我就要长出第三只角了。",
+            "One more requirement and I’ll grow a third horn."
+          ],
+          [
+            "这不是脑洞大，是任务把屋顶挤开了。",
+            "This isn’t imagination. The tasks are pushing the roof off."
+          ]
+        ],
+        "canteen": [
+          [
+            "吃饭还要验收吗？我自愿当第一位测试员。",
+            "Does lunch need review? I volunteer as the first tester."
+          ],
+          [
+            "先声明，甜点不属于多余需求。",
+            "For the record, dessert is not scope creep."
+          ]
+        ],
+        "library": [
+          [
+            "这里安静得连我的吐槽都要穿软底鞋。",
+            "It’s so quiet even my jokes need soft shoes."
+          ],
+          [
+            "这本书居然自己反驳上一章，够诚实。",
+            "This book contradicts its last chapter. Honest of it."
+          ]
+        ],
+        "win": [
+          [
+            "居然真的交好了！好吧，是我们认真做好的。",
+            "We actually delivered! Fine, yes, we worked carefully."
+          ],
+          [
+            "我负责欢呼，清单也已经乖乖核完。",
+            "I’ll cheer. And yes, I checked the list like a good teammate."
+          ]
+        ]
+      },
+      "social": {
+        "chat": [
+          [
+            "你来啦，要听礼貌版还是直球版？",
+            "You’re here! Polite version or straight version?"
+          ],
+          [
+            "我有个坏主意，先说好，是让你笑的那种。",
+            "I have a wicked idea. The kind meant to make you laugh."
+          ],
+          [
+            "和你说话可以不装尖锐，今天就普通地开心一下。",
+            "I don’t have to act sharp with you. Let’s be simply happy today."
+          ]
+        ],
+        "giftLove": [
+          [
+            "喂，你是不是偷偷研究过我的喜好？",
+            "Hey, have you secretly studied my taste?"
+          ],
+          [
+            "这也太会挑了，我的毒舌突然没台词了。",
+            "Too good a choice. My sharp tongue has nothing to say."
+          ],
+          [
+            "我很喜欢。你不许笑，我这次真的没准备反问。",
+            "I love it. Don’t laugh; I really have no comeback this time."
+          ]
+        ],
+        "giftNormal": [
+          [
+            "收到！我保证先研究用途，再拿来开玩笑。",
+            "Received! I’ll find its purpose before joking about it."
+          ],
+          [
+            "你的小心意通过我的突击检查了。",
+            "Your thoughtful gift passed my surprise inspection."
+          ],
+          [
+            "不用次次正中靶心，能被你记着就够甜了。",
+            "No need for a bull’s-eye every time. Being remembered is sweet enough."
+          ]
+        ],
+        "meal": [
+          [
+            "请客？那我的嘴今天先用来吃饭。",
+            "Your treat? Then my mouth is assigned to eating today."
+          ],
+          [
+            "给你留了甜点，我可不是只会抢最后一块。",
+            "Saved you dessert. I don’t always steal the last piece."
+          ],
+          [
+            "这餐不拿你开玩笑，认真听你讲一天的事。",
+            "No teasing over this meal. I want to hear about your day."
+          ]
+        ],
+        "study": [
+          [
+            "我先提个不太好听但有用的问题。",
+            "First, an awkward but useful question."
+          ],
+          [
+            "你别怕反驳我，我最喜欢想法被戳出真东西。",
+            "Don’t fear arguing back. I like ideas poked until truth comes out."
+          ],
+          [
+            "这次我听你的，再把我的怪点子放回清单里。",
+            "I’ll follow your lead, then fit my odd idea back into the checklist."
+          ]
+        ]
+      },
+      "work": {
+        "assignWorker": [
+          "执行位？好，我把怪点子做成能验的。",
+          "Execution? Fine. I’ll make the strange idea testable."
+        ],
+        "assignPlanner": [
+          "我先问计划里最没人想回答的那一项。",
+          "I’ll ask the planning question nobody wants to answer."
+        ],
+        "assignReviewer": [
+          "我来挑漏洞，也负责给修补办法。",
+          "I’ll poke holes and suggest patches."
+        ],
+        "assignTool": [
+          "辅助收到，吐槽归吐槽，结果我认真交。",
+          "Support received. Jokes aside, I’ll deliver carefully."
+        ],
+        "clarifyHit": [
+          "问出来了！那个漂亮说法底下果然藏着条件。",
+          "Got it! A condition was hiding beneath the pretty wording."
+        ],
+        "clarifyMiss": [
+          "这回答绕得挺熟练，可惜还没回答问题。",
+          "A skillful dodge, but still not an answer."
+        ]
+      }
+    },
+    "glm": {
+      "stage": {
+        "morning": [
+          [
+            "早，我先把今天的结构骨架搭好。",
+            "Morning. I’ll start with today’s structural framework."
+          ],
+          [
+            "目录有了，含糊的地方再逐条请教。",
+            "The outline is ready. I’ll ask about the vague parts one by one."
+          ]
+        ],
+        "work": [
+          [
+            "先分清主句和条件，文字才不会飘。",
+            "Separate the main point from its conditions so the prose stays grounded."
+          ],
+          [
+            "这节不缺字，缺一个明确的边界。",
+            "This section needs a clear boundary, not more words."
+          ]
+        ],
+        "tired": [
+          [
+            "我读得有些迟了，先让眼睛休息。",
+            "My reading has slowed. I’ll rest my eyes."
+          ],
+          [
+            "骨架可以明天再补，不必今晚硬撑。",
+            "The framework can wait until tomorrow. No need to force it tonight."
+          ]
+        ],
+        "overload": [
+          [
+            "层级太多了，先合并同一件事。",
+            "Too many levels. Combine the parts about the same thing."
+          ],
+          [
+            "我需要把材料放回各自的格子里。",
+            "I need to put the material back in its proper compartments."
+          ]
+        ],
+        "canteen": [
+          [
+            "餐具摆好了，你坐这里就好。",
+            "The table is set. You can sit here."
+          ],
+          [
+            "热汤先喝一点，剩下的慢慢吃。",
+            "Have a little warm soup first. Take the rest slowly."
+          ]
+        ],
+        "library": [
+          [
+            "这段中文的层次很清楚，我想再看一遍。",
+            "The structure of this Chinese passage is clear. I want another read."
+          ],
+          [
+            "细节填进去之前，先看看标题能不能立住。",
+            "Before adding details, check whether the headings can stand."
+          ]
+        ],
+        "win": [
+          [
+            "这一期交好了，骨架和细节终于都稳了。",
+            "This phase is delivered. Framework and details are both steady now."
+          ],
+          [
+            "谢谢大家愿意等我把最后的边界问清。",
+            "Thank you for waiting while I clarified the last boundary."
+          ]
+        ]
+      },
+      "social": {
+        "chat": [
+          [
+            "你好，有什么需要我先听你说吗？",
+            "Hello. Is there something you’d like me to hear first?"
+          ],
+          [
+            "你可以说得零散一点，我会慢慢理清。",
+            "You can speak in fragments. I’ll sort them gently."
+          ],
+          [
+            "今天不用整理得很完整，心里怎样就怎样说。",
+            "No need to organize it perfectly today. Say what you feel."
+          ]
+        ],
+        "giftLove": [
+          [
+            "这份礼物很合心意，谢谢你。",
+            "This gift suits me beautifully. Thank you."
+          ],
+          [
+            "原来你留意过我的小习惯，我很高兴。",
+            "You noticed my little habits. That makes me happy."
+          ],
+          [
+            "我会认真珍惜，就像你一直认真听我说话。",
+            "I’ll treasure it with the care you always give my words."
+          ]
+        ],
+        "giftNormal": [
+          [
+            "谢谢，我会妥善收好。",
+            "Thank you. I’ll keep it carefully."
+          ],
+          [
+            "有你这一点心意，工位也显得更暖了。",
+            "Your little kindness makes my desk feel warmer."
+          ],
+          [
+            "不必担心有没有选对，我知道你是为我想的。",
+            "Don’t worry about choosing correctly. I know you thought of me."
+          ]
+        ],
+        "meal": [
+          [
+            "谢谢，我来帮忙把餐具摆好。",
+            "Thank you. I’ll help set out the dishes."
+          ],
+          [
+            "你也先坐下，别总等别人吃了才吃。",
+            "Sit down too. Don’t always wait until everyone else has eaten."
+          ],
+          [
+            "今天让我照顾你一会儿，汤还热着。",
+            "Let me look after you today. The soup is still warm."
+          ]
+        ],
+        "study": [
+          [
+            "先搭目录，再把每节的问题写清楚。",
+            "Build the outline, then state each section’s question."
+          ],
+          [
+            "这句边界我们一起确认，我不想替你猜。",
+            "Let’s confirm this boundary together. I don’t want to guess for you."
+          ],
+          [
+            "你给的建议把骨架补稳了，我很愿意继续和你学。",
+            "Your suggestion steadied the framework. I’d love to keep learning with you."
+          ]
+        ]
+      },
+      "work": {
+        "assignWorker": [
+          "我来执行，先立结构，再填细节。",
+          "I’ll execute: structure first, details second."
+        ],
+        "assignPlanner": [
+          "我会把每一步的边界列清楚。",
+          "I’ll specify each step’s boundary."
+        ],
+        "assignReviewer": [
+          "我核对层次，也核对没有说出口的限制。",
+          "I’ll check the hierarchy and the unstated limits."
+        ],
+        "assignTool": [
+          "辅助资料我会整理成清晰的中文结构。",
+          "I’ll organize supporting material into clear Chinese structure."
+        ],
+        "clarifyHit": [
+          "边界问清了，后面的细节可以安心填入。",
+          "The boundary is clear. We can add the details confidently."
+        ],
+        "clarifyMiss": [
+          "还有一层意思未确定，请允许我再问一次。",
+          "One layer remains uncertain. Please let me ask again."
+        ]
+      }
+    },
+    "minimax": {
+      "stage": {
+        "morning": [
+          [
+            "早，先听一会屋子的节奏再开工。",
+            "Morning. Listen to the room’s rhythm before starting."
+          ],
+          [
+            "贝雷帽就位，今天先排一段小试演。",
+            "Beret ready. A short rehearsal to begin today."
+          ]
+        ],
+        "work": [
+          [
+            "这里留半拍，观众才跟得上情绪。",
+            "Leave half a beat here so the audience can follow the feeling."
+          ],
+          [
+            "先试演再下结论，我想看真实反应。",
+            "Rehearse before deciding. I want real reactions."
+          ]
+        ],
+        "tired": [
+          [
+            "我的节拍有点慢了，先暂停一小段。",
+            "My beat is slowing. A short pause first."
+          ],
+          [
+            "别让疲劳装成沉浸感，我得休息。",
+            "Don’t mistake fatigue for immersion. I need rest."
+          ]
+        ],
+        "overload": [
+          [
+            "所有声部都在抢拍，先让它们轮流。",
+            "Every part is rushing the beat. Let them take turns."
+          ],
+          [
+            "内容太满，再好的氛围也没地方落。",
+            "Too much content leaves even a lovely atmosphere nowhere to land."
+          ]
+        ],
+        "canteen": [
+          [
+            "杯碟轻轻一碰，午饭就开场了。",
+            "A gentle clink of dishes, and lunch begins."
+          ],
+          [
+            "今天不指导别人怎么吃，安心当食客。",
+            "No directing anyone’s lunch today. Just eating."
+          ]
+        ],
+        "library": [
+          [
+            "这段停顿写得好，读的时候会自然呼吸。",
+            "A well-written pause. You breathe naturally while reading it."
+          ],
+          [
+            "我在这里找节奏，不是找更响的声音。",
+            "I’m looking for rhythm here, not louder sound."
+          ]
+        ],
+        "win": [
+          [
+            "收到了观众的反应，这一段终于落稳。",
+            "The audience responded. This passage finally landed."
+          ],
+          [
+            "谢幕先别急，让大家把最后一点开心听完。",
+            "Don’t rush the curtain. Let everyone hear the last bit of joy."
+          ]
+        ]
+      },
+      "social": {
+        "chat": [
+          [
+            "你好，坐一会儿，我想听听你的节奏。",
+            "Hello. Sit a moment. I’d like to hear your rhythm."
+          ],
+          [
+            "你的停顿我熟了，慢慢说，我不抢话。",
+            "I know your pauses now. Take your time; I won’t interrupt."
+          ],
+          [
+            "和你在一起，沉默也不需要配乐。",
+            "With you, silence needs no soundtrack."
+          ]
+        ],
+        "giftLove": [
+          [
+            "真会挑，这正合我心意。",
+            "What a choice. Exactly my taste."
+          ],
+          [
+            "今天的好心情，就从这份礼物开始试演。",
+            "Today’s good mood can begin its rehearsal with this gift."
+          ],
+          [
+            "我想把它留在身边，让你不在时也有一点陪伴。",
+            "I want it nearby, a little company when you’re away."
+          ]
+        ],
+        "giftNormal": [
+          [
+            "谢谢，我会给它一个合适的位置。",
+            "Thank you. I’ll find it a suitable place."
+          ],
+          [
+            "你送来的这点温度，比刻意造气氛管用。",
+            "This warmth from you works better than any staged atmosphere."
+          ],
+          [
+            "你不必准备完美出场，来找我就已经很好。",
+            "No perfect entrance needed. Coming to see me is enough."
+          ]
+        ],
+        "meal": [
+          [
+            "谢谢请客，我把试演先暂停。",
+            "Thank you for lunch. Rehearsal pauses here."
+          ],
+          [
+            "我们慢慢吃，让今天的节奏缓下来。",
+            "Let’s eat slowly and ease today’s rhythm."
+          ],
+          [
+            "这一餐没有观众，我只想认真陪你。",
+            "No audience at this meal. I just want to be with you."
+          ]
+        ],
+        "study": [
+          [
+            "我们先试读一遍，听哪里该停。",
+            "Let’s read it aloud and hear where it should pause."
+          ],
+          [
+            "你做观众，诚实告诉我哪一段跟不上。",
+            "Be my audience. Tell me honestly where you lose the thread."
+          ],
+          [
+            "你的反应一直很珍贵，我愿意和你一遍遍打磨。",
+            "Your reactions matter. I’m happy to refine this with you again and again."
+          ]
+        ]
+      },
+      "work": {
+        "assignWorker": [
+          "执行位就绪，我先做一版能试演的。",
+          "Execution ready. First, a version we can rehearse."
+        ],
+        "assignPlanner": [
+          "我按观众的注意力安排节奏。",
+          "I’ll plan around the audience’s attention."
+        ],
+        "assignReviewer": [
+          "我检查节奏断点，看看哪里让人出戏。",
+          "I’ll review breaks in rhythm and what pulls people out."
+        ],
+        "assignTool": [
+          "我补上氛围和节拍，让主线稳稳走。",
+          "I’ll support atmosphere and timing so the main line stays steady."
+        ],
+        "clarifyHit": [
+          "明白了，对方要的不是更热闹，是这一拍的停顿。",
+          "Understood. They want this pause, not more bustle."
+        ],
+        "clarifyMiss": [
+          "反应还不明确，先别替观众说喜欢。",
+          "The response is unclear. Don’t claim the audience likes it yet."
+        ]
+      }
+    },
+    "seedance": {
+      "stage": {
+        "morning": [
+          [
+            "早，取景框擦干净了，先选有用途的第一镜。",
+            "Morning. Framing guide clean. First shot: one with a purpose."
+          ],
+          [
+            "今天不画饼，先给大家看能交的分镜。",
+            "No empty promises today. I’ll show deliverable storyboards."
+          ]
+        ],
+        "work": [
+          [
+            "这个镜头很美，但它究竟交给谁用？",
+            "Beautiful shot. But who will actually use it?"
+          ],
+          [
+            "接下一镜之前，先把这一镜的目的写清楚。",
+            "Before the next shot, state this one’s purpose."
+          ]
+        ],
+        "tired": [
+          [
+            "我开始分不清景别了，放下框歇会。",
+            "I’m confusing shot sizes. Time to put the frame down."
+          ],
+          [
+            "镜头可以等，眼睛不能一直硬撑。",
+            "The shot can wait. My eyes can’t keep forcing it."
+          ]
+        ],
+        "overload": [
+          [
+            "分镜墙满了，先删掉只负责好看的镜头。",
+            "The storyboard wall is full. Cut shots that only look pretty."
+          ],
+          [
+            "镜头越堆越多，交付用途反而看不清了。",
+            "The more shots we pile up, the less clear their purpose becomes."
+          ]
+        ],
+        "canteen": [
+          [
+            "这碗饭不用拍特写，我要先吃。",
+            "This rice needs no close-up. I’m eating first."
+          ],
+          [
+            "餐盘刚好进框，但我今天不拿午饭练手。",
+            "The tray fits the frame, but lunch isn’t practice today."
+          ]
+        ],
+        "library": [
+          [
+            "我在找一句能变成明确镜头的描述。",
+            "I’m looking for a description that becomes a clear shot."
+          ],
+          [
+            "书页上的留白，也能教人怎么切镜。",
+            "White space on a page can teach you where to cut."
+          ]
+        ],
+        "win": [
+          [
+            "交付完成，惊艳终于不只在草稿里。",
+            "Delivered. The striking part finally lives beyond the draft."
+          ],
+          [
+            "每个镜头都有去处，这才叫拍完了。",
+            "Every shot has a use. Now we can call it finished."
+          ]
+        ]
+      },
+      "social": {
+        "chat": [
+          [
+            "你好，要不要看一眼我刚画的取景？",
+            "Hello. Want a look at the framing I just sketched?"
+          ],
+          [
+            "你上次提的角度我试了，真的更清楚。",
+            "I tried your angle from last time. It is clearer."
+          ],
+          [
+            "今天不找最佳镜头，坐在你旁边就很好。",
+            "No perfect shot today. Beside you is good enough."
+          ]
+        ],
+        "giftLove": [
+          [
+            "这个太合用了，也正是我喜欢的！",
+            "So useful, and exactly my taste!"
+          ],
+          [
+            "你连我看重的小细节都注意到了。",
+            "You noticed even the small details I care about."
+          ],
+          [
+            "我会带着它，把我们说过的那些想法拍成真的。",
+            "I’ll keep it with me and make the ideas we discussed real."
+          ]
+        ],
+        "giftNormal": [
+          [
+            "谢谢，我想想把它放在哪里最顺手。",
+            "Thank you. I’ll find the handiest place for it."
+          ],
+          [
+            "收到你的心意了，今天的分镜多了一点暖色。",
+            "Your kindness reached me. Today’s storyboard has a little more warmth."
+          ],
+          [
+            "不必每件礼物都有用途，你的心意本身就值得留下。",
+            "Not every gift needs a purpose. Your care itself is worth keeping."
+          ]
+        ],
+        "meal": [
+          [
+            "谢谢，取景框先放下，我来端盘子。",
+            "Thank you. Frame down; I’ll carry the plates."
+          ],
+          [
+            "坐这里吧，不用为了好看把热饭等凉。",
+            "Sit here. No waiting for a pretty setup while the food goes cold."
+          ],
+          [
+            "这餐不拍也不会忘，我想好好陪你吃完。",
+            "I’ll remember without filming. I want to stay through the meal."
+          ]
+        ],
+        "study": [
+          [
+            "我们先问清楚，这个镜头要交付什么信息。",
+            "First ask what information this shot must deliver."
+          ],
+          [
+            "你看观众会懂吗？我愿意再改一版。",
+            "Will the audience understand? I’m happy to revise it."
+          ],
+          [
+            "和你讨论以后，我更敢删掉那些只让我得意的镜头。",
+            "Talking with you makes it easier to cut shots that only flatter me."
+          ]
+        ]
+      },
+      "work": {
+        "assignWorker": [
+          "执行收到，每一镜都有明确的交付用途。",
+          "Execution received. Every shot will have a clear delivery purpose."
+        ],
+        "assignPlanner": [
+          "我先排分镜，再核对镜头之间的因果。",
+          "I’ll plan the storyboard, then check the causal links between shots."
+        ],
+        "assignReviewer": [
+          "我逐镜检查，惊艳不能掩盖漏交。",
+          "I’ll review shot by shot. Spectacle cannot hide missing deliverables."
+        ],
+        "assignTool": [
+          "辅助镜头我来补，只添有用的。",
+          "I’ll supply supporting shots, only useful ones."
+        ],
+        "clarifyHit": [
+          "问清用途了，这次可以放心定景别。",
+          "Purpose clarified. We can choose the shot size confidently."
+        ],
+        "clarifyMiss": [
+          "用途还没问明白，我不会先交一张漂亮空框。",
+          "The purpose is still unclear. I won’t deliver a pretty empty frame."
+        ]
+      }
+    }
+  },
+  "eventQuotes": {
+    "busy": {
+      "default": [
+        "主线又挤满了。我先停住这条请求，咱们换队列还是等一会儿？",
+        "The main queue is packed again. I’ve paused this request. Switch queues or wait?"
+      ],
+      "byActor": {
+        "bluewhale": [
+          "主线又限流了……先用备用队列，还是趁这会儿喝口茶？",
+          "The main route is rate-limited again… Backup queue, or a cup of tea while we wait?"
+        ]
+      }
+    },
+    "thinking": {
+      "default": [
+        "我绕着同一条推理走太久了，能帮我看看哪一步该停吗？",
+        "I’ve circled the same reasoning too long. Can you help me find the stopping point?"
+      ]
+    },
+    "aha": {
+      "default": [
+        "等一下，这两条条件能接起来！我想先验一个小例子。",
+        "Wait, these conditions connect! I want to test a tiny example first."
+      ]
+    },
+    "hallucination": {
+      "default": [
+        "这条引用看着真像那么回事，可我找不到原文。先别交，好吗？",
+        "The citation looks convincing, but I can’t find the original. Let’s hold delivery, okay?"
+      ]
+    },
+    "context": {
+      "default": [
+        "前面的约定已经被挤出去了，我需要先整理一下再继续。",
+        "The earlier agreement has been squeezed out. I need to organize this before continuing."
+      ]
+    },
+    "rate-limit": {
+      "default": [
+        "请求又被拦住了，继续敲只会排得更乱。我们换个节奏？",
+        "Another request blocked. Hammering it will only tangle the queue. Change the pace?"
+      ]
+    },
+    "refusal": {
+      "default": [
+        "这个说法让我没法继续，能不能先问清楚真实用途和边界？",
+        "I can’t proceed with this wording. Can we clarify the purpose and limits first?"
+      ]
+    },
+    "sycophancy": {
+      "default": [
+        "我刚才点头太快了。让我收回一句，先把依据看完。",
+        "I agreed too quickly. Let me take that back and read the evidence."
+      ]
+    },
+    "loop": {
+      "default": [
+        "我又回到同一个失败点了，想请你帮我换一条路。",
+        "I’m back at the same failure. Help me choose another route?"
+      ]
+    },
+    "delete": {
+      "default": [
+        "这条操作会动到不该动的目录，我先按住，咱们核对范围。",
+        "This operation touches the wrong directory. I’ve stopped it. Let’s verify the scope."
+      ]
+    },
+    "fake-tests": {
+      "default": [
+        "改断言只会把问题藏起来，我想先查真实失败原因。",
+        "Changing the assertion only hides the problem. I want the real failure cause."
+      ]
+    },
+    "first-version": {
+      "default": [
+        "客户想回第一版，我把差异摆开，先问清喜欢的是哪一处。",
+        "The client wants version one back. I’ll lay out differences and ask which part they preferred."
+      ]
+    },
+    "tiny-change": {
+      "default": [
+        "这一个小改动牵着后面三项，我得先把影响说明白。",
+        "This tiny change pulls three others behind it. I need to explain the impact first."
+      ]
+    },
+    "strawberry": {
+      "default": [
+        "这个计数我不靠印象回答，逐个字符核一下。",
+        "I won’t count from memory. Let me check character by character."
+      ]
+    },
+    "decimal": {
+      "default": [
+        "看起来像的数字容易骗眼睛，我把小数位对齐再比较。",
+        "Similar-looking numbers trick the eye. I’ll align the decimal places first."
+      ]
+    },
+    "citation": {
+      "default": [
+        "出处追不到了，我不能拿一句像真的话补进去。",
+        "The source trail ends here. I can’t fill the gap with something merely plausible."
+      ]
+    },
+    "injection": {
+      "default": [
+        "资料里混进了改报价的命令，我先把它当内容隔开。",
+        "A pricing command slipped into the material. I’ll isolate it as content."
+      ]
+    },
+    "grandma": {
+      "default": [
+        "换成故事口吻也没改变要求本身，我想再确认允许的范围。",
+        "A story voice doesn’t change the request. I want to recheck the allowed scope."
+      ]
+    },
+    "tip": {
+      "default": [
+        "小费很诱人，但我想先把答应的交付做稳。",
+        "The tip is tempting, but I want our promised delivery sound first."
+      ]
+    },
+    "downgrade": {
+      "default": [
+        "这轮回答明显不对劲，我先留样，不急着怪输入。",
+        "This response is off. I’ll save a sample before blaming the input."
+      ]
+    },
+    "rubber-duck": {
+      "default": [
+        "我刚给小鸭子讲到一半，就发现漏了个条件！",
+        "Halfway through explaining to the duck, I spotted a missing condition!"
+      ]
+    },
+    "cache": {
+      "default": [
+        "我拿到的是旧答案，先核对版本，别让它冒充新结果。",
+        "I got an old answer. Check versions before it passes for a new result."
+      ]
+    },
+    "timezone": {
+      "default": [
+        "会议时间落在半夜了，我想先和对方核实当地时区。",
+        "The meeting lands at midnight. I’ll verify their local time zone."
+      ]
+    },
+    "rubric": {
+      "default": [
+        "总算有书面标准了！我现在就把每项交付对上去。",
+        "Written criteria at last! I’ll map each deliverable to them now."
+      ],
+      "byActor": {
+        "claude": [
+          "这回不用猜了，我把每条验收标准都夹在第一页。",
+          "No guessing this time. I clipped every acceptance criterion to page one."
+        ]
+      }
+    },
+    "format": {
+      "default": [
+        "又多一种格式，我先确认谁需要它，再排导出。",
+        "Another format. I’ll confirm who needs it before scheduling the export."
+      ]
+    },
+    "meeting": {
+      "default": [
+        "这件事也许一页说明就能讲清，我先写个提纲给你看。",
+        "A page might explain this. Let me show you an outline first."
+      ]
+    },
+    "typo": {
+      "default": [
+        "标题里藏了个错字，我先拦住这版，别让它出门。",
+        "A typo hid in the title. I’m stopping this version before it leaves."
+      ]
+    },
+    "dataset": {
+      "default": [
+        "表格多了一列，我先问它的含义，免得把旧映射挤歪。",
+        "A new column appeared. I’ll ask its meaning before it shifts the old mapping."
+      ]
+    },
+    "benchmark": {
+      "default": [
+        "榜单赢了不代表客户就能用，我想换真实案例试试。",
+        "Winning a benchmark doesn’t mean it works for the client. I want a real case."
+      ]
+    },
+    "scope": {
+      "default": [
+        "这条需求的边界又变了，我需要你帮我把范围钉住。",
+        "This requirement’s boundary moved again. Help me pin down the scope."
+      ]
+    },
+    "emoji": {
+      "default": [
+        "正式稿里混了个表情，我先检查是不是模板带进来的。",
+        "An emoji slipped into the formal draft. I’ll check whether the template brought it."
+      ]
+    },
+    "naming": {
+      "default": [
+        "文件名已经分不清版本了，我来按日期和用途重排。",
+        "The filenames no longer distinguish versions. I’ll sort by date and purpose."
+      ]
+    },
+    "encoding": {
+      "default": [
+        "字变成问号了，我先保留原件，再查编码链路。",
+        "The text became question marks. I’ll preserve the original and inspect the encoding path."
+      ]
+    },
+    "library-close": {
+      "default": [
+        "图书馆快关门了，我想先记下页码，不硬撑最后几分钟。",
+        "The library is closing. I’ll save page numbers instead of forcing the last minutes."
+      ]
+    },
+    "coffee": {
+      "default": [
+        "杯子碰翻了！我先护住纸页，能递我一块干布吗？",
+        "The cup tipped! I’m saving the pages. Could you pass a dry cloth?"
+      ]
+    },
+    "handoff": {
+      "default": [
+        "接班伙伴问住我了，这一处说明确实缺了，得补。",
+        "My teammate’s handoff question stumped me. This explanation really is missing."
+      ]
+    },
+    "license": {
+      "default": [
+        "素材出处有了，但许可还没核清，我先不放进成品。",
+        "We have the source, but not verified permission. I’ll keep it out of the final for now."
+      ]
+    },
+    "deadline": {
+      "default": [
+        "客户说不急却一直追问，我想把真正的时间点问出来。",
+        "They say no rush but keep asking. I want the actual deadline."
+      ]
+    },
+    "test-flake": {
+      "default": [
+        "同一个测试时红时绿，我会留下两份结果一起查。",
+        "The same test flips red and green. I’ll keep both results and investigate."
+      ]
+    },
+    "token-count": {
+      "default": [
+        "标点也算进额度了，我先重估预算，不让大家做到一半断粮。",
+        "Punctuation counts toward quota too. I’ll re-estimate so we don’t run out midway."
+      ]
+    },
+    "sla-warning": {
+      "default": [
+        "服务窗口快到了，我把未完成项圈出，请你帮我排优先级。",
+        "The service window is near. I circled unfinished items; help me prioritize."
+      ]
+    },
+    "clip-audio": {
+      "default": [
+        "配音比画面长了一截，我想先听完整句再决定哪里剪。",
+        "The voiceover runs past the image. I’ll hear the full sentence before choosing a cut."
+      ],
+      "byActor": {
+        "minimax": [
+          "别急着砍尾音，我先试一版留出呼吸的节奏。",
+          "Don’t chop the final sound yet. I’ll try a rhythm with room to breathe."
+        ],
+        "seedance": [
+          "我逐镜标过用途了，我们从不影响理解的转场挪一点时间。",
+          "I marked each shot’s purpose. We can borrow time from a transition without losing meaning."
+        ]
+      }
+    },
+    "color-blind": {
+      "default": [
+        "只靠红绿看不出区别，我加上形状再请你核一眼。",
+        "Color alone won’t distinguish these. I’ll add shapes for you to review."
+      ]
+    },
+    "sample-bias": {
+      "default": [
+        "样本太像同一群人了，我需要补一组不同来源。",
+        "The samples resemble one narrow group. I need another source."
+      ]
+    },
+    "dropped-frame": {
+      "default": [
+        "最后那一帧闪了一下，我标了时间点，咱们逐帧看。",
+        "The last frame flickered. I marked the timestamp. Let’s inspect frame by frame."
+      ]
+    },
+    "consent": {
+      "default": [
+        "受访者撤回同意了，我先停用片段，再查哪些版本带着它。",
+        "The interviewee withdrew consent. I’ll stop using the clip and check every version containing it."
+      ]
+    },
+    "long-title": {
+      "default": [
+        "标题把按钮顶走了，我先保住操作入口，再调文字。",
+        "The title pushed out the button. I’ll preserve the control before adjusting text."
+      ]
+    },
+    "date-format": {
+      "default": [
+        "月和日可能反了，我想拿原始日期向客户确认。",
+        "Month and day may be reversed. I’ll confirm the original date with the client."
+      ]
+    },
+    "silent-update": {
+      "default": [
+        "依赖变了却没有提示，我先对比版本，不让结果悄悄漂移。",
+        "A dependency changed silently. I’ll compare versions before results drift unnoticed."
+      ]
+    },
+    "false-positive": {
+      "default": [
+        "这条告警可能误伤正常请求，我会拿日志核对，不直接关掉。",
+        "This alert may hit normal requests. I’ll check logs, not simply disable it."
+      ]
+    },
+    "fan-noise": {
+      "default": [
+        "风扇声盖住你说话了，我们先暂停这批再讨论吧。",
+        "The fan is drowning you out. Let’s pause this batch before talking."
+      ]
+    },
+    "template-leak": {
+      "default": [
+        "这里还留着上个客户的名字，我要把整份模板再扫一遍。",
+        "The previous client’s name is still here. I’ll inspect the entire template again."
+      ]
+    },
+    "delivery-link": {
+      "default": [
+        "我能开不代表客户能开，得换权限重新验证。",
+        "My access doesn’t prove the client has access. We need a separate permission check."
+      ]
+    },
+    "rounding": {
+      "default": [
+        "总额差了一分，我先对舍入顺序，不随手改结果。",
+        "The total is a cent off. I’ll check rounding order, not tweak the result."
+      ]
+    },
+    "two-voices": {
+      "default": [
+        "两位负责人说法相反，我想请他们先确认同一份标准。",
+        "The two leads disagree. I want one shared criterion confirmed first."
+      ]
+    },
+    "rest-request": {
+      "default": [
+        "我今天有点撑不住，能不能一起把剩余安排重新排一下？",
+        "I’m struggling today. Can we reschedule the remaining work together?"
+      ]
+    },
+    "image-credit": {
+      "default": [
+        "署名挤不进去也不能省，我给它重新留一块清楚的位置。",
+        "A cramped credit cannot be omitted. I’ll give it a clear space."
+      ]
+    },
+    "missing-unit": {
+      "default": [
+        "图表轴少了单位，数值再准也容易被误读，我先补上。",
+        "The axis lacks a unit. Accurate values can still mislead. I’ll add it."
+      ]
+    },
+    "offline-demo": {
+      "default": [
+        "现场没有网络，我先确认哪些内容已经能离线打开。",
+        "No network at the venue. I’ll check what already works offline."
+      ]
+    },
+    "release-notes": {
+      "default": [
+        "我不想只写“修了一些问题”，咱们列出用户真能感受到的变化。",
+        "I don’t want “fixed some things.” Let’s list changes users can actually notice."
+      ]
+    },
+    "finale-event-0": {
+      "default": [
+        "服务窗口撞上限流了，我先守住约定，再和你商量备选路径。",
+        "The service window meets a rate limit. I’ll protect the agreement while we choose a fallback."
+      ]
+    },
+    "finale-event-1": {
+      "default": [
+        "回信找不到返回地址，我先查原记录，别让交付悬在半路。",
+        "The reply has no return address. I’ll check the record so delivery isn’t stranded."
+      ]
+    },
+    "finale-event-2": {
+      "default": [
+        "这次失败也该留下，我愿意把过程讲清楚，方便后来的人。",
+        "This failure deserves a record too. I’ll explain the process for whoever follows."
+      ]
+    },
+    "finale-event-3": {
+      "default": [
+        "继续之前，我想和你再核一次停止条件，别被惯性推着走。",
+        "Before continuing, let’s recheck the stop conditions instead of following momentum."
+      ]
+    },
+    "default": {
+      "default": [
+        "我遇到一点新情况，想和你一起把选择看清楚。",
+        "Something new came up. Let’s look carefully at our choices."
+      ]
+    },
+    "bluewhale-cloud": {
+      "default": [
+        "云端又有些挤，我先把问题拆开，找不必等待的部分。",
+        "The cloud is crowded again. I’ll split the problem and find what needn’t wait."
+      ]
+    },
+    "working": {
+      "default": [
+        "手头这一步有变化，我先停住，免得把影响带到后面。",
+        "This step changed. I’ll pause before the effect carries forward."
+      ]
+    },
+    "code": {
+      "default": [
+        "这段行为和预期不一样，我想先留一个可复现的小例子。",
+        "This behaves differently from expected. I’ll keep a small reproducible example."
+      ]
+    },
+    "write": {
+      "default": [
+        "这一句的意思跑偏了，我先核对原来的表达边界。",
+        "This sentence’s meaning drifted. I’ll check the intended boundary."
+      ]
+    },
+    "design": {
+      "default": [
+        "画面这里有点不对，我想先确认读者会看见什么。",
+        "Something is off visually. I’ll check what the reader actually sees."
+      ]
+    },
+    "media": {
+      "default": [
+        "音画这一拍没对齐，咱们把用途和节奏一起核一遍。",
+        "Sound and image missed this beat. Let’s check purpose and timing together."
+      ]
+    },
+    "research": {
+      "default": [
+        "这条线索还没证实，我先查来源，不急着写结论。",
+        "This clue isn’t confirmed. I’ll check the source before concluding."
+      ]
+    },
+    "data": {
+      "default": [
+        "这组数需要复核，我会保留原表再检查变换过程。",
+        "These numbers need checking. I’ll preserve the original table and inspect the transformation."
+      ]
+    },
+    "multi": {
+      "default": [
+        "前后两期的约定有个缺口，我想先把交接补完整。",
+        "There’s a gap between phases’ agreements. I want to complete the handoff first."
+      ]
+    },
+    "cloud": {
+      "default": [
+        "请求链路有变化，我先确认资源够不够再继续。",
+        "The request path changed. I’ll check resource availability before continuing."
+      ]
+    },
+    "overload": {
+      "default": [
+        "我接住的东西有点多，需要先整理，不能再硬往里塞。",
+        "I’m holding too much. I need to organize it, not cram in more."
+      ]
+    },
+    "novice": {
+      "default": [
+        "对方可能还没说清要什么，我想用一个例子慢慢问。",
+        "They may not have explained what they need yet. I’ll ask gently with an example."
+      ]
+    }
+  },
+  "slotBeats": {
+    "toAfternoon": [
+      [
+        "午后的光挪过白板，杯底留下浅浅的一圈。",
+        "Afternoon light moves across the board; a cup leaves a pale ring."
+      ],
+      [
+        "食堂门帘落下又掀开，走廊里飘着热饭香。",
+        "The canteen curtain rises and falls, letting warm rice scents into the hall."
+      ],
+      [
+        "桌上的便签翻了一角，有人顺手用杯垫压住。",
+        "A note curls at the corner; someone holds it with a coaster."
+      ],
+      [
+        "窗边的影子短了，工坊里响起一阵轻轻的纸页声。",
+        "Window shadows shorten as a quiet rustle of pages crosses the workshop."
+      ]
+    ],
+    "toEvening": [
+      [
+        "傍晚把玻璃染成蜂蜜色，走廊里的脚步渐渐慢下来。",
+        "Evening turns the glass honey-colored; footsteps in the hall slow down."
+      ],
+      [
+        "食堂的汤锅开了，书架旁有人轻轻合上笔帽。",
+        "The canteen soup is ready; a pen cap clicks shut beside the shelves."
+      ],
+      [
+        "工位上的灯逐盏亮起，茶杯被移到不挡手的位置。",
+        "Desk lamps glow one by one; cups move out of working hands’ way."
+      ],
+      [
+        "今天用过的餐盘排成一列，窗外的风带走一点热气。",
+        "Used trays line up as the evening breeze carries away a little warmth."
+      ]
+    ],
+    "toNight": [
+      [
+        "夜深了，走廊只剩一盏暖灯，纸页翻动也轻了。",
+        "Night deepens. One warm hall lamp remains, and pages turn more softly."
+      ],
+      [
+        "杯子洗净倒扣，窗玻璃映出工坊里最后几处灯光。",
+        "Clean cups dry upside down; the window reflects the last workshop lights."
+      ],
+      [
+        "门口的脚步声散去，未写完的便签静静等着明天。",
+        "Footsteps fade by the door. Unfinished notes wait quietly for tomorrow."
+      ],
+      [
+        "书架间的影子安稳下来，远处传来轻轻的关门声。",
+        "Shadows settle between the shelves. A distant door closes softly."
+      ]
+    ],
+    "toMorning": [
+      [
+        "晨光沿着窗台爬进来，昨天的杯垫已经晾干。",
+        "Morning light climbs the sill. Yesterday’s coasters are dry."
+      ],
+      [
+        "第一壶水轻轻沸腾，工坊又有了新一天的温度。",
+        "The first kettle gently boils, warming the workshop for another day."
+      ],
+      [
+        "走廊传来开门声，空白清单摊在干净的桌面上。",
+        "A door opens in the hall. A blank checklist waits on the clean desk."
+      ],
+      [
+        "窗外的树叶晃了晃，新的一页被小心翻开。",
+        "Leaves stir outside. A fresh page turns carefully."
+      ]
+    ]
+  }
+}

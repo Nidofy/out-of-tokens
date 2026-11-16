@@ -4,6 +4,26 @@ const positive = z.number().finite().positive();
 const score = z.number().min(0).max(10);
 const vector = (value: z.ZodNumber) => z.object({ code: value, write: value, reason: value, create: value, media: value, recall: value }).strict();
 const words = z.string().min(1);
+const pair=z.tuple([words,words]);
+const message=z.object({speaker:words,zh:words,en:words}).strict();
+const reply=z.object({label:words,labelEn:words,targetActor:words,responseZh:words,responseEn:words}).strict();
+const stages=['morning','work','tired','overload','canteen','library','win'] as const;
+const socials=['chat','giftLove','giftNormal','meal','study'] as const;
+const workLines=['assignWorker','assignPlanner','assignReviewer','assignTool','clarifyHit','clarifyMiss'] as const;
+const exactRecord=<T extends z.ZodType>(keys:readonly string[],value:T)=>z.record(z.string(),value).superRefine((v,ctx)=>{if(Object.keys(v).length!==keys.length||keys.some(k=>!Object.hasOwn(v,k)))ctx.addIssue({code:'custom',message:'exact keys required'});});
+export const livingSchema=z.object({
+    gifts:z.array(z.object({id:words,name:words,nameEn:words,cost:z.number().int().min(45).max(70),desc:words,descEn:words,lovedBy:z.array(words).min(2).max(3),likedBy:z.array(words).min(2).max(3)}).strict()).length(6),
+    duos:z.array(z.object({id:words,actors:pair,title:words,titleEn:words,minDeliveries:z.literal(2),bonus:z.object({kind:z.enum(['efficiency','quality','clarify','energySave','defectGuard']),value:positive.max(100),mode:z.enum(['local','cloud']).optional(),category:z.enum(['code','write','research','design','media','data']).optional()}).strict().superRefine((b,ctx)=>{if((['efficiency','clarify'].includes(b.kind)&&b.value>1)||(['quality','energySave','defectGuard'].includes(b.kind)&&!Number.isInteger(b.value)))ctx.addIssue({code:'custom',message:'invalid bonus magnitude'});}),desc:words,descEn:words,banter:z.array(message).min(2).max(3)}).strict()).length(12),
+    threads:z.array(z.object({id:words,title:words,titleEn:words,trigger:z.discriminatedUnion('kind',[
+        z.object({kind:z.literal('recruit'),value:words}).strict(),
+        z.object({kind:z.enum(['day','deliveries','overtime','weeklyBill','crisis']),value:positive.int()}).strict(),
+        z.object({kind:z.literal('chapter'),value:z.number().int().min(0).max(4)}).strict()
+    ]),messages:z.array(message).min(2).max(4),replies:z.array(reply).min(2).max(3)}).strict()).length(20),
+    clients:z.array(z.object({id:words,name:words,nameEn:words,role:words,roleEn:words,style:z.enum(['novice','normal','expert','rush']),quotes:exactRecord(['excellent','good','pass','fail'],pair)}).strict()).length(6),
+    barks:z.record(z.string(),z.object({stage:exactRecord(stages,z.array(pair).min(2)),social:exactRecord(socials,z.tuple([pair,pair,pair])),work:exactRecord(workLines,pair)}).strict()),
+    eventQuotes:z.record(z.string(),z.object({default:pair,byActor:z.record(z.string(),pair).optional()}).strict()),
+    slotBeats:exactRecord(['toAfternoon','toEvening','toNight','toMorning'],z.array(pair).min(4))
+}).strict();
 const effect = z.object({ kind: z.enum(['work', 'quality', 'defects', 'mood', 'compact', 'reset', 'tokenRate', 'cashPercent']), value: z.number().finite().min(-100).max(100) }).strict().superRefine((e, ctx) => {
     if (['compact', 'cashPercent'].includes(e.kind) && (e.value < 0 || e.value > 1))
         ctx.addIssue({ code: 'custom', message: 'fraction 0..1' });
@@ -20,7 +40,7 @@ const schema = z.object({ version: words,
     commissions: z.array(z.object({ offerOnly:z.boolean().optional(), proposals:z.array(z.object({id:words,label:words,labelEn:words,template:words}).strict()).min(2).max(3).optional(), minChapter:z.number().int().min(0).max(4).optional(), id: words, title: words, titleEn: words.optional(), category: z.enum(['code', 'write', 'research', 'design', 'media', 'data']).optional(), client: z.enum(['expert', 'normal', 'novice', 'rush']).optional(), phases: z.number().int().min(1).max(4).optional(), qualityLines: z.tuple([z.number().min(1).max(100), z.number().min(1).max(100), z.number().min(1).max(100)]).refine(x => x[0] < x[1] && x[1] < x[2], 'ordered quality lines').optional(), description: words, descriptionEn: words.optional(), requirements: z.array(z.object({label:words,labelEn:words,work:z.number().min(0).max(20)}).strict()).max(4).optional(), weights: vector(z.number().min(0).max(1)).refine(v => Math.abs(Object.values(v).reduce((a, b) => a + b, 0) - 1) < 1e-8, 'weights sum'), workload: positive, workSlots: positive.int().max(56), reward: positive, clarity: z.number().min(0).max(100), delivery: z.enum(['oneshot', 'multi', 'retainer']) }).strict().refine(t => t.delivery === 'oneshot' ? (t.phases ?? 1) === 1 : (t.phases ?? 1) >= 2, 'delivery phases')).min(1),
     events: z.array(z.object({ minChapter:z.number().int().min(0).max(4).optional(), id: words, title: words, titleEn: words.optional(), cooldown: z.number().int().min(0).optional(), weight: positive.optional(), trigger: z.enum(['bluewhale-cloud', 'working', 'code', 'write', 'design', 'media', 'research', 'data', 'multi', 'cloud', 'overload', 'novice']).optional(), choices: z.array(z.object({ label: words, labelEn: words.optional(), cost: z.number().min(0), multiplier: z.number().min(0).max(2), effects: z.array(effect).optional() }).strict()).min(1).refine(xs => xs.some(x => x.cost === 0), 'free escape required') }).strict()),
     balance: balanceSchema.optional(),
-    campaign: z.object({ office:officeSchema.optional(), projects:z.array(project).optional(), openingJobs:z.array(words).length(5).optional(),starterJobs:z.array(words).min(5).optional(), initial: z.array(words).min(1), recruits: z.array(z.object({character: words, cost: positive, reputation: z.number().min(0), minChapter:z.number().int().min(0).max(4).optional()}).strict()), software: z.array(z.object({id: words, name: words, nameEn: words, cost: positive, research: z.number().int().min(0), requires: z.array(words)}).strict()), maxHardware: z.number().int().min(1).max(5), maxChapter:z.number().int().min(0).max(4).optional(), stories:z.array(z.object({id:words,character:words,affinity:z.number().min(0).max(100),text:words,textEn:words,choices:z.array(z.object({label:words,labelEn:words,affinity:z.number().min(-10).max(10),mood:z.number().min(-20).max(20),research:z.number().int().min(0).max(5)}).strict()).length(2)}).strict()).optional() }).strict().optional()
+    campaign: z.object({ living:livingSchema.optional(), office:officeSchema.optional(), projects:z.array(project).optional(), openingJobs:z.array(words).length(5).optional(),starterJobs:z.array(words).min(5).optional(), initial: z.array(words).min(1), recruits: z.array(z.object({character: words, cost: positive, reputation: z.number().min(0), minChapter:z.number().int().min(0).max(4).optional()}).strict()), software: z.array(z.object({id: words, name: words, nameEn: words, cost: positive, research: z.number().int().min(0), requires: z.array(words)}).strict()), maxHardware: z.number().int().min(1).max(5), maxChapter:z.number().int().min(0).max(4).optional(), stories:z.array(z.object({id:words,character:words,affinity:z.number().min(0).max(100),text:words,textEn:words,choices:z.array(z.object({label:words,labelEn:words,affinity:z.number().min(-10).max(10),mood:z.number().min(-20).max(20),research:z.number().int().min(0).max(5)}).strict()).length(2)}).strict()).optional() }).strict().optional()
 }).strict();
 export function validateContent(input: unknown): Content {
     const c = schema.parse(input);
@@ -44,6 +64,26 @@ export function validateContent(input: unknown): Content {
         const p = c.campaign, roster = [...p.initial, ...p.recruits.map(r => r.character)];
         if (new Set(roster).size !== roster.length || roster.some(id => !c.versions.some(v => v.character === id)) || c.versions.some(v => !roster.includes(v.character))) throw Error('CAMPAIGN_REFERENCE');
         if(p.stories && (new Set(p.stories.map(x=>x.id)).size !== p.stories.length || p.stories.some(x=>!roster.includes(x.character)))) throw Error('STORY_REFERENCE');
+        if(p.living){
+            const l=p.living,unique=(xs:string[])=>new Set(xs).size===xs.length;
+            const allIds=[...l.gifts,...l.duos,...l.threads,...l.clients].map(x=>x.id);
+            if(!unique(allIds))throw Error('LIVING_DUPLICATE_ID');
+            const refs=(xs:string[])=>xs.every(id=>roster.includes(id));
+            const giftIds=['rice-bento','espresso-pods','fountain-pen','prism-sketchbook','vinyl-coaster','keycap-artisan'];
+            const clientIds=['tea-lin','book-zhou','tech-yan','curator-su','oss-zhe','vc-lu'];
+            if(l.gifts.some(g=>!giftIds.includes(g.id))||l.clients.some(c=>!clientIds.includes(c.id)))throw Error('LIVING_REFERENCE');
+            for(const g of l.gifts)if(!refs([...g.lovedBy,...g.likedBy])||!unique([...g.lovedBy,...g.likedBy]))throw Error('LIVING_REFERENCE');
+            for(const d of l.duos)if(!refs(d.actors)||d.actors[0]>=d.actors[1]||!d.banter.every(m=>d.actors.includes(m.speaker)))throw Error('LIVING_REFERENCE');
+            for(const t of l.threads){
+                if(!refs([...t.messages.map(m=>m.speaker),...t.replies.map(r=>r.targetActor)])||(t.trigger.kind==='recruit'&&!p.recruits.some(r=>r.character===t.trigger.value)))throw Error('LIVING_REFERENCE');
+            }
+            if(Object.keys(l.barks).length!==roster.length||!refs(Object.keys(l.barks)))throw Error('LIVING_REFERENCE');
+            const eventIds=[...c.events.map(e=>e.id),'default','bluewhale-cloud','working','code','write','design','media','research','data','multi','cloud','overload','novice'];
+            // A deliberately disabled event deck may retain dormant presentation quotes.
+            // Active decks still reject dangling event ids; actor references always apply.
+            const eventsDisabled=c.events.length===0&&c.balance?.eventChance===0;
+            for(const [id,q] of Object.entries(l.eventQuotes))if((!eventsDisabled&&!eventIds.includes(id))||!refs(Object.keys(q.byActor??{})))throw Error('LIVING_REFERENCE');
+        }
         const unlocked = new Set<string>();
         for (const u of p.software) {
             if (unlocked.has(u.id) || u.requires.some(id => !unlocked.has(id))) throw Error('UPGRADE_REFERENCE');

@@ -1,5 +1,5 @@
 import {initialOffice,cloneOffice} from './office.js';
-import type { Actor, CampaignState, Command, Content, Relation, Scene, Skill, State, Version } from './model.js';
+import type { Actor, CampaignState, Command, Content, Relation, Scene, Skill, State, Version, DuoDef, Job, ChatThreadDef, LivingView } from './model.js';
 import {applyFinale,tickFinale} from './finale.js';
 import {applyProject} from './projects.js';
 import {chapterGoal} from './chapter-goal.js';
@@ -11,6 +11,12 @@ export function initialCampaign(c: Content): CampaignState {
     return { ...(c.campaign?.office?{office:initialOffice()}:{}), ...(c.campaign?.projects?{projects:{}}:{}), ...((c.campaign?.maxChapter??0)>=4?{finale:{ending:null,endless:false,endlessAt:0,expeditions:[],souvenirs:[],bids:[],challengeWeek:0,challengeWins:[]}}:{}), chapterStarted: 0, clarifyRng: 1, subscription: 0, incidents: [], chapter: 0, chapterZero: 'pending', completed: [], scene: 'workshop', research: 0, software: [], hardware: { office: 0, compute: 0, storage: 0, network: 0 }, unlocked: c.versions.filter((v, i, all) => all.findIndex(x => x.character === v.character) === i).map(v => v.id), relations: Object.fromEntries(c.campaign!.initial.map(id => [id, newRelation()])) };
 }
 export function cloneCampaign(p: CampaignState): CampaignState {
+    const living = {
+        ...(p.gifted !== undefined ? {gifted:Object.fromEntries(Object.entries(p.gifted).map(([id,gifts])=>[id,[...gifts]]))}:{}),
+        ...(p.duos !== undefined ? {duos:[...p.duos]}:{}),
+        ...(p.chatLog !== undefined ? {chatLog:{...p.chatLog}}:{})
+    };
+    p = {...p,...living};
     return { ...p, ...(p.office?{office:cloneOffice(p.office)}:{}), ...(p.projects?{projects:Object.fromEntries(Object.entries(p.projects).map(([id,value])=>[id,{...value,history:[...value.history]}]))}:{}), ...(p.finale?{finale:{...p.finale,expeditions:p.finale.expeditions.map(x=>({...x})),souvenirs:[...p.finale.souvenirs],bids:p.finale.bids.map(x=>({...x})),challengeWins:[...p.finale.challengeWins]}}:{}), incidents:p.incidents.map(x=>({...x})), completed: [...p.completed], software: [...p.software], hardware: { ...p.hardware }, unlocked: [...p.unlocked], relations: Object.fromEntries(Object.entries(p.relations).map(([id, r]) => [id, { ...r, stories: [...r.stories], training: r.training ? { ...r.training } : null, bonuses: Object.fromEntries(Object.entries(r.bonuses).map(([v, skills]) => [v, { ...skills }])) }])) };
 }
 export const owns = (s: State, id: string) => s.campaign?.software.includes(id) ?? false;
@@ -39,7 +45,7 @@ export function tickCampaign(s: State) {
     }
     if (s.absoluteSlot >= 56 && p.chapterZero !== 'passed') p.chapterZero = s.debtPaid && liquidCash(s) >= 0 && s.jobs.some(j => j.phase > 0) ? 'passed' : 'missed';
 }
-const actions = ['project-start', 'project-next', 'visit', 'chat', 'gift', 'meal', 'study', 'recall', 'recruit', 'unlock', 'switch', 'train', 'align', 'software', 'hardware', 'chapter', 'story', 'subscribe', 'expedition', 'ending', 'endless', 'bid', 'challenge'];
+const actions = ['tea', 'duo', 'chat-reply', 'project-start', 'project-next', 'visit', 'chat', 'gift', 'meal', 'study', 'recall', 'recruit', 'unlock', 'switch', 'train', 'align', 'software', 'hardware', 'chapter', 'story', 'subscribe', 'expedition', 'ending', 'endless', 'bid', 'challenge'];
 export function parseCampaign(v: Record<string, unknown>): Extract<Command, { type: 'campaign' }> {
     check(typeof v.action === 'string' && actions.includes(v.action) && typeof v.id === 'string' && (v.target === undefined || typeof v.target === 'string'), 'INVALID_CAMPAIGN_COMMAND');
     return { type: 'campaign', action: v.action as Extract<Command, { type: 'campaign' }>['action'], id: v.id as string, ...(v.target === undefined ? {} : { target: v.target as string }) };
@@ -49,6 +55,36 @@ export function applyCampaign(s: State, c: Content, cmd: Extract<Command, { type
     const p = s.campaign!, spec = c.campaign!;
     if(applyProject(s,c,cmd)||applyFinale(s,c,cmd))return;
     const pay = (cash: number, research = 0) => { check(s.cash >= cash && p.research >= research, 'INSUFFICIENT_RESOURCES'); s.cash = round(s.cash - cash); p.research -= research; s.ledger.push({ slot: s.absoluteSlot, amount: -cash, reason: `campaign:${cmd.action}:${cmd.id}` }); };
+    if (cmd.action === 'tea') {
+        check(cmd.id === 'all', 'INVALID_CAMPAIGN_COMMAND');
+        const day = Math.floor(s.absoluteSlot / 4) + 1;
+        check(p.lastTeaDay !== day, 'TEA_COOLDOWN');
+        check(p.scene === 'workshop', 'WRONG_SCENE');
+        const participants = s.actors.filter(a => actorScene(s,a) !== 'expedition');
+        check(participants.some(a => teaAvailable(s,a)), 'ACTOR_BUSY');
+        pay(80); p.lastTeaDay = day;
+        for (const a of participants) { a.energy=cap(a.energy+12); a.mood=cap(a.mood+8); const r=p.relations[a.id]!; r.stress=cap(r.stress-8); }
+        return;
+    }
+    if (cmd.action === 'duo') {
+        const duo = spec.living?.duos.find(d => d.id === cmd.id);
+        check(duo && !p.duos?.includes(cmd.id) && duo.actors.every(id => s.actors.some(a=>a.id===id)) && sharedDeliveries(s,duo)>=duo.minDeliveries, 'DUO_LOCKED');
+        check(duoPresent(s,duo!), 'ACTOR_ELSEWHERE');
+        check(duo!.actors.every(id=>!livingOccupied(s,s.actors.find(a=>a.id===id)!)), 'ACTOR_BUSY');
+        (p.duos ??= []).push(duo!.id); p.research+=2;
+        for (const id of duo!.actors) {const a=s.actors.find(a=>a.id===id)!,r=p.relations[id]!;a.mood=cap(a.mood+6);r.affinity=cap(r.affinity+3);}
+        return;
+    }
+    if (cmd.action === 'chat-reply') {
+        const thread=spec.living?.threads.find(t=>t.id===cmd.id);
+        check(thread && isThreadUnlocked(s,thread) && !Object.hasOwn(p.chatLog??{},cmd.id), 'THREAD_LOCKED');
+        check(cmd.target!==undefined && /^(0|1|2)$/.test(cmd.target) && Number(cmd.target)<thread!.replies.length, 'INVALID_CHOICE');
+        const index=Number(cmd.target), reply=thread!.replies[index]!;
+        (p.chatLog??={})[thread!.id]=index;
+        const a=s.actors.find(a=>a.id===reply.targetActor);
+        if(a){const r=p.relations[a.id]!;r.affinity=cap(r.affinity+2);a.mood=cap(a.mood+3);}
+        return;
+    }
     if (cmd.action === 'visit') { check(['workshop', 'canteen', 'library'].includes(cmd.id), 'UNKNOWN_SCENE'); p.scene = cmd.id as Scene; return; }
     if (cmd.action === 'recruit') {
         const recruit = spec.recruits.find(x => x.character === cmd.id);
@@ -117,10 +153,82 @@ export function applyCampaign(s: State, c: Content, cmd: Extract<Command, { type
     if (cmd.action === 'meal') { check(p.scene === 'canteen' || p.scene === 'library', 'WRONG_SCENE'); pay(30); r.hunger=cap(r.hunger-50);r.stress=cap(r.stress-8); a!.energy = cap(a!.energy + 25); a!.mood = cap(a!.mood + 8); }
     if (cmd.action === 'study') { check(p.scene === 'library', 'WRONG_SCENE'); check(a!.energy >= 10, 'TIRED'); a!.energy -= 10; r.xp += 10; p.research += 2; }
     if (cmd.action === 'chat') { r.stress=cap(r.stress-10); a!.mood = cap(a!.mood + 5); r.affinity = cap(r.affinity + 3); }
-    if (cmd.action === 'gift') { pay(60); a!.mood = cap(a!.mood + 10); r.affinity = cap(r.affinity + 5); }
+    if (cmd.action === 'gift') {
+        if(cmd.target===undefined || !spec.living){pay(60); a!.mood = cap(a!.mood + 10); r.affinity = cap(r.affinity + 5);}
+        else {
+            const gift=spec.living.gifts.find(g=>g.id===cmd.target);check(gift,'UNKNOWN_GIFT');pay(gift!.cost);
+            const loved=gift!.lovedBy.includes(a!.id),liked=gift!.likedBy.includes(a!.id);
+            a!.mood=cap(a!.mood+(loved?16:liked?12:8));r.affinity=cap(r.affinity+(loved?10:liked?7:4));
+            if(loved||liked)r.stress=cap(r.stress-(loved?10:5));
+            const gifts=(p.gifted??={})[a!.id]??=[];if(!gifts.includes(gift!.id))gifts.push(gift!.id);
+        }
+    }
     a!.busyUntil = s.absoluteSlot + 1;
 }
 
-export const clarifyChance=(s:State,c:Content,a:Actor)=>Math.min(.95,.35+.04*effectiveVersion(s,c,a).skills.recall+(owns(s,'analyst')?.15:0));
+export const clarifyChance=(s:State,c:Content,a:Actor)=>{
+    const base=Math.min(.95,.35+.04*effectiveVersion(s,c,a).skills.recall+(owns(s,'analyst')?.15:0));
+    if(!s.campaign?.duos?.includes('qwen-kimi') || !['qwen','kimi'].includes(a.id))return base;
+    const q=s.actors.find(a=>a.id==='qwen'),k=s.actors.find(a=>a.id==='kimi');
+    return q&&k&&actorScene(s,q)!=='expedition'&&actorScene(s,q)===actorScene(s,k)?Math.min(1,base+.12):base;
+};
 export function clarifyRoll(s:State):number {let x=s.campaign!.clarifyRng;x^=x<<13;x^=x>>>17;x^=x<<5;s.campaign!.clarifyRng=x>>>0;return(x>>>0)/4294967296;}
 export const needsFactor=(s:State,id:string)=>{const r=s.campaign?.relations[id];return r&&s.campaign&&r.hunger>=70?.85:1;};
+
+// Shared by action guards and the derived UI: reserving any active job counts as busy.
+export function livingOccupied(s:State,a:Actor):boolean {
+    return a.busyUntil>s.absoluteSlot || s.overtime.includes(a.id) || s.jobs.some(j=>['accepted','working','review','waiting'].includes(j.status)&&j.team.some(m=>m.character===a.id));
+}
+function teaAvailable(s:State,a:Actor):boolean {
+    return a.busyUntil<=s.absoluteSlot&&!s.overtime.includes(a.id)&&(s.absoluteSlot%4>=2||!livingOccupied(s,a));
+}
+export function sharedDeliveries(s:State,d:DuoDef):number {
+    return s.jobs.filter(j=>j.status==='delivered'&&d.actors.every(id=>j.team.some(m=>m.character===id))).length;
+}
+function duoPresent(s:State,d:DuoDef):boolean {
+    const scene=s.campaign?.scene;
+    return d.actors.every(id=>{const a=s.actors.find(a=>a.id===id);if(!a)return false;const at=actorScene(s,a);return at===scene||(owns(s,'remote')&&at==='workshop');});
+}
+export function isThreadUnlocked(s:State,t:ChatThreadDef):boolean {
+    if(!s.campaign || !t.messages.every(m=>s.actors.some(a=>a.id===m.speaker)) || !t.replies.every(r=>s.actors.some(a=>a.id===r.targetActor)))return false;
+    const n=Number(t.trigger.value);
+    switch(t.trigger.kind){
+        case 'day':return Math.floor(s.absoluteSlot/4)+1>=n;
+        case 'chapter':return s.campaign.chapter>=n;
+        case 'deliveries':return s.jobs.filter(j=>j.status==='delivered').length>=n;
+        case 'recruit':return s.actors.some(a=>a.id===t.trigger.value);
+        case 'overtime':return s.overtime.length>0||s.actors.some(a=>a.lastOvertimeSlot!==undefined);
+        case 'weeklyBill':return s.absoluteSlot>=28*n-2;
+        case 'crisis':return s.crises.length>=n||s.crisisSince!==null;
+    }
+}
+export function livingView(s:State,c:Content):LivingView {
+    const p=s.campaign,defs=c.campaign?.living;
+    const threads=(defs?.threads??[]).filter(t=>isThreadUnlocked(s,t)).map(t=>({id:t.id,title:t.title,titleEn:t.titleEn,messages:t.messages.map(m=>({...m})),replies:t.replies.map(r=>({...r})),chosenReply:p?.chatLog?.[t.id]??null}));
+    return {teaReady:!!p&&(p.lastTeaDay??0)<Math.floor(s.absoluteSlot/4)+1&&s.cash>=80&&p.scene==='workshop'&&s.actors.some(a=>actorScene(s,a)!=='expedition'&&teaAvailable(s,a)),
+        gifted:Object.fromEntries(Object.entries(p?.gifted??{}).map(([id,gifts])=>[id,[...gifts]])),
+        duos:(defs?.duos??[]).map(d=>{const shared=sharedDeliveries(s,d),unlocked=p?.duos?.includes(d.id)??false;return {id:d.id,actors:[...d.actors] as [string,string],title:d.title,titleEn:d.titleEn,desc:d.desc,descEn:d.descEn,sharedDeliveries:shared,unlocked,canUnlock:!unlocked&&shared>=d.minDeliveries&&duoPresent(s,d)&&d.actors.every(id=>{const a=s.actors.find(a=>a.id===id);return a&&!livingOccupied(s,a);})};}),
+        threads,unreadThreads:threads.filter(t=>t.chosenReply===null).length};
+}
+// Shared resolution/preview predicates; no allocation or RNG work for legacy sessions.
+const noDuos:DuoDef[]=[];
+export function activeJobDuos(s:State,c:Content,j:Job):DuoDef[] {
+    if(!s.campaign?.duos?.length)return noDuos;
+    const template=c.commissions.find(t=>t.id===j.template)!;
+    return (c.campaign?.living?.duos??[]).filter(d=>s.campaign!.duos!.includes(d.id)&&d.actors.every(id=>j.team.some(m=>m.character===id&&(!d.bonus.mode||m.mode===d.bonus.mode)))
+        &&(!d.bonus.category||d.bonus.category===template.category)
+        &&(d.id!=='kimi-glm'||['write','research'].includes(template.category??''))
+        &&(d.id!=='gpt-gemini'||['design','media'].includes(template.category??''))
+        &&(d.id!=='mistral-seedance'||s.absoluteSlot%4===0)
+        &&(d.id!=='gemini-minimax'||template.delivery!=='oneshot'));
+}
+export function duoEfficiency(duos:DuoDef[],id:string):number {
+    return duos.reduce((n,d)=>d.bonus.kind==='efficiency'&&d.actors.includes(id)?n*(1+d.bonus.value):n,1);
+}
+export function duoValue(duos:DuoDef[],kind:DuoDef['bonus']['kind'],id?:string):number {
+    return duos.reduce((n,d)=>n+(d.bonus.kind===kind&&(!id||d.actors.includes(id))?d.bonus.value:0),0);
+}
+export function duoEnergyCost(base:number,duos:DuoDef[],id:string):number {
+    const saving=duoValue(duos,'energySave',id);
+    return saving?Math.max(1,base-saving):base;
+}
