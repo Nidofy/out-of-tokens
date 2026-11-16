@@ -274,6 +274,19 @@ export function AlphaApp(){
  const hubTitle={actors:actorId&&panel==='actors'?`${names[actorId]} · ${tr('伙伴档案','Profile')}`:tr('工作室伙伴','Our teammates'),jobs:tr('委托日志','Commission log'),studio:tr('经营工作室','Studio hub'),journal:tr('事务所手账','Studio journal')}[panel??'actors'];
  const hubBack=panel==='actors'&&actorId&&actorEntry==='gallery'?{label:tr('返回画廊','Back to gallery'),onClick:closeActor}:panel==='jobs'&&jobInDetail&&matchMedia('(max-width:679px)').matches?{label:tr('返回列表','Back to list'),onClick:()=>selectCommission(null)}:null;
  const hubNotice=panel==='actors'&&actorId&&feedbackChannel==='actor'?notice:panel==='jobs'&&commissionNotice(game.feedback,jobId)?notice:null;
+ const hubTabs=panel==='actors'&&!actorId?(
+  <div role="tablist" aria-label={tr('伙伴筛选','Filter teammates')}>
+   {(['all','recruited','available'] as const).map((f,i)=><button key={f} role="tab" aria-selected={actorFilter===f} onClick={()=>setActorFilter(f)}>{[tr('全部','All'),tr('已入驻','Recruited'),tr('待招募','Available')][i]} ({[actorIds.length,view.actors.length,actorIds.length-view.actors.length][i]})</button>)}
+  </div>
+ ):panel==='studio'?(
+  <div role="tablist" aria-label={tr('工作室功能区','Studio sections')}>
+   {([['overview',tr('章节与总览','Chapter & overview')],['finance',tr('算力与财务','Compute & finance')],['tech',tr('软硬研发','Hardware & tech')]] as const).map(([id,label])=><button key={id} role="tab" aria-selected={studioTab===id} onClick={()=>setStudioTab(id)}>{label}</button>)}
+  </div>
+ ):panel==='journal'?(
+  <div role="tablist" aria-label={tr('手账栏目','Journal sections')}>
+   {([['chronicle',tr('事务所履历','Chronicle')],['ledger',tr('收支与算力','Ledger & usage')],['bids',tr('对手竞标','Rival bids')],['expedition',tr('远征与终局','Expeditions & endings')]] as const).map(([id,label])=><button key={id} role="tab" aria-selected={journalTab===id} onClick={()=>setJournalTab(id)}>{label}</button>)}
+  </div>
+ ):null;
 
  return (
   <div class="studio-app" onKeyDown={e=>{if(e.key==='Escape'&&!modalOpen){if(locationsOpen){closeLocations('escape');e.preventDefault();e.stopPropagation();}else if(hud){setHud(null);e.stopPropagation();}}}} data-panel={panel??'closed'} data-view-open={hud==='view'} data-overlay={hud??'closed'} data-mode={arranging?'layout':'office'}>
@@ -292,7 +305,7 @@ export function AlphaApp(){
     )}
     {!arranging&&locationsOpen&&(
      <section class="scene-presence" aria-label={tr('伙伴位置','Teammate locations')}>
-      <header><b>{tr('伙伴位置','Teammate locations')}</b><button aria-label={tr('关闭位置列表','Close locations')} onClick={()=>closeLocations('close')}>×</button></header>
+      <header><b>{tr('伙伴位置','Teammate locations')}</b><button aria-label={tr('关闭位置列表','Close locations')} onClick={()=>closeLocations('close')}><Icon name="close"/></button></header>
       {view.actors.map(a=><div key={a.id}><span><b>{names[a.id]}</b><small>{a.location!==p.scene?scene(a.location):offscreen.includes(a.id)?tr('同场景 · 画外','Here · out of view'):tr('同场景 · 画内','Here · in view')}</small></span><button onClick={()=>{const focus=actorFocus(view,a.id);if(focus)locate(focus);else{setLocationsOpen(false);openDirectActor(a.id);}}}>{actorFocus(view,a.id)?tr('定位','Locate'):tr('查看伙伴','View teammate')}</button></div>)}
      </section>
     )}
@@ -354,6 +367,7 @@ export function AlphaApp(){
      hub={panel}
      switchHub={next=>{if(next==='studio'&&returnTo?.panel!=='jobs')setReturnTo(null);setPanel(next);}}
      title={hubTitle}
+     tabs={hubTabs}
      backAction={hubBack}
      notice={hubNotice}
      view={view}
@@ -392,9 +406,6 @@ export function AlphaApp(){
       />
      ):panel==='actors'?(
       <div class="ui2-hub-content">
-       <div class="ui2-hub-inner-tabs" role="tablist" aria-label={tr('伙伴筛选','Filter teammates')}>
-        {(['all','recruited','available'] as const).map((f,i)=><button key={f} role="tab" aria-selected={actorFilter===f} onClick={()=>setActorFilter(f)}>{[tr('全部','All'),tr('已入驻','Recruited'),tr('待招募','Available')][i]} ({[actorIds.length,view.actors.length,actorIds.length-view.actors.length][i]})</button>)}
-       </div>
        <div class="poster-grid ui2-poster-grid">
         {actorIds.filter(id=>actorFilter==='all'||(actorFilter==='recruited')===view.actors.some(a=>a.id===id)).map(id=>{
          const a=view.actors.find(x=>x.id===id),r=catalog.recruits.find(x=>x.character===id),poster=characterPosters[id]!,v=catalog.versions.find(x=>a?x.id===a.version:x.character===id)!,visual=resolveCharacterVisual(id,v.id),block=r?recruitmentBlock(view,r,locked):null;
@@ -447,9 +458,10 @@ export function AlphaApp(){
        onSwitchHub={next=>setPanel(next)}
        onOpenMap={()=>{updatePanel(null);setMapOpen(true);}}
        returnBanner={returnTo?.panel==='jobs'?{label:tr('正处理派遣算力/设施缺口','Resolving assignment requirement'),onReturn:()=>{const targetJob=returnTo.jobId;setReturnTo(null);setJobId(targetJob);}}:null}
+       hideTabs
       />
      ):(
-      <JournalHub view={view} english={english} locked={locked} tab={journalTab} setTab={setJournalTab} send={send}/>
+      <JournalHub view={view} english={english} locked={locked} tab={journalTab} setTab={setJournalTab} send={send} hideTabs/>
      )}
     </StageHubShell>
    )}
@@ -459,12 +471,17 @@ export function AlphaApp(){
     {locked&&<p class="system-caption">{busy?tr('正在处理操作，请稍候再切换场景。','An operation is in progress. Please wait before travelling.'):tr('请先处理当前事件或经营状态，再切换场景。','Resolve the current event or studio state before travelling.')}</p>}
     <div class="world-map">
      <svg class="map-road" viewBox="0 0 600 350" preserveAspectRatio="none" aria-hidden="true"><path d="M100 70 Q300 50 300 175 T500 280" fill="none" stroke="#b08c63" stroke-width="12" stroke-dasharray="12 8"/></svg>
-     {(Object.keys(sceneText) as (keyof typeof sceneText)[]).map(id=><button key={id} disabled={locked} aria-pressed={p.scene===id} onClick={()=>{life('visit',id);setMapOpen(false);}}>
-      <img src={sceneArt(id,p.chapter,view.absoluteSlot%4>=2)} alt=""/>
-      <b>{scene(id)}</b>
-      <span class="map-people">{view.actors.filter(a=>a.location===id&&(id===p.scene||p.software.includes('messenger'))).map(a=><span key={a.id} title={names[a.id]}><Portrait id={a.id} variant="map"/></span>)}</span>
-      <small>{id==='workshop'?tr('接单 · 派遣 · 布置','Jobs · Assign · Layout'):id==='canteen'?tr('吃饭 ¥30 · 休息 · 聊天','Meals ¥30 · Rest · Chat'):tr('学习 +2RP · 微调 · 访友','Study +2RP · Train · Visit')}</small>
-     </button>)}
+     {(Object.keys(sceneText) as (keyof typeof sceneText)[]).map(id=>{
+      const night=view.absoluteSlot%4>=2;
+      const hint=id==='workshop'?(night?tr('加班筹备 · 查看委托进度','Overtime prep · Check jobs'):tr('接单 · 派遣 · 布置','Jobs · Assign · Layout')):id==='canteen'?(night?tr('夜间聚餐 · 休息聊天','Evening meal · Rest & chat'):tr('吃饭 ¥30 · 休息 · 聊天','Meals ¥30 · Rest · Chat')):(night?tr('晚间共学 +2RP · 微调/访友','Evening study +2RP · Train'):tr('学习 +2RP · 微调 · 访友','Study +2RP · Train · Visit'));
+      return <button key={id} disabled={locked} aria-pressed={p.scene===id} onClick={()=>{life('visit',id);setMapOpen(false);}}>
+       <img src={sceneArt(id,p.chapter,night)} alt=""/>
+       {p.scene===id&&<span class="ui2-here-pill">{tr('当前所在','Current')}</span>}
+       <b>{scene(id)}</b>
+       <span class="map-people">{view.actors.filter(a=>a.location===id&&(id===p.scene||p.software.includes('messenger'))).map(a=><span key={a.id} title={names[a.id]}><Portrait id={a.id} variant="map"/></span>)}</span>
+       <span class="ui2-map-hint"><Icon name={id==='workshop'?'briefcase':id==='canteen'?'sun':'book'}/><small>{hint}</small></span>
+      </button>;
+     })}
     </div>
    </Dialog>}
 

@@ -1,4 +1,4 @@
-@layer legacy-commission {
+@layer legacy {
 /* Original walnut/ivory commission UI. Shared tokens remain the material source. */
 .scene-left-stack{position:absolute;z-index:40;left:max(16px,env(safe-area-inset-left));top:72px;display:flex;flex-direction:column;gap:8px;width:min(340px,calc(100vw - 32px));pointer-events:none}
 .scene-left-stack .scene-tools,.scene-left-stack .scene-presence{position:static;max-width:100%;margin:0}

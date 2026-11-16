@@ -21,9 +21,10 @@ type StudioHubProps={
  onSwitchHub:(hub:HubPanel)=>void;
  onOpenMap:()=>void;
  returnBanner?:{label:string;onReturn:()=>void}|null|undefined;
+ hideTabs?:boolean;
 };
 
-export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSwitchHub,onOpenMap,returnBanner}:StudioHubProps){
+export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSwitchHub,onOpenMap,returnBanner,hideTabs}:StudioHubProps){
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!,catalog=view.catalog!;
  const life=(action:Extract<Command,{type:'campaign'}>['action'],id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
@@ -41,11 +42,13 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
     </div>
    )}
 
-   <div class="ui2-hub-inner-tabs" role="tablist" aria-label={tr('工作室功能区','Studio sections')}>
-    {([['overview',tr('章节与总览','Chapter & overview')],['finance',tr('算力与财务','Compute & finance')],['tech',tr('软硬研发','Hardware & tech')]] as const).map(([id,label])=>(
-     <button key={id} role="tab" aria-selected={tab===id} onClick={()=>setTab(id)}>{label}</button>
-    ))}
-   </div>
+   {!hideTabs&&(
+    <div class="ui2-hub-inner-tabs" role="tablist" aria-label={tr('工作室功能区','Studio sections')}>
+     {([['overview',tr('章节与总览','Chapter & overview')],['finance',tr('算力与财务','Compute & finance')],['tech',tr('软硬研发','Hardware & tech')]] as const).map(([id,label])=>(
+      <button key={id} role="tab" aria-selected={tab===id} onClick={()=>setTab(id)}>{label}</button>
+     ))}
+    </div>
+   )}
 
    {tab==='overview'&&(
     <div class="ui2-studio-overview">

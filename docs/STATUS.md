@@ -1,3 +1,5 @@
+2026-11-16 UI/UX 2.0与Art-Batch 5整合完成：合并Art-Batch 5（168a25d）与UI 2.0设计实施（2498b8e→8a51714），统一`tokens.css`与5份legacy CSS为单一`@layer legacy`并新增`ui2-surfaces/ui2-modules/ui2-responsive`覆盖层；完成四角HUD 2.0与右下双行心跳推进器、L2居中宽壳`StageHubShell`（顶栏货币、镜像推进、逾期二次确认与5视口双层粘性标签）、S3.5伙伴舞台（12人标准/旗舰双轨解锁与未解锁剪影锁）、委托4/6编队与双环火漆章、3页签去重工作室与4页签手账、家具编辑器槽位联动、分屏事件弹窗、`office-scene.ts`停跑降耗及`still`/布置零延迟相机同步。实机浏览器验证覆盖生产与Dev视觉检查（`1280×720`、`768×1024`、`844×390`、`560×800`、`390×844`，`light/dark`，`zh/en`），0横向溢出、所有可见按钮热区>=43.5px、左上栈与底栏0重叠、0控制台报错、0破图，`#vf-metrics[data-samples="180"]`挂载完成（未替代正式VF5 36批或200%字体/真机门禁，历史VF5/OS字体/真机状态不变）。`packages/**`、`content/**`与保护美术目录相对`fbaa075`维持0 diff，仅本地提交未push。
+
 2026-11-16 Art-Batch 5完成：14项母版/运行时资产及12人Stage B映射、章节/项目/财务/仪式纯路径导出已齐备；用户许可使用内置生图并记录未知后端。42文件343测试与完整pnpm check通过，保护路径零diff；详见docs/ART_BATCHES_1113.md及art/art-batch-5。未改UI布局/规则，原VF5 HOLD不变，仅本地提交。
 
 2026-11-16 镜头/惰性命中验证检查点：入场dc6bc79，用户既有6文件Pan/Zoom/ensureWorkHit直接修复原样保留并提交为 b80d1a8cefb8ccfb2857d11d01c9d38fcb54c1ae；本轮未追加业务源码改动。最终pnpm check 42文件341测试及类型/Lint/Web/DSH构建通过，git diff --check通过，保护路径零diff，生产dist无外部probe/previewSession。新证据仅在 ../commission-evidence/vf5-camera-closure-1116/，历史目录未覆盖。

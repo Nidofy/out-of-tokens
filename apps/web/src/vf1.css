@@ -1,4 +1,4 @@
-@layer legacy-vf1 {
+@layer legacy {
 /* VF1 screen prototypes. Component variants own dimensions; pages own layout. */
 .portrait[data-variant=list]{width:44px;height:52px}
 .portrait[data-variant=map]{width:28px;height:32px}

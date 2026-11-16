@@ -25,9 +25,10 @@ type JournalHubProps={
  tab:JournalTab;
  setTab:(next:JournalTab)=>void;
  send:(cmd:Command)=>Promise<boolean>;
+ hideTabs?:boolean;
 };
 
-export function JournalHub({view,english,locked,tab,setTab,send}:JournalHubProps){
+export function JournalHub({view,english,locked,tab,setTab,send,hideTabs}:JournalHubProps){
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!,f=p.finale!;
  const chapterTitles=[tr('开源车库联盟','Open-source garage'),tr('第一笔大订单','The first large order'),tr('模型更新之夜','Model release night'),tr('429危机','The 429 crisis'),tr('最后一个Token','The last token')];
@@ -37,11 +38,13 @@ export function JournalHub({view,english,locked,tab,setTab,send}:JournalHubProps
 
  return (
   <div class="ui2-hub-content">
-   <div class="ui2-hub-inner-tabs" role="tablist" aria-label={tr('手账栏目','Journal sections')}>
-    {([['chronicle',tr('事务所履历','Chronicle')],['ledger',tr('收支与算力','Ledger & usage')],['bids',tr('对手竞标','Rival bids')],['expedition',tr('远征与终局','Expeditions & endings')]] as const).map(([id,label])=>(
-     <button key={id} role="tab" aria-selected={tab===id} onClick={()=>setTab(id)}>{label}</button>
-    ))}
-   </div>
+   {!hideTabs&&(
+    <div class="ui2-hub-inner-tabs" role="tablist" aria-label={tr('手账栏目','Journal sections')}>
+     {([['chronicle',tr('事务所履历','Chronicle')],['ledger',tr('收支与算力','Ledger & usage')],['bids',tr('对手竞标','Rival bids')],['expedition',tr('远征与终局','Expeditions & endings')]] as const).map(([id,label])=>(
+      <button key={id} role="tab" aria-selected={tab===id} onClick={()=>setTab(id)}>{label}</button>
+     ))}
+    </div>
+   )}
 
    {tab==='chronicle'&&(
     <div class="ui2-chronicle">
