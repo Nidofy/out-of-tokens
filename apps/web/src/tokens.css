@@ -1,3 +1,4 @@
+@layer legacy-art, legacy-commission, legacy-style, legacy-village, legacy-vf1, ui2-surfaces, ui2-modules, ui2-responsive;
 :root{
  --paper:rgba(252,246,235,.96);
  --glass:rgba(249,241,226,.92);
@@ -19,6 +20,9 @@
  --accent-hover:#7c583c;
  --on-accent:#fff8eb;
  --danger:#a83c25;
+ --tier-0:#7c6d5c;--tier-1:#2f6f5e;--tier-2:#2b6b8f;--tier-3:#9a6318;
+ --delta-up:#2e6e44;--delta-down:var(--danger);
+ --stage-scrim:rgba(24,18,13,.60);--shear-angle:-6deg;--shear-counter:6deg;
  --font-display:var(--font-sans);
  --font-sans:'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Segoe UI',sans-serif;
  --fs-xs:12px;--fs-sm:12px;--fs-base:14px;--fs-md:16px;--fs-lg:20px;--fs-xl:clamp(24px,2.2vw,32px);
@@ -46,5 +50,8 @@
  --accent-hover:#edd09a;
  --on-accent:#2b2119;
  --danger:#ffab8d;
+ --tier-0:#9e907e;--tier-1:#6cc4a8;--tier-2:#6cbce6;--tier-3:#e8b85a;
+ --delta-up:#8bc29a;--delta-down:var(--danger);
+ --stage-scrim:rgba(12,10,8,.72);
  color-scheme:dark;
 }

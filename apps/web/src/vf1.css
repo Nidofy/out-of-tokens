@@ -1,3 +1,4 @@
+@layer legacy-vf1 {
 /* VF1 screen prototypes. Component variants own dimensions; pages own layout. */
 .portrait[data-variant=list]{width:44px;height:52px}
 .portrait[data-variant=map]{width:28px;height:32px}
@@ -203,3 +204,5 @@
 .studio-app .camera-zoom-row>button:last-child{flex:1;min-width:88px;white-space:nowrap}
 .studio-app .camera-zoom-row output{min-width:46px;text-align:center;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
 .studio-app .camera-hint{display:block;width:100%;font-size:12px;color:var(--muted);text-align:center;line-height:1.3}
+
+}

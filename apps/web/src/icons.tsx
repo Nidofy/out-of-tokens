@@ -11,6 +11,19 @@ const paths:Record<string,string>={
  bolt:'M13 2L4 14h7l-1 8 10-13h-7l1-7',chip:'M7 7h10v10H7zM9 2v5M15 2v5M9 17v5M15 17v5M2 9h5M2 15h5M17 9h5M17 15h5',
  star:'M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z',arrow:'M4 12h16M14 6l6 6-6 6',
  sun:'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1 1M18 18l1 1M5 19l1-1M18 6l1-1',
- moon:'M20 15a9 9 0 0 1-11-11A9 9 0 1 0 20 15',close:'M6 6l12 12M6 18L18 6',back:'M20 12H4M10 6l-6 6 6 6'
+ moon:'M20 15a9 9 0 0 1-11-11A9 9 0 1 0 20 15',close:'M6 6l12 12M6 18L18 6',back:'M20 12H4M10 6l-6 6 6 6',
+ dawn:'M3 17h18M6 17a6 6 0 0 1 12 0M12 4v3M6 7l2 2M18 7l-2 2',
+ noon:'M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4',
+ dusk:'M3 16h18M7 16a5 5 0 0 1 10 0M5 20h14',
+ terminal:'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z',
+ lock:'M7 11V8a5 5 0 0 1 10 0v3M5 11h14v9H5zM12 15v2',
+ check:'M5 12l5 5L19 7',
+ warning:'M12 3L2 20h20ZM12 9v5M12 17v1',
+ spark:'M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2Z',
+ layers:'M12 3l9 5-9 5-9-5ZM3 12l9 5 9-5M3 16l9 5 9-5',
+ refresh:'M20 11a8 8 0 0 0-14.6-4.4M4 4v4h4M4 13a8 8 0 0 0 14.6 4.4M20 20v-4h-4',
+ sliders:'M4 7h16M4 17h16M8 4v6M16 14v6',
+ locale:'M4 5h8M8 3v2M5 11c1.5-2.5 3-4.5 4-6M6 7c1 1.8 2.4 3.2 4 4M13 19l3.5-9 3.5 9M14.2 16h4.6',
+ pin:'M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10ZM12 11a2 2 0 1 0 0-.01'
 };
 export function Icon({name}:{name:string}){return <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={paths[name]??paths.star}/></svg>;}

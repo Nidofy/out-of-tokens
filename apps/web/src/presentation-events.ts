@@ -1,12 +1,15 @@
 import type {Command} from 'oot-core';
+
 export type FeedbackTarget={surface:'global'|'job'|'actor'|'saves';id?:string};
 export interface UiFeedback {id:number;code:string;target:FeedbackTarget;error:boolean;receipt:PresentationEvent|null;}
+
 /** The command origin, not a string-code allowlist, owns its feedback. */
 export function commandFeedbackTarget(command:Command):FeedbackTarget{
  if('job' in command)return {surface:'job',id:command.job};
  if(command.type==='overtime')return {surface:'actor',id:command.character};
  return {surface:'global'};
 }
+
 export function feedbackSurface(feedback:UiFeedback|null,open:{job?:string|undefined;actor?:string|undefined;saves:boolean;modal:boolean}):'global'|'job'|'actor'|'saves'|null{
  if(!feedback)return null;
  if(feedback.target.surface==='global'&&feedback.error){
@@ -16,25 +19,39 @@ export function feedbackSurface(feedback:UiFeedback|null,open:{job?:string|undef
  }
  if(open.job&&feedback.target.surface==='job'&&feedback.target.id===open.job)return 'job';
  if(!open.job&&open.actor&&feedback.target.surface==='actor'&&feedback.target.id===open.actor)return 'actor';
- if(open.saves&&(feedback.target.surface==='saves'||feedback.target.surface==='global'&&feedback.error))return 'saves';
+ if(open.saves&&(feedback.target.surface==='saves'||(feedback.target.surface==='global'&&feedback.error)))return 'saves';
  return !open.modal&&(feedback.target.surface==='global'||feedback.receipt?.kind==='assign'||feedback.receipt?.kind==='deliver')?'global':null;
 }
+
 /** Paused persistence warnings survive unrelated operations until acknowledged or recovered. */
 export function nextFeedback(previous:UiFeedback|null,next:UiFeedback,paused:boolean):UiFeedback{
  return paused&&previous?.target.surface==='global'&&previous.error&&!(next.target.surface==='global'&&next.error)?previous:next;
 }
+
 /** A closing object discards only its own ephemeral feedback, never cross-screen receipts. */
 export function clearLocalFeedback(feedback:UiFeedback|null,target:{surface:'job'|'actor';id:string}):UiFeedback|null{
  if(feedback?.target.surface!==target.surface||feedback.target.id!==target.id)return feedback;
  return feedback.receipt?.kind==='assign'||feedback.receipt?.kind==='deliver'?feedback:null;
 }
-export interface PresentationEvent {id:number;kind:'accept'|'assign'|'deliver'|'upgrade';title:[string,string];}
+
+export interface PresentationEvent {
+ id:number;
+ kind:'accept'|'assign'|'deliver'|'upgrade'|'recruit'|'version'|'chapter';
+ title:[string,string];
+ subjectId?:string;
+ detail?:string;
+}
+
 // A transient, bounded UI queue. No timers, rewards, RNG or save mutations here.
 export function presentationEvent(command:Command,id:number,cashDelta:number):PresentationEvent|null{
- if(command.type==='accept')return {id,kind:'accept',title:['新委托已进入工作看板','New commission added to the work board']};
- if(command.type==='assign')return {id,kind:'assign',title:['伙伴已收到安排，准备开工','Team assigned and ready to work']};
- if(command.type==='deliver')return {id,kind:'deliver',title:[`验收完成 · 资金变动 ¥${cashDelta.toFixed(2)}`,`Delivery settled · Cash change ¥${cashDelta.toFixed(2)}`]};
- if(command.type==='campaign'&&command.action==='hardware')return {id,kind:'upgrade',title:['工作室设备已升级','Studio equipment upgraded']};
+ if(command.type==='accept')return {id,kind:'accept',title:['新委托已进入工作看板','New commission added to the work board'],subjectId:command.job};
+ if(command.type==='assign')return {id,kind:'assign',title:['伙伴已收到安排，准备开工','Team assigned and ready to work'],subjectId:command.job};
+ if(command.type==='deliver')return {id,kind:'deliver',title:[`验收完成 · 资金变动 ¥${cashDelta.toFixed(2)}`,`Delivery settled · Cash change ¥${cashDelta.toFixed(2)}`],subjectId:command.job};
+ if(command.type==='campaign'&&command.action==='hardware')return {id,kind:'upgrade',title:['工作室设备已升级','Studio equipment upgraded'],subjectId:command.id};
+ if(command.type==='campaign'&&command.action==='recruit')return {id,kind:'recruit',title:['新伙伴加入工作室','A new teammate joined the studio'],subjectId:command.id};
+ if(command.type==='campaign'&&command.action==='switch'&&command.target)return {id,kind:'version',title:['模型版本切换就绪','Model version activated'],subjectId:command.id,detail:command.target};
+ if(command.type==='campaign'&&command.action==='chapter')return {id,kind:'chapter',title:['章节里程碑达成','Chapter milestone reached'],subjectId:command.id};
  return null;
 }
+
 export function enqueuePresentation(queue:PresentationEvent[],event:PresentationEvent|null){return event?[...queue,event].slice(-4):queue;}
