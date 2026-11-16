@@ -1,3 +1,19 @@
+2026-11-16 镜头/惰性命中验证检查点：入场dc6bc79，用户既有6文件Pan/Zoom/ensureWorkHit直接修复原样保留并提交为 b80d1a8cefb8ccfb2857d11d01c9d38fcb54c1ae；本轮未追加业务源码改动。最终pnpm check 42文件341测试及类型/Lint/Web/DSH构建通过，git diff --check通过，保护路径零diff，生产dist无外部probe/previewSession。新证据仅在 ../commission-evidence/vf5-camera-closure-1116/，历史目录未覆盖。
+
+本轮IAB实测：四视口×zh/en×light/dark共16组镜头面板截图，8按钮尺寸>=44（浮点容差0.01px）、中心elementFromPoint命中、视口可见及无横向溢出通过。390竖屏100→110→120缩放与真实鼠标拖动100px通过；桌面角色/家具起手拖动未误开，轻点分别打开档案/编辑器。定位160→130→100通过，布局进入全景、拖动隔离、取消后110%背景参数精确恢复通过；取消后首个同步读取仍旧值，已保留瞬时与settled两份记录。滚轮(700,250)从110%到130%，背景反算世界定焦点误差<0.001，画外计数0→1。此为代表性交互，未穷举16配置全部手势；双指真实触摸（当前接口无多指注入）、透明边缘原生点击、保存布局恢复分支、完整Pixi/background逐帧变换同步仍OPEN，不以鼠标或数学单测代替。
+
+standard/twelve真实createWorkshop组件各10层×67200像素与独立新Canvas比较全部mismatch=0，查询前workHits.size=0，容器身份、每层1Sprite/1监听器成立。组件ready为角色/家具加载完成，不等于完整VF5 assetsReady；缓存大小0结合ensureWorkHit唯一写入位置证明该观察点尚未生成掩码，不虚构独立Canvas调用计数器或24.20ms实测收益。原函数和浏览器动态alpha>=96语义保留。
+
+性能：可见预检180帧p95=16.5ms、>=250ms为0、无visibility变化。按原5ms/no-store/唯一路径协议启动正式首个current/standard样本，却出现assetsReady=2119ms；中止留样时只有60/180帧，46个>=250ms长帧，12输入已记录。该样本不构成完整正式36批，更不能与历史中位数计算改善百分比；原始中途及停止记录均保留。降频现象已证实，尚未独立排除代码或宿主影响，不声称唯一外部根因。停止正式批、唯一确认和600s长驻，VF5相对/绝对门槛保持HOLD，未刷样本。
+
+Tier2/3外部沙箱12角色×2Tier×3深度×6 arrived=432组（phase=0），sit=-48*arrived、腿visible=arrived<=.6。arrived .2/.4/.6/.61/.8/1的face相交组数分别68/66/47/45/12/0（每档72），所有锚点/feet及mask比较零差异。坐姿阶段仍有57/216组相交，最大临界例GLM Tier3 depth620 arrived.61为223/5602像素（含face精灵轮廓），head为无独立纹理父容器N/A。只验证固定平面锚点下的垂直过渡，不是完整走道水平轨迹或独立起身状态机；原型保持沙箱，禁止据此正式接入。新数据取代“坐定工作相位可覆盖过渡”的任何推断。
+
+DSH：实际apps/dsh/dist/index.js apply挂在独立Node HTTP HostContext及可丢弃磁盘profile，生产前端双标签加载、推进自动写rev1、旧rev0写入409 SAVE_CONFLICT、载入自动档恢复、手动档1写入成功有UI与HTTP日志。不含正式DSH宿主认证/安装壳，无新增认证模拟；本地插件E2E子项通过，完整真实DSH认证/安装仍OPEN。HTTP日志保存方法/URL/状态/响应，未采完整POST请求体。预期409控制台网络错误单独记录，不宣称全流程0error。
+
+5250/5252/5253/5254/5255自启端口与3个IAB测试标签均关闭，5250/5255测试SW/cache/IndexedDB清空，独立DSH磁盘profile删除，未动用户原存档/浏览器/正在运行的DSH。Windows200%系统字体、物理无障碍继续HOLD/OPEN。整体为局部验证检查点，Visual Freeze 1未封板；需先定位性能降频并裁决57组入座face遮挡，再补齐未覆盖UI/DSH项。
+
+以下为历史记录。
+
 # VF5 / 阶段 3：性能 HOLD 与并行基线变化
 
 ## 2026-11-14 原位挂载优化及静态掩码硬门禁 HOLD
