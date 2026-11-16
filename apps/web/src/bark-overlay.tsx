@@ -20,7 +20,7 @@ export interface BarkPayload {
 
 const stageBMap:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'qwen.qwq',llama:'llama.3.1',mistral:'mistral.large',gpt:'gpt.4o',claude:'claude.sonnet',kimi:'kimi.k2',gemini:'gemini.pro'};
 
-export function BarkOverlay({bark,view,english,onClose}:{bark:BarkPayload|null;view:GameView;english:boolean;onClose:()=>void}){
+export function BarkOverlay({bark,view,english,inModal=false,onClose}:{bark:BarkPayload|null;view:GameView;english:boolean;inModal?:boolean;onClose:()=>void}){
  if(!bark)return null;
  const tr=(zh:string,en:string)=>english?en:zh;
  const accent=characterPosters[bark.actorId]?.themeColor??'#8b673c';
@@ -29,7 +29,7 @@ export function BarkOverlay({bark,view,english,onClose}:{bark:BarkPayload|null;v
  const partnerArt=bark.partnerId?`./art/ai-village/portraits/${bark.partnerId}.png`:null;
 
  return (
-  <div class="ui2-bark-card" role="status" aria-live="polite" style={{'--poster-color':accent}}>
+  <div class="ui2-bark-card" data-in-modal={inModal?'true':'false'} role="status" aria-live="polite" style={{'--poster-color':accent}}>
    <div class="ui2-bark-portraits">
     <img class="ui2-bark-avatar" src={art} alt=""/>
     {partnerArt&&<img class="ui2-bark-avatar is-partner" src={partnerArt} alt=""/>}

@@ -338,6 +338,7 @@
  .ui2-period-beat svg{width:16px;height:16px;color:#f3d293;flex:none}
 
  .ui2-bark-card{position:fixed;left:50%;bottom:max(78px,calc(78px + env(safe-area-inset-bottom)));transform:translateX(-50%);z-index:68;display:flex;align-items:center;gap:12px;width:min(580px,calc(100vw - 24px));padding:10px 12px;border-radius:18px;background:var(--paper);color:var(--ink);border:1px solid var(--poster-color,var(--brass));box-shadow:0 14px 32px rgba(20,14,10,.32);animation:ui2-bark-in .22s ease-out}
+ .ui2-bark-card[data-in-modal=true]{position:absolute;left:50%;bottom:14px;z-index:80;width:min(560px,calc(100% - 24px));max-width:calc(100% - 24px)}
  @keyframes ui2-bark-in{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
  .ui2-bark-portraits{position:relative;display:flex;align-items:center;flex:none}
  .ui2-bark-avatar{width:52px;height:52px;border-radius:14px;object-fit:cover;background:var(--card);border:1px solid var(--poster-color,var(--brass))}
@@ -382,6 +383,9 @@
  .ui2-synergy-strip{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
  .ui2-synergy-chip{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px;padding:5px 10px;border-radius:12px;font-size:12px;background:var(--card);border:1px solid var(--line)}
  .ui2-synergy-chip.is-active{border-color:var(--brass);background:color-mix(in srgb,var(--brass) 12%,var(--card))}
+ .ui2-synergy-chip.is-inactive{border-style:dashed;background:var(--solid)}
+ .ui2-synergy-chip.is-locked{border-style:dotted;opacity:.88}
+ .ui2-synergy-state{font-style:normal;font-size:12px;font-weight:700;padding:1px 6px;border-radius:var(--r-pill);background:var(--paper);border:1px solid var(--line)}
  .ui2-synergy-chip svg{width:14px;height:14px;flex:none;color:var(--brass)}
  .ui2-work-bark{display:flex;align-items:center;gap:8px;padding:8px 10px;margin:8px 0;border-radius:12px;background:var(--card);border-left:3px solid var(--brass);font-size:12px}
  .ui2-work-bark img{width:32px;height:32px;border-radius:8px;object-fit:cover;flex:none}
@@ -444,10 +448,14 @@
   .ui2-studio-overview,.ui2-ledger-cols,.ui2-exp-grid,.ui2-event-layout,.ui2-ritual-stage{grid-template-columns:minmax(0,1fr)}
   .ui2-plan-grid,.ui2-hw-grid,.ui2-sw-grid,.ui2-rival-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ui2-finance-kpis,.ui2-specs-grid,.ui2-gift-grid,.ui2-duo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ui2-bark-card[data-in-modal=true]{bottom:calc(64px + env(safe-area-inset-bottom))}
  }
 
  @media(max-width:679px){
   .studio-app .studio-hud .hud-place{display:none}
+  .studio-app .ui2-hud{gap:4px;padding-inline:8px}
+  .ui2-clock-pill{padding:4px 8px;gap:4px}
+  .ui2-clock-pill .ui2-period-dots{display:none}
   .studio-app .ui2-resources{position:static;order:10;flex:1 0 100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;border-radius:14px;padding:2px 4px;margin:0}
   .studio-app .ui2-resources button{padding:0 4px;gap:3px;font-size:12px;justify-content:center}
   .studio-app .ui2-resources .hud-local-cap,.studio-app .ui2-resources .hud-rep-rp{display:inline-flex}
@@ -465,6 +473,7 @@
   .ui2-thread-item{flex:0 0 auto;min-width:168px}
   .ui2-period-beat{top:108px}
   .ui2-bark-card{bottom:max(72px,calc(72px + env(safe-area-inset-bottom)));gap:8px;padding:8px 10px}
+  .ui2-bark-card[data-in-modal=true]{bottom:calc(64px + env(safe-area-inset-bottom));width:calc(100% - 16px);max-width:calc(100% - 16px)}
   .ui2-bark-avatar{width:42px;height:42px}
   .ui2-stage-art{min-height:140px}.ui2-stage-art img{height:132px}
   .world-map{padding:12px;gap:10px}
@@ -496,6 +505,7 @@
   .world-map{min-height:0;padding:10px;gap:10px}.world-map img{height:80px;object-fit:cover}
   .ui2-period-beat{top:58px;padding:4px 12px;font-size:12px}
   .ui2-bark-card{bottom:64px}
+  .ui2-bark-card[data-in-modal=true]{bottom:10px}
   dialog.ui2-messenger-dialog{width:min(820px,calc(100vw - 16px));max-height:calc(100dvh - 12px);padding:12px}
   .ui2-messenger-dialog .dialog-head{top:-12px;margin:-12px -12px 8px;padding:6px 12px}
   .ui2-messenger-layout{min-height:0;max-height:calc(100dvh - 108px)}

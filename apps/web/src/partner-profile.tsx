@@ -17,6 +17,7 @@ import {GiftPickerGrid} from './bark-overlay.js';
 import type {BarkPayload} from './bark-overlay.js';
 import type {DuoDef,GiftDef,LivingContent,LivingView} from './living-adapter.js';
 import {pickSocialBark} from './living-adapter.js';
+import {actorEffectiveContext,isActorOverloaded} from './scene-layout.js';
 
 type Props={
  locate:(()=>void)|undefined;
@@ -139,7 +140,7 @@ export function PartnerProfile(props:Props){
         <div class="ui2-vitals-grid">
          <div class="ui2-vital-card" data-warn={actor.energy<35}><small>{tr('精力','Energy')}</small><b>{actor.energy}</b><div class="ui2-meter"><i style={{width:`${actor.energy}%`}}/></div><span>{actor.energy<35?tr('精力偏低，建议休息或用餐','Low energy: rest or eat'):tr('状态良好','Steady')}</span></div>
          <div class="ui2-vital-card"><small>{tr('心情','Mood')}</small><b>{actor.mood}</b><div class="ui2-meter"><i style={{width:`${actor.mood}%`}}/></div><span>{actor.mood<45?tr('可通过聊天/送礼提升','Boost with chat or gift'):tr('心态平稳','Positive')}</span></div>
-         <div class="ui2-vital-card"><small>{tr('负载','Load')}</small><b>{actor.load}</b><div class="ui2-meter"><i style={{width:`${Math.min(100,actor.load)}%`}}/></div><span>{tr(`压力 ${rel.stress} · 饥饿 ${rel.hunger}`,`Stress ${rel.stress} · Hunger ${rel.hunger}`)}</span></div>
+         <div class="ui2-vital-card" data-warn={isActorOverloaded(view,actor.id)}>{(()=>{const effCtx=actorEffectiveContext(view,actor.id)??v.context,overloaded=isActorOverloaded(view,actor.id);return <><small>{tr('负载','Load')}</small><b>{actor.load} / {effCtx}</b><div class="ui2-meter"><i style={{width:`${Math.min(100,Math.round(actor.load/Math.max(1,effCtx)*100))}%`}}/></div><span>{overloaded?tr('上下文已过载，产出降低且易出缺陷','Context overloaded: lower output & higher defect risk'):tr(`压力 ${rel.stress} · 饥饿 ${rel.hunger}`,`Stress ${rel.stress} · Hunger ${rel.hunger}`)}</span></>;})()}</div>
          <div class="ui2-vital-card"><small>{tr('好感','Affinity')}</small><b>{rel.affinity}</b><div class="ui2-meter"><i style={{width:`${rel.affinity}%`}}/></div><span>{tr(`当前场景：${scene(actor.location)}`,`Scene: ${scene(actor.location)}`)}</span></div>
         </div>
 

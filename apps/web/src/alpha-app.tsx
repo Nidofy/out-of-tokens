@@ -41,6 +41,7 @@ import {readAudioPrefs,writeAudioPrefs,unlockAudio,playFoley,playVoiceBlip,syncA
 import {getLivingCatalog,getLivingView,giftReactionTier,pickSocialBark,pickEventQuote,pickSlotBeat,pickStageChatter} from './living-adapter.js';
 import type {DuoDef,GiftDef} from './living-adapter.js';
 import {EmoteBadge,StageChatterOverlay,PeriodBeatBanner} from './stage-chatter.js';
+import {actorEffectiveContext} from './scene-layout.js';
 import {BarkOverlay} from './bark-overlay.js';
 import type {BarkPayload} from './bark-overlay.js';
 import {MessengerDrawer} from './messenger-drawer.js';
@@ -136,6 +137,8 @@ export function AlphaApp(){
  const hydrated=useRef(false);
  const deltaSeq=useRef(0);
  const lastSlotRef=useRef<number|null>(null);
+ const barkSeqRef=useRef(0);
+ const barkTriggerRef=useRef<HTMLElement|null>(null);
 
  const [trackedJobId,setTrackedJobId]=useState<string|null>(()=>{if(game.lab)return null;try{return readTrackingPin(false,localStorage);}catch{return null;}});
  useEffect(()=>{if(!game.lab)try{writeTrackingPin(false,localStorage,trackedJobId);}catch{/* Storage denied is harmless. */}},[trackedJobId]);
@@ -157,14 +160,14 @@ export function AlphaApp(){
  const closeHub=()=>{
   if(actorId)game.dismissLocalFeedback({surface:'actor',id:actorId});
   if(jobId)game.dismissLocalFeedback({surface:'job',id:jobId});
-  setActorId(null);selectCommission(null);updatePanel(null);
+  setActiveBark(null);setActorId(null);selectCommission(null);updatePanel(null);
   requestAnimationFrame(()=>{if(!document.querySelector('dialog[open]'))(managementTrigger.current??moreTrigger.current)?.focus({preventScroll:true});});
  };
 
  const openDirectActor=(id:string)=>{
   const active=document.activeElement as HTMLElement|null;
   if(active)managementTrigger.current=active;
-  setHud(null);setLocationsOpen(false);
+  setActiveBark(null);setHud(null);setLocationsOpen(false);
   setActorEntry('direct');setActorId(id);updatePanel('actors');
  };
 
@@ -266,9 +269,9 @@ export function AlphaApp(){
    const cmd=resolveGlobalShortcut({key:e.key,ctrlKey:e.ctrlKey,metaKey:e.metaKey,altKey:e.altKey,isComposing:e.isComposing,repeat:e.repeat,targetTag:el?.tagName,targetEditable:el?.isContentEditable},{blockedModal:!!(view.pending||view.bankrupt||arranging||saves||settings||mapOpen||ritual),actorOpen:panel==='actors'&&!!actorId});
    if(!cmd)return;
    e.preventDefault();
-   if(cmd.type==='panel'){setChatOpen(false);setPanel(cmd.panel);}
-   else if(cmd.type==='map'){setHud(null);setChatOpen(false);setMapOpen(m=>!m);}
-   else if(cmd.type==='chat'){setHud(null);updatePanel(null);setChatOpen(o=>!o);}
+   if(cmd.type==='panel'){setActiveBark(null);setChatOpen(false);setPanel(cmd.panel);}
+   else if(cmd.type==='map'){setActiveBark(null);setHud(null);setChatOpen(false);setMapOpen(m=>!m);}
+   else if(cmd.type==='chat'){setActiveBark(null);setHud(null);updatePanel(null);setChatOpen(o=>!o);}
    else if(cmd.type==='actor-step'&&actorId){
     const idx=actorIds.indexOf(actorId);
     const next=actorIds[(idx+cmd.delta+actorIds.length)%actorIds.length]!;
@@ -286,7 +289,25 @@ export function AlphaApp(){
  const notice=<FeedbackNotice feedback={game.feedback} message={message} english={english} dismiss={game.dismissFeedback}/>;
  const life=(action:Extract<Command,{type:'campaign'}>['action'],id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
  const fx=(kind:Parameters<typeof playFoley>[0],speakActor?:string)=>{if(still||!audioPrefs.sfx)return;playFoley(kind,true);if(speakActor)playVoiceBlip(speakActor,3,true);};
- const triggerBark=(bark:BarkPayload)=>{unlockAudio();setActiveBark(bark);fx('tap',bark.actorId);};
+ const triggerBark=(bark:BarkPayload)=>{
+  unlockAudio();
+  const active=document.activeElement as HTMLElement|null;
+  if(active&&!active.closest('.ui2-bark-card'))barkTriggerRef.current=active;
+  setActiveBark({...bark,id:++barkSeqRef.current});
+  fx('tap',bark.actorId);
+ };
+ const dismissBark=()=>{
+  const active=document.activeElement as HTMLElement|null;
+  const wasInBark=!!active?.closest('.ui2-bark-card');
+  setActiveBark(null);
+  if(wasInBark){
+   requestAnimationFrame(()=>{
+    const prev=barkTriggerRef.current;
+    if(prev?.isConnected&&!(prev as HTMLButtonElement).disabled){prev.focus({preventScroll:true});return;}
+    document.querySelector<HTMLElement>('dialog[open] .stage-hub-close, dialog[open]')?.focus({preventScroll:true});
+   });
+  }
+ };
  const updateAnchors=(next:Record<string,ActorHeadAnchor>)=>{
   setAnchors(prev=>{
    const keys=Object.keys(next);
@@ -321,7 +342,7 @@ export function AlphaApp(){
   }
  },[view.absoluteSlot,busy,english]);
  useEffect(()=>{if(!periodBeat)return;const t=setTimeout(()=>setPeriodBeat(null),still?2200:3400);return()=>clearTimeout(t);},[periodBeat,still]);
- useEffect(()=>{if(!activeBark)return;const t=setTimeout(()=>setActiveBark(null),still?4500:5400);return()=>clearTimeout(t);},[activeBark,still]);
+ useEffect(()=>{if(!activeBark)return;const t=setTimeout(dismissBark,still?4500:5400);return()=>clearTimeout(t);},[activeBark?.id,still]);
  useEffect(()=>{if(ritual)fx('stamp');},[ritual]);
  useEffect(()=>{if(shownMessage.startsWith('DELIVERED:'))fx('coin');},[shownMessage]);
  useEffect(()=>{
@@ -462,14 +483,14 @@ export function AlphaApp(){
     audioPrefs={audioPrefs}
     onDismissDelta={id=>setDeltas(list=>list.filter(d=>d.id!==id))}
     onOpenHud={openHud}
-    onOpenMap={()=>{setHud(null);setMapOpen(true);}}
-    onOpenChat={()=>{unlockAudio();setHud(null);updatePanel(null);setChatOpen(true);fx('flip');}}
+    onOpenMap={()=>{setActiveBark(null);setHud(null);setMapOpen(true);}}
+    onOpenChat={()=>{unlockAudio();setActiveBark(null);setHud(null);updatePanel(null);setChatOpen(true);fx('flip');}}
     onTeaBreak={()=>{void handleTeaBreak();}}
-    onOpenStudioFinance={()=>{setStudioTab('finance');setPanel('studio');}}
-    onOpenPanel={id=>{unlockAudio();setChatOpen(false);setPanel(panel===id?null:id);fx('flip');}}
+    onOpenStudioFinance={()=>{setActiveBark(null);setStudioTab('finance');setPanel('studio');}}
+    onOpenPanel={id=>{unlockAudio();setActiveBark(null);setChatOpen(false);setPanel(panel===id?null:id);fx('flip');}}
     onOpenOffice={()=>openOffice()}
-    onOpenSaves={()=>{setHud(null);setSaves(true);void game.refresh();}}
-    onOpenSettings={()=>{setHud(null);setSettings(true);}}
+    onOpenSaves={()=>{setActiveBark(null);setHud(null);setSaves(true);void game.refresh();}}
+    onOpenSettings={()=>{setActiveBark(null);setHud(null);setSettings(true);}}
     onToggleLocale={()=>setEnglish(!english)}
     onToggleTheme={()=>setDark(!dark)}
     onToggleSfx={toggleSfx}
@@ -483,7 +504,7 @@ export function AlphaApp(){
    />
 
    <PeriodBeatBanner text={periodBeat} hidden={modalOpen||arranging}/>
-   <BarkOverlay bark={activeBark} view={view} english={english} onClose={()=>setActiveBark(null)}/>
+   {!(panel&&!view.pending&&!view.bankrupt)&&<BarkOverlay bark={activeBark} view={view} english={english} onClose={dismissBark}/>}
 
    {hud==='board'&&(
     <aside class="priority-rail" aria-label={tr('工作看板','Work board')} onKeyDown={e=>{if(e.key==='Escape')setHud(null);}}>
@@ -508,7 +529,7 @@ export function AlphaApp(){
    {panel&&!view.pending&&!view.bankrupt&&(
     <StageHubShell
      hub={panel}
-     switchHub={next=>{if(next==='studio'&&returnTo?.panel!=='jobs')setReturnTo(null);setPanel(next);}}
+     switchHub={next=>{setActiveBark(null);if(next==='studio'&&returnTo?.panel!=='jobs')setReturnTo(null);setPanel(next);}}
      title={hubTitle}
      tabs={hubTabs}
      backAction={hubBack}
@@ -520,6 +541,7 @@ export function AlphaApp(){
      english={english}
      close={closeHub}
      returnFocus={panel==='jobs'?commissionReturnFocus:()=>managementTrigger.current}
+     overlay={<BarkOverlay bark={activeBark} view={view} english={english} inModal onClose={dismissBark}/>}
      onCancel={()=>{
       if(panel==='actors'&&actorId&&actorEntry==='gallery'){closeActor();return true;}
       if(panel==='jobs'&&jobInDetail&&matchMedia('(max-width:679px)').matches){selectCommission(null);return true;}
@@ -535,11 +557,11 @@ export function AlphaApp(){
        view={view}
        english={english}
        locked={locked}
-       send={cmd=>send(cmd,{surface:'actor',id:actorId})}
+       send={cmd=>{if(cmd.type!=='campaign'||!['chat','gift','meal','study','tea','duo'].includes(cmd.action))setActiveBark(null);return send(cmd,{surface:'actor',id:actorId});}}
        close={closeActor}
        closePanel={closeHub}
        openJob={setJobId}
-       openMap={()=>{updatePanel(null);setMapOpen(true);}}
+       openMap={()=>{setActiveBark(null);updatePanel(null);setMapOpen(true);}}
        selectCharacter={id=>setActorId(id)}
        preferredTab={preferredProfileTab}
        setPreferredTab={setPreferredProfileTab}
@@ -562,7 +584,7 @@ export function AlphaApp(){
           <span class="poster-title"><strong class="poster-word">{poster.sWord}</strong><b>{names[id]}</b><span>{poster.tagline[english?1:0]}</span><small>{v.name}</small></span>
           <img class="poster-art" src={visual.src} alt="" loading="lazy"/>
           <span class="poster-check-strip"><span class="poster-stamp">STUDIO O.T.</span>{(['code','write','reason','create','media'] as const).map(k=><span key={k}>{top.includes(k)?'☑':'□'} {skill(k)}</span>)}</span>
-          <span class="poster-status-bar">{a?`${scene(a.location)} · ${tr('精力','Energy')} ${a.energy} · ${tr('心情','Mood')} ${a.mood} · ${tr('负载','Load')} ${a.load}`:r?<>{tr('待招募','Not recruited')} · ¥{r.cost} · {tr('声望','Reputation')} {r.reputation} · {tr('开放章节','Chapter')} {r.minChapter??0}<br/>{block?recruitmentReasons[block][english?1:0]:tr('可招募 · 点击查看档案','Eligible · View profile')}</>:null}</span>
+          <span class="poster-status-bar">{a?`${scene(a.location)} · ${tr('精力','Energy')} ${a.energy} · ${tr('心情','Mood')} ${a.mood} · ${tr('负载','Load')} ${a.load}/${actorEffectiveContext(view,a.id)??''}`:r?<>{tr('待招募','Not recruited')} · ¥{r.cost} · {tr('声望','Reputation')} {r.reputation} · {tr('开放章节','Chapter')} {r.minChapter??0}<br/>{block?recruitmentReasons[block][english?1:0]:tr('可招募 · 点击查看档案','Eligible · View profile')}</>:null}</span>
          </button>;
         })}
        </div>
@@ -587,7 +609,7 @@ export function AlphaApp(){
        view={view}
        english={english}
        locked={locked}
-       send={send}
+       send={cmd=>{setActiveBark(null);return send(cmd);}}
        previewAssignment={(id,members)=>game.session.previewAssignment(id,members)}
        close={closeHub}
        closePanel={closeHub}
@@ -604,7 +626,7 @@ export function AlphaApp(){
        locked={locked}
        tab={studioTab}
        setTab={setStudioTab}
-       send={send}
+       send={cmd=>{setActiveBark(null);return send(cmd);}}
        onOpenOffice={()=>openOffice(returnTo?.panel==='jobs'?returnTo:undefined)}
        onSwitchHub={next=>setPanel(next)}
        onOpenMap={()=>{updatePanel(null);setMapOpen(true);}}

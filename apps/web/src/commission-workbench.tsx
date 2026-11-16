@@ -10,7 +10,7 @@ import {skillText} from './ui-labels.js';
 import {Icon} from './icons.js';
 import {QualitySealSvg} from './ornaments.js';
 import {topJobSkillWeights} from './ui2-logic.js';
-import {findActiveTeamDuos,getLivingCatalog,pickWorkBark,resolveClientPersona} from './living-adapter.js';
+import {evaluateTeamDuos,getLivingCatalog,pickWorkBark,resolveClientPersona} from './living-adapter.js';
 import type {CharacterBarkSet,LivingContent,LivingView} from './living-adapter.js';
 
 export type JobFilter='active'|'posted'|'history';
@@ -189,19 +189,17 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
         </div>
 
         {(()=>{
-         const teamDuos=livingView?findActiveTeamDuos(livingView.duos,members.map(m=>m.character)):[];
+         const teamDuos=livingView?evaluateTeamDuos(view,job,members,activeCatalog):[];
          return teamDuos.length>0?(
-          <div class="ui2-synergy-strip" aria-label={tr('搭档协同加成','Team duo synergies')}>
-           {teamDuos.map(d=>{
-            const minDel=activeCatalog.duos.find(x=>x.id===d.id)?.minDeliveries??2;
-            return (
-             <span key={d.id} class={`ui2-synergy-chip ${d.unlocked?'is-active':'is-pending'}`}>
-              <Icon name="link"/>
-              <b>{tr(d.title,d.titleEn)}</b>
-              <small>{d.unlocked?tr(d.desc,d.descEn):tr(`还差 ${Math.max(0,minDel-d.sharedDeliveries)} 次同队交付激活`,`${Math.max(0,minDel-d.sharedDeliveries)} more co-delivery`)}</small>
-             </span>
-            );
-           })}
+          <div class="ui2-synergy-strip" aria-label={tr('搭档协同状态','Team duo synergies')}>
+           {teamDuos.map(item=>(
+            <span key={item.duo.id} class={`ui2-synergy-chip is-${item.state}`} data-duo-state={item.state}>
+             <Icon name={item.state==='locked'?'lock':'link'}/>
+             <b>{tr(item.duo.title,item.duo.titleEn)}</b>
+             <em class="ui2-synergy-state">{tr(item.statusZh,item.statusEn)}</em>
+             <small>{tr(item.reasonZh,item.reasonEn)}</small>
+            </span>
+           ))}
           </div>
          ):null;
         })()}

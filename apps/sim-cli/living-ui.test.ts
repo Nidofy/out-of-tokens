@@ -1,11 +1,14 @@
 import {expect,test} from 'vitest';
 import {loadFullContent} from 'oot-content';
+import {createInitialState,dispatchCommand,forecastAssignment,getViewModel} from 'oot-core';
+import type {Content,Job,Member} from 'oot-core';
 import {labSession} from '../web/src/office-lab.js';
 import {resolveGlobalShortcut} from '../web/src/ui2-logic.js';
-import {reactionFor} from '../web/src/scene-layout.js';
+import {actorEffectiveContext,isActorOverloaded,reactionFor} from '../web/src/scene-layout.js';
 import {
  clientAssetSrc,
  emoteAssetSrc,
+ evaluateTeamDuos,
  findActiveTeamDuos,
  getLivingCatalog,
  getLivingView,
@@ -17,6 +20,7 @@ import {
  pickStageChatter,
  pickWorkBark,
  resolveClientPersona,
+ resolveStopReason,
  teaBreakAssetSrc
 } from '../web/src/living-adapter.js';
 import {
@@ -28,6 +32,40 @@ import {
  writeAudioPrefs
 } from '../web/src/audio-foley.js';
 
+function fullRosterContent():Content{
+ const c=loadFullContent();
+ c.campaign!.initial=[...new Set(c.versions.map(v=>v.character))];
+ c.campaign!.recruits=[];
+ return c;
+}
+
+function makeWorkingJob(c:Content,templateId:string,team:Member[]):Job{
+ const t=c.commissions.find(x=>x.id===templateId)!;
+ return {
+  id:`test-${templateId}`,
+  template:t.id,
+  status:'working',
+  posted:0,
+  deadline:100,
+  duration:8,
+  hidden:0,
+  work:1000,
+  progress:0,
+  weighted:0,
+  review:0,
+  defects:0,
+  reworked:false,
+  advance:0,
+  quality:0,
+  team,
+  phase:0,
+  resumeAt:0,
+  qualityBonus:0,
+  clarifyingUntil:0,
+  reviewCoverage:0
+ };
+}
+
 test('resolveGlobalShortcut maps c/C to chat drawer and respects modal/input guards',()=>{
  const openGuard={blockedModal:false,actorOpen:false};
  expect(resolveGlobalShortcut({key:'c',ctrlKey:false,metaKey:false,altKey:false,isComposing:false,repeat:false},openGuard)).toEqual({type:'chat'});
@@ -36,27 +74,217 @@ test('resolveGlobalShortcut maps c/C to chat drawer and respects modal/input gua
  expect(resolveGlobalShortcut({key:'c',ctrlKey:false,metaKey:false,altKey:false,isComposing:false,repeat:false},{blockedModal:true,actorOpen:false})).toBeNull();
 });
 
-test('reactionFor prioritizes sleepy under low energy, surprised under load or stops, and happy when upbeat',()=>{
- const g=labSession(loadFullContent(),'standard'),v=g.view;
+test('W2-03: effective context overload handles Mistral/Kimi, storage hardware, version switch, load===context and priority rules',()=>{
+ const c=fullRosterContent();
+ const s=createInitialState(c,1);
+ s.jobs=[];
+
+ // Boundary: Mistral 7B base context = 4; load=4 is NOT overloaded, load=5 IS overloaded.
+ const mistral=s.actors.find(a=>a.id==='mistral')!;
+ expect(mistral.version).toBe('mistral.7b');
+ mistral.load=4;
+ let v=getViewModel(s,c);
+ expect(actorEffectiveContext(v,'mistral')).toBe(4);
+ expect(isActorOverloaded(v,'mistral')).toBe(false);
+ expect(reactionFor(v,'mistral')).toBe('neutral');
+
+ mistral.load=5;
+ v=getViewModel(s,c);
+ expect(isActorOverloaded(v,'mistral')).toBe(true);
+ expect(reactionFor(v,'mistral')).toBe('surprised');
+ const mistralOverloadView={...v,actors:v.actors.filter(a=>a.id==='mistral')};
+ const mistralBubble=pickStageChatter(mistralOverloadView,getLivingCatalog(mistralOverloadView),getLivingView(mistralOverloadView),false,0);
+ expect(mistralBubble?.id).toContain(':overload:');
+
+ // Storage hardware (+2) raises Mistral 7B effective context from 4 -> 6: load=5 is no longer overloaded.
+ s.campaign!.hardware.storage=2;
+ v=getViewModel(s,c);
+ expect(actorEffectiveContext(v,'mistral')).toBe(6);
+ expect(isActorOverloaded(v,'mistral')).toBe(false);
+ expect(reactionFor(v,'mistral')).toBe('neutral');
+ mistral.load=7;
+ v=getViewModel(s,c);
+ expect(isActorOverloaded(v,'mistral')).toBe(true);
+ expect(reactionFor(v,'mistral')).toBe('surprised');
+
+ // Switching to mistral.large (context=8) + storage=2 -> effective context 10 clears load=7 overload.
+ mistral.version='mistral.large';
+ v=getViewModel(s,c);
+ expect(actorEffectiveContext(v,'mistral')).toBe(10);
+ expect(isActorOverloaded(v,'mistral')).toBe(false);
+ expect(reactionFor(v,'mistral')).toBe('neutral');
+
+ // Kimi 1.5 base context = 11 (+storage 0 here): load=9 & load=11 are NOT overloaded; load=12 IS overloaded.
+ s.campaign!.hardware.storage=0;
+ const kimi=s.actors.find(a=>a.id==='kimi')!;
+ expect(kimi.version).toBe('kimi.1.5');
+ kimi.load=9;
+ v=getViewModel(s,c);
+ expect(actorEffectiveContext(v,'kimi')).toBe(11);
+ expect(isActorOverloaded(v,'kimi')).toBe(false);
+ expect(reactionFor(v,'kimi')).toBe('neutral');
+ const kimiIdleView={...v,actors:v.actors.filter(a=>a.id==='kimi')};
+ expect(pickStageChatter(kimiIdleView,getLivingCatalog(kimiIdleView),getLivingView(kimiIdleView),false,0)?.id).not.toContain(':overload:');
+
+ kimi.load=11;
+ v=getViewModel(s,c);
+ expect(isActorOverloaded(v,'kimi')).toBe(false);
+ expect(reactionFor(v,'kimi')).toBe('neutral');
+
+ kimi.load=12;
+ v=getViewModel(s,c);
+ expect(isActorOverloaded(v,'kimi')).toBe(true);
+ expect(reactionFor(v,'kimi')).toBe('surprised');
+
+ // Priority checks: pending.actors -> surprised; current-slot delivery -> happy; low energy -> sleepy over overload.
+ const gStd=labSession(loadFullContent(),'standard'),vStd=gStd.view;
  const deliveredView={
-  ...v,
-  ledger:[...v.ledger,{slot:v.absoluteSlot,reason:`delivery:${v.jobs[0]!.id}`,amount:100}],
-  jobs:[{...v.jobs[0]!,status:'delivered' as const,team:[{character:'qwen',role:'worker' as const,mode:'cloud' as const}]},...v.jobs.slice(1)]
+  ...vStd,
+  ledger:[...vStd.ledger,{slot:vStd.absoluteSlot,reason:`delivery:${vStd.jobs[0]!.id}`,amount:100}],
+  jobs:[{...vStd.jobs[0]!,status:'delivered' as const,team:[{character:'qwen',role:'worker' as const,mode:'cloud' as const}]},...vStd.jobs.slice(1)]
  };
  expect(reactionFor(deliveredView,'qwen')).toBe('happy');
  expect(reactionFor(deliveredView,'llama')).toBe('neutral');
 
- const tiredActors=v.actors.map(a=>a.id==='llama'?{...a,energy:28,mood:90}:a);
- expect(reactionFor({...v,actors:tiredActors},'llama')).toBe('sleepy');
+ const tiredOverloaded={...v,actors:v.actors.map(a=>a.id==='kimi'?{...a,energy:28,mood:90,load:20}:a)};
+ expect(reactionFor(tiredOverloaded,'kimi')).toBe('sleepy');
+ const kimiTiredOnly={...tiredOverloaded,actors:tiredOverloaded.actors.filter(a=>a.id==='kimi')};
+ expect(pickStageChatter(kimiTiredOnly,getLivingCatalog(kimiTiredOnly),getLivingView(kimiTiredOnly),false,0)?.id).toContain(':tired:');
 
- const heavyActors=v.actors.map(a=>a.id==='llama'?{...a,energy:80,load:9}:a);
- expect(reactionFor({...v,actors:heavyActors},'llama')).toBe('surprised');
+ // possibleStops without context overload shows surprised expression but budget stop chatter (not context overload).
+ const qwenCloudJob=makeWorkingJob(c,'menu',[{character:'qwen',role:'worker',mode:'cloud'}]);
+ const cloudStopState={...s,quota:0,purchased:0,jobs:[qwenCloudJob]};
+ const cloudStopView=getViewModel(cloudStopState,c);
+ expect(cloudStopView.possibleStops).toContain('qwen');
+ expect(isActorOverloaded(cloudStopView,'qwen')).toBe(false);
+ expect(reactionFor(cloudStopView,'qwen')).toBe('surprised');
+ expect(resolveStopReason(cloudStopView,'qwen')).toBe('cloud');
+ const qwenOnlyCloud={...cloudStopView,actors:cloudStopView.actors.filter(a=>a.id==='qwen')};
+ const qwenStopBubble=pickStageChatter(qwenOnlyCloud,getLivingCatalog(qwenOnlyCloud),getLivingView(qwenOnlyCloud),false,0);
+ expect(qwenStopBubble?.id).toContain(':stop-cloud:');
+ expect(qwenStopBubble?.id).not.toContain(':overload:');
 
- const stopView={...v,possibleStops:['llama']};
- expect(reactionFor(stopView,'llama')).toBe('surprised');
+ const llamaLocalJob=makeWorkingJob(c,'bugs',[{character:'llama',role:'worker',mode:'local'}]);
+ const localStopState={...s,localCapacity:0,jobs:[llamaLocalJob]};
+ const localStopView=getViewModel(localStopState,c);
+ expect(localStopView.possibleStops).toContain('llama');
+ expect(resolveStopReason(localStopView,'llama')).toBe('local');
+ const llamaOnlyLocal={...localStopView,actors:localStopView.actors.filter(a=>a.id==='llama')};
+ expect(pickStageChatter(llamaOnlyLocal,getLivingCatalog(llamaOnlyLocal),getLivingView(llamaOnlyLocal),false,0)?.id).toContain(':stop-local:');
+});
 
- const upbeatActors=v.actors.map(a=>a.id==='llama'?{...a,energy:80,mood:85,load:2}:a);
- expect(reactionFor({...v,actors:upbeatActors},'llama')).toBe('happy');
+test('W2-02: evaluateTeamDuos matches core eligibility across mode, category, slot, delivery, clarify, lock and absence',()=>{
+ const c=fullRosterContent();
+
+ // 1. mistral-llama: local mode only (exact reproduction case + core forecast agreement).
+ const s=createInitialState(c,1);
+ s.campaign!.duos=['mistral-llama'];
+ const cloudTeam:Member[]=[{character:'mistral',role:'worker',mode:'cloud'},{character:'llama',role:'worker',mode:'cloud'}];
+ const mixedTeam:Member[]=[{character:'mistral',role:'worker',mode:'local'},{character:'llama',role:'worker',mode:'cloud'}];
+ const localTeam:Member[]=[{character:'mistral',role:'worker',mode:'local'},{character:'llama',role:'worker',mode:'local'}];
+ const jobBase=makeWorkingJob(c,'menu',cloudTeam);
+ s.jobs=[jobBase];
+
+ const viewCloud=getViewModel(s,c);
+ const resCloud=evaluateTeamDuos(viewCloud,viewCloud.jobs[0]!,cloudTeam);
+ expect(resCloud.find(x=>x.duo.id==='mistral-llama')).toMatchObject({state:'inactive',statusEn:'Inactive'});
+ expect(findActiveTeamDuos(viewCloud,viewCloud.jobs[0]!,cloudTeam)).toEqual([]);
+ const sNoDuo=createInitialState(c,1);
+ sNoDuo.jobs=[jobBase];
+ expect(forecastAssignment(s,c,jobBase).firstSlot).toEqual(forecastAssignment(sNoDuo,c,jobBase).firstSlot);
+
+ const resMixed=evaluateTeamDuos(viewCloud,viewCloud.jobs[0]!,mixedTeam);
+ expect(resMixed.find(x=>x.duo.id==='mistral-llama')).toMatchObject({state:'inactive'});
+ expect(findActiveTeamDuos(viewCloud,viewCloud.jobs[0]!,mixedTeam)).toEqual([]);
+
+ const jobLocal={...jobBase,team:localTeam};
+ s.jobs=[jobLocal];
+ const viewLocal=getViewModel(s,c);
+ const resLocal=evaluateTeamDuos(viewLocal,viewLocal.jobs[0]!,localTeam);
+ expect(resLocal.find(x=>x.duo.id==='mistral-llama')).toMatchObject({state:'active',statusEn:'Active'});
+ expect(findActiveTeamDuos(viewLocal,viewLocal.jobs[0]!,localTeam).map(d=>d.id)).toEqual(['mistral-llama']);
+ expect(forecastAssignment(s,c,jobLocal).firstSlot.progress).toBeGreaterThan(forecastAssignment(sNoDuo,c,jobLocal).firstSlot.progress);
+
+ // 2. gpt-claude: cloud mode only.
+ const sCloudOnly=createInitialState(c,1);
+ sCloudOnly.campaign!.duos=['gpt-claude'];
+ sCloudOnly.jobs=[makeWorkingJob(c,'menu',[{character:'gpt',role:'worker',mode:'cloud'},{character:'claude',role:'reviewer',mode:'cloud'}])];
+ const vGptCloud=getViewModel(sCloudOnly,c);
+ expect(evaluateTeamDuos(vGptCloud,vGptCloud.jobs[0]!,sCloudOnly.jobs[0]!.team).find(x=>x.duo.id==='gpt-claude')?.state).toBe('active');
+ expect(evaluateTeamDuos(vGptCloud,vGptCloud.jobs[0]!,[{character:'gpt',role:'worker',mode:'local'},{character:'claude',role:'reviewer',mode:'cloud'}]).find(x=>x.duo.id==='gpt-claude')?.state).toBe('inactive');
+
+ // 3. Category duos: kimi-glm (write/research only), gpt-gemini (design/media only), minimax-seedance (media only).
+ const sCat=createInitialState(c,1);
+ sCat.campaign!.duos=['kimi-glm','gpt-gemini','minimax-seedance'];
+ sCat.jobs=[makeWorkingJob(c,'menu',[]),makeWorkingJob(c,'bugs',[]),makeWorkingJob(c,'logo',[]),makeWorkingJob(c,'video',[])];
+ const vCat=getViewModel(sCat,c);
+ const menuJob=vCat.jobs.find(j=>j.template==='menu')!;
+ const bugsJob=vCat.jobs.find(j=>j.template==='bugs')!;
+ const logoJob=vCat.jobs.find(j=>j.template==='logo')!;
+ const videoJob=vCat.jobs.find(j=>j.template==='video')!;
+
+ const kgTeam:Member[]=[{character:'kimi',role:'worker',mode:'cloud'},{character:'glm',role:'worker',mode:'cloud'}];
+ expect(evaluateTeamDuos(vCat,menuJob,kgTeam).find(x=>x.duo.id==='kimi-glm')?.state).toBe('active');
+ expect(evaluateTeamDuos(vCat,bugsJob,kgTeam).find(x=>x.duo.id==='kimi-glm')?.state).toBe('inactive');
+
+ const ggTeam:Member[]=[{character:'gpt',role:'worker',mode:'cloud'},{character:'gemini',role:'worker',mode:'cloud'}];
+ expect(evaluateTeamDuos(vCat,logoJob,ggTeam).find(x=>x.duo.id==='gpt-gemini')?.state).toBe('active');
+ expect(evaluateTeamDuos(vCat,videoJob,ggTeam).find(x=>x.duo.id==='gpt-gemini')?.state).toBe('active');
+ expect(evaluateTeamDuos(vCat,menuJob,ggTeam).find(x=>x.duo.id==='gpt-gemini')?.state).toBe('inactive');
+
+ const msVideoTeam:Member[]=[{character:'minimax',role:'worker',mode:'cloud'},{character:'seedance',role:'worker',mode:'cloud'}];
+ expect(evaluateTeamDuos(vCat,videoJob,msVideoTeam).find(x=>x.duo.id==='minimax-seedance')?.state).toBe('active');
+ expect(evaluateTeamDuos(vCat,logoJob,msVideoTeam).find(x=>x.duo.id==='minimax-seedance')?.state).toBe('inactive');
+
+ // 4. Time & delivery duos: mistral-seedance (Morning slot%4===0 only), gemini-minimax (non-oneshot only).
+ const sTimeDel=createInitialState(c,1);
+ sTimeDel.campaign!.duos=['mistral-seedance','gemini-minimax'];
+ sTimeDel.jobs=[makeWorkingJob(c,'menu',[]),makeWorkingJob(c,'backup',[])];
+ sTimeDel.absoluteSlot=0;
+ let vTD=getViewModel(sTimeDel,c);
+ const morningTeam:Member[]=[{character:'mistral',role:'worker',mode:'cloud'},{character:'seedance',role:'worker',mode:'cloud'}];
+ expect(evaluateTeamDuos(vTD,vTD.jobs[0]!,morningTeam).find(x=>x.duo.id==='mistral-seedance')?.state).toBe('active');
+ sTimeDel.absoluteSlot=1;
+ vTD=getViewModel(sTimeDel,c);
+ expect(evaluateTeamDuos(vTD,vTD.jobs[0]!,morningTeam).find(x=>x.duo.id==='mistral-seedance')?.state).toBe('inactive');
+
+ const gmTeam:Member[]=[{character:'gemini',role:'worker',mode:'cloud'},{character:'minimax',role:'worker',mode:'cloud'}];
+ expect(evaluateTeamDuos(vTD,vTD.jobs[0]!,gmTeam).find(x=>x.duo.id==='gemini-minimax')?.state).toBe('inactive');
+ expect(evaluateTeamDuos(vTD,vTD.jobs[1]!,gmTeam).find(x=>x.duo.id==='gemini-minimax')?.state).toBe('active');
+
+ // 5. Clarify-only duo (qwen-kimi) boosts clarifyChance in core when in same scene, yet is never labeled active execution bonus.
+ const sClar=createInitialState(c,1);
+ const baseClarify=getViewModel(sClar,c).actors.find(a=>a.id==='qwen')!.clarifyChance;
+ sClar.campaign!.duos=['qwen-kimi'];
+ sClar.jobs=[makeWorkingJob(c,'menu',[])];
+ const vClar=getViewModel(sClar,c);
+ expect(vClar.actors.find(a=>a.id==='qwen')!.clarifyChance).toBeGreaterThan(baseClarify);
+ const qkEval=evaluateTeamDuos(vClar,vClar.jobs[0]!,[{character:'qwen',role:'worker',mode:'cloud'},{character:'kimi',role:'worker',mode:'cloud'}]);
+ expect(qkEval.find(x=>x.duo.id==='qwen-kimi')).toMatchObject({state:'inactive',statusEn:'Clarify only'});
+ expect(findActiveTeamDuos(vClar,vClar.jobs[0]!,[{character:'qwen',role:'worker',mode:'cloud'},{character:'kimi',role:'worker',mode:'cloud'}])).toEqual([]);
+
+ // 6. Energy-save local duo (llama-glm) & core advance parity; plus locked & missing-member boundaries.
+ const cQuiet=fullRosterContent();
+ cQuiet.balance!.eventChance=0;
+ const sEnergyBase=createInitialState(cQuiet,1);
+ const energyJob=makeWorkingJob(cQuiet,'menu',[{character:'llama',role:'worker',mode:'local'},{character:'glm',role:'worker',mode:'local'}]);
+ sEnergyBase.jobs=[structuredClone(energyJob)];
+ const sEnergyDuo=createInitialState(cQuiet,1);
+ sEnergyDuo.campaign!.duos=['llama-glm'];
+ sEnergyDuo.jobs=[structuredClone(energyJob)];
+ const vEnergyDuo=getViewModel(sEnergyDuo,cQuiet);
+ expect(evaluateTeamDuos(vEnergyDuo,vEnergyDuo.jobs[0]!,energyJob.team).find(x=>x.duo.id==='llama-glm')?.state).toBe('active');
+ expect(evaluateTeamDuos(vEnergyDuo,vEnergyDuo.jobs[0]!,[{character:'llama',role:'worker',mode:'cloud'},{character:'glm',role:'worker',mode:'cloud'}]).find(x=>x.duo.id==='llama-glm')?.state).toBe('inactive');
+ expect(forecastAssignment(sEnergyDuo,cQuiet,sEnergyDuo.jobs[0]!).firstSlot.members[0]!.energyCost).toBe(forecastAssignment(sEnergyBase,cQuiet,sEnergyBase.jobs[0]!).firstSlot.members[0]!.energyCost-2);
+ const advBase=dispatchCommand(sEnergyBase,{type:'advance'},cQuiet);
+ const advDuo=dispatchCommand(sEnergyDuo,{type:'advance'},cQuiet);
+ expect(advDuo.state.actors.find(a=>a.id==='llama')!.energy).toBeGreaterThan(advBase.state.actors.find(a=>a.id==='llama')!.energy);
+
+ const sLocked=createInitialState(c,1);
+ sLocked.jobs=[makeWorkingJob(c,'menu',[])];
+ const vLocked=getViewModel(sLocked,c);
+ expect(evaluateTeamDuos(vLocked,vLocked.jobs[0]!,[{character:'bluewhale',role:'worker',mode:'cloud'},{character:'qwen',role:'worker',mode:'cloud'}]).find(x=>x.duo.id==='bluewhale-qwen')).toMatchObject({state:'locked',statusEn:'Locked'});
+ expect(evaluateTeamDuos(vLocked,vLocked.jobs[0]!,[{character:'bluewhale',role:'worker',mode:'cloud'}])).toEqual([]);
 });
 
 test('living-adapter reads native living-m6 catalog, Art-Batch 6 paths, personas and stage chatter',()=>{
@@ -87,9 +315,6 @@ test('living-adapter reads native living-m6 catalog, Art-Batch 6 paths, personas
  expect(pickWorkBark(catalog,'bluewhale','assignWorker',true).length).toBeGreaterThan(0);
  expect(pickEventQuote(catalog,'api-outage','llama',false).length).toBeGreaterThan(0);
  expect(pickSlotBeat(catalog,0,1,false).length).toBeGreaterThan(0);
-
- const duos=findActiveTeamDuos(living.duos,['bluewhale','qwen']);
- expect(duos.some(d=>d.id==='bluewhale-qwen')).toBe(true);
 
  const bubble=pickStageChatter(v,catalog,living,false,0);
  expect(bubble).not.toBeNull();

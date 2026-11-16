@@ -1,4 +1,18 @@
 import type {GameView} from 'oot-platform';
+import {content} from './content.js';
+
+export function actorEffectiveContext(view:GameView,id:string):number|null{
+ const actor=view.actors.find(a=>a.id===id);
+ if(!actor)return null;
+ const ver=content.versions.find(v=>v.id===actor.version);
+ if(!ver)return null;
+ return ver.context+(view.campaign?.hardware.storage??0);
+}
+
+export function isActorOverloaded(view:GameView,id:string):boolean{
+ const actor=view.actors.find(a=>a.id===id),ctx=actorEffectiveContext(view,id);
+ return !!actor&&ctx!==null&&actor.load>ctx;
+}
 /** Display only an active WP-producing member's reserved station bonus. */
 export function activeStationBonus(view:GameView,id:string){
  const r=view.office?.reservations[id];
@@ -35,7 +49,7 @@ export function reactionFor(view:GameView,id:string){
  const actor=view.actors.find(a=>a.id===id);
  if(actor){
   if(actor.energy<35)return 'sleepy';
-  if(view.possibleStops.includes(id)||actor.load>=9)return 'surprised';
+  if(isActorOverloaded(view,id)||view.possibleStops.includes(id))return 'surprised';
   if(actor.mood>=82)return 'happy';
  }
  return 'neutral';

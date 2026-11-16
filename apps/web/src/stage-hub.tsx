@@ -20,10 +20,11 @@ type StageHubProps={
  close:()=>void;
  returnFocus?:()=>HTMLElement|null;
  onCancel?:()=>boolean;
+ overlay?:ComponentChildren;
  children:ComponentChildren;
 };
 
-export function StageHubShell({hub,switchHub,title,emblem,tabs,backAction,notice,view,advance,onAdvance,onOpenReview,english,close,returnFocus,onCancel,children}:StageHubProps){
+export function StageHubShell({hub,switchHub,title,emblem,tabs,backAction,notice,view,advance,onAdvance,onOpenReview,english,close,returnFocus,onCancel,overlay,children}:StageHubProps){
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!;
  const dialogRef=useRef<HTMLDialogElement>(null);
@@ -112,6 +113,7 @@ export function StageHubShell({hub,switchHub,title,emblem,tabs,backAction,notice
      <Icon name={item.icon}/><span>{item.label}</span>{item.badge&&<i class="ui2-dot" aria-hidden="true"/>}
     </button>)}
    </nav>
+   {overlay}
   </dialog>
  );
 }
