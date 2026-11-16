@@ -1,3 +1,12 @@
+2026-11-16 Living Studio 3.0 Track B 检查点完成，代码提交 `53232cd14f1db3ba0e637ea79e70a8bac1380e63`，基线 `21a20d2`。新增偏好礼物、每日茶歇、12组搭档、免费群聊回应与living派生视图；共享默契判定接入实际结算及预估，缺陷防护在reviewer之前处理。60段双语羁绊全量重写，原解锁点/选项数值不变；living-m6含6礼物、12搭档、20话题、6甲方、420组伙伴双语台词、77事件条目及16时段切片。双类别、上午与多期限制沿用约定固定duo ID，不扩展共享契约。
+
+Art-Batch 6共19项、19原始PNG+19运行时WebP，public运行资产合计280464字节；尺寸/透明边距/上限/哈希及离线清单校验通过，母版/提示词/实际参数见art/art-batch-6。用户明确许可内置image_gen且记录准确后端版本未知；20次调用中VC头像首稿因表盘数字样式弃用后重生成。所有最终素材已目视复核。纯路径白名单living-art.ts就绪，前端Track A尚未合流，本轮不宣称UI实机验收。
+
+最终pnpm check通过44文件387测试、类型/Lint/Web/DSH构建，git diff --check通过；529/419步自然轨迹原stateHash逐项匹配，新命令存取回放通过。首次全量曾因结局夹具清空事件牌组而触发LIVING_REFERENCE，现仅在events=[]且eventChance=0时允许休眠事件文案，非空牌组与角色引用仍严格校验；旧美术完整字节比较再次超过5秒，文件内完整性测试上限改为15秒，原断言保留。编译产物写入曾受沙箱EPERM阻止，经权限执行成功，不计为测试通过。所有改动属于Track B白名单，前端交互/场景/CSS、persistence、DSH、历史fixtures与冻结美术相对基线0 diff。仅本地提交，未push或部署；既有VF5/Visual Freeze HOLD不变。
+
+兼容性边界：新四字段保持惰性可选、旧通用gift及未启用duo路径保留，engine/content版本依用户回放约束不递增；历史命令轨迹stateHash不变不等于旧导出文件可直接导入。剧情/内容更新会改变contentHash，冻结的persistence仍以INCOMPATIBLE_SAVE拒绝旧内容指纹，没有静默迁移。下一步由Track A合流并完成前端接线与视口验收。
+
+
 2026-11-16 UI/UX 2.0与Art-Batch 5整合完成：合并Art-Batch 5（168a25d）与UI 2.0设计实施（2498b8e→8a51714），统一`tokens.css`与5份legacy CSS为单一`@layer legacy`并新增`ui2-surfaces/ui2-modules/ui2-responsive`覆盖层；完成四角HUD 2.0与右下双行心跳推进器、L2居中宽壳`StageHubShell`（顶栏货币、镜像推进、逾期二次确认与5视口双层粘性标签）、S3.5伙伴舞台（12人标准/旗舰双轨解锁与未解锁剪影锁）、委托4/6编队与双环火漆章、3页签去重工作室与4页签手账、家具编辑器槽位联动、分屏事件弹窗、`office-scene.ts`停跑降耗及`still`/布置零延迟相机同步。实机浏览器验证覆盖生产与Dev视觉检查（`1280×720`、`768×1024`、`844×390`、`560×800`、`390×844`，`light/dark`，`zh/en`），0横向溢出、所有可见按钮热区>=43.5px、左上栈与底栏0重叠、0控制台报错、0破图，`#vf-metrics[data-samples="180"]`挂载完成（未替代正式VF5 36批或200%字体/真机门禁，历史VF5/OS字体/真机状态不变）。`packages/**`、`content/**`与保护美术目录相对`fbaa075`维持0 diff，仅本地提交未push。
 
 2026-11-16 Art-Batch 5完成：14项母版/运行时资产及12人Stage B映射、章节/项目/财务/仪式纯路径导出已齐备；用户许可使用内置生图并记录未知后端。42文件343测试与完整pnpm check通过，保护路径零diff；详见docs/ART_BATCHES_1113.md及art/art-batch-5。未改UI布局/规则，原VF5 HOLD不变，仅本地提交。
