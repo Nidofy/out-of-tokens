@@ -1,0 +1,759 @@
+[
+  {
+    "file": "masters/grok.3.png",
+    "purpose": "untouched generated master",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 2282197,
+    "sha256": "c1991ed0a94b17c92e89525eef188927753bccbdae6ad78b7406836016d59191",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character grok.3, using the provided original grok portrait as strict identity reference. Preserve blonde wavy twin-tails with top curl ahoge, bright sapphire blue eyes, pointed elf ears, small black-and-gold gothic crown, black twin-tail bows with tiny bat-wing accents, and black-and-gold gear-trimmed gothic dress, youthful chibi proportions and lively expression. Theme accent #C98A24. Confident playful upgraded pose holding a small brass astrolabe magnifying glass emitting restrained warm amber starlight wisps. Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full crown, twin-tails and ears visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-783ecf1e-37ee-4992-9c47-1542ef81e4b1.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\grok.png"
+      ]
+    },
+    "sources": [
+      {
+        "file": "portraits/grok.png",
+        "sha256": "d857f4d75b5da717608f31fe3409f4d4f59df837fd25427bf2b4bc608ae74f67"
+      }
+    ],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/grok.3.webp",
+    "publicFile": "art/stage-b/grok.3.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 512,
+    "height": 512,
+    "bytes": 79018,
+    "sha256": "efdeebb613f7ad210bc73faedcc23f30e04f36a6e6ee02313417c0da7feec304",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character grok.3, using the provided original grok portrait as strict identity reference. Preserve blonde wavy twin-tails with top curl ahoge, bright sapphire blue eyes, pointed elf ears, small black-and-gold gothic crown, black twin-tail bows with tiny bat-wing accents, and black-and-gold gear-trimmed gothic dress, youthful chibi proportions and lively expression. Theme accent #C98A24. Confident playful upgraded pose holding a small brass astrolabe magnifying glass emitting restrained warm amber starlight wisps. Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full crown, twin-tails and ears visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-783ecf1e-37ee-4992-9c47-1542ef81e4b1.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\grok.png"
+      ]
+    },
+    "sources": [
+      {
+        "file": "portraits/grok.png",
+        "sha256": "d857f4d75b5da717608f31fe3409f4d4f59df837fd25427bf2b4bc608ae74f67"
+      }
+    ],
+    "processing": "complete-canvas proportional resize and transparent padding",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    },
+    "alphaBounds": [
+      56,
+      49,
+      455,
+      462
+    ],
+    "minimumTransparentMarginPixels": 41
+  },
+  {
+    "file": "masters/glm.plus.png",
+    "purpose": "untouched generated master",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1927585,
+    "sha256": "a5fdafa169ded73d65eef0c71cc8e960004767eb1a3ab3d37f724adbb58f3331",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character glm.plus, using the provided original glm portrait as strict identity reference. Preserve charcoal-black hair fading to deep midnight blue waves, grey-violet eyes, fluffy black-and-white wolf ears, white frilled maid headdress with silver-blue tassel ornament on the side, black-and-white gothic maid dress with bow, and fluffy black-with-white-tip tail if visible, youthful chibi proportions and calm serene expression. Theme accent #4A4E57. Composed focused upgraded pose holding a sleek translucent frosted-glass tablet showing restrained glowing silver-blue geometric wireframe diagrams (no readable text or numbers). Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full ears and headdress visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-31cc27f8-388f-458b-b65a-e78c422c6ee1.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\glm.png"
+      ]
+    },
+    "sources": [
+      {
+        "file": "portraits/glm.png",
+        "sha256": "82933b1fdba34ebb96f71292a5ce56a158f928cab38ce8dafccecaed054d83ee"
+      }
+    ],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/glm.plus.webp",
+    "publicFile": "art/stage-b/glm.plus.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 512,
+    "height": 512,
+    "bytes": 53632,
+    "sha256": "689e84754c1171e9daa950a343d2b58c76e6c468eedf9eee953037e83c8a3983",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character glm.plus, using the provided original glm portrait as strict identity reference. Preserve charcoal-black hair fading to deep midnight blue waves, grey-violet eyes, fluffy black-and-white wolf ears, white frilled maid headdress with silver-blue tassel ornament on the side, black-and-white gothic maid dress with bow, and fluffy black-with-white-tip tail if visible, youthful chibi proportions and calm serene expression. Theme accent #4A4E57. Composed focused upgraded pose holding a sleek translucent frosted-glass tablet showing restrained glowing silver-blue geometric wireframe diagrams (no readable text or numbers). Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full ears and headdress visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-31cc27f8-388f-458b-b65a-e78c422c6ee1.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\glm.png"
+      ]
+    },
+    "sources": [
+      {
+        "file": "portraits/glm.png",
+        "sha256": "82933b1fdba34ebb96f71292a5ce56a158f928cab38ce8dafccecaed054d83ee"
+      }
+    ],
+    "processing": "complete-canvas proportional resize and transparent padding",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    },
+    "alphaBounds": [
+      41,
+      50,
+      446,
+      467
+    ],
+    "minimumTransparentMarginPixels": 41
+  },
+  {
+    "file": "masters/minimax.01.png",
+    "purpose": "untouched generated master",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 2007120,
+    "sha256": "a2a9195875be3705809fd2013339dbdc380c28da3dd7a4c86540b6c6467485e9",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character minimax.01, using the provided original minimax portrait as strict identity reference. Preserve warm coral-orange wavy hair with side braid and pink clip, warm amber-orange eyes, cream beret with pink ribbon bow and tiny pink flower emblem, cream-and-pink collared jacket, tan plaid skirt, and small piano-key shoulder pouch, youthful chibi proportions and warm expressive smile. Theme accent #A8547E. Poised rehearsal-director upgraded pose holding a delicate brass conductor baton with restrained glowing rose-magenta soundwave ribbon light. Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full beret and hair visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-7defc36a-e242-4b00-afcd-e7478f4a6ac6.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\minimax.png"
+      ]
+    },
+    "sources": [
+      {
+        "file": "portraits/minimax.png",
+        "sha256": "cdc183bc666110e534ce1c2736fc89df2041015fd54c7745310d1e7e952d68f3"
+      }
+    ],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/minimax.01.webp",
+    "publicFile": "art/stage-b/minimax.01.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 512,
+    "height": 512,
+    "bytes": 72034,
+    "sha256": "5d5a147e562fccb7937af2ff11dfdd3403d94055bfa0edd8b927c9a49f9d620c",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character minimax.01, using the provided original minimax portrait as strict identity reference. Preserve warm coral-orange wavy hair with side braid and pink clip, warm amber-orange eyes, cream beret with pink ribbon bow and tiny pink flower emblem, cream-and-pink collared jacket, tan plaid skirt, and small piano-key shoulder pouch, youthful chibi proportions and warm expressive smile. Theme accent #A8547E. Poised rehearsal-director upgraded pose holding a delicate brass conductor baton with restrained glowing rose-magenta soundwave ribbon light. Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full beret and hair visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-7defc36a-e242-4b00-afcd-e7478f4a6ac6.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\minimax.png"
+      ]
+    },
+    "sources": [
+      {
+        "file": "portraits/minimax.png",
+        "sha256": "cdc183bc666110e534ce1c2736fc89df2041015fd54c7745310d1e7e952d68f3"
+      }
+    ],
+    "processing": "complete-canvas proportional resize and transparent padding",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    },
+    "alphaBounds": [
+      41,
+      41,
+      471,
+      465
+    ],
+    "minimumTransparentMarginPixels": 41
+  },
+  {
+    "file": "masters/seedance.pro.png",
+    "purpose": "untouched generated master",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1803898,
+    "sha256": "8e2fa0e612bbe28a7d82891fda8be3dee506bebe4fcb43180ac0f7fc6a0ad3ab",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character seedance.pro, using the provided original seedance portrait as strict identity reference. Preserve vibrant purple-to-cyan gradient wavy hair tied into a high side ponytail with a glowing cyan ring hairband, bright violet eyes, asymmetrical white-blue-violet stage outfit with cyan ribbons and lanyard badge, youthful chibi proportions and bright focused expression. Theme accent #2C7A7B. Dynamic storyboard-director upgraded pose holding a translucent teal glowing cinema viewfinder frame with restrained subtle filmstrip light trails. Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full hair ring and side ponytail visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-2949c6bd-3da0-4221-848e-2fb4e56b7c29.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\seedance.png"
+      ]
+    },
+    "sources": [
+      {
+        "file": "portraits/seedance.png",
+        "sha256": "00c38bd5a80b7c2d0b8a80f5ed45ff89f5568cf3d5404dca26890034015939fd"
+      }
+    ],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/seedance.pro.webp",
+    "publicFile": "art/stage-b/seedance.pro.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 512,
+    "height": 512,
+    "bytes": 67404,
+    "sha256": "48c120481e0d4176ebb6f319c5486cd5391dd258c23f2d5116314c501097bb9a",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character seedance.pro, using the provided original seedance portrait as strict identity reference. Preserve vibrant purple-to-cyan gradient wavy hair tied into a high side ponytail with a glowing cyan ring hairband, bright violet eyes, asymmetrical white-blue-violet stage outfit with cyan ribbons and lanyard badge, youthful chibi proportions and bright focused expression. Theme accent #2C7A7B. Dynamic storyboard-director upgraded pose holding a translucent teal glowing cinema viewfinder frame with restrained subtle filmstrip light trails. Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full hair ring and side ponytail visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-2949c6bd-3da0-4221-848e-2fb4e56b7c29.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\seedance.png"
+      ]
+    },
+    "sources": [
+      {
+        "file": "portraits/seedance.png",
+        "sha256": "00c38bd5a80b7c2d0b8a80f5ed45ff89f5568cf3d5404dca26890034015939fd"
+      }
+    ],
+    "processing": "complete-canvas proportional resize and transparent padding",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    },
+    "alphaBounds": [
+      41,
+      59,
+      466,
+      465
+    ],
+    "minimumTransparentMarginPixels": 41
+  },
+  {
+    "file": "masters/project-garage.png",
+    "purpose": "untouched generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 3401838,
+    "sha256": "e7b0ce78c1135c9fc79b183f8b41ed5e58fd7e7b806a4f5dd18ec60049b4605a",
+    "alphaRange": [
+      255,
+      255
+    ],
+    "prompt": "Use case: illustration-story. Original decorative game card illustration for Out of Tokens: a sunlit open-source garage workbench of warm reclaimed timber beside a slightly raised roll-up door, featuring an open simple laptop, neatly stacked blank notebooks, blank sticky notes, a pour-over glass coffee carafe and two steaming ceramic mugs. Warm modern AI studio, hand-painted watercolor with delicate ink outlines, ivory parchment palette, walnut wood, sage green and brass. Landscape 16:9 composition, subject grouped centrally with calm uncluttered edges. No readable text, logos, numbers, characters, watermarks or implied numerical effects. Intended runtime 640x360.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-67d4dbf0-9a6c-4120-9bc5-a19cca250fac.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": false
+    },
+    "sources": [],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/project-garage.webp",
+    "publicFile": "art/cards/project-garage.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 640,
+    "height": 360,
+    "bytes": 89106,
+    "sha256": "84686f043d009b0b74883358a506af3fcc2f460b24d6e25358d5ec4fca152c37",
+    "alphaRange": [
+      255,
+      255
+    ],
+    "prompt": "Use case: illustration-story. Original decorative game card illustration for Out of Tokens: a sunlit open-source garage workbench of warm reclaimed timber beside a slightly raised roll-up door, featuring an open simple laptop, neatly stacked blank notebooks, blank sticky notes, a pour-over glass coffee carafe and two steaming ceramic mugs. Warm modern AI studio, hand-painted watercolor with delicate ink outlines, ivory parchment palette, walnut wood, sage green and brass. Landscape 16:9 composition, subject grouped centrally with calm uncluttered edges. No readable text, logos, numbers, characters, watermarks or implied numerical effects. Intended runtime 640x360.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-67d4dbf0-9a6c-4120-9bc5-a19cca250fac.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": false
+    },
+    "sources": [],
+    "processing": "centered proportional 16:9 fit",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    }
+  },
+  {
+    "file": "masters/project-release-night.png",
+    "purpose": "untouched generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 3302544,
+    "sha256": "7c064bf92705adc36472c81e6ab94b9f4ed85ea0a362ff3db2329df2a793b91b",
+    "alphaRange": [
+      255,
+      255
+    ],
+    "prompt": "Use case: illustration-story. Original decorative game card illustration for Out of Tokens: a cozy modern glass-walled studio desk at deep starry night, illuminated by a warm brass desk lamp beside dual displays showing abstract non-numeric geometric radar shapes and glowing wave lines, paired with an insulated tumbler and warm takeaway paper bag. Warm modern AI studio, hand-painted watercolor with delicate ink outlines, deep indigo night sky outside contrasted with warm ivory, walnut wood, sage green and brass interior. Landscape 16:9 composition, subject grouped centrally with calm uncluttered edges. No readable text, logos, numbers, characters, watermarks or implied numerical effects. Intended runtime 640x360.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-6426d624-dc8b-4c8c-a6cd-339702bce839.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": false
+    },
+    "sources": [],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/project-release-night.webp",
+    "publicFile": "art/cards/project-release-night.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 640,
+    "height": 360,
+    "bytes": 79278,
+    "sha256": "779b9dd99dc71e6fcb0c4ee5afdd374bd6275ad70f45c30c6cdf42a8a0bd5cd4",
+    "alphaRange": [
+      255,
+      255
+    ],
+    "prompt": "Use case: illustration-story. Original decorative game card illustration for Out of Tokens: a cozy modern glass-walled studio desk at deep starry night, illuminated by a warm brass desk lamp beside dual displays showing abstract non-numeric geometric radar shapes and glowing wave lines, paired with an insulated tumbler and warm takeaway paper bag. Warm modern AI studio, hand-painted watercolor with delicate ink outlines, deep indigo night sky outside contrasted with warm ivory, walnut wood, sage green and brass interior. Landscape 16:9 composition, subject grouped centrally with calm uncluttered edges. No readable text, logos, numbers, characters, watermarks or implied numerical effects. Intended runtime 640x360.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-6426d624-dc8b-4c8c-a6cd-339702bce839.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": false
+    },
+    "sources": [],
+    "processing": "centered proportional 16:9 fit",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    }
+  },
+  {
+    "file": "masters/project-crisis-429.png",
+    "purpose": "untouched generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 3228575,
+    "sha256": "5d193dbb6ea55d2f72afd501e8c0b2724c20fb73c7205f42b7ddb27ffc26ee05",
+    "alphaRange": [
+      255,
+      255
+    ],
+    "prompt": "Use case: illustration-story. Original decorative game card illustration for Out of Tokens: an orderly walnut-framed studio server rack and routing console with glowing amber traffic-control lamps, neat brass cable dividers, a brass pocket watch and an open blank dispatch ledger resting beside a cup of tea, conveying calm crisis coordination. Warm modern AI studio, hand-painted watercolor with delicate ink outlines, ivory parchment palette, walnut wood, sage green and brass. Landscape 16:9 composition, subject grouped centrally with calm uncluttered edges. No readable text, logos, numbers, characters, watermarks or implied numerical effects. Intended runtime 640x360.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-0b2f13e6-b10d-4ea8-b7e5-ee52dbd19469.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": false
+    },
+    "sources": [],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/project-crisis-429.webp",
+    "publicFile": "art/cards/project-crisis-429.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 640,
+    "height": 360,
+    "bytes": 78722,
+    "sha256": "cf2b402a9d419840980263c1185e19c8c3b33bca2d25a8e0811a2dcf53c5ccb6",
+    "alphaRange": [
+      255,
+      255
+    ],
+    "prompt": "Use case: illustration-story. Original decorative game card illustration for Out of Tokens: an orderly walnut-framed studio server rack and routing console with glowing amber traffic-control lamps, neat brass cable dividers, a brass pocket watch and an open blank dispatch ledger resting beside a cup of tea, conveying calm crisis coordination. Warm modern AI studio, hand-painted watercolor with delicate ink outlines, ivory parchment palette, walnut wood, sage green and brass. Landscape 16:9 composition, subject grouped centrally with calm uncluttered edges. No readable text, logos, numbers, characters, watermarks or implied numerical effects. Intended runtime 640x360.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-0b2f13e6-b10d-4ea8-b7e5-ee52dbd19469.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": false
+    },
+    "sources": [],
+    "processing": "centered proportional 16:9 fit",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    }
+  },
+  {
+    "file": "masters/project-last-token.png",
+    "purpose": "untouched generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 3072904,
+    "sha256": "5b6290512662aeb85ef990df3e79933d128147d01b83ac9ade5d0acd2c64f991",
+    "alphaRange": [
+      255,
+      255
+    ],
+    "prompt": "Use case: illustration-story. Original decorative game card illustration for Out of Tokens: golden dawn sunlight streaming through a tall modern timber studio window onto a walnut display stand, where a single luminous brass four-point-star microchip keepsake rests on a velvet cushion beside a rolled portfolio tied with a sage-green ribbon. Warm modern AI studio, hand-painted watercolor with delicate ink outlines, ivory parchment palette, walnut wood, sage green and brass. Landscape 16:9 composition, subject grouped centrally with calm uncluttered edges. No readable text, logos, numbers, characters, watermarks or implied numerical effects. Intended runtime 640x360.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-f7611bf0-d96e-4816-af04-8d8379266821.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": false
+    },
+    "sources": [],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/project-last-token.webp",
+    "publicFile": "art/cards/project-last-token.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 640,
+    "height": 360,
+    "bytes": 71636,
+    "sha256": "8c12445bda2ea713eab61ecd19997c725456198df1c7cd58c7a4b4000912cacf",
+    "alphaRange": [
+      255,
+      255
+    ],
+    "prompt": "Use case: illustration-story. Original decorative game card illustration for Out of Tokens: golden dawn sunlight streaming through a tall modern timber studio window onto a walnut display stand, where a single luminous brass four-point-star microchip keepsake rests on a velvet cushion beside a rolled portfolio tied with a sage-green ribbon. Warm modern AI studio, hand-painted watercolor with delicate ink outlines, ivory parchment palette, walnut wood, sage green and brass. Landscape 16:9 composition, subject grouped centrally with calm uncluttered edges. No readable text, logos, numbers, characters, watermarks or implied numerical effects. Intended runtime 640x360.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-f7611bf0-d96e-4816-af04-8d8379266821.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": false
+    },
+    "sources": [],
+    "processing": "centered proportional 16:9 fit",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    }
+  },
+  {
+    "file": "masters/finance-quota-pack.png",
+    "purpose": "untouched generated master",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1640096,
+    "sha256": "5ecbcfc53efa9eb6b0f2aa1beed678c4a060d1c8bc60d49c2957641a954435b3",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: stylized-concept. Out of Tokens decorative UI icon: a compact walnut keepsake box filled with softly glowing brass four-point-star token chips and tied with a sage-green ribbon. One centered readable object, warm walnut and brass hand-painted watercolor, restrained sage green accents, soft outlines and subtle contact shadow. Genuine transparent background. Square composition with 12% empty margins; intended 128x128 runtime icon at 44px display. No text, numbers, brands, ranking stars or implied stats. No border or room.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-dfa16ad1-08d9-4276-8f6b-51e1f54edb25.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "sources": [],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/finance-quota-pack.webp",
+    "publicFile": "art/upgrades/finance-quota-pack.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 128,
+    "height": 128,
+    "bytes": 4230,
+    "sha256": "f9a694e213bdba892044fac14b7456dcaaf56c863c0e0116431001c8f9a326ce",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: stylized-concept. Out of Tokens decorative UI icon: a compact walnut keepsake box filled with softly glowing brass four-point-star token chips and tied with a sage-green ribbon. One centered readable object, warm walnut and brass hand-painted watercolor, restrained sage green accents, soft outlines and subtle contact shadow. Genuine transparent background. Square composition with 12% empty margins; intended 128x128 runtime icon at 44px display. No text, numbers, brands, ranking stars or implied stats. No border or room.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-dfa16ad1-08d9-4276-8f6b-51e1f54edb25.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "sources": [],
+    "processing": "complete-canvas proportional resize and transparent padding",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    },
+    "alphaBounds": [
+      17,
+      21,
+      97,
+      103
+    ],
+    "minimumTransparentMarginPixels": 16
+  },
+  {
+    "file": "masters/finance-plan-basic.png",
+    "purpose": "untouched generated master",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1303573,
+    "sha256": "59d94169125673aeadab8479aedf2430fe7c2260e93f8a7389216846db98f172",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: stylized-concept. Out of Tokens decorative UI icon: a neat ivory parchment envelope sealed with sage wax beside two polished brass cloud-token badges. One centered readable object arrangement, warm walnut and brass hand-painted watercolor, restrained sage green accents, soft outlines and subtle contact shadow. Genuine transparent background. Square composition with 12% empty margins; intended 128x128 runtime icon at 44px display. No text, numbers, brands, ranking stars or implied stats. No border or room.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-e058f54a-d343-421b-9af4-6e04f7884a6a.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "sources": [],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/finance-plan-basic.webp",
+    "publicFile": "art/upgrades/finance-plan-basic.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 128,
+    "height": 128,
+    "bytes": 3294,
+    "sha256": "8b0c1530e577073205f5a689a28fdf8c508f940bc1d1517ce6d330cda96b173f",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: stylized-concept. Out of Tokens decorative UI icon: a neat ivory parchment envelope sealed with sage wax beside two polished brass cloud-token badges. One centered readable object arrangement, warm walnut and brass hand-painted watercolor, restrained sage green accents, soft outlines and subtle contact shadow. Genuine transparent background. Square composition with 12% empty margins; intended 128x128 runtime icon at 44px display. No text, numbers, brands, ranking stars or implied stats. No border or room.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-e058f54a-d343-421b-9af4-6e04f7884a6a.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "sources": [],
+    "processing": "complete-canvas proportional resize and transparent padding",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    },
+    "alphaBounds": [
+      28,
+      26,
+      100,
+      98
+    ],
+    "minimumTransparentMarginPixels": 16
+  },
+  {
+    "file": "masters/finance-plan-pro.png",
+    "purpose": "untouched generated master",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1661337,
+    "sha256": "d0c26cccc02b4bc3aa70093b84d3e38b58ea9d8aa3a4d6d722c208de3dbd3666",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: stylized-concept. Out of Tokens decorative UI icon: a two-tier walnut-and-brass cloud pass chest with an embossed diamond star emblem and warm golden light accents. One centered readable object, warm walnut and brass hand-painted watercolor, restrained sage green accents, soft outlines and subtle contact shadow. Genuine transparent background. Square composition with 12% empty margins; intended 128x128 runtime icon at 44px display. No text, numbers, brands, ranking stars or implied stats. No border or room.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-a7d543f9-35a6-4dd7-8e1f-68a1337bff93.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "sources": [],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/finance-plan-pro.webp",
+    "publicFile": "art/upgrades/finance-plan-pro.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 128,
+    "height": 128,
+    "bytes": 4512,
+    "sha256": "1d3d923604f3db506ec5fd36440ba57ba325c2431a9ca49f79cf64d17bb103f1",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: stylized-concept. Out of Tokens decorative UI icon: a two-tier walnut-and-brass cloud pass chest with an embossed diamond star emblem and warm golden light accents. One centered readable object, warm walnut and brass hand-painted watercolor, restrained sage green accents, soft outlines and subtle contact shadow. Genuine transparent background. Square composition with 12% empty margins; intended 128x128 runtime icon at 44px display. No text, numbers, brands, ranking stars or implied stats. No border or room.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-a7d543f9-35a6-4dd7-8e1f-68a1337bff93.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "sources": [],
+    "processing": "complete-canvas proportional resize and transparent padding",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    },
+    "alphaBounds": [
+      26,
+      17,
+      111,
+      111
+    ],
+    "minimumTransparentMarginPixels": 16
+  },
+  {
+    "file": "masters/finance-ledger-loan.png",
+    "purpose": "untouched generated master",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1613452,
+    "sha256": "dc96b26139f56795b64277460539c9e31c426f248a120917dadaa57a247b16f9",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: stylized-concept. Out of Tokens decorative UI icon: a delicate brass balance scale paired with an open blank ivory ledger book and fountain pen. One centered readable object arrangement, warm walnut and brass hand-painted watercolor, restrained sage green accents, soft outlines and subtle contact shadow. Genuine transparent background. Square composition with 12% empty margins; intended 128x128 runtime icon at 44px display. No text, numbers, brands, ranking stars or implied stats. No border or room.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-62429903-5f13-4b66-9795-61a9832ac9f1.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "sources": [],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/finance-ledger-loan.webp",
+    "publicFile": "art/upgrades/finance-ledger-loan.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 128,
+    "height": 128,
+    "bytes": 6044,
+    "sha256": "a09bdeae108e1350a7f6685db149a5edf35c0ec84edca15571610a056b649c5b",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: stylized-concept. Out of Tokens decorative UI icon: a delicate brass balance scale paired with an open blank ivory ledger book and fountain pen. One centered readable object arrangement, warm walnut and brass hand-painted watercolor, restrained sage green accents, soft outlines and subtle contact shadow. Genuine transparent background. Square composition with 12% empty margins; intended 128x128 runtime icon at 44px display. No text, numbers, brands, ranking stars or implied stats. No border or room.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-62429903-5f13-4b66-9795-61a9832ac9f1.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "sources": [],
+    "processing": "complete-canvas proportional resize and transparent padding",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    },
+    "alphaBounds": [
+      23,
+      20,
+      105,
+      105
+    ],
+    "minimumTransparentMarginPixels": 16
+  },
+  {
+    "file": "masters/ritual-stage-backdrop.png",
+    "purpose": "untouched generated master",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2379678,
+    "sha256": "96b8a0a27487f8e97e943601a0fb980cb60712aef7052046b795adc863dd7db5",
+    "alphaRange": [
+      255,
+      255
+    ],
+    "prompt": "Use case: illustration-story. Original wide atmospheric UI reveal stage backdrop for Out of Tokens: warm golden morning sunbeams slanting across a spacious cream-and-walnut studio gallery stage, subtle inlaid brass orbital compass lines on a calm open wooden floor in the center to frame a character spotlight, soft bokeh greenery and warm vignette along the outer edges. Warm modern AI studio hand-painted watercolor and soft architectural lighting. Landscape 16:9 composition, wide clean uncluttered center area. No people, no characters, no furniture blocking the center, no readable text, no logos, no watermark.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-031001b7-31d6-42c8-a0f3-65edc4e2a178.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": false
+    },
+    "sources": [],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/ritual-stage-backdrop.webp",
+    "publicFile": "art/cards/ritual-stage-backdrop.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 960,
+    "height": 540,
+    "bytes": 82362,
+    "sha256": "f4fd405a4c3d1227c5a10a6bb69fa86d722fb4327e018c3ee850b11a5c893c9b",
+    "alphaRange": [
+      255,
+      255
+    ],
+    "prompt": "Use case: illustration-story. Original wide atmospheric UI reveal stage backdrop for Out of Tokens: warm golden morning sunbeams slanting across a spacious cream-and-walnut studio gallery stage, subtle inlaid brass orbital compass lines on a calm open wooden floor in the center to frame a character spotlight, soft bokeh greenery and warm vignette along the outer edges. Warm modern AI studio hand-painted watercolor and soft architectural lighting. Landscape 16:9 composition, wide clean uncluttered center area. No people, no characters, no furniture blocking the center, no readable text, no logos, no watermark.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-031001b7-31d6-42c8-a0f3-65edc4e2a178.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": false
+    },
+    "sources": [],
+    "processing": "centered proportional 16:9 fit",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    }
+  },
+  {
+    "file": "masters/stamp-seal-crest.png",
+    "purpose": "untouched generated master",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1783713,
+    "sha256": "d6a57f53ef0b74ad697605c8c7275890bcf5389ff10f492374ded69140074446",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: stylized-concept. Original decorative game UI seal crest for Out of Tokens: an empty double-ring embossed brass and sage-green wax seal medallion framed by subtle four-point star notches at the cardinal points, with a smooth blank parchment-gold circular center designed for dynamic UI icon overlay. Warm modern studio watercolor and fine metallic shading. One centered object isolated on genuine transparent background, ample 12% empty margins, square 256x256 intended display. No writing, no letters, no numbers, no brands, no watermark.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-60b66a0d-e307-4760-83ce-be18e4c7a0e2.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "sources": [],
+    "processing": "none; byte-identical copy of generated output"
+  },
+  {
+    "file": "runtime/stamp-seal-crest.webp",
+    "publicFile": "art/cards/stamp-seal-crest.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 256,
+    "height": 256,
+    "bytes": 10346,
+    "sha256": "76aebd0dfe50f9b959fad19cd2d4caff4db875f71dc89544af24af9e5f90155e",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: stylized-concept. Original decorative game UI seal crest for Out of Tokens: an empty double-ring embossed brass and sage-green wax seal medallion framed by subtle four-point star notches at the cardinal points, with a smooth blank parchment-gold circular center designed for dynamic UI icon overlay. Warm modern studio watercolor and fine metallic shading. One centered object isolated on genuine transparent background, ample 12% empty margins, square 256x256 intended display. No writing, no letters, no numbers, no brands, no watermark.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-60b66a0d-e307-4760-83ce-be18e4c7a0e2.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true
+    },
+    "sources": [],
+    "processing": "complete-canvas proportional resize and transparent padding",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    },
+    "alphaBounds": [
+      37,
+      43,
+      209,
+      211
+    ],
+    "minimumTransparentMarginPixels": 31
+  }
+]

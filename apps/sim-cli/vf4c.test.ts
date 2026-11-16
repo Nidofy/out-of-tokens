@@ -13,10 +13,14 @@ test('nameplates avoid another visible face without hiding or shrinking labels',
  expect(overlap).toBe(0);expect(result.y).toBeGreaterThanOrEqual(0);
 });
 test('Stage B manifest verifies every source/output and all derived assets are precached',()=>{
- const manifest=JSON.parse(readFileSync(new URL('../web/public/art/stage-b/manifest.json',import.meta.url),'utf8')) as {file:string;sha256:string;sources:{file:string;sha256:string}[]}[];
+ const manifest=JSON.parse(readFileSync(new URL('../web/public/art/stage-b/manifest.json',import.meta.url),'utf8')) as {file:string;sha256:string;bytes:number;width:number;height:number;alphaRange:number[];sources:{file:string;sha256:string}[]}[];
  const offline=JSON.parse(readFileSync(new URL('../web/dist/offline-assets.json',import.meta.url),'utf8')) as {assets:string[]};
- expect(manifest).toHaveLength(8);
+ expect(manifest).toHaveLength(12);
+ expect(new Set(manifest.map(e=>e.file)).size).toBe(12);
  for(const entry of manifest){
+  expect(entry.sources).toHaveLength(1);expect(entry.alphaRange).toEqual([0,255]);
+  expect([entry.width,entry.height]).toEqual([512,512]);expect(entry.bytes).toBeLessThan(200000);
+  expect(readFileSync(new URL(`../web/public/art/stage-b/${entry.file}`,import.meta.url)).length).toBe(entry.bytes);
   expect(digest(readFileSync(new URL(`../web/public/art/stage-b/${entry.file}`,import.meta.url)))).toBe(entry.sha256);
   expect(offline.assets).toContain(`art/stage-b/${entry.file}`);
   for(const source of entry.sources)expect(digest(readFileSync(new URL(`../web/public/art/ai-village/${source.file}`,import.meta.url)))).toBe(source.sha256);

@@ -42,3 +42,38 @@ Use case: identity-preserve. Standalone upgraded Stage B game portrait gemini.pr
 
 Use case: logo-brand. Original app icon for Out of Tokens, a cozy modern AI studio management game. A simple warm ivory coffee cup whose square brass coaster resembles a token microchip, small diamond star steam, sage green and walnut palette with restrained brass accents. Hand-painted polished game UI emblem, bold simple silhouette legible at 32px. Center symbol occupies only middle 60 percent of square image, fully opaque sage green background extending to every edge, subtle warm wood material, no text or letters, no brands or watermark. Square composition, maskable-safe central emblem, no outer rounded corners baked in.
 
+# Art-Batch 5 — four additional portraits
+
+2026-11-16: user authorized built-in image_gen; exact backend/version not exposed. Original portraits supplied as identity references. Full provenance and untouched masters: art/art-batch-5.
+
+## grok.3
+
+Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character grok.3, using the provided original grok portrait as strict identity reference. Preserve blonde wavy twin-tails with top curl ahoge, bright sapphire blue eyes, pointed elf ears, small black-and-gold gothic crown, black twin-tail bows with tiny bat-wing accents, and black-and-gold gear-trimmed gothic dress, youthful chibi proportions and lively expression. Theme accent #C98A24. Confident playful upgraded pose holding a small brass astrolabe magnifying glass emitting restrained warm amber starlight wisps. Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full crown, twin-tails and ears visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.
+
+Sources: [{"file": "portraits/grok.png", "sha256": "d857f4d75b5da717608f31fe3409f4d4f59df837fd25427bf2b4bc608ae74f67"}]
+
+Parameters: {"transparent_background": true, "referenced_image_paths": ["D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\grok.png"]}
+
+## glm.plus
+
+Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character glm.plus, using the provided original glm portrait as strict identity reference. Preserve charcoal-black hair fading to deep midnight blue waves, grey-violet eyes, fluffy black-and-white wolf ears, white frilled maid headdress with silver-blue tassel ornament on the side, black-and-white gothic maid dress with bow, and fluffy black-with-white-tip tail if visible, youthful chibi proportions and calm serene expression. Theme accent #4A4E57. Composed focused upgraded pose holding a sleek translucent frosted-glass tablet showing restrained glowing silver-blue geometric wireframe diagrams (no readable text or numbers). Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full ears and headdress visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.
+
+Sources: [{"file": "portraits/glm.png", "sha256": "82933b1fdba34ebb96f71292a5ce56a158f928cab38ce8dafccecaed054d83ee"}]
+
+Parameters: {"transparent_background": true, "referenced_image_paths": ["D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\glm.png"]}
+
+## minimax.01
+
+Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character minimax.01, using the provided original minimax portrait as strict identity reference. Preserve warm coral-orange wavy hair with side braid and pink clip, warm amber-orange eyes, cream beret with pink ribbon bow and tiny pink flower emblem, cream-and-pink collared jacket, tan plaid skirt, and small piano-key shoulder pouch, youthful chibi proportions and warm expressive smile. Theme accent #A8547E. Poised rehearsal-director upgraded pose holding a delicate brass conductor baton with restrained glowing rose-magenta soundwave ribbon light. Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full beret and hair visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.
+
+Sources: [{"file": "portraits/minimax.png", "sha256": "cdc183bc666110e534ce1c2736fc89df2041015fd54c7745310d1e7e952d68f3"}]
+
+Parameters: {"transparent_background": true, "referenced_image_paths": ["D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\minimax.png"]}
+
+## seedance.pro
+
+Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character seedance.pro, using the provided original seedance portrait as strict identity reference. Preserve vibrant purple-to-cyan gradient wavy hair tied into a high side ponytail with a glowing cyan ring hairband, bright violet eyes, asymmetrical white-blue-violet stage outfit with cyan ribbons and lanyard badge, youthful chibi proportions and bright focused expression. Theme accent #2C7A7B. Dynamic storyboard-director upgraded pose holding a translucent teal glowing cinema viewfinder frame with restrained subtle filmstrip light trails. Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full hair ring and side ponytail visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.
+
+Sources: [{"file": "portraits/seedance.png", "sha256": "00c38bd5a80b7c2d0b8a80f5ed45ff89f5568cf3d5404dca26890034015939fd"}]
+
+Parameters: {"transparent_background": true, "referenced_image_paths": ["D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\seedance.png"]}

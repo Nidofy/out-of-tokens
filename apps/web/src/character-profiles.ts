@@ -14,7 +14,11 @@ export const characterPosters:Record<string,{sWord:string;themeColor:string;tagl
  seedance:{sWord:'Storyboard',themeColor:'#2C7A7B',tagline:['每个镜头都有明确用途','Every shot has a purpose.'],mirror:true},
  glm:{sWord:'Silence',themeColor:'#4A4E57',tagline:['先搭框架，再落细节','A quiet moment, with you.'],mirror:false}
 };
-const advancedPortraits:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'qwen.qwq',llama:'llama.3.1',mistral:'mistral.large',gpt:'gpt.4o',claude:'claude.sonnet',kimi:'kimi.k2',gemini:'gemini.pro'};
+const advancedPortraits:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'qwen.qwq',llama:'llama.3.1',mistral:'mistral.large',gpt:'gpt.4o',claude:'claude.sonnet',kimi:'kimi.k2',gemini:'gemini.pro',grok:'grok.3',glm:'glm.plus',minimax:'minimax.01',seedance:'seedance.pro'};
+export function stageBPortrait(characterId:string):string|null{
+ const id=Object.hasOwn(advancedPortraits,characterId)?advancedPortraits[characterId]:undefined;
+ return id?`./art/stage-b/${id}.webp`:null;
+}
 /** Stage B: authored versions opt in; base/unknown versions retain the original. */
 export function resolveCharacterVisual(characterId:string,versionId?:string,variant:'poster'|'profile'='poster'){
  const poster=characterPosters[characterId];

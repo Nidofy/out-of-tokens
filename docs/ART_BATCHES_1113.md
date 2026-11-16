@@ -11,3 +11,11 @@
 2026-11-13 Art-Batch 4：4类硬件与5类软件图标覆盖当前升级列表，1张低对比度插画接入委托空态、手账明天与收支；10张运行时素材合计71272字节。Tier 2/3共4张280×240透明双层原型归档art/art-batch-4/prototypes，像素(140,200)对应世界地板(0,0)，前层面部预留区alpha<96；未进商店/渲染或规则。41文件335测试及完整构建通过；192张四视口×双语×双主题截图，HTTP/破图/横向溢出/升级按钮小于44px均0失败。外部脚本第一次滚动后导航不可见超时，日志保留，修正页面切换后全量重跑通过。素材母版/提示词/哈希在art/art-batch-4，证据../commission-evidence/art-tools/art-gen-batch-4。保护路径相对1745653零diff；原型尚需未来真实骨架逐角色校准，不宣称已可直接替换封板家具。
 
 四批独立美术实现和本地工程/截图门禁完成。本轮不解除另一个委托任务的VF5性能HOLD；无低端真机性能、独立美术复审或夜景逐纹理像素完全同一的宣称。夜景结构配准中位残差0.42–0.56px；原型仅交付参考分层。未push、部署或调用无关付费服务。
+
+2026-11-16 Art-Batch 5：完成14项素材（4张Stage B、4张章节横幅、4张财务图标、揭幕舞台与火漆底章），14份原始PNG母版和14份WebP副本归档于art/art-batch-5，运行时总计701618字节。四张立绘分别传入grok/glm/minimax/seedance原版头像，记录参考SHA256；全部母版/运行时尺寸、字节、SHA256、alphaRange及实际参数在manifest.json。母版逐字节保留；横图工具实际输出1672×941（近16:9），运行时等比居中fit为严格640×360或960×540。透明图按完整画布等比缩放补边，立绘至少8%、图标/章至少12%，alpha均0–255，全部尺寸/体积上限通过。
+
+模型偏离经用户本会话明确许可：允许内置生图并如实记录未知后端。实际调用OpenAI built-in image_gen共14次；工具未暴露准确模型版本，不声称已核实gpt-image-2.6。提示词见art/art-batch-5/PROMPTS.md；角色参考许可仍依ai-village/LICENSE.txt，不重新授予第三方权利。
+
+仅扩展character-profiles.ts与generated-art.ts纯路径映射，Stage B清单补至12条；原内容版本、*.base及非法版本继续回退原头像。新增chapterBannerArt/projectCoverArt/financeArt/ritualBackdropArt/stampSealCrestArt；souvenirIds/eventArt/softwareArt原样保留。同步vf2/vf4c/package-verification测试：12源图与输出哈希、离线预缓存、运行时副本、分类体积限制、映射和回退均覆盖。完整pnpm check通过42文件343测试、严格类型/Lint及Web/DSH构建；git diff --check通过。14图执行者目视检查未见可读文字、数字、真实品牌水印、多肢或头饰裁切，透明背景/边距实测通过；不冒充独立美术复审。
+
+相对入场fbaa075，packages/**、content/**、ai-village/**、office/**、Art-Batch 1–4所有既有图片及UI组件/CSS全部0 diff。未修改经营规则、存档或回放输入；没有另行声称重跑2652步自然长局。既有VF5/Visual Freeze HOLD不变。本地提交，不push或部署。仓库外检查日志与预览：../batch5-check.log、../batch5-review.png；首次普通沙箱导出被拒绝，获执行权限后成功，未替换旧资产。

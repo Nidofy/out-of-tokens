@@ -206,5 +206,173 @@
         "sha256": "d25b5b368bd7161e625742545e1d1ee3824c71d9c914157576f5d4b7ac5f8cc3"
       }
     ]
+  },
+  {
+    "file": "grok.3.webp",
+    "publicFile": "art/stage-b/grok.3.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 512,
+    "height": 512,
+    "bytes": 79018,
+    "sha256": "efdeebb613f7ad210bc73faedcc23f30e04f36a6e6ee02313417c0da7feec304",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character grok.3, using the provided original grok portrait as strict identity reference. Preserve blonde wavy twin-tails with top curl ahoge, bright sapphire blue eyes, pointed elf ears, small black-and-gold gothic crown, black twin-tail bows with tiny bat-wing accents, and black-and-gold gear-trimmed gothic dress, youthful chibi proportions and lively expression. Theme accent #C98A24. Confident playful upgraded pose holding a small brass astrolabe magnifying glass emitting restrained warm amber starlight wisps. Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full crown, twin-tails and ears visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-783ecf1e-37ee-4992-9c47-1542ef81e4b1.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\grok.png"
+      ]
+    },
+    "sources": [
+      {
+        "file": "portraits/grok.png",
+        "sha256": "d857f4d75b5da717608f31fe3409f4d4f59df837fd25427bf2b4bc608ae74f67"
+      }
+    ],
+    "processing": "complete-canvas proportional resize and transparent padding",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    },
+    "alphaBounds": [
+      56,
+      49,
+      455,
+      462
+    ],
+    "minimumTransparentMarginPixels": 41,
+    "id": "grok.3",
+    "status": "pure path mapping available; base versions retain original portraits"
+  },
+  {
+    "file": "glm.plus.webp",
+    "publicFile": "art/stage-b/glm.plus.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 512,
+    "height": 512,
+    "bytes": 53632,
+    "sha256": "689e84754c1171e9daa950a343d2b58c76e6c468eedf9eee953037e83c8a3983",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character glm.plus, using the provided original glm portrait as strict identity reference. Preserve charcoal-black hair fading to deep midnight blue waves, grey-violet eyes, fluffy black-and-white wolf ears, white frilled maid headdress with silver-blue tassel ornament on the side, black-and-white gothic maid dress with bow, and fluffy black-with-white-tip tail if visible, youthful chibi proportions and calm serene expression. Theme accent #4A4E57. Composed focused upgraded pose holding a sleek translucent frosted-glass tablet showing restrained glowing silver-blue geometric wireframe diagrams (no readable text or numbers). Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full ears and headdress visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-31cc27f8-388f-458b-b65a-e78c422c6ee1.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\glm.png"
+      ]
+    },
+    "sources": [
+      {
+        "file": "portraits/glm.png",
+        "sha256": "82933b1fdba34ebb96f71292a5ce56a158f928cab38ce8dafccecaed054d83ee"
+      }
+    ],
+    "processing": "complete-canvas proportional resize and transparent padding",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    },
+    "alphaBounds": [
+      41,
+      50,
+      446,
+      467
+    ],
+    "minimumTransparentMarginPixels": 41,
+    "id": "glm.plus",
+    "status": "pure path mapping available; base versions retain original portraits"
+  },
+  {
+    "file": "minimax.01.webp",
+    "publicFile": "art/stage-b/minimax.01.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 512,
+    "height": 512,
+    "bytes": 72034,
+    "sha256": "5d5a147e562fccb7937af2ff11dfdd3403d94055bfa0edd8b927c9a49f9d620c",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character minimax.01, using the provided original minimax portrait as strict identity reference. Preserve warm coral-orange wavy hair with side braid and pink clip, warm amber-orange eyes, cream beret with pink ribbon bow and tiny pink flower emblem, cream-and-pink collared jacket, tan plaid skirt, and small piano-key shoulder pouch, youthful chibi proportions and warm expressive smile. Theme accent #A8547E. Poised rehearsal-director upgraded pose holding a delicate brass conductor baton with restrained glowing rose-magenta soundwave ribbon light. Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full beret and hair visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-7defc36a-e242-4b00-afcd-e7478f4a6ac6.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\minimax.png"
+      ]
+    },
+    "sources": [
+      {
+        "file": "portraits/minimax.png",
+        "sha256": "cdc183bc666110e534ce1c2736fc89df2041015fd54c7745310d1e7e952d68f3"
+      }
+    ],
+    "processing": "complete-canvas proportional resize and transparent padding",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    },
+    "alphaBounds": [
+      41,
+      41,
+      471,
+      465
+    ],
+    "minimumTransparentMarginPixels": 41,
+    "id": "minimax.01",
+    "status": "pure path mapping available; base versions retain original portraits"
+  },
+  {
+    "file": "seedance.pro.webp",
+    "publicFile": "art/stage-b/seedance.pro.webp",
+    "purpose": "runtime decorative art; pure path mapping",
+    "width": 512,
+    "height": 512,
+    "bytes": 67404,
+    "sha256": "48c120481e0d4176ebb6f319c5486cd5391dd258c23f2d5116314c501097bb9a",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "prompt": "Use case: identity-preserve. Create a standalone upgraded Stage B portrait for Out of Tokens character seedance.pro, using the provided original seedance portrait as strict identity reference. Preserve vibrant purple-to-cyan gradient wavy hair tied into a high side ponytail with a glowing cyan ring hairband, bright violet eyes, asymmetrical white-blue-violet stage outfit with cyan ribbons and lanyard badge, youthful chibi proportions and bright focused expression. Theme accent #2C7A7B. Dynamic storyboard-director upgraded pose holding a translucent teal glowing cinema viewfinder frame with restrained subtle filmstrip light trails. Polished hand-painted chibi anime game illustration. Square centered waist-up composition with full hair ring and side ponytail visible, generous 8% transparent margins all around, suitable for 512x512 runtime portrait. Genuine transparent background. No text, no letters, no logo, no border, no watermark, no other characters.",
+    "source": "C:\\Users\\enxi1\\.codex\\generated_images\\01a1e248-0e6a-7b62-b978-f20ea4fca7ca\\exec-2949c6bd-3da0-4221-848e-2fb4e56b7c29.png",
+    "model": "OpenAI built-in image_gen; exact backend/version not exposed (user-authorized)",
+    "parameters": {
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "D:\\Documents\\FeiyangChen\\devApps\\ai-game\\out-of-tokens\\apps\\web\\public\\art\\ai-village\\portraits\\seedance.png"
+      ]
+    },
+    "sources": [
+      {
+        "file": "portraits/seedance.png",
+        "sha256": "00c38bd5a80b7c2d0b8a80f5ed45ff89f5568cf3d5404dca26890034015939fd"
+      }
+    ],
+    "processing": "complete-canvas proportional resize and transparent padding",
+    "webp": {
+      "quality": 88,
+      "method": 6
+    },
+    "alphaBounds": [
+      41,
+      59,
+      466,
+      465
+    ],
+    "minimumTransparentMarginPixels": 41,
+    "id": "seedance.pro",
+    "status": "pure path mapping available; base versions retain original portraits"
   }
 ]

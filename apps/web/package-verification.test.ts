@@ -4,6 +4,23 @@ import {tmpdir} from 'node:os';
 import {join,dirname,resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
+import {chapterBannerArt,projectCoverArt,financeArt,ritualBackdropArt,stampSealCrestArt} from './src/generated-art.js';
+
+it('maps chapter, project, finance and ritual art to shipped offline assets',()=>{
+ const offline=JSON.parse(readFileSync(resolve('apps/web/dist/offline-assets.json'),'utf8')) as {assets:string[]};
+ const covers=['garage','incubator','release-night','crisis-429','last-token'];
+ const paths=[ritualBackdropArt,stampSealCrestArt];
+ for(const [chapter,name] of covers.entries()){
+  const path=`./art/cards/project-${name}.webp`;
+  expect(chapterBannerArt(chapter)).toBe(path);expect(projectCoverArt('unknown',chapter)).toBe(path);
+  expect(projectCoverArt('incubator',chapter)).toBe('./art/cards/project-incubator.webp');paths.push(path);
+ }
+ for(const chapter of [-1,5,NaN,Infinity])expect(chapterBannerArt(chapter)).toBe('./art/cards/project-last-token.webp');
+ expect(projectCoverArt('unknown')).toBe('./art/cards/project-incubator.webp');
+ for(const kind of ['quota-pack','plan-basic','plan-pro','ledger-loan'] as const){const path=financeArt(kind);expect(path).toBe(`./art/upgrades/finance-${kind}.webp`);paths.push(path);}
+ expect(ritualBackdropArt).toBe('./art/cards/ritual-stage-backdrop.webp');expect(stampSealCrestArt).toBe('./art/cards/stamp-seal-crest.webp');
+ for(const path of paths){expect(offline.assets).toContain(path.slice(2));expect(readFileSync(resolve('apps/web/dist',path))).toEqual(readFileSync(resolve('apps/web/public',path)));}
+});
 
 it('rejects a hash-valid package declaring desktop without its executable and stale web build metadata',()=>{
  const root=mkdtempSync(join(tmpdir(),'oot-package-test-')),sha='1'.repeat(40),files:Record<string,string>={};
@@ -29,13 +46,15 @@ it('includes generated PWA icons and Stage B portraits in the offline bundle',()
 });
 
 it('verifies each generated runtime asset and its offline copy against provenance',()=>{
- for(const dir of readdirSync(resolve('art')).filter(name=>/^art-batch-[234]$/.test(name))){
+ for(const dir of readdirSync(resolve('art')).filter(name=>/^art-batch-[2345]$/.test(name))){
   const manifest=JSON.parse(readFileSync(resolve('art',dir,'manifest.json'),'utf8')) as {file:string;publicFile?:string;sha256:string;bytes:number}[];
   const offline=JSON.parse(readFileSync(resolve('apps/web/dist/offline-assets.json'),'utf8')) as {assets:string[]};
   for(const entry of manifest.filter(e=>e.publicFile)){
    expect(offline.assets).toContain(entry.publicFile);
    for(const folder of ['public','dist']){const bytes=readFileSync(resolve('apps/web',folder,entry.publicFile!));expect(bytes.length).toBe(entry.bytes);expect(createHash('sha256').update(bytes).digest('hex')).toBe(entry.sha256);}
-   expect(entry.bytes).toBeLessThan(400000);
+   const limit=dir!=='art-batch-5'?400000:entry.publicFile!.startsWith('art/stage-b/')?200000:entry.publicFile!.startsWith('art/upgrades/')?40000:entry.publicFile!.endsWith('stamp-seal-crest.webp')?50000:180000;
+   expect(entry.bytes).toBeLessThan(limit);
+   expect(readFileSync(resolve('art',dir,entry.file))).toEqual(readFileSync(resolve('apps/web/public',entry.publicFile!)));
   }
  }
 });

@@ -238,3 +238,11 @@ VF4-A固定实现 d3e0c87d96bf4fe3baa77ab745163d8baa9ca052；实现提交前stag
 2026-11-13 委托后续阶段3 BLOCKED/HOLD：阶段2本地检查点为 1745653315e0fc50e50e8fbbfbbad8bf16611190（848配置、28真实点击、41文件333测试）。其隔离构建完成三版本×两场景×六轮首批36+唯一确认36冷HTTP缓存样本，共12,960帧/432次点击；确认批四人/十二人assetsReady对c68541d为+19.67%/+126.96%，输入与主机负载亦波动，不能可靠归因或声称最小修复闭环。早期上中位值触发确认的统计偏离、全部原始不利数据均保留。清理时发现工作区由另一工作流提交6fd5fe67537c03dbe70071094a34c025c181fd54，Stage B/PWA已变化；本轮完整保留该提交，1745653证据不能验收新HEAD。详见 docs/VF5_CHECKPOINT.md、仓库外 ../commission-checkpoints-20261113/vf5-performance-hold.json。当前委托阶段3停止，待固定新基线与受控性能复测窗口裁决；未继续阶段4。长会话、完整离线包assetsReady、200%系统字体、SW全分支、UI-OFFLINE-01仍OPEN/HOLD；真机软键盘、物理读屏器、真实DSH安装继续OPEN/HOLD。独立Art-Batch记录的“继续Batch 2”不表示本轮已解除阶段3停止条件。
 
 阶段3停止检查点验证：在保留6fd5fe6的当前工作区运行 pnpm check，41文件334测试及类型/lint/Web/DSH构建通过；git diff --check通过。仅新增/更新状态文档，无业务源码修复。本轮自启5184、5185、5187、5188、5189端口均关闭，测试浏览器tab关闭、viewport重置、可见性恢复；未终止其他工作流进程。README/workflow/lock/scripts/packages/dialog/partner相对本轮基线零diff；初始7委托文件与README/workflow哈希另行核对。本轮未push、部署、付费API或拷入参考截图。
+
+2026-11-16 Art-Batch 5：完成14项素材（4张Stage B、4张章节横幅、4张财务图标、揭幕舞台与火漆底章），14份原始PNG母版和14份WebP副本归档于art/art-batch-5，运行时总计701618字节。四张立绘分别传入grok/glm/minimax/seedance原版头像，记录参考SHA256；全部母版/运行时尺寸、字节、SHA256、alphaRange及实际参数在manifest.json。母版逐字节保留；横图工具实际输出1672×941（近16:9），运行时等比居中fit为严格640×360或960×540。透明图按完整画布等比缩放补边，立绘至少8%、图标/章至少12%，alpha均0–255，全部尺寸/体积上限通过。
+
+模型偏离经用户本会话明确许可：允许内置生图并如实记录未知后端。实际调用OpenAI built-in image_gen共14次；工具未暴露准确模型版本，不声称已核实gpt-image-2.6。提示词见art/art-batch-5/PROMPTS.md；角色参考许可仍依ai-village/LICENSE.txt，不重新授予第三方权利。
+
+仅扩展character-profiles.ts与generated-art.ts纯路径映射，Stage B清单补至12条；原内容版本、*.base及非法版本继续回退原头像。新增chapterBannerArt/projectCoverArt/financeArt/ritualBackdropArt/stampSealCrestArt；souvenirIds/eventArt/softwareArt原样保留。同步vf2/vf4c/package-verification测试：12源图与输出哈希、离线预缓存、运行时副本、分类体积限制、映射和回退均覆盖。完整pnpm check通过42文件343测试、严格类型/Lint及Web/DSH构建；git diff --check通过。14图执行者目视检查未见可读文字、数字、真实品牌水印、多肢或头饰裁切，透明背景/边距实测通过；不冒充独立美术复审。
+
+相对入场fbaa075，packages/**、content/**、ai-village/**、office/**、Art-Batch 1–4所有既有图片及UI组件/CSS全部0 diff。未修改经营规则、存档或回放输入；没有另行声称重跑2652步自然长局。既有VF5/Visual Freeze HOLD不变。本地提交，不push或部署。仓库外检查日志与预览：../batch5-check.log、../batch5-review.png；首次普通沙箱导出被拒绝，获执行权限后成功，未替换旧资产。

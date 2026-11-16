@@ -71,7 +71,7 @@ test('A4 job groups include every displayed lifecycle state and search respects 
 test('A4 clarification wait ends exactly at the next available period',()=>{
  expect(clarificationWait({status:'posted',clarifyingUntil:2},1)).toBe(true);expect(clarificationWait({status:'posted',clarifyingUntil:2},2)).toBe(false);expect(clarificationWait({status:'accepted',clarifyingUntil:2},1)).toBe(false);
 });
-import {characterPosters,resolveCharacterVisual,versionDelta,recruitmentBlock} from '../web/src/character-profiles.js';
+import {characterPosters,resolveCharacterVisual,stageBPortrait,versionDelta,recruitmentBlock} from '../web/src/character-profiles.js';
 test('VF4-C all twelve base portraits preserve fallback and profile stays upright',()=>{
  expect(Object.keys(characterPosters)).toHaveLength(12);
  for(const id of Object.keys(characterPosters)){
@@ -79,7 +79,7 @@ test('VF4-C all twelve base portraits preserve fallback and profile stays uprigh
   expect(resolveCharacterVisual(id,`${id}.v2.test`,'profile')).toMatchObject({versionBadge:'V2.TEST',isInvertedGag:false});
  }
 });
-test('VF4-C only the eight authored advanced versions select dedicated art',async()=>{
+test('VF4-C existing content versions retain their original portrait contract',async()=>{
  const c=await loadFullContent();
  const advanced=new Set(['bluewhale.r1','qwen.qwq','llama.3.1','mistral.large','gpt.4o','claude.sonnet','kimi.k2','gemini.pro']);
  for(const v of c.versions){
@@ -89,6 +89,16 @@ test('VF4-C only the eight authored advanced versions select dedicated art',asyn
  }
  expect(resolveCharacterVisual('qwen','gpt.4o').src).toBe('./art/ai-village/portraits/qwen.png');
  expect(resolveCharacterVisual('qwen','../../bad').src).toBe('./art/ai-village/portraits/qwen.png');
+});
+test('Art-Batch 5 exposes twelve Stage B paths while preserving base and invalid fallbacks',()=>{
+ const versions=['bluewhale.r1','qwen.qwq','llama.3.1','mistral.large','gpt.4o','claude.sonnet','kimi.k2','gemini.pro','grok.3','glm.plus','minimax.01','seedance.pro'];
+ for(const version of versions){
+  const id=version.split('.')[0]!;
+  expect(stageBPortrait(id)).toBe(`./art/stage-b/${version}.webp`);
+  expect(resolveCharacterVisual(id,version,'profile')).toMatchObject({src:stageBPortrait(id),isInvertedGag:false});
+  for(const invalid of [undefined,`${id}.base`,'../../bad','unknown.version',''])expect(resolveCharacterVisual(id,invalid).src).toBe(`./art/ai-village/portraits/${id}.png`);
+ }
+ for(const id of ['unknown','','../../bad','constructor','toString','__proto__'])expect(stageBPortrait(id)).toBeNull();
 });
 test('VF4-A3 deltas cover six skills and engineering metrics without mutation',async()=>{
  const c=await loadFullContent(),base=c.versions[0]!,before=JSON.stringify(base),v={...base,skills:{code:9,write:8,reason:7,create:6,media:5,recall:4},price:base.price+2,speed:base.speed-0.1,stability:base.stability+1,context:base.context-1};
