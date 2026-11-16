@@ -1,7 +1,7 @@
 import {expect,test} from 'vitest';
 import {loadFullContent} from 'oot-content';
 import {labSession} from '../web/src/office-lab.js';
-import {actorFocus,actorPlacements,jobFocus,officeCamera,actorOutsideFrame,slotPoint,workLabelOffset} from '../web/src/office-scene-spec.js';
+import {actorFocus,actorPlacements,jobFocus,officeCamera,clampZoom,clampOfficePan,zoomOfficeCamera,defaultCameraPan,actorOutsideFrame,slotPoint,workLabelOffset} from '../web/src/office-scene-spec.js';
 import {actorHitArea,furnitureHitArea} from '../web/src/office-hit-area.js';
 import {sceneCamera,initialSceneCamera,dismissPresence} from '../web/src/scene-navigation.js';
 
@@ -69,4 +69,25 @@ test.each(['bluewhale','qwen','llama','mistral','gpt','claude','kimi','gemini','
  expect(furnitureHitArea('basic','front').contains(0,-180)).toBe(false);
  expect(furnitureHitArea('basic','front').contains(0,-50)).toBe(true);
  expect(actorHitArea(true).contains(0,-50)).toBe(false);
+});
+test.each([[390,844],[560,800],[844,390],[1280,720]])('camera pan and focal zoom clamp to world bounds and preserve editor preview isolation at %sx%s',(width,height)=>{
+ expect(clampZoom(.5)).toBe(1);expect(clampZoom(1.256)).toBe(1.26);expect(clampZoom(2)).toBe(1.5);
+ const base=officeCamera(width!,height!,'overview');
+ const left=clampOfficePan(width!,height!,'overview',null,1,{x:9999,y:9999}),right=clampOfficePan(width!,height!,'overview',null,1,{x:-9999,y:-9999});
+ const camLeft=officeCamera(width!,height!,'overview',null,1,left),camRight=officeCamera(width!,height!,'overview',null,1,right);
+ expect(camLeft.x).toBeCloseTo(0,6);expect(camRight.x+1920*camRight.scale).toBeCloseTo(width!,5);
+ if(width!<height!)expect(left.x).toBeGreaterThan(200);else if(width!/height!>16/9)expect(left.y).toBeGreaterThan(50);
+ const focal={x:width!*0.35,y:height!*0.45},worldBefore={x:(focal.x-base.x)/base.scale,y:(focal.y-base.y)/base.scale};
+ const zoomed=zoomOfficeCamera(width!,height!,'overview',null,1,defaultCameraPan,1.3,focal),camZoom=officeCamera(width!,height!,'overview',null,zoomed.zoom,zoomed.pan);
+ expect(zoomed.zoom).toBe(1.3);expect(camZoom.x).toBeLessThanOrEqual(0);expect(camZoom.y).toBeLessThanOrEqual(0);
+ expect(camZoom.x+1920*camZoom.scale).toBeGreaterThanOrEqual(width!-1e-6);expect(camZoom.y+1080*camZoom.scale).toBeGreaterThanOrEqual(height!-1e-6);
+ const worldAfter={x:(focal.x-camZoom.x)/camZoom.scale,y:(focal.y-camZoom.y)/camZoom.scale};
+ if(camZoom.x<0&&camZoom.x>width!-1920*camZoom.scale)expect(worldAfter.x).toBeCloseTo(worldBefore.x,4);
+ let s=sceneCamera(initialSceneCamera,{type:'zoom',zoom:1.3,pan:zoomed.pan});
+ s=sceneCamera(s,{type:'pan',pan:left});
+ const panned=s;
+ s=sceneCamera(s,{type:'preview',focus:slotPoint('work-2')});
+ s=sceneCamera(s,{type:'editor-close'});
+ expect(s).toEqual(panned);
+ expect(sceneCamera(s,{type:'reset'})).toEqual(initialSceneCamera);
 });

@@ -34,20 +34,35 @@ export function separateOfficeLabels(rows:{id:string;x:number;y:number;width:num
  return placed;
 }
 export type CameraZone='overview'|'work-left'|'work-right'|'meeting'|'lounge';
+export type CameraPan={x:number;y:number};
+export const defaultCameraPan:CameraPan={x:0,y:0};
 export const zoneNames:Record<CameraZone,[string,string]>={overview:['全景','Overview'],'work-left':['工作区Ⅰ','Work I'],'work-right':['工作区Ⅱ','Work II'],meeting:['会议区','Meeting'],lounge:['休闲区','Lounge']};
+export function clampZoom(zoom:number){return Math.round(Math.max(1,Math.min(1.5,Number.isFinite(zoom)?zoom:1))*100)/100;}
 export function slotPoint(slot:string,chapter=0){const n=Number(slot.split('-')[1])-1;
  if(slot.startsWith('work')){const row=Math.floor(n/4),col=n%4;return {x:640+col*260+(row%2)*36,y:chapter===0?795:620+row*130};}
  if(slot.startsWith('meeting'))return chapter===0?{x:920+n*350,y:635}:{x:180+n*240,y:580};
  if(slot.startsWith('server'))return {x:1740,y:635+n*200};
  return {x:215+n%2*245,y:(chapter===0?635:780)+Math.floor(n/2)*180};
 }
-export function officeCamera(width:number,height:number,zone:CameraZone,focus:OfficeFocus=null){
+export function officeCamera(width:number,height:number,zone:CameraZone,focus:OfficeFocus=null,zoom=1,pan:CameraPan=defaultCameraPan){
  // AI Village contract: overlays never reserve world space or move the camera.
  // Cover the entire viewport with the same transform for background and entities.
  const centers={overview:[960,540],'work-left':[770,730],'work-right':[1350,730],meeting:[1090,590],lounge:[330,700]} as const;
- const scale=Math.max(width/1920,height/1080)*(focus?1.6:zone==='overview'||width<900?1:1.25),[cx,cy]=focus?[focus.x,focus.y]:centers[zone];
+ const z=clampZoom(zoom),base=focus?1.6:zone==='overview'||width<900?1:1.25;
+ const scale=Math.max(width/1920,height/1080)*base*z,[cx,cy]=focus?[focus.x,focus.y]:centers[zone];
  const clamp=(n:number,min:number)=>Math.max(min,Math.min(0,n));
- return {scale,x:clamp(width/2-cx*scale,width-1920*scale),y:zone==='overview'&&!focus?height-1080*scale:clamp(height/2-cy*scale,height-1080*scale),clip:{x:0,y:0,width,height}};
+ const baseX=clamp(width/2-cx*scale,width-1920*scale),baseY=zone==='overview'&&!focus&&z===1?height-1080*scale:clamp(height/2-cy*scale,height-1080*scale);
+ const px=Number.isFinite(pan?.x)?pan.x:0,py=Number.isFinite(pan?.y)?pan.y:0;
+ return {scale,x:clamp(baseX+px,width-1920*scale),y:clamp(baseY+py,height-1080*scale),clip:{x:0,y:0,width,height}};
+}
+export function clampOfficePan(width:number,height:number,zone:CameraZone,focus:OfficeFocus,zoom:number,pan:CameraPan):CameraPan{
+ const zero=officeCamera(width,height,zone,focus,zoom,defaultCameraPan),clamped=officeCamera(width,height,zone,focus,zoom,pan);
+ return {x:clamped.x-zero.x,y:clamped.y-zero.y};
+}
+export function zoomOfficeCamera(width:number,height:number,zone:CameraZone,focus:OfficeFocus,zoom:number,pan:CameraPan,nextZoom:number,point={x:width/2,y:height/2}):{zoom:number;pan:CameraPan}{
+ const z=clampZoom(nextZoom),old=officeCamera(width,height,zone,focus,zoom,pan),zero=officeCamera(width,height,zone,focus,z,defaultCameraPan);
+ const wx=(point.x-old.x)/old.scale,wy=(point.y-old.y)/old.scale;
+ return {zoom:z,pan:clampOfficePan(width,height,zone,focus,z,{x:point.x-wx*zero.scale-zero.x,y:point.y-wy*zero.scale-zero.y})};
 }
 export function idlePoint(index:number,count=4){
  if(count<=4){const pts=[{x:335,y:655},{x:490,y:655},{x:215,y:900},{x:430,y:900}] as const;return pts[index%4]!;}
