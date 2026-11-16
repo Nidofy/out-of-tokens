@@ -1,4 +1,4 @@
-import {useState,useRef,useLayoutEffect} from 'preact/hooks';
+import {useState,useEffect,useRef,useLayoutEffect} from 'preact/hooks';
 import type {ComponentChildren} from 'preact';
 import type {Command,Member} from 'oot-core';
 import type {GameSession,GameView} from 'oot-platform';
@@ -10,6 +10,8 @@ import {skillText} from './ui-labels.js';
 import {Icon} from './icons.js';
 import {QualitySealSvg} from './ornaments.js';
 import {topJobSkillWeights} from './ui2-logic.js';
+import {findActiveTeamDuos,getLivingCatalog,pickWorkBark,resolveClientPersona} from './living-adapter.js';
+import type {CharacterBarkSet,LivingContent,LivingView} from './living-adapter.js';
 
 export type JobFilter='active'|'posted'|'history';
 export type DraftTeam=Record<string,{role:'none'|Member['role'];mode:Member['mode']}>;
@@ -38,13 +40,30 @@ export type WorkbenchProps={
  onJumpToOffice?:(draft:DraftTeam)=>void;
  onJumpToFinance?:(draft:DraftTeam)=>void;
  onOpenMap?:()=>void;
+ livingView?:LivingView|undefined;
+ livingCatalog?:LivingContent|undefined;
+ onWorkBark?:((actorId:string,key:keyof CharacterBarkSet['work'])=>void)|undefined;
 };
 
-export function CommissionWorkbench({view,job,english,locked,send,previewAssignment,close,closePanel,messages,notice,locate,trackControl,onAccepted,onRejected,savedDraft,onSaveDraft,onJumpToOffice,onJumpToFinance,onOpenMap}:WorkbenchProps){
+export function CommissionWorkbench({view,job,english,locked,send,previewAssignment,close,closePanel,messages,notice,locate,trackControl,onAccepted,onRejected,savedDraft,onSaveDraft,onJumpToOffice,onJumpToFinance,onOpenMap,livingView,livingCatalog,onWorkBark}:WorkbenchProps){
  const tr=(zh:string,en:string)=>english?en:zh,p=view.campaign!,skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
  const [workStep,setWorkStep]=useState(['accepted','working'].includes(job.status)?'team':'brief');
  const [team,setTeam]=useState<DraftTeam>(()=>savedDraft??Object.fromEntries(view.actors.map(a=>{const m=job.team.find(m=>m.character===a.id);return[a.id,{role:m?.role??'none',mode:m?.mode??'cloud'}];})));
+ const [workBark,setWorkBark]=useState<{actorId:string;text:string}|null>(null);
+ const clarifyAttemptRef=useRef<{actorId:string;hidden:number;until:number}|null>(null);
  const workbenchRef=useRef<HTMLDivElement>(null);
+ const activeCatalog=livingCatalog??getLivingCatalog(view);
+ const roleBarkKey:Record<Member['role'],keyof CharacterBarkSet['work']>={worker:'assignWorker',planner:'assignPlanner',reviewer:'assignReviewer',tool:'assignTool'};
+ const emitWorkBark=(actorId:string,key:keyof CharacterBarkSet['work'])=>{
+  setWorkBark({actorId,text:pickWorkBark(activeCatalog,actorId,key,english)});
+  onWorkBark?.(actorId,key);
+ };
+ useEffect(()=>{
+  const pending=clarifyAttemptRef.current;
+  if(!pending)return;
+  if(job.hidden<pending.hidden){clarifyAttemptRef.current=null;emitWorkBark(pending.actorId,'clarifyHit');}
+  else if(job.clarifyingUntil!==pending.until){clarifyAttemptRef.current=null;emitWorkBark(pending.actorId,'clarifyMiss');}
+ },[job.hidden,job.clarifyingUntil]);
 
  const updateTeam=(updater:(prev:DraftTeam)=>DraftTeam)=>{
   setTeam(prev=>{
@@ -103,7 +122,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
         <QualitySealSvg score={job.quality} passLine={job.passQuality} tier={sealTier} english={english}/>
         <div class="commission-payment">
          <b>{tr('现金变动','Cash change')} ¥{netCash!==null?netCash.toFixed(2):'—'}</b>
-         <DeliverySummary job={job} english={english} settled={settledEntry}/>
+         <DeliverySummary job={job} english={english} settled={settledEntry} persona={resolveClientPersona(activeCatalog,job)} view={view}/>
          {p.software.includes('explain')&&(
           <div class="ui2-quality-breakdown">
            <small>{tr('评分构成（基础 / 审查 / 事件 / 隐藏扣分 / 缺陷扣分）','Breakdown (Base / Review / Event / Hidden / Defect)')}</small>
@@ -139,7 +158,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
         {job.hidden>0&&view.actors.every(a=>a.busy||a.location==='expedition')&&<p class="work-disabled-reason">{tr('当前没有可澄清的空闲伙伴，请推进时段或调整安排。','No teammate is available to clarify. Advance time or adjust assignments.')}</p>}
         {job.hidden>0&&view.absoluteSlot%4>=2&&<p class="work-disabled-reason">{tr('夜晚不能澄清需求，请等到下个白天工作时段。','Clarification is unavailable at night. Wait for the next daytime work period.')}</p>}
         {job.hidden===0&&!clarificationWait(job,view.absoluteSlot)&&<p>{tr('甲方需求已明确，可以直接接单。','The brief is clear. You can accept directly.')}</p>}
-        <div class="button-row">{job.hidden>0&&view.actors.map(a=><button key={a.id} disabled={locked||a.busy||a.location==='expedition'||a.energy<15||clarificationWait(job,view.absoluteSlot)||view.absoluteSlot%4>=2} onClick={()=>{void send({type:'clarify',job:job.id,character:a.id}).then(ok=>{if(ok)requestAnimationFrame(()=>workbenchRef.current?.focus({preventScroll:true}));});}}>{names[a.id]} {Math.round(a.clarifyChance*100)}%{a.energy<15?tr(' · 精力不足15',' · Needs 15 energy'):a.busy?tr(' · 忙碌',' · Busy'):''}</button>)}</div>
+        <div class="button-row">{job.hidden>0&&view.actors.map(a=><button key={a.id} disabled={locked||a.busy||a.location==='expedition'||a.energy<15||clarificationWait(job,view.absoluteSlot)||view.absoluteSlot%4>=2} onClick={()=>{clarifyAttemptRef.current={actorId:a.id,hidden:job.hidden,until:job.clarifyingUntil};void send({type:'clarify',job:job.id,character:a.id}).then(ok=>{if(ok)requestAnimationFrame(()=>workbenchRef.current?.focus({preventScroll:true}));else clarifyAttemptRef.current=null;});}}>{names[a.id]} {Math.round(a.clarifyChance*100)}%{a.energy<15?tr(' · 精力不足15',' · Needs 15 energy'):a.busy?tr(' · 忙碌',' · Busy'):''}</button>)}</div>
        </>
       )}
 
@@ -169,6 +188,31 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
          )}
         </div>
 
+        {(()=>{
+         const teamDuos=livingView?findActiveTeamDuos(livingView.duos,members.map(m=>m.character)):[];
+         return teamDuos.length>0?(
+          <div class="ui2-synergy-strip" aria-label={tr('搭档协同加成','Team duo synergies')}>
+           {teamDuos.map(d=>{
+            const minDel=activeCatalog.duos.find(x=>x.id===d.id)?.minDeliveries??2;
+            return (
+             <span key={d.id} class={`ui2-synergy-chip ${d.unlocked?'is-active':'is-pending'}`}>
+              <Icon name="link"/>
+              <b>{tr(d.title,d.titleEn)}</b>
+              <small>{d.unlocked?tr(d.desc,d.descEn):tr(`还差 ${Math.max(0,minDel-d.sharedDeliveries)} 次同队交付激活`,`${Math.max(0,minDel-d.sharedDeliveries)} more co-delivery`)}</small>
+             </span>
+            );
+           })}
+          </div>
+         ):null;
+        })()}
+
+        {workBark&&(
+         <div class="ui2-work-bark" role="status">
+          <img src={`./art/ai-village/portraits/${workBark.actorId}.png`} alt=""/>
+          <span><b>{names[workBark.actorId]??workBark.actorId}:</b> “{workBark.text}”</span>
+         </div>
+        )}
+
         <p>{Object.entries(job.weights).filter(([,v])=>v>0).map(([k,v])=>`${skill(k as keyof typeof skillText)} ${Math.round(v*100)}%`).join(' · ')}</p>
         <fieldset class="assignment-team">
          <legend>{tr('派遣岗位与模式','Roles and deployment')}</legend>
@@ -184,7 +228,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
              {role!=='none'&&view.office&&<small>{needsComputerSupport||['worker','tool'].includes(role)?tr('电脑工位','Computer station'):tr('会议席','Meeting seat')}</small>}
             </span>
            </span>
-           <select aria-label={`${names[a.id]} ${tr('岗位','role')}`} value={team[a.id]?.role??'none'} onChange={e=>updateTeam(prev=>({...prev,[a.id]:{role:e.currentTarget.value as 'none'|Member['role'],mode:prev[a.id]?.mode??'cloud'}}))}>{(['none','worker','planner','reviewer','tool'] as const).map((r,i)=><option key={r} value={r}>{tr(['不参与','执行者','负责人','审查者','工具人'][i]!,['Not assigned','Worker','Planner','Reviewer','Tool'][i]!)}</option>)}</select>
+           <select aria-label={`${names[a.id]} ${tr('岗位','role')}`} value={team[a.id]?.role??'none'} onChange={e=>{const nextRole=e.currentTarget.value as 'none'|Member['role'];updateTeam(prev=>({...prev,[a.id]:{role:nextRole,mode:prev[a.id]?.mode??'cloud'}}));if(nextRole!=='none')emitWorkBark(a.id,roleBarkKey[nextRole]);}}>{(['none','worker','planner','reviewer','tool'] as const).map((r,i)=><option key={r} value={r}>{tr(['不参与','执行者','负责人','审查者','工具人'][i]!,['Not assigned','Worker','Planner','Reviewer','Tool'][i]!)}</option>)}</select>
            <select aria-label={`${names[a.id]} ${tr('模式','mode')}`} value={team[a.id]?.mode??'cloud'} onChange={e=>updateTeam(prev=>({...prev,[a.id]:{role:prev[a.id]?.role??'none',mode:e.currentTarget.value as Member['mode']}}))}>{a.modes.map(mode=><option key={mode} value={mode}>{tr(mode==='cloud'?'云端':'本地',mode==='cloud'?'Cloud':'Local')}</option>)}</select>
           </label>;
          })}

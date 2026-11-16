@@ -32,5 +32,11 @@ export function reactionFor(view:GameView,id:string){
  if(view.pending?.actors.includes(id))return 'surprised';
  const row=[...view.ledger].reverse().find(r=>r.reason.startsWith('delivery:')&&r.slot===view.absoluteSlot);
  if(row&&view.jobs.find(j=>j.id===row.reason.slice(9))?.team.some(m=>m.character===id))return 'happy';
+ const actor=view.actors.find(a=>a.id===id);
+ if(actor){
+  if(actor.energy<35)return 'sleepy';
+  if(view.possibleStops.includes(id)||actor.load>=9)return 'surprised';
+  if(actor.mood>=82)return 'happy';
+ }
  return 'neutral';
 }
