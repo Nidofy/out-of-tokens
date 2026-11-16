@@ -38,6 +38,7 @@ export function advancePeriodInfo(view:GameView,busy:boolean,arranging:boolean,e
 export type ShortcutCommand=
  |{type:'panel';panel:HubPanel}
  |{type:'map'}
+ |{type:'chat'}
  |{type:'actor-step';delta:-1|1};
 
 export interface ShortcutInput {
@@ -66,6 +67,7 @@ export function resolveGlobalShortcut(input:ShortcutInput,state:ShortcutGuardSta
  if(input.key==='3')return {type:'panel',panel:'studio'};
  if(input.key==='4')return {type:'panel',panel:'journal'};
  if(input.key==='m'||input.key==='M')return {type:'map'};
+ if(input.key==='c'||input.key==='C')return {type:'chat'};
  if(state.actorOpen&&input.key==='[')return {type:'actor-step',delta:-1};
  if(state.actorOpen&&input.key===']')return {type:'actor-step',delta:1};
  return null;

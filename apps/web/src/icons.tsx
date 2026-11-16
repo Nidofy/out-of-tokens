@@ -24,6 +24,13 @@ const paths:Record<string,string>={
  refresh:'M20 11a8 8 0 0 0-14.6-4.4M4 4v4h4M4 13a8 8 0 0 0 14.6 4.4M20 20v-4h-4',
  sliders:'M4 7h16M4 17h16M8 4v6M16 14v6',
  locale:'M4 5h8M8 3v2M5 11c1.5-2.5 3-4.5 4-6M6 7c1 1.8 2.4 3.2 4 4M13 19l3.5-9 3.5 9M14.2 16h4.6',
- pin:'M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10ZM12 11a2 2 0 1 0 0-.01'
+ pin:'M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10ZM12 11a2 2 0 1 0 0-.01',
+ chat:'M21 12c0 4.4-4 8-9 8-1.6 0-3.1-.4-4.4-1L3 20l1.4-3.6C3.5 15.1 3 13.6 3 12c0-4.4 4-8 9-8s9 3.6 9 8ZM8 12h.01M12 12h.01M16 12h.01',
+ gift:'M20 12v8H4v-8M2 7h20v5H2zM12 20V7M12 7H7.5a2.5 2.5 0 1 1 0-5C10 2 12 7 12 7ZM12 7h4.5a2.5 2.5 0 1 0 0-5C14 2 12 7 12 7Z',
+ cup:'M17 8h1a3 3 0 0 1 0 6h-1M3 8h14v7a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8ZM6 2v3M10 2v3M14 2v3',
+ heart:'M12 20.5s-7-4.4-8.6-8.4A5 5 0 0 1 12 6.6a5 5 0 0 1 8.6 5.5c-1.6 4-8.6 8.4-8.6 8.4Z',
+ volume:'M11 5 6 9H2v6h4l5 4V5ZM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13',
+ mute:'M11 5 6 9H2v6h4l5 4V5ZM22 9l-6 6M16 9l6 6',
+ link:'M10 13a5 5 0 0 0 7.1 0l2.8-2.8a5 5 0 0 0-7.1-7.1L11.2 4.7M14 11a5 5 0 0 0-7.1 0L4.1 13.8a5 5 0 0 0 7.1 7.1l1.6-1.6'
 };
 export function Icon({name}:{name:string}){return <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={paths[name]??paths.star}/></svg>;}

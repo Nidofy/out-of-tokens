@@ -5,6 +5,8 @@ import {Icon} from './icons.js';
 import {PeriodClockIcon,PeriodDots} from './ornaments.js';
 import type {AdvanceInfo,HubPanel} from './ui2-logic.js';
 
+import type {AudioPrefs} from './audio-foley.js';
+
 export interface FloatDelta {
  id:number;
  kind:'cash'|'quota'|'rp';
@@ -24,9 +26,14 @@ type HudBarProps={
  chapterTitle:string;
  advance:AdvanceInfo;
  deltas:FloatDelta[];
+ unreadThreads:number;
+ teaReady:boolean;
+ audioPrefs:AudioPrefs;
  onDismissDelta:(id:number)=>void;
  onOpenHud:(next:'board'|'view'|'more')=>void;
  onOpenMap:()=>void;
+ onOpenChat:()=>void;
+ onTeaBreak:()=>void;
  onOpenStudioFinance:()=>void;
  onOpenPanel:(next:HubPanel)=>void;
  onOpenOffice:()=>void;
@@ -34,15 +41,18 @@ type HudBarProps={
  onOpenSettings:()=>void;
  onToggleLocale:()=>void;
  onToggleTheme:()=>void;
+ onToggleSfx:()=>void;
+ onToggleAmbience:()=>void;
  onAdvance:()=>void;
  onOpenJob:(id:string)=>void;
  moreTrigger:RefObject<HTMLButtonElement|null>;
  boardTrigger:RefObject<HTMLButtonElement|null>;
+ chatTrigger:RefObject<HTMLButtonElement|null>;
  jobsTrigger:RefObject<HTMLButtonElement|null>;
 };
 
 export function HudBar(props:HudBarProps){
- const {view,english,dark,still,locked,hud,panel,placeLabel,chapterTitle,advance,deltas,onDismissDelta,onOpenHud,onOpenMap,onOpenStudioFinance,onOpenPanel,onOpenOffice,onOpenSaves,onOpenSettings,onToggleLocale,onToggleTheme,onAdvance,onOpenJob,moreTrigger,boardTrigger,jobsTrigger}=props;
+ const {view,english,dark,still,locked,hud,panel,placeLabel,chapterTitle,advance,deltas,unreadThreads,teaReady,audioPrefs,onDismissDelta,onOpenHud,onOpenMap,onOpenChat,onTeaBreak,onOpenStudioFinance,onOpenPanel,onOpenOffice,onOpenSaves,onOpenSettings,onToggleLocale,onToggleTheme,onToggleSfx,onToggleAmbience,onAdvance,onOpenJob,moreTrigger,boardTrigger,chatTrigger,jobsTrigger}=props;
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!;
  const [confirmAdvance,setConfirmAdvance]=useState(false);
@@ -97,6 +107,9 @@ export function HudBar(props:HudBarProps){
      )}
     </div>
     <span class="hud-spacer"/>
+    <button ref={chatTrigger} class="ui2-hud-icon" title={tr('工坊群聊 (C)','Team chat (C)')} aria-label={tr('工坊群聊 (C)','Team chat (C)')} onClick={onOpenChat}>
+     <Icon name="chat"/>{unreadThreads>0&&<i class="hud-badge"/>}
+    </button>
     <button ref={boardTrigger} class="ui2-hud-icon" title={tr('工作看板与待办','Work board & notices')} aria-label={tr('工作看板与待办','Work board & notices')} aria-expanded={hud==='board'} onClick={()=>onOpenHud('board')}>
      <Icon name="notifications"/>{alertCount>0&&<i class="hud-badge"/>}
     </button>
@@ -125,6 +138,7 @@ export function HudBar(props:HudBarProps){
       </div>
       <div class="ui2-terminal-grid">
        {view.office&&<button disabled={locked||p.scene!=='workshop'} title={p.scene!=='workshop'?tr('仅在工作室场景可布置','Available in workshop scene'):''} onClick={onOpenOffice}><Icon name="decor"/><span>{tr('布置办公室','Arrange office')}</span></button>}
+       <button disabled={locked||!teaReady||view.cash<80} onClick={()=>{onOpenHud('more');onTeaBreak();}}><Icon name="cup"/><span>{teaReady?tr('工坊茶歇 ¥80','Tea break ¥80'):tr('今日已茶歇','Tea used')}</span></button>
        <button onClick={()=>onOpenHud('board')}><Icon name="notifications"/><span>{tr('工作看板','Work board')}</span></button>
        <button onClick={onOpenMap}><Icon name="map"/><span>{tr('园区地图','Studio map')}</span></button>
        <button onClick={onOpenSaves}><Icon name="save"/><span>{tr('存档与备份','Saves')}</span></button>
@@ -134,6 +148,8 @@ export function HudBar(props:HudBarProps){
       <div class="ui2-terminal-toggles">
        <button aria-pressed={english} onClick={onToggleLocale}><Icon name="locale"/><span>{english?'English':'中文'}</span></button>
        <button aria-pressed={dark} onClick={onToggleTheme}><Icon name={dark?'moon':'sun'}/><span>{dark?tr('深色模式','Dark mode'):tr('浅色模式','Light mode')}</span></button>
+       <button aria-pressed={audioPrefs.sfx} onClick={onToggleSfx}><Icon name={audioPrefs.sfx?'volume':'mute'}/><span>{audioPrefs.sfx?tr('音效 开','SFX on'):tr('音效 关','SFX off')}</span></button>
+       <button aria-pressed={audioPrefs.ambience} onClick={onToggleAmbience}><Icon name={audioPrefs.ambience?'volume':'mute'}/><span>{audioPrefs.ambience?tr('底噪 开','Ambience on'):tr('底噪 关','Ambience off')}</span></button>
       </div>
      </div>
     </section>

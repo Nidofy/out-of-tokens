@@ -13,6 +13,10 @@ import {Icon} from './icons.js';
 import {OrnamentDivider,RhythmChart,PipTrack} from './ornaments.js';
 import {isFlagshipUnlocked,resolveProfileTab} from './ui2-logic.js';
 import type {ProfileTab} from './ui2-logic.js';
+import {GiftPickerGrid} from './bark-overlay.js';
+import type {BarkPayload} from './bark-overlay.js';
+import type {DuoDef,GiftDef,LivingContent,LivingView} from './living-adapter.js';
+import {pickSocialBark} from './living-adapter.js';
 
 type Props={
  locate:(()=>void)|undefined;
@@ -32,20 +36,25 @@ type Props={
  entryMode:'gallery'|'direct';
  onOpenGallery?:()=>void;
  notice:ComponentChildren;
+ livingView:LivingView;
+ livingCatalog:LivingContent;
+ onTriggerBark:(bark:BarkPayload)=>void;
+ onSendGift:(actorId:string,gift:GiftDef,okCb?:()=>void)=>void;
+ onUnlockDuo:(duo:DuoDef)=>void;
 };
 
 const stageBMap:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'qwen.qwq',llama:'llama.3.1',mistral:'mistral.large',gpt:'gpt.4o',claude:'claude.sonnet',kimi:'kimi.k2',gemini:'gemini.pro'};
 
 export function PartnerProfile(props:Props){
- const {view,actor,characterId,english,locked,send,close,closePanel,openJob,openMap,selectCharacter,preferredTab,setPreferredTab,entryMode,onOpenGallery,notice,locate}=props;
+ const {view,actor,characterId,english,locked,send,close,closePanel,openJob,openMap,selectCharacter,preferredTab,setPreferredTab,entryMode,onOpenGallery,notice,locate,livingView,livingCatalog,onTriggerBark,onSendGift,onUnlockDuo}=props;
  const tr=(zh:string,en:string)=>english?en:zh,p=view.campaign!,catalog=view.catalog!;
  const {sameScene,onExpedition,activeJobs,lifeBusy,canRecall,status}=actor?partnerAvailability(view,actor,locked):{sameScene:false,onExpedition:false,activeJobs:[],lifeBusy:false,canRecall:false,status:null};
  const scene=(id:keyof typeof sceneText|'expedition')=>id==='expedition'?tr('远征中','On expedition'):sceneText[id][english?1:0],skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
- const life=(action:Extract<Command,{type:'campaign'}>['action'],id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
+ const life=(action:Extract<Command,{type:'campaign'}>['action'],id:string,target?:string)=>send({type:'campaign',action,id,...(target?{target}:{})});
  const versions=content.versions.filter(v=>v.character===characterId),base=versions.find(v=>v.id===actor?.version)??versions[0]!;
- const [previewVersionId,setPreviewVersionId]=useState(base.id),[inverted,setInverted]=useState(false),[stageForm,setStageForm]=useState<'auto'|'standard'|'flagship'>('auto');
+ const [previewVersionId,setPreviewVersionId]=useState(base.id),[inverted,setInverted]=useState(false),[stageForm,setStageForm]=useState<'auto'|'standard'|'flagship'>('auto'),[giftOpen,setGiftOpen]=useState(false);
  const stageRef=useRef<HTMLDivElement>(null);
- useEffect(()=>{setPreviewVersionId(base.id);setInverted(false);setStageForm('auto');},[characterId,actor?.version,base.id]);
+ useEffect(()=>{setPreviewVersionId(base.id);setInverted(false);setStageForm('auto');setGiftOpen(false);},[characterId,actor?.version,base.id]);
 
  const activeTab=resolveProfileTab(preferredTab,!!actor);
  const v=versions.find(item=>item.id===previewVersionId)??base;
@@ -139,13 +148,46 @@ export function PartnerProfile(props:Props){
         )}
 
         <div class="ui2-actions-grid">
-         <button class="ui2-action-card" disabled={locked||lifeBusy||!sameScene} onClick={()=>life('chat',actor.id)}><b>{tr('日常聊天','Chat')}</b><small>{tr('压力 -10 · 心情 +5 · 好感 +3','Stress -10 · Mood +5 · Affinity +3')}</small></button>
-         <button class="ui2-action-card" disabled={locked||lifeBusy||!sameScene||view.cash<60} onClick={()=>life('gift',actor.id)}><b>{tr('送出礼物 ¥60','Send gift ¥60')}</b><small>{tr('心情 +10 · 好感 +5','Mood +10 · Affinity +5')}</small></button>
-         <button class="ui2-action-card" disabled={locked||lifeBusy||!sameScene||!['canteen','library'].includes(p.scene)||view.cash<30} onClick={()=>life('meal',actor.id)}><b>{tr('聚餐 / 外卖 ¥30','Meal / takeaway ¥30')}</b><small>{tr('精力 +25 · 饥饿 -50 · 食堂/图书馆可用','Energy +25 · Hunger -50 · Canteen/library')}</small></button>
-         <button class="ui2-action-card" disabled={locked||lifeBusy||!sameScene||p.scene!=='library'||actor.energy<10} onClick={()=>life('study',actor.id)}><b>{tr('共同学习 +2 RP','Study together +2 RP')}</b><small>{tr('消耗 10 精力 · 仅限图书馆场景','Costs 10 energy · Library only')}</small></button>
-         <button class="ui2-action-card" disabled={!canRecall} onClick={()=>life('recall',actor.id)}><b>{tr('请回工作室','Recall to workshop')}</b><small>{p.software.includes('remote')?tr('已部署远程协作，可跨场景呼叫','Remote software active'):tr('需位于同一非工作室场景','Same non-workshop scene required')}</small></button>
+         <button class="ui2-action-card" disabled={locked||lifeBusy||!sameScene} onClick={()=>{void life('chat',actor.id).then(ok=>{if(ok)onTriggerBark({id:Date.now(),actorId:actor.id,emote:'sparkle',label:tr('日常聊天','Chat'),text:pickSocialBark(livingCatalog,actor.id,'chat',rel.affinity,english),deltas:[tr('压力 -10','Stress -10'),tr('心情 +5','Mood +5'),tr('好感 +3','Affinity +3')]});});}}><b>{tr('日常聊天','Chat')}</b><small>{tr('压力 -10 · 心情 +5 · 好感 +3','Stress -10 · Mood +5 · Affinity +3')}</small></button>
+         <button class="ui2-action-card" aria-expanded={giftOpen} disabled={locked||lifeBusy||!sameScene} onClick={()=>setGiftOpen(v=>!v)}><b>{giftOpen?tr('收起好礼列表','Hide gifts'):tr('挑选心意好礼','Choose gift')}</b><small>{tr('6 种专属心意礼物 · 偏爱款额外惊喜','6 signature gifts · Bonus on loved items')}</small></button>
+         <button class="ui2-action-card" disabled={locked||lifeBusy||!sameScene||!['canteen','library'].includes(p.scene)||view.cash<30} onClick={()=>{void life('meal',actor.id).then(ok=>{if(ok)onTriggerBark({id:Date.now(),actorId:actor.id,emote:'rice',label:tr('聚餐 / 外卖','Meal / takeaway'),text:pickSocialBark(livingCatalog,actor.id,'meal',rel.affinity,english),deltas:[tr('精力 +25','Energy +25'),tr('饥饿 -50','Hunger -50')]});});}}><b>{tr('聚餐 / 外卖 ¥30','Meal / takeaway ¥30')}</b><small>{tr('精力 +25 · 饥饿 -50 · 食堂/图书馆可用','Energy +25 · Hunger -50 · Canteen/library')}</small></button>
+         <button class="ui2-action-card" disabled={locked||lifeBusy||!sameScene||p.scene!=='library'||actor.energy<10} onClick={()=>{void life('study',actor.id).then(ok=>{if(ok)onTriggerBark({id:Date.now(),actorId:actor.id,emote:'idea',label:tr('共同学习','Study together'),text:pickSocialBark(livingCatalog,actor.id,'study',rel.affinity,english),deltas:[tr('研发 +2 RP','+2 RP'),tr('精力 -10','Energy -10')]});});}}><b>{tr('共同学习 +2 RP','Study together +2 RP')}</b><small>{tr('消耗 10 精力 · 仅限图书馆场景','Costs 10 energy · Library only')}</small></button>
+         <button class="ui2-action-card" disabled={!canRecall} onClick={()=>void life('recall',actor.id)}><b>{tr('请回工作室','Recall to workshop')}</b><small>{p.software.includes('remote')?tr('已部署远程协作，可跨场景呼叫','Remote software active'):tr('需位于同一非工作室场景','Same non-workshop scene required')}</small></button>
          <button class="ui2-action-card" disabled={locked||view.absoluteSlot%4<2||onExpedition||view.overtime.includes(actor.id)||actor.energy<10||actor.busyUntil>view.absoluteSlot||!activeJobs.some(j=>j.status==='working')} onClick={()=>void send({type:'overtime',character:actor.id})}><b>{tr('安排本槽加班','Overtime this slot')}</b><small>{tr('仅晚间/深夜且需在岗与精力 >=10','Evening/night, assigned, energy >=10')}</small></button>
         </div>
+
+        {giftOpen&&(
+         <GiftPickerGrid actorId={actor.id} gifts={livingCatalog.gifts} giftedIds={livingView.gifted[actor.id]??[]} view={view} cash={view.cash} disabled={locked||lifeBusy||!sameScene} english={english} onSelectGift={gift=>onSendGift(actor.id,gift,()=>setGiftOpen(false))}/>
+        )}
+
+        {livingView.duos.some(d=>d.actors.includes(actor.id))&&(
+         <div class="ui2-duo-section">
+          <h4><Icon name="link"/> {tr('搭档默契（Duo Synergy）','Duo Synergy')}</h4>
+          <div class="ui2-duo-grid">
+           {livingView.duos.filter(d=>d.actors.includes(actor.id)).map(d=>{
+            const partnerId=d.actors[0]===actor.id?d.actors[1]:d.actors[0];
+            const def=livingCatalog.duos.find(x=>x.id===d.id);
+            const minDel=def?.minDeliveries??2;
+            const recruitedPartner=view.actors.some(a=>a.id===partnerId);
+            return (
+             <article key={d.id} class="ui2-duo-card" data-unlocked={d.unlocked}>
+              <div class="ui2-duo-head">
+               <img src={`./art/ai-village/portraits/${partnerId}.png`} alt=""/>
+               <div>
+                <b>{tr(d.title,d.titleEn)} · {names[partnerId]??partnerId}</b>
+                <small>{tr(`搭档交付 ${Math.min(d.sharedDeliveries,minDel)}/${minDel}`,`Co-deliveries ${Math.min(d.sharedDeliveries,minDel)}/${minDel}`)} · {d.unlocked?tr('默契已激活','Synergy active'):!recruitedPartner?tr('伙伴未招募','Partner not recruited'):d.canUnlock?tr('可召开茶会解锁','Ready for duo tea'):tr('同队交付累计进度','Ship together to unlock')}</small>
+               </div>
+              </div>
+              <p>{tr(d.desc,d.descEn)}</p>
+              {!d.unlocked&&d.canUnlock&&def&&(
+               <button class="primary" disabled={locked} onClick={()=>onUnlockDuo(def)}><Icon name="cup"/><span>{tr('召开搭档茶会 · +2 RP','Host duo tea · +2 RP')}</span></button>
+              )}
+             </article>
+            );
+           })}
+          </div>
+         </div>
+        )}
 
         {activeJobs.length>0&&(
          <div class="ui2-linked-jobs">

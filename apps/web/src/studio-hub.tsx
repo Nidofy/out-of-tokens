@@ -7,6 +7,7 @@ import {names} from './presentation.js';
 import {actorIds} from './studio-ui.js';
 import {recruitmentBlock} from './character-profiles.js';
 import type {HubPanel} from './ui2-logic.js';
+import {teaBreakAssetSrc} from './living-adapter.js';
 
 export type StudioTab='overview'|'finance'|'tech';
 
@@ -22,9 +23,11 @@ type StudioHubProps={
  onOpenMap:()=>void;
  returnBanner?:{label:string;onReturn:()=>void}|null|undefined;
  hideTabs?:boolean;
+ teaReady?:boolean;
+ onTeaBreak?:()=>void;
 };
 
-export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSwitchHub,onOpenMap,returnBanner,hideTabs}:StudioHubProps){
+export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSwitchHub,onOpenMap,returnBanner,hideTabs,teaReady,onTeaBreak}:StudioHubProps){
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!,catalog=view.catalog!;
  const life=(action:Extract<Command,{type:'campaign'}>['action'],id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
@@ -96,6 +99,17 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
          <div class="button-row">{view.actors.map(a=><button key={a.id} disabled={locked||a.busy||view.absoluteSlot<i.at} onClick={()=>void send({type:'respond',job:i.job,character:a.id})}>{names[a.id]}</button>)}</div>
         </div>
        ))}
+      </section>
+
+      <section class="ui2-card" data-ready={!!teaReady&&!locked&&view.cash>=80}>
+       <div class="ui2-card-head">
+        {teaBreakAssetSrc(view)?<img class="art-icon" src={teaBreakAssetSrc(view)!} alt=""/>:<span class="art-icon ui2-tea-icon"><Icon name="cup"/></span>}
+        <div>
+         <h4>{tr('工坊全员下午茶','Studio tea break')}</h4>
+         <small>{tr('每日 1 次 · 同场景伙伴精力 +12 · 心情 +10 · 压力 -8','Once daily · +12 Energy · +10 Mood · -8 Stress')}</small>
+        </div>
+       </div>
+       {onTeaBreak&&<button class="primary" disabled={locked||!teaReady||view.cash<80} onClick={onTeaBreak}><Icon name="cup"/><span>{teaReady?tr('举办今日工坊茶歇 ¥80','Host studio tea break ¥80'):tr('今日茶歇已享用','Tea break enjoyed today')}</span></button>}
       </section>
 
       <section class="ui2-card">
