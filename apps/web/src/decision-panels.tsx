@@ -2,7 +2,6 @@ import {names} from './presentation.js';
 import type {GameSession,GameView} from 'oot-platform';
 import type {ClientPersonaDef} from './living-adapter.js';
 import {clientAssetSrc} from './living-adapter.js';
-import {Icon} from './icons.js';
 type Forecast=NonNullable<ReturnType<GameSession['previewAssignment']>['forecast']>;
 export function periodText(slot:number,english:boolean){return `${english?'Day ':'第'}${Math.floor(slot/4)+1}${english?'':'天'} · ${(english?['Morning','Afternoon','Evening','Night']:['上午','下午','晚上','深夜'])[slot%4]}`;}
 export function AssignmentForecast({value,english}:{value:Forecast;english:boolean}){
@@ -10,14 +9,14 @@ export function AssignmentForecast({value,english}:{value:Forecast;english:boole
  const labels={noProgress:tr('冻结当前状态时无完成预测；休息恢复后请重新比较方案。','No completion under frozen conditions; compare again after rest.'),late:tr('按此方案可能逾期，考虑换人或缩小同时进行的工作。','This plan may miss the deadline. Reassign or reduce concurrent work.'),capacity:tr('单槽本地算力不足，实际会停工。','Local capacity is insufficient for a planned period.'),cloud:tr('本槽云端额度不足，需要换部署方式或补充额度。','Cloud credits are insufficient this period.'),hidden:tr('未澄清需求会扣质量分；派遣不会自动揭示需求。','Unclear requirements reduce quality; assignment does not clarify them.'),condition:tr('伙伴状态有风险：吃饭、休息或降低负载后再比较方案。','Teammate condition is at risk: compare after food, rest or lower load.')};
  return <section class="campaign-panel forecast-panel" aria-label={tr('派遣方案预估','Assignment forecast')}><h3>{tr('这支队伍能做到什么？','What can this team do?')}</h3><div class="forecast-grid"><div><small>{tr('本阶段完成时间','Phase completion')}</small><b>{value.completion===null?'—':periodText(value.completion,english)}</b><small>{value.workSlots} {tr('工作时段','work periods')}</small></div><div><small>{tr('本阶段资源预算','Phase resource budget')}</small><b>{value.cloud} T / {value.local} {tr('本地算力','local units')}</b><small>{tr('本地电费周结','Local electricity at weekly billing')} ¥{value.electricity.toFixed(2)}</small></div><div><small>{tr('条件质量区间','Conditional quality range')}</small><b>{value.quality?.join('–')??'—'}</b></div></div><ul class="forecast-members" aria-label={tr('工位与精力预估','Station and energy estimate')}>{value.firstSlot.members.map(m=><li><b>{names[m.character]??m.character}</b><span class="station-pill" data-tier={m.station??'meeting'}>{m.station?tr(m.station==='basic'?'基础工位':'标准工位',m.station==='basic'?'Basic station':'Standard station'):tr('会议席','Meeting seat')}</span><span class="bonus-pill" data-boost={m.efficiency>0}>{tr('产出加成','Work bonus')} +{Math.round(m.efficiency*100)}%</span><span class="energy-pill">{tr('本槽成功执行时精力','Energy if this period executes')} −{m.energyCost}</span></li>)}</ul><p>{tr('假设：保持当前精力、心情和负载，资源充足，无新事件、缺陷或返工；仅算当前阶段，未来夜间不自动加班。不是结果保证。','Assumes unchanged energy, mood and load, sufficient resources, no new events, defects or rework. Current phase only; no automatic future overtime. Not a guarantee.')}</p><p>{tr('云端数字是游戏额度消耗，不是再次扣现金；跨日配额和补购没有计入预算。','Cloud figures are game credits, not another cash charge. Daily renewals and purchases are not included.')}</p><ul class="forecast-risks">{Object.entries(value.risks).filter(([,on])=>on).map(([key])=><li>{labels[key as keyof typeof labels]}</li>)}</ul></section>;
 }
-export function DeliverySummary({job,english,settled,persona,view}:{job:GameView['jobs'][number];english:boolean;settled?:GameView['ledger'][number]|undefined;persona?:ClientPersonaDef|undefined;view?:GameView|undefined}){
+export function DeliverySummary({job,english,settled,persona}:{job:GameView['jobs'][number];english:boolean;settled?:GameView['ledger'][number]|undefined;persona?:ClientPersonaDef|undefined;view?:GameView|undefined}){
  const tr=(zh:string,en:string)=>english?en:zh,r=job.settlement;
  const quoteTier:'excellent'|'good'|'pass'|'fail'=job.status==='breached'?'fail':job.status==='delivered'?(job.quality>=(job.qualityLines[2]??90)?'excellent':job.quality>=(job.qualityLines[1]??75)?'good':'pass'):r.tier;
- const avatarSrc=persona&&view?clientAssetSrc(persona.id,view):null;
+ const avatarSrc=persona?clientAssetSrc(persona.id):null;
  const clientNote=persona&&(
   <div class="ui2-client-card">
    <div class="ui2-client-avatar">
-    {avatarSrc?<img src={avatarSrc} alt="" onError={e=>{e.currentTarget.style.display='none';}}/>:<Icon name="briefcase"/>}
+    <img src={avatarSrc!} alt=""/>
    </div>
    <div>
     <b>{english?persona.nameEn:persona.name} · <small>{english?persona.roleEn:persona.role}</small></b>

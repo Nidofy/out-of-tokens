@@ -7,21 +7,8 @@ import type {GameView} from 'oot-platform';
 
 type AnchorMap=Record<string,{x:number;y:number;visible:boolean}>;
 
-const emoteIconNames:Record<EmoteKind,string>={
- coffee:'cup',
- idea:'spark',
- sweat:'warning',
- sleepy:'moon',
- rice:'cup',
- sparkle:'heart'
-};
-
-export function EmoteBadge({emote,view}:{emote:EmoteKind;view:GameView}){
- const src=emoteAssetSrc(emote,view);
- if(src){
-  return <img class="ui2-emote-img" src={src} alt="" onError={e=>{e.currentTarget.style.display='none';}}/>;
- }
- return <span class="ui2-emote-svg" data-emote={emote} aria-hidden="true"><Icon name={emoteIconNames[emote]}/></span>;
+export function EmoteBadge({emote}:{emote:EmoteKind;view?:GameView}){
+ return <img class="ui2-emote-img" src={emoteAssetSrc(emote)} alt=""/>;
 }
 
 export function StageChatterOverlay({

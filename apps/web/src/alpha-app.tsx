@@ -38,9 +38,9 @@ import {advancePeriodInfo,isFlagshipUnlocked,resolveGlobalShortcut} from './ui2-
 import type {HubPanel,ProfileTab} from './ui2-logic.js';
 import type {ActorHeadAnchor} from './office-scene.js';
 import {readAudioPrefs,writeAudioPrefs,unlockAudio,playFoley,playVoiceBlip,syncAmbience} from './audio-foley.js';
-import {emptyLocalLivingState,hasNativeLiving,getLivingCatalog,getLivingView,giftReactionTier,pickSocialBark,pickEventQuote,pickSlotBeat,pickStageChatter} from './living-adapter.js';
-import type {DuoDef,GiftDef,LocalLivingOverlayState} from './living-adapter.js';
-import {StageChatterOverlay,PeriodBeatBanner} from './stage-chatter.js';
+import {getLivingCatalog,getLivingView,giftReactionTier,pickSocialBark,pickEventQuote,pickSlotBeat,pickStageChatter} from './living-adapter.js';
+import type {DuoDef,GiftDef} from './living-adapter.js';
+import {EmoteBadge,StageChatterOverlay,PeriodBeatBanner} from './stage-chatter.js';
 import {BarkOverlay} from './bark-overlay.js';
 import type {BarkPayload} from './bark-overlay.js';
 import {MessengerDrawer} from './messenger-drawer.js';
@@ -87,7 +87,13 @@ export function AlphaApp(){
   HOST_CLOSED:['宿主已关闭，请重新打开工坊。','Host closed. Reopen the workshop.'],
   INVALID_TEAM:['至少一位执行者，伙伴不可重复；第0–2章最多4人，后续最多6人。','Choose at least one worker without duplicates; at most 4 members in chapters 0–2, then 6.'],
   TOOL_LOCKED:['工具岗位需要先研发工具调用升级，且最多安排1名工具人。','Research the tool-calling upgrade first; at most one tool teammate is allowed.'],
-  STILL_CLARIFYING:['澄清占用尚未结束，请推进到下一时段后再接单或试算。','Clarification is still in progress. Advance one period before accepting or previewing.']
+  STILL_CLARIFYING:['澄清占用尚未结束，请推进到下一时段后再接单或试算。','Clarification is still in progress. Advance one period before accepting or previewing.'],
+  TEA_COOLDOWN:['今日工坊茶歇已经办过了，明天再来吧。','Today’s studio tea break has already been held.'],
+  DUO_LOCKED:['尚未满足搭档茶会解锁条件（需同队交付2次且未解锁）。','Duo synergy requirements are not yet met.'],
+  THREAD_LOCKED:['该群聊话题暂不可回复或已回复过。','This chat thread is locked or already answered.'],
+  UNKNOWN_GIFT:['未找到该心意礼物。','Unknown gift item.'],
+  TIRED:['伙伴精力不足，请先休息或用餐。','Not enough energy. Rest or have a meal first.'],
+  ALREADY_HERE:['伙伴已经在工作室里了。','This teammate is already at the workshop.']
  });
  for(const code of ['FINALE_LOCKED','ENDING_LOCKED','ENDLESS_LOCKED','EXPEDITION_LOCKED','BID_LOCKED','CHALLENGE_LOCKED'])messages[code]=['条件尚未满足，请查看面板要求。','Requirements are not met. Check the panel.'];
 
@@ -117,7 +123,6 @@ export function AlphaApp(){
  const [ritual,setRitual]=useState<RitualCard|null>(null),[ritualReady,setRitualReady]=useState(false);
  const [deltas,setDeltas]=useState<FloatDelta[]>([]);
  const [audioPrefs,setAudioPrefs]=useState(readAudioPrefs);
- const [localLiving,setLocalLiving]=useState<LocalLivingOverlayState>(emptyLocalLivingState);
  const [activeBark,setActiveBark]=useState<BarkPayload|null>(null);
  const [chatOpen,setChatOpen]=useState(false);
  const [periodBeat,setPeriodBeat]=useState<string|null>(null);
@@ -137,7 +142,7 @@ export function AlphaApp(){
  const tracking=trackingState(view,trackedJobId),tracked=tracking.id;
  useEffect(()=>{if(trackedJobId&&!tracking.pinned)setTrackedJobId(null);},[tracking.pinned,trackedJobId]);
 
- const resetTracking=async(action:()=>Promise<boolean>)=>{prevSnap.current=null;seenRituals.current.clear();lastSlotRef.current=null;setTrackedJobId(null);setDraftTeams({});setReturnTo(null);setLocalLiving(emptyLocalLivingState());setActiveBark(null);setPeriodBeat(null);try{await action();}finally{prevSnap.current=null;seenRituals.current.clear();lastSlotRef.current=null;}};
+ const resetTracking=async(action:()=>Promise<boolean>)=>{prevSnap.current=null;seenRituals.current.clear();lastSlotRef.current=null;setTrackedJobId(null);setDraftTeams({});setReturnTo(null);setActiveBark(null);setPeriodBeat(null);try{await action();}finally{prevSnap.current=null;seenRituals.current.clear();lastSlotRef.current=null;}};
  const commissionReturnFocus=()=>[commissionTrigger.current,jobsTrigger.current,boardTrigger.current].find(e=>e?.isConnected&&!e.closest('dialog,.studio-drawer,.priority-rail'))??boardTrigger.current;
  const selectCommission=(id:string|null)=>{if(jobId!==id&&jobId)game.dismissLocalFeedback({surface:'job',id:jobId});updateJobId(id);setJobInDetail(!!id);};
  const setJobId=(id:string|null)=>{if(id){if(panel!=='jobs')commissionTrigger.current=document.activeElement as HTMLElement;setHud(null);setActorId(null);updatePanel('jobs');}selectCommission(id);};
@@ -280,7 +285,6 @@ export function AlphaApp(){
  const hideGenericDone=!!activeBark&&shownMessage==='DONE';
  const notice=<FeedbackNotice feedback={game.feedback} message={message} english={english} dismiss={game.dismissFeedback}/>;
  const life=(action:Extract<Command,{type:'campaign'}>['action'],id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
- const sendLiving=(action:string,id:string,target?:string)=>send({type:'campaign',action,id,...(target?{target}:{}) } as unknown as Command);
  const fx=(kind:Parameters<typeof playFoley>[0],speakActor?:string)=>{if(still||!audioPrefs.sfx)return;playFoley(kind,true);if(speakActor)playVoiceBlip(speakActor,3,true);};
  const triggerBark=(bark:BarkPayload)=>{unlockAudio();setActiveBark(bark);fx('tap',bark.actorId);};
  const updateAnchors=(next:Record<string,ActorHeadAnchor>)=>{
@@ -297,7 +301,7 @@ export function AlphaApp(){
  const chapterTitles=[tr('开源车库联盟','Open-source garage'),tr('第一笔大订单','The first large order'),tr('模型更新之夜','Model release night'),tr('429危机','The 429 crisis'),tr('最后一个Token','The last token')];
  const advanceInfo=advancePeriodInfo(view,busy,arranging,english);
  const livingCatalog=getLivingCatalog(view);
- const livingView=getLivingView(view,localLiving);
+ const livingView=getLivingView(view);
  const chatterBubble=pickStageChatter(view,livingCatalog,livingView,english,chatterStep);
 
  useEffect(()=>{
@@ -336,14 +340,8 @@ export function AlphaApp(){
   unlockAudio();
   const rel=p.relations[targetActorId];
   const tier=giftReactionTier(gift,targetActorId);
-  const ok=hasNativeLiving(view)?await send({type:'campaign',action:'gift',id:targetActorId,target:gift.id},{surface:'actor',id:targetActorId}):await send({type:'campaign',action:'gift',id:targetActorId},{surface:'actor',id:targetActorId});
+  const ok=await send({type:'campaign',action:'gift',id:targetActorId,target:gift.id},{surface:'actor',id:targetActorId});
   if(!ok)return;
-  if(!hasNativeLiving(view)){
-   setLocalLiving(prev=>{
-    const cur=prev.gifted[targetActorId]??[];
-    return cur.includes(gift.id)?prev:{...prev,gifted:{...prev.gifted,[targetActorId]:[...cur,gift.id]}};
-   });
-  }
   okCb?.();
   triggerBark({
    id:Date.now(),
@@ -351,18 +349,18 @@ export function AlphaApp(){
    emote:tier==='love'?'sparkle':'coffee',
    label:tr(gift.name,gift.nameEn),
    text:pickSocialBark(livingCatalog,targetActorId,tier==='love'?'giftLove':'giftNormal',rel?.affinity??0,english),
-   deltas:[tier==='love'?tr('偏爱礼物 · 好感大幅提升','Loved gift · Bonus affinity'):tier==='like'?tr('心意喜欢 · 好感 +7','Liked gift · Affinity +7'):tr('心情与好感提升','Mood & affinity up')]
+   deltas:tier==='love'
+    ?[tr('偏爱礼物','Loved gift'),tr('心情 +16','Mood +16'),tr('好感 +10','Affinity +10'),tr('压力 -10','Stress -10')]
+    :tier==='like'
+     ?[tr('喜欢礼物','Liked gift'),tr('心情 +12','Mood +12'),tr('好感 +7','Affinity +7'),tr('压力 -5','Stress -5')]
+     :[tr('心意送达','Gift received'),tr('心情 +8','Mood +8'),tr('好感 +4','Affinity +4')]
   });
  };
  const handleTeaBreak=async()=>{
   unlockAudio();
-  if(locked||!livingView.teaReady||view.cash<80)return;
-  if(hasNativeLiving(view)){
-   const ok=await sendLiving('tea','all');
-   if(!ok)return;
-  }else{
-   setLocalLiving(prev=>({...prev,lastTeaDay:view.day}));
-  }
+  if(locked||!livingView.teaReady)return;
+  const ok=await send({type:'campaign',action:'tea',id:'all'});
+  if(!ok)return;
   const speaker=view.actors.find(a=>a.location===p.scene)?.id??view.actors[0]?.id??'bluewhale';
   triggerBark({
    id:Date.now(),
@@ -370,18 +368,14 @@ export function AlphaApp(){
    emote:'coffee',
    label:tr('工坊下午茶','Studio tea break'),
    text:tr('茶歇点心端上桌啦，大家先放慢节奏充会儿电，下半程继续冲刺！','Tea and pastries are served—everyone take a breather before the next sprint!'),
-   deltas:[tr('同场伙伴精力 +12','Scene teammates +12 Energy'),tr('心情 +10','+10 Mood'),tr('压力 -8','-8 Stress')]
+   deltas:[tr('在场精力 +12','Team Energy +12'),tr('心情 +8','Mood +8'),tr('压力 -8','Stress -8')]
   });
  };
  const handleUnlockDuo=async(duo:DuoDef)=>{
   unlockAudio();
   if(locked)return;
-  if(hasNativeLiving(view)){
-   const ok=await sendLiving('duo',duo.id);
-   if(!ok)return;
-  }else{
-   setLocalLiving(prev=>prev.duos.includes(duo.id)?prev:{...prev,duos:[...prev.duos,duo.id]});
-  }
+  const ok=await send({type:'campaign',action:'duo',id:duo.id});
+  if(!ok)return;
   const first=duo.banter[0],second=duo.banter[1];
   triggerBark({
    id:Date.now(),
@@ -391,7 +385,7 @@ export function AlphaApp(){
    label:tr(duo.title,duo.titleEn),
    text:first?(english?first.en:first.zh):tr(duo.desc,duo.descEn),
    partnerText:second?(english?second.en:second.zh):undefined,
-   deltas:[tr('搭档默契已激活','Duo Synergy unlocked'),tr('+2 研发点','+2 RP')]
+   deltas:[tr('搭档默契已激活','Duo Synergy unlocked'),tr('双方好感 +3 · 心情 +6','+3 Affinity · +6 Mood'),'+2 RP']
   });
  };
  const handleReplyChat=async(threadId:string,replyIndex:number)=>{
@@ -399,12 +393,8 @@ export function AlphaApp(){
   if(locked)return;
   const thread=livingView.threads.find(t=>t.id===threadId);
   const reply=thread?.replies[replyIndex];
-  if(hasNativeLiving(view)){
-   const ok=await sendLiving('chat-reply',threadId,String(replyIndex));
-   if(!ok)return;
-  }else{
-   setLocalLiving(prev=>({...prev,chatLog:{...prev.chatLog,[threadId]:replyIndex}}));
-  }
+  const ok=await send({type:'campaign',action:'chat-reply',id:threadId,target:String(replyIndex)});
+  if(!ok)return;
   fx('message',reply?.targetActor);
  };
 
@@ -654,6 +644,8 @@ export function AlphaApp(){
      <button aria-pressed={english} onClick={()=>setEnglish(!english)}><span>{tr('界面语言','Interface language')}</span><b>{english?'English':'中文'}</b></button>
      <button aria-pressed={dark} onClick={()=>setDark(!dark)}><span>{tr('深色界面','Dark interface')}</span><b>{dark?tr('开启','On'):tr('关闭','Off')}</b></button>
      <button aria-pressed={still} onClick={()=>setStill(!still)}><span>{tr('减少动态效果','Reduce motion')}</span><b>{still?tr('开启','On'):tr('关闭','Off')}</b></button>
+     <button aria-pressed={audioPrefs.sfx} onClick={toggleSfx}><span>{tr('界面与气泡音效','UI & voice blips')}</span><b>{audioPrefs.sfx?tr('开启','On'):tr('关闭','Off')}</b></button>
+     <button aria-pressed={audioPrefs.ambience} onClick={toggleAmbience}><span>{tr('场景环境底噪','Scene ambience')}</span><b>{audioPrefs.ambience?tr('开启','On'):tr('关闭','Off')}</b></button>
      <button onClick={()=>{setSettings(false);setSaves(true);void game.refresh();}}>{tr('存档与备份','Saves and backups')}</button>
     </div>
     <footer class="system-footer"><p>{tr('独立本机存档 · 无真实模型调用','Local independent saves · No real model calls')}</p><a href="./PAPER-DOLL-LICENSE.txt">PaperDoll · MIT</a> · <a href="./art/ai-village/LICENSE.txt" target="_blank" rel="noreferrer">AI Village Q版角色</a></footer>
@@ -671,8 +663,9 @@ export function AlphaApp(){
    />
 
    {view.pending&&(()=>{
+    const pendingActor=view.actors.find(a=>view.pending!.actors.includes(a.id));
     const taggedId=actorIds.find(id=>view.pending!.id.includes(id));
-    const evActor=(taggedId?view.actors.find(a=>a.id===taggedId):undefined)??view.actors.find(a=>a.location===p.scene)??view.actors[0];
+    const evActor=pendingActor??(taggedId?view.actors.find(a=>a.id===taggedId):undefined)??view.actors.find(a=>a.location===p.scene)??view.actors[0];
     return (
      <Dialog className="pending-choice ui2-event-dialog" title={english?view.pending.titleEn??view.pending.title:view.pending.title} close={()=>{}} dismissible={false}>
       <div class="ui2-event-layout">
@@ -680,7 +673,10 @@ export function AlphaApp(){
         <img class="event-cover" src={eventArt(view.pending.id)} alt=""/>
         {evActor&&(
          <div class="ui2-event-actor">
-          <img src={`./art/ai-village/portraits/${evActor.id}.png`} alt=""/>
+          <div class="ui2-event-actor-avatar">
+           <img class="ui2-event-portrait" src={`./art/ai-village/portraits/${evActor.id}.png`} alt=""/>
+           <EmoteBadge emote="sweat" view={view}/>
+          </div>
           <div>
            <b>{names[evActor.id]??evActor.id}</b>
            <small>“{pickEventQuote(livingCatalog,view.pending.id,evActor.id,english)}”</small>

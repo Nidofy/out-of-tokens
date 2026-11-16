@@ -138,7 +138,7 @@ export function HudBar(props:HudBarProps){
       </div>
       <div class="ui2-terminal-grid">
        {view.office&&<button disabled={locked||p.scene!=='workshop'} title={p.scene!=='workshop'?tr('仅在工作室场景可布置','Available in workshop scene'):''} onClick={onOpenOffice}><Icon name="decor"/><span>{tr('布置办公室','Arrange office')}</span></button>}
-       <button disabled={locked||!teaReady||view.cash<80} onClick={()=>{onOpenHud('more');onTeaBreak();}}><Icon name="cup"/><span>{teaReady?tr('工坊茶歇 ¥80','Tea break ¥80'):tr('今日已茶歇','Tea used')}</span></button>
+       <button disabled={locked||!teaReady} title={!teaReady&&p.scene!=='workshop'?tr('需在工作室场景举办','Available in workshop scene'):''} onClick={()=>{onOpenHud('more');onTeaBreak();}}><Icon name="cup"/><span>{(p.lastTeaDay??0)>=view.day?tr('今日已茶歇','Tea used'):tr('工坊茶歇 ¥80','Tea break ¥80')}</span></button>
        <button onClick={()=>onOpenHud('board')}><Icon name="notifications"/><span>{tr('工作看板','Work board')}</span></button>
        <button onClick={onOpenMap}><Icon name="map"/><span>{tr('园区地图','Studio map')}</span></button>
        <button onClick={onOpenSaves}><Icon name="save"/><span>{tr('存档与备份','Saves')}</span></button>

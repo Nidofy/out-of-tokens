@@ -377,6 +377,7 @@
  .ui2-duo-card p{margin:0;font-size:12px;line-height:1.4;color:var(--ink)}
  .ui2-duo-card button{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
 
+ .ui2-tea-banner{display:block;width:100%;height:112px;object-fit:cover;border-radius:10px;margin-bottom:10px;border:1px solid var(--line)}
  .ui2-tea-icon{display:grid;place-items:center;background:var(--solid);border:1px solid var(--line);border-radius:10px;color:var(--brass)}
  .ui2-synergy-strip{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
  .ui2-synergy-chip{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px;padding:5px 10px;border-radius:12px;font-size:12px;background:var(--card);border:1px solid var(--line)}
@@ -391,7 +392,9 @@
  .ui2-client-card small{font-weight:400;font-size:12px;color:var(--muted)}
  .ui2-client-card p{margin:0;font-size:12px;line-height:1.4;color:var(--ink)}
  .ui2-event-actor{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;margin:8px 0;border-radius:12px;background:var(--card);border:1px solid var(--line)}
- .ui2-event-actor img{width:40px;height:40px;border-radius:10px;object-fit:cover;flex:none}
+ .ui2-event-actor-avatar{position:relative;flex:none}
+ .ui2-event-actor img.ui2-event-portrait{width:44px;height:44px;border-radius:10px;object-fit:cover;display:block}
+ .ui2-event-actor-avatar :is(.ui2-emote-img,.ui2-emote-svg){position:absolute;right:-6px;bottom:-4px;width:22px;height:22px}
  .ui2-event-actor b{display:block;font-size:12px;margin-bottom:2px}
  .ui2-event-actor small{display:block;font-size:12px;line-height:1.35;color:var(--ink)}
 
@@ -493,6 +496,8 @@
   .world-map{min-height:0;padding:10px;gap:10px}.world-map img{height:80px;object-fit:cover}
   .ui2-period-beat{top:58px;padding:4px 12px;font-size:12px}
   .ui2-bark-card{bottom:64px}
+  dialog.ui2-messenger-dialog{width:min(820px,calc(100vw - 16px));max-height:calc(100dvh - 12px);padding:12px}
+  .ui2-messenger-dialog .dialog-head{top:-12px;margin:-12px -12px 8px;padding:6px 12px}
   .ui2-messenger-layout{min-height:0;max-height:calc(100dvh - 108px)}
  }
 

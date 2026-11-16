@@ -102,14 +102,26 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
       </section>
 
       <section class="ui2-card" data-ready={!!teaReady&&!locked&&view.cash>=80}>
+       <img class="ui2-tea-banner" src={teaBreakAssetSrc()} alt=""/>
        <div class="ui2-card-head">
-        {teaBreakAssetSrc(view)?<img class="art-icon" src={teaBreakAssetSrc(view)!} alt=""/>:<span class="art-icon ui2-tea-icon"><Icon name="cup"/></span>}
         <div>
          <h4>{tr('工坊全员下午茶','Studio tea break')}</h4>
-         <small>{tr('每日 1 次 · 同场景伙伴精力 +12 · 心情 +10 · 压力 -8','Once daily · +12 Energy · +10 Mood · -8 Stress')}</small>
+         <small>{tr('每日 1 次 · 在场伙伴精力 +12 · 心情 +8 · 压力 -8','Once daily · +12 Energy · +8 Mood · -8 Stress')}</small>
         </div>
        </div>
-       {onTeaBreak&&<button class="primary" disabled={locked||!teaReady||view.cash<80} onClick={onTeaBreak}><Icon name="cup"/><span>{teaReady?tr('举办今日工坊茶歇 ¥80','Host studio tea break ¥80'):tr('今日茶歇已享用','Tea break enjoyed today')}</span></button>}
+       {onTeaBreak&&(()=>{
+        const teaDoneToday=(p.lastTeaDay??0)>=view.day;
+        const teaLabel=teaReady
+         ?tr('举办今日工坊茶歇 ¥80','Host studio tea break ¥80')
+         :teaDoneToday
+          ?tr('今日茶歇已享用','Tea break enjoyed today')
+          :p.scene!=='workshop'
+           ?tr('回工作室后可举办茶歇','Return to workshop for tea')
+           :view.cash<80
+            ?tr('举办工坊茶歇（需 ¥80）','Host tea break (needs ¥80)')
+            :tr('伙伴忙碌中 · 稍后可办','Teammates busy right now');
+        return <button class="primary" disabled={locked||!teaReady} onClick={onTeaBreak}><Icon name="cup"/><span>{teaLabel}</span></button>;
+       })()}
       </section>
 
       <section class="ui2-card">

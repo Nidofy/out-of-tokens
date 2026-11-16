@@ -55,7 +55,6 @@ export function GiftPickerGrid({
  actorId,
  gifts,
  giftedIds,
- view,
  cash,
  disabled,
  english,
@@ -64,7 +63,7 @@ export function GiftPickerGrid({
  actorId:string;
  gifts:readonly GiftDef[];
  giftedIds:readonly string[];
- view:GameView;
+ view?:GameView;
  cash:number;
  disabled:boolean;
  english:boolean;
@@ -74,14 +73,14 @@ export function GiftPickerGrid({
  return (
   <div class="ui2-gift-grid" role="group" aria-label={tr('挑选心意好礼','Choose a signature gift')}>
    {gifts.map(g=>{
-    const asset=giftAssetSrc(g.id,view);
+    const asset=giftAssetSrc(g.id);
     const known=giftedIds.includes(g.id);
     const tier=giftReactionTier(g,actorId);
     const affordable=cash>=g.cost;
     return (
      <button key={g.id} class="ui2-gift-card" disabled={disabled||!affordable} title={english?g.descEn:g.desc} onClick={()=>onSelectGift(g)}>
       <div class="ui2-gift-thumb">
-       {asset?<img src={asset} alt=""/>:<Icon name="gift"/>}
+       <img src={asset} alt=""/>
        {known&&<span class={`ui2-gift-pref is-${tier}`}><Icon name={tier==='love'?'heart':'check'}/>{tier==='love'?tr('偏爱','Loved'):tier==='like'?tr('喜欢','Liked'):tr('已赠','Given')}</span>}
       </div>
       <b>{english?g.nameEn:g.name}</b>

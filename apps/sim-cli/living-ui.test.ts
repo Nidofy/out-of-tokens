@@ -4,17 +4,20 @@ import {labSession} from '../web/src/office-lab.js';
 import {resolveGlobalShortcut} from '../web/src/ui2-logic.js';
 import {reactionFor} from '../web/src/scene-layout.js';
 import {
- emptyLocalLivingState,
+ clientAssetSrc,
+ emoteAssetSrc,
  findActiveTeamDuos,
  getLivingCatalog,
  getLivingView,
+ giftAssetSrc,
  giftReactionTier,
  pickEventQuote,
  pickSlotBeat,
  pickSocialBark,
  pickStageChatter,
  pickWorkBark,
- resolveClientPersona
+ resolveClientPersona,
+ teaBreakAssetSrc
 } from '../web/src/living-adapter.js';
 import {
  playFoley,
@@ -56,10 +59,16 @@ test('reactionFor prioritizes sleepy under low energy, surprised under load or s
  expect(reactionFor({...v,actors:upbeatActors},'llama')).toBe('happy');
 });
 
-test('living-adapter resolves affinity-tiered barks, client personas, team duos and stage chatter cleanly',()=>{
+test('living-adapter reads native living-m6 catalog, Art-Batch 6 paths, personas and stage chatter',()=>{
  const g=labSession(loadFullContent(),'standard'),v=g.view;
  const catalog=getLivingCatalog(v);
- const living=getLivingView(v,emptyLocalLivingState());
+ const living=getLivingView(v);
+
+ expect([catalog.gifts.length,catalog.duos.length,catalog.threads.length,catalog.clients.length,Object.keys(catalog.barks).length]).toEqual([6,12,20,6,12]);
+ expect(emoteAssetSrc('coffee')).toBe('./art/living/emote-coffee.webp');
+ expect(giftAssetSrc('rice-bento')).toBe('./art/living/gift-rice-bento.webp');
+ expect(clientAssetSrc('tea-lin')).toBe('./art/living/client-tea-lin.webp');
+ expect(teaBreakAssetSrc()).toBe('./art/living/card-tea-break.webp');
 
  const lowBark=pickSocialBark(catalog,'qwen','chat',10,false);
  const midBark=pickSocialBark(catalog,'qwen','chat',40,false);
@@ -72,8 +81,9 @@ test('living-adapter resolves affinity-tiered barks, client personas, team duos 
  const loveGift=catalog.gifts.find(item=>item.id==='rice-bento')!;
  expect(giftReactionTier(loveGift,'bluewhale')).toBe('love');
 
- const persona=resolveClientPersona(catalog,{template:'menu-copy',title:'茶饮新品文案与社媒海报'});
- expect(persona.id).toBe('tea-lin');
+ expect(resolveClientPersona(catalog,{template:'menu',title:'帮楼下奶茶店写个菜单'}).id).toBe('tea-lin');
+ expect(resolveClientPersona(catalog,{template:'bugs',title:'修一下网站，就一个小地方'}).id).toBe('oss-zhe');
+ expect(resolveClientPersona(catalog,{template:'incubator',title:'孵化器项目'}).id).toBe('vc-lu');
  expect(pickWorkBark(catalog,'bluewhale','assignWorker',true).length).toBeGreaterThan(0);
  expect(pickEventQuote(catalog,'api-outage','llama',false).length).toBeGreaterThan(0);
  expect(pickSlotBeat(catalog,0,1,false).length).toBeGreaterThan(0);
@@ -88,6 +98,35 @@ test('living-adapter resolves affinity-tiered barks, client personas, team duos 
  const duoBubble=pickStageChatter(v,catalog,living,false,1);
  expect(duoBubble?.buddyId).toBeTruthy();
  expect(duoBubble?.buddyText?.length).toBeGreaterThan(0);
+});
+
+test('living Wave 2 round-trips gift, tea break and free chat-reply through native oot-core session',()=>{
+ const g=labSession(loadFullContent(),'initial');
+ const startCash=g.view.cash;
+ const startMood=g.view.actors.find(a=>a.id==='bluewhale')!.mood;
+
+ const giftRes=g.send({type:'campaign',action:'gift',id:'bluewhale',target:'rice-bento'});
+ expect(giftRes.error).toBeNull();
+ expect(g.view.cash).toBe(startCash-45);
+ expect(g.view.living.gifted.bluewhale).toEqual(['rice-bento']);
+ expect(g.view.actors.find(a=>a.id==='bluewhale')!.mood).toBe(Math.min(100,startMood+16));
+ expect(g.view.campaign!.relations.bluewhale!.affinity).toBe(10);
+
+ const cashAfterGift=g.view.cash;
+ expect(g.view.living.teaReady).toBe(true);
+ const teaRes=g.send({type:'campaign',action:'tea',id:'all'});
+ expect(teaRes.error).toBeNull();
+ expect(g.view.cash).toBe(cashAfterGift-80);
+ expect(g.view.living.teaReady).toBe(false);
+
+ const thread=g.view.living.threads[0]!;
+ const startUnread=g.view.living.unreadThreads;
+ const startSlot=g.view.absoluteSlot;
+ const chatRes=g.send({type:'campaign',action:'chat-reply',id:thread.id,target:'0'});
+ expect(chatRes.error).toBeNull();
+ expect(g.view.living.unreadThreads).toBe(startUnread-1);
+ expect(g.view.living.threads.find(t=>t.id===thread.id)?.chosenReply).toBe(0);
+ expect(g.view.absoluteSlot).toBe(startSlot);
 });
 
 test('audio-foley executes safely in headless test runtime without DOM audio crash',()=>{
