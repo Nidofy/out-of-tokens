@@ -1,7 +1,9 @@
 import {expect,test} from 'vitest';
 import {loadFullContent} from 'oot-content';
-import {GameSession} from 'oot-platform';
-import {labSession} from '../web/src/office-lab.js';
+import {CheckpointCoordinator,GameSession,switchImportedSession} from 'oot-platform';
+import {defaultSaveEncoder} from 'oot-platform/worker';
+import {LabSaves,labSession} from '../web/src/office-lab.js';
+import {encodeViaWorkerProtocol} from '../web/src/save-encoder-host.js';
 import {
  backupPolicyCopy,
  buildSampleTeamDraft,
@@ -165,4 +167,76 @@ test('filterValidLastTeamMembers revalidates busy actors and mode compatibility 
  expect(res.dropped).toContain('qwen'); // already busy on working job
  expect(res.dropped).toContain('deepseek'); // cloud-only initial version cannot use local
  expect(res.valid).toEqual([{character:'bluewhale',role:'planner',mode:'cloud'}]);
+});
+
+test('H2: LabSaves preserves boundary backups across 50 checkpoint writes and honors hosted honest copy',async()=>{
+ const lab=new LabSaves();
+ // Initial boundary write + 50 ordinary checkpoints must never pollute backup-1..5
+ let rev=await lab.write('auto','save-0',0,'boundary',{lineageId:'run-alpha'});
+ expect(rev).toBe(1);
+ for(let i=1;i<=50;i++){
+  rev=await lab.write('auto',`ckpt-${i}`,rev,'checkpoint',{lineageId:'run-alpha'});
+ }
+ expect((await lab.read('backup-1'))).toBeNull();
+ // Next boundary write rotates previous auto ('ckpt-50') + meta into backup-1
+ rev=await lab.write('auto','boundary-1',rev,'boundary',{lineageId:'run-alpha'});
+ expect((await lab.read('backup-1'))?.text).toBe('ckpt-50');
+ expect((await lab.read('backup-1'))?.meta?.lineageId).toBe('run-alpha');
+ // 3-arg legacy write compatibility preserved
+ await expect(lab.write('manual-1','manual-save',0)).resolves.toBe(1);
+ await expect(lab.write('auto','stale',0,'checkpoint')).rejects.toThrow('SAVE_CONFLICT');
+ expect(backupPolicyCopy(false,true).summaryTitle).toContain('宿主端');
+ expect(backupPolicyCopy(true,true).summaryTitle.toLowerCase()).toContain('host');
+});
+
+test('H2: Worker save-encoder protocol matches defaultSaveEncoder byte-for-byte including throughCommand prefix',async()=>{
+ const c=loadFullContent();
+ const g=new GameSession(c,1);
+ const job=g.view.jobs.find(j=>j.template==='menu')!;
+ expect(g.send({type:'accept',job:job.id}).error).toBeNull();
+ expect(g.send({type:'assign',job:job.id,team:[{character:'qwen',role:'worker',mode:'cloud'}]}).error).toBeNull();
+ expect(g.send({type:'advance'}).error).toBeNull();
+
+ const snap=g.checkpointSnapshot();
+ const fullDefault=await defaultSaveEncoder.encode(snap.input);
+ const fullWorker=await encodeViaWorkerProtocol(snap.input);
+ expect(fullWorker).toBe(fullDefault);
+
+ const prefixInput={...snap.input,throughCommand:2};
+ const prefixDefault=await defaultSaveEncoder.encode(prefixInput);
+ const prefixWorker=await encodeViaWorkerProtocol(prefixInput);
+ expect(prefixWorker).toBe(prefixDefault);
+ expect(prefixWorker).not.toBe(fullWorker);
+
+ await expect(encodeViaWorkerProtocol({...snap.input,throughCommand:99})).rejects.toThrow('INVALID_CHECKPOINT_PREFIX');
+});
+
+test('H2: CheckpointCoordinator and switchImportedSession enforce drain on normal switch and confirmed abandonPending on paused switch',async()=>{
+ const c=loadFullContent();
+ const g=new GameSession(c,1,'lineage-main');
+ const other=new GameSession(c,2,'lineage-other');
+ const exportedOther=await other.exportSave();
+ const storage=new LabSaves();
+ let coord=new CheckpointCoordinator(()=>g.checkpointSnapshot(),storage,0,defaultSaveEncoder);
+
+ expect(g.send({type:'advance'}).error).toBeNull();
+ coord.enqueue('command');
+ // Pause via external-change before flush finishes
+ storage.onExternalChange?.();
+ expect(coord.currentStatus.kind).toBe('paused');
+ await expect(switchImportedSession(g,coord,exportedOther)).rejects.toThrow('SWITCH_REQUIRES_CONFIRMATION');
+ // Cancellation / bad JSON keeps current lineage and queue intact
+ await expect(switchImportedSession(g,coord,'{not-json',{confirmed:true})).rejects.toThrow();
+ expect(g.lineageId).toBe('lineage-main');
+
+ // Confirmed switch on valid save abandons pending, switches identity, returns saved:false
+ const res=await switchImportedSession(g,coord,exportedOther,{confirmed:true});
+ expect(res.saved).toBe(false);
+ expect(g.lineageId).toBe(res.lineageId);
+ // Normal drain on a clean coordinator succeeds without confirmed flag
+ coord=new CheckpointCoordinator(()=>g.checkpointSnapshot(),storage,0,defaultSaveEncoder);
+ coord.enqueue('import');
+ const drained=await coord.drain();
+ expect(drained.kind).toBe('saved');
+ coord.dispose();
 });

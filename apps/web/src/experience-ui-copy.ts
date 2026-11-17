@@ -135,8 +135,21 @@ export function switchConfirmCopy(
  };
 }
 
-export function backupPolicyCopy(english:boolean){
+export function backupPolicyCopy(english:boolean,hosted=false){
  const tr=(zh:string,en:string)=>english?en:zh;
+ if(hosted){
+  return {
+   summaryTitle:tr('备份档（宿主端最近 5 次保存）','Backups (Last 5 host saves)'),
+   summaryHint:tr(
+    '宿主端由服务端保存接口自动保留最近 5 次自动档副本（含冲突保护）。',
+    'The host save service keeps the last 5 autosave revisions server-side with conflict checks.'
+   ),
+   dialogIntro:tr(
+    '3 个手动档、1 个自动档、宿主端最近 5 次保存备份；冲突会拒绝覆盖。旧版本存档须用原版本打开。',
+    '3 manual slots, 1 autosave, and last 5 host save backups. Conflicts refuse overwrite. Older saves need their original version.'
+   )
+  };
+ }
  return {
   summaryTitle:tr('备份档（最近 5 个跨日/边界节点）','Backups (Last 5 boundary nodes)'),
   summaryHint:tr(

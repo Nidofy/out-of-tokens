@@ -98,6 +98,9 @@ export function AlphaApp(){
   THREAD_LOCKED:['该群聊话题暂不可回复或已回复过。','This chat thread is locked or already answered.'],
   UNKNOWN_GIFT:['未找到该心意礼物。','Unknown gift item.'],
   TIRED:['伙伴精力不足，请先休息或用餐。','Not enough energy. Rest or have a meal first.'],
+  LINEAGE_RESET:['宿主存档来源已重置，本局提示与未读状态将按新会话记录。','Host save lineage reset; UI unread and onboarding flags start fresh for this run.'],
+  SESSION_SWITCHING:['正在切换会话，请稍候再操作。','Session switch in progress; wait a moment before sending commands.'],
+  SWITCH_REQUIRES_CONFIRMATION:['存在未保存或异常状态，请先导出并确认后再切换存档。','Confirm discarding or exporting unsaved progress before switching saves.'],
   ALREADY_HERE:['伙伴已经在工作室里了。','This teammate is already at the workshop.']
  });
  for(const code of ['FINALE_LOCKED','ENDING_LOCKED','ENDLESS_LOCKED','EXPEDITION_LOCKED','BID_LOCKED','CHALLENGE_LOCKED'])messages[code]=['条件尚未满足，请查看面板要求。','Requirements are not met. Check the panel.'];
@@ -769,8 +772,8 @@ export function AlphaApp(){
     />
     {(update||reloadReady)&&<p class="system-update"><button onClick={()=>update?activateUpdate(update,navigator.serviceWorker,()=>location.reload()):location.reload()}>{tr('已保存或导出进度，刷新到新版本','Progress saved or exported — refresh to new version')}</button></p>}
     {game.hosted&&<button disabled={busy} onClick={()=>void game.reconcile()}>{tr('只读核对自动档（保留当前进度）','Reconcile autosave without replacing current progress')}</button>}
-    <p class="system-intro">{backupPolicyCopy(english).dialogIntro}</p>
-    <SaveSlots records={game.records} busy={busy} english={english} save={id=>void game.save(id)} load={id=>game.requestLoad(id,clearTransientState)}/>
+    <p class="system-intro">{backupPolicyCopy(english,game.hosted).dialogIntro}</p>
+    <SaveSlots records={game.records} busy={busy} english={english} hosted={game.hosted} save={id=>void game.save(id)} load={id=>game.requestLoad(id,clearTransientState)}/>
     <section class="save-transfer" aria-label={tr('文件备份','File backups')}><h3>{tr('文件备份','File backups')}</h3><button disabled={busy} onClick={()=>void game.exportFile()}>{tr('导出当前进度','Export current progress')}</button><label>{tr('导入文件','Import file')}<input type="file" accept="application/json,.json" disabled={busy} onChange={e=>{e.currentTarget.closest('dialog')?.focus({preventScroll:true});const file=e.currentTarget.files?.[0];if(file)game.requestImportFile(file,clearTransientState);e.currentTarget.value='';}}/></label></section>
    </Dialog>}
 
