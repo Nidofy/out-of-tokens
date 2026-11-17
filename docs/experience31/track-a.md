@@ -3,13 +3,46 @@
 - **Worktree**: `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-ui`
 - **Branch**: `experience-ui-wave1`
 - **Baseline SHA**: `d18241a7aa9c5876367867fe78d9bfdd99d0f0ae`
-- **Track B Published SHA Integrated**: `244018cfae492cf1196299d0fbd967f32c9b805e` (registered in `9697b2f9`, includes W3 `ee0c04a`, W2 `bda560c`, W1 `7a9f3df`, merged cleanly into `experience-ui-wave1`)
-- **Contract Version**: `EXPERIENCE_CONTRACT = 1` (H1 Contract v1 frozen + amended 962-command stress fixture acknowledged in `ux-c0.md` §6.4)
-- **Historical Holds Preserved**: `VF5 / Visual Freeze HOLD`, physical touch / 200% OS font / real DSH host holds remain unchanged.
+- **Track B Published SHA Integrated**: `0912342ac296e888f1d2fb7af526069953b20d2f` (includes complete Art-Batch 7 `29ee4781d2d637faf963e13cc652842f62b6b482`, `b204a077`, W3 `ee0c04a`, W2 `bda560c`, W1 `7a9f3df`, merged cleanly into `experience-ui-wave1`)
+- **Latest Final Implementation SHA**: `c8cf69f59aee3f66e390a4944c6bb30c69929b44`
+- **Contract Version**: `EXPERIENCE_CONTRACT = 1` (H1 Contract v1 frozen + `receipt.assessment` compatible addition + amended 962-command stress fixture acknowledged in `ux-c0.md` §6.4)
+- **Historical Holds Preserved**: `VF5 / Visual Freeze HOLD`, physical touch / 200% OS font / real DSH host holds remain unchanged; protected `apps/dsh/**` POST server rotation limitation vs Browser boundary-only policy stays explicit.
 
 ---
 
 ## Checkpoint History
+
+### 8. W4 / H6 — Complete Art-Batch 7 Approval, I4 Fix (`receipt.assessment`), Browser Perf Matrix & 20-Case Acceptance (2026-11-17)
+- **Final Implementation SHA**: `c8cf69f59aee3f66e390a4944c6bb30c69929b44`
+- **Track B Released SHA Merged**: `0912342ac296e888f1d2fb7af526069953b20d2f`
+- **Evidence**: `../commission-evidence/experience31/w4/c8cf69f59aee3f66e390a4944c6bb30c69929b44/`
+- **Closure of Track B Integration Review Items (`I1`, `I2`, `I3`, `I4`)**:
+  - **I4 (P1)**: Consumed `receipt.assessment` in `apps/web/src/delivery-feedback-ui.tsx` (`buildDeliveryFeedbackPayload`, `<DeliveryFeedbackModal>`), `apps/web/src/decision-panels.tsx` (`DeliverySummary`), and `apps/web/src/commission-workbench.tsx` (`QualitySealSvg` & historical art subtitle) so multi-phase delivery (e.g., `build-2` `project:incubator:1` phase 0 `quality = 84.96`) and `rework` retain pre-reset score/pass-line/breakdown rather than displaying post-reset `0`, while legacy receipts without `assessment` render neutral copy. Verified by new `I4 regression` test in `apps/sim-cli/experience-ui.test.ts`.
+  - **W4 Browser Findings Fixed & Re-Verified**:
+    - Caught Settings display toggles (`still` / `dark` / `english`) reverting after `reload()`; fixed in `apps/web/src/alpha-app.tsx` (`localStorage` `oot-display-{theme,motion,locale}`) and re-verified `dataset.motion === "still"` persists across 2x reload in production `4195/`.
+    - Caught `15` `document.elementFromPoint` hit failures on `768×1024` where `.scene-left-stack` (`Locations` button at `top: 72px`) overlapped the wrapped 2-row `.ui2-hud` (`height: 96px`); fixed in `apps/web/src/ui2.css` (`@media(max-width:959px)` `top: 116px`), tuned `.ui2-guide-pill` & `.dialog-head button`/`.ui2-bark-close` to `>= 44×44`, centered `outcome-cafe-sign` (`50% 50%`), compacted `.ui2-delivery-dialog`, and re-verified **0 overflow / 0 short controls / 0 `elementFromPoint` hit failures** across `34` `768×1024` audit snapshots + post-I4 `4195/` production sanity pass (`Locations` button `y=116` below `banner.bottom=108`).
+- **Frozen Browser Worker + IndexedDB Benchmark (`4197/?exp-perf=1`, Chrome/152, 16 cores, `visibility: visible`, 5 warmups + 30 samples, pre-final-UI-polish Worker/core baseline)**:
+  - `build-2` (`529` cmds, `41,575 B`): `usedSaveWorker: true`, `enqueueMainMs` p95 `2.40 ms` (max `2.80 ms`), `workerPostMs` max `1.00 ms`, `idbWriteMs` p95 `2.20 ms`, `e2eCommitMs` p50 `31.10 ms` / p95 `33.80 ms` / max `40.50 ms` (`<= 1000 ms`).
+  - `guide-1` (`419` cmds, `33,549 B`): `usedSaveWorker: true`, `enqueueMainMs` p95 `2.10 ms` (max `2.20 ms`), `workerPostMs` max `1.10 ms`, `idbWriteMs` p95 `1.90 ms`, `e2eCommitMs` p50 `25.00 ms` / p95 `33.50 ms` / max `33.70 ms` (`<= 1000 ms`).
+  - `seed21-long` (`962` cmds, `71,401 B`): `usedSaveWorker: true`, `enqueueMainMs` p95 `2.50 ms` (max `2.70 ms`), `workerPostMs` max `1.00 ms`, `idbWriteMs` p95 `1.50 ms`, `e2eCommitMs` p50 `20.80 ms` / p95 `25.30 ms` / max `31.40 ms` (`<= 1000 ms`).
+  - Candidate Search Worker (`opening-176` / `controlled-full-roster-256`): `usedSearchWorker: true`, `mainThreadBlockingMs` p95 `0.20 ms` / max `0.20 ms` (`<= 50 ms`), `roundTripMs` p95 `4.50 ms` / `6.10 ms`, `truncated: true` on `256` evals, exact parity with synchronous search.
+- **Browser Acceptance Summary (`0` `{ force: true }`, viewport restored `1280×720`, all test servers stopped)**:
+  - **20-Case Matrix (`1280×720`, `768×1024`, `844×390`, `560×800`, `390×844` × `zh-CN`/`en` × `light`/`dark`)**: `0` horizontal overflow, `0` `<44×44` interactive targets, real `Tab`/`Esc` focus restoration, 3-col desktop vs 1-col narrow candidates grid.
+  - **Complete 8-Slot Art-Batch 7 (`docs/experience31/art-slots.md` §6 — `APPROVE`)**: all 8 slots (`outcome-tea-menu`, `outcome-cafe-sign`, `outcome-community-web`, `outcome-bookshop-system`, `outcome-bookshop-guide`, `outcome-workshop-display`, `vignette-rest-corner`, `vignette-first-delivery`) verified `data-art-state="loaded"` across 5 viewports + Light/Dark + ZH/EN, and verified `[data-art-state="fallback"]` (`0` broken `<img>`, enabled CTAs, `0` console/page errors) on HTTP 404 server `4196/`.
+  - **Production Flow, Reduced Motion, Faults & Wave 2 (`4195/` & `4197`)**: real Settings reduced-motion switch (`data-motion="still"` + reload persistence), strict `Result -> Reason -> Cash -> Response` static `DeliveryFeedbackModal` (including `白板双拆解` duo chain & recorded contributors), Journal Outcome Wall (`vignette-first-delivery` + delivered outcome cards), dual-tab `BroadcastChannel` conflict pause/export/cancel/confirm recovery, `Ctrl+Shift+F10` storage write error/retry, and Wave 2 regressions.
+- **Final Checks at `c8cf69f5`**:
+  - `pnpm check` (`task-1545`): `tsc -b --pretty false`, `eslint packages apps`, **52 test files / 469 tests PASS**, `oot-web` + `oot-dsh` builds PASS, `experience-module-graph.json` `fixtureReachable: false`.
+  - `git diff --check`: `0` exit; EXP-14 rule grep across `apps/`: `0` matches (`exit 1`); protected-files diff vs `0912342a`: `0` files.
+
+### 7. H5 / W3 — Complete Art-Batch 7 Merge, I1–I3 Fixes, Delivery Feedback, Duo Short Chains & Outcome Wall (2026-11-17)
+- **Implementation SHA**: `0cd7f5af2008e46d9ebd6a41de0b993fb13034b3`
+- **Track B Released SHA Merged**: `29ee4781d2d637faf963e13cc652842f62b6b482` (`e6ba157`)
+- **Evidence**: `../commission-evidence/experience31/h5/0cd7f5af2008e46d9ebd6a41de0b993fb13034b3/`
+- **Owned Files Modified / Created**:
+  - `apps/web/src/use-game.ts`, `apps/sim-cli/experience-ui.test.ts`: resolved Track B integration items **I1**, **I2** (`executeManualSlotLoad` reads post-drain `'auto'` CAS and always enqueues `'load'` boundary without premature `saved`), and **I3** (`executeManualSlotLoad` catches post-commit `'auto'` read error safely while keeping switched session interactive/exportable), plus added W3 & I1/I2/I3 Vitest regressions (**52 files / 467 tests PASS**).
+  - `apps/web/src/experience-adapter.ts`, `apps/web/src/experience-art-slot.tsx`: mapped all commission templates to frozen Art-Batch 7 outcome IDs (`artSlotForJobTemplate`) and tuned 6 new `object-position` values.
+  - `apps/web/src/decision-panels.tsx`, `apps/web/src/delivery-feedback-ui.tsx` (new): reordered `DeliverySummary` strictly to `Result -> Reason -> Cash -> Response` and built `DeliveryFeedbackModal` (4 ordered steps, `跳过动画 / Skip`, static `still` / `prefers-reduced-motion`, `Escape` focus return, recorded contributors only).
+  - `apps/web/src/commission-workbench.tsx`, `apps/web/src/partner-profile.tsx`, `apps/web/src/journal-hub.tsx`, `apps/web/src/alpha-app.tsx`, `apps/web/src/ui2.css`, `apps/web/src/experience-diagnostics.ts` (new), `apps/web/src/main.tsx`: wired 3-stage `experienceDuoCopy` chains, Journal Studio Outcome Wall (`outcome-workshop-display` empty shelf + `vignette-first-delivery` + factual receipt cards), urgent priority suppression (`save paused/error`, `view.pending`, imminent breach), and opt-in `DEV`/`visual-review` diagnostics (eliminated in production bundle).
 
 ### 6. H4 / W2 — Candidate Worker Host, Comparison Cards, Finance/Remedies & EXP-14 Batch 2 Removal (`B-W2`) (2026-11-17)
 - **Implementation SHA**: `7f500b9a9982ef6f7f23ace8fa426f7fc2f31c28`
@@ -128,6 +161,6 @@
 | A-W1-6 | First-order live forecast fit & editable sample squad | Completed | `00a55ba` + Vitest + Chromium verified |
 | A-W1-1 | Save status UI, alert banner, boundary backup copy, SwitchConfirmDialog, H2 wiring | Completed (`B-W1a` integrated) | `ec77ea8` + Vitest (50/445) + Chromium dual-tab/reload verified |
 | A-W1-2/3/4 | Advance preview, Activity preview (all slot/overtime commands), 7 learning nodes, 2-sample art gate | Completed (`3af8078` + `art-slots.md` §5 `APPROVE`) | Vitest (50/446) + 5-viewport Chromium + 404 art fallback |
-| A-W2-1/2/3/4 | Candidate comparison (Worker host, 3 cards, delta, 0-plan), remedies, finance, reuse team, EXP-14 Batch 2 removal | Implementation & unit/integration checks complete (`7f500b9`; browser `<=50ms` check queued in W4) | Vitest (52/464) + 0 EXP-14 copies |
-| A-W3-1 | Delivery feedback order, 2 duo short chains, Outcome Wall, 8 art slots | Queued for H5 (`B-W3`) | Pending |
-| A-W4-1 | 20-case real-browser matrix, `elementFromPoint`, fault recovery, Wave 2 regressions | Queued for H6 (`W4`) | Pending |
+| A-W2-1/2/3/4 | Candidate comparison (Worker host, 3 cards, delta, 0-plan), remedies, finance, reuse team, EXP-14 Batch 2 removal | Completed (`7f500b9` + W4 browser `<=50ms` `0.20ms` verified) | Vitest (52/469) + 0 EXP-14 copies + Chromium perf |
+| A-W3-1 | Delivery feedback order (`I4` assessment fixed), 2 duo short chains, Outcome Wall, all 8 Art-Batch 7 slots | Completed (`0cd7f5a` + `c8cf69f` + `art-slots.md` §6 `APPROVE`) | Vitest (`I1–I4`) + 5-viewport Chromium + 404 fallback |
+| A-W4-1 | 20-case real-browser matrix, `elementFromPoint`, frozen 3-input perf matrix, fault recovery, Wave 2 regressions | Completed (`c8cf69f`, host rotation conflict & `VF5 HOLD` retained) | Chrome/152 (`0` overflow/`<44px`/`hitFailures`), all servers stopped |
