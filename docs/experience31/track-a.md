@@ -3,16 +3,35 @@
 - **Worktree**: `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-ui`
 - **Branch**: `experience-ui-wave1`
 - **Baseline SHA**: `d18241a7aa9c5876367867fe78d9bfdd99d0f0ae`
-- **Track B Published SHA Integrated**: None yet (reviewed Track B C0 rev 2 `424045da` / `d4c0a8eb`; co-sign complete at `a19e2f68`; awaiting frozen H1 SHA / `B-W1a` release)
-- **Contract Version**: `EXPERIENCE_CONTRACT = 1` (C0 rev 2 co-signed by Track A; ready for H1 freeze)
+- **Track B Published SHA Integrated**: `7a9f3df6f120fd8fac1c955580cc70f934a6ff03` (registered in `bf196bea749d5189a39dc3a6a8b6dec100a7df54`, merged cleanly into `experience-ui-wave1`)
+- **Contract Version**: `EXPERIENCE_CONTRACT = 1` (H1 Contract v1 frozen + amended 962-command stress fixture acknowledged in `ux-c0.md` §6.4)
 - **Historical Holds Preserved**: `VF5 / Visual Freeze HOLD`, physical touch / 200% OS font / real DSH host holds remain unchanged.
 
 ---
 
 ## Checkpoint History
 
+### 4. H2 — Real Save Coordinator, Worker Encoder & Dual-Tab Recovery (`B-W1a`) (2026-11-17)
+- **Implementation SHA**: `ec77ea84d7148f930bd1391f3a86e6aa16a72e09`
+- **Track B Released SHA Merged**: `7a9f3df6f120fd8fac1c955580cc70f934a6ff03` (`bf196bea`)
+- **Evidence**: `../commission-evidence/experience31/h2/ec77ea84d7148f930bd1391f3a86e6aa16a72e09/`
+- **Owned Files Modified / Created**:
+  - `docs/experience31/ux-c0.md`: added §6.4 acknowledging Track B's amended longer save/replay stress fixture (`experience-long-fixture.ts`: `seed21`, `962` commands, `240` cumulative slots across `3` runs, SHA256 `eb98024438e47e62e752d994fc105ecda4ae43793db1062d23ab34976bd870f4`).
+  - `apps/web/src/office-lab.ts`: adapted `LabSaves` to `SaveStorage` (`write` supports `'checkpoint'` vs `'boundary'` atomic `backup-1..5` rotation + `SaveMeta`, preserving 3-arg compatibility).
+  - `apps/web/src/save-encoder-worker.ts`, `apps/web/src/save-encoder-host.ts` (new): Web Worker `SaveEncoder` delegating to `defaultSaveEncoder.encode(input)` from `oot-platform/worker` (preserving `SaveInput.throughCommand` prefix replay + canonical save bytes), plus Node/fallback parity helper.
+  - `apps/web/src/use-game.ts`: wired real `CheckpointCoordinator` per lineage, non-blocking command enqueue (clearing `busy` without awaiting storage), monotonic `matchesRevision` pill guard, `switchImportedSession` two-state barrier across `load`/`importFile`/`restart`, `HostLineageMap` injection & `LINEAGE_RESET` notice, `visibilitychange === 'hidden'` best-effort `drain()`, and `oot:checkpoint` host handler.
+  - `apps/web/src/experience-ui-copy.ts`, `apps/web/src/dialog.tsx`, `apps/web/src/alpha-app.tsx`: honest Host backup wording (`hosted={game.hosted}`) acknowledging protected `apps/dsh/**` server rotation, plus `LINEAGE_RESET` / `SESSION_SWITCHING` / `SWITCH_REQUIRES_CONFIRMATION` feedback copy.
+  - `apps/sim-cli/experience-ui.test.ts`: added H2 tests (`LabSaves` 50 checkpoints zero backup pollution + boundary rotation, Worker `SaveEncoder` `throughCommand` byte parity, `CheckpointCoordinator` + `switchImportedSession` normal drain vs paused confirm/cancel).
+- **Checks & Browser Verification**:
+  - `pnpm check` passed: `tsc -b`, `eslint packages apps`, **50 test files / 445 tests**, `oot-web` (built `save-encoder-worker-*.js` + `experience-module-graph.json` with `fixtureReachable: false`) + `oot-dsh` builds.
+  - `git diff --check` passed; `git diff --name-only 7a9f3df6..HEAD` touches strictly Track A owned files (`0` protected/Track B edits).
+  - Real Chromium verification on built `vite preview` (`http://127.0.0.1:4191/`, server stopped afterward, `0` console errors, no `{ force: true }`):
+    - Verified end-to-end accept/assign (`menu` + `qwen`) -> advance -> Messenger read/reply -> `已保存` -> `边界备份 1..5` stay `空` across normal checkpoints -> page reload (`agent-tab-5`) restores exact period/cash/job/Messenger-read state. (Note: an earlier initial tab `agent-tab-2` rendered empty `#app` on Step 75 reload, whereas fresh `agent-tab-5` mounted cleanly and passed two consecutive reloads cleanly; tracked in H3/W4 re-check.)
+    - Verified dual-tab `BroadcastChannel` conflict: Tab B advance pauses Tab A -> persistent `SaveAlertBanner` (`保存暂停`) + Export (`out-of-tokens-alpha.json`) -> `SwitchConfirmDialog` Cancel preserves Tab A -> Export & Confirm recovers Tab A cleanly to Tab B's evening state.
+
 ### 3. C0 Revision 2 Co-Signature & Reason Sync (2026-11-17)
 - **Implementation SHA**: `a19e2f68330deeedccf75b7152c27ead33e7e7a3`
+- **Record SHA**: `cdfc726ef94510f1ca9da0904969e3ce06e62e16`
 - **Reviewed Track B Draft**: `424045da7bfa0ddcff10f190ec5d869be5ab699e` (`d4c0a8eb2f293f07fb5776ba818d3d083eab28d5`)
 - **Evidence**: `../commission-evidence/experience31/c0/a19e2f68330deeedccf75b7152c27ead33e7e7a3/`
 - **Owned Files Modified**:
@@ -68,10 +87,10 @@
 | A-C0-1 | State diagrams & 5-viewport wireframes (`ux-c0.md`) | Completed | `4c5602b` + `pnpm check` / `git diff --check` |
 | A-C0-2 | 8 Art-Batch 7 slot specs (`art-slots.md`) | Completed | `4c5602b` |
 | A-C0-3 | Bilingual reason-code map & Contract v1 rev 2 co-sign (`SaveInput.throughCommand`) | Completed | `4c5602b` + `a19e2f6` (`pnpm check` 46/399) |
-| A-W1-5 | Group chat read vs replied separation (`oot-ui:<lineageId>:threads`) | Completed (Pre-H2; H2 real lineage awaits B-W1a) | `00a55ba` + Vitest + Chromium verified |
+| A-W1-5 | Group chat read vs replied separation (`oot-ui:<lineageId>:threads`) | Completed | `00a55ba` + `ec77ea8` (live `session.lineageId` reload verified) |
 | A-W1-6 | First-order live forecast fit & editable sample squad | Completed | `00a55ba` + Vitest + Chromium verified |
-| A-W1-1 | Save status UI, alert banner, boundary backup copy, SwitchConfirmDialog, H2 wiring | Pre-H2 UI/Fixture Complete (H2 real service pending `B-W1a`) | `00a55ba` + Chromium fault-fixture verified |
-| A-W1-2/3/4 | Advance preview, Activity preview (all slot/overtime commands), 7 learning nodes | Queued for H3 (`B-W1b`) | Pending |
+| A-W1-1 | Save status UI, alert banner, boundary backup copy, SwitchConfirmDialog, H2 wiring | Completed (`B-W1a` integrated) | `ec77ea8` + Vitest (50/445) + Chromium dual-tab/reload verified |
+| A-W1-2/3/4 | Advance preview, Activity preview (all slot/overtime commands), 7 learning nodes | In progress (`7a9f3df6` merged for H3) | Queued next |
 | A-W2-1/2/3/4 | Candidate comparison (Worker <=50ms), remedies, finance, reuse team (prefill UI done; full W2 candidate/EXP-14 pending `B-W2`) | Pre-fill UI in `00a55ba`; W2 core API pending `B-W2` | Pending `B-W2` |
 | A-W3-1 | Delivery feedback order, 2 duo short chains, Outcome Wall, 8 art slots | Queued for H5 (`B-W3`) | Pending |
 | A-W4-1 | 20-case real-browser matrix, `elementFromPoint`, fault recovery, Wave 2 regressions | Queued for H6 (`W4`) | Pending |
