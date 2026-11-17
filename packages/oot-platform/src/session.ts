@@ -67,7 +67,7 @@ export class GameSession implements ExperienceSession {
         if (this.commandsLocked) return { error: 'SESSION_SWITCHING', events: [] };
         const captured = structuredClone(command), result = dispatchCommand(this.state, captured, this.content);
         if (!result.error) {
-            this.experience.observe(this.state,result,captured);
+            this.experience.observe(this.state,result,captured,this.content);
             this.state = result.state;
             if (result.events.some(e => e.type === 'Restarted')) this.lineage = globalThis.crypto.randomUUID();
             this.commands.push(captured);

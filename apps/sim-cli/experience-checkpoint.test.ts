@@ -202,3 +202,27 @@ test('Host presentation identity is scoped to slot/CAS/content and unknown recor
     }
     expect((await map.restore(row)).lineageReset).toBeUndefined();
 });
+
+
+test('manual auto-load after drain remains unsaved until a fresh load boundary commits',async()=>{
+    const storage=new BrowserSaves('auto-load-drain-race',new IDBFactory()),session=new GameSession(loadContent(),1);
+    const original=await session.exportSave();await storage.write('auto',original,0,'boundary',{lineageId:session.lineageId});
+    const started=deferred(),release=deferred();
+    const encoder:SaveEncoder={encode:async input=>{started.resolve();await release.promise;return defaultSaveEncoder.encode(input);}};
+    const oldCoordinator=new CheckpointCoordinator(()=>session.checkpointSnapshot(),storage,1,encoder);
+    expect(session.send({type:'accept',job:'0-0'}).error).toBeNull();oldCoordinator.enqueue('command');await started.promise;
+    // The UI reads its chosen auto row before draining the pending local checkpoint.
+    const selected=(await storage.read('auto'))!;expect(selected.text).toBe(original);release.resolve();
+    const {switchImportedSession}=await import('oot-platform');
+    const switched=await switchImportedSession(session,oldCoordinator,selected.text,{lineageId:selected.meta!.lineageId});
+    const disk=(await storage.read('auto'))!;
+    expect(switched.saved).toBe(false);expect(await session.exportSave()).toBe(original);
+    expect(disk.revision).toBe(2);expect(disk.text).not.toBe(original);
+    // Even when the selected slot was auto, the switch requires a new boundary write.
+    const next=new CheckpointCoordinator(()=>session.checkpointSnapshot(),storage,disk.revision);
+    next.enqueue('load');expect((await next.drain()).kind).toBe('saved');
+    expect((await storage.read('auto'))!.text).toBe(original);
+    expect((await storage.read('backup-1'))!.text).toBe(disk.text);
+    expect((await storage.read('backup-1'))!.meta?.lineageId).toBe(session.lineageId);
+    next.dispose();await storage.close();
+});

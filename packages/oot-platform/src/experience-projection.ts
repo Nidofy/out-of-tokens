@@ -1,4 +1,4 @@
-import {createInitialState,dispatchCommand} from 'oot-core';
+import {createInitialState,dispatchCommand,getViewModel} from 'oot-core';
 import type {Content,State,Command,Result} from 'oot-core';
 import type {ExperienceView,Fact} from './experience-contract.js';
 const nodes=['accept','assign','advance','deliver','clarify','rest','bill'] as const;
@@ -7,7 +7,7 @@ export class ExperienceProjection {
     private learned=new Set<Node>();
     private contributions=new Map<string,Map<string,Set<string>>>();
     private receipts:ExperienceView['receipts']=[];
-    observe(before:State,result:Result,command:Command) {
+    observe(before:State,result:Result,command:Command,content:Content) {
         if(result.error)return;
         if(result.events.some(e=>e.type==='Restarted')){this.learned.clear();this.contributions.clear();this.receipts=[];return;}
         if(['accept','assign','advance','deliver','clarify'].includes(command.type))this.learned.add(command.type as Node);
@@ -34,7 +34,11 @@ export class ExperienceProjection {
             for(const [actorId,roles] of actors)for(const role of roles)facts.push({certainty:'certain',reason:`contributed-${role}`,actorId,jobId:job.id});
             const cash=ledger.filter(l=>l.reason===`delivery:${job.id}`||l.reason===`breach:${job.id}`).reduce((n,l)=>n+l.amount,0);
             if(command.type==='deliver')facts.push({certainty:'certain',reason:'delivery-cash',amount:cash,unit:'cash',jobId:job.id});
-            this.receipts.push({jobId:job.id,phase:job.phase,occurrence:this.receipts.length,participants:[...actors.keys()].sort(),facts});
+            // The next phase clears quality; rework clears penalties. Preserve the public
+            // pre-command assessment instead of recomputing rules from the resulting job.
+            const {quality,passQuality,qualityLines,qualityBreakdown}=getViewModel(before,content).jobs.find(j=>j.id===job.id)!;
+            const assessment={quality,passQuality,qualityLines,qualityBreakdown};
+            this.receipts.push({jobId:job.id,phase:job.phase,occurrence:this.receipts.length,participants:[...actors.keys()].sort(),facts,assessment});
             if(command.type==='deliver')this.contributions.delete(`${job.id}:${job.phase}`);
         }
     }
@@ -48,6 +52,6 @@ export class ExperienceProjection {
 }
 export function rebuildExperience(content:Content,seed:number,commands:readonly unknown[]) {
     const projection=new ExperienceProjection();let state=createInitialState(content,seed);
-    for(const command of commands){const result=dispatchCommand(state,command,content);if(result.error)throw Error('EXPERIENCE_REPLAY:'+result.error);projection.observe(state,result,command as Command);state=result.state;}
+    for(const command of commands){const result=dispatchCommand(state,command,content);if(result.error)throw Error('EXPERIENCE_REPLAY:'+result.error);projection.observe(state,result,command as Command,content);state=result.state;}
     return projection;
 }
