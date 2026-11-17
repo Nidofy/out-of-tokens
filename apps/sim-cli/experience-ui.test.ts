@@ -7,6 +7,7 @@ import {
  buildSampleTeamDraft,
  explainLiveTeamFit,
  financeNetSolvencyNote,
+ lineageResetNoticeCopy,
  messengerStatusCopy,
  resolveReasonCopy,
  saveAlertBannerCopy,
@@ -119,6 +120,12 @@ test('reason copy maps known codes and deterministically falls back on unknown c
  expect(resolveReasonCopy('sleep-skipped-by-activity',true)).toContain('skips sleep');
  expect(resolveReasonCopy('UNMAPPED_FUTURE_REASON',false)).toContain('UNMAPPED_FUTURE_REASON');
  expect(resolveReasonCopy('UNMAPPED_FUTURE_REASON',true)).toContain('UNMAPPED_FUTURE_REASON');
+ expect(resolveReasonCopy('activity-energy',false)).toContain('精力');
+ expect(resolveReasonCopy('activity-mood',true).toLowerCase()).toContain('mood');
+ expect(resolveReasonCopy('activity-affinity',false)).toContain('好感');
+ expect(resolveReasonCopy('SWITCH_REQUIRES_CONFIRMATION',true).toLowerCase()).toContain('confirm');
+ expect(lineageResetNoticeCopy(false)).toContain('重置');
+ expect(lineageResetNoticeCopy(true).toLowerCase()).toContain('lineage reset');
  expect(backupPolicyCopy(false).summaryTitle).toContain('边界节点');
  expect(backupPolicyCopy(true).summaryHint).toContain('DayEnd');
  expect(financeNetSolvencyNote(false)).not.toContain('利润');

@@ -353,6 +353,14 @@ Every `Fact.reason`, `Condition`, `SaveStatus.kind`/`cause`/`code`, `NextPeriodP
 | `SaveStatus` | `STORAGE_UNAVAILABLE` | 本地存储不可用，进度仅保存在当前内存，请及时导出。 | Storage unavailable. Progress is in-memory only; export to keep it. |
 | `SaveStatus` | `IMPORTED_NO_STORAGE` | 已载入但尚未保存（存储不可用，请用导出保存进度） | Loaded, not saved (storage unavailable; use Export) |
 | `SaveStatus` | `WRITE_UNCERTAIN` | 上次宿主写入状态未知，请先载入最新档核对或导出进度。 | Host write uncertain; load latest to reconcile or export progress. |
+| `ActivityPreview` | `activity-energy` | 伙伴精力变化 | Partner energy change |
+| `ActivityPreview` | `activity-mood` | 伙伴心情变化 | Partner mood change |
+| `ActivityPreview` | `activity-affinity` | 伙伴好感度变化 | Partner affinity change |
+| `ActivityPreview` | `ACTIVITY_NOT_SUPPORTED` | 该命令属于结算或切换边界，不支持活动预览 | Settlement/switch boundary command does not support activity preview |
+| `SessionSwitch` / `Host` | `SESSION_SWITCHING` | 正在切换会话，请稍候完成当前切换 | Session switch in progress; wait for switch to finish |
+| `SessionSwitch` / `Host` | `SWITCH_REQUIRES_CONFIRMATION` | 当前处于异常或冲突状态，需先确认后再切换存档 | Unsaved/paused conflict state requires confirmation before switching |
+| `SaveEncoder` | `INVALID_CHECKPOINT_PREFIX` | 检查点前缀索引越界，已拒绝编码并保留现场 | Checkpoint command prefix out of range; save encoding rejected |
+| `HostLineageMap` | `LINEAGE_RESET` | 宿主存档来源已重置，本局提示与引导状态将按新会话记录 | Host save lineage reset; UI read/guide metadata starts fresh for this run |
 | `SuggestResult` / `Duo` | `low-cash-cost` / `low-quota` / `high-quality` / `fast-completion` / `clarify-only` / `mode-mismatch` / `category-mismatch` / `morning-only` / `multi-phase-only` / `not-unlocked` / `no-feasible-team` | 每项均有明确双语标签（实施时全部枚举同步 `experience-ui-copy.ts`） | Explicit bilingual label for each candidate/duo reason |
 | **Unknown Fallback** | `unknown` (any unmapped string) | `状态提示（代码：${code}）` | `Status note (code: ${code})` |
 
@@ -402,3 +410,20 @@ Track A co-signs **Unified Interface Contract v1 (`EXPERIENCE_CONTRACT = 1`)** w
      4. Ensure `CapacityExplanation` includes current-slot active workstation efficiency (`activeEfficiency` / `activeStationId`) so EXP-14 replaces `activeStationBonus`; `FinanceExplanation` includes `recentLedgerSummary: { count, inflow, outflow, net }` so EXP-14 replaces `ledgerWindowSummary`; and Host/Session lineage reset emits a boolean signal (`lineageReset?: boolean`) when Host cannot preserve identity so Track A displays the one-time reset notice.
    - **Browser/Device Agreement for `performance-protocol.md` Co-Signature**:
      - Track A co-signs the frozen `<= 50 ms` main-thread segment and `<= 1000 ms` local save p95 budgets on `Windows x64 / Intel(R) Core(TM) Ultra 9 285H / Chromium Foreground Window (document.visibilityState === 'visible')`, measuring `workerSnapshot()` structured clone + `postMessage` transfer + Worker return + queue/replay/hash/I/O per `performance-protocol.md` (5 warmups + 30 recorded samples on the frozen 529, 419, and 60-day logs).
+
+### 6.3 C0 Revision 2 (`424045da`) Review & Final Pre-H1 Co-Signature
+
+Track A reviewed Track B C0 revision 2 (`424045da7bfa0ddcff10f190ec5d869be5ab699e`, recorded in `d4c0a8eb2f293f07fb5776ba818d3d083eab28d5`) and issues final **Contract v1 (`EXPERIENCE_CONTRACT = 1`) Co-Signature** clearing all Track A blockers for common **H1** freeze:
+
+1. **Explicit Approval of `SaveInput.throughCommand?: number` (`checkpoint-contract.ts`)**:
+   - Approved. Retaining FIFO boundary markers as `{ revision, commandCount }` integers instead of throwing `BOUNDARY_DRAIN_REQUIRED` cleanly resolves the non-blocking post-`day-end` command race while bounding retained `State` snapshots to one active + one latest pending.
+   - Track A confirms that any optional Web Worker `SaveEncoder` (`apps/web/src/save-encoder-worker.ts`) will delegate encoding directly to `defaultSaveEncoder.encode(input)` imported from `oot-platform/worker` (or equivalently replay `input.commands.slice(0, throughCommand)` whenever `input.throughCommand !== undefined`, validating bounds cleanly and **never** encoding `input.state`), guaranteeing exact byte-for-byte parity with `defaultSaveEncoder` on both FIFO boundary prefixes and ordinary checkpoints.
+2. **Approved C0 Revision 2 Contract Additions**:
+   - `switchImportedSession(session, coordinator, text, options)` (`session-switch.ts`): validated-before-abandon two-state helper returning `{ lineageId, saved: false }` approved; Track A keeps Export / `SwitchConfirmDialog` / fresh coordinator instantiation & initial boundary enqueue in `use-game.ts`.
+   - `HostLineageMap`, `HostSaves` optional 3rd constructor arg, and `StoredSave.lineageReset?: boolean`: approved; Track A will surface a one-time non-blocking notice (`LINEAGE_RESET`) whenever unknown/legacy Host records reset lineage identity.
+   - `GameSession.previewActivity(Command)`: approved, including `relocatesTo: Scene | 'expedition' | null`, deterministic non-RNG `clarify` reservation, and explicit `ACTIVITY_NOT_SUPPORTED` for settlement/switch boundary commands (`advance`/`choose`/`deliver`/`restart`).
+   - Root `oot-platform` type re-exports, `CapacityExplanation.activeEfficiency`, `FinanceExplanation.recentLedgerSummary`, `SuggestAssignmentsFromSnapshot` Worker type in `oot-platform/worker`, and the 9 `oot-platform/fixtures` scenarios + Vite production import block (`fixtureReachable=false`): all approved.
+3. **Host Server-Rotation Protocol Note (Protected `apps/dsh/**`)**:
+   - Track A acknowledges Track B's finding that `apps/dsh/**` is protected and `POST /api/saves` (`{ id, text, expectedRevision }`) continues rotating server-managed backups on every `auto` write without server protocol extension. Track A will **not** modify `apps/dsh/**` and will keep hosted-save backup descriptions accurate rather than claiming Browser boundary-only rotation equivalence while server protocol is unchanged.
+4. **H1 Readiness**:
+   - Zero Track A design or contract blockers remain for assembling and freezing the shared **H1** C0 SHA.

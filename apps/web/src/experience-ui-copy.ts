@@ -39,6 +39,14 @@ const REASON_MAP:Record<string,readonly [string,string]>={
  IMPORTED_NO_STORAGE:['已载入但尚未保存（存储不可用，请用导出保存进度）','Loaded, not saved (storage unavailable; use Export)'],
  SAVE_CONFLICT:['存档已被更新，请导出或载入最新档后再继续。','Save changed elsewhere. Export or load the latest save to resume.'],
  WRITE_UNCERTAIN:['上次宿主写入状态未知，请先载入最新档核对或导出当前进度。','Host write outcome unknown. Load latest to reconcile or export progress.'],
+ 'activity-energy':['伙伴精力变化','Partner energy change'],
+ 'activity-mood':['伙伴心情变化','Partner mood change'],
+ 'activity-affinity':['伙伴好感度变化','Partner affinity change'],
+ ACTIVITY_NOT_SUPPORTED:['该命令属于结算或切换边界，不支持活动预览。','Settlement or switch command does not support activity preview.'],
+ SESSION_SWITCHING:['正在切换会话，请稍候再操作。','Session switch in progress; wait a moment before sending commands.'],
+ SWITCH_REQUIRES_CONFIRMATION:['存在未保存或异常状态，须先确认后再切换存档。','Confirm discarding or exporting unsaved progress before switching saves.'],
+ INVALID_CHECKPOINT_PREFIX:['检查点回放前缀异常，已保留当前进度并暂停本次写入。','Invalid checkpoint replay prefix; current state kept intact.'],
+ LINEAGE_RESET:['宿主存档来源已重置，本局提示与未读状态将按新会话记录。','Host save lineage reset; UI unread and onboarding flags start fresh for this run.'],
  'low-cash-cost':['现金与新增预算支出较低','Lower additional cash & compute budget'],
  'low-quota':['节省云端算力额度','Lower cloud quota consumption'],
  'high-quality':['条件质量预估更稳健，包含较高匹配或审查余量','Stronger conditional quality margin or review coverage'],
@@ -313,4 +321,8 @@ export function financeNetSolvencyNote(english:boolean):string{
  return english
   ?'Net solvency = cash - loan - unfinished advances. Some cash comes from unfinished contracts and is not earned profit yet.'
   :'净偿付资金 = 账面现金 − 贷款 − 未完成订单预付款；账户里部分现金来自未完成订单，暂不能都当作赚到的钱。';
+}
+
+export function lineageResetNoticeCopy(english:boolean):string{
+ return resolveReasonCopy('LINEAGE_RESET',english);
 }
