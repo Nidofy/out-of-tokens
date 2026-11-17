@@ -120,15 +120,20 @@ test('abandon waits for already submitted I/O and does not cancel its commit', a
     expect(c.currentStatus.kind).toBe('paused'); c.dispose(); await storage.close();
 });
 
-test('boundary snapshots cannot be replaced before they commit', async () => {
+test('multiple boundary prefixes survive fast commands with only the latest pending snapshot', async () => {
     const session = new GameSession(loadContent(), 1), storage = new BrowserSaves('boundary-flight', new IDBFactory());
-    const gate = deferred(), started = deferred();
-    const c = new CheckpointCoordinator(() => session.checkpointSnapshot(), storage, 0, { async encode(input) { started.resolve(); await gate.promise; return defaultSaveEncoder.encode(input); } });
-    c.enqueue('day-end');
-    expect(() => c.enqueue('command')).toThrow('BOUNDARY_DRAIN_REQUIRED');
-    await started.promise;
-    expect(() => c.enqueue('command')).toThrow('BOUNDARY_DRAIN_REQUIRED');
-    gate.resolve(); expect((await c.drain()).kind).toBe('saved');
+    const gate = deferred(), started = deferred(); let first=true;
+    const c = new CheckpointCoordinator(() => session.checkpointSnapshot(), storage, 0, { async encode(input) { if(first){first=false;started.resolve();await gate.promise;} return defaultSaveEncoder.encode(input); } });
+    const writes:string[]=[];const originalWrite=storage.write.bind(storage);storage.write=async(...args)=>{writes.push(args[1]);return originalWrite(...args);};
+    const initial=await session.exportSave();c.enqueue('day-end');await started.promise;
+    session.send({type:'accept',job:'0-0'});const boundary=await session.exportSave();c.enqueue('day-end');
+    session.send({type:'reject',job:'0-1'});c.enqueue('command');
+    gate.resolve();expect((await c.drain()).kind).toBe('saved');
+    expect((await storage.read('auto'))?.text).toBe(await session.exportSave());
+    expect((await storage.read('backup-1'))?.text).toBe(initial);
+    // The second boundary itself was committed before the latest ordinary checkpoint.
+    expect((await storage.read('auto'))?.revision).toBe(3);
+    expect(writes).toEqual([initial,boundary,await session.exportSave()]);
     c.dispose(); await storage.close();
 });
 
@@ -142,4 +147,58 @@ test('development fixture is absent from production root exports; Worker encodin
     expect(experienceFixture('night-rest').resting.length).toBe(1);
     const session = new GameSession(loadContent(), 1);
     expect(await worker.defaultSaveEncoder.encode(session.checkpointSnapshot().input)).toBe(await session.exportSave());
+});
+
+import { switchImportedSession } from 'oot-platform';
+test('invalid import preserves pending progress before abnormal switch abandonment', async () => {
+    const session=new GameSession(loadContent(),1), storage=new BrowserSaves('invalid-switch',new IDBFactory());
+    const c=new CheckpointCoordinator(()=>session.checkpointSnapshot(),storage,0);
+    c.pause();session.send({type:'accept',job:'0-0'});c.enqueue('command');
+    const text=await session.exportSave(),lineage=session.lineageId;
+    await expect(switchImportedSession(session,c,'bad',{confirmed:true})).rejects.toThrow();
+    expect(session.lineageId).toBe(lineage);expect(await session.exportSave()).toBe(text);
+    expect(()=>c.dispose()).toThrow('CHECKPOINT_PENDING');
+    await c.abandonPending(true);c.dispose();await storage.close();
+});
+test('confirmed unavailable-storage import succeeds but is explicitly not saved', async () => {
+    const session=new GameSession(loadContent(),1), storage=new BrowserSaves('no-storage-switch',undefined);
+    const target=await session.exportSave(), c=new CheckpointCoordinator(()=>session.checkpointSnapshot(),storage,0);
+    session.send({type:'accept',job:'0-0'});c.enqueue('command');await c.drain();
+    await expect(switchImportedSession(session,c,target)).rejects.toThrow('SWITCH_REQUIRES_CONFIRMATION');
+    expect(session.workerSnapshot().revision).toBe(1);
+    const result=await switchImportedSession(session,c,target,{confirmed:true,lineageId:'restored-slot'});
+    expect(result).toEqual({lineageId:'restored-slot',saved:false});
+    expect(await session.exportSave()).toBe(target);
+});
+test('normal import drains old lineage, preserves backup identity, and unlocks commands',async()=>{
+    const session=new GameSession(loadContent(),1),storage=new BrowserSaves('normal-switch',new IDBFactory());
+    const target=await session.exportSave(),old=session.lineageId;
+    const c=new CheckpointCoordinator(()=>session.checkpointSnapshot(),storage,0);
+    session.send({type:'accept',job:'0-0'});c.enqueue('command');
+    await switchImportedSession(session,c,target,{lineageId:'restore'});
+    expect((await storage.read('auto'))?.meta?.lineageId).toBe(old);
+    const next=new CheckpointCoordinator(()=>session.checkpointSnapshot(),storage,1);next.enqueue('load');await next.drain();
+    expect((await storage.read('backup-1'))?.meta?.lineageId).toBe(old);
+    expect((await storage.read('auto'))?.meta?.lineageId).toBe('restore');
+    expect(session.send({type:'accept',job:'0-0'}).error).toBeNull();next.dispose();await storage.close();
+});
+
+
+test('prefix encoding matches canonical earlier save and rejects invalid prefixes',async()=>{
+    const session=new GameSession(loadContent(),1),initial=await session.exportSave();
+    session.send({type:'accept',job:'0-0'});const captured=session.checkpointSnapshot().input;
+    expect(await defaultSaveEncoder.encode({...captured,throughCommand:0})).toBe(initial);
+    await expect(defaultSaveEncoder.encode({...captured,throughCommand:2})).rejects.toThrow('INVALID_CHECKPOINT_PREFIX');
+});
+
+import { HostLineageMap } from 'oot-platform';
+test('Host presentation identity is scoped to slot/CAS/content and unknown records reset safely',async()=>{
+    const data=new Map<string,string>(), storage={getItem:(key:string)=>data.get(key)??null,setItem:(key:string,value:string)=>{data.set(key,value);}};
+    const map=new HostLineageMap(storage),row={id:'auto' as const,text:'save-a',revision:1,savedAt:0};
+    await map.bind(row,'run-a');
+    expect((await new HostLineageMap(storage).restore(row)).meta?.lineageId).toBe('run-a');
+    for(const different of [{...row,revision:2},{...row,text:'save-b'},{...row,id:'backup-1' as const}]) {
+        const restored=await map.restore(different);expect(restored.lineageReset).toBe(true);expect(restored.meta?.lineageId).not.toBe('run-a');
+    }
+    expect((await map.restore(row)).lineageReset).toBeUndefined();
 });

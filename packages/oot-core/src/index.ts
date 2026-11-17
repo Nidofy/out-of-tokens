@@ -9,3 +9,4 @@ export {chapterGoal} from './chapter-goal.js';
 export {settlement} from './settlement.js';
 
 export * from './office.js';
+export { activityEffects } from './activity-preview.js';

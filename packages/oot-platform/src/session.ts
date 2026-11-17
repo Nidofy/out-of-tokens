@@ -1,7 +1,8 @@
-import { createInitialState, dispatchCommand, getViewModel, forecastAssignment } from 'oot-core';
+import { createInitialState, dispatchCommand, getViewModel, forecastAssignment, activityEffects } from 'oot-core';
 import type { Command, Content, DomainEvent, State, Member } from 'oot-core';
 import { saveBrowser, restoreBrowser } from 'oot-persistence/browser';
 import { EXPERIENCE_CONTRACT } from './checkpoint-contract.js';
+import type { ActivityPreview, Fact } from './experience-contract.js';
 import type { WorkerSnapshot, CheckpointSnapshot } from './checkpoint-contract.js';
 export class GameSession {
     private state: State;
@@ -25,6 +26,18 @@ export class GameSession {
         return { ...snapshot, input: { content: structuredClone(this.content), seed: snapshot.seed, commands: structuredClone(this.commands), state: snapshot.state } };
     }
     get view() { return getViewModel(this.state, this.content); }
+    previewActivity(command: Command): ActivityPreview {
+        const result = activityEffects(this.state, this.content, command);
+        const gains: Fact[] = [], losses: Fact[] = [];
+        for (const actor of result.actors) for (const unit of ['energy', 'mood', 'affinity'] as const) {
+            const amount = actor[unit];
+            if (amount) (amount > 0 ? gains : losses).push({ reason: 'activity-'+unit, actorId:actor.actorId, amount:Math.abs(amount), unit, certainty:'certain' });
+        }
+        const contract = EXPERIENCE_CONTRACT, contentVersion = this.content.version, revision = this.revision, lineageId = this.lineage;
+        return {contract, contentVersion, revision, lineageId, legal:result.error===null,
+            ...(result.error?{error:result.error}:{}), cash:result.cash, research:result.research,
+            actors:result.actors.map(({actorId,occupiedSlots,occupiesUntil,skipsNightRecovery,joinsOvertime,relocatesTo})=>({actorId,occupiedSlots,occupiesUntil,skipsNightRecovery,joinsOvertime,relocatesTo})), gains, losses};
+    }
     previewAssignment(job: string, team: Member[]) {
         // Hypothetical acceptance stays on a detached command result; never enters the save log.
         const posted = this.state.jobs.find(j=>j.id===job)?.status==='posted';
@@ -41,21 +54,28 @@ export class GameSession {
         const captured = structuredClone(command), result = dispatchCommand(this.state, captured, this.content);
         if (!result.error) {
             this.state = result.state;
+            if (result.events.some(e => e.type === 'Restarted')) this.lineage = globalThis.crypto.randomUUID();
             this.commands.push(captured);
             this.revision++;
         }
         return { error: result.error, events: result.events };
     }
     exportSave() { return saveBrowser(this.content, this.state.seed, this.commands, this.state); }
-    async importSave(text: string, lineageId?: string) {
+    async prepareImport(text: string, lineageId?: string): Promise<() => void> {
         const revision = this.revision, result = await restoreBrowser(this.content, text);
-        if (this.revision !== revision)
-            throw Error('SESSION_CHANGED');
+        if (this.revision !== revision) throw Error('SESSION_CHANGED');
+        if (lineageId !== undefined && !lineageId.trim()) throw Error('INVALID_LINEAGE');
         const nextLineage = lineageId ?? globalThis.crypto.randomUUID();
-        this.state = result.state;
-        this.commands = result.commands;
-        this.lineage = nextLineage;
-        this.revision++;
+        let applied = false;
+        return () => {
+            if (applied || this.revision !== revision) throw Error('SESSION_CHANGED');
+            this.state = result.state;
+            this.commands = result.commands;
+            this.lineage = nextLineage;
+            this.revision++;
+            applied = true;
+        };
     }
+    async importSave(text: string, lineageId?: string) { (await this.prepareImport(text, lineageId))(); }
 }
 export type GameView = GameSession['view'];

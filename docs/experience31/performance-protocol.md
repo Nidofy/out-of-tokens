@@ -11,3 +11,8 @@ For each fixed input: five warmups then 30 recorded samples, same session/conten
 Do not add overlapping phase durations to synthesize an end-to-end result. Pure phase probes must be checked against canonical save bytes. Production adapter I/O uses disposable database; fake-indexeddb is correctness-only. No persistence optimization until captured evidence establishes hash bottleneck. Any optimization retains replay/hash/import rejection and exact bytes. No unload durability claim.
 
 Search: fixed job/draft/revision cases, <=256 evaluations, 0-3 deduplicated output, identical main/Worker results; same warmup/sample policy, include snapshot and transport overhead. Baseline device/browser agreement and final sample hashes await H1 co-signature.
+
+
+2026-11-17 diagnostic update: A co-signed device/budget protocol. apps/sim-cli/experience-save-profile.ts measured original 529/419 logs, 5 warmups + 30 samples. Node replay max 61.6771/32.8708 ms; canonical encoder p95 44.8651/32.2459 ms; content hash max 6.9261/5.4834 ms. Exact save bytes verified every iteration. This does not authorize a hash optimization and does not constitute browser end-to-end acceptance. Prefix-boundary encoding adds another replay and requires A Worker measurement.
+
+The proposed runBot(fullContent,21,value,60) longer input failed before timing: legacy policy assumes all content roster actors are recruited and dereferences an absent actor. Failure retained, not silently replaced or resampled. Longer fixture protocol remains pending repair of input generation. First profiling attempt also failed because harness lacked workspace package resolution; script now resides in apps/sim-cli. Neither attempt counts as a performance sample.

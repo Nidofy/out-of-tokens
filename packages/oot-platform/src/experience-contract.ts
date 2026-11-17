@@ -21,7 +21,7 @@ export interface NextPeriodPreview extends RevisionIdentity {
 }
 export interface ActorActivity {
     actorId: string; occupiedSlots: number; occupiesUntil: number | null;
-    skipsNightRecovery: boolean; joinsOvertime: boolean; relocatesTo: Scene | null;
+    skipsNightRecovery: boolean; joinsOvertime: boolean; relocatesTo: Scene | 'expedition' | null;
 }
 export interface ActivityPreview extends RevisionIdentity {
     legal: boolean; error?: string; cash: number; research: number;
@@ -40,11 +40,12 @@ export interface DuoExplanation extends RevisionIdentity {
     duos: { duoId: string; state: 'locked' | 'inactive' | 'active'; reason: string }[];
 }
 export interface CapacityExplanation extends RevisionIdentity {
-    actorId: string; context: number; load: number; overloaded: boolean;
+    actorId: string; context: number; load: number; overloaded: boolean; activeEfficiency: number;
     stations: { jobId: string; stationId: string | null; efficiency: number; energyCost: number }[];
 }
 export interface FinanceExplanation extends RevisionIdentity {
     cash: number; loan: number; unfinishedAdvances: number; netSolvency: number; bills: Fact[];
+    recentLedgerSummary: { count: number; inflow: number; outflow: number; net: number };
 }
 export interface ExperienceView extends RevisionIdentity {
     learning: { node: 'accept' | 'assign' | 'advance' | 'deliver' | 'clarify' | 'rest' | 'bill'; observed: boolean }[];

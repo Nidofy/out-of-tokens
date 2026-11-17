@@ -12,7 +12,8 @@ export class CheckpointCoordinator {
     private status: SaveStatus;
     private listeners = new Set<(status: SaveStatus) => void>();
     private disposed = false;
-    private boundaryInFlight = false;
+    private lastBoundaryRevision = -1;
+    private boundaries: { revision: number; commandCount: number }[] = [];
     private readonly external = () => this.pause('external-change');
     constructor(private readonly capture: () => CheckpointSnapshot, private readonly storage: SaveStorage,
         expectedRevision: number, private readonly encoder: SaveEncoder = defaultSaveEncoder) {
@@ -42,9 +43,12 @@ export class CheckpointCoordinator {
         if (snapshot.lineageId !== this.lineageId) throw Error('LINEAGE_CHANGED');
         if (snapshot.revision < this.status.revision) throw Error('STALE_CHECKPOINT');
         const policy = reason === 'command' || reason === 'host-checkpoint' ? 'checkpoint' : 'boundary';
-        // Boundary snapshots cannot be coalesced away. Caller must drain at these boundaries.
-        if (this.pending?.policy === 'boundary' || this.boundaryInFlight) throw Error('BOUNDARY_DRAIN_REQUIRED');
-        this.pending = { snapshot, policy };
+        // Preserve boundaries as log-prefix markers, not extra retained State snapshots.
+        if (policy === 'boundary' && snapshot.revision > this.lastBoundaryRevision) {
+            this.boundaries.push({revision:snapshot.revision,commandCount:snapshot.input.commands.length});
+            this.lastBoundaryRevision=snapshot.revision;
+        }
+        this.pending = { snapshot, policy: 'checkpoint' };
         if (this.canSwitchWithoutConfirm) this.publish({ ...this.identity(snapshot), kind: 'dirty' });
         else this.publish({ ...this.status, revision: snapshot.revision });
         this.start();
@@ -54,23 +58,26 @@ export class CheckpointCoordinator {
         // Yield the command handler. This is scheduling, not a claim of Worker execution.
         this.active = new Promise<void>(resolve => setTimeout(resolve, 0)).then(async () => {
             while (this.pending && this.canSwitchWithoutConfirm) {
-                const item = this.pending; this.pending = null;
-                this.boundaryInFlight = item.policy === 'boundary';
+                const boundary = this.boundaries.shift();
+                const item: Pending = { snapshot:this.pending.snapshot, policy:boundary?'boundary':'checkpoint' };
+                const identity = { ...this.identity(item.snapshot), revision:boundary?.revision??item.snapshot.revision };
+                if (!boundary || boundary.revision === item.snapshot.revision) this.pending = null;
                 this.publish({ ...this.status, kind: 'saving' });
                 try {
-                    const text = await this.encoder.encode(item.snapshot.input);
+                    const text = await this.encoder.encode(boundary ? {...item.snapshot.input,throughCommand:boundary.commandCount} : item.snapshot.input);
                     // External notification during encoding must prevent starting a stale write.
-                    if (!this.canSwitchWithoutConfirm) { this.pending ??= item; break; }
+                    if (!this.canSwitchWithoutConfirm) { this.pending ??= item; if(boundary)this.boundaries.unshift(boundary); break; }
                     this.expectedRevision = await this.storage.write('auto', text, this.expectedRevision, item.policy, { lineageId: this.lineageId });
                     if (this.canSwitchWithoutConfirm) this.publish(this.pending
                         ? { ...this.status, kind: 'dirty' }
-                        : { ...this.identity(item.snapshot), kind: 'saved', savedAt: Date.now() });
+                        : { ...identity, kind: 'saved', savedAt: Date.now() });
                 } catch (error) {
                     this.pending ??= item;
+                    if(boundary)this.boundaries.unshift(boundary);
                     const code = error instanceof Error ? error.message : 'STORAGE_WRITE_FAILED';
                     if (code === 'SAVE_CONFLICT') this.pause('conflict');
                     else this.publish({ ...this.status, kind: 'error', code, exportable: true });
-                } finally { this.boundaryInFlight = false; }
+                }
             }
         }).finally(() => { this.active = null; });
     }
@@ -82,8 +89,10 @@ export class CheckpointCoordinator {
     async abandonPending(confirmed: true): Promise<void> {
         if (confirmed !== true || this.canSwitchWithoutConfirm) throw Error('ABANDON_NOT_ALLOWED');
         this.pending = null;
+        this.boundaries = [];
         if (this.active) await this.active;
         this.pending = null;
+        this.boundaries = [];
     }
     async retry(): Promise<SaveStatus> {
         if (this.status.kind === 'paused') return this.currentStatus; // Never refresh CAS after conflict.

@@ -10,6 +10,7 @@ export interface StoredSave {
     revision: number;
     savedAt: number;
     meta?: SaveMeta;
+    lineageReset?: boolean;
 }
 export class BrowserSaves {
     private readonly db: Promise<IDBDatabase>;

@@ -255,6 +255,20 @@ function parse(input: unknown): Command {
     }
     throw Error('UNSUPPORTED_COMMAND');
 }
+/** Deterministic reservation shared by execution and activity preview; never rolls clarification RNG. */
+export function prepareClarification(s: State, c: Content, cmd: Extract<Command, {type:'clarify' | 'respond'}>): Actor {
+    const j = s.jobs.find(j => j.id === cmd.job);
+    requireRule(j, 'UNKNOWN_JOB');
+    requireRule(s.absoluteSlot % 4 < 2, 'NOT_WORK_SLOT');
+    requireRule(j.status === 'posted' && j.hidden > 0, 'NOT_CLARIFIABLE');
+    const a = s.actors.find(a => a.id === cmd.character);
+    requireRule(a, 'UNKNOWN_ACTOR');
+    requireRule(!occupied(s, a.id) && a.energy >= 15, 'ACTOR_BUSY');
+    reserveClarification(s,c,a.id,j.id);
+    a.busyUntil = s.absoluteSlot + 1;
+    a.energy -= 15;
+    return a;
+}
 export function dispatchCommand(original: State, input: unknown, c: Content): Result {
     const events: DomainEvent[] = [];
     try {
@@ -367,14 +381,7 @@ export function dispatchCommand(original: State, input: unknown, c: Content): Re
                 j.status = 'rejected';
             }
             else if (cmd.type === 'clarify') {
-                requireRule(s.absoluteSlot % 4 < 2, 'NOT_WORK_SLOT');
-                requireRule(j.status === 'posted' && j.hidden > 0, 'NOT_CLARIFIABLE');
-                const a = s.actors.find(a => a.id === cmd.character);
-                requireRule(a, 'UNKNOWN_ACTOR');
-                requireRule(!occupied(s, a.id) && a.energy >= 15, 'ACTOR_BUSY');
-                reserveClarification(s,c,a.id,j.id);
-                a.busyUntil = s.absoluteSlot + 1;
-                a.energy -= 15;
+                const a = prepareClarification(s, c, cmd);
                 if((c.campaign?.maxChapter??0)<2 || clarifyRoll(s)<clarifyChance(s,c,a)){const requirement=t.requirements?.[j.revealed ?? 0];j.work+=requirement?.work ?? 0;j.revealed=(j.revealed ?? 0)+1;j.hidden=Math.max(0,j.hidden-1);events.push({type:'Clarified',message:requirement?.label ?? '揭示一条隐藏要求'});}else events.push({type:'ClarificationMiss',message:'本次未揭示新要求，可再次澄清'});
                 j.clarifyingUntil = s.absoluteSlot + 1;
             }
