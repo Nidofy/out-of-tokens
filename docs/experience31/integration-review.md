@@ -24,3 +24,7 @@ Fix intent: on this post-commit read failure, render the switched session, mark 
 Frozen 5 warmups + 30 samples for three save inputs, queue/clone/replay/hash/I-O/Worker transfer and main-thread <=50ms / local save p95<=1000ms are still absent from the H2 report; Worker existence is not performance evidence. H3-reported empty-app reload anomaly must be revisited in final matrix. H4/H5 UI, six-new-art rendered crops and 20-case W4 remain A work. Host server rotation cannot implement the boundary-only intent over unchanged protected POST; do not claim H2 universal equivalence.
 
 B complete-art release is available now at 29ee478. A may continue unrelated W2/W3 work; these issues block final main merge, not that development.
+
+## Subsequent fixed checkpoints
+
+B regression/profiling release b204a0770e16e8ceea2048a46d8932404a9e04d2 now includes the I2 contract test and reproducible browser harness. Isolated service 5+30 measurements completed (see performance-protocol.md); full UI/Host, return-transfer isolation and 20-case gates remain open. A registered H4 7f500b9 was merged into integration at 7d8843de70a29753729d8ce16bcf438eba201ae4. Full check is 464 pass / 1 fail, same I1 assertion now at line318; I2/I3 remain present in that published load path. None of these are silently waived.

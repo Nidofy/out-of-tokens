@@ -1,3 +1,25 @@
+# Integration progress and A fixes required — 2026-11-17
+
+**Registered B release b204a0770e16e8ceea2048a46d8932404a9e04d2** (record follows separately), branch experience-core-wave1, D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-core. Includes complete art release 29ee478 (all 8 assets, 458174 bytes), W3 narrative, all services and new auto-load regression/browser probe. A may merge this fixed SHA. No A implementation entered B development branch.
+
+**A action required:** see `integration-review.md` in this directory and the shared B handoff directory. (I1) replace obsolete missing-bookshop-guide assertion with both existing-path and truly-unknown fallback coverage. (I2, P1) every explicit successful auto/manual load needs a fresh load boundary: draining can write newer text after the selected auto row was read, so publishing saved without rewriting is false. (I3, P1) handle post-switch auto-read failure after session commit: show switched state as unsaved/unavailable and replace the disposed coordinator safely. B has not edited A-owned files. The new B regression proves I2's disk/session divergence and verifies the load-boundary remedy.
+
+Independent integration/experience31 now at **7d8843de70a29753729d8ce16bcf438eba201ae4**, D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-integration. Registered A H3 3af8078 and H4 7f500b9 are merged cleanly after B; no uncommitted A work copied. A's rule-copy migration test changes were reviewed as part of its committed H4 migration. Eight obsolete EXP-14 helper names have zero matches in apps. Main remains clean at d18241a; no push/deployment.
+
+Validation outcomes are deliberately separate:
+- **B-only pnpm check: 51 files / 453 tests PASS**, staged diff check PASS.
+- H3 integration 9d96abc: 461 pass / 1 fail (obsolete A art assertion).
+- H4 integration 7d8843d: **464 pass / 1 fail**, same obsolete assertion at experience-ui.test.ts:318. Types/lint/build stages before tests passed. Full integrated check is NOT green; no main merge permitted. Raw failure retained at ../commission-evidence/experience31/integration-h4/7d8843de70a29753729d8ce16bcf438eba201ae4/check-1.log.
+- Protected persistence/DSH/domain content/old traces/old assets/content.ts/living-art.ts still zero diff against d18241a. Both working trees clean after local checkpoints (record docs are subsequent commits).
+
+Real browser service measurement at integration 9d96abc used actual A SaveEncoder Module Worker, B coordinator and native IndexedDB, on Core Ultra 9 285H / Windows / in-app Chrome157. Each of 3 frozen inputs x checkpoint/boundary had 5 warmups then 30 recorded samples; independent clone/replay/hash probes also 5+30. Exact canonical and committed bytes checked, Worker used in every recorded sample. Document remained visible with no transitions. Checkpoint total p95 **60.1 / 45.7 / 36.8 ms**; boundary p95 **84.3 / 72.1 / 55.6 ms** for 529/419/962 commands. Maximum measured synchronous segment3.8ms; no LongTask overlap with recorded save intervals. Three other raw LongTasks preserved. Unique test databases deleted, local4218 server stopped. Evidence ../commission-evidence/experience31/browser-profile/b204a0770e16e8ceea2048a46d8932404a9e04d2/ contains raw samples, inputs, metadata, generated client and initial setup ownership failure/fix. Content hash is not a demonstrated bottleneck, persistence unchanged.
+
+These are isolated-service measurements, **not full UI or Host acceptance**. Worker return transfer is included in encoder elapsed but not independently isolated; real backlog pressure/full rendering and 20 browser configurations still require A evidence. H1 design/input co-sign closed; B H4/H5 services/content/eight assets delivered. H2 universal rotation semantics remain limited by protected unchanged Host protocol. H5 UI/crops/reduced-motion and H6 integrated fixes/matrix remain open. Historical VF5 / Visual Freeze HOLD retained.
+
+Next: A publishes I1/I2/I3 fixes and H5/H6 evidence; B merges registered releases, re-runs integrated gates, and only then considers the local main merge. All failures remain visible; no assertions removed or approval fabricated.
+
+Earlier records follow.
+
 # Complete Art-Batch 7 release — 2026-11-17
 
 Latest registered B implementation **29ee4781d2d637faf963e13cc652842f62b6b482**, experience-core-wave1, D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-core. A may merge this fixed SHA for all eight assets; includes every previous B release through 244018c. Shared API remains contract v1.
