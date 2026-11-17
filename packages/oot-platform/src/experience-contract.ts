@@ -1,7 +1,7 @@
 import type { Command, Member, Scene, forecastAssignment } from 'oot-core';
 import type { RevisionIdentity, WorkerSnapshot } from './checkpoint-contract.js';
 
-/** C0 proposal. This interface is NOT yet implemented by GameSession. */
+/** Shared contract v1. GameSession implements every method; Worker uses the same pure services. */
 export type Condition = 'no-event-interference' | 'resources-available' | 'no-new-defects' | 'personal-condition-unchanged';
 export type Certainty = { certainty: 'certain' } | { certainty: 'conditional'; conditions: readonly [Condition, ...Condition[]] };
 export type Fact<R extends string = string> = Certainty & {

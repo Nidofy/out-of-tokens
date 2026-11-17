@@ -1,0 +1,404 @@
+{
+  "version": "experience-v1",
+  "receipts": [
+    {
+      "id": "tea-menu-passed",
+      "scene": "tea-menu",
+      "templates": [
+        "menu"
+      ],
+      "outcome": "passed",
+      "zh": "菜单这一版通过了验收。短短几行口味说明，也值得在成果墙上留个位置。",
+      "en": "This menu passed acceptance. A few lines about flavours deserve a place on the studio wall, too.",
+      "subject": {
+        "zh": "菜单",
+        "en": "menu"
+      }
+    },
+    {
+      "id": "tea-menu-rework",
+      "scene": "tea-menu",
+      "templates": [
+        "menu"
+      ],
+      "outcome": "rework",
+      "zh": "菜单开始返工。把需要修改的地方逐项圈出来，再慢慢打磨这一版。",
+      "en": "The menu is back for rework. Mark the changes one by one and give this version another pass.",
+      "subject": {
+        "zh": "菜单",
+        "en": "menu"
+      }
+    },
+    {
+      "id": "tea-menu-failed",
+      "scene": "tea-menu",
+      "templates": [
+        "menu"
+      ],
+      "outcome": "failed",
+      "zh": "这版菜单未通过验收。先把结果记下，下一步看看还能怎样调整。",
+      "en": "This menu did not pass acceptance. Record the result, then see what adjustments remain possible.",
+      "subject": {
+        "zh": "菜单",
+        "en": "menu"
+      }
+    },
+    {
+      "id": "cafe-sign-passed",
+      "scene": "cafe-sign",
+      "templates": [
+        "translation"
+      ],
+      "outcome": "passed",
+      "zh": "双语告示通过了验收。一张小纸，也能装下两种语言的细心。",
+      "en": "The bilingual notice passed acceptance. A small sheet can hold care in two languages.",
+      "subject": {
+        "zh": "双语告示",
+        "en": "bilingual notice"
+      }
+    },
+    {
+      "id": "cafe-sign-rework",
+      "scene": "cafe-sign",
+      "templates": [
+        "translation"
+      ],
+      "outcome": "rework",
+      "zh": "告示开始返工。两种语言需要再对一遍，尤其是容易被匆匆略过的短句。",
+      "en": "The notice is back for rework. Check both languages again, especially the short lines that are easy to skim.",
+      "subject": {
+        "zh": "双语告示",
+        "en": "bilingual notice"
+      }
+    },
+    {
+      "id": "cafe-sign-failed",
+      "scene": "cafe-sign",
+      "templates": [
+        "translation"
+      ],
+      "outcome": "failed",
+      "zh": "告示未通过验收。先收好这版，带着验收记录重新看那些句子。",
+      "en": "The notice did not pass acceptance. Keep this version and revisit its sentences alongside the acceptance record.",
+      "subject": {
+        "zh": "双语告示",
+        "en": "bilingual notice"
+      }
+    },
+    {
+      "id": "community-web-passed",
+      "scene": "community-web",
+      "templates": [
+        "website",
+        "website-small",
+        "website-phased",
+        "signup"
+      ],
+      "outcome": "passed",
+      "zh": "本期网站交付通过了验收。先给这一小步留个纪念，后面的功能另有后面的工单。",
+      "en": "This website phase passed acceptance. Mark this small step; later features belong to later jobs.",
+      "subject": {
+        "zh": "网站",
+        "en": "website"
+      }
+    },
+    {
+      "id": "community-web-rework",
+      "scene": "community-web",
+      "templates": [
+        "website",
+        "website-small",
+        "website-phased",
+        "signup"
+      ],
+      "outcome": "rework",
+      "zh": "本期网站交付开始返工。先把眼前的问题修好，再往页面之外看。",
+      "en": "This website phase is back for rework. Fix what is in front of us before looking beyond this page.",
+      "subject": {
+        "zh": "网站",
+        "en": "website"
+      }
+    },
+    {
+      "id": "community-web-failed",
+      "scene": "community-web",
+      "templates": [
+        "website",
+        "website-small",
+        "website-phased",
+        "signup"
+      ],
+      "outcome": "failed",
+      "zh": "本期网站交付未通过验收。页面先留在工作台上，下一步从验收结果找起。",
+      "en": "This website phase did not pass acceptance. Leave it on the workbench and let the result guide the next step.",
+      "subject": {
+        "zh": "网站",
+        "en": "website"
+      }
+    },
+    {
+      "id": "bookshop-system-passed",
+      "scene": "bookshop-system",
+      "templates": [
+        "incubator-build"
+      ],
+      "outcome": "passed",
+      "zh": "书店系统本期通过了验收。厚厚一叠需求，这次又翻过了一页。",
+      "en": "This bookshop system phase passed acceptance. Another page has turned in that thick stack of requirements.",
+      "subject": {
+        "zh": "书店系统",
+        "en": "bookshop system"
+      }
+    },
+    {
+      "id": "bookshop-system-rework",
+      "scene": "bookshop-system",
+      "templates": [
+        "incubator-build"
+      ],
+      "outcome": "rework",
+      "zh": "书店系统本期开始返工。先沿着本期范围查一遍，把散开的线头重新理顺。",
+      "en": "This bookshop system phase is back for rework. Walk through its scope and untangle the loose ends.",
+      "subject": {
+        "zh": "书店系统",
+        "en": "bookshop system"
+      }
+    },
+    {
+      "id": "bookshop-system-failed",
+      "scene": "bookshop-system",
+      "templates": [
+        "incubator-build"
+      ],
+      "outcome": "failed",
+      "zh": "书店系统本期未通过验收。进度暂时停在这里，已做过的努力仍留在记录里。",
+      "en": "This bookshop system phase did not pass acceptance. Progress pauses here; the work already done stays on record.",
+      "subject": {
+        "zh": "书店系统",
+        "en": "bookshop system"
+      }
+    },
+    {
+      "id": "bookshop-guide-passed",
+      "scene": "bookshop-guide",
+      "templates": [
+        "incubator-guide"
+      ],
+      "outcome": "passed",
+      "zh": "服务手册本期通过了验收。书页之间，多了一份认真整理过的交付。",
+      "en": "This service guide phase passed acceptance. Among the pages sits another carefully prepared delivery.",
+      "subject": {
+        "zh": "服务手册",
+        "en": "service guide"
+      }
+    },
+    {
+      "id": "bookshop-guide-rework",
+      "scene": "bookshop-guide",
+      "templates": [
+        "incubator-guide"
+      ],
+      "outcome": "rework",
+      "zh": "服务手册本期开始返工。把不够清楚的地方摊开，再一句一句地改。",
+      "en": "This service guide phase is back for rework. Lay out what is unclear and revise it sentence by sentence.",
+      "subject": {
+        "zh": "服务手册",
+        "en": "service guide"
+      }
+    },
+    {
+      "id": "bookshop-guide-failed",
+      "scene": "bookshop-guide",
+      "templates": [
+        "incubator-guide"
+      ],
+      "outcome": "failed",
+      "zh": "服务手册本期未通过验收。先给这页夹上书签，回头再看哪里需要说得更明白。",
+      "en": "This service guide phase did not pass acceptance. Bookmark this page and revisit what needs a clearer explanation.",
+      "subject": {
+        "zh": "服务手册",
+        "en": "service guide"
+      }
+    },
+    {
+      "id": "workshop-passed",
+      "scene": "workshop",
+      "templates": [],
+      "outcome": "passed",
+      "zh": "本期交付通过了验收。工作室又多了一件值得记住的小成果。",
+      "en": "This delivery phase passed acceptance. The studio has another small achievement to remember.",
+      "subject": {
+        "zh": "委托",
+        "en": "commission"
+      }
+    },
+    {
+      "id": "workshop-rework",
+      "scene": "workshop",
+      "templates": [],
+      "outcome": "rework",
+      "zh": "本期开始返工。桌面上的草稿还没收起，接下来继续把它做好。",
+      "en": "This phase is back for rework. The draft is still on the desk, ready for another pass.",
+      "subject": {
+        "zh": "委托",
+        "en": "commission"
+      }
+    },
+    {
+      "id": "workshop-failed",
+      "scene": "workshop",
+      "templates": [],
+      "outcome": "failed",
+      "zh": "本期未通过验收。这不是想要的结果，也值得如实留下一笔。",
+      "en": "This phase did not pass acceptance. It is not the result we hoped for, but it still deserves an honest entry.",
+      "subject": {
+        "zh": "委托",
+        "en": "commission"
+      }
+    }
+  ],
+  "duos": [
+    {
+      "id": "bluewhale-qwen",
+      "actors": [
+        "bluewhale",
+        "qwen"
+      ],
+      "stages": [
+        {
+          "id": "first-shared-delivery",
+          "lines": [
+            {
+              "speaker": "bluewhale",
+              "zh": "这张交付单里，有我们两个人实际投入的记录。",
+              "en": "This delivery record contains work from both of us."
+            },
+            {
+              "speaker": "qwen",
+              "zh": "先把这一次记清楚。下一单再看它真正需要什么。",
+              "en": "Let us record this one clearly, then see what the next job really needs."
+            }
+          ]
+        },
+        {
+          "id": "tea-ready",
+          "lines": [
+            {
+              "speaker": "qwen",
+              "zh": "档案里的茶会条件已经满足，现在也有空。",
+              "en": "The tea conditions in our profile are met, and we are available now."
+            },
+            {
+              "speaker": "bluewhale",
+              "zh": "那就去坐一会儿，别把下一张工单也带上茶桌。",
+              "en": "Then let us sit down for a moment, without bringing the next job to the tea table."
+            }
+          ]
+        },
+        {
+          "id": "unlocked-benefit",
+          "lines": [
+            {
+              "speaker": "bluewhale",
+              "zh": "这份工单符合我们的默契条件。",
+              "en": "This job meets the conditions for our duo bonus."
+            },
+            {
+              "speaker": "qwen",
+              "zh": "收益看实际规则，配合就从眼前这一期开始。",
+              "en": "The rules determine the benefit. Let us focus on this phase together."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mistral-llama",
+      "actors": [
+        "mistral",
+        "llama"
+      ],
+      "stages": [
+        {
+          "id": "first-shared-delivery",
+          "lines": [
+            {
+              "speaker": "mistral",
+              "zh": "这次交付记录里，也有我们搭档的那一份。",
+              "en": "The delivery record includes contributions from both of us."
+            },
+            {
+              "speaker": "llama",
+              "zh": "留下证据就好，不必把所有功劳都揽过来。",
+              "en": "Keeping the evidence is enough; we need not claim all the credit."
+            }
+          ]
+        },
+        {
+          "id": "tea-ready",
+          "lines": [
+            {
+              "speaker": "llama",
+              "zh": "档案的条件够了，现在也没有占用冲突。",
+              "en": "The profile conditions are met, with no current availability conflict."
+            },
+            {
+              "speaker": "mistral",
+              "zh": "好，先喝茶。速度最快的那条路，也要留个休息口。",
+              "en": "Good, tea first. Even the fastest route needs a place to rest."
+            }
+          ]
+        },
+        {
+          "id": "unlocked-benefit",
+          "lines": [
+            {
+              "speaker": "mistral",
+              "zh": "这次部署满足我们的搭档条件。",
+              "en": "This deployment meets our duo conditions."
+            },
+            {
+              "speaker": "llama",
+              "zh": "模式选对了，才谈得上这份收益。",
+              "en": "The deployment mode has to fit before that benefit applies."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "neutral": {
+    "zh": "先把这次的记录收好，细节留待核对。",
+    "en": "Keep this record for now; the details can be checked later."
+  },
+  "reviewed": {
+    "zh": "本期记录中包含实际审查投入。",
+    "en": "This phase includes recorded review work."
+  },
+  "duoInactive": {
+    "zh": "默契已经解锁，但当前工单不符合生效条件。",
+    "en": "The duo is unlocked, but this job does not meet its activation conditions."
+  },
+  "roles": {
+    "worker": {
+      "zh": "制作",
+      "en": "production"
+    },
+    "planner": {
+      "zh": "规划",
+      "en": "planning"
+    },
+    "reviewer": {
+      "zh": "审查",
+      "en": "review"
+    },
+    "tool": {
+      "zh": "工具支援",
+      "en": "tool support"
+    }
+  },
+  "contribution": {
+    "zh": "这次{subject}交付，我参与了{roles}。",
+    "en": "For this {subject} delivery, I contributed {roles}."
+  }
+}

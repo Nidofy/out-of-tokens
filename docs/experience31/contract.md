@@ -1,3 +1,26 @@
+# W3 standalone presentation entry (contract v1, additive)
+
+`content/presentation/experience-v1.json` contains six scenes x passed/rework/failed (18 bilingual receipts), and `bluewhale-qwen` / `mistral-llama` x three two-speaker stages. It is validated via browser-safe `oot-content/presentation`; it is never merged into domain Content or persisted. Reference validation against full Content is a release test. Strict keys reject rewards; IDs, speakers, template ownership, scene/outcome completeness and translation placeholders are validated.
+
+A imports only `experienceReceiptCopy` / `experienceDuoCopy` from B-owned `apps/web/src/experience-copy.ts`:
+- `experienceReceiptCopy(receipt, job)` accepts a receipt from `getExperienceView()` and matching current view job (`id`, `template`). Unknown templates use the generic workshop scene. Missing/mismatched/ambiguous or conditional outcome proof returns neutral copy. Participant IDs require actual certain contribution facts; review text additionally requires actual reviewer contribution.
+- `experienceDuoCopy(stage, duo, experienceView, context)` uses a duo from the same `session.view.living.duos`. First-shared-delivery requires `context.jobs` from that view and the earliest proven passed receipt with both actors' actual roles. Each speaker's response includes that job subject and only their recorded contribution roles. Missing history or failed delivery is neutral, never a positive invented memory.
+- Tea-ready uses the core `duo.canUnlock` result, preserving occupancy/scene/delivery constraints. Unlocked-benefit requires `context.explanation`, `context.jobId`, `context.draftKey`; all contract/content/revision/lineage/job/draft identity must match. Active returns dialogue, explicitly inactive returns inactive copy, missing/stale returns neutral. Actual benefit numbers and inactive reason remain the core explanation/forecast's responsibility. No award, unlock or command is issued by copy selectors.
+
+Every result is detached. Keep the receipt's occurrence/job/phase key when presenting history; never match participation against today's assigned team. A owns display, once-only presentation/preferences and locale selection. This release contains no UI wiring or browser acceptance. Six remaining Art-Batch 7 assets still require A's explicit two-sample crop approval.
+
+# W2 runtime activation (compatible contract v1)
+
+GameSession now implements ExperienceSession at compile time: suggestAssignments, explainActorCapacity, explainTeamDuos and explainFinance join W1 methods. oot-platform/worker exports the actual suggestAssignmentsFromSnapshot function. A can remove all five EXP-14 rule categories after testing real integration; no A source was changed here.
+
+Search evaluates at most 256 unique teams. It tries current draft, legal available singles, deterministic two-member role/mode combinations, then draft extensions if budget remains. No global-optimum claim. Three objectives choose winners independently and identical teams are omitted (0–3 results). Cost ranking compares immediate cloud-quota cash shortfall, then cloud units, then local capacity, never sums unlike units. Returned forecasts retain core conditional assumptions and explicit risks; no hidden requirement labels/data are emitted. No purchase/assignment/overtime is committed. Full identity plus draftKey must match before A accepts asynchronous output. Worker entry rejects incompatible contract/contentVersion. A owns cancellation and worker scheduling.
+
+Capacity context uses effectiveVersion; activeEfficiency is the station bonus for actors predicted to actually work this current slot under the no-event case, not a guarantee of an event-free settlement. It can be zero for low energy/resources where the old frontend merely displayed a reserved station's bonus. stations[].stationId is the actual reserved furniture instance, while energyCost/efficiency come from core stationEffects. Duo activation uses activeJobDuos; clarify-only bonus is explicitly inactive for job work with duo-clarification-only reason. Finance recentLedgerSummary covers last ten displayed ledger rows, not lifetime profit; bills separate current known weekly base/interest/subscription, accrued electricity, and unpaid inherited debt. No future income is guessed.
+
+Node search diagnostics: five warmups and thirty samples on fixed initial/full-roster states; 176/256 candidates; p95 4.7010/7.0569 ms, max 4.7171/8.4487 ms. These are not browser or Worker-transfer acceptance. Actual browser <=50ms gate and Worker parity remain A integration work. Main/Worker pure functions are exactly equal in tests. Contract shapes unchanged; new reasons use A fallback until translated.
+
+Earlier publication notes follow.
+
 # Shared C0 API baseline v1 — revision 3 publication
 
 Track A final pre-H1 co-sign: a19e2f68330deeedccf75b7152c27ead33e7e7a3, ux-c0.md §6.3. Track B accepts that review and art-slots.md from 4c5602b1d8d7788e270a90e3106ea3fffee81e8d. These two A-authored design documents are assembled verbatim here; no A implementation branch or UI code is merged. The implementation SHA published in track-b.md is the common API baseline for A to merge. Contract value remains 1; future breaking API changes require both owners and version increment.

@@ -1,11 +1,12 @@
+import { suggestAssignmentsFromSnapshot } from './suggestions.js';
 import { ExperienceProjection, rebuildExperience } from './experience-projection.js';
-import { createInitialState, dispatchCommand, getViewModel, forecastAssignment, activityEffects, previewPeriod } from 'oot-core';
+import { createInitialState, dispatchCommand, getViewModel, forecastAssignment, activityEffects, previewPeriod, explainCapacity, explainDuos, explainMoney } from 'oot-core';
 import type { Command, Content, DomainEvent, State, Member } from 'oot-core';
 import { saveBrowser, restoreBrowser } from 'oot-persistence/browser';
 import { EXPERIENCE_CONTRACT } from './checkpoint-contract.js';
-import type { ActivityPreview, NextPeriodPreview, ExperienceView, Fact } from './experience-contract.js';
+import type { ActivityPreview, NextPeriodPreview, ExperienceView, ExperienceSession, Fact, Draft, SuggestResult, CapacityExplanation, DuoExplanation, FinanceExplanation } from './experience-contract.js';
 import type { WorkerSnapshot, CheckpointSnapshot } from './checkpoint-contract.js';
-export class GameSession {
+export class GameSession implements ExperienceSession {
     private state: State;
     private commands: unknown[] = [];
     private revision = 0;
@@ -28,6 +29,11 @@ export class GameSession {
         return { ...snapshot, input: { content: structuredClone(this.content), seed: snapshot.seed, commands: structuredClone(this.commands), state: snapshot.state } };
     }
     get view() { return getViewModel(this.state, this.content); }
+    private identity() { return {contract:EXPERIENCE_CONTRACT,contentVersion:this.content.version,revision:this.revision,lineageId:this.lineage}; }
+    suggestAssignments(jobId:string,draft:Draft):SuggestResult { return suggestAssignmentsFromSnapshot(this.content,this.workerSnapshot(),jobId,draft); }
+    explainActorCapacity(actorId:string):CapacityExplanation { return {...this.identity(),...explainCapacity(this.state,this.content,actorId)}; }
+    explainTeamDuos(jobId:string,draft:Draft):DuoExplanation { return {...this.identity(),jobId,draftKey:draft.draftKey,duos:explainDuos(this.state,this.content,jobId,draft.team)}; }
+    explainFinance():FinanceExplanation { return {...this.identity(),...explainMoney(this.state,this.content)}; }
     getExperienceView(): ExperienceView {
         return {...this.experience.view(this.state),contract:EXPERIENCE_CONTRACT,contentVersion:this.content.version,revision:this.revision,lineageId:this.lineage};
     }
