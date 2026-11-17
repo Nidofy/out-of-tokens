@@ -1,9 +1,10 @@
 import type {Command} from 'oot-core';
 import {worlds} from 'oot-core';
-import type {ActivityPreview,FinanceExplanation,GameView} from 'oot-platform';
+import type {ActivityPreview,ExperienceView,FinanceExplanation,GameView} from 'oot-platform';
 import {Icon} from './icons.js';
-import {describeActivityPreview,formatFactLine} from './experience-adapter.js';
+import {artSlotForJobTemplate,describeActivityPreview,formatFactLine,receiptKey} from './experience-adapter.js';
 import {ExperienceArtSlot} from './experience-art-slot.js';
+import {experienceReceiptCopy} from './experience-copy.js';
 import {financeNetSolvencyNote} from './experience-ui-copy.js';
 import {souvenirIds} from './generated-art.js';
 import {ledgerLabel} from './player-labels.js';
@@ -30,9 +31,11 @@ type JournalHubProps={
  hideTabs?:boolean;
  previewActivity?:(cmd:Command)=>ActivityPreview;
  finance:FinanceExplanation;
+ experienceView?:ExperienceView|undefined;
+ suppressVignettes?:boolean|undefined;
 };
 
-export function JournalHub({view,english,locked,tab,setTab,send,hideTabs,previewActivity,finance}:JournalHubProps){
+export function JournalHub({view,english,locked,tab,setTab,send,hideTabs,previewActivity,finance,experienceView,suppressVignettes}:JournalHubProps){
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!,f=p.finale!;
  const chapterTitles=[tr('开源车库联盟','Open-source garage'),tr('第一笔大订单','The first large order'),tr('模型更新之夜','Model release night'),tr('429危机','The 429 crisis'),tr('最后一个Token','The last token')];
@@ -59,18 +62,73 @@ export function JournalHub({view,english,locked,tab,setTab,send,hideTabs,preview
       <div class="ui2-kpi-card"><small>{tr('当前已交付','Delivered jobs')}</small><b>{deliveredCount}</b></div>
      </div>
      {(()=>{
-      const menuDelivered=view.jobs.find(j=>j.template==='menu'&&j.status==='delivered');
-      return menuDelivered?(
-       <ExperienceArtSlot
-        slotId="outcome-tea-menu"
-        variant="outcome"
-        english={english}
-        state="delivered"
-        badgeText={tr('交付成果展柜','Delivered outcome')}
-        title={english?menuDelivered.titleEn:menuDelivered.title}
-        subtitle={tr(`综合评级 ${menuDelivered.quality} 分 · 纪念作品归档`,`Quality ${menuDelivered.quality} · Archived work`)}
-       />
-      ):null;
+      const receipts=experienceView?.receipts??[];
+      const hasPassed=receipts.some(r=>r.facts.some(f=>f.certainty==='certain'&&f.reason==='delivery-passed'));
+      return (
+       <section class="ui2-card ui2-outcome-wall" aria-label={tr('工作室成果墙','Studio outcome wall')}>
+        <div class="ui2-outcome-head">
+         <h4><Icon name="award"/> {tr('工作室成果墙','Studio outcome wall')}</h4>
+         <small>{tr(`已归档 ${receipts.length} 条结案记录`,`${receipts.length} settled record(s)`)}{suppressVignettes?` · ${tr('紧急事项优先，已折叠庆祝横幅','Celebration banner deferred to urgent alert')}`:''}</small>
+        </div>
+        {hasPassed&&!suppressVignettes&&(
+         <ExperienceArtSlot
+          slotId="vignette-first-delivery"
+          variant="vignette"
+          state="delivered"
+          english={english}
+          badgeText={tr('交付里程碑','Delivery milestone')}
+          title={tr('把约定做成作品，稳稳交给客户','Turned commitments into delivered work')}
+          subtitle={tr(`累计交付 ${deliveredCount} 项委托 · 下方仅展示真实归档与在案参与伙伴`,`${deliveredCount} delivered · Only factual receipts & recorded contributors shown below`)}
+         />
+        )}
+        {receipts.length===0?(
+         <ExperienceArtSlot
+          slotId="outcome-workshop-display"
+          variant="outcome"
+          state="neutral"
+          english={english}
+          badgeText={tr('成果展架空位','Empty display')}
+          title={tr('完成首个交付或返工结算后，成果记录将陈列在此','Completed settlements will appear on this shelf')}
+          subtitle={tr('未交付的功能、作品或未在案伙伴不会提前展示。','Undelivered work and unrecorded contributors are never shown prematurely.')}
+         />
+        ):(
+         <div class="ui2-outcome-grid">
+          {[...receipts].reverse().map(r=>{
+           const job=view.jobs.find(j=>j.id===r.jobId);
+           const copy=experienceReceiptCopy(r,job);
+           const slotId=artSlotForJobTemplate(job?.template);
+           const passed=r.facts.some(f=>f.certainty==='certain'&&f.reason==='delivery-passed');
+           const rework=r.facts.some(f=>f.certainty==='certain'&&f.reason==='delivery-rework');
+           const badge=passed?tr('验收通过','Accepted'):rework?tr('返工修正','Rework'):tr('未通过/违约','Failed');
+           const subtitle=`${tr(`第 ${r.phase+1} 阶段`,`Phase ${r.phase+1}`)} · ${english?copy.en:copy.zh}${copy.review?` · ${english?copy.review.en:copy.review.zh}`:''}`;
+           return (
+            <div key={receiptKey(r)} class="ui2-outcome-card" data-outcome={passed?'passed':rework?'rework':'failed'}>
+             <ExperienceArtSlot
+              slotId={slotId}
+              variant="outcome"
+              state={passed?'delivered':'neutral'}
+              english={english}
+              badgeText={badge}
+              title={job?(english?job.titleEn:job.title):r.jobId}
+              subtitle={subtitle}
+             />
+             <div class="ui2-outcome-contributors">
+              {copy.participants.length>0?(
+               <>
+                <small>{tr('记录在案的贡献伙伴','Recorded contributors')}:</small>
+                <span>{copy.participants.map(id=>names[id]??id).join(' · ')}</span>
+               </>
+              ):(
+               <small>{tr('本条回执无单独记录在案的贡献伙伴。','No individual contributor recorded on this receipt.')}</small>
+              )}
+             </div>
+            </div>
+           );
+          })}
+         </div>
+        )}
+       </section>
+      );
      })()}
      <section class="ui2-card">
       <h4>{tr('工作室章节编年里程碑','Studio chapter timeline')}</h4>

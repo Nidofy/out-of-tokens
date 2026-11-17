@@ -6,10 +6,10 @@ import {visualReviewEnabled} from './visual-review.js';
 const OBJECT_POSITIONS:Readonly<Record<string,string>>={
  'outcome-tea-menu':'50% 45%',
  'outcome-cafe-sign':'50% 42%',
- 'outcome-community-web':'50% 38%',
- 'outcome-bookshop-system':'50% 45%',
- 'outcome-bookshop-guide':'50% 45%',
- 'outcome-workshop-display':'50% 50%',
+ 'outcome-community-web':'50% 45%',
+ 'outcome-bookshop-system':'50% 50%',
+ 'outcome-bookshop-guide':'50% 50%',
+ 'outcome-workshop-display':'50% 48%',
  'vignette-rest-corner':'68% 50%',
  'vignette-first-delivery':'66% 48%'
 };

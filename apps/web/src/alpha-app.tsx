@@ -24,6 +24,8 @@ import {PartnerProfile} from './partner-profile.js';
 import {FeedbackNotice,feedbackSurface} from './feedback-notice.js';
 import type {Command} from 'oot-core';
 import type {CapacityExplanation,GameView} from 'oot-platform';
+import {buildDeliveryFeedbackPayload,DeliveryFeedbackModal} from './delivery-feedback-ui.js';
+import type {DeliveryFeedbackPayload} from './delivery-feedback-ui.js';
 import {useGame} from './use-game.js';
 import {names} from './presentation.js';
 import {sceneText,skillText} from './ui-labels.js';
@@ -129,6 +131,7 @@ export function AlphaApp(){
  const [reloadReady,setReloadReady]=useState(false),[update,setUpdate]=useState<ServiceWorker|null>(null);
  const [hud,setHud]=useState<'board'|'view'|'more'|null>(null);
  const [ritual,setRitual]=useState<RitualCard|null>(null),[ritualReady,setRitualReady]=useState(false);
+ const [deliveryFeedback,setDeliveryFeedback]=useState<DeliveryFeedbackPayload|null>(null);
  const [deltas,setDeltas]=useState<FloatDelta[]>([]);
  const [audioPrefs,setAudioPrefs]=useState(readAudioPrefs);
  const [activeBark,setActiveBark]=useState<BarkPayload|null>(null);
@@ -159,7 +162,7 @@ export function AlphaApp(){
  const tracking=trackingState(view,trackedJobId),tracked=tracking.id;
  useEffect(()=>{if(trackedJobId&&!tracking.pinned)setTrackedJobId(null);},[tracking.pinned,trackedJobId]);
 
- const clearTransientState=()=>{prevSnap.current=null;seenRituals.current.clear();lastSlotRef.current=null;setTrackedJobId(null);setDraftTeams({});setReturnTo(null);setActiveBark(null);setPeriodBeat(null);};
+ const clearTransientState=()=>{prevSnap.current=null;seenRituals.current.clear();lastSlotRef.current=null;setTrackedJobId(null);setDraftTeams({});setReturnTo(null);setActiveBark(null);setPeriodBeat(null);setDeliveryFeedback(null);};
  const commissionReturnFocus=()=>[commissionTrigger.current,jobsTrigger.current,boardTrigger.current].find(e=>e?.isConnected&&!e.closest('dialog,.studio-drawer,.priority-rail'))??boardTrigger.current;
  const selectCommission=(id:string|null)=>{if(jobId!==id&&jobId)game.dismissLocalFeedback({surface:'job',id:jobId});updateJobId(id);setJobInDetail(!!id);};
  const setJobId=(id:string|null)=>{if(id){if(panel!=='jobs')commissionTrigger.current=document.activeElement as HTMLElement;setHud(null);setActorId(null);updatePanel('jobs');}selectCommission(id);};
@@ -214,7 +217,7 @@ export function AlphaApp(){
   cameraDispatch({type:'zoom',zoom:next.zoom,pan:next.pan});
  };
 
- const modalOpen=!!(panel||mapOpen||saves||settings||arranging||chatOpen||view.pending||view.bankrupt||ritual||game.pendingSwitch);
+ const modalOpen=!!(panel||mapOpen||saves||settings||arranging||chatOpen||view.pending||view.bankrupt||ritual||deliveryFeedback||game.pendingSwitch);
  const closeLocations=(reason:'escape'|'close'|'modal')=>{const next=dismissPresence(locationsOpen,reason,modalOpen);setLocationsOpen(next.open);if(next.restoreFocus)locationsTrigger.current?.focus({preventScroll:true});};
  useEffect(()=>{if(modalOpen)closeLocations('modal');},[modalOpen]);
  useEffect(()=>{resetCamera();setLocationsOpen(false);},[p.scene]);
@@ -280,7 +283,7 @@ export function AlphaApp(){
  useEffect(()=>{
   const onKey=(e:KeyboardEvent)=>{
    const el=e.target as HTMLElement|null;
-   const cmd=resolveGlobalShortcut({key:e.key,ctrlKey:e.ctrlKey,metaKey:e.metaKey,altKey:e.altKey,isComposing:e.isComposing,repeat:e.repeat,targetTag:el?.tagName,targetEditable:el?.isContentEditable},{blockedModal:!!(view.pending||view.bankrupt||arranging||saves||settings||mapOpen||ritual||game.pendingSwitch),actorOpen:panel==='actors'&&!!actorId});
+   const cmd=resolveGlobalShortcut({key:e.key,ctrlKey:e.ctrlKey,metaKey:e.metaKey,altKey:e.altKey,isComposing:e.isComposing,repeat:e.repeat,targetTag:el?.tagName,targetEditable:el?.isContentEditable},{blockedModal:!!(view.pending||view.bankrupt||arranging||saves||settings||mapOpen||ritual||deliveryFeedback||game.pendingSwitch),actorOpen:panel==='actors'&&!!actorId});
    if(!cmd)return;
    e.preventDefault();
    if(cmd.type==='panel'){setActiveBark(null);setChatOpen(false);setPanel(cmd.panel);}
@@ -344,6 +347,8 @@ export function AlphaApp(){
  const livingView=getLivingView(view);
  const unreadThreads=countUnreadThreads(livingView.threads,readThreadIds);
  const chatterBubble=pickStageChatter(view,livingCatalog,livingView,english,chatterStep,nextPeriod.stops,capacityByActor);
+ const imminentBreach=view.jobs.some(j=>['accepted','working','review'].includes(j.status)&&j.deadline-view.absoluteSlot<=1);
+ const urgentPriorityActive=game.saveStatus.kind==='paused'||game.saveStatus.kind==='error'||!!view.pending||imminentBreach;
 
  useEffect(()=>{
   const unlock=()=>unlockAudio();
@@ -357,7 +362,7 @@ export function AlphaApp(){
   const prevSlot=lastSlotRef.current;
   lastSlotRef.current=view.absoluteSlot;
   if(prevSlot!==null&&view.absoluteSlot>prevSlot){
-   setPeriodBeat(pickSlotBeat(livingCatalog,prevSlot,view.absoluteSlot,english));
+   if(!urgentPriorityActive)setPeriodBeat(pickSlotBeat(livingCatalog,prevSlot,view.absoluteSlot,english));
    fx('advance');
   }
  },[view.absoluteSlot,busy,english]);
@@ -469,7 +474,7 @@ export function AlphaApp(){
    {game.lab&&<div class="office-lab-badge">LAB · {game.lab} · isolated memory saves</div>}
    <div class="scene-stage" data-period={view.absoluteSlot%4}>
     <Scene paused={modalOpen&&!arranging} camera={arranging?editorFocus:sceneFocus} zone={arranging?'overview':cameraZone} zoom={arranging?1:cameraZoom} pan={arranging?defaultCameraPan:cameraPan} capacityByActor={capacityByActor} onCamera={next=>cameraDispatch({type:'zoom',zoom:next.zoom,pan:next.pan,clearFocus:next.clearFocus})} presence={setOffscreen} anchors={updateAnchors} view={layoutItems&&view.office?{...view,office:{...view.office,items:layoutItems}}:view} english={english} select={openDirectActor} furniture={id=>{const reservation=Object.values(view.office?.reservations??{}).find(r=>r.item===id);if(reservation&&!reservation.job.startsWith('clarify:'))setJobId(reservation.job);else if(view.campaign?.scene==='workshop'&&!locked){openOffice();}}}/>
-    <StageChatterOverlay bubble={chatterBubble} step={banterPhase} anchors={anchors} view={view} hidden={modalOpen||arranging} onInspectActor={id=>{unlockAudio();fx('tap',id);openDirectActor(id);}}/>
+    <StageChatterOverlay bubble={chatterBubble} step={banterPhase} anchors={anchors} view={view} hidden={modalOpen||arranging||urgentPriorityActive} onInspectActor={id=>{unlockAudio();fx('tap',id);openDirectActor(id);}}/>
     {hud==='view'&&<nav class="office-camera" aria-label={tr('场景视角','Scene camera')}><div class="camera-zones">{(Object.keys(zoneNames) as CameraZone[]).map(id=><button key={id} aria-pressed={!sceneFocus&&cameraZone===id&&Math.abs(cameraPan.x)<1&&Math.abs(cameraPan.y)<1} onClick={()=>{cameraDispatch({type:'zone',zone:id});}}>{zoneNames[id][english?1:0]}</button>)}</div><div class="camera-zoom-row" role="group" aria-label={tr('镜头缩放','Camera zoom')}><button aria-label={tr('缩小','Zoom out')} disabled={!sceneFocus&&cameraZoom<=1} onClick={()=>stepZoom(-.1)}>−</button><output aria-label={tr('当前缩放','Current zoom')}>{Math.round((sceneFocus?1.6*cameraZoom:cameraZoom)*100)}%</output><button aria-label={tr('放大','Zoom in')} disabled={cameraZoom>=1.5} onClick={()=>stepZoom(.1)}>+</button><button disabled={!cameraMoved} onClick={resetCamera}>{tr('恢复全景','Reset view')}</button></div><small class="camera-hint">{tr('单指拖动平移 · 双指或滚轮缩放','Drag to pan · Pinch or wheel to zoom')}</small></nav>}
    </div>
 
@@ -528,7 +533,7 @@ export function AlphaApp(){
     jobsTrigger={jobsTrigger}
    />
 
-   <PeriodBeatBanner text={periodBeat} hidden={modalOpen||arranging}/>
+   <PeriodBeatBanner text={periodBeat} hidden={modalOpen||arranging||urgentPriorityActive}/>
    {!(panel&&!view.pending&&!view.bankrupt)&&<BarkOverlay bark={activeBark} view={view} english={english} onClose={dismissBark}/>}
 
    {hud==='board'&&(
@@ -608,6 +613,8 @@ export function AlphaApp(){
        onUnlockDuo={duo=>{void handleUnlockDuo(duo);}}
        previewActivity={previewAct}
        capacity={capacityByActor[actorId]}
+       experienceView={experienceView}
+       suppressVignettes={urgentPriorityActive}
       />
      ):panel==='actors'?(
       <div class="ui2-hub-content">
@@ -646,10 +653,22 @@ export function AlphaApp(){
        view={view}
        english={english}
        locked={locked}
-       send={async cmd=>{setActiveBark(null);const ok=await send(cmd);if(ok&&cmd.type==='assign'){writeLastTeamDraft(uiStore,game.lineageId,cmd.team);setLastTeam(cmd.team);}return ok;}}
+       send={async cmd=>{
+        setActiveBark(null);
+        const beforeCash=game.session.view.cash;
+        const ok=await send(cmd);
+        if(ok&&cmd.type==='assign'){writeLastTeamDraft(uiStore,game.lineageId,cmd.team);setLastTeam(cmd.team);}
+        if(ok&&(cmd.type==='deliver'||cmd.type==='rework')&&!game.session.view.pending&&!game.session.view.bankrupt){
+         const afterView=game.session.view;
+         const payload=buildDeliveryFeedbackPayload(beforeCash,afterView,game.session.getExperienceView(),getLivingCatalog(afterView),getLivingView(afterView),cmd.job,cmd.type);
+         if(payload)setDeliveryFeedback(payload);
+        }
+        return ok;
+       }}
        previewAssignment={(id,members)=>game.session.previewAssignment(id,members)}
        explainTeamDuos={(id,draft)=>game.session.explainTeamDuos(id,draft)}
        requestSuggestions={(id,draft)=>game.requestSuggestions(id,draft)}
+       experienceView={experienceView}
        close={closeHub}
        closePanel={closeHub}
        messages={messages}
@@ -678,7 +697,7 @@ export function AlphaApp(){
        finance={financeExplanation}
       />
      ):(
-      <JournalHub view={view} english={english} locked={locked} tab={journalTab} setTab={setJournalTab} send={send} hideTabs previewActivity={previewAct} finance={financeExplanation}/>
+      <JournalHub view={view} english={english} locked={locked} tab={journalTab} setTab={setJournalTab} send={send} hideTabs previewActivity={previewAct} finance={financeExplanation} experienceView={experienceView} suppressVignettes={urgentPriorityActive}/>
      )}
     </StageHubShell>
    )}
@@ -802,6 +821,16 @@ export function AlphaApp(){
    />
 
    {arranging&&view.office&&<OfficeEditor view={view} session={game.session} english={english} send={send} onPreview={(items,camera)=>{setLayoutItems(items);cameraDispatch({type:'preview',focus:camera});}} close={()=>{setArranging(false);setLayoutItems(null);cameraDispatch({type:'editor-close'});if(returnTo?.panel==='jobs'){const j=returnTo.jobId;setReturnTo(null);setJobId(j);}}}/>}
+
+   {deliveryFeedback&&!view.pending&&!view.bankrupt&&(
+    <DeliveryFeedbackModal
+     payload={deliveryFeedback}
+     english={english}
+     still={still}
+     returnFocus={()=>jobsTrigger.current??moreTrigger.current}
+     close={()=>setDeliveryFeedback(null)}
+    />
+   )}
 
    {ritual&&<Dialog className="ui2-ritual-dialog" title={ritual.badge} close={()=>{if(ritualReady)setRitual(null);}}>
     <div class="ui2-ritual-stage" style={{'--poster-color':ritual.themeColor}} onClick={()=>{if(ritualReady)setRitual(null);}}>

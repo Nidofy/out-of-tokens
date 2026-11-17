@@ -1,11 +1,12 @@
 import {useState,useEffect,useRef,useLayoutEffect} from 'preact/hooks';
 import type {ComponentChildren} from 'preact';
 import type {Command,Member} from 'oot-core';
-import type {ActivityPreview,Draft,DuoExplanation,GameSession,GameView,SuggestResult} from 'oot-platform';
+import type {ActivityPreview,Draft,DuoExplanation,ExperienceView,GameSession,GameView,SuggestResult} from 'oot-platform';
 import {commissionObjective,showSettlement,waitingText} from './commission-tracking.js';
-import {computeCandidateDelta,describeActivityPreview,formatDuoEvaluations,formatFactLine,stableDraftKey} from './experience-adapter.js';
+import {artSlotForJobTemplate,computeCandidateDelta,describeActivityPreview,findLatestJobReceipt,formatDuoEvaluations,formatFactLine,stableDraftKey} from './experience-adapter.js';
 import type {SuggestionTimingSample} from './experience-worker-host.js';
 import {ExperienceArtSlot} from './experience-art-slot.js';
+import {experienceDuoCopy} from './experience-copy.js';
 import {Portrait} from './studio-ui.js';
 import {AssignmentForecast,DeliverySummary,periodText} from './decision-panels.js';
 import {names} from './presentation.js';
@@ -53,9 +54,10 @@ export type WorkbenchProps={
  previewActivity?:(cmd:Command)=>ActivityPreview;
  explainTeamDuos?:(jobId:string,draft:Draft)=>DuoExplanation;
  requestSuggestions?:(jobId:string,draft:Draft)=>Promise<{result:SuggestResult;timing:SuggestionTimingSample}|null>;
+ experienceView?:ExperienceView|undefined;
 };
 
-export function CommissionWorkbench({view,job,english,locked,send,previewAssignment,close,closePanel,messages,notice,locate,trackControl,onAccepted,onRejected,savedDraft,lastTeam,onSaveDraft,onJumpToOffice,onJumpToFinance,onJumpToActor,onOpenMap,livingView,livingCatalog,onWorkBark,previewActivity,explainTeamDuos,requestSuggestions}:WorkbenchProps){
+export function CommissionWorkbench({view,job,english,locked,send,previewAssignment,close,closePanel,messages,notice,locate,trackControl,onAccepted,onRejected,savedDraft,lastTeam,onSaveDraft,onJumpToOffice,onJumpToFinance,onJumpToActor,onOpenMap,livingView,livingCatalog,onWorkBark,previewActivity,explainTeamDuos,requestSuggestions,experienceView}:WorkbenchProps){
  const tr=(zh:string,en:string)=>english?en:zh,p=view.campaign!,skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
  const [workStep,setWorkStep]=useState(['accepted','working'].includes(job.status)?'team':'brief');
  const [team,setTeam]=useState<DraftTeam>(()=>savedDraft??Object.fromEntries(view.actors.map(a=>{const m=job.team.find(m=>m.character===a.id);return[a.id,{role:m?.role??'none',mode:m?.mode??'cloud'}];})));
@@ -191,7 +193,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
         <QualitySealSvg score={job.quality} passLine={job.passQuality} tier={sealTier} english={english}/>
         <div class="commission-payment">
          <b>{tr('现金变动','Cash change')} ¥{netCash!==null?netCash.toFixed(2):'—'}</b>
-         <DeliverySummary job={job} english={english} settled={settledEntry} persona={resolveClientPersona(activeCatalog,job)} view={view}/>
+         <DeliverySummary job={job} english={english} settled={settledEntry} persona={resolveClientPersona(activeCatalog,job)} view={view} receipt={experienceView?findLatestJobReceipt(experienceView.receipts,job.id,job.status==='delivered'?undefined:job.phase):undefined}/>
          {p.software.includes('explain')&&(
           <div class="ui2-quality-breakdown">
            <small>{tr('评分构成（基础 / 审查 / 事件 / 隐藏扣分 / 缺陷扣分）','Breakdown (Base / Review / Event / Hidden / Defect)')}</small>
@@ -225,9 +227,9 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
        </div>
       )}
 
-      {job.template==='menu'&&job.status!=='breached'&&(
+      {job.status!=='breached'&&(
        <ExperienceArtSlot
-        slotId="outcome-tea-menu"
+        slotId={artSlotForJobTemplate(job.template)}
         variant="outcome"
         english={english}
         state={job.status==='delivered'?'delivered':'preview'}
@@ -376,14 +378,22 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
          const teamDuos=livingView&&duoExplanation?formatDuoEvaluations(duoExplanation,view,activeCatalog,teamActorIds):[];
          return teamDuos.length>0?(
           <div class="ui2-synergy-strip" aria-label={tr('搭档协同状态','Team duo synergies')}>
-           {teamDuos.map(item=>(
-            <span key={item.duo.id} class={`ui2-synergy-chip is-${item.state}`} data-duo-state={item.state}>
-             <Icon name={item.state==='locked'?'lock':'link'}/>
-             <b>{tr(item.duo.title,item.duo.titleEn)}</b>
-             <em class="ui2-synergy-state">{tr(item.statusZh,item.statusEn)}</em>
-             <small>{tr(item.reasonZh,item.reasonEn)}</small>
-            </span>
-           ))}
+           {teamDuos.map(item=>{
+            const story=experienceView&&duoExplanation
+             ?experienceDuoCopy('unlocked-benefit',item.duo,experienceView,{explanation:duoExplanation,jobId:job.id,draftKey})
+             :null;
+            return (
+             <span key={item.duo.id} class={`ui2-synergy-chip is-${item.state}`} data-duo-state={item.state}>
+              <Icon name={item.state==='locked'?'lock':'link'}/>
+              <b>{tr(item.duo.title,item.duo.titleEn)}</b>
+              <em class="ui2-synergy-state">{tr(item.statusZh,item.statusEn)}</em>
+              <small>{tr(item.reasonZh,item.reasonEn)}</small>
+              {story&&story.lines.map((line,li)=>(
+               <small key={li} class="ui2-duo-line"><b>{names[line.speaker]??line.speaker}:</b> “{english?line.en:line.zh}”</small>
+              ))}
+             </span>
+            );
+           })}
           </div>
          ):null;
         })()}
