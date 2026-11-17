@@ -3,7 +3,14 @@ import {createHash} from 'node:crypto';
 import { defineConfig } from 'vite';
 export default defineConfig({
     base: './',
-    plugins: [{name:'offline-build',closeBundle(){
+    plugins: [{name:'experience-fixture-boundary',apply:'build',
+        resolveId(id) { if(id === 'oot-platform/fixtures' || id.startsWith('oot-platform/fixtures?')) throw Error('DEVELOPMENT_FIXTURE_IN_PRODUCTION'); return null; },
+        generateBundle() {
+            const modules=[...this.getModuleIds()].map(id=>id.replaceAll('\\','/'));
+            if(modules.some(id=>/oot-platform\/(src|dist)\/fixtures\.(ts|js)(\?|$)/.test(id))) throw Error('DEVELOPMENT_FIXTURE_IN_PRODUCTION');
+            this.emitFile({type:'asset',fileName:'assets/experience-module-graph.json',source:JSON.stringify({fixtureReachable:false,platformModules:modules.filter(id=>id.includes('/oot-platform/')).map(id=>id.slice(id.indexOf('/oot-platform/')+1)).sort()},null,2)});
+        }
+    },{name:'offline-build',closeBundle(){
  const art=readdirSync('dist/art',{recursive:true,withFileTypes:true}).filter(e=>e.isFile()).map(e=>(e.parentPath+'/'+e.name).replaceAll('\\','/').replace(/^dist\//,''));
  const assets=[...art,'index.html','icon.svg','icon-192.png','icon-512.png','icon-maskable-512.png','manifest.webmanifest','PAPER-DOLL-LICENSE.txt',...readdirSync('dist/assets').map(f=>'assets/'+f)];
  const key='oot-alpha-'+createHash('sha256').update(assets.map(f=>f+createHash('sha256').update(readFileSync('dist/'+f)).digest('hex')).join('|')).digest('hex').slice(0,12);

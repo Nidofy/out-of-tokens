@@ -246,3 +246,7 @@ VF4-A固定实现 d3e0c87d96bf4fe3baa77ab745163d8baa9ca052；实现提交前stag
 仅扩展character-profiles.ts与generated-art.ts纯路径映射，Stage B清单补至12条；原内容版本、*.base及非法版本继续回退原头像。新增chapterBannerArt/projectCoverArt/financeArt/ritualBackdropArt/stampSealCrestArt；souvenirIds/eventArt/softwareArt原样保留。同步vf2/vf4c/package-verification测试：12源图与输出哈希、离线预缓存、运行时副本、分类体积限制、映射和回退均覆盖。完整pnpm check通过42文件343测试、严格类型/Lint及Web/DSH构建；git diff --check通过。14图执行者目视检查未见可读文字、数字、真实品牌水印、多肢或头饰裁切，透明背景/边距实测通过；不冒充独立美术复审。
 
 相对入场fbaa075，packages/**、content/**、ai-village/**、office/**、Art-Batch 1–4所有既有图片及UI组件/CSS全部0 diff。未修改经营规则、存档或回放输入；没有另行声称重跑2652步自然长局。既有VF5/Visual Freeze HOLD不变。本地提交，不push或部署。仓库外检查日志与预览：../batch5-check.log、../batch5-review.png；首次普通沙箱导出被拒绝，获执行权限后成功，未替换旧资产。
+
+2026-11-17 experience31 C0 preparation: 663071a756532a47cecaa47f71d59b8b90bd4a1f; isolated experience-core-wave1; final pnpm check 46/404 plus types/lint/build PASS; diff check PASS. Not H1 frozen or B-W1a release. Evidence ../commission-evidence/experience31/c0/663071a756532a47cecaa47f71d59b8b90bd4a1f/check-3.log; remaining scope docs/experience31/track-b.md.
+
+2026-11-17 experience31 revision2 implementation 424045da7bfa0ddcff10f190ec5d869be5ab699e: pnpm check 47/427 PASS; staged diff check PASS after EOF fixes; full records docs/experience31/track-b.md. CPU diagnostics and retained generator failure in ../commission-evidence/experience31/c0/424045da7bfa0ddcff10f190ec5d869be5ab699e/. No H1/H2/H3 release.
