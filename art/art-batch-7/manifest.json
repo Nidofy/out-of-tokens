@@ -16,9 +16,10 @@
       "by": "Track B assistant",
       "date": "2026-11-17",
       "observed": "Watercolor/pen, ivory/walnut/sage; no readable text, digits, watermark or identity character observed.",
-      "AViewportSignoff": "pending"
+      "AViewportSignoff": "APPROVE; Track A 3af807852e9680d77c1cb314d78420407103eeaf; SAMPLE_APPROVAL.md"
     },
-    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim"
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "promptSha256": "5b0385aa7af892bc4e192e0b2f53c5896324accea440906bd164328c151fd67f"
   },
   {
     "id": "outcome-tea-menu",
@@ -37,7 +38,7 @@
       "by": "Track B assistant",
       "date": "2026-11-17",
       "observed": "Watercolor/pen, ivory/walnut/sage; no readable text, digits, watermark or identity character observed.",
-      "AViewportSignoff": "pending"
+      "AViewportSignoff": "APPROVE; Track A 3af807852e9680d77c1cb314d78420407103eeaf; SAMPLE_APPROVAL.md"
     },
     "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
     "publicFile": "art/experience/outcome-tea-menu.webp",
@@ -47,7 +48,8 @@
       "quality": 82,
       "method": 6,
       "resize": "Lanczos, exact runtime dimensions"
-    }
+    },
+    "promptSha256": "5b0385aa7af892bc4e192e0b2f53c5896324accea440906bd164328c151fd67f"
   },
   {
     "id": "vignette-rest-corner",
@@ -66,9 +68,10 @@
       "by": "Track B assistant",
       "date": "2026-11-17",
       "observed": "Watercolor/pen, ivory/walnut/sage; no readable text, digits, watermark or identity character observed.",
-      "AViewportSignoff": "pending"
+      "AViewportSignoff": "APPROVE; Track A 3af807852e9680d77c1cb314d78420407103eeaf; SAMPLE_APPROVAL.md"
     },
-    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim"
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "promptSha256": "5b0385aa7af892bc4e192e0b2f53c5896324accea440906bd164328c151fd67f"
   },
   {
     "id": "vignette-rest-corner",
@@ -87,7 +90,7 @@
       "by": "Track B assistant",
       "date": "2026-11-17",
       "observed": "Watercolor/pen, ivory/walnut/sage; no readable text, digits, watermark or identity character observed.",
-      "AViewportSignoff": "pending"
+      "AViewportSignoff": "APPROVE; Track A 3af807852e9680d77c1cb314d78420407103eeaf; SAMPLE_APPROVAL.md"
     },
     "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
     "publicFile": "art/experience/vignette-rest-corner.webp",
@@ -97,6 +100,319 @@
       "quality": 82,
       "method": 6,
       "resize": "Lanczos, exact runtime dimensions"
-    }
+    },
+    "promptSha256": "5b0385aa7af892bc4e192e0b2f53c5896324accea440906bd164328c151fd67f"
+  },
+  {
+    "id": "outcome-cafe-sign",
+    "file": "masters/outcome-cafe-sign.png",
+    "bytes": 2932927,
+    "sha256": "4b99dc46fbd164e0fef55e02215fe04e75a29133f1801d6f5adcdc4879bca7a4",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "transparent": false,
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-92103d55-6ccb-44b4-b3a9-a6aa7a367ff0.png",
+    "promptFile": "generation-six.json",
+    "review": {
+      "by": "Track B assistant",
+      "date": "2026-11-17",
+      "observed": "Original and compressed runtime viewed: warm paper watercolor, recognizable subject, blank pages/screens/signs; no readable text/digits/logos/watermark/characters. Final rendered viewport crops remain A-owned.",
+      "AViewportSignoff": "pending for this new asset; prior two-sample approval permits production"
+    },
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "promptSha256": "a2f04ce9a1dbaca4bd884dce6f0b89e1a1d0d72a21bc2573c2382d6d04d569ac"
+  },
+  {
+    "id": "outcome-cafe-sign",
+    "file": "runtime/outcome-cafe-sign.webp",
+    "bytes": 61802,
+    "sha256": "28792b5863ddd9c3474be2e9f915d1c2b0880763ce44efd29b65c19b9c447a24",
+    "width": 768,
+    "height": 512,
+    "mode": "RGB",
+    "transparent": false,
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-92103d55-6ccb-44b4-b3a9-a6aa7a367ff0.png",
+    "promptFile": "generation-six.json",
+    "review": {
+      "by": "Track B assistant",
+      "date": "2026-11-17",
+      "observed": "Original and compressed runtime viewed: warm paper watercolor, recognizable subject, blank pages/screens/signs; no readable text/digits/logos/watermark/characters. Final rendered viewport crops remain A-owned.",
+      "AViewportSignoff": "pending for this new asset; prior two-sample approval permits production"
+    },
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "publicFile": "art/experience/outcome-cafe-sign.webp",
+    "compression": {
+      "tool": "Pillow 12.1.1",
+      "format": "WebP",
+      "quality": 82,
+      "method": 6,
+      "resize": "Lanczos, exact runtime dimensions"
+    },
+    "promptSha256": "a2f04ce9a1dbaca4bd884dce6f0b89e1a1d0d72a21bc2573c2382d6d04d569ac"
+  },
+  {
+    "id": "outcome-community-web",
+    "file": "masters/outcome-community-web.png",
+    "bytes": 3086647,
+    "sha256": "9f82057e5abc0c31495f1ae96d9da8b6fe98907e72ca491271ad8da1158156b1",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "transparent": false,
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-eb422385-0953-4980-8428-22e3cd2952ba.png",
+    "promptFile": "generation-six.json",
+    "review": {
+      "by": "Track B assistant",
+      "date": "2026-11-17",
+      "observed": "Original and compressed runtime viewed: warm paper watercolor, recognizable subject, blank pages/screens/signs; no readable text/digits/logos/watermark/characters. Final rendered viewport crops remain A-owned.",
+      "AViewportSignoff": "pending for this new asset; prior two-sample approval permits production"
+    },
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "promptSha256": "a2f04ce9a1dbaca4bd884dce6f0b89e1a1d0d72a21bc2573c2382d6d04d569ac"
+  },
+  {
+    "id": "outcome-community-web",
+    "file": "runtime/outcome-community-web.webp",
+    "bytes": 65996,
+    "sha256": "3138da81a395800177a303004e2c415b2892315b8b46a74a75052a60995c28a1",
+    "width": 768,
+    "height": 512,
+    "mode": "RGB",
+    "transparent": false,
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-eb422385-0953-4980-8428-22e3cd2952ba.png",
+    "promptFile": "generation-six.json",
+    "review": {
+      "by": "Track B assistant",
+      "date": "2026-11-17",
+      "observed": "Original and compressed runtime viewed: warm paper watercolor, recognizable subject, blank pages/screens/signs; no readable text/digits/logos/watermark/characters. Final rendered viewport crops remain A-owned.",
+      "AViewportSignoff": "pending for this new asset; prior two-sample approval permits production"
+    },
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "publicFile": "art/experience/outcome-community-web.webp",
+    "compression": {
+      "tool": "Pillow 12.1.1",
+      "format": "WebP",
+      "quality": 82,
+      "method": 6,
+      "resize": "Lanczos, exact runtime dimensions"
+    },
+    "promptSha256": "a2f04ce9a1dbaca4bd884dce6f0b89e1a1d0d72a21bc2573c2382d6d04d569ac"
+  },
+  {
+    "id": "outcome-bookshop-system",
+    "file": "masters/outcome-bookshop-system.png",
+    "bytes": 3156479,
+    "sha256": "91506994a6655ec61f1b05fc0319c115b1adbd7a8fa6761b4442d036b03709d3",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "transparent": false,
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-d4b661ee-3738-48c3-b76b-82700912a920.png",
+    "promptFile": "generation-six.json",
+    "review": {
+      "by": "Track B assistant",
+      "date": "2026-11-17",
+      "observed": "Original and compressed runtime viewed: warm paper watercolor, recognizable subject, blank pages/screens/signs; no readable text/digits/logos/watermark/characters. Final rendered viewport crops remain A-owned.",
+      "AViewportSignoff": "pending for this new asset; prior two-sample approval permits production"
+    },
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "promptSha256": "a2f04ce9a1dbaca4bd884dce6f0b89e1a1d0d72a21bc2573c2382d6d04d569ac"
+  },
+  {
+    "id": "outcome-bookshop-system",
+    "file": "runtime/outcome-bookshop-system.webp",
+    "bytes": 82228,
+    "sha256": "7cf5521818aa9435033c7933d6c932ddbdaf5cbb68fe44f8759ccf777e5b0f55",
+    "width": 768,
+    "height": 512,
+    "mode": "RGB",
+    "transparent": false,
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-d4b661ee-3738-48c3-b76b-82700912a920.png",
+    "promptFile": "generation-six.json",
+    "review": {
+      "by": "Track B assistant",
+      "date": "2026-11-17",
+      "observed": "Original and compressed runtime viewed: warm paper watercolor, recognizable subject, blank pages/screens/signs; no readable text/digits/logos/watermark/characters. Final rendered viewport crops remain A-owned.",
+      "AViewportSignoff": "pending for this new asset; prior two-sample approval permits production"
+    },
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "publicFile": "art/experience/outcome-bookshop-system.webp",
+    "compression": {
+      "tool": "Pillow 12.1.1",
+      "format": "WebP",
+      "quality": 82,
+      "method": 6,
+      "resize": "Lanczos, exact runtime dimensions"
+    },
+    "promptSha256": "a2f04ce9a1dbaca4bd884dce6f0b89e1a1d0d72a21bc2573c2382d6d04d569ac"
+  },
+  {
+    "id": "outcome-bookshop-guide",
+    "file": "masters/outcome-bookshop-guide.png",
+    "bytes": 2935197,
+    "sha256": "9a00ecdb6b51d5a4845df17fd3c92e6e727dda2513c83468e08917a885708d51",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "transparent": false,
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-e38a38e9-1302-41bc-a7be-94f826041025.png",
+    "promptFile": "generation-six.json",
+    "review": {
+      "by": "Track B assistant",
+      "date": "2026-11-17",
+      "observed": "Original and compressed runtime viewed: warm paper watercolor, recognizable subject, blank pages/screens/signs; no readable text/digits/logos/watermark/characters. Final rendered viewport crops remain A-owned.",
+      "AViewportSignoff": "pending for this new asset; prior two-sample approval permits production"
+    },
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "promptSha256": "a2f04ce9a1dbaca4bd884dce6f0b89e1a1d0d72a21bc2573c2382d6d04d569ac"
+  },
+  {
+    "id": "outcome-bookshop-guide",
+    "file": "runtime/outcome-bookshop-guide.webp",
+    "bytes": 58226,
+    "sha256": "073d8375caeb207a82143a2b374b63ff54c3af257eb1c1dd9d7864d22ae8f055",
+    "width": 768,
+    "height": 512,
+    "mode": "RGB",
+    "transparent": false,
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-e38a38e9-1302-41bc-a7be-94f826041025.png",
+    "promptFile": "generation-six.json",
+    "review": {
+      "by": "Track B assistant",
+      "date": "2026-11-17",
+      "observed": "Original and compressed runtime viewed: warm paper watercolor, recognizable subject, blank pages/screens/signs; no readable text/digits/logos/watermark/characters. Final rendered viewport crops remain A-owned.",
+      "AViewportSignoff": "pending for this new asset; prior two-sample approval permits production"
+    },
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "publicFile": "art/experience/outcome-bookshop-guide.webp",
+    "compression": {
+      "tool": "Pillow 12.1.1",
+      "format": "WebP",
+      "quality": 82,
+      "method": 6,
+      "resize": "Lanczos, exact runtime dimensions"
+    },
+    "promptSha256": "a2f04ce9a1dbaca4bd884dce6f0b89e1a1d0d72a21bc2573c2382d6d04d569ac"
+  },
+  {
+    "id": "outcome-workshop-display",
+    "file": "masters/outcome-workshop-display.png",
+    "bytes": 2885305,
+    "sha256": "a58d2e6fc94802d4ed6551bf56a0ce4872beaae6f420a612a2f371f8f16c4118",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "transparent": false,
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-f631b95b-36ca-4b52-942f-fd487ff2d5da.png",
+    "promptFile": "generation-six.json",
+    "review": {
+      "by": "Track B assistant",
+      "date": "2026-11-17",
+      "observed": "Original and compressed runtime viewed: warm paper watercolor, recognizable subject, blank pages/screens/signs; no readable text/digits/logos/watermark/characters. Final rendered viewport crops remain A-owned.",
+      "AViewportSignoff": "pending for this new asset; prior two-sample approval permits production"
+    },
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "promptSha256": "a2f04ce9a1dbaca4bd884dce6f0b89e1a1d0d72a21bc2573c2382d6d04d569ac"
+  },
+  {
+    "id": "outcome-workshop-display",
+    "file": "runtime/outcome-workshop-display.webp",
+    "bytes": 64124,
+    "sha256": "6fea6b09a4f8c5e0c779f4ddfe62201a225703a58da4df83d879f8c07c435344",
+    "width": 768,
+    "height": 512,
+    "mode": "RGB",
+    "transparent": false,
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-f631b95b-36ca-4b52-942f-fd487ff2d5da.png",
+    "promptFile": "generation-six.json",
+    "review": {
+      "by": "Track B assistant",
+      "date": "2026-11-17",
+      "observed": "Original and compressed runtime viewed: warm paper watercolor, recognizable subject, blank pages/screens/signs; no readable text/digits/logos/watermark/characters. Final rendered viewport crops remain A-owned.",
+      "AViewportSignoff": "pending for this new asset; prior two-sample approval permits production"
+    },
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "publicFile": "art/experience/outcome-workshop-display.webp",
+    "compression": {
+      "tool": "Pillow 12.1.1",
+      "format": "WebP",
+      "quality": 82,
+      "method": 6,
+      "resize": "Lanczos, exact runtime dimensions"
+    },
+    "promptSha256": "a2f04ce9a1dbaca4bd884dce6f0b89e1a1d0d72a21bc2573c2382d6d04d569ac"
+  },
+  {
+    "id": "vignette-first-delivery",
+    "file": "masters/vignette-first-delivery.png",
+    "bytes": 2642418,
+    "sha256": "0d75b0b5e4a8319d9522470026b6b0167821c0552898893e814e46aac328af87",
+    "width": 2172,
+    "height": 724,
+    "mode": "RGB",
+    "transparent": false,
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-04c40704-db43-4d5a-9352-021c56636c46.png",
+    "promptFile": "generation-six.json",
+    "review": {
+      "by": "Track B assistant",
+      "date": "2026-11-17",
+      "observed": "Original and compressed runtime viewed: warm paper watercolor, recognizable subject, blank pages/screens/signs; no readable text/digits/logos/watermark/characters. Final rendered viewport crops remain A-owned.",
+      "AViewportSignoff": "pending for this new asset; prior two-sample approval permits production"
+    },
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "promptSha256": "a2f04ce9a1dbaca4bd884dce6f0b89e1a1d0d72a21bc2573c2382d6d04d569ac"
+  },
+  {
+    "id": "vignette-first-delivery",
+    "file": "runtime/vignette-first-delivery.webp",
+    "bytes": 29942,
+    "sha256": "f3ea486140b1d543f7a5d31f4e6ef1b491f2c14217fba0d5dffce5c27a6c57eb",
+    "width": 960,
+    "height": 320,
+    "mode": "RGB",
+    "transparent": false,
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-04c40704-db43-4d5a-9352-021c56636c46.png",
+    "promptFile": "generation-six.json",
+    "review": {
+      "by": "Track B assistant",
+      "date": "2026-11-17",
+      "observed": "Original and compressed runtime viewed: warm paper watercolor, recognizable subject, blank pages/screens/signs; no readable text/digits/logos/watermark/characters. Final rendered viewport crops remain A-owned.",
+      "AViewportSignoff": "pending for this new asset; prior two-sample approval permits production"
+    },
+    "license": "Generated with user-authorized built-in tool; no separate third-party license supplied; no exclusivity claim",
+    "publicFile": "art/experience/vignette-first-delivery.webp",
+    "compression": {
+      "tool": "Pillow 12.1.1",
+      "format": "WebP",
+      "quality": 82,
+      "method": 6,
+      "resize": "Lanczos, exact runtime dimensions"
+    },
+    "promptSha256": "a2f04ce9a1dbaca4bd884dce6f0b89e1a1d0d72a21bc2573c2382d6d04d569ac"
   }
 ]
