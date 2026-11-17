@@ -1,8 +1,10 @@
 import {useState,useEffect,useRef,useLayoutEffect} from 'preact/hooks';
 import type {ComponentChildren} from 'preact';
 import type {Command,Member} from 'oot-core';
-import type {GameSession,GameView} from 'oot-platform';
+import type {ActivityPreview,GameSession,GameView} from 'oot-platform';
 import {commissionObjective,showSettlement,waitingText} from './commission-tracking.js';
+import {describeActivityPreview} from './experience-adapter.js';
+import {ExperienceArtSlot} from './experience-art-slot.js';
 import {Portrait} from './studio-ui.js';
 import {AssignmentForecast,DeliverySummary,periodText} from './decision-panels.js';
 import {names} from './presentation.js';
@@ -46,9 +48,10 @@ export type WorkbenchProps={
  livingView?:LivingView|undefined;
  livingCatalog?:LivingContent|undefined;
  onWorkBark?:((actorId:string,key:keyof CharacterBarkSet['work'])=>void)|undefined;
+ previewActivity?:(cmd:Command)=>ActivityPreview;
 };
 
-export function CommissionWorkbench({view,job,english,locked,send,previewAssignment,close,closePanel,messages,notice,locate,trackControl,onAccepted,onRejected,savedDraft,lastTeam,onSaveDraft,onJumpToOffice,onJumpToFinance,onOpenMap,livingView,livingCatalog,onWorkBark}:WorkbenchProps){
+export function CommissionWorkbench({view,job,english,locked,send,previewAssignment,close,closePanel,messages,notice,locate,trackControl,onAccepted,onRejected,savedDraft,lastTeam,onSaveDraft,onJumpToOffice,onJumpToFinance,onOpenMap,livingView,livingCatalog,onWorkBark,previewActivity}:WorkbenchProps){
  const tr=(zh:string,en:string)=>english?en:zh,p=view.campaign!,skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
  const [workStep,setWorkStep]=useState(['accepted','working'].includes(job.status)?'team':'brief');
  const [team,setTeam]=useState<DraftTeam>(()=>savedDraft??Object.fromEntries(view.actors.map(a=>{const m=job.team.find(m=>m.character===a.id);return[a.id,{role:m?.role??'none',mode:m?.mode??'cloud'}];})));
@@ -195,6 +198,18 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
        </div>
       )}
 
+      {job.template==='menu'&&job.status!=='breached'&&(
+       <ExperienceArtSlot
+        slotId="outcome-tea-menu"
+        variant="outcome"
+        english={english}
+        state={job.status==='delivered'?'delivered':'preview'}
+        badgeText={job.status==='delivered'?tr('已交付成果','Delivered'):tr('成果示意','Outcome preview')}
+        title={english?job.titleEn:job.title}
+        subtitle={job.status==='delivered'?tr(`成交评级 · ${job.quality} 分 · 实收报酬已入账`,`Final quality ${job.quality} · Payout settled`):tr(`质量 ≥ ${job.passQuality} 通过验收 · ${job.workSlots} 工作时段`,`Quality ≥ ${job.passQuality} to pass · ${job.workSlots} work periods`)}
+       />
+      )}
+
       {workLayout==='tri'&&<div class="commission-weights">{Object.entries(job.weights).map(([k,v])=><div key={k}><span>{skill(k as keyof typeof skillText)} {Math.round(v*100)}%</span><meter min={0} max={1} value={v}/></div>)}</div>}
       <h3>{workLayout==='tri'?tr('01 · 理解需求','01 · Understand the brief'):tr('委托需求','Commission brief')}</h3>
       <p>{english?job.descriptionEn:job.description}</p>
@@ -214,7 +229,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
         {job.hidden>0&&view.actors.every(a=>a.busy||a.location==='expedition')&&<p class="work-disabled-reason">{tr('当前没有可澄清的空闲伙伴，请推进时段或调整安排。','No teammate is available to clarify. Advance time or adjust assignments.')}</p>}
         {job.hidden>0&&view.absoluteSlot%4>=2&&<p class="work-disabled-reason">{tr('夜晚不能澄清需求，请等到下个白天工作时段。','Clarification is unavailable at night. Wait for the next daytime work period.')}</p>}
         {job.hidden===0&&!clarificationWait(job,view.absoluteSlot)&&<p>{tr('甲方需求已明确，可以直接接单。','The brief is clear. You can accept directly.')}</p>}
-        <div class="button-row">{job.hidden>0&&view.actors.map(a=><button key={a.id} disabled={locked||a.busy||a.location==='expedition'||a.energy<15||clarificationWait(job,view.absoluteSlot)||view.absoluteSlot%4>=2} onClick={()=>{clarifyAttemptRef.current={actorId:a.id,hidden:job.hidden,until:job.clarifyingUntil};void send({type:'clarify',job:job.id,character:a.id}).then(ok=>{if(ok)requestAnimationFrame(()=>workbenchRef.current?.focus({preventScroll:true}));else clarifyAttemptRef.current=null;});}}>{names[a.id]} {Math.round(a.clarifyChance*100)}%{a.energy<15?tr(' · 精力不足15',' · Needs 15 energy'):a.busy?tr(' · 忙碌',' · Busy'):''}</button>)}</div>
+        <div class="button-row">{job.hidden>0&&view.actors.map(a=>{const cp=previewActivity?describeActivityPreview(previewActivity({type:'clarify',job:job.id,character:a.id}),english):null;return <button key={a.id} disabled={locked||a.busy||a.location==='expedition'||a.energy<15||clarificationWait(job,view.absoluteSlot)||view.absoluteSlot%4>=2} title={cp?.compactText} onClick={()=>{clarifyAttemptRef.current={actorId:a.id,hidden:job.hidden,until:job.clarifyingUntil};void send({type:'clarify',job:job.id,character:a.id}).then(ok=>{if(ok)requestAnimationFrame(()=>workbenchRef.current?.focus({preventScroll:true}));else clarifyAttemptRef.current=null;});}}>{names[a.id]} {Math.round(a.clarifyChance*100)}%{a.energy<15?tr(' · 精力不足15',' · Needs 15 energy'):a.busy?tr(' · 忙碌',' · Busy'):cp?.skipsNightRecovery?tr(' · 占深夜',' · Skips sleep'):''}</button>;})}</div>
        </>
       )}
 

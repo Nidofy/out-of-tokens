@@ -34,8 +34,9 @@ import {StudioHub} from './studio-hub.js';
 import type {StudioTab} from './studio-hub.js';
 import {JournalHub} from './journal-hub.js';
 import type {JournalTab} from './journal-hub.js';
-import {advancePeriodInfo,isFlagshipUnlocked,resolveGlobalShortcut} from './ui2-logic.js';
+import {isFlagshipUnlocked,resolveGlobalShortcut} from './ui2-logic.js';
 import type {HubPanel,ProfileTab} from './ui2-logic.js';
+import {formatAdvanceDisplay} from './experience-adapter.js';
 import type {ActorHeadAnchor} from './office-scene.js';
 import {readAudioPrefs,writeAudioPrefs,unlockAudio,playFoley,playVoiceBlip,syncAmbience} from './audio-foley.js';
 import {getLivingCatalog,getLivingView,giftReactionTier,pickSocialBark,pickEventQuote,pickSlotBeat,pickStageChatter} from './living-adapter.js';
@@ -334,11 +335,14 @@ export function AlphaApp(){
  const scene=(id:keyof typeof sceneText|'expedition')=>id==='expedition'?tr('远征中','On expedition'):sceneText[id][english?1:0];
  const skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
  const chapterTitles=[tr('开源车库联盟','Open-source garage'),tr('第一笔大订单','The first large order'),tr('模型更新之夜','Model release night'),tr('429危机','The 429 crisis'),tr('最后一个Token','The last token')];
- const advanceInfo=advancePeriodInfo(view,busy,arranging,english);
+ const nextPeriod=game.session.previewNextPeriod();
+ const experienceView=game.session.getExperienceView();
+ const previewAct=(c:Command)=>game.session.previewActivity(c);
+ const advanceInfo=formatAdvanceDisplay(nextPeriod,busy,arranging,english,view.jobs);
  const livingCatalog=getLivingCatalog(view);
  const livingView=getLivingView(view);
  const unreadThreads=countUnreadThreads(livingView.threads,readThreadIds);
- const chatterBubble=pickStageChatter(view,livingCatalog,livingView,english,chatterStep);
+ const chatterBubble=pickStageChatter(view,livingCatalog,livingView,english,chatterStep,nextPeriod.stops);
 
  useEffect(()=>{
   const unlock=()=>unlockAudio();
@@ -482,7 +486,7 @@ export function AlphaApp(){
      </section>
     )}
     <CommissionHudTracker view={view} id={tracked} english={english} open={setJobId} track={setTrackedJobId} locate={tracked&&jobFocus(view,tracked)?()=>locate(jobFocus(view,tracked)):undefined}/>
-    {p.chapter===0&&!arranging&&!panel&&!locationsOpen&&<Onboarding isolated={!!game.lab} view={view} english={english} openJob={setJobId} openPanel={id=>{setPanel(id);if(id==='jobs')setJobFilter('posted');}}/>}
+    {!arranging&&!panel&&!locationsOpen&&<Onboarding isolated={!!game.lab} view={view} experience={experienceView} lineageId={game.lineageId} uiStore={uiStore} english={english} openJob={setJobId} openPanel={id=>{setPanel(id);if(id==='jobs')setJobFilter('posted');}} openFinance={()=>{setStudioTab('finance');setPanel('studio');}}/>}
    </div>
 
    <HudBar
@@ -535,7 +539,7 @@ export function AlphaApp(){
        <p>{tr('空闲伙伴','Available')}: {view.actors.filter(a=>!a.busy&&a.location!=='expedition').map(a=>names[a.id]).join(' · ')||'—'}</p>
        {view.jobs.filter(j=>['accepted','working','waiting','review'].includes(j.status)).sort((a,b)=>Number(b.status==='review')-Number(a.status==='review')||a.deadline-b.deadline).map(j=><button key={j.id} onClick={()=>setJobId(j.id)}><b>{english?j.titleEn:j.title}</b><small>{tr(({accepted:'待派遣',working:'执行中',waiting:'等下一期',review:'待验收'} as Record<string,string>)[j.status]!,j.status)} · {j.progress}/{j.work} WP</small></button>)}
       </details>
-      <Onboarding isolated={!!game.lab} view={view} english={english} openJob={setJobId} openPanel={id=>{setPanel(id);if(id==='jobs')setJobFilter('posted');}}/>
+      <Onboarding isolated={!!game.lab} view={view} experience={experienceView} lineageId={game.lineageId} uiStore={uiStore} english={english} openJob={setJobId} openPanel={id=>{setPanel(id);if(id==='jobs')setJobFilter('posted');}} openFinance={()=>{setHud(null);setStudioTab('finance');setPanel('studio');}}/>
      </div>
     </aside>
    )}
@@ -601,6 +605,7 @@ export function AlphaApp(){
        onTriggerBark={triggerBark}
        onSendGift={(targetId,gift,okCb)=>{void handleSendGift(targetId,gift,okCb);}}
        onUnlockDuo={duo=>{void handleUnlockDuo(duo);}}
+       previewActivity={previewAct}
       />
      ):panel==='actors'?(
       <div class="ui2-hub-content">
@@ -647,6 +652,7 @@ export function AlphaApp(){
        livingView={livingView}
        livingCatalog={livingCatalog}
        onWorkBark={aid=>{fx('tap',aid);}}
+       previewActivity={previewAct}
       />
      ):panel==='studio'?(
       <StudioHub
@@ -663,9 +669,10 @@ export function AlphaApp(){
        hideTabs
        teaReady={livingView.teaReady}
        onTeaBreak={()=>{void handleTeaBreak();}}
+       previewActivity={previewAct}
       />
      ):(
-      <JournalHub view={view} english={english} locked={locked} tab={journalTab} setTab={setJournalTab} send={send} hideTabs/>
+      <JournalHub view={view} english={english} locked={locked} tab={journalTab} setTab={setJournalTab} send={send} hideTabs previewActivity={previewAct}/>
      )}
     </StageHubShell>
    )}
@@ -711,6 +718,7 @@ export function AlphaApp(){
     english={english}
     still={still}
     locked={locked}
+    previewActivity={previewAct}
     onReply={(tid,idx)=>{void handleReplyChat(tid,idx);}}
     returnFocus={()=>chatTrigger.current}
    />

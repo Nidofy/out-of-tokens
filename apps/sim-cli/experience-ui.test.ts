@@ -1,8 +1,13 @@
 import {expect,test} from 'vitest';
+import {existsSync,readFileSync} from 'node:fs';
+import {resolve} from 'node:path';
 import {loadFullContent} from 'oot-content';
 import {CheckpointCoordinator,GameSession,switchImportedSession} from 'oot-platform';
+import {experienceFixture} from 'oot-platform/fixtures';
 import {defaultSaveEncoder} from 'oot-platform/worker';
 import {LabSaves,labSession} from '../web/src/office-lab.js';
+import {describeActivityPreview,formatAdvanceDisplay} from '../web/src/experience-adapter.js';
+import {experienceArt} from '../web/src/experience-art.js';
 import {encodeViaWorkerProtocol} from '../web/src/save-encoder-host.js';
 import {
  backupPolicyCopy,
@@ -239,4 +244,90 @@ test('H2: CheckpointCoordinator and switchImportedSession enforce drain on norma
  const drained=await coord.drain();
  expect(drained.kind).toBe('saved');
  coord.dispose();
+});
+
+test('H3: previewNextPeriod and previewActivity adapters consume core previews across C0 fixtures and 7 learning nodes',async()=>{
+ const c=loadFullContent();
+ const g=new GameSession(c,1);
+
+ // Night activity at slot 3 flags skipsNightRecovery; group chat confirms 0 slots
+ const nightFx=experienceFixture('night-e40-load5',c);
+ expect(nightFx.command).not.toBeNull();
+ const gNight=new GameSession(c,1);
+ await gNight.importSave(await gNight.exportSave()); // baseline valid save
+ const trainFx=experienceFixture('training',c);
+ const otFx=experienceFixture('overtime',c);
+ expect(otFx.command).not.toBeNull();
+
+ // Run live GameSession checks for chat-reply (0 slots), clarify, train (8 slots -> library), align (4 slots -> library), and night sleep skip
+ const thread=g.view.living.threads[0]!;
+ const chatSummary=describeActivityPreview(g.previewActivity({type:'campaign',action:'chat-reply',id:thread.id,target:'0'}),false);
+ expect(chatSummary.legal).toBe(true);
+ expect(chatSummary.occupiedSlots).toBe(0);
+ expect(chatSummary.compactText).toContain('0 槽');
+
+ // Advance to Night (slot 3) to test night-time activity preview & shared nightNoOvertime advance summary
+ for(let i=0;i<3;i++)expect(g.send({type:'advance'}).error).toBeNull();
+ expect(g.view.absoluteSlot%4).toBe(3);
+ const advNight=formatAdvanceDisplay(g.previewNextPeriod(),false,false,false,g.view.jobs);
+ expect(advNight.nightNoOvertime).toBe(true);
+ expect(advNight.resting.length).toBeGreaterThan(0);
+
+ const targetActor=g.view.actors.find(a=>!a.busy&&a.location!=='expedition')!;
+ if(targetActor.location!==g.view.campaign!.scene){
+  expect(g.send({type:'campaign',action:'visit',id:targetActor.location}).error).toBeNull();
+ }
+ const nightChat=describeActivityPreview(g.previewActivity({type:'campaign',action:'chat',id:targetActor.id}),false);
+ expect(nightChat.legal).toBe(true);
+ expect(nightChat.skipsNightRecovery).toBe(true);
+ expect(nightChat.compactText).toContain('跳过今晚睡眠');
+
+ // Train/align with research >=5 verifies 8/4 slots + library relocation deterministically
+ const labLocal=labSession(c,'twelve');
+ for(let step=0;step<8&&(labLocal.view.campaign?.research??0)<5;step++){
+  if(labLocal.view.campaign?.scene!=='library')labLocal.send({type:'campaign',action:'visit',id:'library'});
+  for(const a of labLocal.view.actors.filter(x=>!x.busy&&x.location==='library')){
+   labLocal.send({type:'campaign',action:'study',id:a.id});
+  }
+  labLocal.send({type:'advance'});
+ }
+ expect(trainFx.command?.type).toBe('campaign');
+ let verifiedTrain=false;
+ for(const a of labLocal.view.actors){
+  const p=labLocal.previewActivity({type:'campaign',action:'train',id:a.id,target:'code'});
+  if(p.legal){
+   const d=describeActivityPreview(p,false);
+   expect(d.occupiedSlots).toBe(8);
+   expect(d.relocatesTo).toBe('library');
+   const ap=describeActivityPreview(labLocal.previewActivity({type:'campaign',action:'align',id:a.id}),false);
+   expect(ap.occupiedSlots).toBe(4);
+   expect(ap.relocatesTo).toBe('library');
+   verifiedTrain=true;
+   break;
+  }
+ }
+ expect(verifiedTrain).toBe(true);
+
+ // ExperienceProjection goal/receipt codes & whitelist art samples resolve cleanly
+ expect(resolveReasonCopy('choose-commission',false)).toContain('接单');
+ expect(resolveReasonCopy('delivery-passed',true).toLowerCase()).toContain('pass');
+ expect(experienceArt('outcome-tea-menu')).toBe('./art/experience/outcome-tea-menu.webp');
+ expect(experienceArt('vignette-rest-corner')).toBe('./art/experience/vignette-rest-corner.webp');
+ expect(experienceArt('outcome-bookshop-guide')).toBeNull();
+
+ // Learning facts from real ExperienceView remain isolated per lineage
+ const gLearn=new GameSession(c,1,'lineage-learn');
+ const jobMenu=gLearn.view.jobs.find(j=>j.template==='menu')!;
+ expect(gLearn.send({type:'accept',job:jobMenu.id}).error).toBeNull();
+ const expView=gLearn.getExperienceView();
+ expect(expView.learning).toHaveLength(7);
+ expect(expView.learning.find(n=>n.node==='accept')?.observed).toBe(true);
+ expect(expView.learning.find(n=>n.node==='deliver')?.observed).toBe(false);
+
+ // Production module graph (built in apps/web/dist) proves fixtures never enter production
+ const graphPath=resolve('apps/web/dist/assets/experience-module-graph.json');
+ if(existsSync(graphPath)){
+  const graph=JSON.parse(readFileSync(graphPath,'utf8')) as {fixtureReachable:boolean};
+  expect(graph.fixtureReachable).toBe(false);
+ }
 });

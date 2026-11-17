@@ -63,3 +63,31 @@
   2. Track A renders both in `CommissionWorkbench` / `PartnerProfile` / `JournalHub` across all **5 viewports × 2 locales × 2 themes**.
   3. Track A verifies in real Chromium: `naturalWidth > 0`, zero unreadable overlaid text, focal subject unclipped (`object-position` verified), dark scrim contrast readable, and failure fallback cleanly preserves layout & buttons.
   4. Track A records explicit **APPROVE** or **REWORK (with exact px crop delta)** in `docs/experience31/art-slots.md`, `docs/experience31/track-a.md`, and `commission-evidence/experience31/handoffs/track-a/`.
+
+---
+
+## 5. W1 Two-Sample 5-Viewport Browser Review Verdict (H3)
+
+- **Reviewed Track B Baseline**: `7a9f3df6f120fd8fac1c955580cc70f934a6ff03` (`art/art-batch-7/manifest.json`)
+- **Samples Reviewed**:
+  - `outcome-tea-menu` (`768×512`, `68,764 B <= 100 KB`, `sha256: 5fa39c0ba38150bb3507e2f52fecaa3bd6ca66096de4682cdce26999b20638c`, `object-position: 50% 45%`)
+  - `vignette-rest-corner` (`960×320`, `27,092 B <= 150 KB`, `sha256: 58d3213405597fdc41528c54dc8570aafa93424f5ce22c3b3cb9ec417cfafc96`, `object-position: 68% 50%`)
+- **Real Chromium Measured Render Sizes & Inspection (`http://127.0.0.1:4192/`, HTTP 200, `data-art-state="loaded"`, zero `{ force: true }`, zero console errors)**:
+  - **`1280×720`**:
+    - `outcome-tea-menu` (WorkBrief Light+ZH): `756.86 × 240.00 px` — clipboard menu, daisies, 3 sample cups, and porcelain teacup unclipped; zero baked text; caption card below image cleanly separated.
+    - `vignette-rest-corner` (Partner Profile Qwen Dark+EN): `627.38 × 209.13 px` (`3:1`) — left dark gradient scrim holds `"Evening & night"` badge + headline + subtitle clearly; lamp, emerald armchair, and window moon sit unclipped on right. (Onboarding sidebar Light+ZH: `261.71 × 104+ px`.)
+  - **`768×1024` (Dark+ZH)**:
+    - `outcome-tea-menu`: `424.86 × 240.00 px` — dark tone filter + bottom gradient scrim readable; menu clipboard & cup framed cleanly.
+    - `vignette-rest-corner`: `261.71 × 104+ px` — clean readability.
+  - **`844×390` (Dark+ZH & Dark+EN)**:
+    - `outcome-tea-menu`: `504.86 × 240.00 px` — framed cleanly in landscape modal.
+    - `vignette-rest-corner` (Dark+EN rebuilt): `249.71 × 132.94 px`, `.ui2-art-badge.is-inline` `+8.00 px` inside frame top (`badgeNoTopClip: true`); `.scene-left-stack` `bottom = 324.29 <= dockBox.top = 330.29`.
+  - **`560×800` (Dark+EN rebuilt)**:
+    - `outcome-tea-menu`: `502.86 × 240.00 px` — dark scrim legible; menu centerpiece intact.
+    - `vignette-rest-corner`: `261.71 × 132.94 px`, `.ui2-art-badge.is-inline` `+8.00 px` inside frame (`badgeNoTopClip: true`), zero text/badge overlap, right armchair visible.
+  - **`390×844` (Dark+EN & Light+ZH rebuilt)**:
+    - `outcome-tea-menu`: `333.14 × 222.09 px` (`3:2` ratio, caption clean underneath).
+    - `vignette-rest-corner`: `261.71 × 132.94 px`, `.ui2-art-badge.is-inline` `+8.00 px` inside frame (`badgeNoTopClip: true`), zero overlap with bottom dock (`+8.00 px` horizontal gap).
+- **Failure / Offline Fallback Verified (`http://127.0.0.1:4193/`, real HTTP `404` on `/art/experience/*.webp` & `/sw.js`)**:
+  - Both `vignette-rest-corner` and `outcome-tea-menu` transitioned cleanly to `data-art-state="fallback"`, `imgCount: 0`, full `.ui2-art-fallback` copy rendered, and action buttons (`看伙伴精力与作息` / `跳过本条` / `接取委托`) remained enabled and clickable.
+- **Verdict**: **APPROVE** (`outcome-tea-menu` = `APPROVE`, `vignette-rest-corner` = `APPROVE`, `0 px` asset rework requested). Track B is cleared to produce the remaining **6 Art-Batch 7 assets** matching the same typography-free composition, left low-contrast scrim safe zone (vignette), and file size limits (`<= 100 KB` outcomes, `<= 150 KB` vignettes, total `<= 900 KB`).

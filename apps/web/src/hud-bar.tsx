@@ -1,9 +1,11 @@
 import type {RefObject} from 'preact';
-import {useState} from 'preact/hooks';
+import {useRef,useState} from 'preact/hooks';
 import type {GameView} from 'oot-platform';
 import {Icon} from './icons.js';
 import {PeriodClockIcon,PeriodDots} from './ornaments.js';
-import type {AdvanceInfo,HubPanel} from './ui2-logic.js';
+import type {HubPanel} from './ui2-logic.js';
+import type {FormattedAdvanceInfo} from './experience-adapter.js';
+import {AdvancePreviewPopover} from './advance-preview-ui.js';
 
 import type {AudioPrefs} from './audio-foley.js';
 import {SaveStatusPill} from './save-status-ui.js';
@@ -26,7 +28,7 @@ type HudBarProps={
  panel:HubPanel|null;
  placeLabel:string;
  chapterTitle:string;
- advance:AdvanceInfo;
+ advance:FormattedAdvanceInfo;
  deltas:FloatDelta[];
  unreadThreads:number;
  teaReady:boolean;
@@ -59,6 +61,8 @@ export function HudBar(props:HudBarProps){
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!;
  const [confirmAdvance,setConfirmAdvance]=useState(false);
+ const [previewOpen,setPreviewOpen]=useState(false);
+ const previewTriggerRef=useRef<HTMLButtonElement>(null);
  const slotInWeek=view.absoluteSlot%28,daysToWeekly=Math.max(1,Math.ceil((28-slotInWeek)/4));
  const periodNames=[tr('上午','Morning'),tr('下午','Afternoon'),tr('晚上','Evening'),tr('深夜','Night')];
  const reviewCount=view.jobs.filter(j=>j.status==='review').length;
@@ -169,6 +173,12 @@ export function HudBar(props:HudBarProps){
    </nav>
 
    <div class="ui2-advance-wrap">
+    <AdvancePreviewPopover
+     display={advance}
+     open={previewOpen}
+     english={english}
+     onClose={()=>{setPreviewOpen(false);requestAnimationFrame(()=>previewTriggerRef.current?.focus({preventScroll:true}));}}
+    />
     {confirmAdvance&&advance.urgentReviewIds[0]&&(
      <div class="ui2-advance-confirm" role="alert">
       <p><Icon name="warning"/> {tr('有待验收委托即将逾期，直接推进将按违约结算。','A commission awaiting review is due now. Advancing will breach it.')}</p>
@@ -179,13 +189,26 @@ export function HudBar(props:HudBarProps){
       </div>
      </div>
     )}
-    <button class="advance-period ui2-advance-btn" disabled={advance.disabled} title={advance.disabledReason??advance.subtitle} onClick={handleAdvance} data-urgent={advance.urgentReviewIds.length>0}>
-     <span class="ui2-advance-icon"><Icon name="play"/></span>
-     <span class="ui2-advance-copy">
-      <b>{advance.label}</b>
-      <small>{advance.disabledReason??advance.subtitle}</small>
-     </span>
-    </button>
+    <div class="ui2-advance-row">
+     <button
+      ref={previewTriggerRef}
+      type="button"
+      class="ui2-advance-info-btn"
+      aria-expanded={previewOpen}
+      aria-label={tr('查看下一时段推进预览','Preview next period')}
+      title={tr('展开下一时段预览（不推进）','Expand next period preview (does not advance)')}
+      onClick={()=>setPreviewOpen(v=>!v)}
+     >
+      <Icon name="info"/>
+     </button>
+     <button class="advance-period ui2-advance-btn" disabled={advance.disabled} title={advance.disabledReason??advance.subtitle} onClick={handleAdvance} data-urgent={advance.urgentReviewIds.length>0}>
+      <span class="ui2-advance-icon"><Icon name="play"/></span>
+      <span class="ui2-advance-copy">
+       <b>{advance.label}</b>
+       <small>{advance.disabledReason??advance.subtitle}</small>
+      </span>
+     </button>
+    </div>
    </div>
   </>
  );

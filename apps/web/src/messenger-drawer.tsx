@@ -4,7 +4,10 @@ import {Icon} from './icons.js';
 import {names} from './presentation.js';
 import {characterPosters} from './character-profiles.js';
 import {messengerStatusCopy} from './experience-ui-copy.js';
+import {describeActivityPreview} from './experience-adapter.js';
 import {isThreadUnread} from './experience-ui-state.js';
+import type {ActivityPreview} from 'oot-platform';
+import type {Command} from 'oot-core';
 import type {LivingThreadView} from './living-adapter.js';
 
 type Props={
@@ -16,11 +19,12 @@ type Props={
  english:boolean;
  still:boolean;
  locked:boolean;
+ previewActivity?:(cmd:Command)=>ActivityPreview;
  onReply:(threadId:string,replyIndex:number)=>void;
  returnFocus?:()=>HTMLElement|null;
 };
 
-export function MessengerDrawer({open,close,threads,readIds,onMarkRead,english,still,locked,onReply,returnFocus}:Props){
+export function MessengerDrawer({open,close,threads,readIds,onMarkRead,english,still,locked,previewActivity,onReply,returnFocus}:Props){
  const tr=(zh:string,en:string)=>english?en:zh;
  const copy=messengerStatusCopy(english);
  const [selectedId,setSelectedId]=useState<string>('');
@@ -45,6 +49,9 @@ export function MessengerDrawer({open,close,threads,readIds,onMarkRead,english,s
  if(!open)return null;
  const active=selectedId?threads.find(t=>t.id===selectedId)??null:null;
  const chosen=active&&active.chosenReply!==null?active.replies[active.chosenReply]:null;
+ const replyPreview=active&&active.chosenReply===null&&previewActivity
+  ?describeActivityPreview(previewActivity({type:'campaign',action:'chat-reply',id:active.id,target:'0'}),english)
+  :null;
 
  const openThreadBody=(thread:LivingThreadView)=>{
   setSelectedId(thread.id);
@@ -128,7 +135,10 @@ export function MessengerDrawer({open,close,threads,readIds,onMarkRead,english,s
             <span>{english?r.labelEn:r.label}</span>
            </button>
           ))}
-          <small class="ui2-muted-note ui2-reply-later-note">{tr('已标为已读 · 可先关闭，稍后随时回来选择一次回复。','Marked as read · Close anytime and reply later once.')}</small>
+          <small class="ui2-muted-note ui2-reply-later-note">
+           {replyPreview?`${replyPreview.compactText} · `:''}
+           {tr('已标为已读 · 可先关闭，稍后随时回来选择一次回复。','Marked as read · Close anytime and reply later once.')}
+          </small>
          </>
         ):(
          <small class="ui2-muted-note"><Icon name="check"/> {tr('你已回应本条工坊群聊。','You already replied to this studio thread.')}</small>

@@ -1,7 +1,9 @@
 import type {Command} from 'oot-core';
 import {worlds} from 'oot-core';
-import type {GameView} from 'oot-platform';
+import type {ActivityPreview,GameView} from 'oot-platform';
 import {Icon} from './icons.js';
+import {describeActivityPreview} from './experience-adapter.js';
+import {ExperienceArtSlot} from './experience-art-slot.js';
 import {souvenirIds} from './generated-art.js';
 import {ledgerLabel} from './player-labels.js';
 import {names} from './presentation.js';
@@ -26,9 +28,10 @@ type JournalHubProps={
  setTab:(next:JournalTab)=>void;
  send:(cmd:Command)=>Promise<boolean>;
  hideTabs?:boolean;
+ previewActivity?:(cmd:Command)=>ActivityPreview;
 };
 
-export function JournalHub({view,english,locked,tab,setTab,send,hideTabs}:JournalHubProps){
+export function JournalHub({view,english,locked,tab,setTab,send,hideTabs,previewActivity}:JournalHubProps){
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!,f=p.finale!;
  const chapterTitles=[tr('开源车库联盟','Open-source garage'),tr('第一笔大订单','The first large order'),tr('模型更新之夜','Model release night'),tr('429危机','The 429 crisis'),tr('最后一个Token','The last token')];
@@ -54,6 +57,20 @@ export function JournalHub({view,english,locked,tab,setTab,send,hideTabs}:Journa
       <div class="ui2-kpi-card"><small>{tr('在岗伙伴 / 已研技术','Team / Tech unlocked')}</small><b>{view.actors.length} / {p.software.length}</b></div>
       <div class="ui2-kpi-card"><small>{tr('当前已交付','Delivered jobs')}</small><b>{deliveredCount}</b></div>
      </div>
+     {(()=>{
+      const menuDelivered=view.jobs.find(j=>j.template==='menu'&&j.status==='delivered');
+      return menuDelivered?(
+       <ExperienceArtSlot
+        slotId="outcome-tea-menu"
+        variant="outcome"
+        english={english}
+        state="delivered"
+        badgeText={tr('交付成果展柜','Delivered outcome')}
+        title={english?menuDelivered.titleEn:menuDelivered.title}
+        subtitle={tr(`综合评级 ${menuDelivered.quality} 分 · 纪念作品归档`,`Quality ${menuDelivered.quality} · Archived work`)}
+       />
+      ):null;
+     })()}
      <section class="ui2-card">
       <h4>{tr('工作室章节编年里程碑','Studio chapter timeline')}</h4>
       <ol class="ui2-timeline">
@@ -154,7 +171,12 @@ export function JournalHub({view,english,locked,tab,setTab,send,hideTabs}:Journa
          <div>
           <b>{english?w.en:w.zh}</b>
           <small>¥{w.cost} · {w.slots}{tr('槽',' slots')} · +{w.research} RP</small>
-          <div class="button-row">{view.actors.map(a=><button key={a.id} disabled={locked||a.busy||p.chapter<3||(!!f.ending&&!f.endless)} onClick={()=>act('expedition',a.id,w.id)}>{names[a.id]??a.id}</button>)}</div>
+          <div class="button-row">{view.actors.map(a=>{const ep=previewActivity?describeActivityPreview(previewActivity({type:'campaign',action:'expedition',id:a.id,target:w.id}),english):null;return <button key={a.id} disabled={locked||a.busy||p.chapter<3||(!!f.ending&&!f.endless)} title={ep?.compactText} onClick={()=>act('expedition',a.id,w.id)}>{names[a.id]??a.id}</button>;})}</div>
+          {(()=>{
+           const sampleActor=view.actors.find(a=>!a.busy);
+           const ep=sampleActor&&previewActivity?describeActivityPreview(previewActivity({type:'campaign',action:'expedition',id:sampleActor.id,target:w.id}),english):null;
+           return ep?.legal?<small class="ui2-muted-note">{ep.compactText}</small>:null;
+          })()}
          </div>
         </article>)}
        </div>

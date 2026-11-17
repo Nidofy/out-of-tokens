@@ -1,6 +1,7 @@
 import type {Command} from 'oot-core';
-import type {GameView} from 'oot-platform';
+import type {ActivityPreview,GameView} from 'oot-platform';
 import {Icon} from './icons.js';
+import {describeActivityPreview} from './experience-adapter.js';
 import {PipTrack} from './ornaments.js';
 import {chapterBannerArt,financeArt,softwareArt} from './generated-art.js';
 import {names} from './presentation.js';
@@ -25,9 +26,10 @@ type StudioHubProps={
  hideTabs?:boolean;
  teaReady?:boolean;
  onTeaBreak?:()=>void;
+ previewActivity?:(cmd:Command)=>ActivityPreview;
 };
 
-export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSwitchHub,onOpenMap,returnBanner,hideTabs,teaReady,onTeaBreak}:StudioHubProps){
+export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSwitchHub,onOpenMap,returnBanner,hideTabs,teaReady,onTeaBreak,previewActivity}:StudioHubProps){
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!,catalog=view.catalog!;
  const life=(action:Extract<Command,{type:'campaign'}>['action'],id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
@@ -96,7 +98,7 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
         <div class="ui2-incident-row" key={i.job}>
          <b>{i.job}</b>
          <small>{tr('响应截止槽','Deadline slot')} {i.deadline}</small>
-         <div class="button-row">{view.actors.map(a=><button key={a.id} disabled={locked||a.busy||view.absoluteSlot<i.at} onClick={()=>void send({type:'respond',job:i.job,character:a.id})}>{names[a.id]}</button>)}</div>
+         <div class="button-row">{view.actors.map(a=>{const rp=previewActivity?describeActivityPreview(previewActivity({type:'respond',job:i.job,character:a.id}),english):null;return <button key={a.id} disabled={locked||a.busy||view.absoluteSlot<i.at} title={rp?.compactText} onClick={()=>void send({type:'respond',job:i.job,character:a.id})}>{names[a.id]}{rp?.skipsNightRecovery?` (${tr('占深夜','Night')})`:''}</button>;})}</div>
         </div>
        ))}
       </section>
@@ -111,6 +113,7 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
        </div>
        {onTeaBreak&&(()=>{
         const teaDoneToday=(p.lastTeaDay??0)>=view.day;
+        const teaPreview=previewActivity?describeActivityPreview(previewActivity({type:'campaign',action:'tea',id:'all'}),english):null;
         const teaLabel=teaReady
          ?tr('举办今日工坊茶歇 ¥80','Host studio tea break ¥80')
          :teaDoneToday
@@ -120,7 +123,12 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
            :view.cash<80
             ?tr('举办工坊茶歇（需 ¥80）','Host tea break (needs ¥80)')
             :tr('伙伴忙碌中 · 稍后可办','Teammates busy right now');
-        return <button class="primary" disabled={locked||!teaReady} onClick={onTeaBreak}><Icon name="cup"/><span>{teaLabel}</span></button>;
+        return (
+         <>
+          <button class="primary" disabled={locked||!teaReady} title={teaPreview?.compactText} onClick={onTeaBreak}><Icon name="cup"/><span>{teaLabel}</span></button>
+          {teaPreview?.legal&&<small class="ui2-muted-note">{teaPreview.compactText}</small>}
+         </>
+        );
        })()}
       </section>
 

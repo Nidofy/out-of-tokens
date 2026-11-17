@@ -1,9 +1,10 @@
 import {expect,test} from 'vitest';
 import {loadFullContent} from 'oot-content';
-import {createInitialState,dispatchCommand,forecastAssignment,getViewModel} from 'oot-core';
+import {createInitialState,dispatchCommand,forecastAssignment,getViewModel,previewPeriod} from 'oot-core';
 import type {Content,Job,Member} from 'oot-core';
 import {labSession} from '../web/src/office-lab.js';
 import {resolveGlobalShortcut} from '../web/src/ui2-logic.js';
+import {actorStopKindFromPreview} from '../web/src/experience-adapter.js';
 import {actorEffectiveContext,isActorOverloaded,reactionFor} from '../web/src/scene-layout.js';
 import {
  clientAssetSrc,
@@ -20,7 +21,6 @@ import {
  pickStageChatter,
  pickWorkBark,
  resolveClientPersona,
- resolveStopReason,
  teaBreakAssetSrc
 } from '../web/src/living-adapter.js';
 import {
@@ -155,22 +155,24 @@ test('W2-03: effective context overload handles Mistral/Kimi, storage hardware, 
  const qwenCloudJob=makeWorkingJob(c,'menu',[{character:'qwen',role:'worker',mode:'cloud'}]);
  const cloudStopState={...s,quota:0,purchased:0,jobs:[qwenCloudJob]};
  const cloudStopView=getViewModel(cloudStopState,c);
+ const cloudStops=previewPeriod(cloudStopState,c).stops;
  expect(cloudStopView.possibleStops).toContain('qwen');
  expect(isActorOverloaded(cloudStopView,'qwen')).toBe(false);
  expect(reactionFor(cloudStopView,'qwen')).toBe('surprised');
- expect(resolveStopReason(cloudStopView,'qwen')).toBe('cloud');
+ expect(actorStopKindFromPreview(cloudStops,'qwen')).toBe('cloud');
  const qwenOnlyCloud={...cloudStopView,actors:cloudStopView.actors.filter(a=>a.id==='qwen')};
- const qwenStopBubble=pickStageChatter(qwenOnlyCloud,getLivingCatalog(qwenOnlyCloud),getLivingView(qwenOnlyCloud),false,0);
+ const qwenStopBubble=pickStageChatter(qwenOnlyCloud,getLivingCatalog(qwenOnlyCloud),getLivingView(qwenOnlyCloud),false,0,cloudStops);
  expect(qwenStopBubble?.id).toContain(':stop-cloud:');
  expect(qwenStopBubble?.id).not.toContain(':overload:');
 
  const llamaLocalJob=makeWorkingJob(c,'bugs',[{character:'llama',role:'worker',mode:'local'}]);
  const localStopState={...s,localCapacity:0,jobs:[llamaLocalJob]};
  const localStopView=getViewModel(localStopState,c);
+ const localStops=previewPeriod(localStopState,c).stops;
  expect(localStopView.possibleStops).toContain('llama');
- expect(resolveStopReason(localStopView,'llama')).toBe('local');
+ expect(actorStopKindFromPreview(localStops,'llama')).toBe('local');
  const llamaOnlyLocal={...localStopView,actors:localStopView.actors.filter(a=>a.id==='llama')};
- expect(pickStageChatter(llamaOnlyLocal,getLivingCatalog(llamaOnlyLocal),getLivingView(llamaOnlyLocal),false,0)?.id).toContain(':stop-local:');
+ expect(pickStageChatter(llamaOnlyLocal,getLivingCatalog(llamaOnlyLocal),getLivingView(llamaOnlyLocal),false,0,localStops)?.id).toContain(':stop-local:');
 });
 
 test('W2-02: evaluateTeamDuos matches core eligibility across mode, category, slot, delivery, clarify, lock and absence',()=>{
