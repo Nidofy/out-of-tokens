@@ -565,6 +565,36 @@
  .ui2-remedies-box b{font-size:12px}
  .ui2-remedies-actions{display:flex;flex-wrap:wrap;gap:6px}
  .ui2-remedies-actions button{min-height:44px;display:inline-flex;align-items:center;gap:6px;font-size:12px}
+
+ /* W3: Ordered delivery feedback modal, duo short chains, Journal outcome wall & still-motion */
+ .ui2-delivery-dialog{width:min(640px,calc(100vw - 16px));max-height:calc(100dvh - 16px)}
+ .ui2-delivery-flow{display:flex;flex-direction:column;gap:10px}
+ .ui2-delivery-step{display:flex;flex-direction:column;gap:6px;padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);transition:opacity .22s ease,transform .22s ease}
+ .ui2-delivery-step[data-revealed=false]{opacity:.42;transform:translateY(4px)}
+ [data-still=true] .ui2-delivery-step{transition:none;transform:none;opacity:1}
+ .ui2-step-index{font-size:12px;font-weight:700;color:var(--muted)}
+ .ui2-delivery-prose{margin:0;font-size:13px;line-height:1.45;color:var(--ink)}
+ .ui2-delivery-cash-row{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px}
+ .ui2-delivery-cash-row b{font-size:18px;color:var(--ink)}
+ .ui2-delivery-cash-row small{font-size:12px;color:var(--muted);line-height:1.4}
+ .ui2-delivery-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;padding-top:4px}
+ .ui2-delivery-actions button{min-height:44px;min-width:112px;padding:8px 14px;font-size:13px;font-weight:600}
+ .ui2-duo-story-box{margin-top:6px;padding:8px 10px;border-radius:10px;background:rgba(139,103,60,.08);border:1px solid rgba(139,103,60,.24);display:flex;flex-direction:column;gap:4px;font-size:12px}
+ :root[data-theme=dark] .ui2-duo-story-box{background:rgba(226,192,132,.1);border-color:rgba(226,192,132,.28)}
+ .ui2-duo-story-box p{margin:0;line-height:1.4}
+ .ui2-synergy-chip .ui2-duo-line{display:block;margin-top:2px;color:var(--ink);line-height:1.35}
+ .ui2-outcome-wall{display:flex;flex-direction:column;gap:10px}
+ .ui2-outcome-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px}
+ .ui2-outcome-head h4{margin:0;display:flex;align-items:center;gap:6px}
+ .ui2-outcome-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ @media(max-width:899px){.ui2-outcome-grid{grid-template-columns:minmax(0,1fr)}}
+ .ui2-outcome-card{display:flex;flex-direction:column;gap:6px;padding:8px;border-radius:12px;background:var(--solid);border:1px solid var(--line);min-width:0}
+ .ui2-outcome-card .ui2-art-slot{margin:0}
+ .ui2-outcome-contributors{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;padding:2px 4px;font-size:12px}
+ .ui2-outcome-contributors small{color:var(--muted)}
+ .ui2-outcome-contributors span{color:var(--ink);font-weight:600}
+ .ui2-outcome-line-meta{margin:4px 0;font-size:12px;color:var(--ink)}
+ [data-settlement-part]{margin:4px 0}
 }
 
 @layer ui2-responsive {
@@ -679,6 +709,6 @@
   .ui2-advance-popover{max-height:calc(100dvh - 120px)}
  }
 
- @media(prefers-reduced-motion:reduce){.ui2-choice-card,.ui2-delta-pop,.ui2-stage-chatter,.ui2-stage-bubble,.ui2-period-beat,.ui2-bark-card,.ui2-advance-popover,.ui2-art-slot img{transition:none;animation:none}}
- [data-motion=still] .ui2-choice-card,[data-motion=still] .ui2-delta-pop,[data-motion=still] .ui2-stage-chatter,[data-motion=still] .ui2-stage-bubble,[data-motion=still] .ui2-period-beat,[data-motion=still] .ui2-bark-card,[data-motion=still] .ui2-advance-popover,[data-motion=still] .ui2-art-slot img{transition:none;animation:none}
+ @media(prefers-reduced-motion:reduce){.ui2-choice-card,.ui2-delta-pop,.ui2-stage-chatter,.ui2-stage-bubble,.ui2-period-beat,.ui2-bark-card,.ui2-advance-popover,.ui2-art-slot img,.ui2-delivery-step{transition:none;animation:none}}
+ [data-motion=still] .ui2-choice-card,[data-motion=still] .ui2-delta-pop,[data-motion=still] .ui2-stage-chatter,[data-motion=still] .ui2-stage-bubble,[data-motion=still] .ui2-period-beat,[data-motion=still] .ui2-bark-card,[data-motion=still] .ui2-advance-popover,[data-motion=still] .ui2-art-slot img,[data-motion=still] .ui2-delivery-step{transition:none;animation:none}
 }

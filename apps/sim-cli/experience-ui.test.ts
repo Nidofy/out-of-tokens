@@ -1,14 +1,20 @@
+import {IDBFactory} from 'fake-indexeddb';
 import {expect,test} from 'vitest';
 import {existsSync,readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {loadFullContent} from 'oot-content';
 import type {Command} from 'oot-core';
-import {CheckpointCoordinator,GameSession,switchImportedSession} from 'oot-platform';
+import {BrowserSaves,CheckpointCoordinator,GameSession,switchImportedSession} from 'oot-platform';
+import type {SaveStorage} from 'oot-platform';
 import {experienceFixture} from 'oot-platform/fixtures';
 import {defaultSaveEncoder} from 'oot-platform/worker';
+import type {SaveEncoder} from 'oot-platform/worker';
 import {LabSaves,labSession} from '../web/src/office-lab.js';
-import {computeCandidateDelta,describeActivityPreview,formatAdvanceDisplay,formatDuoEvaluations,formatFactLine,stableDraftKey} from '../web/src/experience-adapter.js';
+import {artSlotForJobTemplate,computeCandidateDelta,describeActivityPreview,findLatestJobReceipt,formatAdvanceDisplay,formatDuoEvaluations,formatFactLine,receiptKey,stableDraftKey} from '../web/src/experience-adapter.js';
+import {buildDeliveryFeedbackPayload} from '../web/src/delivery-feedback-ui.js';
 import {experienceArt} from '../web/src/experience-art.js';
+import {experienceDuoCopy,experienceReceiptCopy} from '../web/src/experience-copy.js';
+import {getLivingCatalog,getLivingView} from '../web/src/living-adapter.js';
 import {encodeViaWorkerProtocol} from '../web/src/save-encoder-host.js';
 import {acceptSuggestionResult,suggestViaWorkerProtocol} from '../web/src/experience-worker-host.js';
 import {
@@ -39,7 +45,7 @@ import {
  readLastTeamDraft,
  filterValidLastTeamMembers
 } from '../web/src/experience-ui-state.js';
-import {shouldConfirmBeforeSwitch,switchReasonFromSaveStatus} from '../web/src/use-game.js';
+import {executeManualSlotLoad,shouldConfirmBeforeSwitch,switchReasonFromSaveStatus} from '../web/src/use-game.js';
 
 test('oot-ui:<lineageId>:* isolates metadata per lineage and evicts LRU beyond 8 namespaces without touching non-oot-ui keys',()=>{
  const store=createMemoryUiStore();
@@ -314,8 +320,14 @@ test('H3: previewNextPeriod and previewActivity adapters consume core previews a
  expect(resolveReasonCopy('choose-commission',false)).toContain('接单');
  expect(resolveReasonCopy('delivery-passed',true).toLowerCase()).toContain('pass');
  expect(experienceArt('outcome-tea-menu')).toBe('./art/experience/outcome-tea-menu.webp');
+ expect(experienceArt('outcome-cafe-sign')).toBe('./art/experience/outcome-cafe-sign.webp');
+ expect(experienceArt('outcome-community-web')).toBe('./art/experience/outcome-community-web.webp');
+ expect(experienceArt('outcome-bookshop-system')).toBe('./art/experience/outcome-bookshop-system.webp');
+ expect(experienceArt('outcome-bookshop-guide')).toBe('./art/experience/outcome-bookshop-guide.webp');
+ expect(experienceArt('outcome-workshop-display')).toBe('./art/experience/outcome-workshop-display.webp');
  expect(experienceArt('vignette-rest-corner')).toBe('./art/experience/vignette-rest-corner.webp');
- expect(experienceArt('outcome-bookshop-guide')).toBeNull();
+ expect(experienceArt('vignette-first-delivery')).toBe('./art/experience/vignette-first-delivery.webp');
+ expect(experienceArt('outcome-unknown-slot')).toBeNull();
 
  // Learning facts from real ExperienceView remain isolated per lineage
  const gLearn=new GameSession(c,1,'lineage-learn');
@@ -403,4 +415,208 @@ test('H4: SaveEncoder Worker protocol matches defaultSaveEncoder across opening,
  expect(stressSnap.input.commands).toHaveLength(962);
  expect(await encodeViaWorkerProtocol(stressSnap.input)).toBe(await defaultSaveEncoder.encode(stressSnap.input));
  expect(await encodeViaWorkerProtocol({...stressSnap.input,throughCommand:600})).toBe(await defaultSaveEncoder.encode({...stressSnap.input,throughCommand:600}));
+});
+
+test('I2 regression: explicit manual auto load drains dirty queue into backup-1 and stays dirty until load boundary commits',async()=>{
+ const c=loadFullContent();
+ const storage=new BrowserSaves('ui-i2-auto-drain',new IDBFactory());
+ const session=new GameSession(c,1,'lineage-i2');
+ const original=await session.exportSave();
+ await storage.write('auto',original,0,'boundary',{lineageId:session.lineageId});
+
+ let resolveEncode!:()=>void;
+ const encodeGate=new Promise<void>(r=>{resolveEncode=r;});
+ let resolveStarted!:()=>void;
+ const encodeStarted=new Promise<void>(r=>{resolveStarted=r;});
+
+ const gatedEncoder:SaveEncoder={
+  encode:async input=>{
+   resolveStarted();
+   await encodeGate;
+   return defaultSaveEncoder.encode(input);
+  }
+ };
+
+ const oldCoord=new CheckpointCoordinator(()=>session.checkpointSnapshot(),storage,1,gatedEncoder);
+ expect(session.send({type:'accept',job:'0-0'}).error).toBeNull();
+ const dirtyText=await session.exportSave();
+ oldCoord.enqueue('command');
+ await encodeStarted;
+
+ // Wrap storage.read so first read('auto') captures rev1 original BEFORE drain completes rev2 dirty write
+ let readCount=0;
+ const racedStorage:SaveStorage={
+  list:()=>storage.list(),
+  read:async slot=>{
+   const row=await storage.read(slot);
+   if(slot==='auto'&&++readCount===1)resolveEncode();
+   return row;
+  },
+  write:(slot,text,expectedRev,policy,meta)=>storage.write(slot,text,expectedRev,policy,meta),
+  remove:slot=>storage.remove(slot),
+  close:()=>storage.close()
+ };
+
+ let boundCoord:CheckpointCoordinator=oldCoord;
+ const res=await executeManualSlotLoad({
+  id:'auto',
+  confirmed:false,
+  storageUnavailable:false,
+  session,
+  coordinator:oldCoord,
+  storage:racedStorage,
+  readSlotLineage:()=>session.lineageId,
+  writeSlotLineage:()=>{},
+  bindCoordinator:rev=>{
+   boundCoord=new CheckpointCoordinator(()=>session.checkpointSnapshot(),storage,rev);
+   return boundCoord;
+  }
+ });
+
+ // Immediately after switch, status MUST NOT falsely say saved while disk holds dirty rev2
+ expect(res.available).toBe(true);
+ expect(res.status.kind).toBe('dirty');
+ expect(await session.exportSave()).toBe(original);
+ const diskBeforeDrain=await storage.read('auto');
+ expect(diskBeforeDrain?.revision).toBe(2);
+ expect(diskBeforeDrain?.text).toBe(dirtyText);
+
+ // Once load boundary commits, auto holds selected original A and backup-1 preserves drained B
+ const drained=await res.nextCoordinator.drain();
+ expect(drained.kind).toBe('saved');
+ expect((await storage.read('auto'))?.text).toBe(original);
+ expect((await storage.read('backup-1'))?.text).toBe(dirtyText);
+
+ boundCoord.dispose();
+ await storage.close();
+});
+
+test('I3 regression: post-commit auto read failure keeps switched session rendered, unblocked, exportable, and safe from unknown-CAS writes',async()=>{
+ const c=loadFullContent();
+ const backing=new BrowserSaves('ui-i3-post-read-fail',new IDBFactory());
+ const targetSession=new GameSession(c,1,'lineage-target');
+ const menuJob=targetSession.view.jobs.find(j=>j.template==='menu')!;
+ expect(targetSession.send({type:'accept',job:menuJob.id}).error).toBeNull();
+ const targetSave=await targetSession.exportSave();
+ await backing.write('manual-1',targetSave,0,'boundary',{lineageId:targetSession.lineageId});
+
+ const liveSession=new GameSession(c,1,'lineage-initial');
+ const oldCoord=new CheckpointCoordinator(()=>liveSession.checkpointSnapshot(),backing,0);
+
+ let readManualDone=false;
+ let writeAfterFailure=0;
+ const faultStorage:SaveStorage={
+  list:()=>backing.list(),
+  read:async slot=>{
+   if(slot==='manual-1'){
+    readManualDone=true;
+    return backing.read(slot);
+   }
+   if(slot==='auto'&&readManualDone)throw Error('INDEXEDDB_AUTO_READ_FAILED');
+   return backing.read(slot);
+  },
+  write:(slot,text,expectedRev,policy,meta)=>{
+   if(readManualDone)writeAfterFailure++;
+   return backing.write(slot,text,expectedRev,policy,meta);
+  },
+  remove:slot=>backing.remove(slot),
+  close:()=>backing.close()
+ };
+
+ let reboundCoord:CheckpointCoordinator|null=null;
+ const res=await executeManualSlotLoad({
+  id:'manual-1',
+  confirmed:false,
+  storageUnavailable:false,
+  session:liveSession,
+  coordinator:oldCoord,
+  storage:faultStorage,
+  readSlotLineage:()=>null,
+  writeSlotLineage:()=>{},
+  bindCoordinator:rev=>{
+   reboundCoord=new CheckpointCoordinator(()=>liveSession.checkpointSnapshot(),faultStorage,rev);
+   return reboundCoord;
+  }
+ });
+
+ expect(res.available).toBe(false);
+ expect(res.status.kind).toBe('imported-unsaved');
+ expect(res.status.storageUnavailable).toBe(true);
+ expect(res.status.exportable).toBe(true);
+ expect(shouldConfirmBeforeSwitch(res.status)).toBe(true);
+ expect(liveSession.lineageId).toBe(targetSession.lineageId);
+ expect(liveSession.view.jobs.find(j=>j.id===menuJob.id)?.status).toBe('accepted');
+ expect(reboundCoord).not.toBeNull();
+ expect(reboundCoord).not.toBe(oldCoord);
+ expect(writeAfterFailure).toBe(0);
+
+ // Switched session stays interactive and exportable without COORDINATOR_DISPOSED
+ const nextJob=liveSession.view.jobs.find(j=>j.status==='posted')!;
+ expect(liveSession.send({type:'accept',job:nextJob.id}).error).toBeNull();
+ expect(await liveSession.exportSave()).toContain('commands');
+
+ reboundCoord!.dispose();
+ await backing.close();
+});
+
+test('W3: artSlotForJobTemplate, receiptKey, DeliveryFeedback payload order, contributor truthfulness, and duo 3-stage chains',()=>{
+ const c=loadFullContent();
+
+ // 1. All job templates map cleanly to frozen Art-Batch 7 outcome slots
+ expect(artSlotForJobTemplate('menu')).toBe('outcome-tea-menu');
+ expect(artSlotForJobTemplate('translation')).toBe('outcome-cafe-sign');
+ expect(artSlotForJobTemplate('website')).toBe('outcome-community-web');
+ expect(artSlotForJobTemplate('website-small')).toBe('outcome-community-web');
+ expect(artSlotForJobTemplate('website-phased')).toBe('outcome-community-web');
+ expect(artSlotForJobTemplate('signup')).toBe('outcome-community-web');
+ expect(artSlotForJobTemplate('incubator-build')).toBe('outcome-bookshop-system');
+ expect(artSlotForJobTemplate('incubator-guide')).toBe('outcome-bookshop-guide');
+ expect(artSlotForJobTemplate('unknown-template')).toBe('outcome-workshop-display');
+ expect(artSlotForJobTemplate(undefined)).toBe('outcome-workshop-display');
+
+ // 2. Replay real build-2 trace to inspect factual receipts, contributors, and DeliveryFeedback payload
+ const raw=JSON.parse(readFileSync(resolve('apps/sim-cli/fixtures/commission-natural-build-2.json'),'utf8')) as {seed:number;commands:Command[]};
+ const g=new GameSession(c,raw.seed,'w3-replay');
+ for(const cmd of raw.commands){
+  expect(g.send(cmd).error).toBeNull();
+ }
+ const expView=g.getExperienceView();
+ expect(expView.receipts.length).toBeGreaterThanOrEqual(1);
+ const keys=new Set(expView.receipts.map(r=>receiptKey(r)));
+ expect(keys.size).toBe(expView.receipts.length);
+
+ const passedReceipt=expView.receipts.find(r=>r.facts.some(f=>f.certainty==='certain'&&f.reason==='delivery-passed'))!;
+ expect(passedReceipt).toBeDefined();
+ const passedJob=g.view.jobs.find(j=>j.id===passedReceipt.jobId)!;
+ expect(findLatestJobReceipt(expView.receipts,passedReceipt.jobId)?.jobId).toBe(passedReceipt.jobId);
+
+ const receiptCopy=experienceReceiptCopy(passedReceipt,passedJob);
+ expect(receiptCopy.participants).toEqual([...passedReceipt.participants]);
+ expect(receiptCopy.zh.length).toBeGreaterThan(0);
+ expect(receiptCopy.en.length).toBeGreaterThan(0);
+
+ const payload=buildDeliveryFeedbackPayload(
+  g.view.cash-500,
+  g.view,
+  expView,
+  getLivingCatalog(g.view),
+  getLivingView(g.view),
+  passedJob.id,
+  'deliver'
+ );
+ expect(payload).not.toBeNull();
+ expect(payload!.outcome).toBe('passed');
+ expect(payload!.cashDelta).toBeCloseTo(500,2);
+
+ // 3. Duo 3-stage chains: bluewhale-qwen & mistral-llama respect evidence & active/inactive explanation gates
+ const gDuo=new GameSession(c,1,'w3-duo-test');
+ const livingDuo=getLivingView(gDuo.view);
+ const bwQwen=livingDuo.duos.find(d=>d.id==='bluewhale-qwen')!;
+ expect(experienceDuoCopy('first-shared-delivery',bwQwen,gDuo.getExperienceView(),{jobs:gDuo.view.jobs}).lines).toEqual([]);
+ expect(experienceDuoCopy('tea-ready',bwQwen,gDuo.getExperienceView()).fallback).not.toBeNull();
+
+ const mLlama=livingDuo.duos.find(d=>d.id==='mistral-llama');
+ if(mLlama){
+  expect(experienceDuoCopy('unlocked-benefit',mLlama,gDuo.getExperienceView(),{jobs:gDuo.view.jobs}).lines).toEqual([]);
+ }
 });

@@ -1,9 +1,10 @@
 import type {ComponentChildren} from 'preact';
 import type {Command} from 'oot-core';
-import type {ActivityPreview,CapacityExplanation,GameView} from 'oot-platform';
+import type {ActivityPreview,CapacityExplanation,ExperienceView,GameView} from 'oot-platform';
 import {useEffect,useState,useRef} from 'preact/hooks';
 import {describeActivityPreview} from './experience-adapter.js';
 import {ExperienceArtSlot} from './experience-art-slot.js';
+import {experienceDuoCopy} from './experience-copy.js';
 import {content} from './content.js';
 import {FlavorPanel} from './flavor-panel.js';
 import {characterProfiles,characterPosters,resolveCharacterVisual,stageBPortrait,versionDelta,recruitmentBlock,recruitmentReasons} from './character-profiles.js';
@@ -45,12 +46,14 @@ type Props={
  onUnlockDuo:(duo:DuoDef)=>void;
  previewActivity?:(cmd:Command)=>ActivityPreview;
  capacity?:CapacityExplanation|undefined;
+ experienceView?:ExperienceView|undefined;
+ suppressVignettes?:boolean|undefined;
 };
 
 const stageBMap:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'qwen.qwq',llama:'llama.3.1',mistral:'mistral.large',gpt:'gpt.4o',claude:'claude.sonnet',kimi:'kimi.k2',gemini:'gemini.pro'};
 
  export function PartnerProfile(props:Props){
- const {view,actor,characterId,english,locked,send,close,closePanel,openJob,openMap,selectCharacter,preferredTab,setPreferredTab,entryMode,onOpenGallery,notice,locate,livingView,livingCatalog,onTriggerBark,onSendGift,onUnlockDuo,previewActivity,capacity}=props;
+ const {view,actor,characterId,english,locked,send,close,closePanel,openJob,openMap,selectCharacter,preferredTab,setPreferredTab,entryMode,onOpenGallery,notice,locate,livingView,livingCatalog,onTriggerBark,onSendGift,onUnlockDuo,previewActivity,capacity,experienceView,suppressVignettes}=props;
  const tr=(zh:string,en:string)=>english?en:zh,p=view.campaign!,catalog=view.catalog!;
  const {sameScene,onExpedition,activeJobs,lifeBusy,canRecall,status}=actor?partnerAvailability(view,actor,locked):{sameScene:false,onExpedition:false,activeJobs:[],lifeBusy:false,canRecall:false,status:null};
  const scene=(id:keyof typeof sceneText|'expedition')=>id==='expedition'?tr('远征中','On expedition'):sceneText[id][english?1:0],skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
@@ -140,7 +143,7 @@ const stageBMap:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'
      <div class="ui2-profile-scroll">
       {activeTab==='vitals'&&actor&&rel&&(
        <div class="ui2-tab-pane">
-        {view.absoluteSlot%4>=2&&(
+        {view.absoluteSlot%4>=2&&!suppressVignettes&&(
          <ExperienceArtSlot
           slotId="vignette-rest-corner"
           variant="vignette"
@@ -205,6 +208,16 @@ const stageBMap:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'
                </div>
               </div>
               <p>{tr(d.desc,d.descEn)}</p>
+              {experienceView&&(()=>{
+               const teaCopy=experienceDuoCopy('tea-ready',d,experienceView);
+               const sharedCopy=experienceDuoCopy('first-shared-delivery',d,experienceView,{jobs:view.jobs});
+               const lines=teaCopy.lines.length>0?teaCopy.lines:sharedCopy.lines;
+               return lines.length>0?(
+                <div class="ui2-duo-story-box" data-duo-stage={teaCopy.lines.length>0?'tea-ready':'first-shared-delivery'}>
+                 {lines.map((line,li)=><p key={li}><b>{names[line.speaker]??line.speaker}:</b> “{english?line.en:line.zh}”</p>)}
+                </div>
+               ):null;
+              })()}
               {!d.unlocked&&d.sharedDeliveries>=minDel&&def&&(
                <button class="primary" disabled={locked||!d.canUnlock} onClick={()=>onUnlockDuo(def)}><Icon name="cup"/><span>{tr('召开搭档茶会 · +2 RP','Host duo tea · +2 RP')}</span></button>
               )}

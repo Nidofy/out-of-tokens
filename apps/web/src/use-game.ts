@@ -26,6 +26,90 @@ class StorageFeedbackError extends Error {
  constructor(error:unknown){super(error instanceof Error?error.message:String(error));}
 }
 
+export interface ManualSlotLoadParams {
+ id:SaveSlot;
+ confirmed:boolean;
+ storageUnavailable:boolean;
+ session:GameSession;
+ coordinator:CheckpointCoordinator;
+ storage:SaveStorage;
+ readSlotLineage:(slot:SaveSlot)=>string|null;
+ writeSlotLineage:(slot:SaveSlot,lineageId:string)=>void;
+ bindCoordinator:(expectedAutoRev:number)=>CheckpointCoordinator;
+}
+
+export interface ManualSlotLoadResult {
+ nextCoordinator:CheckpointCoordinator;
+ autoRev:number;
+ selectedRevision:number;
+ available:boolean;
+ lineageReset:boolean;
+ status:UiSaveStatus;
+}
+
+/**
+ * Executes an explicit manual slot load safely:
+ * - Reads post-drain 'auto' CAS revision after switchImportedSession commits (preventing auto drain races).
+ * - Always binds a fresh coordinator and enqueues a 'load' boundary (including for 'auto') instead of pre-marking saved.
+ * - On post-commit 'auto' read failure, binds a safe non-writing coordinator and flags storageUnavailable/imported-unsaved.
+ */
+export async function executeManualSlotLoad({
+ id,
+ confirmed,
+ storageUnavailable,
+ session,
+ coordinator,
+ storage,
+ readSlotLineage,
+ writeSlotLineage,
+ bindCoordinator
+}:ManualSlotLoadParams):Promise<ManualSlotLoadResult>{
+ if(storageUnavailable&&!confirmed)throw Error('SWITCH_REQUIRES_CONFIRMATION');
+ const row=await storage.read(id);
+ if(!row)throw Error('NO_SAVE');
+ const nextLineage=row.meta?.lineageId??readSlotLineage(id)??undefined;
+ await switchImportedSession(session,coordinator,row.text,{
+  ...(nextLineage?{lineageId:nextLineage}:{}),
+  ...(confirmed?{confirmed:true as const}:{})
+ });
+ let autoRev=0,available=true;
+ try{autoRev=(await storage.read('auto'))?.revision??0;}catch{available=false;}
+ const snap=session.workerSnapshot();
+ const nextCoord=bindCoordinator(autoRev);
+ if(!available){
+  return {
+   nextCoordinator:nextCoord,
+   autoRev:0,
+   selectedRevision:row.revision,
+   available:false,
+   lineageReset:!!row.lineageReset,
+   status:{
+    kind:'imported-unsaved',
+    revision:snap.revision,
+    lineageId:snap.lineageId,
+    code:'IMPORTED_NO_STORAGE',
+    exportable:true,
+    storageUnavailable:true
+   }
+  };
+ }
+ writeSlotLineage(id,session.lineageId);
+ writeSlotLineage('auto',session.lineageId);
+ nextCoord.enqueue('load');
+ return {
+  nextCoordinator:nextCoord,
+  autoRev,
+  selectedRevision:row.revision,
+  available:true,
+  lineageReset:!!row.lineageReset,
+  status:{
+   kind:'dirty',
+   revision:snap.revision,
+   lineageId:snap.lineageId
+  }
+ };
+}
+
 export function shouldConfirmBeforeSwitch(status:Pick<UiSaveStatus,'kind'|'storageUnavailable'>):boolean{
  return status.kind==='paused'||status.kind==='error'||status.kind==='imported-unsaved'||!!status.storageUnavailable;
 }
@@ -200,11 +284,11 @@ export function useGame(){
      paused.current=false;
      storageUnavailableRef.current=false;
      importedUnsavedRef.current=false;
-     lastKnownAutoRevRef.current=revisions.current.auto??lastKnownAutoRevRef.current;
      writeSlotLineage('auto',live.lineageId,!!lab);
      void storage.list().then(rows=>{
       if(!mountedRef.current)return;
       syncSlotRevisions(rows);
+      lastKnownAutoRevRef.current=revisions.current.auto??lastKnownAutoRevRef.current;
       setRecords(rows);
      }).catch(()=>{/* Listing refresh after save is non-fatal. */});
     }
@@ -406,32 +490,34 @@ export function useGame(){
  const load=(id:SaveSlot,confirmed=false)=>run(async()=>{
   const coord=coordinatorRef.current;
   if(!coord)throw Error('COORDINATOR_MISSING');
-  if(storageUnavailableRef.current&&!confirmed)throw Error('SWITCH_REQUIRES_CONFIRMATION');
-  const row=await storage.read(id);
-  if(!row)throw Error('NO_SAVE');
-  const nextLineage=row.meta?.lineageId??readSlotLineage(id,!!lab)??undefined;
-  await switchImportedSession(session,coord,row.text,{
-   ...(nextLineage?{lineageId:nextLineage}:{}),
-   ...(confirmed?{confirmed:true as const}:{})
+  const res=await executeManualSlotLoad({
+   id,
+   confirmed,
+   storageUnavailable:storageUnavailableRef.current,
+   session,
+   coordinator:coord,
+   storage,
+   readSlotLineage:slot=>readSlotLineage(slot,!!lab),
+   writeSlotLineage:(slot,lin)=>writeSlotLineage(slot,lin,!!lab),
+   bindCoordinator
   });
-  const autoRow=await storage.read('auto');
-  const autoRev=autoRow?.revision??0;
-  paused.current=false;
-  storageUnavailableRef.current=false;
-  importedUnsavedRef.current=false;
-  writeSlotLineage(id,session.lineageId,!!lab);
-  writeSlotLineage('auto',session.lineageId,!!lab);
-  if(id==='auto'||manualSlots.includes(id as typeof manualSlots[number]))revisions.current[id as WritableSlot]=row.revision;
+  paused.current=!res.available;
+  storageUnavailableRef.current=!res.available;
+  importedUnsavedRef.current=!res.available;
+  if(res.available){
+   if(id==='auto'||manualSlots.includes(id as typeof manualSlots[number]))revisions.current[id as WritableSlot]=res.selectedRevision;
+   revisions.current.auto=res.autoRev;
+   lastKnownAutoRevRef.current=res.autoRev;
+  }
   setLineageId(session.lineageId);
   setView(session.view);
-  const nextCoord=bindCoordinator(autoRev);
-  if(id==='auto'){
-   setSaveStatus({kind:'saved',revision:session.workerSnapshot().revision,lineageId:session.lineageId,savedAt:row.savedAt||Date.now()});
-  }else{
-   nextCoord.enqueue('load');
+  setSaveStatus(res.status);
+  if(!res.available){
+   report('IMPORTED_NO_STORAGE',{surface:'saves'},true);
+   return;
   }
-  report(row.lineageReset?'LINEAGE_RESET':'LOADED',{surface:'saves'});
-  await list();
+  report(res.lineageReset?'LINEAGE_RESET':'LOADED',{surface:'saves'});
+  await list().catch(()=>{/* Listing refresh after switch is non-fatal; load boundary will refresh records. */});
  },{surface:'saves'});
 
  const save=(id:WritableSlot)=>run(async()=>{

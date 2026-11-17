@@ -1,5 +1,5 @@
 import type {Member} from 'oot-core';
-import type {ActivityPreview,AssignmentSuggestion,Condition,DuoExplanation,Fact,GameSession,GameView,NextPeriodPreview} from 'oot-platform';
+import type {ActivityPreview,AssignmentSuggestion,Condition,DuoExplanation,ExperienceView,Fact,GameSession,GameView,NextPeriodPreview} from 'oot-platform';
 import {resolveReasonCopy} from './experience-ui-copy.js';
 import type {DuoDef,LivingContent,LivingDuoView} from './living-adapter.js';
 import {names} from './presentation.js';
@@ -409,4 +409,41 @@ export function formatDuoEvaluations(
   });
  }
  return out;
+}
+
+const JOB_TEMPLATE_ART_SLOTS:Readonly<Record<string,string>>={
+ menu:'outcome-tea-menu',
+ translation:'outcome-cafe-sign',
+ website:'outcome-community-web',
+ 'website-small':'outcome-community-web',
+ 'website-phased':'outcome-community-web',
+ signup:'outcome-community-web',
+ 'incubator-build':'outcome-bookshop-system',
+ 'incubator-guide':'outcome-bookshop-guide'
+};
+
+/** Maps a commission template to its frozen Art-Batch 7 outcome slot ID, falling back to workshop-display. */
+export function artSlotForJobTemplate(template:string|undefined):string{
+ if(!template)return 'outcome-workshop-display';
+ return JOB_TEMPLATE_ART_SLOTS[template]??'outcome-workshop-display';
+}
+
+export function receiptKey(
+ receipt:Pick<ExperienceView['receipts'][number],'jobId'|'phase'|'occurrence'>
+):string{
+ return `${receipt.jobId}:${receipt.phase}:${receipt.occurrence}`;
+}
+
+export function findLatestJobReceipt(
+ receipts:readonly ExperienceView['receipts'][number][],
+ jobId:string,
+ phase?:number
+):ExperienceView['receipts'][number]|undefined{
+ for(let i=receipts.length-1;i>=0;i--){
+  const r=receipts[i]!;
+  if(r.jobId!==jobId)continue;
+  if(phase!==undefined&&r.phase!==phase)continue;
+  return r;
+ }
+ return undefined;
 }
