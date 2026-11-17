@@ -12,3 +12,4 @@ export * from './office.js';
 export { activityEffects } from './activity-preview.js';
 export { previewPeriod } from './period-preview.js';
 export type { PeriodFacts } from './period-preview.js';
+export { explainCapacity, explainDuos, explainMoney } from './experience-rules.js';
