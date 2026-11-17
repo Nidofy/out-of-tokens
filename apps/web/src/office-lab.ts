@@ -1,5 +1,5 @@
-import {GameSession,saveSlots} from 'oot-platform';
-import type {SaveSlot,WritableSlot,StoredSave} from 'oot-platform';
+import {GameSession,manualSlots,saveSlots} from 'oot-platform';
+import type {SaveMeta,SaveSlot,SaveStorage,StoredSave,WritableSlot,WritePolicy} from 'oot-platform';
 import type {Content,Command} from 'oot-core';
 // Isolated DEV / visual-review fixtures: same application and commands, no player files.
 export const labCases=['initial','twelve','twelve-basic','twelve-standard','twelve-meeting','standard','working','computer','low-energy','crisis','delivery','review','waiting','meeting'] as const;
@@ -22,11 +22,33 @@ export function labSession(source:Content,scenario:string){
  if(scenario==='crisis'){send({type:'loan',amount:1000});send({type:'buy',amount:400});}
  return session;
 }
-export class LabSaves {
+export class LabSaves implements SaveStorage {
  onExternalChange:(()=>void)|null=null;
  private rows=new Map<SaveSlot,StoredSave>();
- async list(){return saveSlots.map(id=>this.rows.get(id)??null);}
- async read(id:SaveSlot){return this.rows.get(id)??null;}
- async write(id:WritableSlot,text:string,expected:number){const prev=this.rows.get(id);if((prev?.revision??0)!==expected)throw Error('SAVE_CONFLICT');const revision=expected+1;this.rows.set(id,{id,text,revision,savedAt:0});return revision;}
+ async list(){return saveSlots.map(id=>{const r=this.rows.get(id);return r?{...r,...(r.meta?{meta:{...r.meta}}:{})}:null;});}
+ async read(id:SaveSlot){
+  if(!saveSlots.includes(id))throw Error('INVALID_SLOT');
+  const r=this.rows.get(id);
+  return r?{...r,...(r.meta?{meta:{...r.meta}}:{})}:null;
+ }
+ async write(id:WritableSlot,text:string,expected:number,policy:WritePolicy='boundary',meta?:SaveMeta){
+  if(policy!=='checkpoint'&&policy!=='boundary')throw Error('INVALID_WRITE_POLICY');
+  if(meta&&(typeof meta.lineageId!=='string'||!meta.lineageId.trim()))throw Error('INVALID_LINEAGE');
+  if(![...manualSlots,'auto'].includes(id)||!Number.isSafeInteger(expected)||expected<0)throw Error('INVALID_SLOT');
+  if(typeof text!=='string'||text.length===0||text.length>8000000)throw Error('INVALID_SAVE_SIZE');
+  const prev=this.rows.get(id);
+  if((prev?.revision??0)!==expected)throw Error('SAVE_CONFLICT');
+  const revision=expected+1;
+  if(id==='auto'&&prev&&policy==='boundary'){
+   for(let i=4;i>=1;i--){
+    const b=this.rows.get(`backup-${i}` as SaveSlot);
+    if(b)this.rows.set(`backup-${i+1}` as SaveSlot,{...b,id:`backup-${i+1}` as SaveSlot,...(b.meta?{meta:{...b.meta}}:{})});
+   }
+   this.rows.set('backup-1',{...prev,id:'backup-1',...(prev.meta?{meta:{...prev.meta}}:{})});
+  }
+  const capturedMeta=meta?{lineageId:meta.lineageId}:undefined;
+  this.rows.set(id,{id,text,revision,savedAt:0,...(capturedMeta?{meta:capturedMeta}:{})});
+  return revision;
+ }
  async close(){this.rows.clear();}
 }

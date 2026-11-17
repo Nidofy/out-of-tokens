@@ -1,27 +1,265 @@
-import {useState} from 'preact/hooks';
-import type {GameView} from 'oot-platform';
-const guideKey='oot-ui-opening-guide-v1';
-function guideHidden(){try{return localStorage.getItem(guideKey)==='hidden';}catch{return false;}}
-export function onboardingStep(view:GameView){
- if(view.bankrupt)return {key:'restart',job:null};
- const review=view.jobs.find(j=>j.status==='review');if(review)return {key:review.settlement.canRework?'rework':'deliver',job:review.id};
- if(view.campaign&&view.campaign.chapter>0)return {key:'chapter',job:null};
- const unassigned=view.jobs.find(j=>j.status==='accepted');if(unassigned)return {key:'assign',job:unassigned.id};
- if(view.absoluteSlot%4>=2&&view.absoluteSlot<28)return {key:'rest',job:null};
- if(view.jobs.some(j=>j.status==='working'))return {key:'work',job:null};
- const delivered=view.jobs.filter(j=>j.status==='delivered');
- const menu=view.jobs.find(j=>j.template==='menu'&&j.status==='posted');
- if(!delivered.length&&menu)return {key:'menu',job:menu.id};
- const unclear=view.jobs.find(j=>j.status==='posted'&&j.hidden>0);
- if(unclear&&view.absoluteSlot<28)return {key:'clarify',job:unclear.id};
- return {key:view.absoluteSlot<28?'next':'weekly',job:null};
+import {useEffect,useState} from 'preact/hooks';
+import type {ExperienceView,GameView} from 'oot-platform';
+import {Icon} from './icons.js';
+import {ExperienceArtSlot} from './experience-art-slot.js';
+import {resolveReasonCopy} from './experience-ui-copy.js';
+import {readLearningPrefs,resumeLearning,skipAllLearning,skipLearningNode} from './experience-ui-state.js';
+import type {LearningNodeId,UiKeyValueStore} from './experience-ui-state.js';
+import type {HubPanel} from './ui2-logic.js';
+
+interface NodeCopy {
+ labelZh:string;
+ labelEn:string;
+ textZh:string;
+ textEn:string;
+ ctaZh:string;
+ ctaEn:string;
+ panel:HubPanel;
 }
-export function Onboarding({view,english,openJob,openPanel,isolated=false}:{isolated?:boolean;view:GameView;english:boolean;openJob:(id:string)=>void;openPanel:(id:'jobs'|'actors'|'studio')=>void}){
- const [hidden,setHidden]=useState(()=>(!isolated&&guideHidden())||(view.campaign?.chapter??0)>0||view.jobs.some(j=>j.status==='delivered')),step=onboardingStep(view),tr=(zh:string,en:string)=>english?en:zh;
- const toggle=()=>{const next=!hidden;setHidden(next);try{if(!isolated)localStorage.setItem(guideKey,next?'hidden':'shown');}catch{/* Preference storage must not block play. */}};
- const copy:Record<string,[string,string]>={menu:['第一单：奶茶菜单。读清范围与能力权重，再接单。','First job: the tea menu. Read the scope and skill weights before accepting.'],assign:['至少选择一位执行者。比较方案预算与质量风险，再确认派遣。','Choose at least one worker. Compare budget and quality risks, then assign.'],work:['推进时段执行委托；事件出现时先作选择。留意资源与看板。','Advance time to work; resolve events when they appear. Watch resources and the work board.'],clarify:['接下一单前先澄清。每次占用伙伴一个时段；失败也会消耗精力。','Clarify before accepting. Each attempt takes a personal period and energy, even if it fails.'],rest:['晚上不默认工作。去食堂吃饭、图书馆找人或聊天；休息后再比较方案。','Evenings are not automatic work periods. Eat, visit or chat, then compare the rested team.'],deliver:['查看评级、扣分与本次尾款，再验收。多期合同只结算当前一期。','Read the grade, penalties and cash change before delivery. Multi-phase jobs settle one phase at a time.'],rework:['质量未过线，但还有一次返工机会。返工后重新派遣并复核截止时间。','Quality is below the line, but rework is available. Reassign and check the deadline afterwards.'],next:['可以接新单，也可以先读伙伴故事。第7天有账单，第14天结算旧债。','Take another job or read a teammate’s story. Bills arrive on day 7 and inherited debt on day 14.'],weekly:['检查净偿付资金与下一次周结。第0章目标是偿清旧债后仍能经营。','Check net solvency and the next bill. Chapter zero asks you to keep operating after inherited debt is settled.'],restart:['工作室需要重新出发。经营面板可继承重开；检查旧账与人手安排。','The studio needs a fresh start. Restart from management and reconsider bills and staffing.']};
- copy.chapter=['第一笔大订单已开放。到工作室选择交付路线，逐期验收；项目材料和经营目标都达成后再举行路演。','The large order is open. Choose a route in Studio and accept every phase. Hold the pitch after both project materials and business goals are ready.'];
- if((view.campaign?.chapter??0)>1)copy.chapter=['新章节已开始。到工作室查看目标进度，再决定招募、研发和下一份合同。','A new chapter has begun. Check goal progress in Studio before recruiting, researching or accepting another contract.'];
- if(view.absoluteSlot<56)copy.weekly=['第14天要结算旧债。先看净偿付资金：多期合同持续占用人手，预付款还不是净收入。短单可更快回款。','Inherited debt is due on day 14. Check net solvency: multi-phase contracts keep teammates occupied, and advances are not earned income. Short jobs can pay sooner.'];
- return <aside class="onboarding"><button class="guide-toggle" aria-expanded={!hidden} onClick={toggle}>{tr('回形针 · 开业手册','Paperclip · Opening guide')} {hidden?'+':'−'}</button>{!hidden&&<><p>{copy[step.key]?.[english?1:0]}</p><button onClick={()=>step.job?openJob(step.job):openPanel(step.key==='rest'?'actors':step.key==='weekly'||step.key==='restart'||step.key==='chapter'?'studio':'jobs')}>{tr('去看看','Take a look')}</button></>}</aside>;
+
+const NODE_META:Record<LearningNodeId,NodeCopy>={
+ accept:{
+  labelZh:'接单',
+  labelEn:'Accept',
+  textZh:'打开待接委托卡查看工期、技能权重与质量红线，再点击接取委托。',
+  textEn:'Open a commission card to check scope, skill weights, and pass quality before accepting.',
+  ctaZh:'查看待接委托',
+  ctaEn:'View briefs',
+  panel:'jobs'
+ },
+ assign:{
+  labelZh:'派遣',
+  labelEn:'Assign',
+  textZh:'为已接委托安排至少一位执行者，用实时预估核对算力预算与条件质量区间后再派遣。',
+  textEn:'Assign at least one worker and check live compute cost and quality estimate before confirming.',
+  ctaZh:'去派遣队伍',
+  ctaEn:'Assign team',
+  panel:'jobs'
+ },
+ advance:{
+  labelZh:'推进',
+  labelEn:'Advance',
+  textZh:'点击右下角推进进入下一时段；可先点旁边的预览按钮确认谁工作、谁休息或谁会停工。',
+  textEn:'Advance to run the current period; expand the preview icon anytime to see who works, rests, or stalls.',
+  ctaZh:'打开工作台委托',
+  ctaEn:'Check jobs',
+  panel:'jobs'
+ },
+ deliver:{
+  labelZh:'验收',
+  labelEn:'Deliver',
+  textZh:'阶段完工后进入待验收：核对总评、未澄清扣分与尾款变化；低于及格线可先返工一次。',
+  textEn:'Review score, hidden penalties, and payout on completion; rework once before delivery if below pass line.',
+  ctaZh:'去验收结算',
+  ctaEn:'Review delivery',
+  panel:'jobs'
+ },
+ clarify:{
+  labelZh:'澄清',
+  labelEn:'Clarify',
+  textZh:'遇到含隐藏需求的委托时，接单前请先派合适伙伴澄清（占 1 时段/15 精力），避免验收扣分。',
+  textEn:'Clarify hidden requirements before accepting (costs 1 slot / 15 energy) to avoid hidden quality penalties.',
+  ctaZh:'找待澄清委托',
+  ctaEn:'Find hidden briefs',
+  panel:'jobs'
+ },
+ rest:{
+  labelZh:'休整',
+  labelEn:'Rest',
+  textZh:'晚上不默认工作，深夜完整睡眠可大幅回升精力并清零负载；若安排深夜活动或加班会跳过今晚恢复。',
+  textEn:'Evenings pause commissions by default. Full night sleep restores energy and clears load unless occupied.',
+  ctaZh:'看伙伴精力与作息',
+  ctaEn:'Check teammate rest',
+  panel:'actors'
+ },
+ bill:{
+  labelZh:'账单',
+  labelEn:'Bills',
+  textZh:'第 7 天迎来周结（房租/订阅/本地电费），第 14 天结算旧债；关注净偿付资金，勿把预付款当利润。',
+  textEn:'Weekly bills settle every 7 days and inherited debt settles on Day 14. Track net solvency, not cash advances.',
+  ctaZh:'看算力与财务',
+  ctaEn:'View finance',
+  panel:'studio'
+ }
+};
+
+function defaultRecommendedNode(experience:ExperienceView,skipped:readonly LearningNodeId[]):LearningNodeId{
+ const byGoal:Partial<Record<string,LearningNodeId>>={
+  'choose-commission':'accept',
+  'assign-team':'assign',
+  'advance-period':'advance',
+  'review-delivery':'deliver'
+ };
+ const goalMapped=experience.goal?.reason?byGoal[experience.goal.reason]:undefined;
+ if(goalMapped&&!skipped.includes(goalMapped))return goalMapped;
+ const nextUnseen=experience.learning.find(item=>!item.observed&&!skipped.includes(item.node));
+ if(nextUnseen)return nextUnseen.node;
+ return experience.learning.find(item=>!skipped.includes(item.node))?.node??'accept';
+}
+
+export function Onboarding({
+ view,
+ experience,
+ lineageId,
+ uiStore,
+ english,
+ openJob,
+ openPanel,
+ openFinance
+}:{
+ isolated?:boolean;
+ view:GameView;
+ experience:ExperienceView;
+ lineageId:string;
+ uiStore:UiKeyValueStore;
+ english:boolean;
+ openJob:(id:string)=>void;
+ openPanel:(id:HubPanel)=>void;
+ openFinance?:()=>void;
+}){
+ const tr=(zh:string,en:string)=>english?en:zh;
+ const [prefs,setPrefs]=useState(()=>readLearningPrefs(uiStore,lineageId));
+ const [open,setOpen]=useState(()=>!readLearningPrefs(uiStore,lineageId).skippedAll&&(view.campaign?.chapter??0)===0);
+ const [selectedNode,setSelectedNode]=useState<LearningNodeId|null>(null);
+
+ useEffect(()=>{
+  const nextPrefs=readLearningPrefs(uiStore,lineageId);
+  setPrefs(nextPrefs);
+  setOpen(!nextPrefs.skippedAll&&(view.campaign?.chapter??0)===0);
+  setSelectedNode(null);
+ },[uiStore,lineageId]);
+
+ const recommended=defaultRecommendedNode(experience,prefs.skippedNodes);
+ const activeNode=selectedNode??recommended;
+ const meta=NODE_META[activeNode];
+ const observedCount=experience.learning.filter(l=>l.observed).length;
+ const activeObserved=!!experience.learning.find(l=>l.node===activeNode)?.observed;
+ const activeSkipped=prefs.skippedNodes.includes(activeNode);
+
+ const handleToggle=()=>{
+  if(prefs.skippedAll){
+   const next=resumeLearning(uiStore,lineageId);
+   setPrefs(next);
+   setOpen(true);
+   return;
+  }
+  setOpen(v=>!v);
+ };
+
+ const handleSkipNode=()=>{
+  const next=skipLearningNode(uiStore,lineageId,activeNode);
+  setPrefs(next);
+  setSelectedNode(null);
+ };
+
+ const handleSkipAll=()=>{
+  const next=skipAllLearning(uiStore,lineageId,true);
+  setPrefs(next);
+  setOpen(false);
+  setSelectedNode(null);
+ };
+
+ const handleReopenAll=()=>{
+  const next=resumeLearning(uiStore,lineageId);
+  setPrefs(next);
+  setSelectedNode(null);
+  setOpen(true);
+ };
+
+ const runCta=()=>{
+  if(activeNode==='bill'&&openFinance){openFinance();return;}
+  if(activeNode==='accept'||activeNode==='assign'||activeNode==='deliver'||activeNode==='clarify'){
+   const target=activeNode==='deliver'
+    ?view.jobs.find(j=>j.status==='review')
+    :activeNode==='assign'
+     ?view.jobs.find(j=>j.status==='accepted')
+     :activeNode==='clarify'
+      ?view.jobs.find(j=>j.status==='posted'&&j.hidden>0)
+      :view.jobs.find(j=>j.template==='menu'&&j.status==='posted')??view.jobs.find(j=>j.status==='posted');
+   if(target){openJob(target.id);return;}
+  }
+  openPanel(meta.panel);
+ };
+
+ const goalLine=experience.goal?resolveReasonCopy(experience.goal.reason,english):null;
+
+ return (
+  <aside class="onboarding" aria-label={tr('回形针经营引导','Paperclip studio guide')}>
+   <div class="ui2-guide-head">
+    <button
+     type="button"
+     class="guide-toggle"
+     aria-expanded={open}
+     onClick={handleToggle}
+    >
+     <span>{tr('回形针 · 7项核心引导','Paperclip · 7-step guide')} ({observedCount}/7)</span>
+     <b>{prefs.skippedAll?tr('重开','Reopen'):open?'−':'+'}</b>
+    </button>
+    {(prefs.skippedAll||prefs.skippedNodes.length>0)&&(
+     <button type="button" class="ui2-guide-reopen" onClick={handleReopenAll}>
+      {tr('重看全部','Reopen all')}
+     </button>
+    )}
+   </div>
+
+   {open&&(
+    <div class="ui2-guide-body">
+     {goalLine&&(
+      <small class="ui2-guide-goal">
+       <Icon name="spark"/> {tr('当前建议：','Suggested: ')}{goalLine}
+      </small>
+     )}
+
+     <div class="ui2-guide-pills" role="tablist" aria-label={tr('七项学习节点','Seven learning steps')}>
+      {experience.learning.map(item=>{
+       const m=NODE_META[item.node];
+       const skipped=prefs.skippedNodes.includes(item.node);
+       return (
+        <button
+         key={item.node}
+         type="button"
+         role="tab"
+         aria-selected={item.node===activeNode}
+         class="ui2-guide-pill"
+         data-observed={item.observed?'true':'false'}
+         data-skipped={skipped?'true':'false'}
+         onClick={()=>setSelectedNode(item.node)}
+        >
+         {item.observed&&<Icon name="check"/>}
+         <span>{english?m.labelEn:m.labelZh}</span>
+        </button>
+       );
+      })}
+     </div>
+
+     <p class="ui2-guide-copy">
+      <b>{english?meta.labelEn:meta.labelZh}</b>
+      {activeObserved&&<em> · {tr('已实践','Observed')}</em>}
+      {activeSkipped&&<em> · {tr('已跳过','Skipped')}</em>}
+      {' — '}
+      {english?meta.textEn:meta.textZh}
+     </p>
+
+     {activeNode==='rest'&&(
+      <ExperienceArtSlot
+       slotId="vignette-rest-corner"
+       variant="vignette"
+       english={english}
+       badgeText={tr('作息提示','Rest vignette')}
+       title={tr('休整与深夜睡眠恢复','Rest & night sleep recovery')}
+       subtitle={tr('空槽休息恢复精力；占满深夜时段将跳过睡前恢复与清零负载','Rest restores energy; occupying Night slot skips sleep & load clear')}
+      />
+     )}
+
+     <div class="ui2-guide-actions">
+      <button type="button" class="primary" onClick={runCta}>{english?meta.ctaEn:meta.ctaZh}</button>
+      {!activeSkipped&&(
+       <button type="button" onClick={handleSkipNode}>{tr('跳过本条','Skip step')}</button>
+      )}
+      <button type="button" onClick={handleSkipAll}>{tr('跳过全部','Skip all')}</button>
+     </div>
+    </div>
+   )}
+  </aside>
+ );
 }

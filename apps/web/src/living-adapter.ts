@@ -1,7 +1,8 @@
 import type {CharacterBarkSet,ClientPersonaDef,DuoDef,GiftDef,LivingContent,LivingView,Member} from 'oot-core';
-import type {GameView} from 'oot-platform';
+import type {GameView,NextPeriodPreview} from 'oot-platform';
 import {content} from './content.js';
 import {clientArt,emoteArt,giftArt,teaBreakArt} from './living-art.js';
+import {actorStopKindFromPreview} from './experience-adapter.js';
 import {isActorOverloaded} from './scene-layout.js';
 
 export {actorEffectiveContext,isActorOverloaded} from './scene-layout.js';
@@ -272,24 +273,6 @@ export function evaluateTeamDuos(
  return out;
 }
 
-export function resolveStopReason(view:GameView,actorId:string):'cloud'|'local'|null{
- if(!view.possibleStops.includes(actorId))return null;
- let cloudBudget=view.quota+view.purchased,localBudget=view.localCapacity;
- for(const j of view.jobs.filter(j=>j.status==='working')){
-  for(const m of j.resourceEstimate.members){
-   if(m.mode==='cloud'){
-    if(cloudBudget<m.cost){if(m.character===actorId)return 'cloud';}
-    else cloudBudget-=m.cost;
-   }else{
-    if(localBudget<m.cost){if(m.character===actorId)return 'local';}
-    else localBudget-=m.cost;
-   }
-  }
- }
- const mode=view.jobs.find(j=>j.status==='working'&&j.team.some(m=>m.character===actorId))?.team.find(m=>m.character===actorId)?.mode;
- return mode==='local'?'local':'cloud';
-}
-
 const stopLines:Record<'cloud'|'local',readonly (readonly [string,string])[]>={
  local:[
   ['本地算力排满了，这槽可能得等机架腾出空位。','Local compute is full this period—I may have to pause until capacity clears.'],
@@ -315,7 +298,8 @@ export function pickStageChatter(
  catalog:LivingContent,
  livingView:LivingView,
  english:boolean,
- stepSeed:number
+ stepSeed:number,
+ previewStops?:NextPeriodPreview['stops']
 ):StageBubbleItem|null{
  const scene=view.campaign?.scene??'workshop';
  const candidates=view.actors.filter(a=>a.location===scene);
@@ -350,7 +334,7 @@ export function pickStageChatter(
  if(speaker.energy<35){situation='tired';emote='sleepy';}
  else if(isActorOverloaded(view,speaker.id)){situation='overload';emote='sweat';}
  else if(view.possibleStops.includes(speaker.id)){
-  const stopKind=resolveStopReason(view,speaker.id)??'cloud';
+  const stopKind=actorStopKindFromPreview(previewStops,speaker.id)??'cloud';
   const list=stopLines[stopKind];
   const line=list[fnvHash(`${speaker.id}:stop-${stopKind}:${stepSeed}`)%list.length]!;
   return {

@@ -1,8 +1,10 @@
 import {useState,useEffect,useRef,useLayoutEffect} from 'preact/hooks';
 import type {ComponentChildren} from 'preact';
 import type {Command,Member} from 'oot-core';
-import type {GameSession,GameView} from 'oot-platform';
+import type {ActivityPreview,GameSession,GameView} from 'oot-platform';
 import {commissionObjective,showSettlement,waitingText} from './commission-tracking.js';
+import {describeActivityPreview} from './experience-adapter.js';
+import {ExperienceArtSlot} from './experience-art-slot.js';
 import {Portrait} from './studio-ui.js';
 import {AssignmentForecast,DeliverySummary,periodText} from './decision-panels.js';
 import {names} from './presentation.js';
@@ -10,6 +12,8 @@ import {skillText} from './ui-labels.js';
 import {Icon} from './icons.js';
 import {QualitySealSvg} from './ornaments.js';
 import {topJobSkillWeights} from './ui2-logic.js';
+import {buildSampleTeamDraft,explainLiveTeamFit} from './experience-ui-copy.js';
+import {filterValidLastTeamMembers} from './experience-ui-state.js';
 import {evaluateTeamDuos,getLivingCatalog,pickWorkBark,resolveClientPersona} from './living-adapter.js';
 import type {CharacterBarkSet,LivingContent,LivingView} from './living-adapter.js';
 
@@ -36,6 +40,7 @@ export type WorkbenchProps={
  messages:Record<string,[string,string]>;
  notice:ComponentChildren;
  savedDraft?:DraftTeam|undefined;
+ lastTeam?:readonly Member[]|undefined;
  onSaveDraft?:(jobId:string,draft:DraftTeam)=>void;
  onJumpToOffice?:(draft:DraftTeam)=>void;
  onJumpToFinance?:(draft:DraftTeam)=>void;
@@ -43,13 +48,15 @@ export type WorkbenchProps={
  livingView?:LivingView|undefined;
  livingCatalog?:LivingContent|undefined;
  onWorkBark?:((actorId:string,key:keyof CharacterBarkSet['work'])=>void)|undefined;
+ previewActivity?:(cmd:Command)=>ActivityPreview;
 };
 
-export function CommissionWorkbench({view,job,english,locked,send,previewAssignment,close,closePanel,messages,notice,locate,trackControl,onAccepted,onRejected,savedDraft,onSaveDraft,onJumpToOffice,onJumpToFinance,onOpenMap,livingView,livingCatalog,onWorkBark}:WorkbenchProps){
+export function CommissionWorkbench({view,job,english,locked,send,previewAssignment,close,closePanel,messages,notice,locate,trackControl,onAccepted,onRejected,savedDraft,lastTeam,onSaveDraft,onJumpToOffice,onJumpToFinance,onOpenMap,livingView,livingCatalog,onWorkBark,previewActivity}:WorkbenchProps){
  const tr=(zh:string,en:string)=>english?en:zh,p=view.campaign!,skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
  const [workStep,setWorkStep]=useState(['accepted','working'].includes(job.status)?'team':'brief');
  const [team,setTeam]=useState<DraftTeam>(()=>savedDraft??Object.fromEntries(view.actors.map(a=>{const m=job.team.find(m=>m.character===a.id);return[a.id,{role:m?.role??'none',mode:m?.mode??'cloud'}];})));
  const [workBark,setWorkBark]=useState<{actorId:string;text:string}|null>(null);
+ const [reuseNote,setReuseNote]=useState<string|null>(null);
  const clarifyAttemptRef=useRef<{actorId:string;hidden:number;until:number}|null>(null);
  const workbenchRef=useRef<HTMLDivElement>(null);
  const activeCatalog=livingCatalog??getLivingCatalog(view);
@@ -94,6 +101,41 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
  const stationError=preview?.error==='NO_WORKSTATION'||preview?.error==='NO_MEETING_SEAT';
  const cloudRisk=!!preview?.forecast?.risks.cloud;
  const canJumpOffice=!!view.office&&p.scene==='workshop'&&!locked;
+ const liveFit=workLayout==='tri'?explainLiveTeamFit(view,job,members,preview,english):null;
+ const canOfferSample=workLayout==='tri'&&['posted','accepted'].includes(job.status)&&job.team.length===0;
+
+ const applySampleDraft=()=>{
+  const sample=buildSampleTeamDraft(view,job,previewAssignment);
+  if(!sample)return;
+  setReuseNote(null);
+  updateTeam(()=>{
+   const blank:DraftTeam=Object.fromEntries(view.actors.map(a=>[a.id,{role:'none',mode:a.modes.includes('cloud')?'cloud':a.modes[0]!}]));
+   for(const m of sample)blank[m.character]={role:m.role,mode:m.mode};
+   return blank;
+  });
+ };
+
+ const applyLastTeamDraft=()=>{
+  if(!lastTeam||lastTeam.length===0)return;
+  const {valid,dropped}=filterValidLastTeamMembers(lastTeam,view);
+  updateTeam(()=>{
+   const blank:DraftTeam=Object.fromEntries(view.actors.map(a=>[a.id,{role:'none',mode:a.modes.includes('cloud')?'cloud':a.modes[0]!}]));
+   for(const m of valid)blank[m.character]={role:m.role,mode:m.mode};
+   return blank;
+  });
+  if(valid.length===0){
+   setReuseNote(tr('上次队伍成员当前均忙碌或已不可用，请手动调整人选。','Previous squad teammates are currently busy or incompatible; please pick manually.'));
+  }else if(dropped.length>0){
+   setReuseNote(tr(`已预填可出勤成员（已跳过忙碌/不兼容：${dropped.map(id=>names[id]??id).join('、')}）。请核对右侧预估后确认。`,`Prefilled available members (skipped busy/incompatible: ${dropped.map(id=>names[id]??id).join(', ')}). Review live forecast before confirming.`));
+  }else{
+   setReuseNote(tr('已按上次队伍预填并重新校验；可随时修改，不会自动派遣。','Prefilled and re-validated from last squad; edit freely—never assigns automatically.'));
+  }
+ };
+
+ const clearSampleDraft=()=>{
+  setReuseNote(null);
+  updateTeam(prev=>Object.fromEntries(Object.entries(prev).map(([id,v])=>[id,{role:'none',mode:v.mode}])));
+ };
 
  return (
   <div class="commission-workspace">
@@ -139,6 +181,35 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
        </div>
       )}
 
+      {workLayout==='tri'&&(
+       <div class="ui2-brief-highlights" aria-label={tr('首屏关键信息','Brief highlights')}>
+        <div>
+         <small>{tr('做什么','Scope')}</small>
+         <b>{english?job.descriptionEn:job.description}</b>
+        </div>
+        <div>
+         <small>{tr('何时交','Window')}</small>
+         <b>{job.status==='posted'?`${job.workSlots} ${tr('白天工作时段','daytime work periods')}`:periodText(job.deadline,english)}</b>
+        </div>
+        <div>
+         <small>{tr('关注什么与验收线','Focus & pass line')}</small>
+         <b>{tr('质量','Quality')} ≥ {job.passQuality} · {topSkills.map(t=>`${skill(t.skill)} ${t.pct}%`).join(' / ')||tr('综合能力','Balanced')}</b>
+        </div>
+       </div>
+      )}
+
+      {job.template==='menu'&&job.status!=='breached'&&(
+       <ExperienceArtSlot
+        slotId="outcome-tea-menu"
+        variant="outcome"
+        english={english}
+        state={job.status==='delivered'?'delivered':'preview'}
+        badgeText={job.status==='delivered'?tr('已交付成果','Delivered'):tr('成果示意','Outcome preview')}
+        title={english?job.titleEn:job.title}
+        subtitle={job.status==='delivered'?tr(`成交评级 · ${job.quality} 分 · 实收报酬已入账`,`Final quality ${job.quality} · Payout settled`):tr(`质量 ≥ ${job.passQuality} 通过验收 · ${job.workSlots} 工作时段`,`Quality ≥ ${job.passQuality} to pass · ${job.workSlots} work periods`)}
+       />
+      )}
+
       {workLayout==='tri'&&<div class="commission-weights">{Object.entries(job.weights).map(([k,v])=><div key={k}><span>{skill(k as keyof typeof skillText)} {Math.round(v*100)}%</span><meter min={0} max={1} value={v}/></div>)}</div>}
       <h3>{workLayout==='tri'?tr('01 · 理解需求','01 · Understand the brief'):tr('委托需求','Commission brief')}</h3>
       <p>{english?job.descriptionEn:job.description}</p>
@@ -158,7 +229,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
         {job.hidden>0&&view.actors.every(a=>a.busy||a.location==='expedition')&&<p class="work-disabled-reason">{tr('当前没有可澄清的空闲伙伴，请推进时段或调整安排。','No teammate is available to clarify. Advance time or adjust assignments.')}</p>}
         {job.hidden>0&&view.absoluteSlot%4>=2&&<p class="work-disabled-reason">{tr('夜晚不能澄清需求，请等到下个白天工作时段。','Clarification is unavailable at night. Wait for the next daytime work period.')}</p>}
         {job.hidden===0&&!clarificationWait(job,view.absoluteSlot)&&<p>{tr('甲方需求已明确，可以直接接单。','The brief is clear. You can accept directly.')}</p>}
-        <div class="button-row">{job.hidden>0&&view.actors.map(a=><button key={a.id} disabled={locked||a.busy||a.location==='expedition'||a.energy<15||clarificationWait(job,view.absoluteSlot)||view.absoluteSlot%4>=2} onClick={()=>{clarifyAttemptRef.current={actorId:a.id,hidden:job.hidden,until:job.clarifyingUntil};void send({type:'clarify',job:job.id,character:a.id}).then(ok=>{if(ok)requestAnimationFrame(()=>workbenchRef.current?.focus({preventScroll:true}));else clarifyAttemptRef.current=null;});}}>{names[a.id]} {Math.round(a.clarifyChance*100)}%{a.energy<15?tr(' · 精力不足15',' · Needs 15 energy'):a.busy?tr(' · 忙碌',' · Busy'):''}</button>)}</div>
+        <div class="button-row">{job.hidden>0&&view.actors.map(a=>{const cp=previewActivity?describeActivityPreview(previewActivity({type:'clarify',job:job.id,character:a.id}),english):null;return <button key={a.id} disabled={locked||a.busy||a.location==='expedition'||a.energy<15||clarificationWait(job,view.absoluteSlot)||view.absoluteSlot%4>=2} title={cp?.compactText} onClick={()=>{clarifyAttemptRef.current={actorId:a.id,hidden:job.hidden,until:job.clarifyingUntil};void send({type:'clarify',job:job.id,character:a.id}).then(ok=>{if(ok)requestAnimationFrame(()=>workbenchRef.current?.focus({preventScroll:true}));else clarifyAttemptRef.current=null;});}}>{names[a.id]} {Math.round(a.clarifyChance*100)}%{a.energy<15?tr(' · 精力不足15',' · Needs 15 energy'):a.busy?tr(' · 忙碌',' · Busy'):cp?.skipsNightRecovery?tr(' · 占深夜',' · Skips sleep'):''}</button>;})}</div>
        </>
       )}
 
@@ -212,6 +283,26 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
         )}
 
         <p>{Object.entries(job.weights).filter(([,v])=>v>0).map(([k,v])=>`${skill(k as keyof typeof skillText)} ${Math.round(v*100)}%`).join(' · ')}</p>
+        {canOfferSample&&(
+         <div class="ui2-sample-team-bar">
+          <button type="button" onClick={applySampleDraft}>
+           <Icon name="spark"/>
+           <span>{tr('填入可修改示例队伍','Try editable sample squad')}</span>
+          </button>
+          {lastTeam&&lastTeam.length>0&&(
+           <button type="button" onClick={applyLastTeamDraft}>
+            <Icon name="refresh"/>
+            <span>{tr('沿用上次队伍','Reuse last team')}</span>
+           </button>
+          )}
+          {members.length>0&&(
+           <button type="button" onClick={clearSampleDraft}>
+            <span>{tr('清空草稿','Clear draft')}</span>
+           </button>
+          )}
+          <small>{reuseNote??tr('仅预填可改草稿，不会自动接单或派遣。','Prefills an editable draft only; never accepts or assigns automatically.')}</small>
+         </div>
+        )}
         <fieldset class="assignment-team">
          <legend>{tr('派遣岗位与模式','Roles and deployment')}</legend>
          {view.actors.map(a=>{
@@ -235,6 +326,13 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
 
        <section class="work-result">
         <h3>{tr('实时预估','Live forecast')}</h3>
+        {liveFit&&(
+         <div class="ui2-fit-card" data-pass={liveFit.meetsPassFloor===null?'none':liveFit.meetsPassFloor?'ok':'risk'}>
+          <b>{liveFit.headline}</b>
+          {liveFit.detailLines.map((line,i)=><small key={i}>{line}</small>)}
+          {liveFit.costNote&&<small class="ui2-fit-cost">{liveFit.costNote}</small>}
+         </div>
+        )}
         <p>{tr('本槽无事件资源上限估计（未加班的夜间为0）','Current-slot resource estimate, excluding events (zero at night without overtime)')}: {preview?.estimate?`${preview.estimate.cloud}T / ${preview.estimate.local} ${tr('本地','local')}`:'—'}</p>
         {job.status==='posted'&&members.length===0&&<p>{tr('接单后需安排至少一位执行者；也可现在先试选伙伴预览工期与预算。','Assign at least one worker after accepting, or try a team now to preview time and budget.')}</p>}
         {preview?.error&&!(job.status==='posted'&&members.length===0)&&(

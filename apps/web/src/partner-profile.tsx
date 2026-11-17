@@ -1,7 +1,9 @@
 import type {ComponentChildren} from 'preact';
 import type {Command} from 'oot-core';
-import type {GameView} from 'oot-platform';
+import type {ActivityPreview,GameView} from 'oot-platform';
 import {useEffect,useState,useRef} from 'preact/hooks';
+import {describeActivityPreview} from './experience-adapter.js';
+import {ExperienceArtSlot} from './experience-art-slot.js';
 import {content} from './content.js';
 import {FlavorPanel} from './flavor-panel.js';
 import {characterProfiles,characterPosters,resolveCharacterVisual,stageBPortrait,versionDelta,recruitmentBlock,recruitmentReasons} from './character-profiles.js';
@@ -42,12 +44,13 @@ type Props={
  onTriggerBark:(bark:BarkPayload)=>void;
  onSendGift:(actorId:string,gift:GiftDef,okCb?:()=>void)=>void;
  onUnlockDuo:(duo:DuoDef)=>void;
+ previewActivity?:(cmd:Command)=>ActivityPreview;
 };
 
 const stageBMap:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'qwen.qwq',llama:'llama.3.1',mistral:'mistral.large',gpt:'gpt.4o',claude:'claude.sonnet',kimi:'kimi.k2',gemini:'gemini.pro'};
 
 export function PartnerProfile(props:Props){
- const {view,actor,characterId,english,locked,send,close,closePanel,openJob,openMap,selectCharacter,preferredTab,setPreferredTab,entryMode,onOpenGallery,notice,locate,livingView,livingCatalog,onTriggerBark,onSendGift,onUnlockDuo}=props;
+ const {view,actor,characterId,english,locked,send,close,closePanel,openJob,openMap,selectCharacter,preferredTab,setPreferredTab,entryMode,onOpenGallery,notice,locate,livingView,livingCatalog,onTriggerBark,onSendGift,onUnlockDuo,previewActivity}=props;
  const tr=(zh:string,en:string)=>english?en:zh,p=view.campaign!,catalog=view.catalog!;
  const {sameScene,onExpedition,activeJobs,lifeBusy,canRecall,status}=actor?partnerAvailability(view,actor,locked):{sameScene:false,onExpedition:false,activeJobs:[],lifeBusy:false,canRecall:false,status:null};
  const scene=(id:keyof typeof sceneText|'expedition')=>id==='expedition'?tr('远征中','On expedition'):sceneText[id][english?1:0],skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
@@ -137,6 +140,16 @@ export function PartnerProfile(props:Props){
      <div class="ui2-profile-scroll">
       {activeTab==='vitals'&&actor&&rel&&(
        <div class="ui2-tab-pane">
+        {view.absoluteSlot%4>=2&&(
+         <ExperienceArtSlot
+          slotId="vignette-rest-corner"
+          variant="vignette"
+          english={english}
+          badgeText={tr('夜间作息','Evening & night')}
+          title={tr('夜槽空闲即享睡眠恢复','Night rest restores energy')}
+          subtitle={view.absoluteSlot%4===3?tr('深夜安排互动/聚餐/加班将跳过今晚睡眠恢复','Night activity or overtime skips sleep & load clear'):tr('晚上不默认推进合同，可聊天、送礼、聚餐或加班','Contracts pause after afternoon unless overtime is scheduled')}
+         />
+        )}
         <div class="ui2-vitals-grid">
          <div class="ui2-vital-card" data-warn={actor.energy<35}><small>{tr('精力','Energy')}</small><b>{actor.energy}</b><div class="ui2-meter"><i style={{width:`${actor.energy}%`}}/></div><span>{actor.energy<35?tr('精力偏低，建议休息或用餐','Low energy: rest or eat'):tr('状态良好','Steady')}</span></div>
          <div class="ui2-vital-card"><small>{tr('心情','Mood')}</small><b>{actor.mood}</b><div class="ui2-meter"><i style={{width:`${actor.mood}%`}}/></div><span>{actor.mood<45?tr('可通过聊天/送礼提升','Boost with chat or gift'):tr('心态平稳','Positive')}</span></div>
@@ -148,17 +161,29 @@ export function PartnerProfile(props:Props){
          <p class="ui2-inline-hint"><Icon name="warning"/> {onExpedition?tr('正在远征中，返程后可安排工作室活动。','On expedition. Studio activities resume upon return.'):status==='elsewhere'?tr(`当前在${scene(actor.location)}：先前往同场景即可聊天或互动。`,`Currently in ${scene(actor.location)}. Visit to interact.`):status==='work'?tr('正在负责委托工作，晚上未加班时可日常互动。','Assigned to a job; free for evening interaction when not in overtime.'):tr('本时段已有安排，推进至下一时段后恢复空闲。','Occupied this period; resumes next period.')}</p>
         )}
 
-        <div class="ui2-actions-grid">
-         <button class="ui2-action-card" disabled={locked||lifeBusy||!sameScene} onClick={()=>{void life('chat',actor.id).then(ok=>{if(ok)onTriggerBark({id:Date.now(),actorId:actor.id,emote:'sparkle',label:tr('日常聊天','Chat'),text:pickSocialBark(livingCatalog,actor.id,'chat',rel.affinity,english),deltas:[tr('压力 -10','Stress -10'),tr('心情 +5','Mood +5'),tr('好感 +3','Affinity +3')]});});}}><b>{tr('日常聊天','Chat')}</b><small>{tr('压力 -10 · 心情 +5 · 好感 +3','Stress -10 · Mood +5 · Affinity +3')}</small></button>
-         <button class="ui2-action-card" aria-expanded={giftOpen} disabled={locked||lifeBusy||!sameScene} onClick={()=>setGiftOpen(v=>!v)}><b>{giftOpen?tr('收起好礼列表','Hide gifts'):tr('挑选心意好礼','Choose gift')}</b><small>{tr('6 种专属心意礼物 · 偏爱款额外惊喜','6 signature gifts · Bonus on loved items')}</small></button>
-         <button class="ui2-action-card" disabled={locked||lifeBusy||!sameScene||!['canteen','library'].includes(p.scene)||view.cash<30} onClick={()=>{void life('meal',actor.id).then(ok=>{if(ok)onTriggerBark({id:Date.now(),actorId:actor.id,emote:'rice',label:tr('聚餐 / 外卖','Meal / takeaway'),text:pickSocialBark(livingCatalog,actor.id,'meal',rel.affinity,english),deltas:[tr('精力 +25','Energy +25'),tr('心情 +8','Mood +8'),tr('饥饿 -50','Hunger -50'),tr('压力 -8','Stress -8')]});});}}><b>{tr('聚餐 / 外卖 ¥30','Meal / takeaway ¥30')}</b><small>{tr('精力 +25 · 饥饿 -50 · 食堂/图书馆可用','Energy +25 · Hunger -50 · Canteen/library')}</small></button>
-         <button class="ui2-action-card" disabled={locked||lifeBusy||!sameScene||p.scene!=='library'||actor.energy<10} onClick={()=>{void life('study',actor.id).then(ok=>{if(ok)onTriggerBark({id:Date.now(),actorId:actor.id,emote:'idea',label:tr('共同学习','Study together'),text:pickSocialBark(livingCatalog,actor.id,'study',rel.affinity,english),deltas:[tr('研发 +2 RP','+2 RP'),tr('精力 -10','Energy -10')]});});}}><b>{tr('共同学习 +2 RP','Study together +2 RP')}</b><small>{tr('消耗 10 精力 · 仅限图书馆场景','Costs 10 energy · Library only')}</small></button>
-         <button class="ui2-action-card" disabled={!canRecall} onClick={()=>void life('recall',actor.id)}><b>{tr('请回工作室','Recall to workshop')}</b><small>{p.software.includes('remote')?tr('已部署远程协作，可跨场景呼叫','Remote software active'):tr('需位于同一非工作室场景','Same non-workshop scene required')}</small></button>
-         <button class="ui2-action-card" disabled={locked||view.absoluteSlot%4<2||onExpedition||view.overtime.includes(actor.id)||actor.energy<10||actor.busyUntil>view.absoluteSlot||!activeJobs.some(j=>j.status==='working')} onClick={()=>void send({type:'overtime',character:actor.id})}><b>{tr('安排本槽加班','Overtime this slot')}</b><small>{tr('仅晚间/深夜且需在岗与精力 >=10','Evening/night, assigned, energy >=10')}</small></button>
-        </div>
+        {(()=>{
+         const actNote=(cmd:Command)=>previewActivity?describeActivityPreview(previewActivity(cmd),english):null;
+         const chatP=actNote({type:'campaign',action:'chat',id:actor.id});
+         const mealP=actNote({type:'campaign',action:'meal',id:actor.id});
+         const studyP=actNote({type:'campaign',action:'study',id:actor.id});
+         const recallP=actNote({type:'campaign',action:'recall',id:actor.id});
+         const otP=actNote({type:'overtime',character:actor.id});
+         const giftPreviewCmd=livingCatalog.gifts[0]?{type:'campaign' as const,action:'gift' as const,id:actor.id,target:livingCatalog.gifts[0].id}:null;
+         const giftP=giftPreviewCmd?actNote(giftPreviewCmd):null;
+         return (
+          <div class="ui2-actions-grid">
+           <button class="ui2-action-card" disabled={locked||lifeBusy||!sameScene} onClick={()=>{void life('chat',actor.id).then(ok=>{if(ok)onTriggerBark({id:Date.now(),actorId:actor.id,emote:'sparkle',label:tr('日常聊天','Chat'),text:pickSocialBark(livingCatalog,actor.id,'chat',rel.affinity,english),deltas:[tr('压力 -10','Stress -10'),tr('心情 +5','Mood +5'),tr('好感 +3','Affinity +3')]});});}}><b>{tr('日常聊天','Chat')}</b><small>{tr('压力 -10 · 心情 +5 · 好感 +3','Stress -10 · Mood +5 · Affinity +3')}</small>{chatP?.legal&&<small class="ui2-act-preview" data-skip={chatP.skipsNightRecovery?'true':'false'}>{chatP.compactText}</small>}</button>
+           <button class="ui2-action-card" aria-expanded={giftOpen} disabled={locked||lifeBusy||!sameScene} onClick={()=>setGiftOpen(v=>!v)}><b>{giftOpen?tr('收起好礼列表','Hide gifts'):tr('挑选心意好礼','Choose gift')}</b><small>{tr('6 种专属心意礼物 · 偏爱款额外惊喜','6 signature gifts · Bonus on loved items')}</small>{giftP?.legal&&<small class="ui2-act-preview" data-skip={giftP.skipsNightRecovery?'true':'false'}>{giftP.compactText}</small>}</button>
+           <button class="ui2-action-card" disabled={locked||lifeBusy||!sameScene||!['canteen','library'].includes(p.scene)||view.cash<30} onClick={()=>{void life('meal',actor.id).then(ok=>{if(ok)onTriggerBark({id:Date.now(),actorId:actor.id,emote:'rice',label:tr('聚餐 / 外卖','Meal / takeaway'),text:pickSocialBark(livingCatalog,actor.id,'meal',rel.affinity,english),deltas:[tr('精力 +25','Energy +25'),tr('心情 +8','Mood +8'),tr('饥饿 -50','Hunger -50'),tr('压力 -8','Stress -8')]});});}}><b>{tr('聚餐 / 外卖 ¥30','Meal / takeaway ¥30')}</b><small>{tr('精力 +25 · 饥饿 -50 · 食堂/图书馆可用','Energy +25 · Hunger -50 · Canteen/library')}</small>{mealP?.legal&&<small class="ui2-act-preview" data-skip={mealP.skipsNightRecovery?'true':'false'}>{mealP.compactText}</small>}</button>
+           <button class="ui2-action-card" disabled={locked||lifeBusy||!sameScene||p.scene!=='library'||actor.energy<10} onClick={()=>{void life('study',actor.id).then(ok=>{if(ok)onTriggerBark({id:Date.now(),actorId:actor.id,emote:'idea',label:tr('共同学习','Study together'),text:pickSocialBark(livingCatalog,actor.id,'study',rel.affinity,english),deltas:[tr('研发 +2 RP','+2 RP'),tr('精力 -10','Energy -10')]});});}}><b>{tr('共同学习 +2 RP','Study together +2 RP')}</b><small>{tr('消耗 10 精力 · 仅限图书馆场景','Costs 10 energy · Library only')}</small>{studyP?.legal&&<small class="ui2-act-preview" data-skip={studyP.skipsNightRecovery?'true':'false'}>{studyP.compactText}</small>}</button>
+           <button class="ui2-action-card" disabled={!canRecall} onClick={()=>void life('recall',actor.id)}><b>{tr('请回工作室','Recall to workshop')}</b><small>{p.software.includes('remote')?tr('已部署远程协作，可跨场景呼叫','Remote software active'):tr('需位于同一非工作室场景','Same non-workshop scene required')}</small>{recallP?.legal&&<small class="ui2-act-preview">{recallP.compactText}</small>}</button>
+           <button class="ui2-action-card" disabled={locked||view.absoluteSlot%4<2||onExpedition||view.overtime.includes(actor.id)||actor.energy<10||actor.busyUntil>view.absoluteSlot||!activeJobs.some(j=>j.status==='working')} onClick={()=>void send({type:'overtime',character:actor.id})}><b>{tr('安排本槽加班','Overtime this slot')}</b><small>{tr('仅晚间/深夜且需在岗与精力 >=10','Evening/night, assigned, energy >=10')}</small>{otP?.legal&&<small class="ui2-act-preview" data-skip={otP.skipsNightRecovery?'true':'false'}>{otP.compactText}</small>}</button>
+          </div>
+         );
+        })()}
 
         {giftOpen&&(
-         <GiftPickerGrid actorId={actor.id} gifts={livingCatalog.gifts} giftedIds={livingView.gifted[actor.id]??[]} view={view} cash={view.cash} disabled={locked||lifeBusy||!sameScene} english={english} onSelectGift={gift=>onSendGift(actor.id,gift,()=>setGiftOpen(false))}/>
+         <GiftPickerGrid actorId={actor.id} gifts={livingCatalog.gifts} giftedIds={livingView.gifted[actor.id]??[]} view={view} cash={view.cash} disabled={locked||lifeBusy||!sameScene} english={english} {...(previewActivity?{previewActivity}:{})} onSelectGift={gift=>onSendGift(actor.id,gift,()=>setGiftOpen(false))}/>
         )}
 
         {livingView.duos.some(d=>d.actors.includes(actor.id))&&(
@@ -271,14 +296,24 @@ export function PartnerProfile(props:Props){
           </div>
           {rel.training&&<p class="ui2-inline-hint"><Icon name="spark"/> {tr(`正在图书馆训练：${rel.training.skill} · 预计完成槽位 ${rel.training.until}`,`Training in library: ${rel.training.skill} · completes at slot ${rel.training.until}`)}</p>}
           <div class="ui2-actions-grid">
-           {(Object.keys(skillText) as (keyof typeof skillText)[]).map(k=><button key={k} class="ui2-action-card" disabled={locked||actor.busy||trainUsed>=2||view.cash<300||p.research<5} onClick={()=>life('train',actor.id,k)}>
-            <b>{skill(k)} +1</b>
-            <small>{tr('¥300 + 5 RP · 占用 8 时段','¥300 + 5 RP · 8 periods')}</small>
-           </button>)}
-           <button class="ui2-action-card" disabled={locked||actor.busy||alignUsed>=1||view.cash<300||p.research<5} onClick={()=>life('align',actor.id)}>
-            <b>{tr('安全与输出对齐','Safety & alignment')}</b>
-            <small>{tr('¥300 + 5 RP · 占用 4 时段 · 降低缺陷风险','¥300 + 5 RP · 4 periods · Lower defects')}</small>
-           </button>
+           {(Object.keys(skillText) as (keyof typeof skillText)[]).map(k=>{
+            const tp=previewActivity?describeActivityPreview(previewActivity({type:'campaign',action:'train',id:actor.id,target:k}),english):null;
+            return (
+             <button key={k} class="ui2-action-card" disabled={locked||actor.busy||trainUsed>=2||view.cash<300||p.research<5} onClick={()=>life('train',actor.id,k)}>
+              <b>{skill(k)} +1</b>
+              <small>{tp?.legal?tp.compactText:tr('¥300 + 5 RP · 占用 8 时段 · 移至图书馆','¥300 + 5 RP · 8 periods · Moves to Library')}</small>
+             </button>
+            );
+           })}
+           {(()=>{
+            const ap=previewActivity?describeActivityPreview(previewActivity({type:'campaign',action:'align',id:actor.id}),english):null;
+            return (
+             <button class="ui2-action-card" disabled={locked||actor.busy||alignUsed>=1||view.cash<300||p.research<5} onClick={()=>life('align',actor.id)}>
+              <b>{tr('安全与输出对齐','Safety & alignment')}</b>
+              <small>{ap?.legal?ap.compactText:tr('¥300 + 5 RP · 占用 4 时段 · 移至图书馆 · 降低缺陷风险','¥300 + 5 RP · 4 periods · Moves to Library · Lower defects')}</small>
+             </button>
+            );
+           })()}
           </div>
           {trainRpNeeded>0&&<button onClick={openMap}><Icon name="map"/><span>{tr(`微调需 5 RP（当前差 ${trainRpNeeded}）· 前往图书馆地图`,`Need ${trainRpNeeded} more RP · Library map`)}</span></button>}
          </>
@@ -301,7 +336,7 @@ export function PartnerProfile(props:Props){
            {unlockedStory?(
             <>
              <p>{english?st.textEn:st.text}</p>
-             <div class="button-row">{st.choices.map((c,i)=><button key={i} disabled={locked||done} onClick={()=>life('story',st.id,String(i))}>{english?c.labelEn:c.label} · {tr('好感','Aff')} +{c.affinity} / {tr('心情','Mood')} {c.mood} / +{c.research} RP</button>)}</div>
+             <div class="button-row">{st.choices.map((c,i)=>{const sp=previewActivity?describeActivityPreview(previewActivity({type:'campaign',action:'story',id:st.id,target:String(i)}),english):null;return <button key={i} disabled={locked||done} title={sp?.compactText} onClick={()=>life('story',st.id,String(i))}>{english?c.labelEn:c.label} · {tr('好感','Aff')} +{c.affinity} / {tr('心情','Mood')} {c.mood} / +{c.research} RP{sp?.skipsNightRecovery?` · ${tr('将跳过今晚恢复','Skips sleep')}`:''}</button>;})}</div>
             </>
            ):<p class="ui2-story-locked">{tr('多和伙伴日常聊天、送礼或并肩完成委托，就能听到这段回忆。','Chat, send gifts or finish commissions together to hear this story.')}</p>}
           </article>;

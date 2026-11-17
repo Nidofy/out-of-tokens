@@ -1,39 +1,9 @@
 import type {GameView} from 'oot-platform';
 import type {Skill} from 'oot-core';
+export type {AdvanceInfo} from './experience-adapter.js';
 
 export type HubPanel='actors'|'jobs'|'studio'|'journal';
 export type ProfileTab='vitals'|'model'|'training'|'stories';
-
-export interface AdvanceInfo {
- label:string;
- subtitle:string;
- disabled:boolean;
- disabledReason:string|null;
- urgentReviewIds:string[];
-}
-
-export function advancePeriodInfo(view:GameView,busy:boolean,arranging:boolean,english:boolean):AdvanceInfo{
- const tr=(zh:string,en:string)=>english?en:zh;
- const p=view.campaign,endingDone=!!p?.finale?.ending&&!p.finale.endless;
- const slot=view.absoluteSlot%4;
- const label=slot===3?tr('迎来新一天','Start new day'):tr('下一时段','Next period');
- const urgentReviewIds=view.jobs.filter(j=>j.status==='review'&&j.deadline<=view.absoluteSlot).map(j=>j.id);
- if(busy)return {label,subtitle:tr('正在处理操作…','Processing action…'),disabled:true,disabledReason:tr('操作进行中','Operation in progress'),urgentReviewIds};
- if(arranging)return {label,subtitle:tr('先完成办公室布置','Finish office layout first'),disabled:true,disabledReason:tr('布置草稿未保存','Layout editor is open'),urgentReviewIds};
- if(view.bankrupt)return {label,subtitle:tr('工作室待重整','Studio requires restart'),disabled:true,disabledReason:tr('请先处理破产重开','Resolve bankruptcy restart first'),urgentReviewIds};
- if(view.pending)return {label,subtitle:tr('待处理事件抉择','Resolve pending event'),disabled:true,disabledReason:tr('先作出事件抉择','Resolve the pending event first'),urgentReviewIds};
- if(endingDone)return {label,subtitle:tr('本周目已终局','Run completed'),disabled:true,disabledReason:tr('已达成结局，可开启无尽经营','Ending reached; start endless mode to continue'),urgentReviewIds};
-
- const reviewCount=view.jobs.filter(j=>j.status==='review').length;
- const workingCount=view.jobs.filter(j=>j.status==='working').length;
- const assignedCount=view.jobs.filter(j=>j.status==='accepted').length;
- if(urgentReviewIds.length>0)return {label,subtitle:tr(`${urgentReviewIds.length} 单待验收且即将逾期`,`${urgentReviewIds.length} review due now`),disabled:false,disabledReason:null,urgentReviewIds};
- if(reviewCount>0)return {label,subtitle:tr(`${reviewCount} 单待验收结算`,`${reviewCount} ready for review`),disabled:false,disabledReason:null,urgentReviewIds};
- if(workingCount>0)return {label,subtitle:tr(`${workingCount} 单推进中`,`${workingCount} in progress`),disabled:false,disabledReason:null,urgentReviewIds};
- if(assignedCount>0)return {label,subtitle:tr(`${assignedCount} 单待派遣团队`,`${assignedCount} awaiting team`),disabled:false,disabledReason:null,urgentReviewIds};
- if(slot>=2)return {label,subtitle:tr('夜晚休整恢复时段','Evening recovery period'),disabled:false,disabledReason:null,urgentReviewIds};
- return {label,subtitle:tr('全员待命 · 可先接单','All idle · Ready for briefs'),disabled:false,disabledReason:null,urgentReviewIds};
-}
 
 export type ShortcutCommand=
  |{type:'panel';panel:HubPanel}
