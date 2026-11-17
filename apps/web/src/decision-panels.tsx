@@ -13,7 +13,15 @@ export function AssignmentForecast({value,english}:{value:Forecast;english:boole
 export function DeliverySummary({job,english,settled,persona,receipt}:{job:GameView['jobs'][number];english:boolean;settled?:GameView['ledger'][number]|undefined;persona?:ClientPersonaDef|undefined;view?:GameView|undefined;receipt?:ExperienceView['receipts'][number]|undefined}){
  const tr=(zh:string,en:string)=>english?en:zh,r=job.settlement;
  const receiptCopy=receipt?experienceReceiptCopy(receipt,job):null;
- const quoteTier:'excellent'|'good'|'pass'|'fail'=job.status==='breached'?'fail':job.status==='delivered'?(job.quality>=(job.qualityLines[2]??90)?'excellent':job.quality>=(job.qualityLines[1]??75)?'good':'pass'):r.tier;
+ const historical=['delivered','breached'].includes(job.status);
+ const histAssessment=historical?(receipt?.assessment??null):null;
+ const quoteTier:'excellent'|'good'|'pass'|'fail'=job.status==='breached'
+  ?'fail'
+  :job.status==='delivered'
+   ?(histAssessment
+     ?(histAssessment.quality>=(histAssessment.qualityLines[2]??90)?'excellent':histAssessment.quality>=(histAssessment.qualityLines[1]??75)?'good':'pass')
+     :'pass')
+   :r.tier;
  const avatarSrc=persona?clientAssetSrc(persona.id):null;
  const clientNote=persona&&(
   <div class="ui2-client-card">
@@ -33,14 +41,18 @@ export function DeliverySummary({job,english,settled,persona,receipt}:{job:GameV
  ):null;
 
  // Strict W3 order: Result -> Reason -> Cash -> Partner & Client Response (never call cash net "profit").
- if(['delivered','breached'].includes(job.status))return (
+ if(historical)return (
   <section class="campaign-panel" aria-label={tr('历史结算记录','Settlement history')}>
    <div data-settlement-part="result">
     <h3>{job.status==='breached'?tr('合同已违约','Contract breached'):tr('合同已交付','Contract delivered')}</h3>
    </div>
    <div data-settlement-part="reason">
     {receiptCopy&&<p>{english?receiptCopy.en:receiptCopy.zh}{receiptCopy.review?` · ${english?receiptCopy.review.en:receiptCopy.review.zh}`:''}</p>}
-    <p>{tr('未澄清需求扣分','Unclear requirements penalty')}: −{job.qualityBreakdown.hiddenPenalty} · {tr('缺陷扣分','Defect penalty')}: −{job.qualityBreakdown.defectPenalty}</p>
+    {histAssessment?(
+     <p>{tr('结案评分','Recorded quality')}: {histAssessment.quality} / {histAssessment.passQuality} · {tr('未澄清需求扣分','Unclear requirements penalty')}: −{histAssessment.qualityBreakdown.hiddenPenalty} · {tr('缺陷扣分','Defect penalty')}: −{histAssessment.qualityBreakdown.defectPenalty}</p>
+    ):(
+     <p>{tr('该结案记录不含独立评分明细快照，此处不按当前界面重算历史质量分。','No separate score breakdown snapshot on this record; historical quality is not recomputed from current state.')}</p>
+    )}
    </div>
    <div data-settlement-part="cash">
     {settled?<dl class="settlement-grid"><dt>{tr('最后一次实际结算','Last actual settlement')}</dt><dd>{periodText(settled.slot,english)}</dd><dt>{tr('现金变动','Cash change')}</dt><dd>¥{settled.amount.toFixed(2)}</dd></dl>:<p>{tr('这笔结算已不在近期流水摘要中；此处不按当前日期重算历史金额。','This settlement is outside the recent ledger summary. Historical amounts are not recalculated using today’s date.')}</p>}
