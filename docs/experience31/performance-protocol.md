@@ -1,3 +1,7 @@
+# Final protocol evidence — 2026-11-17
+
+Frozen budgets/input/device contract unchanged. Final integration6e8e848 has supplemental Worker outbound/return timestamps and queue-pressure evidence: threeinputs x twopolicies x5warm+30record, service save p95<=52.9ms, measured main segment<=3.3ms; return p95~0.10ms; controlled50-command queue5+30 preserves every DayEnd prefix/backup with one writer. All raw data, bootstrap setup failure, rounding limits and main-thread LongTask overlap analysis are in final-integration.md and final-integration/6e8e848... evidence. These close the earlier uninstrumented-return and unmeasured-backpressure gaps below; isolated-service scope remains explicit. A full-page/search/matrix evidence is reviewed separately. Host/VF5 scope is not broadened.
+
 # Save/search measurement protocol — C0 proposal
 
 Budget fixed by approved plan: maximum main-thread segment 50 ms; local save end-to-end p95 1000 ms. Never relax after sampling. Host latency reported separately. A browser/device agreement is still required for H1.

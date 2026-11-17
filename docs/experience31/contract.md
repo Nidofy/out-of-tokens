@@ -1,3 +1,7 @@
+# Final consumer verification — 2026-11-17
+
+Contract remains v1. A c8cf69f consumes receipt.assessment and neutral missing-assessment behavior; independently verified at integration6e8e848 by the unchanged I4 score audit. Earlier references below to an unfixed A modal describe the pre-c8cf69f checkpoint. No additional consumer action is pending for I4.
+
 # Receipt assessment — compatible v1 addition, 2026-11-17
 
 Every newly produced `ExperienceView.receipts[]` includes optional `assessment: {quality, passQuality, qualityLines, qualityBreakdown}`. Types and values come directly from the public core view BEFORE the successful deliver/rework command. It describes `receipt.phase`, not the job's next/current phase. Rework retains its original penalties; a later accepted attempt has its own occurrence. Old v1 producers may omit it: render an unavailable/neutral historical assessment, never substitute today's job quality. Only stable job identity/template/title may be taken from the current job for historical presentation.

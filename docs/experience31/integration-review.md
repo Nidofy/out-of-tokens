@@ -1,3 +1,7 @@
+# Final review closure — 2026-11-17
+
+I1–I4 CLOSED on integrated6e8e84804fc5bfd55d3b181a94b9448d940b4f7c after A c8cf69f/66849a9. Full52/469 check PASS and original independent I4 factual score audit1 PASS without changing its assertion. A consumes optional pre-command receipt assessment, including neutral missing-snapshot copy. Matrix/art/fault evidence and final-SHA performance supplement reviewed; see final-integration.md. Historical failures and prior OPEN records below remain historical, not current blockers. Host/VF5 limitations remain explicit.
+
 # Latest integration review — 2026-11-17
 
 A committed W3/I1–I3 code at **0cd7f5af2008e46d9ebd6a41de0b993fb13034b3** was merged into the independent integration branch at **ecd9115585b12bb060879b7f38873f0a2ce13313**. Full `pnpm check` PASS: **52 files / 468 tests**. A's shared handoff still lists H4, so this records inspection/merge of committed code, not a fabricated A H5/H6 signoff. B development has not merged A; main remains d18241a.
