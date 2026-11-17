@@ -3,13 +3,32 @@
 - **Worktree**: `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-ui`
 - **Branch**: `experience-ui-wave1`
 - **Baseline SHA**: `d18241a7aa9c5876367867fe78d9bfdd99d0f0ae`
-- **Track B Published SHA Integrated**: `7a9f3df6f120fd8fac1c955580cc70f934a6ff03` (registered in `bf196bea749d5189a39dc3a6a8b6dec100a7df54`, merged cleanly into `experience-ui-wave1`)
+- **Track B Published SHA Integrated**: `244018cfae492cf1196299d0fbd967f32c9b805e` (registered in `9697b2f9`, includes W3 `ee0c04a`, W2 `bda560c`, W1 `7a9f3df`, merged cleanly into `experience-ui-wave1`)
 - **Contract Version**: `EXPERIENCE_CONTRACT = 1` (H1 Contract v1 frozen + amended 962-command stress fixture acknowledged in `ux-c0.md` §6.4)
 - **Historical Holds Preserved**: `VF5 / Visual Freeze HOLD`, physical touch / 200% OS font / real DSH host holds remain unchanged.
 
 ---
 
 ## Checkpoint History
+
+### 6. H4 / W2 — Candidate Worker Host, Comparison Cards, Finance/Remedies & EXP-14 Batch 2 Removal (`B-W2`) (2026-11-17)
+- **Implementation SHA**: `7f500b9a9982ef6f7f23ace8fa426f7fc2f31c28`
+- **Track B Released SHA Merged**: `244018cfae492cf1196299d0fbd967f32c9b805e` (`9697b2f9`)
+- **Evidence**: `../commission-evidence/experience31/h4/7f500b9a9982ef6f7f23ace8fa426f7fc2f31c28/`
+- **Owned Files Modified / Created**:
+  - `apps/web/src/experience-worker.ts`, `apps/web/src/experience-worker-host.ts` (new): dedicated Web Worker entry & client (`createSuggestionClient`) calling `suggestAssignmentsFromSnapshot` from `oot-platform/worker` over readonly `content.ts`, measuring `snapshotCloneMs` + `mainThreadBlockingMs` + `roundTripMs` (`<= 50 ms` budget tracking), enforcing strict `acceptSuggestionResult` (`matchesRevision(result, live) && result.draftKey === currentDraftKey`) stale drop, plus `suggestViaWorkerProtocol` protocol test helper.
+  - `apps/web/src/experience-ui-copy.ts`: synced all W2 search, duo-explanation, and finance bill reason codes.
+  - `apps/web/src/experience-adapter.ts`: added `stableDraftKey`, `formatFactLine`, `computeCandidateDelta`, and `formatDuoEvaluations` (pure formatters over `DuoExplanation`, filtering missing-partner entries by `teamActorIds`).
+  - `apps/web/src/use-game.ts`: exposed `requestSuggestions(jobId, draft)` with clone-time measurement and live identity verification.
+  - `apps/web/src/commission-workbench.tsx`, `apps/web/src/ui2.css`: added 3-candidate comparison cards (`省资源 / 稳质量 / 赶交期`, 3-col side-by-side desktop `>= 900px`, stacked `1fr` narrow `< 900px`) with delta vs draft, editable `"填入草稿（可改） / Load draft (editable)"` button (never auto-accepts, assigns, or spends), 0-plan empty state, `Reuse last team` draft prefill, actionable `ui2-remedies-box` remedies, and `explainTeamDuos` wiring.
+  - `apps/web/src/journal-hub.tsx`, `apps/web/src/studio-hub.tsx`: wired `FinanceExplanation` (`cash`, `loan`, `unfinishedAdvances`, `netSolvency` explicitly labeled non-profit with `financeNetSolvencyNote`, `recentLedgerSummary` for the last 10 ledger rows labeled cash net not profit, and `bills` breakdown).
+  - `apps/web/src/scene-layout.ts`, `apps/web/src/living-adapter.ts`, `apps/web/src/office-scene.ts`, `apps/web/src/partner-profile.tsx`, `apps/web/src/ui2-logic.ts`, `apps/web/src/alpha-app.tsx`: **EXP-14 Batch 2 deleted** (`actorEffectiveContext`, `isActorOverloaded`, `activeStationBonus`, `evaluateTeamDuos`, `findActiveTeamDuos`, `ledgerWindowSummary` removed; UI/Pixi/chatter now consume `CapacityExplanation` from `session.explainActorCapacity`).
+  - `apps/sim-cli/{ui2-foundation,office-ui-review,living-ui,experience-ui,experience-suggestions}.test.ts`: updated post-EXP-14 tests (`experience-suggestions.test.ts` lines 1–60 preserved verbatim; lines 62–83 migrated to verify `formatDuoEvaluations`, `reactionFor`, `explainCapacity`, `explainMoney` without deleted rule copies), plus added H4 tests for Candidate Worker parity/stale drop and SaveEncoder Worker parity across `build-2`, `guide-1`, and the `seed21` `962`-command stress trajectory.
+- **Checks**:
+  - `git grep -n "advancePeriodInfo\|resolveStopReason\|actorEffectiveContext\|isActorOverloaded\|activeStationBonus\|evaluateTeamDuos\|findActiveTeamDuos\|ledgerWindowSummary" apps/` -> **`0` matches** (`exit 1`).
+  - `pnpm check` (`task-1134`): `tsc -b --pretty false`, `eslint packages apps`, **52 test files / 464 tests PASS**, `oot-web` (`dist/assets/experience-worker-BAnIXkIv.js` + `save-encoder-worker-DdyG00iU.js`, `fixtureReachable: false`) + `oot-dsh` builds PASS.
+  - `git diff --check` clean; protected-path diff vs `244018cfae492cf1196299d0fbd967f32c9b805e` = `0` files.
+  - Note: H4 real-browser interactive & `<= 50 ms` Worker timing verification runs in H5/W4 alongside W3 integration.
 
 ### 5. H3 — Shared Period/Activity Previews, 7 Learning Nodes, Sample Art Approval & EXP-14 Batch 1 Removal (`B-W1b`) (2026-11-17)
 - **Implementation SHA**: `3af807852e9680d77c1cb314d78420407103eeaf`
@@ -109,6 +128,6 @@
 | A-W1-6 | First-order live forecast fit & editable sample squad | Completed | `00a55ba` + Vitest + Chromium verified |
 | A-W1-1 | Save status UI, alert banner, boundary backup copy, SwitchConfirmDialog, H2 wiring | Completed (`B-W1a` integrated) | `ec77ea8` + Vitest (50/445) + Chromium dual-tab/reload verified |
 | A-W1-2/3/4 | Advance preview, Activity preview (all slot/overtime commands), 7 learning nodes, 2-sample art gate | Completed (`3af8078` + `art-slots.md` §5 `APPROVE`) | Vitest (50/446) + 5-viewport Chromium + 404 art fallback |
-| A-W2-1/2/3/4 | Candidate comparison (Worker <=50ms), remedies, finance, reuse team (prefill UI done; full W2 candidate/EXP-14 pending `B-W2`) | Pre-fill UI in `00a55ba`; W2 core API pending `B-W2` | Pending `B-W2` |
+| A-W2-1/2/3/4 | Candidate comparison (Worker host, 3 cards, delta, 0-plan), remedies, finance, reuse team, EXP-14 Batch 2 removal | Implementation & unit/integration checks complete (`7f500b9`; browser `<=50ms` check queued in W4) | Vitest (52/464) + 0 EXP-14 copies |
 | A-W3-1 | Delivery feedback order, 2 duo short chains, Outcome Wall, 8 art slots | Queued for H5 (`B-W3`) | Pending |
 | A-W4-1 | 20-case real-browser matrix, `elementFromPoint`, fault recovery, Wave 2 regressions | Queued for H6 (`W4`) | Pending |
