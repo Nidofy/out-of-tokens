@@ -1,6 +1,7 @@
+import {commandCoverage,campaignCoverage} from './src/experience-command-coverage.js';
 import { test, expect } from 'vitest';
 import { loadFullContent } from 'oot-content';
-import { createInitialState, dispatchCommand, activityEffects } from 'oot-core';
+import { createInitialState, dispatchCommand, activityEffects, getViewModel } from 'oot-core';
 import type { Command, State } from 'oot-core';
 import { hash } from 'oot-persistence';
 import { GameSession } from 'oot-platform';
@@ -13,11 +14,29 @@ function compare(state:State,command:Command) {
     expect(hash(state)).toBe(before);
     expect(preview.error).toBe(result.error);
     expect(preview.cash).toBeCloseTo(state.cash-result.state.cash,8);
+    expect(preview.research).toBe((state.campaign?.research??0)-(result.state.campaign?.research??0));
+    // Reverse coverage: a missing actor in the projection must also fail the gate.
+    const beforeLocations=new Map(getViewModel(state,c).actors.map(a=>[a.id,a.location]));
+    const afterLocations=new Map(getViewModel(result.state,c).actors.map(a=>[a.id,a.location]));
+    const changed=state.actors.filter(before=>{
+        const after=result.state.actors.find(a=>a.id===before.id)!;
+        return after.busyUntil!==before.busyUntil || afterLocations.get(after.id)!==beforeLocations.get(before.id) ||
+            (!state.overtime.includes(before.id)&&result.state.overtime.includes(before.id)) ||
+            before.energy!==after.energy || before.mood!==after.mood ||
+            state.campaign?.relations[before.id]?.affinity!==result.state.campaign?.relations[before.id]?.affinity;
+    });
+    expect(preview.actors.map(a=>a.actorId).sort()).toEqual(changed.map(a=>a.id).sort());
     for(const actor of preview.actors) {
         const after=result.state.actors.find(a=>a.id===actor.actorId)!;
         if(actor.occupiesUntil!==null)expect(actor.occupiesUntil).toBe(after.busyUntil);
         if(actor.joinsOvertime)expect(result.state.overtime).toContain(actor.actorId);
-        expect(after.energy-state.actors.find(a=>a.id===actor.actorId)!.energy).toBe(actor.energy);
+        const beforeActor=state.actors.find(a=>a.id===actor.actorId)!;
+        expect(after.energy-beforeActor.energy).toBe(actor.energy);
+        expect(after.mood-beforeActor.mood).toBe(actor.mood);
+        expect((result.state.campaign?.relations[actor.actorId]?.affinity??0)-(state.campaign?.relations[actor.actorId]?.affinity??0)).toBe(actor.affinity);
+        const relocated=beforeLocations.get(beforeActor.id)!==afterLocations.get(after.id);
+        expect(actor.relocatesTo).toBe(relocated?afterLocations.get(after.id):null);
+        expect(actor.skipsNightRecovery).toBe(state.absoluteSlot%4===3&&(after.busyUntil!==beforeActor.busyUntil||actor.joinsOvertime));
     }
     return preview;
 }
@@ -74,4 +93,12 @@ test('successful duo and incident response keep exact zero-slot versus one-slot 
     incidentState.campaign!.incidents.push({job:job.id,at:0,deadline:2,resolved:false});
     const response=compare(incidentState,{type:'respond',job:job.id,character:'qwen'});
     expect(response.error).toBeNull();expect(response.actors[0]?.occupiedSlots).toBe(1);
+});
+
+test('all current command variants are reviewed; recall and free chat have successful reverse-delta coverage',()=>{
+    expect(Object.keys(commandCoverage)).toHaveLength(17);expect(Object.keys(campaignCoverage)).toHaveLength(26);
+    const s=createInitialState(c,1);s.absoluteSlot=3;s.campaign!.scene='library';
+    expect(compare(s,{type:'campaign',action:'recall',id:'qwen'})).toMatchObject({error:null,actors:[{actorId:'qwen',occupiedSlots:0,relocatesTo:'workshop'}]});
+    const thread=c.campaign!.living!.threads.find(t=>t.trigger.kind==='day'&&Number(t.trigger.value)===1)!;
+    expect(compare(s,{type:'campaign',action:'chat-reply',id:thread.id,target:'0'}).error).toBeNull();
 });
