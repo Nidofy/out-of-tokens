@@ -1,3 +1,21 @@
+# Latest integration review — 2026-11-17
+
+A committed W3/I1–I3 code at **0cd7f5af2008e46d9ebd6a41de0b993fb13034b3** was merged into the independent integration branch at **ecd9115585b12bb060879b7f38873f0a2ce13313**. Full `pnpm check` PASS: **52 files / 468 tests**. A's shared handoff still lists H4, so this records inspection/merge of committed code, not a fabricated A H5/H6 signoff. B development has not merged A; main remains d18241a.
+
+I1 is closed at code/test level (published art path plus truly unknown fallback). I2/I3 are closed at code/test level: `executeManualSlotLoad` enqueues the explicit auto-load boundary using post-drain CAS, and a failed post-switch read binds a new coordinator without writing, returns unsaved/unavailable, and publishes the switched view. A added regressions for both paths. Real-browser fault/matrix acceptance remains separate.
+
+## I4 — P1: phase-reset/rework values replace the actual receipt assessment
+
+Observed against ecd9115 in the real A payload builder, using unchanged natural `commission-natural-build-2.json`: `project:incubator:1`, accepted phase0 quality **84.96**, pass line75, next phase1 quality0, payload outcome passed but displayed quality **0**. `buildDeliveryFeedbackPayload` selects the after-command job and `DeliveryFeedbackModal` uses it for grade/score/pass line/penalty explanation. Core correctly clears the next phase; rework likewise clears defect/hidden penalties. Historical rows must also be audited for current-job substitutions.
+
+Repro is an external evidence-only Vitest audit, not an edit to A tests. Run from integration: `pnpm exec vitest run --config ../commission-evidence/experience31/integration-h5/ecd9115585b12bb060879b7f38873f0a2ce13313/audit.config.ts`. It is **1 failing test** (0 !== 84.96). Raw test/config/log are in that directory, alongside the passing 468-test full check. Initial standalone tsx setup failure (`import.meta.env`) is retained separately. Do not change the expected factual score to accommodate the wrong UI.
+
+B provides the compatible optional `receipt.assessment` in contract.md: quality, passQuality, qualityLines, qualityBreakdown from before delivery/rework. A action: merge the registered B assessment release, consume it for feedback grading/score/reasons and journal historical values, keep missing-assessment copy neutral, add A-owned regression coverage for phase advancement and rework. Do not spread a current job's quality into missing historical facts. B has not edited A UI/adapters/tests. I4 stays OPEN until the A consumer is fixed and reviewed; external regression should then pass unchanged or be extended with an equivalent rendered factual assertion if A intentionally changes payload shape.
+
+Remaining acceptance: six new art crops/fallbacks, reduced motion and full 20-configuration W4 evidence; full UI/Host performance and queue pressure/return-transfer evidence; H3 empty-reload anomaly; protected Host POST cannot encode boundary-only rotation. Existing isolated service measurements remain valid for their recorded SHA only. Final main merge remains gated; historical VF5/Visual Freeze HOLD retained.
+
+Earlier review records follow (historical failures are preserved).
+
 # Integration review for Track A — 2026-11-17
 
 Integration SHA: 9d96abc4e3cb295aa6341669d632a69048a7407d (integration/experience31, D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-integration).

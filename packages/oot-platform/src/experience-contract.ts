@@ -1,4 +1,4 @@
-import type { Command, Member, Scene, forecastAssignment } from 'oot-core';
+import type { Command, Member, Scene, forecastAssignment, getViewModel } from 'oot-core';
 import type { RevisionIdentity, WorkerSnapshot } from './checkpoint-contract.js';
 
 /** Shared contract v1. GameSession implements every method; Worker uses the same pure services. */
@@ -50,7 +50,11 @@ export interface FinanceExplanation extends RevisionIdentity {
 export interface ExperienceView extends RevisionIdentity {
     learning: { node: 'accept' | 'assign' | 'advance' | 'deliver' | 'clarify' | 'rest' | 'bill'; observed: boolean }[];
     goal: Fact | null;
-    receipts: { jobId: string; phase: number; occurrence: number; participants: string[]; facts: Fact[] }[];
+    receipts: {
+        jobId: string; phase: number; occurrence: number; participants: string[]; facts: Fact[];
+        /** Accepted/reworked phase BEFORE the command resets it. Absent on older v1 producers. */
+        assessment?: Pick<ReturnType<typeof getViewModel>['jobs'][number], 'quality' | 'passQuality' | 'qualityLines' | 'qualityBreakdown'>;
+    }[];
 }
 export interface ExperienceSession {
     previewNextPeriod(): NextPeriodPreview;
