@@ -1,6 +1,6 @@
 import {saveSlots,manualSlots} from './storage.js';
-import type {SaveSlot,StoredSave,WritableSlot} from './storage.js';
-export interface SaveStorage{onExternalChange:(()=>void)|null;list():Promise<(StoredSave|null)[]>;read(id:SaveSlot):Promise<StoredSave|null>;write(id:WritableSlot,text:string,expectedRevision:number):Promise<number>;close():Promise<void>}
+import type {SaveSlot,StoredSave,WritableSlot,WritePolicy,SaveMeta} from './storage.js';
+export interface SaveStorage{onExternalChange:(()=>void)|null;list():Promise<(StoredSave|null)[]>;read(id:SaveSlot):Promise<StoredSave|null>;write(id:WritableSlot,text:string,expectedRevision:number,policy?:WritePolicy,meta?:SaveMeta):Promise<number>;close():Promise<void>}
 /** Authenticated same-origin host only. A lost response never triggers a retry. */
 export class HostSaves implements SaveStorage {
  onExternalChange:(()=>void)|null=null;

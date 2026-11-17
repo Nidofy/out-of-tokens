@@ -2,11 +2,14 @@ export const manualSlots = ['manual-1', 'manual-2', 'manual-3'] as const;
 export type WritableSlot = typeof manualSlots[number] | 'auto';
 export const saveSlots = [...manualSlots, 'auto', 'backup-1', 'backup-2', 'backup-3', 'backup-4', 'backup-5'] as const;
 export type SaveSlot = typeof saveSlots[number];
+export type WritePolicy = 'checkpoint' | 'boundary';
+export interface SaveMeta { lineageId: string }
 export interface StoredSave {
     id: SaveSlot;
     text: string;
     revision: number;
     savedAt: number;
+    meta?: SaveMeta;
 }
 export class BrowserSaves {
     private readonly db: Promise<IDBDatabase>;
@@ -41,7 +44,10 @@ export class BrowserSaves {
         return new Promise((resolve, reject) => { const req = db.transaction('slots', 'readonly').objectStore('slots').get(id); req.onsuccess = () => resolve((req.result as StoredSave | undefined) ?? null); req.onerror = () => reject(req.error); });
     }
     async list(): Promise<(StoredSave | null)[]> { return Promise.all(saveSlots.map(id => this.read(id))); }
-    async write(id: WritableSlot, text: string, expectedRevision: number): Promise<number> {
+    async write(id: WritableSlot, text: string, expectedRevision: number, policy: WritePolicy = 'boundary', meta?: SaveMeta): Promise<number> {
+        if (policy !== 'checkpoint' && policy !== 'boundary') throw Error('INVALID_WRITE_POLICY');
+        if (meta && (typeof meta.lineageId !== 'string' || !meta.lineageId.trim())) throw Error('INVALID_LINEAGE');
+        const capturedMeta = meta ? { lineageId: meta.lineageId } : undefined;
         if (![...manualSlots, 'auto'].includes(id) || !Number.isSafeInteger(expectedRevision) || expectedRevision < 0)
             throw Error('INVALID_SLOT');
         if (typeof text !== 'string' || text.length === 0 || text.length > 8000000)
@@ -63,7 +69,7 @@ export class BrowserSaves {
                 }
                 next = expectedRevision + 1;
                 // Rotations and the new pointer commit together in one transaction.
-                if (id === 'auto' && previous) {
+                if (id === 'auto' && previous && policy === 'boundary') {
                     for (let i = 1; i < 5; i++) {
                         const backup = store.get(`backup-${i}`);
                         backup.onsuccess = () => {
@@ -73,7 +79,7 @@ export class BrowserSaves {
                     }
                     store.put({ ...previous, id: 'backup-1' });
                 }
-                store.put({ id, text, revision: next, savedAt: Date.now() } satisfies StoredSave);
+                store.put({ id, text, revision: next, savedAt: Date.now(), ...(capturedMeta ? { meta: capturedMeta } : {}) } satisfies StoredSave);
             };
         });
         this.channel?.postMessage({ id, revision });
