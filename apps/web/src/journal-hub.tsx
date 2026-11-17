@@ -1,11 +1,14 @@
 import type {Command} from 'oot-core';
 import {worlds} from 'oot-core';
-import type {GameView} from 'oot-platform';
+import type {ActivityPreview,ExperienceView,FinanceExplanation,GameView} from 'oot-platform';
 import {Icon} from './icons.js';
+import {artSlotForJobTemplate,describeActivityPreview,formatFactLine,receiptKey} from './experience-adapter.js';
+import {ExperienceArtSlot} from './experience-art-slot.js';
+import {experienceReceiptCopy} from './experience-copy.js';
+import {financeNetSolvencyNote} from './experience-ui-copy.js';
 import {souvenirIds} from './generated-art.js';
 import {ledgerLabel} from './player-labels.js';
 import {names} from './presentation.js';
-import {ledgerWindowSummary} from './ui2-logic.js';
 import {periodText} from './decision-panels.js';
 
 export type JournalTab='chronicle'|'ledger'|'bids'|'expedition';
@@ -26,14 +29,18 @@ type JournalHubProps={
  setTab:(next:JournalTab)=>void;
  send:(cmd:Command)=>Promise<boolean>;
  hideTabs?:boolean;
+ previewActivity?:(cmd:Command)=>ActivityPreview;
+ finance:FinanceExplanation;
+ experienceView?:ExperienceView|undefined;
+ suppressVignettes?:boolean|undefined;
 };
 
-export function JournalHub({view,english,locked,tab,setTab,send,hideTabs}:JournalHubProps){
+export function JournalHub({view,english,locked,tab,setTab,send,hideTabs,previewActivity,finance,experienceView,suppressVignettes}:JournalHubProps){
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!,f=p.finale!;
  const chapterTitles=[tr('开源车库联盟','Open-source garage'),tr('第一笔大订单','The first large order'),tr('模型更新之夜','Model release night'),tr('429危机','The 429 crisis'),tr('最后一个Token','The last token')];
  const act=(action:'expedition'|'ending'|'endless'|'bid'|'challenge',id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
- const ledgerSummary=ledgerWindowSummary(view.ledger);
+ const ledgerSummary=finance.recentLedgerSummary;
  const deliveredCount=view.jobs.filter(j=>j.status==='delivered').length;
 
  return (
@@ -54,6 +61,75 @@ export function JournalHub({view,english,locked,tab,setTab,send,hideTabs}:Journa
       <div class="ui2-kpi-card"><small>{tr('在岗伙伴 / 已研技术','Team / Tech unlocked')}</small><b>{view.actors.length} / {p.software.length}</b></div>
       <div class="ui2-kpi-card"><small>{tr('当前已交付','Delivered jobs')}</small><b>{deliveredCount}</b></div>
      </div>
+     {(()=>{
+      const receipts=experienceView?.receipts??[];
+      const hasPassed=receipts.some(r=>r.facts.some(f=>f.certainty==='certain'&&f.reason==='delivery-passed'));
+      return (
+       <section class="ui2-card ui2-outcome-wall" aria-label={tr('工作室成果墙','Studio outcome wall')}>
+        <div class="ui2-outcome-head">
+         <h4><Icon name="award"/> {tr('工作室成果墙','Studio outcome wall')}</h4>
+         <small>{tr(`已归档 ${receipts.length} 条结案记录`,`${receipts.length} settled record(s)`)}{suppressVignettes?` · ${tr('紧急事项优先，已折叠庆祝横幅','Celebration banner deferred to urgent alert')}`:''}</small>
+        </div>
+        {hasPassed&&!suppressVignettes&&(
+         <ExperienceArtSlot
+          slotId="vignette-first-delivery"
+          variant="vignette"
+          state="delivered"
+          english={english}
+          badgeText={tr('交付里程碑','Delivery milestone')}
+          title={tr('把约定做成作品，稳稳交给客户','Turned commitments into delivered work')}
+          subtitle={tr(`累计交付 ${deliveredCount} 项委托 · 下方仅展示真实归档与在案参与伙伴`,`${deliveredCount} delivered · Only factual receipts & recorded contributors shown below`)}
+         />
+        )}
+        {receipts.length===0?(
+         <ExperienceArtSlot
+          slotId="outcome-workshop-display"
+          variant="outcome"
+          state="neutral"
+          english={english}
+          badgeText={tr('成果展架空位','Empty display')}
+          title={tr('完成首个交付或返工结算后，成果记录将陈列在此','Completed settlements will appear on this shelf')}
+          subtitle={tr('未交付的功能、作品或未在案伙伴不会提前展示。','Undelivered work and unrecorded contributors are never shown prematurely.')}
+         />
+        ):(
+         <div class="ui2-outcome-grid">
+          {[...receipts].reverse().map(r=>{
+           const job=view.jobs.find(j=>j.id===r.jobId);
+           const copy=experienceReceiptCopy(r,job);
+           const slotId=artSlotForJobTemplate(job?.template);
+           const passed=r.facts.some(f=>f.certainty==='certain'&&f.reason==='delivery-passed');
+           const rework=r.facts.some(f=>f.certainty==='certain'&&f.reason==='delivery-rework');
+           const badge=passed?tr('验收通过','Accepted'):rework?tr('返工修正','Rework'):tr('未通过/违约','Failed');
+           const subtitle=`${tr(`第 ${r.phase+1} 阶段`,`Phase ${r.phase+1}`)} · ${english?copy.en:copy.zh}${copy.review?` · ${english?copy.review.en:copy.review.zh}`:''}`;
+           return (
+            <div key={receiptKey(r)} class="ui2-outcome-card" data-outcome={passed?'passed':rework?'rework':'failed'}>
+             <ExperienceArtSlot
+              slotId={slotId}
+              variant="outcome"
+              state={passed?'delivered':'neutral'}
+              english={english}
+              badgeText={badge}
+              title={job?(english?job.titleEn:job.title):r.jobId}
+              subtitle={subtitle}
+             />
+             <div class="ui2-outcome-contributors">
+              {copy.participants.length>0?(
+               <>
+                <small>{tr('记录在案的贡献伙伴','Recorded contributors')}:</small>
+                <span>{copy.participants.map(id=>names[id]??id).join(' · ')}</span>
+               </>
+              ):(
+               <small>{tr('本条回执无单独记录在案的贡献伙伴。','No individual contributor recorded on this receipt.')}</small>
+              )}
+             </div>
+            </div>
+           );
+          })}
+         </div>
+        )}
+       </section>
+      );
+     })()}
      <section class="ui2-card">
       <h4>{tr('工作室章节编年里程碑','Studio chapter timeline')}</h4>
       <ol class="ui2-timeline">
@@ -76,11 +152,20 @@ export function JournalHub({view,english,locked,tab,setTab,send,hideTabs}:Journa
    {tab==='ledger'&&(
     <div class="ui2-ledger-pane">
      <div class="ui2-finance-kpis">
-      <div class="ui2-kpi-card"><small>{tr('当前账面现金','Cash balance')}</small><b>¥{view.cash.toFixed(2)}</b></div>
-      <div class="ui2-kpi-card" data-crisis={view.liquidCash<0}><small>{tr('净偿付资金','Net solvency')}</small><b>¥{view.liquidCash.toFixed(2)}</b></div>
-      <div class="ui2-kpi-card"><small>{tr(`近 ${ledgerSummary.count} 笔入账`,`Last ${ledgerSummary.count} inflow`)}</small><b class="is-up">+¥{ledgerSummary.inflow.toFixed(2)}</b></div>
-      <div class="ui2-kpi-card"><small>{tr(`近 ${ledgerSummary.count} 笔支出`,`Last ${ledgerSummary.count} outflow`)}</small><b class="is-down">−¥{ledgerSummary.outflow.toFixed(2)}</b></div>
+      <div class="ui2-kpi-card"><small>{tr('当前账面现金','Cash balance')}</small><b>¥{finance.cash.toFixed(2)}</b></div>
+      <div class="ui2-kpi-card" data-crisis={finance.netSolvency<0}><small>{tr('净偿付资金（非利润）','Net solvency (not profit)')}</small><b>¥{finance.netSolvency.toFixed(2)}</b></div>
+      <div class="ui2-kpi-card"><small>{tr('未完结预付款 / 在贷','Unfinished advances / Loan')}</small><b>¥{finance.unfinishedAdvances.toFixed(2)} / ¥{finance.loan}</b></div>
+      <div class="ui2-kpi-card"><small>{tr(`近 ${ledgerSummary.count} 笔流水净流动（非利润）`,`Last ${ledgerSummary.count} cash net (not profit)`)}</small><b class={ledgerSummary.net>=0?'is-up':'is-down'}>{ledgerSummary.net>=0?'+':''}¥{ledgerSummary.net.toFixed(2)} (+{ledgerSummary.inflow.toFixed(0)} / −{ledgerSummary.outflow.toFixed(0)})</b></div>
      </div>
+     <p class="ui2-inline-hint"><Icon name="info"/> {financeNetSolvencyNote(english)}</p>
+     {finance.bills.length>0&&(
+      <section class="ui2-card" aria-label={tr('近期已知账单拆分','Known upcoming liabilities')}>
+       <h4>{tr('近期已知待结算账单（不揣测未来收入）','Known upcoming bills (no speculative future income)')}</h4>
+       <ul class="ui2-ledger-list">
+        {finance.bills.map((bill,idx)=><li key={idx}><span><b>{formatFactLine(bill,english)}</b></span><b>¥{(bill.amount??0).toFixed(2)}</b></li>)}
+       </ul>
+      </section>
+     )}
 
      <div class="ui2-ledger-cols">
       <section class="ui2-card">
@@ -154,7 +239,12 @@ export function JournalHub({view,english,locked,tab,setTab,send,hideTabs}:Journa
          <div>
           <b>{english?w.en:w.zh}</b>
           <small>¥{w.cost} · {w.slots}{tr('槽',' slots')} · +{w.research} RP</small>
-          <div class="button-row">{view.actors.map(a=><button key={a.id} disabled={locked||a.busy||p.chapter<3||(!!f.ending&&!f.endless)} onClick={()=>act('expedition',a.id,w.id)}>{names[a.id]??a.id}</button>)}</div>
+          <div class="button-row">{view.actors.map(a=>{const ep=previewActivity?describeActivityPreview(previewActivity({type:'campaign',action:'expedition',id:a.id,target:w.id}),english):null;return <button key={a.id} disabled={locked||a.busy||p.chapter<3||(!!f.ending&&!f.endless)} title={ep?.compactText} onClick={()=>act('expedition',a.id,w.id)}>{names[a.id]??a.id}</button>;})}</div>
+          {(()=>{
+           const sampleActor=view.actors.find(a=>!a.busy);
+           const ep=sampleActor&&previewActivity?describeActivityPreview(previewActivity({type:'campaign',action:'expedition',id:sampleActor.id,target:w.id}),english):null;
+           return ep?.legal?<small class="ui2-muted-note">{ep.compactText}</small>:null;
+          })()}
          </div>
         </article>)}
        </div>

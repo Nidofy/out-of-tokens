@@ -94,3 +94,30 @@ it('verifies each generated runtime asset and its offline copy against provenanc
   }
  }
 });
+
+import {experienceArt,experienceArtPaths} from './src/experience-art.js';
+it('verifies all eight Batch 7 assets, provenance, whitelist, dimensions and offline bytes',()=>{
+ const entries=JSON.parse(readFileSync(resolve('art/art-batch-7/manifest.json'),'utf8')) as {id:string;file:string;publicFile?:string;sha256:string;bytes:number;width:number;height:number;model:string;promptFile:string;promptSha256:string}[];
+ expect(entries).toHaveLength(16);const runtime=entries.filter(e=>e.publicFile);expect(runtime).toHaveLength(8);
+ const expected=['outcome-tea-menu','outcome-cafe-sign','outcome-community-web','outcome-bookshop-system','outcome-bookshop-guide','outcome-workshop-display','vignette-rest-corner','vignette-first-delivery'].sort();
+ expect(runtime.map(e=>e.id).sort()).toEqual(expected);expect(entries.filter(e=>!e.publicFile).map(e=>e.id).sort()).toEqual(expected);
+ expect(new Set(entries.map(e=>e.file)).size).toBe(16);
+ expect(readdirSync(resolve('apps/web/public/art/experience')).sort()).toEqual(expected.map(id=>id+'.webp').sort());
+ const originalSamples={'outcome-tea-menu':'5fa39c0ba38150bb3507e2f52fecaa3bd6ca66096de4682cdce26999b620638c','vignette-rest-corner':'58d3213405597fdc41528c54dc8570aafa93424f5ce22c3b3cb9ec417cfafc96'};
+ for(const [id,sha] of Object.entries(originalSamples))expect(runtime.find(e=>e.id===id)!.sha256).toBe(sha);
+ const offline=JSON.parse(readFileSync(resolve('apps/web/dist/offline-assets.json'),'utf8')) as {assets:string[]};
+ expect(runtime.map(e=>'./'+e.publicFile).sort()).toEqual(Object.values(experienceArtPaths).sort());
+ for(const id of ['__proto__','constructor','../x','outcome-unknown'])expect(experienceArt(id)).toBeNull();
+ let total=0;
+ for(const e of entries){
+  const prompt=readFileSync(resolve('art/art-batch-7',e.promptFile));expect(createHash('sha256').update(prompt).digest('hex')).toBe(e.promptSha256);
+  const bytes=readFileSync(resolve('art/art-batch-7',e.file));expect(bytes.length).toBe(e.bytes);expect(createHash('sha256').update(bytes).digest('hex')).toBe(e.sha256);expect(e.model).toContain('unknown');
+  if(!e.publicFile){expect([bytes.readUInt32BE(16),bytes.readUInt32BE(20)]).toEqual([e.width,e.height]);continue;}
+  expect(bytes.subarray(0,4).toString()).toBe('RIFF');expect(bytes.subarray(12,16).toString()).toBe('VP8 ');
+  expect([bytes.readUInt16LE(26)&0x3fff,bytes.readUInt16LE(28)&0x3fff]).toEqual([e.width,e.height]);
+  const banner=e.file.includes('vignette-');expect([e.width,e.height]).toEqual(banner?[960,320]:[768,512]);expect(e.bytes).toBeLessThanOrEqual(banner?150000:100000);total+=e.bytes;
+  expect(offline.assets).toContain(e.publicFile);
+  for(const folder of ['public','dist'])expect(readFileSync(resolve('apps/web',folder,e.publicFile))).toEqual(bytes);
+ }
+ expect(total).toBeLessThanOrEqual(900000);
+});

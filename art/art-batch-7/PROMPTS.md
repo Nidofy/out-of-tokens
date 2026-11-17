@@ -1,0 +1,11 @@
+# Art-Batch 7 sample prompts
+
+Tool: built-in image_gen. Backend model/version: unknown. Both calls requested transparent_background=false; no image references. Other generation parameters unavailable. Date: 2026-11-17.
+
+## outcome-tea-menu
+
+Use case: illustration-story. Create a single landscape 3:2 production game asset, intended runtime 768x512 RGB. Asset outcome-tea-menu for a cozy AI workshop management game. Warm watercolor washes and delicate fine pen outlines on ivory paper, walnut wood, sage green and small brass accents. A thoughtfully designed blank tea menu sheet with only small watercolor cup illustrations and simple decorative rules (absolutely no text or pseudo-text), a ceramic milk-tea cup, and a small brass clip on a walnut cafe counter, warm daylight. Keep main sheet and cup contained in central 60% horizontal and central 50% vertical area so wide crops remain meaningful. Focus at 50% x,45% y. Upper-left 16%x14% quiet for a DOM badge; bottom 24% quiet low-contrast warm surface for optional DOM caption. Modest elegant detailed illustration, consistent soft edges and paper texture, no frame or UI. No characters, no readable text, no letters, no digits, no handwriting, no watermark, no logo. Full bleed opaque landscape image.
+
+## vignette-rest-corner
+
+Use case: illustration-story. Create one extremely wide 3:1 horizontal game banner, intended runtime 960x320 RGB: vignette-rest-corner, quiet nighttime rest corner in a cozy creative workshop. Warm watercolor washes, fine restrained pen outlines, ivory paper grain, walnut, sage green upholstery, small brass accent. A single compact sage armchair with folded throw, side table with ceramic mug, and warm brass reading lamp grouped on RIGHT, focal point 68% x,50% y. LEFT 55% must remain largely empty very low contrast ivory wall and soft muted wood wash for interface overlay. Keep lamp shade and chair/mug shapes within middle vertical 50% to survive very wide shallow crop. Calm restful night atmosphere without dark muddy colors, warm muted lighting, airy spacious composition. Full bleed opaque wide banner; absolutely no people or animals, no text, no letters or digits, no books with writing, no clock, no logo, no watermark, no frame or UI.

@@ -6,6 +6,14 @@
     ".": {
       "types": "./src/index.ts",
       "default": "./dist/index.js"
+    },
+    "./worker": {
+      "types": "./src/worker.ts",
+      "default": "./dist/worker.js"
+    },
+    "./fixtures": {
+      "types": "./src/fixtures.ts",
+      "default": "./dist/fixtures.js"
     }
   },
   "dependencies": {

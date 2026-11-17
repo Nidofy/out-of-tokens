@@ -1,6 +1,8 @@
 import type {Command} from 'oot-core';
-import type {GameView} from 'oot-platform';
+import type {ActivityPreview,FinanceExplanation,GameView} from 'oot-platform';
 import {Icon} from './icons.js';
+import {describeActivityPreview,formatFactLine} from './experience-adapter.js';
+import {financeNetSolvencyNote} from './experience-ui-copy.js';
 import {PipTrack} from './ornaments.js';
 import {chapterBannerArt,financeArt,softwareArt} from './generated-art.js';
 import {names} from './presentation.js';
@@ -25,9 +27,11 @@ type StudioHubProps={
  hideTabs?:boolean;
  teaReady?:boolean;
  onTeaBreak?:()=>void;
+ previewActivity?:(cmd:Command)=>ActivityPreview;
+ finance:FinanceExplanation;
 };
 
-export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSwitchHub,onOpenMap,returnBanner,hideTabs,teaReady,onTeaBreak}:StudioHubProps){
+export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSwitchHub,onOpenMap,returnBanner,hideTabs,teaReady,onTeaBreak,previewActivity,finance}:StudioHubProps){
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!,catalog=view.catalog!;
  const life=(action:Extract<Command,{type:'campaign'}>['action'],id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
@@ -96,7 +100,7 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
         <div class="ui2-incident-row" key={i.job}>
          <b>{i.job}</b>
          <small>{tr('响应截止槽','Deadline slot')} {i.deadline}</small>
-         <div class="button-row">{view.actors.map(a=><button key={a.id} disabled={locked||a.busy||view.absoluteSlot<i.at} onClick={()=>void send({type:'respond',job:i.job,character:a.id})}>{names[a.id]}</button>)}</div>
+         <div class="button-row">{view.actors.map(a=>{const rp=previewActivity?describeActivityPreview(previewActivity({type:'respond',job:i.job,character:a.id}),english):null;return <button key={a.id} disabled={locked||a.busy||view.absoluteSlot<i.at} title={rp?.compactText} onClick={()=>void send({type:'respond',job:i.job,character:a.id})}>{names[a.id]}{rp?.skipsNightRecovery?` (${tr('占深夜','Night')})`:''}</button>;})}</div>
         </div>
        ))}
       </section>
@@ -111,6 +115,7 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
        </div>
        {onTeaBreak&&(()=>{
         const teaDoneToday=(p.lastTeaDay??0)>=view.day;
+        const teaPreview=previewActivity?describeActivityPreview(previewActivity({type:'campaign',action:'tea',id:'all'}),english):null;
         const teaLabel=teaReady
          ?tr('举办今日工坊茶歇 ¥80','Host studio tea break ¥80')
          :teaDoneToday
@@ -120,7 +125,12 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
            :view.cash<80
             ?tr('举办工坊茶歇（需 ¥80）','Host tea break (needs ¥80)')
             :tr('伙伴忙碌中 · 稍后可办','Teammates busy right now');
-        return <button class="primary" disabled={locked||!teaReady} onClick={onTeaBreak}><Icon name="cup"/><span>{teaLabel}</span></button>;
+        return (
+         <>
+          <button class="primary" disabled={locked||!teaReady} title={teaPreview?.compactText} onClick={onTeaBreak}><Icon name="cup"/><span>{teaLabel}</span></button>
+          {teaPreview?.legal&&<small class="ui2-muted-note">{teaPreview.compactText}</small>}
+         </>
+        );
        })()}
       </section>
 
@@ -138,11 +148,20 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
    {tab==='finance'&&(
     <div class="ui2-studio-finance">
      <div class="ui2-finance-kpis">
-      <div class="ui2-kpi-card"><small>{tr('账面现金','Cash on hand')}</small><b>¥{view.cash.toFixed(2)}</b></div>
-      <div class="ui2-kpi-card" data-crisis={view.liquidCash<0}><small>{tr('净偿付资金','Net solvency')}</small><b>¥{view.liquidCash.toFixed(2)}</b></div>
-      <div class="ui2-kpi-card"><small>{tr('下次周结账单','Next weekly bill')}</small><b>¥{view.nextWeeklyBill.toFixed(2)}</b></div>
-      <div class="ui2-kpi-card"><small>{tr('贷款本金','Loan principal')}</small><b>¥{view.loan}</b></div>
+      <div class="ui2-kpi-card"><small>{tr('账面现金','Cash on hand')}</small><b>¥{finance.cash.toFixed(2)}</b></div>
+      <div class="ui2-kpi-card" data-crisis={finance.netSolvency<0}><small>{tr('净偿付资金（非利润）','Net solvency (not profit)')}</small><b>¥{finance.netSolvency.toFixed(2)}</b></div>
+      <div class="ui2-kpi-card"><small>{tr('未完结合同预付款','Unfinished advances')}</small><b>¥{finance.unfinishedAdvances.toFixed(2)}</b></div>
+      <div class="ui2-kpi-card"><small>{tr('贷款本金','Loan principal')}</small><b>¥{finance.loan}</b></div>
      </div>
+     <p class="ui2-inline-hint"><Icon name="info"/> {financeNetSolvencyNote(english)}</p>
+     {finance.bills.length>0&&(
+      <section class="ui2-card" aria-label={tr('已知账单拆分','Known bills breakdown')}>
+       <h4>{tr('已知待付账单与周结拆解','Known upcoming liabilities')}</h4>
+       <ul class="ui2-ledger-list">
+        {finance.bills.map((bill,idx)=><li key={idx}><span><b>{formatFactLine(bill,english)}</b></span><b>¥{(bill.amount??0).toFixed(2)}</b></li>)}
+       </ul>
+      </section>
+     )}
 
      <section class="ui2-card">
       <h4>{tr('算力额度补给与周订阅方案','Compute quota & subscriptions')}</h4>

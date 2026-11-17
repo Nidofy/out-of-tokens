@@ -5,7 +5,9 @@ import {isFlagshipUnlocked} from './ui2-logic.js';
 import {EmoteBadge} from './stage-chatter.js';
 import type {EmoteKind,GiftDef} from './living-adapter.js';
 import {giftAssetSrc,giftReactionTier} from './living-adapter.js';
-import type {GameView} from 'oot-platform';
+import type {GameView,ActivityPreview} from 'oot-platform';
+import type {Command} from 'oot-core';
+import {describeActivityPreview} from './experience-adapter.js';
 
 export interface BarkPayload {
  id:number;
@@ -58,6 +60,7 @@ export function GiftPickerGrid({
  cash,
  disabled,
  english,
+ previewActivity,
  onSelectGift
 }:{
  actorId:string;
@@ -67,6 +70,7 @@ export function GiftPickerGrid({
  cash:number;
  disabled:boolean;
  english:boolean;
+ previewActivity?:(cmd:Command)=>ActivityPreview;
  onSelectGift:(gift:GiftDef)=>void;
 }){
  const tr=(zh:string,en:string)=>english?en:zh;
@@ -77,14 +81,16 @@ export function GiftPickerGrid({
     const known=giftedIds.includes(g.id);
     const tier=giftReactionTier(g,actorId);
     const affordable=cash>=g.cost;
+    const preview=previewActivity?describeActivityPreview(previewActivity({type:'campaign',action:'gift',id:actorId,target:g.id}),english):null;
     return (
-     <button key={g.id} class="ui2-gift-card" disabled={disabled||!affordable} title={english?g.descEn:g.desc} onClick={()=>onSelectGift(g)}>
+     <button key={g.id} class="ui2-gift-card" disabled={disabled||!affordable} title={preview?`${english?g.descEn:g.desc} · ${preview.compactText}`:(english?g.descEn:g.desc)} onClick={()=>onSelectGift(g)}>
       <div class="ui2-gift-thumb">
        <img src={asset} alt=""/>
        {known&&<span class={`ui2-gift-pref is-${tier}`}><Icon name={tier==='love'?'heart':'check'}/>{tier==='love'?tr('偏爱','Loved'):tier==='like'?tr('喜欢','Liked'):tr('已赠','Given')}</span>}
       </div>
       <b>{english?g.nameEn:g.name}</b>
       <small>¥{g.cost}{!known?` · ${tr('品味待探','Taste?')}`:''}</small>
+      {preview&&preview.skipsNightRecovery&&<small class="ui2-act-warn">{tr('将跳过今晚恢复','Skips sleep')}</small>}
      </button>
     );
    })}

@@ -2,7 +2,9 @@ import {useState,useRef,useLayoutEffect} from 'preact/hooks';
 import type {ComponentChildren} from 'preact';
 import type {GameView} from 'oot-platform';
 import {Icon} from './icons.js';
-import type {AdvanceInfo,HubPanel} from './ui2-logic.js';
+import type {HubPanel} from './ui2-logic.js';
+import type {FormattedAdvanceInfo} from './experience-adapter.js';
+import {AdvancePreviewPopover} from './advance-preview-ui.js';
 
 type StageHubProps={
  hub:HubPanel;
@@ -13,7 +15,7 @@ type StageHubProps={
  backAction?:{label:string;onClick:()=>void}|null|undefined;
  notice?:ComponentChildren;
  view:GameView;
- advance:AdvanceInfo;
+ advance:FormattedAdvanceInfo;
  onAdvance:()=>void;
  onOpenReview:(id:string)=>void;
  english:boolean;
@@ -29,6 +31,9 @@ export function StageHubShell({hub,switchHub,title,emblem,tabs,backAction,notice
  const p=view.campaign!;
  const dialogRef=useRef<HTMLDialogElement>(null);
  const [confirmAdvance,setConfirmAdvance]=useState(false);
+ const [previewOpen,setPreviewOpen]=useState(false);
+ const previewTriggerRef=useRef<HTMLButtonElement>(null);
+ const suppressEscCloseRef=useRef(false);
  const focusTarget=useRef(returnFocus);
  focusTarget.current=returnFocus;
 
@@ -62,7 +67,7 @@ export function StageHubShell({hub,switchHub,title,emblem,tabs,backAction,notice
  };
 
  return (
-  <dialog ref={dialogRef} tabIndex={-1} class="stage-hub" data-hub={hub} aria-label={title} onCancel={e=>{e.preventDefault();if(confirmAdvance){setConfirmAdvance(false);return;}if(onCancel?.())return;close();}}>
+  <dialog ref={dialogRef} tabIndex={-1} class="stage-hub" data-hub={hub} aria-label={title} onKeyDown={e=>{if(e.key==='Escape'&&previewOpen){e.preventDefault();e.stopPropagation();suppressEscCloseRef.current=true;queueMicrotask(()=>{suppressEscCloseRef.current=false;});setPreviewOpen(false);requestAnimationFrame(()=>previewTriggerRef.current?.focus({preventScroll:true}));}}} onCancel={e=>{e.preventDefault();if(suppressEscCloseRef.current){suppressEscCloseRef.current=false;return;}if(previewOpen){setPreviewOpen(false);requestAnimationFrame(()=>previewTriggerRef.current?.focus({preventScroll:true}));return;}if(confirmAdvance){setConfirmAdvance(false);return;}if(onCancel?.())return;close();}}>
    <div class="stage-hub-frame">
     <nav class="stage-hub-rail" aria-label={tr('主系统导航','Primary systems')}>
      {systems.map(item=><button key={item.id} aria-pressed={hub===item.id} onClick={()=>{setConfirmAdvance(false);switchHub(item.id);}} title={item.label}>
@@ -88,12 +93,32 @@ export function StageHubShell({hub,switchHub,title,emblem,tabs,backAction,notice
          <Icon name="star"/><b>{p.research} RP</b>
         </span>
        </div>
+       <button
+        ref={previewTriggerRef}
+        type="button"
+        class="stage-hub-preview-btn"
+        aria-expanded={previewOpen}
+        aria-label={tr('查看下一时段推进预览','Preview next period')}
+        title={tr('展开下一时段预览（不推进）','Expand next period preview (does not advance)')}
+        onClick={()=>setPreviewOpen(v=>!v)}
+       >
+        <Icon name="info"/>
+       </button>
        <button class="stage-hub-advance" disabled={advance.disabled} title={advance.disabledReason??advance.subtitle} onClick={handleAdvanceClick}>
         <Icon name="play"/><span>{advance.label}</span>
        </button>
        <button class="stage-hub-close" aria-label={tr('关闭面板','Close panel')} onClick={close}><Icon name="close"/></button>
       </div>
      </header>
+     {previewOpen&&(
+      <AdvancePreviewPopover
+       display={advance}
+       open={previewOpen}
+       english={english}
+       inline
+       onClose={()=>{suppressEscCloseRef.current=true;queueMicrotask(()=>{suppressEscCloseRef.current=false;});setPreviewOpen(false);requestAnimationFrame(()=>previewTriggerRef.current?.focus({preventScroll:true}));}}
+      />
+     )}
      {confirmAdvance&&advance.urgentReviewIds[0]&&(
       <div class="stage-hub-confirm" role="alert">
        <span><Icon name="warning"/> {tr('有即将逾期的待验收委托，直接推进将按违约结算。','A commission awaiting review is due now. Advancing settles it as breached.')}</span>
