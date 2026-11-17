@@ -6,7 +6,7 @@
 - Registered B implementation: `0912342ac296e888f1d2fb7af526069953b20d2f`; B record `09193fad6f23615f4f7a41e9e82eb69ca3820488`.
 - A final implementation: `c8cf69f59aee3f66e390a4944c6bb30c69929b44`; A record/handoff `66849a93724590d9551a02d8be7ab491cc5d5d84`.
 - Tested integration: `6e8e84804fc5bfd55d3b181a94b9448d940b4f7c` on `integration/experience31`.
-- Decision: scoped Living Studio 3.1 technical integration PASS; eligible for the authorized local main merge. Main merge SHA is recorded separately after the merge. No remote push/deployment.
+- Decision: scoped Living Studio 3.1 technical integration PASS; authorized local main merge completed. Main implementation merge: **acb2dab6d7345ba698e19b0b37a3ec5ee05c7ea3**, `codex/m1-foundation`, recorded by this separate documentation commit. No remote push/deployment.
 - This is not universal Host boundary-only rotation acceptance, whole-app performance certification, or Visual Freeze. The approved plan §6.2 keeps the protected DSH protocol unchanged and permits platform-side policy intent; C0 co-sign §6.3 acknowledges the server limitation. Preserve accurate Host copy and this explicit exception rather than claiming Browser equivalence. Historical VF5 / Visual Freeze HOLD, physical touch / 200% OS fonts / real DSH installation remain unchanged.
 
 ## Gates and EXP ledger
@@ -72,3 +72,7 @@ Initial transport bootstrap hung at the first warmup because dynamic import inst
 ## Remaining explicit limitations
 
 Protected Host server still rotates on every auto write; Browser/Lab boundary-only semantics are not claimed for it. Real DSH install/authentication, physical touch,200% OS fonts and historical VF5/Visual Freeze remain HOLD/OPEN. No universal unload durability or arbitrary-old-version compatibility claim. No new rule/content/save protocol change or remote action. These limits persist in the final release record.
+
+## Main worktree verification
+
+Main merge acb2dab6d7345ba698e19b0b37a3ec5ee05c7ea3 has identical tracked tree to accepted4608c4a. The runtime/source tree is unchanged from tested6e8e848. Main refresh: offline frozen-lock install from D:/.pnpm-store reports already up to date; Web/DSH build PASS; package-verification6 PASS; clean tracked worktree before this record. First build was blocked by sandboxEPERM on a pnpm temporary file before compilation; retained as main-merge/acb2dab6d7345ba698e19b0b37a3ec5ee05c7ea3/build-1.log. Authorized permission retry succeeded; install-offline.log, build-2.log and package-verification.log are retained there. No network install, lockfile edit, remote push or deployment.
