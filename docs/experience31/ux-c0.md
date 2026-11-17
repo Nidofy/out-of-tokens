@@ -427,3 +427,8 @@ Track A reviewed Track B C0 revision 2 (`424045da7bfa0ddcff10f190ec5d869be5ab699
    - Track A acknowledges Track B's finding that `apps/dsh/**` is protected and `POST /api/saves` (`{ id, text, expectedRevision }`) continues rotating server-managed backups on every `auto` write without server protocol extension. Track A will **not** modify `apps/dsh/**` and will keep hosted-save backup descriptions accurate rather than claiming Browser boundary-only rotation equivalence while server protocol is unchanged.
 4. **H1 Readiness**:
    - Zero Track A design or contract blockers remain for assembling and freezing the shared **H1** C0 SHA.
+
+### 6.4 Measurement Protocol Input Amendment Acknowledgement (`7a9f3df6`)
+
+- Track A acknowledges Track B's amended longer save/replay stress fixture in `apps/sim-cli/experience-long-fixture.ts` (replacing the blocked legacy 60-day `runBot` call without modifying core rules or `runBot`): `seed21`, `962` legal commands across `240` cumulative settled slots / `3` runs (including `2` bankruptcy restarts and `3` no-cost scene visits per slot), commands SHA256 `eb98024438e47e62e752d994fc105ecda4ae43793db1062d23ab34976bd870f4`, final `stateHash` `7723104e8e04be90dd3af8ccf4e5b971538b1c16ec3a1a55a3d9b615bc231299`.
+- Measurement device (`Windows x64 / Intel(R) Core(TM) Ultra 9 285H / Chromium Foreground Window`), sample count (`5` warmups + `30` recorded samples), and strict frozen budgets (`<= 50 ms` main-thread segment including Worker clone/transfer, `<= 1000 ms` local save end-to-end p95) remain unchanged.
