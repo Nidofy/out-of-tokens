@@ -11,6 +11,24 @@
 
 ## Checkpoint History
 
+### 5. H3 — Shared Period/Activity Previews, 7 Learning Nodes, Sample Art Approval & EXP-14 Batch 1 Removal (`B-W1b`) (2026-11-17)
+- **Implementation SHA**: `3af807852e9680d77c1cb314d78420407103eeaf`
+- **Track B Released SHA Merged**: `7a9f3df6f120fd8fac1c955580cc70f934a6ff03` (`bf196bea`)
+- **Evidence**: `../commission-evidence/experience31/h3/3af807852e9680d77c1cb314d78420407103eeaf/`
+- **Owned Files Modified / Created**:
+  - `apps/web/src/experience-adapter.ts` (new): pure UI formatters over `NextPeriodPreview`, `ActivityPreview`, and stop entries (`formatAdvanceDisplay`, `describeActivityPreview`, `actorStopKindFromPreview`) with zero rule duplication.
+  - `apps/web/src/experience-art-slot.tsx` (new) & `apps/web/src/advance-preview-ui.tsx` (new): `<ExperienceArtSlot>` consuming Track B `experienceArt()` whitelist with lazy decoding, focal `object-position`, dark scrims, inline vignette badge, and full text/button fallback; shared `<AdvancePreviewPopover>` consumed by both `HudBar` and `StageHubShell`.
+  - `apps/web/src/hud-bar.tsx`, `apps/web/src/stage-hub.tsx`: shared `previewNextPeriod()` toggle (`>= 44×44`), Escape-closes-popover-only (`preventDefault()` + `suppressEscCloseRef` guard keeping `StageHub` open + returning focus).
+  - `apps/web/src/partner-profile.tsx`, `apps/web/src/commission-workbench.tsx`, `apps/web/src/messenger-drawer.tsx`, `apps/web/src/bark-overlay.tsx`, `apps/web/src/studio-hub.tsx`, `apps/web/src/journal-hub.tsx`, `apps/web/src/alpha-app.tsx`: wired real `previewActivity(command)` across social chat/gift/meal/study/recall/overtime/fine-tune/align/story/clarify/tea/respond/expedition/0-slot chat-reply; highlighted night recovery skip and 0-slot Messenger separation.
+  - `apps/web/src/onboarding.tsx`: upgraded to 7 per-lineage learning nodes (`oot-ui:<lineageId>:learning`) supporting individual skip, skip-all, and reopen-all without mutating domain save facts.
+  - `apps/web/src/ui2-logic.ts`, `apps/web/src/living-adapter.ts` + `apps/sim-cli/{ui2-foundation,living-ui,experience-ui}.test.ts`: **EXP-14 Batch 1 deleted** (`advancePeriodInfo`, `resolveStopReason` removed; `pickStageChatter` consumes `previewStops`).
+  - `apps/web/src/ui2.css`, `docs/experience31/art-slots.md`: responsive & dark-mode layout fixes + **§5 W1 Two-Sample 5-Viewport Browser Review Verdict — `APPROVE`** for `outcome-tea-menu` and `vignette-rest-corner`.
+- **Checks & Real Browser Verification**:
+  - `pnpm check` (`task-925`): `tsc -b`, `eslint packages apps`, **50 test files / 446 tests PASS**, `oot-web` (`dist/assets/experience-module-graph.json` `fixtureReachable: false`) + `oot-dsh` builds PASS; `git diff --check` clean; `git grep -n "advancePeriodInfo\|resolveStopReason" apps/` = `0` matches.
+  - Real Chromium (`http://127.0.0.1:4192/` & HTTP 404 art fault server `http://127.0.0.1:4193/`, servers stopped afterward, `0` console errors, no `{ force: true }`, viewport restored to `1280×720`):
+    - Verified `AdvancePreviewPopover` in both HUD and `StageHub` (clock unchanged, `Escape` closes popover without advancing or closing `StageHub`, returns focus to `.stage-hub-preview-btn`), 0-slot Messenger note, Night advance + `page.reload()` persistence, `ActivityPreview` on all Partner actions + fine-tune/align, and 7 learning nodes skip/skip-all/reopen-all.
+    - Verified 5 viewports (`1280×720`, `768×1024`, `844×390`, `560×800`, `390×844`) × Light/Dark × ZH/EN (`dockInfoXOverlap = 0` with `+8px` gap on `390×844`; `.scene-left-stack.bottom = 324.29 <= dockBox.top = 330.29` on `844×390`; `.ui2-art-badge.is-inline` `+8px` inside `.ui2-art-frame` with zero clipping/overlap; `outcome-tea-menu` & `vignette-rest-corner` **APPROVED**), plus genuine HTTP 404 image fallback (`data-art-state="fallback"`, `imgCount: 0`, CTAs clickable).
+
 ### 4. H2 — Real Save Coordinator, Worker Encoder & Dual-Tab Recovery (`B-W1a`) (2026-11-17)
 - **Implementation SHA**: `ec77ea84d7148f930bd1391f3a86e6aa16a72e09`
 - **Track B Released SHA Merged**: `7a9f3df6f120fd8fac1c955580cc70f934a6ff03` (`bf196bea`)
@@ -90,7 +108,7 @@
 | A-W1-5 | Group chat read vs replied separation (`oot-ui:<lineageId>:threads`) | Completed | `00a55ba` + `ec77ea8` (live `session.lineageId` reload verified) |
 | A-W1-6 | First-order live forecast fit & editable sample squad | Completed | `00a55ba` + Vitest + Chromium verified |
 | A-W1-1 | Save status UI, alert banner, boundary backup copy, SwitchConfirmDialog, H2 wiring | Completed (`B-W1a` integrated) | `ec77ea8` + Vitest (50/445) + Chromium dual-tab/reload verified |
-| A-W1-2/3/4 | Advance preview, Activity preview (all slot/overtime commands), 7 learning nodes | In progress (`7a9f3df6` merged for H3) | Queued next |
+| A-W1-2/3/4 | Advance preview, Activity preview (all slot/overtime commands), 7 learning nodes, 2-sample art gate | Completed (`3af8078` + `art-slots.md` §5 `APPROVE`) | Vitest (50/446) + 5-viewport Chromium + 404 art fallback |
 | A-W2-1/2/3/4 | Candidate comparison (Worker <=50ms), remedies, finance, reuse team (prefill UI done; full W2 candidate/EXP-14 pending `B-W2`) | Pre-fill UI in `00a55ba`; W2 core API pending `B-W2` | Pending `B-W2` |
 | A-W3-1 | Delivery feedback order, 2 duo short chains, Outcome Wall, 8 art slots | Queued for H5 (`B-W3`) | Pending |
 | A-W4-1 | 20-case real-browser matrix, `elementFromPoint`, fault recovery, Wave 2 regressions | Queued for H6 (`W4`) | Pending |
