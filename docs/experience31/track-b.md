@@ -1,3 +1,17 @@
+# Complete Art-Batch 7 release — 2026-11-17
+
+Latest registered B implementation **29ee4781d2d637faf963e13cc652842f62b6b482**, experience-core-wave1, D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-core. A may merge this fixed SHA for all eight assets; includes every previous B release through 244018c. Shared API remains contract v1.
+
+A H3 fixed release 3af807852e9680d77c1cb314d78420407103eeaf received, with explicit two-sample **APPROVE** (archived verbatim at art/art-batch-7/SAMPLE_APPROVAL.md). A's art-slots §5 and ux-c0 §6.4 are copied verbatim from that commit: the long 962-command input amendment is now acknowledged. These are design/signoff assembly, not an A implementation merge into B. A branch has merged B 244018c at 36f3daa and is working on H4.
+
+Produced the remaining six actual images only after sample approval. Complete eight runtime WebP assets total **458174 bytes**, six 768x512 outcomes each <=100000 bytes, two 960x320 banners each <=150000 bytes, total <=900000. Original PNG masters preserved; built-in image_gen, model/version unknown (not exposed), six exact prompts/source files/parameters in generation-six.json. All originals and compressed outputs visually inspected: recognizable subjects, blank pages/sign/screens, no readable text/digits/logos/watermarks/characters. The two approved sample files are byte-unchanged. New six final viewport crops still need A verification; no fabricated approval.
+
+experience-art.ts exposes all eight exact IDs; unknown IDs return null. Package verification covers complete ID/file sets, original sample hashes, prompt hashes, master/runtime dimensions, byte budgets, public/dist copies and offline list inclusion. **pnpm check 51 files / 452 tests PASS**, staged diff check PASS, no test failures this checkpoint. Evidence ../commission-evidence/experience31/art-complete/29ee4781d2d637faf963e13cc652842f62b6b482/. No UI, core rules, domain content, persistence or DSH edits.
+
+H1 API/design/input acknowledgement complete. H3 A functional/visual report received; H2 overall remains qualified by the unchanged Host rotation limitation and uncompleted frozen performance measurements. B H4/H5 services/content/assets are delivered; A H4/H5/H6 integration/browser checks remain open. Next B action: stage this release plus A's registered H3 implementation on independent integration/experience31 and run integrated checks while A continues later-wave UI. Main stays d18241a, local only, VF5/Visual Freeze HOLD retained.
+
+Earlier records follow.
+
 # B release and integration staging — 2026-11-17
 
 Latest registered implementation: **244018cfae492cf1196299d0fbd967f32c9b805e** (experience-core-wave1; D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-core). A may merge this fixed SHA, including W3 ee0c04a, W2 bda560c and W1 7a9f3df. Contract v1 remains unchanged. Separate integration/experience31 worktree: D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-integration, created from main d18241a then fast-forwarded to this B release. No A implementation merged into B or integration yet; A's W1-only merge a6b9c49 is observed, not treated as final delivery.
