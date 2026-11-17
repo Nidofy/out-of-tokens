@@ -11,6 +11,30 @@
 
 ## Checkpoint History
 
+### 2. W1 Pre-H2 — Independent Frontend Tasks (2026-11-17)
+- **Implementation SHA**: `00a55bac9f9d20b914994972e7c8d57021b202a0`
+- **Record SHA**: *(recorded in subsequent commit)*
+- **Evidence**: `../commission-evidence/experience31/w1-pre-h2/00a55bac9f9d20b914994972e7c8d57021b202a0/`
+- **Track B Published SHA Integrated**: None yet (awaiting H1 / `B-W1a` release SHA)
+- **Owned Files Modified / Created**:
+  - `apps/web/src/experience-ui-copy.ts` (new): bilingual UI copy, reason-code mapper + unknown fallback (`状态提示（代码：${code}）`), dynamic `explainLiveTeamFit` / `buildSampleTeamDraft` (zero hardcoded quality intervals), `backupPolicyCopy`, `switchConfirmCopy`, `saveAlertBannerCopy`, `financeNetSolvencyNote`.
+  - `apps/web/src/experience-ui-state.ts` (new): `oot-ui:<lineageId>:*` metadata store with LRU cap `8` (`oot-ui:__lineages__`), zero domain-save deletion, `threads` read state, `learning` prefs, `last-team` validation (`filterValidLastTeamMembers`).
+  - `apps/web/src/save-status-ui.tsx` (new): `SaveStatusPill`, persistent focusable `SaveAlertBanner`, native `<dialog>` `SwitchConfirmDialog`.
+  - `apps/web/src/messenger-drawer.tsx`: `EXP-05` read vs replied separation (drawer open preserves unread dots; clicking thread marks only that thread read without dispatching any domain command; later single reply preserved).
+  - `apps/web/src/commission-workbench.tsx`: `A-W1-6` front-card 3-item brief highlights, live forecast fit card vs `job.passQuality`, editable sample squad & `EXP-11` reuse-last-team prefill draft (never auto-accepts or auto-assigns).
+  - `apps/web/src/dialog.tsx`: backup copy updated to `"最近 5 个跨日/边界节点"`.
+  - `apps/web/src/hud-bar.tsx`: compact `SaveStatusPill` in `.ui2-hud`.
+  - `apps/web/src/use-game.ts`: session `lineageId`, slot-lineage persistence, `saveStatus` monotonic revision tracking, `importFile` honesty (`imported-unsaved`), two-state `SwitchConfirmDialog` request/confirm/cancel/export flow (fixture/UI layer ahead of H2 real `CheckpointCoordinator`).
+  - `apps/web/src/alpha-app.tsx`, `apps/web/src/ui2.css`: wired read state, `lastTeam`, `SaveAlertBanner`, `SwitchConfirmDialog`, responsive `390×844` 2-row HUD fix & z-index layering.
+  - `apps/sim-cli/experience-ui.test.ts` (new, 6 tests).
+- **Checks & Browser Verification**:
+  - `pnpm check` passed after final CSS edit: `tsc -b`, `eslint packages apps`, **46 test files / 399 tests**, `oot-web` + `oot-dsh` builds.
+  - `git diff --cached --check` passed; `0 diff` on all protected/Track B paths vs `d18241a`.
+  - Real Chromium verification at `http://127.0.0.1:4189` (`0` console errors, no `{ force: true }`, port `4189` server stopped afterward):
+    - Caught & fixed `390×844` HUD 3-row wrapping occlusion on Studio Terminal close button; re-verified `390×844` in both `zh-CN` and worst-case `en` (`"Day 1 · Afternoon"`): strictly 2-row HUD, `44×44` SavePill, unoccluded Terminal close click, `0` overflow.
+    - Verified `1280×720`, `768×1024`, `844×390`, `560×800`, `390×844` SavePill >= `44×44` & clickability.
+    - Verified Messenger read vs replied separation, `menu` Mistral `< 60` risk vs Qwen sample squad & reuse-last-team busy-member check, `Ctrl+Shift+F9` pause banner persistence across `BarkOverlay`, `SwitchConfirmDialog` cancel/confirm recovery, and `?test-fault=storage` error banner.
+
 ### 1. C0 — Design Deliverables & Unified Contract Co-Signature (2026-11-17)
 - **Implementation SHA**: `4c5602b1d8d7788e270a90e3106ea3fffee81e8d`
 - **Record SHA**: *(recorded in subsequent commit)*
@@ -31,13 +55,13 @@
 
 | Task ID | Scope | Status | Verification |
 |---|---|---|---|
-| A-C0-1 | State diagrams & 5-viewport wireframes (`ux-c0.md`) | Completed | Documented + `pnpm check` / `git diff --check` |
-| A-C0-2 | 8 Art-Batch 7 slot specs (`art-slots.md`) | Completed | Documented |
-| A-C0-3 | Bilingual reason-code map & Contract v1 co-sign | Completed | Documented + handed off to Track B |
-| A-W1-5 | Group chat read vs replied separation (`oot-ui:<lineageId>:threads`) | Next (Pre-H2) | Pending |
-| A-W1-6 | First-order live forecast fit & editable sample squad | Next (Pre-H2) | Pending |
-| A-W1-1 | Save status UI, alert banner, boundary backup copy, SwitchConfirmDialog, H2 wiring | Partial Next (UI pre-H2; real service at H2) | Pending |
+| A-C0-1 | State diagrams & 5-viewport wireframes (`ux-c0.md`) | Completed | `4c5602b` + `pnpm check` / `git diff --check` |
+| A-C0-2 | 8 Art-Batch 7 slot specs (`art-slots.md`) | Completed | `4c5602b` |
+| A-C0-3 | Bilingual reason-code map & Contract v1 co-sign | Completed | `4c5602b` + handed off to Track B |
+| A-W1-5 | Group chat read vs replied separation (`oot-ui:<lineageId>:threads`) | Completed (Pre-H2; H2 real lineage awaits B-W1a) | `00a55ba` + Vitest + Chromium verified |
+| A-W1-6 | First-order live forecast fit & editable sample squad | Completed | `00a55ba` + Vitest + Chromium verified |
+| A-W1-1 | Save status UI, alert banner, boundary backup copy, SwitchConfirmDialog, H2 wiring | Pre-H2 UI/Fixture Complete (H2 real service pending `B-W1a`) | `00a55ba` + Chromium fault-fixture verified |
 | A-W1-2/3/4 | Advance preview, Activity preview (all slot/overtime commands), 7 learning nodes | Queued for H3 (`B-W1b`) | Pending |
-| A-W2-1/2/3/4 | Candidate comparison (Worker <=50ms), remedies, finance, reuse team, EXP-14 complete | Queued for H4 (`B-W2`) | Pending |
+| A-W2-1/2/3/4 | Candidate comparison (Worker <=50ms), remedies, finance, reuse team (prefill UI done; full W2 candidate/EXP-14 pending `B-W2`) | Pre-fill UI in `00a55ba`; W2 core API pending `B-W2` | Pending `B-W2` |
 | A-W3-1 | Delivery feedback order, 2 duo short chains, Outcome Wall, 8 art slots | Queued for H5 (`B-W3`) | Pending |
 | A-W4-1 | 20-case real-browser matrix, `elementFromPoint`, fault recovery, Wave 2 regressions | Queued for H6 (`W4`) | Pending |
