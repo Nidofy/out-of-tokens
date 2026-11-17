@@ -1,13 +1,15 @@
-import { createInitialState, dispatchCommand, getViewModel, forecastAssignment, activityEffects } from 'oot-core';
+import { ExperienceProjection, rebuildExperience } from './experience-projection.js';
+import { createInitialState, dispatchCommand, getViewModel, forecastAssignment, activityEffects, previewPeriod } from 'oot-core';
 import type { Command, Content, DomainEvent, State, Member } from 'oot-core';
 import { saveBrowser, restoreBrowser } from 'oot-persistence/browser';
 import { EXPERIENCE_CONTRACT } from './checkpoint-contract.js';
-import type { ActivityPreview, Fact } from './experience-contract.js';
+import type { ActivityPreview, NextPeriodPreview, ExperienceView, Fact } from './experience-contract.js';
 import type { WorkerSnapshot, CheckpointSnapshot } from './checkpoint-contract.js';
 export class GameSession {
     private state: State;
     private commands: unknown[] = [];
     private revision = 0;
+    private experience = new ExperienceProjection();
     private readonly content: Content;
     private lineage: string;
     private commandsLocked = false;
@@ -26,6 +28,12 @@ export class GameSession {
         return { ...snapshot, input: { content: structuredClone(this.content), seed: snapshot.seed, commands: structuredClone(this.commands), state: snapshot.state } };
     }
     get view() { return getViewModel(this.state, this.content); }
+    getExperienceView(): ExperienceView {
+        return {...this.experience.view(this.state),contract:EXPERIENCE_CONTRACT,contentVersion:this.content.version,revision:this.revision,lineageId:this.lineage};
+    }
+    previewNextPeriod(): NextPeriodPreview {
+        return {...previewPeriod(this.state,this.content),contract:EXPERIENCE_CONTRACT,contentVersion:this.content.version,revision:this.revision,lineageId:this.lineage};
+    }
     previewActivity(command: Command): ActivityPreview {
         const result = activityEffects(this.state, this.content, command);
         const gains: Fact[] = [], losses: Fact[] = [];
@@ -53,6 +61,7 @@ export class GameSession {
         if (this.commandsLocked) return { error: 'SESSION_SWITCHING', events: [] };
         const captured = structuredClone(command), result = dispatchCommand(this.state, captured, this.content);
         if (!result.error) {
+            this.experience.observe(this.state,result,captured);
             this.state = result.state;
             if (result.events.some(e => e.type === 'Restarted')) this.lineage = globalThis.crypto.randomUUID();
             this.commands.push(captured);
@@ -66,10 +75,12 @@ export class GameSession {
         if (this.revision !== revision) throw Error('SESSION_CHANGED');
         if (lineageId !== undefined && !lineageId.trim()) throw Error('INVALID_LINEAGE');
         const nextLineage = lineageId ?? globalThis.crypto.randomUUID();
+        const experience = rebuildExperience(this.content, result.state.seed, result.commands);
         let applied = false;
         return () => {
             if (applied || this.revision !== revision) throw Error('SESSION_CHANGED');
             this.state = result.state;
+            this.experience = experience;
             this.commands = result.commands;
             this.lineage = nextLineage;
             this.revision++;

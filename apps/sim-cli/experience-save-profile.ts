@@ -9,6 +9,7 @@ const inputs=['build-2','guide-1'].map(name=>({name,...JSON.parse(readFileSync(`
 // Planned runBot/full-content 60-day input failed because the legacy bot assumes all roster actors exist.
 // Retain that failure; measure only the two already frozen inputs, without substituting a favorable log.
 const output=process.argv[2];if(!output)throw Error('OUTPUT_DIRECTORY_REQUIRED');
+if(process.argv[3])inputs.push(JSON.parse(readFileSync(process.argv[3],'utf8')) as typeof inputs[number]);
 writeFileSync(output+'/inputs.json',JSON.stringify(inputs));
 const results=[];
 for(const input of inputs){

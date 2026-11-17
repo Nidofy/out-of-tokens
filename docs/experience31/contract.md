@@ -1,3 +1,19 @@
+# Shared C0 API baseline v1 — revision 3 publication
+
+Track A final pre-H1 co-sign: a19e2f68330deeedccf75b7152c27ead33e7e7a3, ux-c0.md §6.3. Track B accepts that review and art-slots.md from 4c5602b1d8d7788e270a90e3106ea3fffee81e8d. These two A-authored design documents are assembled verbatim here; no A implementation branch or UI code is merged. The implementation SHA published in track-b.md is the common API baseline for A to merge. Contract value remains 1; future breaking API changes require both owners and version increment.
+
+Available now: previewNextPeriod, previewActivity, getExperienceView, workerSnapshot, checkpointSnapshot, prepareImport/importSave, switchImportedSession, coordinator, SaveEncoder, Browser policy/meta, Host lineage mapping, nine fixtures. W2 explanation/candidate methods remain typed proposals, not callable GameSession methods; worker candidate symbol remains type-only. A must gate W2 UI until the corresponding runtime release.
+
+NextPeriodPreview: slot is the current slot to settle; nextSlot is its projected successor, not a guarantee that an event will not interrupt. Work membership, resource stops, recovery amounts and immediate bills are conditional on no-event-interference ONLY when an eligible event and positive chance exist at this slot. Otherwise they are certain. Waiting/deadline facts describe known current state and are certain. Previews do not predict quality, defect removal, event choice or future hidden requirements. No advance/choose invocation or RNG read occurs. Pending choice/bankruptcy/ending return blocked and empty settlement lists; arranging is reserved for a future adapter condition and is not emitted by this core. weekly-bill excludes electricity (separate electricity entry), includes interest and subscription; due-this-slot is contractual deadline, not the later grace-period breach point.
+
+Learning view: seven independent successful-action/settlement facts. Rest requires an actual settled slot with a recovery-eligible actor; bill requires actual ledger evidence. Incremental projection stores actual resource-spending participants and their role at that moment keyed by job/phase. Delivery/rework receipts never infer past participation from the present team. Contributions reset on phase delivery, all presentation facts reset on restart. Import replay reconstructs them outside render. No domain Content or state/save hash fields added. New reason strings use A's deterministic unknown-code fallback until A adds labels.
+
+W1 sample assets: outcome-tea-menu (768x512, 68764 bytes), vignette-rest-corner (960x320, 27092 bytes). Pure whitelist experience-art.ts returns null for unpublished IDs. B visually reviewed generated masters and compressed runtime files; A's actual five-viewport crop approval remains required before the other six assets. Prompts/source/parameters/hash manifest are under art/art-batch-7.
+
+This publication makes API and sample integration review possible; it does not pass H2/H3/H6 end-to-end acceptance. Host server rotation remains unchanged and browser/Worker segmented measurements remain required. The old 60-day bot could not run full content; B now supplies a fixed seed21/962-command/240-cumulative-slot stress fixture with two bankruptcy restarts, explicitly not a 60-day uninterrupted business run. A must acknowledge this measurement-input amendment; budgets/device/warmups/sample counts are unchanged. See performance-protocol.md. No A approval of this new fixture is asserted.
+
+Earlier preparation notes below are historical where superseded.
+
 # C0 revision 2 update (2026-11-17; not frozen)
 
 A review received from design SHA 4c5602b1d8d7788e270a90e3106ea3fffee81e8d and external c0-signoff.md. A approved Promise abandonment, per-actor activities and measurement protocol; B accepts A art-slot specifications as production input, not as sample acceptance.
