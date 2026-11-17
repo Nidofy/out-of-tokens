@@ -191,13 +191,15 @@ test('H2: LabSaves preserves boundary backups across 50 checkpoint writes and ho
   rev=await lab.write('auto',`ckpt-${i}`,rev,'checkpoint',{lineageId:'run-alpha'});
  }
  expect((await lab.read('backup-1'))).toBeNull();
- // Next boundary write rotates previous auto ('ckpt-50') + meta into backup-1
+ // Next boundary write rotates previous true boundary ('save-0') + meta into backup-1
  rev=await lab.write('auto','boundary-1',rev,'boundary',{lineageId:'run-alpha'});
- expect((await lab.read('backup-1'))?.text).toBe('ckpt-50');
+ expect((await lab.read('backup-1'))?.text).toBe('save-0');
+ expect((await lab.read('backup-1'))?.revision).toBe(1);
  expect((await lab.read('backup-1'))?.meta?.lineageId).toBe('run-alpha');
  // 3-arg legacy write compatibility preserved
  await expect(lab.write('manual-1','manual-save',0)).resolves.toBe(1);
  await expect(lab.write('auto','stale',0,'checkpoint')).rejects.toThrow('SAVE_CONFLICT');
+ await lab.close();
  expect(backupPolicyCopy(false,true).summaryTitle).toContain('宿主端');
  expect(backupPolicyCopy(true,true).summaryTitle.toLowerCase()).toContain('host');
 });
@@ -481,11 +483,14 @@ test('I2 regression: explicit manual auto load drains dirty queue into backup-1 
  expect(diskBeforeDrain?.revision).toBe(2);
  expect(diskBeforeDrain?.text).toBe(dirtyText);
 
- // Once load boundary commits, auto holds selected original A and backup-1 preserves drained B
+ // Once load boundary commits, auto holds selected original (rev 3) and backup-1 preserves prior boundary (rev 1), never dirtyText checkpoint
  const drained=await res.nextCoordinator.drain();
  expect(drained.kind).toBe('saved');
+ expect((await storage.read('auto'))?.revision).toBe(3);
  expect((await storage.read('auto'))?.text).toBe(original);
- expect((await storage.read('backup-1'))?.text).toBe(dirtyText);
+ expect((await storage.read('backup-1'))?.revision).toBe(1);
+ expect((await storage.read('backup-1'))?.text).toBe(original);
+ expect((await storage.read('backup-1'))?.meta?.lineageId).toBe(session.lineageId);
 
  boundCoord.dispose();
  await storage.close();
@@ -711,4 +716,74 @@ test('I4 regression: multi-phase deliver and rework payloads consume pre-reset r
  );
  expect(neutralPayload).not.toBeNull();
  expect(neutralPayload!.assessment).toBeNull();
+});
+
+test('PM-01 regression: BrowserSaves and LabSaves retain boundary-A and lineage A across 50 checkpoints into boundary-B',async()=>{
+ for(const create of [()=>new LabSaves(),()=>new BrowserSaves('ui-pm01-browser',new IDBFactory())]){
+  const storage=create();
+  let rev=await storage.write('auto','boundary-A',0,'boundary',{lineageId:'A'});
+  expect(rev).toBe(1);
+  for(let i=1;i<=50;i++){
+   rev=await storage.write('auto',`checkpoint-${i}`,rev,'checkpoint',{lineageId:'A'});
+  }
+  expect(await storage.read('backup-1')).toBeNull();
+  rev=await storage.write('auto','boundary-B',rev,'boundary',{lineageId:'B'});
+  expect(rev).toBe(52);
+  const autoSlot=await storage.read('auto');
+  const backup1=await storage.read('backup-1');
+  expect(autoSlot?.text).toBe('boundary-B');
+  expect(autoSlot?.revision).toBe(52);
+  expect(autoSlot?.meta?.lineageId).toBe('B');
+  expect(backup1?.text).toBe('boundary-A');
+  expect(backup1?.revision).toBe(1);
+  expect(backup1?.meta?.lineageId).toBe('A');
+  await storage.close();
+ }
+});
+
+test('PM-01 regression: LabSaves five-backup rotation, cross-lineage metadata, CAS conflict safety, and close() memory reset',async()=>{
+ const lab=new LabSaves();
+ let rev=0;
+ const boundaryRevs:number[]=[];
+ for(let n=0;n<7;n++){
+  rev=await lab.write('auto',`boundary-${n}`,rev,'boundary',{lineageId:`run-${n}`});
+  boundaryRevs.push(rev);
+  for(let i=0;i<3;i++){
+   rev=await lab.write('auto',`checkpoint-${n}-${i}`,rev,'checkpoint',i===1?undefined:{lineageId:`ckpt-lineage-${n}-${i}`});
+  }
+  await expect(lab.write('auto','stale-boundary',rev-1,'boundary',{lineageId:'wrong'})).rejects.toThrow('SAVE_CONFLICT');
+  await expect(lab.write('auto','stale-ckpt',rev+1,'checkpoint',{lineageId:'wrong'})).rejects.toThrow('SAVE_CONFLICT');
+ }
+
+ // Public list exposes exactly the 9 public slots (no internal boundary-head leak)
+ const listed=await lab.list();
+ expect(listed).toHaveLength(9);
+ expect(listed.slice(4).map(r=>[r?.text,r?.revision,r?.meta?.lineageId])).toEqual([
+  ['boundary-5',boundaryRevs[5],'run-5'],
+  ['boundary-4',boundaryRevs[4],'run-4'],
+  ['boundary-3',boundaryRevs[3],'run-3'],
+  ['boundary-2',boundaryRevs[2],'run-2'],
+  ['boundary-1',boundaryRevs[1],'run-1']
+ ]);
+ expect((await lab.read('auto'))?.text).toBe('checkpoint-6-2');
+
+ // Mutating returned objects must not alter stored slot or boundary-head state
+ const peek=await lab.read('auto');
+ if(peek){
+  peek.text='tampered';
+  if(peek.meta)peek.meta.lineageId='tampered';
+ }
+ expect((await lab.read('auto'))?.text).toBe('checkpoint-6-2');
+
+ rev=await lab.write('auto','boundary-7',rev,'boundary',{lineageId:'run-7'});
+ expect((await lab.read('backup-1'))?.text).toBe('boundary-6');
+ expect((await lab.read('backup-1'))?.revision).toBe(boundaryRevs[6]);
+ expect((await lab.read('backup-1'))?.meta?.lineageId).toBe('run-6');
+
+ // close() clears both rows and boundaryHead cleanly
+ await lab.close();
+ expect((await lab.list()).every(s=>s===null)).toBe(true);
+ expect(await lab.write('auto','post-close-0',0,'boundary',{lineageId:'fresh'})).toBe(1);
+ expect(await lab.read('backup-1')).toBeNull();
+ await lab.close();
 });

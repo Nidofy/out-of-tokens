@@ -1,16 +1,35 @@
 # Track A Progress Log — Living Studio 3.1
 
-- **Worktree**: `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-ui`
-- **Branch**: `experience-ui-wave1`
-- **Baseline SHA**: `d18241a7aa9c5876367867fe78d9bfdd99d0f0ae`
-- **Track B Published SHA Integrated**: `0912342ac296e888f1d2fb7af526069953b20d2f` (includes complete Art-Batch 7 `29ee4781d2d637faf963e13cc652842f62b6b482`, `b204a077`, W3 `ee0c04a`, W2 `bda560c`, W1 `7a9f3df`, merged cleanly into `experience-ui-wave1`)
-- **Latest Final Implementation SHA**: `c8cf69f59aee3f66e390a4944c6bb30c69929b44`
+- **Active Rework Worktree (PM-01)**: `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-pm01-fix` (Historical Wave 1–4 worktree: `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-ui`)
+- **Active Rework Branch (PM-01)**: `experience-ui-pm01-fix` (Historical Wave 1–4 branch: `experience-ui-wave1` @ `66849a93`)
+- **Fixed Reviewed Baseline SHA**: `bb971352c9c5f81a836be922f73b3047aa1f7697` (Original W1–W4 baseline: `d18241a7aa9c5876367867fe78d9bfdd99d0f0ae`)
+- **Track B Published / Isolated Minimal Fix SHA**: `6f27926a98a413790868245f819eeeb3b4fe727a` (`review/experience31-post-merge` `BrowserSaves` `boundary-head` fix, not merged into main; prior Wave 1–4 release: `0912342ac296e888f1d2fb7af526069953b20d2f`)
+- **Prior W4 Implementation SHA**: `c8cf69f59aee3f66e390a4944c6bb30c69929b44`
 - **Contract Version**: `EXPERIENCE_CONTRACT = 1` (H1 Contract v1 frozen + `receipt.assessment` compatible addition + amended 962-command stress fixture acknowledged in `ux-c0.md` §6.4)
-- **Historical Holds Preserved**: `VF5 / Visual Freeze HOLD`, physical touch / 200% OS font / real DSH host holds remain unchanged; protected `apps/dsh/**` POST server rotation limitation vs Browser boundary-only policy stays explicit.
+- **Historical Holds Preserved**: `VF5 / Visual Freeze HOLD`, physical touch / 200% OS font / real DSH host holds remain unchanged; protected `apps/dsh/**` POST server rotation limitation vs Browser boundary-only policy stays explicit; post-merge independent browser coverage gaps & self-fix non-approval caveat preserved per `docs/experience31/post-merge-independent-review.md`.
 
 ---
 
 ## Checkpoint History
+
+### 9. Post-Merge Rework PM-01 — `LabSaves` Boundary Retention & Boundary Regression Fixes (2026-11-17)
+- **Reviewed Baseline SHA**: `bb971352c9c5f81a836be922f73b3047aa1f7697`
+- **Parent Track B Minimal Fix SHA**: `6f27926a98a413790868245f819eeeb3b4fe727a` (`review/experience31-post-merge`, unmerged)
+- **Rework Branch & Worktree**: `experience-ui-pm01-fix` @ `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-pm01-fix`
+- **Allowed Track A Files Modified (strictly 3 files; `0` diffs on Track B, `persistence`, `DSH`, fixtures, campaign/content, or historical art/evidence)**:
+  - `apps/web/src/office-lab.ts`: Added private `boundaryHead` tracking (unexposed in public 9-slot `list()`/`read()`), defensive clone helper (`clone`) for records and `meta`, validation/CAS (`SAVE_CONFLICT`) before any state mutation, boundary-only `backup-1..5` rotation preserving prior boundary `text`/`revision`/`meta.lineageId`, ordinary `'checkpoint'` writes updating only `'auto'`, and `close()` clearing both `rows` and `boundaryHead`. Public `SaveStorage` contract unchanged.
+  - `apps/sim-cli/experience-ui.test.ts`:
+    - Fixed obsolete `'ckpt-50'` boundary assertion in `H2: LabSaves` (`backup-1` now asserts true prior boundary `'save-0'`, `revision: 1`, `lineageId: 'run-alpha'`, plus `await lab.close()`).
+    - Fixed obsolete `'dirtyText'` assertion in `I2 regression` (`backup-1` now asserts prior boundary `original`, `revision: 1`, `lineageId: session.lineageId` alongside `auto` `original` at `revision: 3`, while retaining EVERY I2 pre-drain `dirty` rev 2 / `dirtyText`, drain, CAS, and post-drain `saved` assertion and keeping `I3`/`I4` regressions intact).
+    - Added two dedicated `PM-01 regression` tests covering: (1) `BrowserSaves` + `LabSaves` `boundary-A` (`lineageId: 'A'`) -> 50 `'checkpoint'` writes -> `boundary-B` (`lineageId: 'B'`) retaining `boundary-A` & `lineageId: 'A'` in `backup-1`, and (2) `LabSaves` 7-boundary rolling 5-backup window, mixed-lineage checkpoints, stale CAS `SAVE_CONFLICT` safety, returned-object mutation isolation, and `close()` memory reset.
+  - `docs/experience31/track-a.md`: Recorded PM-01 rework and retained holds.
+- **Verification Scope (No Auto-Merge / No Push / No Deploy)**:
+  - Executed unmodified original red audit test `lab.audit.test.ts` (copied temporarily from `commission-evidence/experience31/post-merge-review/bb971352c9c5f81a836be922f73b3047aa1f7697/lab.audit.test.ts`, then removed) -> **1 passed**: `{"id":"backup-1","text":"boundary-A","revision":1,"savedAt":0,"meta":{"lineageId":"A"}}`.
+  - Executed full `pnpm check`: `tsc -b --pretty false` PASS, `eslint packages apps` PASS, **53 test files / 474 tests PASS** (including `I2`, `I3`, `I4`, `experience-checkpoint.test.ts`, `post-merge-boundary.test.ts`, `experience-ui.test.ts` `18/18` pass), `oot-web` + `oot-dsh` builds PASS.
+  - Executed `git diff --check`: `0` exit; `git diff --name-only 6f27926a98a413790868245f819eeeb3b4fe727a`: strictly the 3 allowed Track A files.
+- **Important Boundaries & Retentions**:
+  - **Self-Fix Non-Approval**: Neither Track B's minimal fix (`6f27926a`) nor this Track A rework constitutes external independent approval; final independent post-fix review / integration browser verification on fixed `dist/` stays open per `docs/experience31/post-merge-independent-review.md`.
+  - **Retained Holds**: Protected Host server POST per-autosave rotation limitation, `VF5 / Visual Freeze HOLD`, physical touch / 200% OS font / real DSH installation holds, and independent desktop+390 full-loop browser verification gaps remain preserved.
 
 ### 8. W4 / H6 — Complete Art-Batch 7 Approval, I4 Fix (`receipt.assessment`), Browser Perf Matrix & 20-Case Acceptance (2026-11-17)
 - **Final Implementation SHA**: `c8cf69f59aee3f66e390a4944c6bb30c69929b44`
@@ -164,3 +183,4 @@
 | A-W2-1/2/3/4 | Candidate comparison (Worker host, 3 cards, delta, 0-plan), remedies, finance, reuse team, EXP-14 Batch 2 removal | Completed (`7f500b9` + W4 browser `<=50ms` `0.20ms` verified) | Vitest (52/469) + 0 EXP-14 copies + Chromium perf |
 | A-W3-1 | Delivery feedback order (`I4` assessment fixed), 2 duo short chains, Outcome Wall, all 8 Art-Batch 7 slots | Completed (`0cd7f5a` + `c8cf69f` + `art-slots.md` §6 `APPROVE`) | Vitest (`I1–I4`) + 5-viewport Chromium + 404 fallback |
 | A-W4-1 | 20-case real-browser matrix, `elementFromPoint`, frozen 3-input perf matrix, fault recovery, Wave 2 regressions | Completed (`c8cf69f`, host rotation conflict & `VF5 HOLD` retained) | Chrome/152 (`0` overflow/`<44px`/`hitFailures`), all servers stopped |
+| A-PM-01 | `LabSaves` `boundaryHead` retention, wrong boundary expectation fixes (`:196`, `:488`), PM-01 regressions | Self-fix Ready (`experience-ui-pm01-fix`, external approval HOLD retained) | `lab.audit.test.ts` green; full `pnpm check` 53 files / 474 tests + `git diff --check` PASS |

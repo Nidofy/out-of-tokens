@@ -25,11 +25,15 @@ export function labSession(source:Content,scenario:string){
 export class LabSaves implements SaveStorage {
  onExternalChange:(()=>void)|null=null;
  private rows=new Map<SaveSlot,StoredSave>();
- async list(){return saveSlots.map(id=>{const r=this.rows.get(id);return r?{...r,...(r.meta?{meta:{...r.meta}}:{})}:null;});}
+ private boundaryHead:StoredSave|null=null;
+ private clone(r:StoredSave,id:SaveSlot=r.id):StoredSave{
+  return {...r,id,...(r.meta?{meta:{...r.meta}}:{})};
+ }
+ async list(){return saveSlots.map(id=>{const r=this.rows.get(id);return r?this.clone(r):null;});}
  async read(id:SaveSlot){
   if(!saveSlots.includes(id))throw Error('INVALID_SLOT');
   const r=this.rows.get(id);
-  return r?{...r,...(r.meta?{meta:{...r.meta}}:{})}:null;
+  return r?this.clone(r):null;
  }
  async write(id:WritableSlot,text:string,expected:number,policy:WritePolicy='boundary',meta?:SaveMeta){
   if(policy!=='checkpoint'&&policy!=='boundary')throw Error('INVALID_WRITE_POLICY');
@@ -39,16 +43,23 @@ export class LabSaves implements SaveStorage {
   const prev=this.rows.get(id);
   if((prev?.revision??0)!==expected)throw Error('SAVE_CONFLICT');
   const revision=expected+1;
-  if(id==='auto'&&prev&&policy==='boundary'){
-   for(let i=4;i>=1;i--){
-    const b=this.rows.get(`backup-${i}` as SaveSlot);
-    if(b)this.rows.set(`backup-${i+1}` as SaveSlot,{...b,id:`backup-${i+1}` as SaveSlot,...(b.meta?{meta:{...b.meta}}:{})});
-   }
-   this.rows.set('backup-1',{...prev,id:'backup-1',...(prev.meta?{meta:{...prev.meta}}:{})});
-  }
   const capturedMeta=meta?{lineageId:meta.lineageId}:undefined;
-  this.rows.set(id,{id,text,revision,savedAt:0,...(capturedMeta?{meta:capturedMeta}:{})});
+  const nextRecord:StoredSave={id,text,revision,savedAt:0,...(capturedMeta?{meta:capturedMeta}:{})};
+  if(id==='auto'){
+   const boundary=this.boundaryHead??prev??null;
+   if(boundary&&policy==='boundary'){
+    for(let i=4;i>=1;i--){
+     const b=this.rows.get(`backup-${i}` as SaveSlot);
+     if(b)this.rows.set(`backup-${i+1}` as SaveSlot,this.clone(b,`backup-${i+1}` as SaveSlot));
+    }
+    this.rows.set('backup-1',this.clone(boundary,'backup-1'));
+   }
+   if(policy==='boundary'||!this.boundaryHead){
+    this.boundaryHead=this.clone(policy==='boundary'?nextRecord:(boundary??nextRecord),'auto');
+   }
+  }
+  this.rows.set(id,nextRecord);
   return revision;
  }
- async close(){this.rows.clear();}
+ async close(){this.rows.clear();this.boundaryHead=null;}
 }
