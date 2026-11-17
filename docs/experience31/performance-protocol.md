@@ -19,3 +19,19 @@ The proposed runBot(fullContent,21,value,60) longer input failed before timing: 
 
 
 Revision 3 frozen proposed replacement input: experience-long-fixture.ts generates seed21, 240 cumulative settled slots (60 cumulative days), 962 legal commands, three runs (two bankruptcy restarts), with three no-cost scene visits before each advance. This is save/replay stress, not a successful business simulation. Commands SHA256 eb98024438e47e62e752d994fc105ecda4ae43793db1062d23ab34976bd870f4; final stateHash 7723104e8e04be90dd3af8ccf4e5b971538b1c16ec3a1a55a3d9b615bc231299. No legacy bot or rules changed. A acknowledgement of input amendment pending, not represented by its earlier co-sign. All three fixed inputs measured with five warmups and thirty samples in revision3/node-save-profile.json; no repeat-until-pass selection. All diagnostics remain Node-only and exclude Worker/I-O/queue timing.
+
+## Real-browser isolated service probe — 2026-11-17
+
+`apps/sim-cli/experience-browser-profile.ts` + `.client.js` reproduce the three frozen inputs using actual A `createSaveEncoder()` Module Worker, B `CheckpointCoordinator` and native IndexedDB. Run with integration root, frozen long-input path, a fresh output directory and unused local port; click Run fixed samples in a visible Chromium tab. Server binds 127.0.0.1 only, results endpoint accepts same-origin POST only and refuses to overwrite results. Each unique disposable DB is closed/deleted. No player storage, no remote telemetry, no domain/DSH edits.
+
+First execution used integration 9d96abc4e3cb295aa6341669d632a69048a7407d, Core Ultra 9 285H, Windows x64, in-app Chromium user agent Chrome/157.0.0.0. Document stayed visible, no visibility events. OS foreground status is not independently asserted. Three inputs x two policies each had five warmups then thirty recorded samples; exact canonical encoder and disk bytes checked for every sample, Worker required (fallback fails). Each sample uses a fresh coordinator at explicitly tracked CAS revision; boundary probes enqueue a load at the full log prefix. These are isolated-service scenarios, not a replay of live user input under full Pixi rendering or a backlog-pressure run.
+
+| Input commands | Checkpoint total p95 ms | Boundary total p95 ms |
+|---|---:|---:|
+| 529 | 60.1 | 84.3 |
+| 419 | 45.7 | 72.1 |
+| 962 | 36.8 | 55.6 |
+
+Total is measured directly from enqueue start to drain completion, not summed phase estimates. Capture, enqueue, scheduler queue wait, Worker postMessage synchronous call, encoder response elapsed and actual IndexedDB commit elapsed are recorded separately. Maximum measured capture/construct/enqueue/postMessage segment was 3.8 ms. No observed LongTask overlapped recorded save intervals; three raw LongTasks elsewhere are retained, not discarded. Independent browser CPU probes record clone, replay, state hash and content hash; those are explicitly outside the production Worker path and not counted as UI savings. Content-hash maxima 3.9/4.4/3.8 ms do not establish an optimization prerequisite; persistence remains unchanged.
+
+Worker **return transfer is not independently instrumented** and remains included in encoder response elapsed. Full UI/Host timing, real pending-queue pressure and H6 20-config browser acceptance remain open. This probe supports the isolated service budgets only, not a blanket H2/H6 pass. Raw evidence: ../commission-evidence/experience31/integration-h3/browser-run1/browser-results.json (plus exact inputs, environment and generated client). Initial setup git-ownership failure occurred before any samples and is retained in setup-failure.txt; fixed with an explicit command-scoped safe.directory, no global configuration change or repeated outcome sampling. Local server stopped after completion.
