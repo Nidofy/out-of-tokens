@@ -3,17 +3,27 @@
 - **Worktree**: `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-ui`
 - **Branch**: `experience-ui-wave1`
 - **Baseline SHA**: `d18241a7aa9c5876367867fe78d9bfdd99d0f0ae`
-- **Track B Published SHA Integrated**: None yet (Track B currently at C0 preparation `663071a` / `9ed787b`, awaiting C0 co-sign and H1 freeze)
-- **Contract Version**: `EXPERIENCE_CONTRACT = 1` (Draft 1 co-sign review submitted; H1 freeze pending)
+- **Track B Published SHA Integrated**: None yet (reviewed Track B C0 rev 2 `424045da` / `d4c0a8eb`; co-sign complete at `a19e2f68`; awaiting frozen H1 SHA / `B-W1a` release)
+- **Contract Version**: `EXPERIENCE_CONTRACT = 1` (C0 rev 2 co-signed by Track A; ready for H1 freeze)
 - **Historical Holds Preserved**: `VF5 / Visual Freeze HOLD`, physical touch / 200% OS font / real DSH host holds remain unchanged.
 
 ---
 
 ## Checkpoint History
 
+### 3. C0 Revision 2 Co-Signature & Reason Sync (2026-11-17)
+- **Implementation SHA**: `a19e2f68330deeedccf75b7152c27ead33e7e7a3`
+- **Reviewed Track B Draft**: `424045da7bfa0ddcff10f190ec5d869be5ab699e` (`d4c0a8eb2f293f07fb5776ba818d3d083eab28d5`)
+- **Evidence**: `../commission-evidence/experience31/c0/a19e2f68330deeedccf75b7152c27ead33e7e7a3/`
+- **Owned Files Modified**:
+  - `docs/experience31/ux-c0.md`: added §4 bilingual codes (`activity-energy`, `activity-mood`, `activity-affinity`, `ACTIVITY_NOT_SUPPORTED`, `SESSION_SWITCHING`, `SWITCH_REQUIRES_CONFIRMATION`, `INVALID_CHECKPOINT_PREFIX`, `LINEAGE_RESET`) and §6.3 C0 rev 2 co-sign explicitly approving `SaveInput.throughCommand?: number` (Worker encoder will delegate to `defaultSaveEncoder` / replay prefix, never `input.state`), FIFO `boundaries[]`, `switchImportedSession`, `HostLineageMap` + `lineageReset`, `ActivityPreview.actors[].relocatesTo` including `'expedition'`, root re-exports, 9 dev fixtures + Vite production isolation, and acknowledging protected `apps/dsh/**` server backup rotation constraint.
+  - `apps/web/src/experience-ui-copy.ts`: synced all C0 rev 2 reason codes + `lineageResetNoticeCopy`.
+  - `apps/sim-cli/experience-ui.test.ts`: verified C0 rev 2 reason mappings & `lineageResetNoticeCopy`.
+- **Checks**: `pnpm check` passed (`tsc -b`, `eslint packages apps`, `46` test files / `399` tests, `oot-web` + `oot-dsh` builds); `git diff --check` passed; `0` diff on protected paths vs `d18241a`.
+
 ### 2. W1 Pre-H2 — Independent Frontend Tasks (2026-11-17)
 - **Implementation SHA**: `00a55bac9f9d20b914994972e7c8d57021b202a0`
-- **Record SHA**: *(recorded in subsequent commit)*
+- **Record SHA**: `c94c07a10a391ddd2770af6c5adbb84bdf485862`
 - **Evidence**: `../commission-evidence/experience31/w1-pre-h2/00a55bac9f9d20b914994972e7c8d57021b202a0/`
 - **Track B Published SHA Integrated**: None yet (awaiting H1 / `B-W1a` release SHA)
 - **Owned Files Modified / Created**:
@@ -57,7 +67,7 @@
 |---|---|---|---|
 | A-C0-1 | State diagrams & 5-viewport wireframes (`ux-c0.md`) | Completed | `4c5602b` + `pnpm check` / `git diff --check` |
 | A-C0-2 | 8 Art-Batch 7 slot specs (`art-slots.md`) | Completed | `4c5602b` |
-| A-C0-3 | Bilingual reason-code map & Contract v1 co-sign | Completed | `4c5602b` + handed off to Track B |
+| A-C0-3 | Bilingual reason-code map & Contract v1 rev 2 co-sign (`SaveInput.throughCommand`) | Completed | `4c5602b` + `a19e2f6` (`pnpm check` 46/399) |
 | A-W1-5 | Group chat read vs replied separation (`oot-ui:<lineageId>:threads`) | Completed (Pre-H2; H2 real lineage awaits B-W1a) | `00a55ba` + Vitest + Chromium verified |
 | A-W1-6 | First-order live forecast fit & editable sample squad | Completed | `00a55ba` + Vitest + Chromium verified |
 | A-W1-1 | Save status UI, alert banner, boundary backup copy, SwitchConfirmDialog, H2 wiring | Pre-H2 UI/Fixture Complete (H2 real service pending `B-W1a`) | `00a55ba` + Chromium fault-fixture verified |
