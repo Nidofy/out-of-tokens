@@ -425,8 +425,50 @@
  .ui2-chat-bubble em.is-up{font-style:normal;color:var(--sage)}
  .ui2-chat-bubble p{margin:0;font-size:13px;line-height:1.45}
  .ui2-chat-typing span{display:inline-block;padding:4px 10px;border-radius:var(--r-pill);background:var(--solid);font-size:12px;color:var(--muted)}
- .ui2-chat-replies{display:flex;flex-wrap:wrap;gap:8px}
+ .ui2-chat-replies{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
  .ui2-chat-replies button{min-height:44px;display:inline-flex;align-items:center;gap:6px;font-size:13px}
+ .ui2-chat-empty{display:grid;place-items:center;min-height:180px;padding:18px;border-radius:12px;background:var(--card);border:1px dashed var(--line);text-align:center}
+ .ui2-reply-later-note{flex:1 0 100%;margin-top:2px}
+ .ui2-thread-item[data-thread-state=read]{opacity:.92}
+ .ui2-thread-item[data-thread-state=replied]{opacity:.8}
+
+ .studio-app .ui2-hud-save-pill{display:inline-flex;align-items:center;gap:5px;min-width:44px;min-height:44px;height:44px;padding:0 10px;border-radius:var(--r-pill);background:var(--hud-pill);border:1px solid rgba(216,184,128,.38);color:#fff7ea;font-size:12px;font-weight:600;white-space:nowrap}
+ .studio-app .ui2-hud-save-pill svg{width:15px;height:15px}
+ .studio-app .ui2-hud-save-pill:is([data-save-kind=paused],[data-save-kind=error],[data-save-kind=imported-unsaved]){background:rgba(136,42,24,.94);border-color:#ffb399;color:#fff7ea}
+ .studio-app .ui2-hud-save-pill:is([data-save-kind=saving],[data-save-kind=dirty]){border-color:#f3d293}
+
+ .ui2-save-banner{display:grid;gap:8px;padding:10px 12px;border-radius:12px;background:var(--paper);border:2px solid var(--danger);box-shadow:0 8px 24px rgba(18,12,8,.34);color:var(--ink)}
+ .ui2-save-banner-copy{display:flex;align-items:flex-start;gap:8px}
+ .ui2-save-banner-copy svg{width:18px;height:18px;color:var(--danger);flex:none;margin-top:2px}
+ .ui2-save-banner-copy b{display:block;font-size:13px;line-height:1.35}
+ .ui2-save-banner-copy p{margin:2px 0 0;font-size:12px;color:var(--muted);line-height:1.4}
+ .ui2-save-banner-actions{display:flex;flex-wrap:wrap;gap:6px}
+ .ui2-save-banner-actions button{display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:6px 10px;font-size:12px}
+ .saves-dialog .ui2-save-banner{margin-bottom:12px}
+ .stage-hub-notice .ui2-save-banner{margin-bottom:6px}
+
+ dialog.ui2-switch-confirm-dialog{width:min(520px,calc(100vw - 16px))}
+ .ui2-switch-confirm-body{display:grid;gap:12px}
+ .ui2-switch-warning{display:flex;align-items:flex-start;gap:8px;margin:0;padding:10px 12px;border-radius:10px;background:rgba(168,60,37,.12);border:1px solid var(--danger);color:var(--ink);font-weight:600}
+ .ui2-switch-warning svg{width:18px;height:18px;color:var(--danger);flex:none;margin-top:2px}
+ .ui2-switch-confirm-actions{display:flex;flex-wrap:wrap;gap:8px}
+ .ui2-switch-confirm-actions button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:6px 12px;font-size:13px;white-space:nowrap;flex:1 1 auto}
+
+ .ui2-brief-highlights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:8px 0 10px}
+ .ui2-brief-highlights>div{padding:8px 10px;border-radius:10px;background:var(--card);border:1px solid var(--line);min-width:0}
+ .ui2-brief-highlights small{display:block;font-size:12px;color:var(--muted)}
+ .ui2-brief-highlights b{display:block;font-size:13px;line-height:1.35;overflow-wrap:anywhere}
+
+ .ui2-sample-team-bar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:6px 0 10px;padding:8px 10px;border-radius:10px;background:var(--card);border:1px dashed var(--brass)}
+ .ui2-sample-team-bar button{display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:6px 12px;font-size:12px}
+ .ui2-sample-team-bar small{font-size:12px;color:var(--muted);flex:1 1 180px}
+
+ .ui2-fit-card{display:grid;gap:4px;margin:6px 0 10px;padding:10px 12px;border-radius:10px;background:var(--solid);border:1px solid var(--line);border-left:3px solid var(--brass)}
+ .ui2-fit-card[data-pass=ok]{border-left-color:var(--sage)}
+ .ui2-fit-card[data-pass=risk]{border-left-color:var(--danger)}
+ .ui2-fit-card b{font-size:13px;line-height:1.4}
+ .ui2-fit-card small{font-size:12px;color:var(--muted);line-height:1.4}
+ .ui2-fit-card .ui2-fit-cost{color:var(--ink);font-weight:600}
 }
 
 @layer ui2-responsive {
@@ -456,10 +498,11 @@
   .studio-app .ui2-hud{gap:4px;padding-inline:8px}
   .ui2-clock-pill{padding:4px 8px;gap:4px}
   .ui2-clock-pill .ui2-period-dots{display:none}
-  .studio-app .ui2-resources{position:static;order:10;flex:1 0 100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;border-radius:14px;padding:2px 4px;margin:0}
-  .studio-app .ui2-resources button{padding:0 4px;gap:3px;font-size:12px;justify-content:center}
+  .studio-app .ui2-resources{position:static;order:10;flex:1 0 100%;display:grid;grid-template-columns:1.05fr .95fr .75fr 1.25fr;gap:2px;border-radius:14px;padding:2px 4px;margin:0}
+  .studio-app .ui2-resources button{padding:0 2px;gap:3px;font-size:12px;justify-content:center;white-space:nowrap}
   .studio-app .ui2-resources .hud-local-cap,.studio-app .ui2-resources .hud-rep-rp{display:inline-flex}
   .studio-app .scene-left-stack,.studio-app .hud-popover,.studio-app .priority-rail,.studio-app .office-camera,.studio-app .priority-feedback{top:108px}
+  .studio-app .priority-feedback{z-index:48}
   .studio-app .ui2-dock{left:max(8px,env(safe-area-inset-left));width:calc(100vw - 172px);max-width:252px;padding:4px;gap:2px;transform:none}
   .ui2-advance-wrap{right:max(8px,env(safe-area-inset-right))}
   .ui2-advance-btn{min-width:132px;max-width:148px;min-height:52px;padding:6px 10px;gap:6px}
@@ -477,6 +520,16 @@
   .ui2-bark-avatar{width:42px;height:42px}
   .ui2-stage-art{min-height:140px}.ui2-stage-art img{height:132px}
   .world-map{padding:12px;gap:10px}
+  .ui2-brief-highlights{grid-template-columns:minmax(0,1fr)}
+  .ui2-switch-confirm-actions{flex-direction:column}
+ }
+ @media(max-width:479px){
+  .studio-app .ui2-hud{inset:8px 6px auto 6px;padding-inline:0;gap:3px}
+  .ui2-clock-pill .ui2-period-icon{display:none}
+  .studio-app .ui2-clock-pill .village-time{font-size:12px}
+  .studio-app .ui2-hud-save-pill{width:44px;min-width:44px;padding:0}
+  .studio-app .ui2-hud-save-pill span{display:none}
+  .studio-app .priority-feedback{left:8px;right:8px;width:auto;max-width:none}
  }
 
  /* Short landscape (e.g. 844x390) always takes precedence over 680-959 width rules. */

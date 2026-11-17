@@ -1,0 +1,316 @@
+import type {Member} from 'oot-core';
+import type {GameSession,GameView} from 'oot-platform';
+import type {UiSaveStatus} from './save-status-ui.js';
+import {topJobSkillWeights} from './ui2-logic.js';
+import {skillText} from './ui-labels.js';
+import {names} from './presentation.js';
+
+export type SwitchTargetKind='load'|'import'|'restart';
+
+const REASON_MAP:Record<string,readonly [string,string]>={
+ 'contract-work':['执行合同工作','Working on commission'],
+ 'overtime':['夜间加班推进','Night overtime work'],
+ 'idle-recover':['空闲常规休整（精力 +15）','Idle rest recovery (+15 energy)'],
+ 'night-sleep':['深夜睡眠恢复（精力回升、负载清零）','Night sleep recovery (energy up, load cleared)'],
+ 'sleep-skipped-by-activity':['占用深夜时段，将跳过今晚睡眠与负载恢复','Night period occupied; skips sleep & load reset'],
+ 'next-work-slot':['等待下一个白天工作时段','Waiting for next daytime work slot'],
+ 'clarify-pending':['需求澄清占用中，需等待下个时段','Clarification pending until next period'],
+ 'review-pending':['阶段工作已完成，等待验收结算','Work complete; awaiting delivery review'],
+ 'cloud-quota':['云端算力额度不足，本槽可能停工','Cloud quota insufficient; may stall this period'],
+ 'local-capacity':['本地单槽算力上限不足，本槽可能停工','Local slot capacity exceeded; may stall'],
+ 'due-this-slot':['本时段截止，不处理将逾期或违约','Due this period; advancing risks breach'],
+ 'due-next-day':['次日截止，注意预留审查与交付窗口','Due next day; reserve review window'],
+ 'weekly-bill':['即将触发周结（房租、订阅与本地电费）','Upcoming weekly bill (rent, subscription, electricity)'],
+ 'debt-due':['第 14 天旧债结算到期','Inherited debt settlement due on Day 14'],
+ 'electricity':['累计本地算力待结电费','Pending local-compute electricity charge'],
+ 'pending-choice':['有待决策事件，必须先选择才能推进','Pending event choice must be resolved first'],
+ bankrupt:['工作室处于破产状态，请重开或读档','Studio bankrupt; restart or load a save'],
+ ending:['本周目已终局，可开启无尽经营或读档','Run completed; enter endless mode or load a save'],
+ arranging:['正在布置办公室，请先保存或取消布局','Arranging office; save or cancel layout first'],
+ 'no-event-interference':['前提：未触发随机事件干扰','Assumes no random event interference'],
+ 'resources-available':['前提：推进时云端额度与本地算力充足','Assumes sufficient cloud & local capacity'],
+ 'no-new-defects':['前提：未产生新增缺陷或隐藏扣分','Assumes no new defects or hidden penalties'],
+ 'personal-condition-unchanged':['前提：伙伴精力、心情与负载条件不变','Assumes teammate energy, mood & load stay unchanged'],
+ 'external-change':['另一窗口更新了存档，自动保存已暂停。请导出或载入最新档。','Another tab updated saves. Autosave paused; export or load the latest save.'],
+ conflict:['存档版本冲突，自动保存已暂停以防覆盖。请导出或载入最新档。','Save conflict detected. Autosave paused to prevent overwrite; export or load the latest save.'],
+ 'auto-paused':['自动保存已暂停，请先导出当前进度或载入存档。','Autosave paused; export current progress or load a save.'],
+ STORAGE_UNAVAILABLE:['本地存储不可用，进度仅保存在当前内存，请及时导出。','Storage unavailable. Progress is in-memory only; export to keep it.'],
+ STORAGE_BLOCKED:['浏览器存储被拦截，进度仅在内存中保留，请导出备份。','Storage blocked. Progress remains in memory; export to back up.'],
+ IMPORTED_NO_STORAGE:['已载入但尚未保存（存储不可用，请用导出保存进度）','Loaded, not saved (storage unavailable; use Export)'],
+ SAVE_CONFLICT:['存档已被更新，请导出或载入最新档后再继续。','Save changed elsewhere. Export or load the latest save to resume.'],
+ WRITE_UNCERTAIN:['上次宿主写入状态未知，请先载入最新档核对或导出当前进度。','Host write outcome unknown. Load latest to reconcile or export progress.'],
+ 'low-cash-cost':['现金与新增预算支出较低','Lower additional cash & compute budget'],
+ 'low-quota':['节省云端算力额度','Lower cloud quota consumption'],
+ 'high-quality':['条件质量预估更稳健，包含较高匹配或审查余量','Stronger conditional quality margin or review coverage'],
+ 'fast-completion':['预计完成时段更短，优先赶交期','Faster projected completion window'],
+ 'clarify-only':['仅作用于需求澄清，不提供工单执行加成','Clarification bonus only; no execution bonus'],
+ 'mode-mismatch':['需两位搭档切换至指定部署模式后生效','Requires both partners in the specified deployment mode'],
+ 'category-mismatch':['仅在指定类别的委托中生效','Applies only to matching commission categories'],
+ 'morning-only':['仅在上午时段工作时生效','Applies during Morning periods only'],
+ 'multi-phase-only':['仅在多期或长期维护合同中生效','Applies to multi-phase or retainer contracts only'],
+ 'not-unlocked':['搭档默契尚未召开茶会解锁','Duo synergy not unlocked via tea yet'],
+ 'no-feasible-team':['当前在岗人手或约束下暂无可承诺方案','No feasible team satisfies constraints with current roster']
+};
+
+export function resolveReasonCopy(code:string,english:boolean):string{
+ const known=REASON_MAP[code];
+ if(known)return known[english?1:0];
+ return english?`Status note (code: ${code})`:`状态提示（代码：${code}）`;
+}
+
+export function saveStatusPillText(status:UiSaveStatus,english:boolean):string{
+ const tr=(zh:string,en:string)=>english?en:zh;
+ switch(status.kind){
+  case 'idle':
+  case 'saved':
+   return tr('已保存','Saved');
+  case 'dirty':
+   return tr('待保存…','Queued…');
+  case 'saving':
+   return tr('保存中…','Saving…');
+  case 'paused':
+   return tr('保存暂停','Save paused');
+  case 'error':
+   return tr('保存失败','Save error');
+  case 'imported-unsaved':
+   return tr('已载入但尚未保存','Loaded · unsaved');
+ }
+}
+
+export function saveAlertBannerCopy(status:UiSaveStatus,english:boolean):{title:string;detail:string;canRetry:boolean}|null{
+ const tr=(zh:string,en:string)=>english?en:zh;
+ if(status.kind==='paused'){
+  const causeCode=status.cause==='external-change'?'external-change':status.cause==='conflict'?'conflict':'auto-paused';
+  return {
+   title:tr('自动保存已暂停（保留当前内存进度）','Autosave paused (in-memory progress kept)'),
+   detail:resolveReasonCopy(causeCode,english),
+   canRetry:false
+  };
+ }
+ if(status.kind==='imported-unsaved'){
+  return {
+   title:tr('已载入但尚未保存','Loaded, not saved'),
+   detail:status.storageUnavailable
+    ?resolveReasonCopy('IMPORTED_NO_STORAGE',english)
+    :tr('文件已载入内存，尚未写入自动档；请手动保存或推进至跨日自动保存。','Save loaded in memory, not written to autosave yet; save manually or advance to day end.'),
+   canRetry:false
+  };
+ }
+ if(status.kind==='error'){
+  return {
+   title:tr('自动保存写入失败（业务操作未丢失）','Autosave write failed (progress intact in memory)'),
+   detail:status.code?resolveReasonCopy(status.code,english):resolveReasonCopy('STORAGE_UNAVAILABLE',english),
+   canRetry:!status.storageUnavailable
+  };
+ }
+ return null;
+}
+
+export function switchConfirmCopy(
+ targetKind:SwitchTargetKind,
+ targetLabel:string,
+ reason:'paused'|'error'|'storage-unavailable',
+ english:boolean
+){
+ const tr=(zh:string,en:string)=>english?en:zh;
+ const actionName=targetKind==='load'?tr(`载入「${targetLabel}」`,`load "${targetLabel}"`):targetKind==='import'?tr(`导入「${targetLabel}」`,`import "${targetLabel}"`):tr('继承经验重开','restart with founder experience');
+ return {
+  title:tr('未保存进度切换确认','Confirm switching with unsaved progress'),
+  warning:tr('当前内存进度尚未保存，将被所选存档替换。','Current in-memory progress is not saved and will be replaced by the selected save.'),
+  reasonNote:reason==='storage-unavailable'
+   ?tr(`存储当前不可用，无法在切换前自动落盘；确定要继续${actionName}吗？`,`Storage is unavailable so progress cannot be flushed first. Proceed to ${actionName}?`)
+   :tr(`自动保存当前处于暂停或失败状态，无法安全排空队列；确定要放弃内存进度并${actionName}吗？`,`Autosave is paused or failing so the queue cannot drain safely. Discard in-memory progress and ${actionName}?`),
+  exportBtn:tr('导出当前进度','Export current progress'),
+  exportedHint:tr('已导出当前内存存档，现在可放心决定是否切换。','Current in-memory save exported.'),
+  confirmBtn:tr('放弃未存进度并切换','Discard unsaved & switch'),
+  cancelBtn:tr('取消（保留当前进度）','Cancel (keep current)')
+ };
+}
+
+export function backupPolicyCopy(english:boolean){
+ const tr=(zh:string,en:string)=>english?en:zh;
+ return {
+  summaryTitle:tr('备份档（最近 5 个跨日/边界节点）','Backups (Last 5 boundary nodes)'),
+  summaryHint:tr(
+   '仅在跨日（DayEnd）、重开、导入或手动读档时轮转保留最近 5 个边界节点；普通操作检查点只更新自动档。',
+   'Rotates only at DayEnd, Restart, Import, or Manual Load (keeps last 5 boundary nodes); regular command checkpoints update autosave only.'
+  ),
+  dialogIntro:tr(
+   '3 个手动档、1 个自动档、最近 5 个跨日/边界节点备份；冲突会拒绝覆盖。旧版本存档须用原版本打开。',
+   '3 manual slots, 1 autosave, and 5 recent day-end/boundary backups. Conflicts refuse overwrite. Older saves need their original version.'
+  )
+ };
+}
+
+export function messengerStatusCopy(english:boolean){
+ const tr=(zh:string,en:string)=>english?en:zh;
+ return {
+  streamRule:tr(
+   '0 槽免费群聊：进入正文即消未读；可先离开，稍后随时回来回复一次（+2 好感 / +3 心情）',
+   '0-slot free chat: reading clears the unread badge; reply anytime later once (+2 Aff / +3 Mood)'
+  ),
+  unreadBadge:tr('未读 · 可回复 +2 好感','Unread · Reply +2 Aff'),
+  readPendingBadge:tr('已读 · 可稍后回复','Read · Reply anytime'),
+  repliedBadge:tr('已回复','Replied'),
+  promptSelect:tr('点击左侧话题进入正文；阅读本身不消耗时段，也不会自动领奖。','Select a topic on the left to read; opening never consumes a period or auto-claims rewards.')
+ };
+}
+
+export interface LiveTeamFitExplanation {
+ hasTeam:boolean;
+ passLine:number;
+ qualityRange:[number,number]|null;
+ meetsPassFloor:boolean|null;
+ headline:string;
+ detailLines:string[];
+ costNote:string|null;
+}
+
+type PreviewOutcome=ReturnType<GameSession['previewAssignment']>;
+
+export function explainLiveTeamFit(
+ view:GameView,
+ job:GameView['jobs'][number],
+ members:readonly Member[],
+ preview:PreviewOutcome|null,
+ english:boolean
+):LiveTeamFitExplanation{
+ const tr=(zh:string,en:string)=>english?en:zh;
+ const topSkills=topJobSkillWeights(job.weights,2);
+ const skillLabel=(id:keyof typeof skillText)=>skillText[id][english?1:0];
+ const focusWeightsText=topSkills.map(t=>`${skillLabel(t.skill)} ${t.pct}%`).join(' + ');
+
+ if(members.length===0){
+  return {
+   hasTeam:false,
+   passLine:job.passQuality,
+   qualityRange:null,
+   meetsPassFloor:null,
+   headline:tr(
+    `验收线 ≥ ${job.passQuality} · 重点看 ${focusWeightsText||'综合能力'}`,
+    `Pass line >= ${job.passQuality} · Focus on ${focusWeightsText||'key skills'}`
+   ),
+   detailLines:[
+    tr(
+     `先选人试配：不同伙伴在 ${focusWeightsText||'本单权重'} 与算力单价（T/WP）上各有擅长，右侧会实时给出工期、预算与条件质量区间。`,
+     `Pick a trial team: teammates differ in ${focusWeightsText||'weighted skills'} and token cost (T/WP); live duration, budget and conditional quality appear on the right.`
+    )
+   ],
+   costNote:null
+  };
+ }
+
+ const forecast=preview?.forecast??null;
+ const rawQ=forecast?.quality;
+ const qualityRange:[number,number]|null=rawQ&&rawQ.length>=2&&rawQ[0]!==undefined&&rawQ[1]!==undefined?[rawQ[0],rawQ[1]]:null;
+ const meetsPassFloor=qualityRange?qualityRange[0]>=job.passQuality:null;
+ const memberNames=members.map(m=>names[m.character]??m.character).join(' + ');
+
+ const detailLines:string[]=[];
+ for(const m of members){
+  const actor=view.actors.find(a=>a.id===m.character);
+  if(!actor)continue;
+  const skillSummary=topSkills.map(t=>`${skillLabel(t.skill)} ${actor.skills[t.skill]}`).join(' / ');
+  detailLines.push(
+   tr(
+    `${names[actor.id]??actor.id}（${m.role==='worker'?'执行':m.role==='reviewer'?'审查':m.role==='planner'?'负责':'工具'} · ${m.mode==='cloud'?'云端':'本地'}）：${skillSummary}，单价 ${actor.price} T/WP`,
+    `${names[actor.id]??actor.id} (${m.role} · ${m.mode}): ${skillSummary}, ${actor.price} T/WP`
+   )
+  );
+ }
+
+ let headline:string;
+ if(preview?.error){
+  headline=tr(`${memberNames}：当前配置不可派遣`,`${memberNames}: configuration cannot be assigned`);
+ }else if(qualityRange){
+  const [qMin,qMax]=qualityRange;
+  if(qMin>=job.passQuality){
+   headline=tr(
+    `${memberNames}：条件质量 ${qMin}–${qMax}（下限已达验收线 ≥ ${job.passQuality}）`,
+    `${memberNames}: conditional quality ${qMin}–${qMax} (floor meets pass line >= ${job.passQuality})`
+   );
+  }else if(qMax>=job.passQuality){
+   headline=tr(
+    `${memberNames}：条件质量 ${qMin}–${qMax}（下限低于验收线 ${job.passQuality}，存在不达标风险）`,
+    `${memberNames}: conditional quality ${qMin}–${qMax} (floor below pass line ${job.passQuality}; risk of missing target)`
+   );
+  }else{
+   headline=tr(
+    `${memberNames}：条件质量 ${qMin}–${qMax}（低于验收线 ${job.passQuality}，建议换人或加审查）`,
+    `${memberNames}: conditional quality ${qMin}–${qMax} (below pass line ${job.passQuality}; swap or add review)`
+   );
+  }
+ }else{
+  headline=tr(`${memberNames}：当前条件下暂无完整预估`,`${memberNames}: no complete forecast under current conditions`);
+ }
+
+ let costNote:string|null=null;
+ if(forecast){
+  const onTime=forecast.workSlots<=job.workSlots;
+  costNote=tr(
+   `预计占用 ${forecast.workSlots}/${job.workSlots} 个工作时段 · 预算 ${forecast.cloud}T / ${forecast.local} 本地算力${onTime?'':'（可能超窗口）'}`,
+   `Projected ${forecast.workSlots}/${job.workSlots} work periods · ${forecast.cloud}T / ${forecast.local} local${onTime?'':' (may miss window)'}`
+  );
+ }
+
+ return {
+  hasTeam:true,
+  passLine:job.passQuality,
+  qualityRange,
+  meetsPassFloor,
+  headline,
+  detailLines,
+  costNote
+ };
+}
+
+export function buildSampleTeamDraft(
+ view:GameView,
+ job:GameView['jobs'][number],
+ previewAssignment:GameSession['previewAssignment']
+):Member[]|null{
+ const freeActors=view.actors.filter(a=>!a.busy&&a.location!=='expedition');
+ const candidates:Member[][]=[];
+ // 1) Single workers sorted by cheapest cloud/local fit so caller compares dynamically via real previewAssignment
+ for(const a of freeActors){
+  const mode=a.modes.includes('cloud')?'cloud':a.modes[0]!;
+  candidates.push([{character:a.id,role:'worker',mode}]);
+ }
+ // 2) Worker + reviewer pairs if single worker cannot meet pass line or needs review margin
+ for(const w of freeActors){
+  for(const r of freeActors){
+   if(w.id===r.id)continue;
+   const wm=w.modes.includes('cloud')?'cloud':w.modes[0]!;
+   const rm=r.modes.includes('cloud')?'cloud':r.modes[0]!;
+   candidates.push([{character:w.id,role:'worker',mode:wm},{character:r.id,role:'reviewer',mode:rm}]);
+  }
+ }
+
+ let bestPassing: {team:Member[];cloud:number;slots:number;qMin:number}|null=null;
+ let bestFallback:{team:Member[];qMax:number;slots:number}|null=null;
+
+ for(const team of candidates){
+  const res=previewAssignment(job.id,team);
+  if(res.error||!res.forecast)continue;
+  const f=res.forecast;
+  if(f.risks.noProgress||f.risks.capacity)continue;
+  const q=f.quality;
+  const qMin=q?.[0],qMax=q?.[1];
+  if(qMin!==undefined&&qMin>=job.passQuality&&!f.risks.late&&!f.risks.cloud){
+   if(!bestPassing||team.length<bestPassing.team.length||(team.length===bestPassing.team.length&&(f.cloud<bestPassing.cloud||(f.cloud===bestPassing.cloud&&qMin>bestPassing.qMin)))){
+    bestPassing={team,cloud:f.cloud,slots:f.workSlots,qMin};
+   }
+  }
+  if(!bestFallback||(qMax??0)>bestFallback.qMax){
+   bestFallback={team,qMax:qMax??0,slots:f.workSlots};
+  }
+ }
+
+ return bestPassing?.team??bestFallback?.team??null;
+}
+
+export function financeNetSolvencyNote(english:boolean):string{
+ return english
+  ?'Net solvency = cash - loan - unfinished advances. Some cash comes from unfinished contracts and is not earned profit yet.'
+  :'净偿付资金 = 账面现金 − 贷款 − 未完成订单预付款；账户里部分现金来自未完成订单，暂不能都当作赚到的钱。';
+}

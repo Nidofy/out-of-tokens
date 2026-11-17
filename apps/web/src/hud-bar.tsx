@@ -6,6 +6,8 @@ import {PeriodClockIcon,PeriodDots} from './ornaments.js';
 import type {AdvanceInfo,HubPanel} from './ui2-logic.js';
 
 import type {AudioPrefs} from './audio-foley.js';
+import {SaveStatusPill} from './save-status-ui.js';
+import type {UiSaveStatus} from './save-status-ui.js';
 
 export interface FloatDelta {
  id:number;
@@ -29,6 +31,7 @@ type HudBarProps={
  unreadThreads:number;
  teaReady:boolean;
  audioPrefs:AudioPrefs;
+ saveStatus:UiSaveStatus;
  onDismissDelta:(id:number)=>void;
  onOpenHud:(next:'board'|'view'|'more')=>void;
  onOpenMap:()=>void;
@@ -52,7 +55,7 @@ type HudBarProps={
 };
 
 export function HudBar(props:HudBarProps){
- const {view,english,dark,still,locked,hud,panel,placeLabel,chapterTitle,advance,deltas,unreadThreads,teaReady,audioPrefs,onDismissDelta,onOpenHud,onOpenMap,onOpenChat,onTeaBreak,onOpenStudioFinance,onOpenPanel,onOpenOffice,onOpenSaves,onOpenSettings,onToggleLocale,onToggleTheme,onToggleSfx,onToggleAmbience,onAdvance,onOpenJob,moreTrigger,boardTrigger,chatTrigger,jobsTrigger}=props;
+ const {view,english,dark,still,locked,hud,panel,placeLabel,chapterTitle,advance,deltas,unreadThreads,teaReady,audioPrefs,saveStatus,onDismissDelta,onOpenHud,onOpenMap,onOpenChat,onTeaBreak,onOpenStudioFinance,onOpenPanel,onOpenOffice,onOpenSaves,onOpenSettings,onToggleLocale,onToggleTheme,onToggleSfx,onToggleAmbience,onAdvance,onOpenJob,moreTrigger,boardTrigger,chatTrigger,jobsTrigger}=props;
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!;
  const [confirmAdvance,setConfirmAdvance]=useState(false);
@@ -107,6 +110,7 @@ export function HudBar(props:HudBarProps){
      )}
     </div>
     <span class="hud-spacer"/>
+    <SaveStatusPill status={saveStatus} english={english} onClick={onOpenSaves}/>
     <button ref={chatTrigger} class="ui2-hud-icon" title={tr('工坊群聊 (C)','Team chat (C)')} aria-label={tr('工坊群聊 (C)','Team chat (C)')} onClick={onOpenChat}>
      <Icon name="chat"/>{unreadThreads>0&&<i class="hud-badge"/>}
     </button>

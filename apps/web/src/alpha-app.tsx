@@ -45,6 +45,10 @@ import {actorEffectiveContext} from './scene-layout.js';
 import {BarkOverlay} from './bark-overlay.js';
 import type {BarkPayload} from './bark-overlay.js';
 import {MessengerDrawer} from './messenger-drawer.js';
+import {backupPolicyCopy} from './experience-ui-copy.js';
+import {createBrowserUiStore,createMemoryUiStore,readThreadReadIds,markThreadRead,countUnreadThreads,readLastTeamDraft,writeLastTeamDraft} from './experience-ui-state.js';
+import type {Member} from 'oot-core';
+import {SaveAlertBanner,SwitchConfirmDialog} from './save-status-ui.js';
 
 type Tr=(zh:string,en:string)=>string;
 type ReturnContext={panel:'jobs';jobId:string}|{panel:'actors';actorId:string};
@@ -129,6 +133,13 @@ export function AlphaApp(){
  const [periodBeat,setPeriodBeat]=useState<string|null>(null);
  const [anchors,setAnchors]=useState<Record<string,ActorHeadAnchor>>({});
  const [chatterStep,setChatterStep]=useState(0),[banterPhase,setBanterPhase]=useState<0|1>(0);
+ const [uiStore]=useState(()=>game.lab?createMemoryUiStore():createBrowserUiStore());
+ const [readThreadIds,setReadThreadIds]=useState<Set<string>>(()=>readThreadReadIds(uiStore,game.lineageId));
+ const [lastTeam,setLastTeam]=useState<Member[]>(()=>readLastTeamDraft(uiStore,game.lineageId));
+ useEffect(()=>{
+  setReadThreadIds(readThreadReadIds(uiStore,game.lineageId));
+  setLastTeam(readLastTeamDraft(uiStore,game.lineageId));
+ },[uiStore,game.lineageId]);
 
  const moreTrigger=useRef<HTMLButtonElement>(null),boardTrigger=useRef<HTMLButtonElement>(null),chatTrigger=useRef<HTMLButtonElement>(null),jobsTrigger=useRef<HTMLButtonElement>(null);
  const commissionTrigger=useRef<HTMLElement|null>(null),officeTrigger=useRef<HTMLElement|null>(null),officeDockIndex=useRef(-1),managementTrigger=useRef<HTMLElement|null>(null);
@@ -145,7 +156,7 @@ export function AlphaApp(){
  const tracking=trackingState(view,trackedJobId),tracked=tracking.id;
  useEffect(()=>{if(trackedJobId&&!tracking.pinned)setTrackedJobId(null);},[tracking.pinned,trackedJobId]);
 
- const resetTracking=async(action:()=>Promise<boolean>)=>{prevSnap.current=null;seenRituals.current.clear();lastSlotRef.current=null;setTrackedJobId(null);setDraftTeams({});setReturnTo(null);setActiveBark(null);setPeriodBeat(null);try{await action();}finally{prevSnap.current=null;seenRituals.current.clear();lastSlotRef.current=null;}};
+ const clearTransientState=()=>{prevSnap.current=null;seenRituals.current.clear();lastSlotRef.current=null;setTrackedJobId(null);setDraftTeams({});setReturnTo(null);setActiveBark(null);setPeriodBeat(null);};
  const commissionReturnFocus=()=>[commissionTrigger.current,jobsTrigger.current,boardTrigger.current].find(e=>e?.isConnected&&!e.closest('dialog,.studio-drawer,.priority-rail'))??boardTrigger.current;
  const selectCommission=(id:string|null)=>{if(jobId!==id&&jobId)game.dismissLocalFeedback({surface:'job',id:jobId});updateJobId(id);setJobInDetail(!!id);};
  const setJobId=(id:string|null)=>{if(id){if(panel!=='jobs')commissionTrigger.current=document.activeElement as HTMLElement;setHud(null);setActorId(null);updatePanel('jobs');}selectCommission(id);};
@@ -200,7 +211,7 @@ export function AlphaApp(){
   cameraDispatch({type:'zoom',zoom:next.zoom,pan:next.pan});
  };
 
- const modalOpen=!!(panel||mapOpen||saves||settings||arranging||chatOpen||view.pending||view.bankrupt||ritual);
+ const modalOpen=!!(panel||mapOpen||saves||settings||arranging||chatOpen||view.pending||view.bankrupt||ritual||game.pendingSwitch);
  const closeLocations=(reason:'escape'|'close'|'modal')=>{const next=dismissPresence(locationsOpen,reason,modalOpen);setLocationsOpen(next.open);if(next.restoreFocus)locationsTrigger.current?.focus({preventScroll:true});};
  useEffect(()=>{if(modalOpen)closeLocations('modal');},[modalOpen]);
  useEffect(()=>{resetCamera();setLocationsOpen(false);},[p.scene]);
@@ -266,7 +277,7 @@ export function AlphaApp(){
  useEffect(()=>{
   const onKey=(e:KeyboardEvent)=>{
    const el=e.target as HTMLElement|null;
-   const cmd=resolveGlobalShortcut({key:e.key,ctrlKey:e.ctrlKey,metaKey:e.metaKey,altKey:e.altKey,isComposing:e.isComposing,repeat:e.repeat,targetTag:el?.tagName,targetEditable:el?.isContentEditable},{blockedModal:!!(view.pending||view.bankrupt||arranging||saves||settings||mapOpen||ritual),actorOpen:panel==='actors'&&!!actorId});
+   const cmd=resolveGlobalShortcut({key:e.key,ctrlKey:e.ctrlKey,metaKey:e.metaKey,altKey:e.altKey,isComposing:e.isComposing,repeat:e.repeat,targetTag:el?.tagName,targetEditable:el?.isContentEditable},{blockedModal:!!(view.pending||view.bankrupt||arranging||saves||settings||mapOpen||ritual||game.pendingSwitch),actorOpen:panel==='actors'&&!!actorId});
    if(!cmd)return;
    e.preventDefault();
    if(cmd.type==='panel'){setActiveBark(null);setChatOpen(false);setPanel(cmd.panel);}
@@ -280,11 +291,11 @@ export function AlphaApp(){
   };
   window.addEventListener('keydown',onKey);
   return()=>window.removeEventListener('keydown',onKey);
- },[view.pending,view.bankrupt,arranging,saves,settings,mapOpen,ritual,panel,actorId]);
+ },[view.pending,view.bankrupt,arranging,saves,settings,mapOpen,ritual,game.pendingSwitch,panel,actorId]);
 
  const code=game.feedback?.code??'',shownMessage=code.startsWith('REPLAY_')?'HASH_MISMATCH':code;
  const message=shownMessage.startsWith('DELIVERED:')?tr('本阶段已结算，现金变动 ¥','Phase settled. Cash change ¥')+shownMessage.slice(10):shownMessage?(messages[shownMessage]?.[english?1:0]??tr('操作提示：','Action: ')+code):tr('读一张委托，再安排合适的伙伴。','Read a commission, then choose the right team.');
- const feedbackChannel=feedbackSurface(game.feedback,{job:job?.id,actor:actorId??undefined,saves,modal:!!(panel||chatOpen||view.pending||view.bankrupt||saves||settings||mapOpen||arranging||ritual)});
+ const feedbackChannel=feedbackSurface(game.feedback,{job:job?.id,actor:actorId??undefined,saves,modal:!!(panel||chatOpen||view.pending||view.bankrupt||saves||settings||mapOpen||arranging||ritual||game.pendingSwitch)});
  const hideGenericDone=!!activeBark&&shownMessage==='DONE';
  const notice=<FeedbackNotice feedback={game.feedback} message={message} english={english} dismiss={game.dismissFeedback}/>;
  const life=(action:Extract<Command,{type:'campaign'}>['action'],id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
@@ -323,6 +334,7 @@ export function AlphaApp(){
  const advanceInfo=advancePeriodInfo(view,busy,arranging,english);
  const livingCatalog=getLivingCatalog(view);
  const livingView=getLivingView(view);
+ const unreadThreads=countUnreadThreads(livingView.threads,readThreadIds);
  const chatterBubble=pickStageChatter(view,livingCatalog,livingView,english,chatterStep);
 
  useEffect(()=>{
@@ -425,7 +437,11 @@ export function AlphaApp(){
 
  const hubTitle={actors:actorId&&panel==='actors'?`${names[actorId]} · ${tr('伙伴档案','Profile')}`:tr('工作室伙伴','Our teammates'),jobs:tr('委托日志','Commission log'),studio:tr('经营工作室','Studio hub'),journal:tr('事务所手账','Studio journal')}[panel??'actors'];
  const hubBack=panel==='actors'&&actorId&&actorEntry==='gallery'?{label:tr('返回画廊','Back to gallery'),onClick:closeActor}:panel==='jobs'&&jobInDetail&&matchMedia('(max-width:679px)').matches?{label:tr('返回列表','Back to list'),onClick:()=>selectCommission(null)}:null;
- const hubNotice=hideGenericDone?null:panel==='actors'&&actorId&&feedbackChannel==='actor'?notice:panel==='jobs'&&commissionNotice(game.feedback,jobId)?notice:null;
+ const rawHubNotice=hideGenericDone?null:panel==='actors'&&actorId&&feedbackChannel==='actor'?notice:panel==='jobs'&&commissionNotice(game.feedback,jobId)?notice:null;
+ const saveAlertNotice=game.saveStatus.kind==='paused'||game.saveStatus.kind==='error'||game.saveStatus.kind==='imported-unsaved'
+  ?<SaveAlertBanner status={game.saveStatus} english={english} busy={busy} onExport={()=>void game.exportFile()} onOpenSaves={()=>{setHud(null);setSaves(true);void game.refresh();}} onRetry={()=>void game.retrySave()}/>
+  :null;
+ const hubNotice=(saveAlertNotice||rawHubNotice)?<>{saveAlertNotice}{rawHubNotice}</>:null;
  const hubTabs=panel==='actors'&&!actorId?(
   <div role="tablist" aria-label={tr('伙伴筛选','Filter teammates')}>
    {(['all','recruited','available'] as const).map((f,i)=><button key={f} role="tab" aria-selected={actorFilter===f} onClick={()=>setActorFilter(f)}>{[tr('全部','All'),tr('已入驻','Recruited'),tr('待招募','Available')][i]} ({[actorIds.length,view.actors.length,actorIds.length-view.actors.length][i]})</button>)}
@@ -478,9 +494,10 @@ export function AlphaApp(){
     chapterTitle={chapterTitles[p.chapter]??''}
     advance={advanceInfo}
     deltas={deltas}
-    unreadThreads={livingView.unreadThreads}
+    unreadThreads={unreadThreads}
     teaReady={livingView.teaReady}
     audioPrefs={audioPrefs}
+    saveStatus={game.saveStatus}
     onDismissDelta={id=>setDeltas(list=>list.filter(d=>d.id!==id))}
     onOpenHud={openHud}
     onOpenMap={()=>{setActiveBark(null);setHud(null);setMapOpen(true);}}
@@ -521,6 +538,14 @@ export function AlphaApp(){
    )}
 
    <div class="priority-feedback">
+    <SaveAlertBanner
+     status={game.saveStatus}
+     english={english}
+     busy={busy}
+     onExport={()=>void game.exportFile()}
+     onOpenSaves={()=>{setHud(null);setSaves(true);void game.refresh();}}
+     onRetry={()=>void game.retrySave()}
+    />
     {view.liquidCash<0&&<button class="crisis-chip" onClick={()=>{setStudioTab('finance');setPanel('studio');}}><Icon name="warning"/> {tr('现金流预警 · 净偿付资金','Cash-flow warning · Net solvency')} ¥{view.liquidCash.toFixed(0)} · {view.crises}/3</button>}
     {(update||reloadReady)&&<button class="update-chip" onClick={()=>{setHud(null);setSaves(true);}}>{tr('新版本可用 · 先保存进度','Update available · Save progress first')}</button>}
    </div>
@@ -601,6 +626,7 @@ export function AlphaApp(){
        track={setTrackedJobId}
        locateJob={id=>jobFocus(view,id)?()=>locate(jobFocus(view,id)):undefined}
        drafts={draftTeams}
+       lastTeam={lastTeam}
        onSaveDraft={(id,draft)=>setDraftTeams(prev=>({...prev,[id]:draft}))}
        onJumpToOffice={draft=>{if(jobId){setDraftTeams(prev=>({...prev,[jobId]:draft}));openOffice({panel:'jobs',jobId});}}}
        onJumpToFinance={draft=>{if(jobId){setDraftTeams(prev=>({...prev,[jobId]:draft}));setReturnTo({panel:'jobs',jobId});setStudioTab('finance');updatePanel('studio');}}}
@@ -609,7 +635,7 @@ export function AlphaApp(){
        view={view}
        english={english}
        locked={locked}
-       send={cmd=>{setActiveBark(null);return send(cmd);}}
+       send={async cmd=>{setActiveBark(null);const ok=await send(cmd);if(ok&&cmd.type==='assign'){writeLastTeamDraft(uiStore,game.lineageId,cmd.team);setLastTeam(cmd.team);}return ok;}}
        previewAssignment={(id,members)=>game.session.previewAssignment(id,members)}
        close={closeHub}
        closePanel={closeHub}
@@ -677,6 +703,8 @@ export function AlphaApp(){
     open={chatOpen}
     close={()=>setChatOpen(false)}
     threads={livingView.threads}
+    readIds={readThreadIds}
+    onMarkRead={tid=>{const next=markThreadRead(uiStore,game.lineageId,tid);setReadThreadIds(new Set(next));}}
     english={english}
     still={still}
     locked={locked}
@@ -726,18 +754,35 @@ export function AlphaApp(){
    {view.bankrupt&&!view.pending&&<Dialog system className="bankrupt-dialog" title={tr('先喘口气，再重新出发。','Take a breath. Start again.')} close={()=>{}} dismissible={false}>
     <p>{tr('工作室资金已低于破产底线。你可以保留部分创始人经验并开启新的一轮经营，或者载入更早期的手动存档调整策略。','Studio funds dropped below the bankruptcy floor. Restart with founder experience or load an earlier manual save.')}</p>
     <div class="button-row">
-     <button class="primary" disabled={busy} onClick={()=>void resetTracking(()=>send({type:'restart'}))}>{tr('继承经验重开','Restart with founder experience')}</button>
+     <button class="primary" disabled={busy} onClick={()=>game.requestRestart(clearTransientState)}>{tr('继承经验重开','Restart with founder experience')}</button>
      <button disabled={busy} onClick={()=>{setSaves(true);void game.refresh();}}>{tr('打开存档列表','Open saves')}</button>
     </div>
    </Dialog>}
 
    {saves&&<Dialog system className="saves-dialog" returnFocus={()=>moreTrigger.current} title={tr('存档与备份','Saves and backups')} close={()=>setSaves(false)} notice={feedbackChannel==='saves'?notice:null}>
+    <SaveAlertBanner
+     status={game.saveStatus}
+     english={english}
+     busy={busy}
+     onExport={()=>void game.exportFile()}
+     onRetry={()=>void game.retrySave()}
+    />
     {(update||reloadReady)&&<p class="system-update"><button onClick={()=>update?activateUpdate(update,navigator.serviceWorker,()=>location.reload()):location.reload()}>{tr('已保存或导出进度，刷新到新版本','Progress saved or exported — refresh to new version')}</button></p>}
     {game.hosted&&<button disabled={busy} onClick={()=>void game.reconcile()}>{tr('只读核对自动档（保留当前进度）','Reconcile autosave without replacing current progress')}</button>}
-    <p class="system-intro">{tr('3手动档、1自动档、5备份；冲突会拒绝覆盖。旧版本存档须用原版本打开。','Three manual slots, one autosave and five backups. Conflicts refuse overwrite. Older saves need their original version.')}</p>
-    <SaveSlots records={game.records} busy={busy} english={english} save={id=>void game.save(id)} load={id=>void resetTracking(()=>game.load(id))}/>
-    <section class="save-transfer" aria-label={tr('文件备份','File backups')}><h3>{tr('文件备份','File backups')}</h3><button disabled={busy} onClick={()=>void game.exportFile()}>{tr('导出当前进度','Export current progress')}</button><label>{tr('导入文件','Import file')}<input type="file" accept="application/json,.json" disabled={busy} onChange={e=>{e.currentTarget.closest('dialog')?.focus({preventScroll:true});const file=e.currentTarget.files?.[0];if(file)void resetTracking(()=>game.importFile(file));e.currentTarget.value='';}}/></label></section>
+    <p class="system-intro">{backupPolicyCopy(english).dialogIntro}</p>
+    <SaveSlots records={game.records} busy={busy} english={english} save={id=>void game.save(id)} load={id=>game.requestLoad(id,clearTransientState)}/>
+    <section class="save-transfer" aria-label={tr('文件备份','File backups')}><h3>{tr('文件备份','File backups')}</h3><button disabled={busy} onClick={()=>void game.exportFile()}>{tr('导出当前进度','Export current progress')}</button><label>{tr('导入文件','Import file')}<input type="file" accept="application/json,.json" disabled={busy} onChange={e=>{e.currentTarget.closest('dialog')?.focus({preventScroll:true});const file=e.currentTarget.files?.[0];if(file)game.requestImportFile(file,clearTransientState);e.currentTarget.value='';}}/></label></section>
    </Dialog>}
+
+   <SwitchConfirmDialog
+    request={game.pendingSwitch}
+    english={english}
+    busy={busy}
+    exportedInModal={game.exportedInSwitchModal}
+    onExport={()=>void game.exportFromSwitchModal()}
+    onConfirm={()=>void game.confirmPendingSwitch()}
+    onCancel={game.cancelPendingSwitch}
+   />
 
    {arranging&&view.office&&<OfficeEditor view={view} session={game.session} english={english} send={send} onPreview={(items,camera)=>{setLayoutItems(items);cameraDispatch({type:'preview',focus:camera});}} close={()=>{setArranging(false);setLayoutItems(null);cameraDispatch({type:'editor-close'});if(returnTo?.panel==='jobs'){const j=returnTo.jobId;setReturnTo(null);setJobId(j);}}}/>}
 
