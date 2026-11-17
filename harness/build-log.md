@@ -254,3 +254,5 @@ VF4-A固定实现 d3e0c87d96bf4fe3baa77ab745163d8baa9ca052；实现提交前stag
 2026-11-17 W1 service release 7a9f3df6f120fd8fac1c955580cc70f934a6ff03: 49/436 check PASS, 948-state preview purity + 224 no-event + 486 controlled cases, learning/receipt reconstruction, two samples 95856 bytes. Evidence ../commission-evidence/experience31/w1/7a9f3df6f120fd8fac1c955580cc70f934a6ff03/. H2/H3 not accepted; W2 next.
 
 2026-11-17 W2 bda560cbc097d535d8462f92d6ac2a497e9e6cec: pnpm check50/444 PASS; candidate/duo/capacity/finance service and migration matrix; evidence ../commission-evidence/experience31/w2/bda560cbc097d535d8462f92d6ac2a497e9e6cec/. Integration gates still open.
+
+2026-11-17 W3 narrative ee0c04a66b1faa731f712d5a9bbf0db133ebba87: pnpm check51/451 PASS, staged diff check PASS, seven new content tests including both natural-trace imports; no test failures. Evidence ../commission-evidence/experience31/w3/ee0c04a66b1faa731f712d5a9bbf0db133ebba87/check-1.log. A UI and six gated images still outstanding; H5 incomplete.

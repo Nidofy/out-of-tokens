@@ -1,3 +1,15 @@
+# W3 presentation release — 2026-11-17
+
+Registered implementation SHA ee0c04a66b1faa731f712d5a9bbf0db133ebba87, branch experience-core-wave1, worktree D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-core. A may merge this fixed SHA; it includes W1 7a9f3df and W2 bda560c. Contract v1 remains compatible. Git confirms A merged W1 at a6b9c49; its browser integration/approval is not inferred from that merge.
+
+18 bilingual receipts cover six scenes x passed/rework/failed; two duos each have three two-speaker stages. Browser-safe oot-content/presentation validates standalone JSON: exact shape, IDs, scene mappings, speakers, placeholders, and test-time full-content references. Content stays outside domain Content/fingerprints/rewards. B-owned experience-copy.ts provides detached, evidence-bound selection: actual contribution roles/subject, reviewer proof, neutral missing/failed history, core tea availability, strict revision/lineage/content/contract/job/draft binding for active benefits. Consumer usage is at the top of contract.md. A owns UI wiring.
+
+Verification: pnpm check 51 files / 451 tests PASS; staged diff check PASS. New content tests cover false/stale evidence, invalid refs, actual 529/419 replay receipts and import reconstruction/canonical export bytes. Evidence ../commission-evidence/experience31/w3/ee0c04a66b1faa731f712d5a9bbf0db133ebba87/check-1.log. No test failures in this checkpoint; initial typecheck and focused seven tests also passed. No historical assertions weakened, no domain-content/engine/save version changes, no A code edits.
+
+H5 narrative component ready; H5 overall incomplete because six assets await A's explicit two-sample crop approval. H2/H3/H4 remain integration/performance gates, not claimed passed. Host server rotation conflict remains explicit under protected unchanged protocol. H6 needs final A release, actual Browser/Host/Lab integration, 20 browser configurations and frozen performance evidence. Main unchanged; no push/deployment; historical VF5/Visual Freeze HOLD retained. Next B: audit action coverage and old-save compatibility independently while A integrates.
+
+Earlier records follow.
+
 # W2 service release — 2026-11-17
 
 Registered SHA bda560cbc097d535d8462f92d6ac2a497e9e6cec on experience-core-wave1 (same isolated B worktree). A may merge this fixed SHA; it includes registered W1 baseline 7a9f3df. All ExperienceSession methods now implemented; actual Worker candidate function exported. Contract remains v1, only planned methods activated. No A implementation merged or edited.
