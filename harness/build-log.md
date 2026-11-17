@@ -250,3 +250,5 @@ VF4-A固定实现 d3e0c87d96bf4fe3baa77ab745163d8baa9ca052；实现提交前stag
 2026-11-17 experience31 C0 preparation: 663071a756532a47cecaa47f71d59b8b90bd4a1f; isolated experience-core-wave1; final pnpm check 46/404 plus types/lint/build PASS; diff check PASS. Not H1 frozen or B-W1a release. Evidence ../commission-evidence/experience31/c0/663071a756532a47cecaa47f71d59b8b90bd4a1f/check-3.log; remaining scope docs/experience31/track-b.md.
 
 2026-11-17 experience31 revision2 implementation 424045da7bfa0ddcff10f190ec5d869be5ab699e: pnpm check 47/427 PASS; staged diff check PASS after EOF fixes; full records docs/experience31/track-b.md. CPU diagnostics and retained generator failure in ../commission-evidence/experience31/c0/424045da7bfa0ddcff10f190ec5d869be5ab699e/. No H1/H2/H3 release.
+
+2026-11-17 W1 service release 7a9f3df6f120fd8fac1c955580cc70f934a6ff03: 49/436 check PASS, 948-state preview purity + 224 no-event + 486 controlled cases, learning/receipt reconstruction, two samples 95856 bytes. Evidence ../commission-evidence/experience31/w1/7a9f3df6f120fd8fac1c955580cc70f934a6ff03/. H2/H3 not accepted; W2 next.

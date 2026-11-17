@@ -1,3 +1,22 @@
+# Published B W1 service baseline — 2026-11-17
+
+Release SHA: 7a9f3df6f120fd8fac1c955580cc70f934a6ff03 (experience-core-wave1, D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-core).
+A may merge this fixed registered SHA for API/real-service integration and sample crop review. This is the common C0 API baseline v1 assembled with A's verbatim art-slots (4c5602b) and ux-c0 final signoff (a19e2f6). No A implementation/UI branch was merged. H1 API freeze published; acknowledgement of amended long performance input remains open. H2/H3 end-to-end acceptance is NOT claimed.
+
+New runtime: GameSession.previewNextPeriod and getExperienceView; deterministic current-slot resource/work/recovery projection without advance/choose/RNG reads; incremental seven-node learning plus receipts keyed by actual job/phase/resource participants and roles; import replay reconstruction. W2 explanation/search methods remain unavailable until next release.
+
+Verification: pnpm check 49 files/436 tests, types/lint/Web/DSH builds PASS; staged diff check PASS. 529/419 unchanged logs: every state checked for preview purity and RNG-read rejection; 983/907 certain facts, 890/726 conditional facts; actual advance outcomes 106/88 settlements and 20/10 event interruptions. 126/98 controlled no-event comparisons, 486 additional role/resource/energy/overtime/bill cases; dedicated blocked checks. Receipt reconstruction, actual participants, phase isolation and canonical exported bytes tested. Core simulation/versions/content/persistence/DSH/historical fixtures remain unchanged in this revision. No weakened historical assertions.
+
+Art-Batch 7 samples: built-in image_gen, model unknown. Menu 768x512 68764 bytes; rest 960x320 27092 bytes; total 95856 bytes. Both masters, runtime copies, prompts/parameters/hash/visual review metadata retained. experienceArt(id) returns null for unpublished assets. Package test verifies PNG/WebP dimensions, bytes/hashes, whitelist and offline copies. B viewed original and compressed images; A five-viewport crop/failure/dark review is pending. Remaining six assets gated on A approval.
+
+Fixed longer input: seed21/962 commands/240 cumulative slots/3 runs (two bankruptcy restarts), explicitly save stress, not successful continuous business play. Commands hash eb98024438e47e62e752d994fc105ecda4ae43793db1062d23ab34976bd870f4. Original legacy bot failure retained; replacement does not alter rules or legacy bot. A acknowledgement of the protocol-input amendment pending. Three inputs have 5 warmups/30 Node samples with canonical bytes; browser/Worker/I-O/queue measurements still OPEN. No persistence hash optimization.
+
+Evidence: ../commission-evidence/experience31/w1/7a9f3df6f120fd8fac1c955580cc70f934a6ff03/ (check-release.log, preview-*.json, period-matrix.log, long-input.json, node-save-profile.json, save-profile.log).
+
+Remaining: Host server rotation cannot honor checkpoint intent over unchanged protected protocol; performance/UI integration and art crop signoff remain H2/H3 gates. Next independent B work is W2 bounded candidate search and core capacity/duo/finance explanations; H4/H5/H6 not passed. EXP-01/02/03/04 have B services, not completed A integration; EXP-14 first two service replacements available. VF5/Visual Freeze HOLD unchanged. Main untouched; local commits only.
+
+Earlier checkpoints follow.
+
 # Track B revision 2 — 2026-11-17
 
 Implementation: 424045da7bfa0ddcff10f190ec5d869be5ab699e
