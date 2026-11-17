@@ -2,10 +2,10 @@ import {sceneBackground} from './scene-background.js';
 import {visualReviewEnabled} from './visual-review.js';
 import {Application,Assets,Container,Graphics,Sprite,Text,Texture} from 'pixi.js';
 import 'pixi.js/unsafe-eval';
-import type {GameView} from 'oot-platform';
+import type {CapacityExplanation,GameView} from 'oot-platform';
 import {PaperDoll} from './art/paper-doll.js';
 import {loadVillageCharacter,activityPose,characterHeight} from './village-characters.js';
-import {reactionFor,activeStationBonus} from './scene-layout.js';
+import {reactionFor} from './scene-layout.js';
 import {officeCamera,clampZoom,clampOfficePan,zoomOfficeCamera,defaultCameraPan,slotPoint,clearIdleFurniture,actorPlacements,actorOutsideFrame,workLabelOffset,workFurnitureHitArea,separateOfficeLabels} from './office-scene-spec.js';
 import type {CameraPan,CameraZone,OfficeFocus} from './office-scene-spec.js';
 import {actorHitArea,furnitureHitArea} from './office-hit-area.js';
@@ -21,7 +21,7 @@ type Walker={root:Container;shadow:Graphics;paper?:PaperDoll;badge:Container;bad
 export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void,onFurniture?: (id:string)=>void,onPresence?:(ids:string[])=>void,onCamera?:(next:{zoom:number;pan:CameraPan;clearFocus?:boolean|undefined})=>void,onAnchors?:(anchors:Record<string,ActorHeadAnchor>)=>void){
  const app=new Application();await app.init({resizeTo:host,backgroundAlpha:0,antialias:true,resolution:Math.min(devicePixelRatio||1,2),autoDensity:true,preference:'webgl'});host.appendChild(app.canvas);app.canvas.setAttribute('aria-hidden','true');app.canvas.style.touchAction='none';
  const world=new Container(),labels=new Container(),mask=new Graphics(),pulseRing=new Graphics();world.sortableChildren=true;world.addChild(pulseRing);app.stage.addChild(world,labels,mask);world.mask=mask;labels.mask=mask;
- let latest:GameView|undefined,english=false,dead=false,paused=false,elapsed=0,zone:CameraZone='overview',zoom=1,pan:CameraPan=defaultCameraPan,size='',layout=false,lastScene='',layoutFocus:OfficeFocus=null,gestureMoved=false,suppressTapUntil=0,pinchDist=0;
+ let latest:GameView|undefined,latestCapacity:Readonly<Record<string,CapacityExplanation>>|undefined,english=false,dead=false,paused=false,elapsed=0,zone:CameraZone='overview',zoom=1,pan:CameraPan=defaultCameraPan,size='',layout=false,lastScene='',layoutFocus:OfficeFocus=null,gestureMoved=false,suppressTapUntil=0,pinchDist=0;
  let camDisplay:CameraTargetValues|null=null,camBypass=true,pulseTimer=0,pulseTarget:{x:number;y:number}|null=null,lastAnchorEmit=0,anchorDirty=true;
  const background=sceneBackground(host),inputAbort=new AbortController(),sig={signal:inputAbort.signal},pointers=new Map<number,{startX:number;startY:number;x:number;y:number}>();
  const fixed=visualReviewEnabled?Number(new URLSearchParams(location.search).get('animation-time')??NaN):NaN;
@@ -70,7 +70,7 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
    w.root.visible=true;w.root.alpha=layout?.28:1;w.badge.visible=!layout;const r=v.office?.reservations[a.id];const placement=placements.find(p=>p.id===a.id)!,working=placement.activity,seated=placement.seated;
    w.height=characterHeight(a.id,placement.y);
    if(w.bx!==placement.x||w.by!==placement.y){w.arrived=0;w.bx=placement.x;w.by=placement.y;const wd=wander.get(a.id);if(wd){wd.ox=0;wd.oy=0;}}const wd=wander.get(a.id);w.tx=w.bx+(placement.zone==='lounge'&&wd?wd.ox:0);w.ty=w.by+(placement.zone==='lounge'&&wd?wd.oy:0);w.activity=working;w.zone=placement.zone;w.root.renderable=true;w.root.eventMode=layout?'none':'static';
-   const bonus=activeStationBonus(v,a.id),boost=seated&&bonus>0?` ✦+${Math.round(bonus*100)}%`:'',tired=a.energy<35?' ⚡':'';
+   const bonus=latestCapacity?.[a.id]?.activeEfficiency??0,boost=seated&&bonus>0?` ✦+${Math.round(bonus*100)}%`:'',tired=a.energy<35?' ⚡':'';
    w.tag.text=(names[a.id]??a.id)+(seated?(english?(camDisplay.scale<.6?'\n':' · ')+(r!.zone==='work'?'Work':'Meet')+boost:r!.zone==='work'?(camDisplay.scale<.6?'\n电脑':' · 电脑')+boost:(camDisplay.scale<.6?'\n会议':' · 会议')):'')+tired;
    const tw=Math.max(44,w.tag.width),th=Math.max(14,w.tag.height);w.badgeBg.clear().roundRect(-tw/2-8,-2,tw+16,th+4,9).fill({color:0x2e231b,alpha:.84}).stroke({color:boost?0xe2be78:0xb89664,width:1,alpha:.78});
   }
@@ -110,7 +110,7 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
     }
    }
    const dx=w.tx-w.x,dy=w.ty-w.y,d=Math.hypot(dx,dy),step=Math.min(d,ms*(w.zone==='lounge'&&w.arrived>=1?.09:.35));if(still){w.x=w.tx;w.y=w.ty;w.arrived=1;}else if(d>1){w.x+=dx/d*step;w.y+=dy/d*step;}else w.arrived=Math.min(1,w.arrived+ms/400);
-   w.height=characterHeight(w.id,w.y);w.root.position.set(w.x,w.y);w.root.zIndex=w.y;const sit=w.zone==='work'?-48*w.arrived:0,deskSeated=w.zone==='work'&&w.arrived>.6;w.root.hitArea=actorHitArea(deskSeated);w.shadow.visible=!deskSeated;if(w.paper){w.paper.root.scale.set(w.height/w.paper.character.visibleHeight);w.paper.root.y=sit;for(const leg of ['leg-left','leg-right']){const n=w.paper.nodes.get(leg);if(n)n.visible=!deskSeated;}w.paper.apply(activityPose(w.paper.character,Number.isFinite(fixed)?fixed:elapsed,w.activity,!still&&d>2,reactionFor(latest,w.id),still));}
+   w.height=characterHeight(w.id,w.y);w.root.position.set(w.x,w.y);w.root.zIndex=w.y;const sit=w.zone==='work'?-48*w.arrived:0,deskSeated=w.zone==='work'&&w.arrived>.6;w.root.hitArea=actorHitArea(deskSeated);w.shadow.visible=!deskSeated;if(w.paper){w.paper.root.scale.set(w.height/w.paper.character.visibleHeight);w.paper.root.y=sit;for(const leg of ['leg-left','leg-right']){const n=w.paper.nodes.get(leg);if(n)n.visible=!deskSeated;}w.paper.apply(activityPose(w.paper.character,Number.isFinite(fixed)?fixed:elapsed,w.activity,!still&&d>2,reactionFor(latest,w.id,!!latestCapacity?.[w.id]?.overloaded),still));}
    if(actorOutsideFrame(w.x,w.y,w.height+(deskSeated?48:0),activeCam.scale,targetCam,app.screen.width,app.screen.height))outside.push(w.id);
    const tagOffset=w.zone==='work'?workLabelOffset:16;w.badge.position.set(activeCam.x+w.x*activeCam.scale,Math.min(targetCam.clip.y+targetCam.clip.height-w.badge.height-4,activeCam.y+(w.y+tagOffset)*activeCam.scale+(w.zone==='meeting'&&activeCam.scale<.8&&latest.office?.reservations[w.id]?.seat===1?22:0)));if(!outside.includes(w.id))w.badge.x=Math.max(targetCam.clip.x+w.badge.width/2,Math.min(targetCam.clip.x+targetCam.clip.width-w.badge.width/2,w.badge.x));w.badge.visible=!layout&&w.root.visible&&w.root.renderable&&w.badge.x-w.badge.width/2>=targetCam.clip.x&&w.badge.x+w.badge.width/2<=targetCam.clip.x+targetCam.clip.width;
   }
@@ -141,13 +141,13 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
  app.ticker.add(t=>{if(dead||document.hidden||paused)return;const current=`${app.screen.width}/${app.screen.height}/${host.closest('[data-mode="layout"]')!==null}`;if(current!==size){size=current;camBypass=true;sync();}elapsed+=Math.min(t.deltaMS,50)/1000;tick(Math.min(t.deltaMS,50));});
 
  return {
-  update(view:GameView,locale:'zh'|'en'='zh',previewFocus:OfficeFocus=null,cameraZone:CameraZone='overview',cameraZoom?:number,cameraPan?:CameraPan,isPaused=false){
+  update(view:GameView,locale:'zh'|'en'='zh',previewFocus:OfficeFocus=null,cameraZone:CameraZone='overview',cameraZoom?:number,cameraPan?:CameraPan,isPaused=false,capacityByActor?:Readonly<Record<string,CapacityExplanation>>){
    const focusChanged=(previewFocus?.x??null)!==(layoutFocus?.x??null)||(previewFocus?.y??null)!==(layoutFocus?.y??null);
    const zoneChanged=cameraZone!==zone;
    const nextZoom=cameraZoom!==undefined?clampZoom(cameraZoom):zoom;
    const nextPan=cameraPan!==undefined?cameraPan:pan;
    const instantDrag=Math.abs(nextZoom-zoom)<0.12&&(Math.abs(nextPan.x-pan.x)>0.01||Math.abs(nextPan.y-pan.y)>0.01)&&!focusChanged&&!zoneChanged;
-   layoutFocus=previewFocus;zone=cameraZone;zoom=nextZoom;pan=nextPan;latest=view;english=locale==='en';paused=isPaused;
+   layoutFocus=previewFocus;zone=cameraZone;zoom=nextZoom;pan=nextPan;latest=view;latestCapacity=capacityByActor;english=locale==='en';paused=isPaused;
    camBypass=instantDrag||paused;
    if(focusChanged&&previewFocus){pulseTarget={x:previewFocus.x,y:previewFocus.y};pulseTimer=1000;}
    sync();

@@ -1,9 +1,10 @@
 import {useState,useEffect,useRef,useLayoutEffect} from 'preact/hooks';
 import type {ComponentChildren} from 'preact';
 import type {Command,Member} from 'oot-core';
-import type {ActivityPreview,GameSession,GameView} from 'oot-platform';
+import type {ActivityPreview,Draft,DuoExplanation,GameSession,GameView,SuggestResult} from 'oot-platform';
 import {commissionObjective,showSettlement,waitingText} from './commission-tracking.js';
-import {describeActivityPreview} from './experience-adapter.js';
+import {computeCandidateDelta,describeActivityPreview,formatDuoEvaluations,formatFactLine,stableDraftKey} from './experience-adapter.js';
+import type {SuggestionTimingSample} from './experience-worker-host.js';
 import {ExperienceArtSlot} from './experience-art-slot.js';
 import {Portrait} from './studio-ui.js';
 import {AssignmentForecast,DeliverySummary,periodText} from './decision-panels.js';
@@ -12,9 +13,9 @@ import {skillText} from './ui-labels.js';
 import {Icon} from './icons.js';
 import {QualitySealSvg} from './ornaments.js';
 import {topJobSkillWeights} from './ui2-logic.js';
-import {buildSampleTeamDraft,explainLiveTeamFit} from './experience-ui-copy.js';
+import {explainLiveTeamFit,resolveReasonCopy} from './experience-ui-copy.js';
 import {filterValidLastTeamMembers} from './experience-ui-state.js';
-import {evaluateTeamDuos,getLivingCatalog,pickWorkBark,resolveClientPersona} from './living-adapter.js';
+import {getLivingCatalog,pickWorkBark,resolveClientPersona} from './living-adapter.js';
 import type {CharacterBarkSet,LivingContent,LivingView} from './living-adapter.js';
 
 export type JobFilter='active'|'posted'|'history';
@@ -44,19 +45,23 @@ export type WorkbenchProps={
  onSaveDraft?:(jobId:string,draft:DraftTeam)=>void;
  onJumpToOffice?:(draft:DraftTeam)=>void;
  onJumpToFinance?:(draft:DraftTeam)=>void;
+ onJumpToActor?:(actorId:string,draft:DraftTeam)=>void;
  onOpenMap?:()=>void;
  livingView?:LivingView|undefined;
  livingCatalog?:LivingContent|undefined;
  onWorkBark?:((actorId:string,key:keyof CharacterBarkSet['work'])=>void)|undefined;
  previewActivity?:(cmd:Command)=>ActivityPreview;
+ explainTeamDuos?:(jobId:string,draft:Draft)=>DuoExplanation;
+ requestSuggestions?:(jobId:string,draft:Draft)=>Promise<{result:SuggestResult;timing:SuggestionTimingSample}|null>;
 };
 
-export function CommissionWorkbench({view,job,english,locked,send,previewAssignment,close,closePanel,messages,notice,locate,trackControl,onAccepted,onRejected,savedDraft,lastTeam,onSaveDraft,onJumpToOffice,onJumpToFinance,onOpenMap,livingView,livingCatalog,onWorkBark,previewActivity}:WorkbenchProps){
+export function CommissionWorkbench({view,job,english,locked,send,previewAssignment,close,closePanel,messages,notice,locate,trackControl,onAccepted,onRejected,savedDraft,lastTeam,onSaveDraft,onJumpToOffice,onJumpToFinance,onJumpToActor,onOpenMap,livingView,livingCatalog,onWorkBark,previewActivity,explainTeamDuos,requestSuggestions}:WorkbenchProps){
  const tr=(zh:string,en:string)=>english?en:zh,p=view.campaign!,skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
  const [workStep,setWorkStep]=useState(['accepted','working'].includes(job.status)?'team':'brief');
  const [team,setTeam]=useState<DraftTeam>(()=>savedDraft??Object.fromEntries(view.actors.map(a=>{const m=job.team.find(m=>m.character===a.id);return[a.id,{role:m?.role??'none',mode:m?.mode??'cloud'}];})));
  const [workBark,setWorkBark]=useState<{actorId:string;text:string}|null>(null);
  const [reuseNote,setReuseNote]=useState<string|null>(null);
+ const [candidateState,setCandidateState]=useState<{status:'idle'|'loading'|'ready'|'error';result?:SuggestResult;timing?:SuggestionTimingSample;error?:string}>({status:'idle'});
  const clarifyAttemptRef=useRef<{actorId:string;hidden:number;until:number}|null>(null);
  const workbenchRef=useRef<HTMLDivElement>(null);
  const activeCatalog=livingCatalog??getLivingCatalog(view);
@@ -85,6 +90,8 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
 
  const workLayout=['posted','accepted','working'].includes(job.status)?'tri':'single';
  const members=Object.entries(team).filter(([,v])=>v.role!=='none').map(([character,v])=>({character,role:v.role as Member['role'],mode:v.mode}));
+ const draftKey=stableDraftKey(job.id,members);
+ const draftObj:Draft={team:members,draftKey};
  const preview=workLayout==='tri'?previewAssignment(job.id,members):null;
  const topSkills=topJobSkillWeights(job.weights,2);
  const maxTeamSlots=p.chapter<=2?4:6;
@@ -100,17 +107,37 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
  const netCash=(['delivered','breached'].includes(job.status)?settledEntry?.amount:job.settlement.net)??null;
  const stationError=preview?.error==='NO_WORKSTATION'||preview?.error==='NO_MEETING_SEAT';
  const cloudRisk=!!preview?.forecast?.risks.cloud;
+ const capacityRisk=!!preview?.forecast?.risks.capacity||stationError;
+ const conditionRisk=!!preview?.forecast?.risks.condition||!!preview?.forecast?.risks.noProgress;
+ const lateRisk=!!preview?.forecast?.risks.late;
  const canJumpOffice=!!view.office&&p.scene==='workshop'&&!locked;
  const liveFit=workLayout==='tri'?explainLiveTeamFit(view,job,members,preview,english):null;
- const canOfferSample=workLayout==='tri'&&['posted','accepted'].includes(job.status)&&job.team.length===0;
+ const canOfferCandidates=workLayout==='tri'&&['posted','accepted','working'].includes(job.status);
 
- const applySampleDraft=()=>{
-  const sample=buildSampleTeamDraft(view,job,previewAssignment);
-  if(!sample)return;
-  setReuseNote(null);
+ const searchSignature=`${job.id}:${view.absoluteSlot}:${job.status}:${job.hidden}:${job.work}:${view.cash}:${view.quota+view.purchased}:${view.localCapacity}:${view.actors.map(a=>`${a.id}@${a.version}:${a.energy}:${a.busy?1:0}`).join(',')}:${draftKey}`;
+ useEffect(()=>{
+  if(!canOfferCandidates||!requestSuggestions){setCandidateState({status:'idle'});return;}
+  let cancelled=false;
+  setCandidateState(prev=>prev.result?{...prev,status:'loading'}:{status:'loading'});
+  void requestSuggestions(job.id,draftObj).then(res=>{
+   if(cancelled||!res)return;
+   if(res.result.draftKey!==draftKey)return;
+   setCandidateState({status:'ready',result:res.result,timing:res.timing});
+  }).catch(err=>{
+   if(cancelled)return;
+   setCandidateState({status:'error',error:err instanceof Error?err.message:String(err)});
+  });
+  return()=>{cancelled=true;};
+ },[canOfferCandidates,searchSignature,requestSuggestions]);
+
+ const applySuggestedDraft=(suggestedMembers:readonly Member[],kindLabel:string)=>{
+  setReuseNote(tr(
+   `已将「${kindLabel}」填入可修改草稿；可自由调整岗位或部署模式，不会自动接单、购买或派遣。`,
+   `Loaded "${kindLabel}" into editable draft. Adjust freely—never auto-accepts, buys, or assigns.`
+  ));
   updateTeam(()=>{
    const blank:DraftTeam=Object.fromEntries(view.actors.map(a=>[a.id,{role:'none',mode:a.modes.includes('cloud')?'cloud':a.modes[0]!}]));
-   for(const m of sample)blank[m.character]={role:m.role,mode:m.mode};
+   for(const m of suggestedMembers)blank[m.character]={role:m.role,mode:m.mode};
    return blank;
   });
  };
@@ -126,7 +153,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
   if(valid.length===0){
    setReuseNote(tr('上次队伍成员当前均忙碌或已不可用，请手动调整人选。','Previous squad teammates are currently busy or incompatible; please pick manually.'));
   }else if(dropped.length>0){
-   setReuseNote(tr(`已预填可出勤成员（已跳过忙碌/不兼容：${dropped.map(id=>names[id]??id).join('、')}）。请核对右侧预估后确认。`,`Prefilled available members (skipped busy/incompatible: ${dropped.map(id=>names[id]??id).join(', ')}). Review live forecast before confirming.`));
+   setReuseNote(tr(`已预填可出勤成员（已跳过忙碌/不兼容：${dropped.map(id=>names[id]??id).join('、')}）。请核对实时预估与协同后再确认。`,`Prefilled available members (skipped busy/incompatible: ${dropped.map(id=>names[id]??id).join(', ')}). Review live forecast before confirming.`));
   }else{
    setReuseNote(tr('已按上次队伍预填并重新校验；可随时修改，不会自动派遣。','Prefilled and re-validated from last squad; edit freely—never assigns automatically.'));
   }
@@ -238,6 +265,90 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
 
      {['posted','accepted','working'].includes(job.status)&&(
       <div class="work-deployment">
+       {canOfferCandidates&&(
+        <section class="ui2-candidates-section" aria-label={tr('推荐候选方案对比','Suggested team comparisons')}>
+         <div class="ui2-candidates-head">
+          <div>
+           <h4><Icon name="spark"/> {tr('可选方案对比（只供试选与比较差值）','Candidate comparisons (editable draft only)')}</h4>
+           {candidateState.timing&&(
+            <small
+             class="ui2-muted-note"
+             data-worker-used={candidateState.timing.usedWorker?'true':'false'}
+             data-blocking-ms={candidateState.timing.mainThreadBlockingMs.toFixed(2)}
+             data-roundtrip-ms={candidateState.timing.roundTripMs.toFixed(2)}
+            >
+             {candidateState.timing.usedWorker?tr('Web Worker 搜索','Web Worker search'):tr('同步搜索','Sync fallback')} · {tr(`已评估 ${candidateState.timing.evaluated} 案`,`Evaluated ${candidateState.timing.evaluated}`)} · {tr(`主线程 ${candidateState.timing.mainThreadBlockingMs.toFixed(1)} ms`,`Main ${candidateState.timing.mainThreadBlockingMs.toFixed(1)} ms`)}{candidateState.timing.truncated?tr('（256 上限截断）',' (capped at 256)'):''}
+            </small>
+           )}
+          </div>
+          <div class="ui2-sample-team-actions">
+           {lastTeam&&lastTeam.length>0&&(
+            <button type="button" onClick={applyLastTeamDraft}>
+             <Icon name="refresh"/>
+             <span>{tr('沿用上次队伍','Reuse last team')}</span>
+            </button>
+           )}
+           {members.length>0&&(
+            <button type="button" onClick={clearSampleDraft}>
+             <span>{tr('清空草稿','Clear draft')}</span>
+            </button>
+           )}
+          </div>
+         </div>
+         {reuseNote&&<small class="ui2-muted-note">{reuseNote}</small>}
+         {candidateState.status==='loading'&&!candidateState.result&&(
+          <p class="ui2-muted-note">{tr('正在计算省资源 / 稳质量 / 赶交期候选方案…','Searching candidate assignments…')}</p>
+         )}
+         {candidateState.status==='error'&&candidateState.error&&(
+          <p class="ui2-muted-note">{resolveReasonCopy(candidateState.error,english)}</p>
+         )}
+         {candidateState.result&&candidateState.result.suggestions.length===0&&(
+          <div class="ui2-candidate-empty">
+           <b>{tr('0 个可执行候选方案','0 feasible plans')}</b>
+           <p>{resolveReasonCopy(candidateState.result.none?.reason??'no-legal-team',english)}</p>
+          </div>
+         )}
+         {candidateState.result&&candidateState.result.suggestions.length>0&&(
+          <div class="ui2-candidates-grid">
+           {candidateState.result.suggestions.map(cand=>{
+            const kindTitle=cand.kind==='save-resources'?tr('省资源','Save resources'):cand.kind==='stable-quality'?tr('稳质量','Stable quality'):tr('赶交期','Fast delivery');
+            const delta=computeCandidateDelta(cand,preview?.forecast??null);
+            const qRange=cand.forecast.quality?`${cand.forecast.quality[0]}–${cand.forecast.quality[1]}`:'—';
+            const sameAsDraft=stableDraftKey(job.id,cand.team)===draftKey;
+            return (
+             <article key={cand.id} class="ui2-candidate-card" data-kind={cand.kind} data-selected={sameAsDraft?'true':'false'}>
+              <header>
+               <b>{kindTitle}</b>
+               <span>{cand.forecast.workSlots} {tr('时段','slots')} · {tr('质量','Q')} {qRange}</span>
+              </header>
+              <div class="ui2-candidate-team">
+               {cand.team.map(m=>(
+                <span key={m.character} class="ui2-candidate-member">
+                 <img src={`./art/ai-village/portraits/${m.character}.png`} alt=""/>
+                 <em>{names[m.character]??m.character} · {roleShort[m.role]} · {m.mode==='cloud'?tr('云端','Cloud'):tr('本地','Local')}</em>
+                </span>
+               ))}
+              </div>
+              <div class="ui2-candidate-costs">
+               {cand.costs.map((c,ci)=><small key={ci}>{formatFactLine(c,english)}</small>)}
+              </div>
+              {delta.cloudDelta!==null?(
+               <p class="ui2-candidate-delta">
+                {tr('相对当前草稿','Vs draft')}: {tr('工期','Slots')} {delta.workSlotsDelta!>=0?`+${delta.workSlotsDelta}`:delta.workSlotsDelta} · {tr('云端','Cloud')} {delta.cloudDelta>=0?`+${delta.cloudDelta}`:delta.cloudDelta}T{delta.qualityCeilingDelta!==null?` · ${tr('质量上限','Q max')} ${delta.qualityCeilingDelta>=0?`+${delta.qualityCeilingDelta}`:delta.qualityCeilingDelta}`:''}
+               </p>
+              ):(
+               <p class="ui2-candidate-delta">{tr('可直接载入可改草稿后再微调对比。','Load into editable draft to customize and compare.')}</p>
+              )}
+              <button type="button" disabled={locked||sameAsDraft} onClick={()=>applySuggestedDraft(cand.team,kindTitle)}>
+               {sameAsDraft?tr('当前草稿一致','Matches current draft'):tr('填入草稿（可改）','Load draft (editable)')}
+              </button>
+             </article>
+            );
+           })}
+          </div>
+         )}
+        </section>
+       )}
        <section class="work-team">
         <div class="ui2-squad-strip" aria-label={tr('已选编队席位','Selected squad slots')}>
          <div class="ui2-squad-slots">
@@ -260,7 +371,9 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
         </div>
 
         {(()=>{
-         const teamDuos=livingView?evaluateTeamDuos(view,job,members,activeCatalog):[];
+         const duoExplanation=explainTeamDuos?explainTeamDuos(job.id,draftObj):null;
+         const teamActorIds=new Set(members.map(m=>m.character));
+         const teamDuos=livingView&&duoExplanation?formatDuoEvaluations(duoExplanation,view,activeCatalog,teamActorIds):[];
          return teamDuos.length>0?(
           <div class="ui2-synergy-strip" aria-label={tr('搭档协同状态','Team duo synergies')}>
            {teamDuos.map(item=>(
@@ -283,26 +396,6 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
         )}
 
         <p>{Object.entries(job.weights).filter(([,v])=>v>0).map(([k,v])=>`${skill(k as keyof typeof skillText)} ${Math.round(v*100)}%`).join(' · ')}</p>
-        {canOfferSample&&(
-         <div class="ui2-sample-team-bar">
-          <button type="button" onClick={applySampleDraft}>
-           <Icon name="spark"/>
-           <span>{tr('填入可修改示例队伍','Try editable sample squad')}</span>
-          </button>
-          {lastTeam&&lastTeam.length>0&&(
-           <button type="button" onClick={applyLastTeamDraft}>
-            <Icon name="refresh"/>
-            <span>{tr('沿用上次队伍','Reuse last team')}</span>
-           </button>
-          )}
-          {members.length>0&&(
-           <button type="button" onClick={clearSampleDraft}>
-            <span>{tr('清空草稿','Clear draft')}</span>
-           </button>
-          )}
-          <small>{reuseNote??tr('仅预填可改草稿，不会自动接单或派遣。','Prefills an editable draft only; never accepts or assigns automatically.')}</small>
-         </div>
-        )}
         <fieldset class="assignment-team">
          <legend>{tr('派遣岗位与模式','Roles and deployment')}</legend>
          {view.actors.map(a=>{
@@ -347,6 +440,28 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
         {cloudRisk&&onJumpToFinance&&(
          <div class="ui2-error-box">
           <button onClick={()=>onJumpToFinance(team)}><Icon name="bolt"/><span>{tr('前往算力补给并保留草稿 →','Compute & finance (keep draft) →')}</span></button>
+         </div>
+        )}
+        {(capacityRisk||conditionRisk||lateRisk||(job.hidden>0&&job.status==='posted'))&&(
+         <div class="ui2-remedies-box" aria-label={tr('当前风险补救入口','Remedies & adjustments')}>
+          <b>{tr('可执行调整与补救入口（不会自动扣费）：','Actionable remedies (never spends automatically):')}</b>
+          <div class="ui2-remedies-actions">
+           {job.hidden>0&&job.status==='posted'&&(
+            <button type="button" onClick={()=>{setWorkStep('brief');requestAnimationFrame(()=>workbenchRef.current?.querySelector<HTMLElement>('.work-brief')?.scrollIntoView({block:'start'}));}}>
+             <Icon name="info"/><span>{tr(`先澄清剩余 ${job.hidden} 项需求`,`Clarify ${job.hidden} hidden needs`)}</span>
+            </button>
+           )}
+           {capacityRisk&&canJumpOffice&&onJumpToOffice&&(
+            <button type="button" onClick={()=>onJumpToOffice(team)}>
+             <Icon name="decor"/><span>{tr('布置工作室扩容本地/工位 →','Arrange stations / racks →')}</span>
+            </button>
+           )}
+           {conditionRisk&&onJumpToActor&&(members[0]?.character??view.actors[0]?.id)&&(
+            <button type="button" onClick={()=>onJumpToActor(members[0]?.character??view.actors[0]!.id,team)}>
+             <Icon name="cup"/><span>{tr('检查伙伴精力/负载与休整 →','Check teammate rest & load →')}</span>
+            </button>
+           )}
+          </div>
          </div>
         )}
         {preview?.forecast&&<AssignmentForecast value={preview.forecast} english={english}/>}

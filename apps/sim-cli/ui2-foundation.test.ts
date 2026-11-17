@@ -4,7 +4,7 @@ import {labSession} from '../web/src/office-lab.js';
 import {stageBPortrait} from '../web/src/character-profiles.js';
 import {actorIds} from '../web/src/studio-ui.js';
 import {formatAdvanceDisplay} from '../web/src/experience-adapter.js';
-import {resolveGlobalShortcut,resolveProfileTab,isFlagshipUnlocked,topJobSkillWeights,ledgerWindowSummary,stepDampedCamera} from '../web/src/ui2-logic.js';
+import {resolveGlobalShortcut,resolveProfileTab,isFlagshipUnlocked,topJobSkillWeights,stepDampedCamera} from '../web/src/ui2-logic.js';
 
 test('formatAdvanceDisplay surfaces disabled blockers and urgent review alerts from previewNextPeriod accurately',()=>{
  const c=loadFullContent(),g=labSession(c,'standard');
@@ -48,10 +48,13 @@ test('isFlagshipUnlocked supports both multi-version research and affinity/story
  expect(isFlagshipUnlocked(bondedView,'grok',null)).toBe(true);
 });
 
-test('topJobSkillWeights and ledgerWindowSummary compute bounded display summaries',()=>{
+test('topJobSkillWeights and GameSession.explainFinance compute bounded display summaries',()=>{
  const top=topJobSkillWeights({code:.5,write:.1,reason:.3,create:.1,media:0,recall:0},2);
  expect(top).toEqual([{skill:'code',weight:.5,pct:50},{skill:'reason',weight:.3,pct:30}]);
- expect(ledgerWindowSummary([{slot:1,reason:'a',amount:120},{slot:2,reason:'b',amount:-45.5}])).toEqual({count:2,inflow:120,outflow:45.5,net:74.5});
+ const g=labSession(loadFullContent(),'standard');
+ const fin=g.explainFinance();
+ expect(fin.recentLedgerSummary.count).toBe(g.view.ledger.length);
+ expect(fin.netSolvency).toBe(g.view.liquidCash);
 });
 
 test('stepDampedCamera snaps instantly on bypass and converges smoothly otherwise',()=>{

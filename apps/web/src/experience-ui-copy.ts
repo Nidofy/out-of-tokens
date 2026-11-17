@@ -72,7 +72,25 @@ const REASON_MAP:Record<string,readonly [string,string]>={
  'morning-only':['仅在上午时段工作时生效','Applies during Morning periods only'],
  'multi-phase-only':['仅在多期或长期维护合同中生效','Applies to multi-phase or retainer contracts only'],
  'not-unlocked':['搭档默契尚未召开茶会解锁','Duo synergy not unlocked via tea yet'],
- 'no-feasible-team':['当前在岗人手或约束下暂无可承诺方案','No feasible team satisfies constraints with current roster']
+ 'no-feasible-team':['当前在岗人手或约束下暂无可承诺方案','No feasible team satisfies constraints with current roster'],
+ 'save-resources':['节省资源与即时额度','Saves quota & immediate cash'],
+ 'stable-quality':['条件质量预计更高更稳','Higher conditional quality'],
+ 'fast-delivery':['预计更快完成本阶段','Faster projected completion'],
+ 'projected-cloud':['阶段预计云端额度消耗','Projected phase cloud quota'],
+ 'projected-local':['阶段预计本地算力消耗','Projected phase local compute'],
+ 'immediate-quota-cash':['本槽预计补购额度现金缺口','Immediate quota shortfall cash'],
+ 'below-quality-line':['条件质量下限低于本单验收线','Quality floor below pass line'],
+ 'no-legal-team':['当前约束与在岗人手下暂无可执行团队，可调整工位、休整或先澄清需求','No legal team under current roster or constraints; adjust stations, rest, or clarify first'],
+ UNKNOWN_JOB:['当前委托不存在或已离开面板','Commission not found'],
+ 'duo-locked':['尚未通过搭档茶会解锁','Not yet unlocked via duo tea'],
+ 'duo-clarification-only':['仅作用于需求澄清，不提供工单执行加成','Clarification only; no job execution bonus'],
+ 'duo-active':['搭档默契条件已满足并生效','Duo synergy conditions met and active'],
+ 'duo-team-missing':['需两位搭档同时编入草稿团队','Both partners required in draft team'],
+ 'duo-mode-mismatch':['需两位搭档切换至指定相同部署模式','Requires both partners in the matching deployment mode'],
+ 'duo-conditions-unmet':['当前委托类别、合同类型或时段未满足生效条件','Commission category, contract type, or period conditions not met'],
+ 'next-weekly-base':['下周基础账单（房租、订阅与在贷利息）','Upcoming weekly base bill (rent, subscription, loan interest)'],
+ 'accrued-electricity':['累计本地算力待结电费','Accrued local-compute electricity'],
+ 'unpaid-inherited-debt':['第 14 天待结遗留债务本金','Unpaid inherited debt due on Day 14']
 };
 
 export function resolveReasonCopy(code:string,english:boolean):string{

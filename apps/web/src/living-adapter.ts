@@ -1,11 +1,8 @@
-import type {CharacterBarkSet,ClientPersonaDef,DuoDef,GiftDef,LivingContent,LivingView,Member} from 'oot-core';
-import type {GameView,NextPeriodPreview} from 'oot-platform';
+import type {CharacterBarkSet,ClientPersonaDef,GiftDef,LivingContent,LivingView} from 'oot-core';
+import type {CapacityExplanation,GameView,NextPeriodPreview} from 'oot-platform';
 import {content} from './content.js';
 import {clientArt,emoteArt,giftArt,teaBreakArt} from './living-art.js';
 import {actorStopKindFromPreview} from './experience-adapter.js';
-import {isActorOverloaded} from './scene-layout.js';
-
-export {actorEffectiveContext,isActorOverloaded} from './scene-layout.js';
 
 export type {
  CharacterBarkSet,
@@ -132,147 +129,6 @@ export function pickSlotBeat(catalog:LivingContent,fromSlot:number,toSlot:number
  return list[fnvHash(`${fromSlot}->${toSlot}`)%list.length]![english?1:0];
 }
 
-export function findActiveTeamDuos(
- view:GameView,
- job:Pick<GameView['jobs'][number],'template'|'delivery'>,
- draftTeam:readonly Pick<Member,'character'|'role'|'mode'>[],
- catalog:LivingContent=getLivingCatalog(view)
-):LivingDuoView[]{
- return evaluateTeamDuos(view,job,draftTeam,catalog).filter(x=>x.state==='active').map(x=>x.duo);
-}
-
-export type TeamDuoState='locked'|'inactive'|'active';
-
-export interface TeamDuoEvaluation {
- duo:LivingDuoView;
- def:DuoDef;
- state:TeamDuoState;
- statusZh:string;
- statusEn:string;
- reasonZh:string;
- reasonEn:string;
-}
-
-export function evaluateTeamDuos(
- view:GameView,
- job:Pick<GameView['jobs'][number],'template'|'delivery'>,
- draftTeam:readonly Pick<Member,'character'|'role'|'mode'>[],
- catalog:LivingContent=getLivingCatalog(view)
-):TeamDuoEvaluation[]{
- const membersByActor=new Map(draftTeam.map(m=>[m.character,m]));
- const spec=content.commissions.find(t=>t.id===job.template);
- const category=spec?.category;
- const delivery=job.delivery??spec?.delivery??'oneshot';
- const out:TeamDuoEvaluation[]=[];
-
- for(const duo of view.living.duos){
-  const [aId,bId]=duo.actors;
-  if(!membersByActor.has(aId)||!membersByActor.has(bId))continue;
-  const def=catalog.duos.find(x=>x.id===duo.id);
-  if(!def)continue;
-
-  if(!duo.unlocked){
-   const rem=Math.max(1,def.minDeliveries-duo.sharedDeliveries);
-   out.push({
-    duo,def,state:'locked',
-    statusZh:'未解锁',statusEn:'Locked',
-    reasonZh:duo.sharedDeliveries>=def.minDeliveries
-     ?'已满同队交付次数，前往伙伴档案召开搭档茶会后可激活'
-     :`还差 ${rem} 次同队交付可召开茶会解锁`,
-    reasonEn:duo.sharedDeliveries>=def.minDeliveries
-     ?'Co-deliveries met; host duo tea in Partner Profile to unlock'
-     :`${rem} more co-delivery needed for duo tea`
-   });
-   continue;
-  }
-
-  if(def.bonus.kind==='clarify'){
-   const q=view.actors.find(a=>a.id===aId),k=view.actors.find(a=>a.id===bId);
-   const sameScene=!!q&&!!k&&q.location!=='expedition'&&q.location===k.location;
-   out.push({
-    duo,def,state:'inactive',
-    statusZh:'仅澄清生效',statusEn:'Clarify only',
-    reasonZh:sameScene
-     ?'仅作用于需求澄清（同景澄清率 +12%），不提供工单执行加成'
-     :'仅作用于需求澄清（需两人同景），不提供工单执行加成',
-    reasonEn:sameScene
-     ?'Applies to brief clarification only (+12% chance); no job execution bonus'
-     :'Applies to brief clarification only (same scene required); no job execution bonus'
-   });
-   continue;
-  }
-
-  if(def.bonus.mode&&!duo.actors.every(id=>membersByActor.get(id)?.mode===def.bonus.mode)){
-   out.push({
-    duo,def,state:'inactive',
-    statusZh:'当前不生效',statusEn:'Inactive',
-    reasonZh:def.bonus.mode==='local'?'需两位搭档均切换为「本地」部署模式':'需两位搭档均切换为「云端」部署模式',
-    reasonEn:def.bonus.mode==='local'?'Requires both partners in Local mode':'Requires both partners in Cloud mode'
-   });
-   continue;
-  }
-
-  if(duo.id==='kimi-glm'&&!['write','research'].includes(category??'')){
-   out.push({
-    duo,def,state:'inactive',
-    statusZh:'当前不生效',statusEn:'Inactive',
-    reasonZh:'仅在写作或研究类委托中提供质量加成',
-    reasonEn:'Applies to writing or research commissions only'
-   });
-   continue;
-  }
-
-  if(duo.id==='gpt-gemini'&&!['design','media'].includes(category??'')){
-   out.push({
-    duo,def,state:'inactive',
-    statusZh:'当前不生效',statusEn:'Inactive',
-    reasonZh:'仅在设计或媒体类委托中提供产出加成',
-    reasonEn:'Applies to design or media commissions only'
-   });
-   continue;
-  }
-
-  if(def.bonus.category&&category!==def.bonus.category){
-   out.push({
-    duo,def,state:'inactive',
-    statusZh:'当前不生效',statusEn:'Inactive',
-    reasonZh:'仅在媒体类委托中减少缺陷累计',
-    reasonEn:'Applies to media commissions only'
-   });
-   continue;
-  }
-
-  if(duo.id==='gemini-minimax'&&delivery==='oneshot'){
-   out.push({
-    duo,def,state:'inactive',
-    statusZh:'当前不生效',statusEn:'Inactive',
-    reasonZh:'仅在多期或长期维护合同中生效',
-    reasonEn:'Applies to multi-phase or retainer contracts only'
-   });
-   continue;
-  }
-
-  if(duo.id==='mistral-seedance'&&view.absoluteSlot%4!==0){
-   out.push({
-    duo,def,state:'inactive',
-    statusZh:'本时段不生效',statusEn:'Inactive now',
-    reasonZh:'仅在「上午」时段执行时提供产出加成',
-    reasonEn:'Applies during Morning slots only'
-   });
-   continue;
-  }
-
-  out.push({
-   duo,def,state:'active',
-   statusZh:'当前生效',statusEn:'Active',
-   reasonZh:duo.desc,
-   reasonEn:duo.descEn
-  });
- }
-
- return out;
-}
-
 const stopLines:Record<'cloud'|'local',readonly (readonly [string,string])[]>={
  local:[
   ['本地算力排满了，这槽可能得等机架腾出空位。','Local compute is full this period—I may have to pause until capacity clears.'],
@@ -299,7 +155,8 @@ export function pickStageChatter(
  livingView:LivingView,
  english:boolean,
  stepSeed:number,
- previewStops?:NextPeriodPreview['stops']
+ previewStops?:NextPeriodPreview['stops'],
+ capacityByActor?:Readonly<Record<string,CapacityExplanation>>
 ):StageBubbleItem|null{
  const scene=view.campaign?.scene??'workshop';
  const candidates=view.actors.filter(a=>a.location===scene);
@@ -332,7 +189,7 @@ export function pickStageChatter(
  let situation:keyof CharacterBarkSet['stage']='morning';
  let emote:EmoteKind='coffee';
  if(speaker.energy<35){situation='tired';emote='sleepy';}
- else if(isActorOverloaded(view,speaker.id)){situation='overload';emote='sweat';}
+ else if(capacityByActor?.[speaker.id]?.overloaded){situation='overload';emote='sweat';}
  else if(view.possibleStops.includes(speaker.id)){
   const stopKind=actorStopKindFromPreview(previewStops,speaker.id)??'cloud';
   const list=stopLines[stopKind];

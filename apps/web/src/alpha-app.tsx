@@ -23,7 +23,7 @@ import './commission.css';
 import {PartnerProfile} from './partner-profile.js';
 import {FeedbackNotice,feedbackSurface} from './feedback-notice.js';
 import type {Command} from 'oot-core';
-import type {GameView} from 'oot-platform';
+import type {CapacityExplanation,GameView} from 'oot-platform';
 import {useGame} from './use-game.js';
 import {names} from './presentation.js';
 import {sceneText,skillText} from './ui-labels.js';
@@ -42,7 +42,6 @@ import {readAudioPrefs,writeAudioPrefs,unlockAudio,playFoley,playVoiceBlip,syncA
 import {getLivingCatalog,getLivingView,giftReactionTier,pickSocialBark,pickEventQuote,pickSlotBeat,pickStageChatter} from './living-adapter.js';
 import type {DuoDef,GiftDef} from './living-adapter.js';
 import {EmoteBadge,StageChatterOverlay,PeriodBeatBanner} from './stage-chatter.js';
-import {actorEffectiveContext} from './scene-layout.js';
 import {BarkOverlay} from './bark-overlay.js';
 import type {BarkPayload} from './bark-overlay.js';
 import {MessengerDrawer} from './messenger-drawer.js';
@@ -60,12 +59,12 @@ const loadScene=()=>sceneModule??=import('./scene.js');
 /** Begin the always-visible scene download alongside the first UI render. */
 export function preloadWorkshop(){void loadScene().catch(()=>{});}
 
-function Scene({view,english,select,furniture,camera,zone,zoom,pan,onCamera,presence,anchors,paused}:{paused:boolean;zone:CameraZone;zoom:number;pan:CameraPan;onCamera:(next:{zoom:number;pan:CameraPan;clearFocus?:boolean|undefined})=>void;presence:(ids:string[])=>void;anchors?:(next:Record<string,ActorHeadAnchor>)=>void;camera:OfficeFocus;view:GameView;english:boolean;select:(id:string)=>void;furniture:(id:string)=>void}){
- const host=useRef<HTMLDivElement>(null),scene=useRef<Awaited<ReturnType<typeof import('./scene.js')['createWorkshop']>>|null>(null),latest=useRef({view,english,camera,zone,zoom,pan,paused}),presenceRef=useRef(presence),anchorsRef=useRef(anchors),cameraRef=useRef(onCamera),click=useRef(select),furnitureClick=useRef(furniture);
- furnitureClick.current=furniture;latest.current={view,english,camera,zone,zoom,pan,paused};presenceRef.current=presence;anchorsRef.current=anchors;cameraRef.current=onCamera;click.current=select;
+function Scene({view,english,select,furniture,camera,zone,zoom,pan,onCamera,presence,anchors,paused,capacityByActor}:{paused:boolean;zone:CameraZone;zoom:number;pan:CameraPan;onCamera:(next:{zoom:number;pan:CameraPan;clearFocus?:boolean|undefined})=>void;presence:(ids:string[])=>void;anchors?:(next:Record<string,ActorHeadAnchor>)=>void;camera:OfficeFocus;view:GameView;english:boolean;select:(id:string)=>void;furniture:(id:string)=>void;capacityByActor?:Readonly<Record<string,CapacityExplanation>>}){
+ const host=useRef<HTMLDivElement>(null),scene=useRef<Awaited<ReturnType<typeof import('./scene.js')['createWorkshop']>>|null>(null),latest=useRef({view,english,camera,zone,zoom,pan,paused,capacityByActor}),presenceRef=useRef(presence),anchorsRef=useRef(anchors),cameraRef=useRef(onCamera),click=useRef(select),furnitureClick=useRef(furniture);
+ furnitureClick.current=furniture;latest.current={view,english,camera,zone,zoom,pan,paused,capacityByActor};presenceRef.current=presence;anchorsRef.current=anchors;cameraRef.current=onCamera;click.current=select;
  const[failed,setFailed]=useState(false);
- useEffect(()=>{let dead=false;void loadScene().then(m=>{if(import.meta.env.DEV&&new URLSearchParams(location.search).get('test-fault')==='renderer')throw Error('TEST_RENDER_FAILURE');return m;}).then(m=>m.createWorkshop(host.current!,id=>click.current(id),id=>furnitureClick.current(id),ids=>presenceRef.current(ids),next=>cameraRef.current(next),next=>anchorsRef.current?.(next))).then(s=>{if(dead){s.destroy();return;}scene.current=s;s.update(latest.current.view,latest.current.english?'en':'zh',latest.current.camera,latest.current.zone,latest.current.zoom,latest.current.pan,latest.current.paused);}).catch(()=>{if(!dead)setFailed(true);});return()=>{dead=true;scene.current?.destroy();scene.current=null;};},[]);
- useEffect(()=>scene.current?.update(view,english?'en':'zh',camera,zone,zoom,pan,paused),[view,english,camera,zone,zoom,pan,paused]);
+ useEffect(()=>{let dead=false;void loadScene().then(m=>{if(import.meta.env.DEV&&new URLSearchParams(location.search).get('test-fault')==='renderer')throw Error('TEST_RENDER_FAILURE');return m;}).then(m=>m.createWorkshop(host.current!,id=>click.current(id),id=>furnitureClick.current(id),ids=>presenceRef.current(ids),next=>cameraRef.current(next),next=>anchorsRef.current?.(next))).then(s=>{if(dead){s.destroy();return;}scene.current=s;s.update(latest.current.view,latest.current.english?'en':'zh',latest.current.camera,latest.current.zone,latest.current.zoom,latest.current.pan,latest.current.paused,latest.current.capacityByActor);}).catch(()=>{if(!dead)setFailed(true);});return()=>{dead=true;scene.current?.destroy();scene.current=null;};},[]);
+ useEffect(()=>scene.current?.update(view,english?'en':'zh',camera,zone,zoom,pan,paused,capacityByActor),[view,english,camera,zone,zoom,pan,paused,capacityByActor]);
  return <div class="workshop" ref={host} aria-label={english?'Current scene; use the navigation below':'当前场景；可通过下方导航操作'}>{failed&&<p class="scene-fallback">{english?'Scene unavailable. All controls below still work.':'场景暂不可用，下方操作仍可使用。'}</p>}</div>;
 }
 
@@ -337,12 +336,14 @@ export function AlphaApp(){
  const chapterTitles=[tr('开源车库联盟','Open-source garage'),tr('第一笔大订单','The first large order'),tr('模型更新之夜','Model release night'),tr('429危机','The 429 crisis'),tr('最后一个Token','The last token')];
  const nextPeriod=game.session.previewNextPeriod();
  const experienceView=game.session.getExperienceView();
+ const financeExplanation=game.session.explainFinance();
+ const capacityByActor=Object.fromEntries(view.actors.map(a=>[a.id,game.session.explainActorCapacity(a.id)]));
  const previewAct=(c:Command)=>game.session.previewActivity(c);
  const advanceInfo=formatAdvanceDisplay(nextPeriod,busy,arranging,english,view.jobs);
  const livingCatalog=getLivingCatalog(view);
  const livingView=getLivingView(view);
  const unreadThreads=countUnreadThreads(livingView.threads,readThreadIds);
- const chatterBubble=pickStageChatter(view,livingCatalog,livingView,english,chatterStep,nextPeriod.stops);
+ const chatterBubble=pickStageChatter(view,livingCatalog,livingView,english,chatterStep,nextPeriod.stops,capacityByActor);
 
  useEffect(()=>{
   const unlock=()=>unlockAudio();
@@ -467,7 +468,7 @@ export function AlphaApp(){
   <div class="studio-app" onKeyDown={e=>{if(e.key==='Escape'&&!modalOpen){if(locationsOpen){closeLocations('escape');e.preventDefault();e.stopPropagation();}else if(hud){setHud(null);e.stopPropagation();}}}} data-panel={panel??'closed'} data-view-open={hud==='view'} data-overlay={hud??'closed'} data-mode={arranging?'layout':'office'}>
    {game.lab&&<div class="office-lab-badge">LAB · {game.lab} · isolated memory saves</div>}
    <div class="scene-stage" data-period={view.absoluteSlot%4}>
-    <Scene paused={modalOpen&&!arranging} camera={arranging?editorFocus:sceneFocus} zone={arranging?'overview':cameraZone} zoom={arranging?1:cameraZoom} pan={arranging?defaultCameraPan:cameraPan} onCamera={next=>cameraDispatch({type:'zoom',zoom:next.zoom,pan:next.pan,clearFocus:next.clearFocus})} presence={setOffscreen} anchors={updateAnchors} view={layoutItems&&view.office?{...view,office:{...view.office,items:layoutItems}}:view} english={english} select={openDirectActor} furniture={id=>{const reservation=Object.values(view.office?.reservations??{}).find(r=>r.item===id);if(reservation&&!reservation.job.startsWith('clarify:'))setJobId(reservation.job);else if(view.campaign?.scene==='workshop'&&!locked){openOffice();}}}/>
+    <Scene paused={modalOpen&&!arranging} camera={arranging?editorFocus:sceneFocus} zone={arranging?'overview':cameraZone} zoom={arranging?1:cameraZoom} pan={arranging?defaultCameraPan:cameraPan} capacityByActor={capacityByActor} onCamera={next=>cameraDispatch({type:'zoom',zoom:next.zoom,pan:next.pan,clearFocus:next.clearFocus})} presence={setOffscreen} anchors={updateAnchors} view={layoutItems&&view.office?{...view,office:{...view.office,items:layoutItems}}:view} english={english} select={openDirectActor} furniture={id=>{const reservation=Object.values(view.office?.reservations??{}).find(r=>r.item===id);if(reservation&&!reservation.job.startsWith('clarify:'))setJobId(reservation.job);else if(view.campaign?.scene==='workshop'&&!locked){openOffice();}}}/>
     <StageChatterOverlay bubble={chatterBubble} step={banterPhase} anchors={anchors} view={view} hidden={modalOpen||arranging} onInspectActor={id=>{unlockAudio();fx('tap',id);openDirectActor(id);}}/>
     {hud==='view'&&<nav class="office-camera" aria-label={tr('场景视角','Scene camera')}><div class="camera-zones">{(Object.keys(zoneNames) as CameraZone[]).map(id=><button key={id} aria-pressed={!sceneFocus&&cameraZone===id&&Math.abs(cameraPan.x)<1&&Math.abs(cameraPan.y)<1} onClick={()=>{cameraDispatch({type:'zone',zone:id});}}>{zoneNames[id][english?1:0]}</button>)}</div><div class="camera-zoom-row" role="group" aria-label={tr('镜头缩放','Camera zoom')}><button aria-label={tr('缩小','Zoom out')} disabled={!sceneFocus&&cameraZoom<=1} onClick={()=>stepZoom(-.1)}>−</button><output aria-label={tr('当前缩放','Current zoom')}>{Math.round((sceneFocus?1.6*cameraZoom:cameraZoom)*100)}%</output><button aria-label={tr('放大','Zoom in')} disabled={cameraZoom>=1.5} onClick={()=>stepZoom(.1)}>+</button><button disabled={!cameraMoved} onClick={resetCamera}>{tr('恢复全景','Reset view')}</button></div><small class="camera-hint">{tr('单指拖动平移 · 双指或滚轮缩放','Drag to pan · Pinch or wheel to zoom')}</small></nav>}
    </div>
@@ -606,6 +607,7 @@ export function AlphaApp(){
        onSendGift={(targetId,gift,okCb)=>{void handleSendGift(targetId,gift,okCb);}}
        onUnlockDuo={duo=>{void handleUnlockDuo(duo);}}
        previewActivity={previewAct}
+       capacity={capacityByActor[actorId]}
       />
      ):panel==='actors'?(
       <div class="ui2-hub-content">
@@ -617,7 +619,7 @@ export function AlphaApp(){
           <span class="poster-title"><strong class="poster-word">{poster.sWord}</strong><b>{names[id]}</b><span>{poster.tagline[english?1:0]}</span><small>{v.name}</small></span>
           <img class="poster-art" src={visual.src} alt="" loading="lazy"/>
           <span class="poster-check-strip"><span class="poster-stamp">STUDIO O.T.</span>{(['code','write','reason','create','media'] as const).map(k=><span key={k}>{top.includes(k)?'☑':'□'} {skill(k)}</span>)}</span>
-          <span class="poster-status-bar">{a?`${scene(a.location)} · ${tr('精力','Energy')} ${a.energy} · ${tr('心情','Mood')} ${a.mood} · ${tr('负载','Load')} ${a.load}/${actorEffectiveContext(view,a.id)??''}`:r?<>{tr('待招募','Not recruited')} · ¥{r.cost} · {tr('声望','Reputation')} {r.reputation} · {tr('开放章节','Chapter')} {r.minChapter??0}<br/>{block?recruitmentReasons[block][english?1:0]:tr('可招募 · 点击查看档案','Eligible · View profile')}</>:null}</span>
+          <span class="poster-status-bar">{a?`${scene(a.location)} · ${tr('精力','Energy')} ${a.energy} · ${tr('心情','Mood')} ${a.mood} · ${tr('负载','Load')} ${a.load}/${capacityByActor[a.id]?.context??''}`:r?<>{tr('待招募','Not recruited')} · ¥{r.cost} · {tr('声望','Reputation')} {r.reputation} · {tr('开放章节','Chapter')} {r.minChapter??0}<br/>{block?recruitmentReasons[block][english?1:0]:tr('可招募 · 点击查看档案','Eligible · View profile')}</>:null}</span>
          </button>;
         })}
        </div>
@@ -638,6 +640,7 @@ export function AlphaApp(){
        onSaveDraft={(id,draft)=>setDraftTeams(prev=>({...prev,[id]:draft}))}
        onJumpToOffice={draft=>{if(jobId){setDraftTeams(prev=>({...prev,[jobId]:draft}));openOffice({panel:'jobs',jobId});}}}
        onJumpToFinance={draft=>{if(jobId){setDraftTeams(prev=>({...prev,[jobId]:draft}));setReturnTo({panel:'jobs',jobId});setStudioTab('finance');updatePanel('studio');}}}
+       onJumpToActor={(aid,draft)=>{if(jobId){setDraftTeams(prev=>({...prev,[jobId]:draft}));setReturnTo({panel:'jobs',jobId});setActorEntry('direct');setPreferredProfileTab('vitals');setActorId(aid);updatePanel('actors');}}}
        onOpenMap={()=>{updatePanel(null);setMapOpen(true);}}
        onDetailStateChange={setJobInDetail}
        view={view}
@@ -645,6 +648,8 @@ export function AlphaApp(){
        locked={locked}
        send={async cmd=>{setActiveBark(null);const ok=await send(cmd);if(ok&&cmd.type==='assign'){writeLastTeamDraft(uiStore,game.lineageId,cmd.team);setLastTeam(cmd.team);}return ok;}}
        previewAssignment={(id,members)=>game.session.previewAssignment(id,members)}
+       explainTeamDuos={(id,draft)=>game.session.explainTeamDuos(id,draft)}
+       requestSuggestions={(id,draft)=>game.requestSuggestions(id,draft)}
        close={closeHub}
        closePanel={closeHub}
        messages={messages}
@@ -670,9 +675,10 @@ export function AlphaApp(){
        teaReady={livingView.teaReady}
        onTeaBreak={()=>{void handleTeaBreak();}}
        previewActivity={previewAct}
+       finance={financeExplanation}
       />
      ):(
-      <JournalHub view={view} english={english} locked={locked} tab={journalTab} setTab={setJournalTab} send={send} hideTabs previewActivity={previewAct}/>
+      <JournalHub view={view} english={english} locked={locked} tab={journalTab} setTab={setJournalTab} send={send} hideTabs previewActivity={previewAct} finance={financeExplanation}/>
      )}
     </StageHubShell>
    )}

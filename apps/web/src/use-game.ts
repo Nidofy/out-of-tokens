@@ -5,6 +5,8 @@ import type {UiFeedback,FeedbackTarget,PresentationEvent} from './presentation-e
 import type {SwitchConfirmRequest,UiSaveStatus} from './save-status-ui.js';
 import {createSaveEncoder} from './save-encoder-host.js';
 import type {ManagedSaveEncoder} from './save-encoder-host.js';
+import {acceptSuggestionResult,createSuggestionClient} from './experience-worker-host.js';
+import type {ManagedSuggestionClient,SuggestionTimingSample} from './experience-worker-host.js';
 import {useEffect,useRef,useState} from 'preact/hooks';
 import {
  BrowserSaves,
@@ -16,7 +18,7 @@ import {
  matchesRevision,
  switchImportedSession
 } from 'oot-platform';
-import type {LineageMapStorage,SaveSlot,SaveStatus,SaveStorage,StoredSave,WritableSlot} from 'oot-platform';
+import type {Draft,LineageMapStorage,SaveSlot,SaveStatus,SaveStorage,StoredSave,SuggestResult,WritableSlot} from 'oot-platform';
 import type {Command} from 'oot-core';
 import {content} from './content.js';
 
@@ -93,6 +95,7 @@ export function useGame(){
 
  const coordinatorRef=useRef<CheckpointCoordinator|null>(null);
  const encoderRef=useRef<ManagedSaveEncoder|null>(null);
+ const suggestionClientRef=useRef<ManagedSuggestionClient|null>(null);
  const lastKnownAutoRevRef=useRef(0);
  const importedUnsavedRef=useRef(false);
  const unsubRef=useRef<(() => void)|null>(null);
@@ -255,6 +258,7 @@ export function useGame(){
   mountedRef.current=true;
   let live=true;
   encoderRef.current=createSaveEncoder();
+  suggestionClientRef.current=createSuggestionClient();
   active.current=(async()=>{
    try{
     const rows=await storage.list();
@@ -300,6 +304,8 @@ export function useGame(){
    coordinatorRef.current=null;
    encoderRef.current?.dispose();
    encoderRef.current=null;
+   suggestionClientRef.current?.dispose();
+   suggestionClientRef.current=null;
    void storage.close().catch(()=>{});
   };
  },[session,storage]);
@@ -580,10 +586,26 @@ export function useGame(){
   if(ok)setExportedInSwitchModal(true);
  };
 
+ const requestSuggestions=async(
+  jobId:string,
+  draft:Draft
+ ):Promise<{result:SuggestResult;timing:SuggestionTimingSample}|null>=>{
+  const client=suggestionClientRef.current??(suggestionClientRef.current=createSuggestionClient());
+  const cloneStart=performance.now();
+  const snapshot=session.workerSnapshot();
+  const snapshotCloneMs=performance.now()-cloneStart;
+  const {result,timing}=await client.suggest(snapshot,snapshotCloneMs,jobId,draft);
+  const current=session.workerSnapshot();
+  if(!acceptSuggestionResult(result,current,draft.draftKey)){
+   return null;
+  }
+  return {result,timing};
+ };
+
  return{
   lab,feedback,dismissFeedback,dismissLocalFeedback,reconcile,reconcileEmpty,hosted,session,view,busy,records,
   lineageId,saveStatus,pendingSwitch,exportedInSwitchModal,
-  send,load,save,exportFile,importFile,retrySave,
+  send,load,save,exportFile,importFile,retrySave,requestSuggestions,
   requestLoad,requestImportFile,requestRestart,confirmPendingSwitch,cancelPendingSwitch,exportFromSwitchModal,
   refresh:()=>run(list)
  };
