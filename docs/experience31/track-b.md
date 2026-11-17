@@ -1,3 +1,15 @@
+# W2 service release — 2026-11-17
+
+Registered SHA bda560cbc097d535d8462f92d6ac2a497e9e6cec on experience-core-wave1 (same isolated B worktree). A may merge this fixed SHA; it includes registered W1 baseline 7a9f3df. All ExperienceSession methods now implemented; actual Worker candidate function exported. Contract remains v1, only planned methods activated. No A implementation merged or edited.
+
+Bounded deterministic search: <=256 evaluations, deduplicated stable 0–3 winners, draft/revision/lineage binding, no spending/dispatch, core conditional forecasts. Capacity/duo/finance use core helpers; clarify-only duo never counts as job benefit; finance separates liabilities and last-ten-row cash flow. App-layer migration matrix covers every duo/mode/category/period/lock and capacity/ledger known-correct cases; core has no Web dependency. A still owns deleting its rule copies.
+
+pnpm check 50 files/444 tests PASS; staged diff check PASS. Main/Worker pure output equal, invalid and truncated cases covered. Node fixed-sample profile 5 warmups/30 samples: opening176 evaluations p95 4.7010ms/max4.7171ms; controlled-full-roster256 p95 7.0569ms/max8.4487ms. Browser scheduling/clone/transfer and real Worker tests still open. Evidence ../commission-evidence/experience31/w2/bda560cbc097d535d8462f92d6ac2a497e9e6cec/.
+
+H4 B rule services ready, not integrated acceptance. Remaining six art assets still gated by A's two-sample crop approval; H2/H3 Host/browser/performance gates unchanged. H5 prose and complete asset set pending, H6 pending. Main unchanged, no push/deployment, historical HOLD retained. B continues independent narrative content while A integrates.
+
+Earlier records follow.
+
 # Published B W1 service baseline — 2026-11-17
 
 Release SHA: 7a9f3df6f120fd8fac1c955580cc70f934a6ff03 (experience-core-wave1, D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-core).

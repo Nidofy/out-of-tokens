@@ -1,3 +1,5 @@
+2026-11-17 B W2 services bda560cbc097d535d8462f92d6ac2a497e9e6cec: bounded candidates, Worker pure entry, capacity/duo/finance explanations, compile-time complete ExperienceSession. pnpm check50/444 PASS; Node search diagnostics within50ms (not browser acceptance). A integration/art sample approval and H2-H6 acceptance remain open; see experience31/track-b.md.
+
 2026-11-17 B W1 service release 7a9f3df6f120fd8fac1c955580cc70f934a6ff03: current-slot preview, seven learning facts/factual receipts, two Art-Batch 7 samples (95856 bytes), A-signed design assembly. pnpm check 49/436 PASS. Registered for A integration; H2/H3 acceptance and amended long-input acknowledgement remain open; see experience31/track-b.md. Next B W2 services; main/VF5 HOLD unchanged.
 
 2026-11-17 Living Studio 3.1 Track B revision 2: 424045da7bfa0ddcff10f190ec5d869be5ab699e; boundary prefix queue, activity previews, validated import switch, Host lineage mapping, nine fixtures and production graph guard. pnpm check 47 files/427 tests PASS. C0 not frozen, H2/H3 not released; Host rotation and browser/Worker performance remain open. See experience31/track-b.md. VF5/Visual Freeze HOLD unchanged.
