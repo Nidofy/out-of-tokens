@@ -12,8 +12,10 @@
 ## Checkpoint History
 
 ### 1. C0 — Design Deliverables & Unified Contract Co-Signature (2026-11-17)
-- **Implementation SHA**: *(pending commit)*
-- **Record SHA**: *(pending commit)*
+- **Implementation SHA**: `4c5602b1d8d7788e270a90e3106ea3fffee81e8d`
+- **Record SHA**: *(recorded in subsequent commit)*
+- **Evidence**: `../commission-evidence/experience31/c0/4c5602b1d8d7788e270a90e3106ea3fffee81e8d/`
+- **Check Results**: `pnpm check` passed (`tsc -b`, `eslint packages apps`, `45` test files / `393` tests, `oot-web` + `oot-dsh` builds); `git diff --cached --check` passed; protected paths `0 diff` vs `d18241a`.
 - **Owned Files Created**:
   - `docs/experience31/ux-c0.md` — 6 Mermaid state diagrams (Save Lifecycle, Two-State Session Switch Barrier, NextPeriodPreview, ActivityPreview, 7 Learning Nodes, Candidate Search/Worker), 5-viewport wireframes (`1280×720`, `768×1024`, `844×390`, `560×800`, `390×844`), SwitchConfirmDialog modal spec, full bilingual reason-code table + unknown fallback, action priority ladder, keyboard/focus/reduced-motion rules, and Track B `663071a` Contract v1 co-sign review.
   - `docs/experience31/art-slots.md` — 8 Art-Batch 7 slot specs (`outcome-tea-menu`, `outcome-cafe-sign`, `outcome-community-web`, `outcome-bookshop-system`, `outcome-bookshop-guide`, `outcome-workshop-display`, `vignette-rest-corner`, `vignette-first-delivery`), 5-viewport dimensions/crops, `object-position`, WCAG AA safe zones, CSS-only dark scrims, `loading="lazy"` + failure/offline fallbacks, and W1 2-sample approval gate.
