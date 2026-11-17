@@ -5,7 +5,8 @@
 - 核对基线：`codex/m1-foundation @ a8af2ab`（实现基线；四份文档在本次 D0 本地提交归档）
 - 分工前提（用户指定）：**Gemini = 前端、UI、交互、视觉、演出；Codex = 后端规则、玩法派生、内容、美术资源制作，并兼任唯一合流负责人。**
 - 修订状态：2026-11-17 已按用户五项裁决同步修订本文与主方案。本文保留审查依据并补齐执行细节；两份原始可玩性报告不改。不代表 C0 接口或任何产品任务已实现。
-- 执行优先级：用户最新裁决 → 已修订主方案与本文 → 历史审查建议。D0 文档归档先于 C0 技术契约冻结；不再存在待用户拍板事项。
+- 执行优先级：用户最新裁决 → 已修订主方案与本文 → 历史审查建议。D0 文档归档先于 C0 技术契约冻结。
+- R2 修订：2026-11-17 按[第二轮审核](LIVING_STUDIO_3_1_PLAN_REVIEW_R2_20261117.md)并入 N1–N7；用户已批准裁决 6（边界备份）与裁决 7（暂停态经确认切换）。当前无待拍板事项。
 
 ---
 
@@ -50,7 +51,7 @@
 |---|---|---|---|
 | R1 | **高** | **前端仍有规则副本，归属与原方案“B 管规则”冲突。** `living-adapter.ts` 的 `evaluateTeamDuos` 自行判断搭档协同是否生效，与核心的 `activeJobDuos` 重复实现（上一轮 W2-02 正是在这里出的 bug）。`scene-layout.ts` 的 `actorEffectiveContext / isActorOverloaded / activeStationBonus`、`living-adapter.ts` 的 `resolveStopReason`、`ui2-logic.ts` 的 `advancePeriodInfo / ledgerWindowSummary` 也属于规则推断，而这些文件都归 A。 | 新增 **EXP-14 规则唯一来源迁移**，按 §3.2 的迁移表执行：**B 先导出核心派生并写对照测试 → A 改为调用 → A 删除副本**。原方案 §6.1 第 7 条升级为正式任务，放在 W1 后半到 W2。 |
 | R2 | **高** | 克隆状态执行 `advance` 仍然偷看随机结果；全字段无条件相等也可能迫使实现者偷看 | 独立纯派生；529/419 步逐状态预览、只在原命令为 advance 时对照真实推进，确定字段严格一致，条件字段按明确前提和受控 fixture 核验（§3.10） |
-| R3 | **高** | 保存与命令共用 busy 会锁界面；同步重放即使包装为 async 仍阻塞；切换会话有旧写入竞态 | 命令完成解除 busy，协调器最多一份在写、一份待写。切换前锁新命令并 drain；失败留在当前会话，不能用 cancelPending 代替。auto 只有一个写入口，CPU 阻塞另测（§3.4） |
+| R3 | **高** | 保存与命令共用 busy 会锁界面；同步重放即使包装为 async 仍阻塞；切换会话有旧写入竞态 | 命令完成解除 busy，协调器最多一份在写、一份待写。切换前锁新命令并 drain；paused/error/存储不可用时经二次确认（可导出）后 `abandonPending` 再切换，正常态不得以此代替 drain（R2/N2、裁决 7）。命令检查点不轮转备份（R2/N1、裁决 6）。auto 只有一个写入口，CPU 阻塞另测（§3.4） |
 | R4 | 中 | seed 或固定 slot 名称都不能区分周目 | 已批准平台槽位 `meta.lineageId`；新局/成功重开/导入新建，读同一槽沿用；Host 缺少身份映射时安全重置（§3.5） |
 | R5 | 中 | **共享热点文件没有归属**：`apps/web/vite.config.ts`、`apps/web/package-verification.test.ts`（离线清单 / 体积断言，新图会影响它）、根 `package.json`、`vitest.config.ts`、tsconfig 引用、`pnpm-lock.yaml`、`office-lab.ts`（`LabSaves` 要适配协调器接口）、`presentation-events.ts`、`harness/build-log.md`。 | 见 §3.1 的补充矩阵。原则：构建与离线类归 B；Web 运行时类归 A；依赖变更一律要合流负责人批准，本轮默认不新增依赖。 |
 | R6 | 中 | **文案归属有歧义。** 原方案同时写了“A 在 adapter 中映射双语文案”和“B 新表现文案 `experience-copy.ts`”。原因码说明、按钮文字、交付回执、搭档对话分别归谁，没有说清楚。 | 拆成两类：**界面文案**（原因码标签、按钮、提示、空态）归 A，放在 `experience-ui-copy.ts`；**叙事内容**（回执模板、搭档短链、客户回信）归 B，放在 `content/presentation/experience-v1.json` + 校验 + `experience-copy.ts`。两边都只用原因码和事实标签对接。 |
@@ -71,12 +72,12 @@
 
 | 文件 / 范围 | 所有者 | 说明 |
 |---|---|---|
-| `packages/oot-core/**`（新增派生，不改结算）、`packages/oot-platform/**`（会话预览、`CheckpointCoordinator`、存储 `meta`） | B | 公开入口只经 `index.ts` 导出 |
-| `packages/oot-platform/src/fixtures.ts`（拟新增，仅测试与开发使用） | B | 用独立开发/测试包入口导出 `experienceFixture(name)`；A 的开发加载受 visualReviewEnabled 与构建条件共同保护；生产入口不得引用，发布包按依赖图及产物校验隔离 |
+| `packages/oot-core/**`（新增派生，不改结算）、`packages/oot-platform/**`（会话预览、`CheckpointCoordinator`、`SaveEncoder` 接口与默认实现、存储 `meta` 与轮转策略） | B | 公开入口经 `index.ts`；Worker 纯函数经子路径 `oot-platform/worker` 导出 |
+| `packages/oot-platform/src/fixtures.ts`（拟新增，仅测试与开发使用） | B | 经子路径 `oot-platform/fixtures` 导出 `experienceFixture(name)`，不从 `index.ts` 导出；A 的开发加载受 visualReviewEnabled 与构建条件共同保护；生产入口不得引用，发布包按依赖图及产物校验隔离 |
 | `content/presentation/experience-v1.json` + 校验器 + `apps/web/src/experience-copy.ts` | B | 不进入参与哈希的 Content |
 | `art/art-batch-7/**`、`apps/web/public/art/experience/**`、`apps/web/src/experience-art.ts` | B | 只提供纯路径映射，不写布局 |
 | `apps/web/package-verification.test.ts`、`apps/web/vite.config.ts`（离线 / 构建） | B | 新图会改变资源清单和体积，由出图方同步更新断言 |
-| `apps/web/src/**` 其余全部，含 `use-game.ts`、`office-lab.ts`（`LabSaves` 适配）、`presentation-events.ts`、`ui2-logic.ts`、`living-adapter.ts`、`scene-layout.ts`、新增 `experience-adapter.ts`、`experience-ui-state.ts`、`experience-ui-copy.ts`、必要的 Worker 宿主 | A | 规则副本删除等 B 提供接口后执行（§3.2）；UI 文案归 A，回执等叙事文案归 B |
+| `apps/web/src/**` 其余全部，含 `use-game.ts`、`office-lab.ts`（`LabSaves` 适配）、`presentation-events.ts`、`ui2-logic.ts`、`living-adapter.ts`、`scene-layout.ts`、新增 `experience-adapter.ts`、`experience-ui-state.ts`、`experience-ui-copy.ts`、必要的 Worker 宿主（候选搜索 Worker；可选的 `SaveEncoder` Worker 实现） | A | 规则副本删除等 B 提供接口后执行（§3.2）；UI 文案归 A（含存档界面备份说明、暂停态切换确认框），回执等叙事文案归 B；Worker 只调用 `oot-platform/worker`，不得从 `GameView` 拼装 `State` |
 | 根 `package.json`、`vitest.config.ts`、`tsconfig*.json`、`pnpm-lock.yaml` | 合流负责人 | 本轮默认不改；新增 package export 时由 B 提出、合流负责人合入 |
 | `docs/STATUS.md`、任务台账、`harness/build-log.md`、证据索引 | 合流负责人 | 两条线程只写各自的 `docs/experience31/track-*.md` |
 | `docs/experience31/contract.md`、`art-slots.md` | 契约：B 起草、A 会签；插槽：A 起草、B 会签 | 冻结后放进 C0 提交 |
@@ -86,13 +87,13 @@
 
 ### 3.2 规则唯一来源迁移表（EXP-14）
 
-| 当前前端函数 | 文件 | 核心替代接口（B 新增） | 迁移批次 | 对照测试 |
+| 当前前端函数 | 文件 | 替代接口（B 新增；A 一律经 `GameSession` 方法调用，接收 `State` 的纯函数仅供 B 内部） | 迁移批次 | 对照测试 |
 |---|---|---|---|---|
-| `evaluateTeamDuos` | `living-adapter.ts` | `explainTeamDuos(state, content, jobId, draftTeam)` → `{duoId, state:'locked'\|'inactive'\|'active', reason}[]`，内部复用 `activeJobDuos` / `sharedDeliveries` | W2 | 在所有搭档 × 模式 × 类别 × 同场景矩阵上，新旧结果一致；不一致处逐条裁决是否本就是 bug |
-| `actorEffectiveContext`、`isActorOverloaded`、`activeStationBonus` | `scene-layout.ts` | `explainActorCapacity(state, content, actorId)` | W2 | 与核心实际结算使用的上下文和工位加成对比 |
-| `resolveStopReason` | `living-adapter.ts` | 纳入 `previewNextPeriod().stops` | W1 | 与真实推进后的停工名单一致 |
-| `advancePeriodInfo` | `ui2-logic.ts` | 改为消费 `previewNextPeriod()` | W1 | A 侧快照测试 + B 侧等价性门禁 |
-| `ledgerWindowSummary` | `ui2-logic.ts` | `explainFinance(state)`（EXP-09） | W2 | 现金 / 贷款 / 未完成预付款 / 净偿付资金 / 未来账单逐项对账 |
+| `evaluateTeamDuos` | `living-adapter.ts` | `session.explainTeamDuos(jobId, draftTeam)` → `{duoId, state:'locked'\|'inactive'\|'active', reason}[]`，内部复用 `activeJobDuos` / `sharedDeliveries` | W2 | 在所有搭档 × 模式 × 类别 × 同场景矩阵上，新旧结果一致；不一致处逐条裁决是否本就是 bug |
+| `actorEffectiveContext`、`isActorOverloaded`、`activeStationBonus` | `scene-layout.ts` | `session.explainActorCapacity(actorId)` | W2 | 与核心实际结算使用的上下文和工位加成对比 |
+| `resolveStopReason` | `living-adapter.ts` | 纳入 `session.previewNextPeriod().stops` | W1 | 与真实推进后的停工名单一致 |
+| `advancePeriodInfo` | `ui2-logic.ts` | 改为消费 `session.previewNextPeriod()` | W1 | A 侧快照测试 + B 侧等价性门禁 |
+| `ledgerWindowSummary` | `ui2-logic.ts` | `session.explainFinance()`（EXP-09） | W2 | 现金 / 贷款 / 未完成预付款 / 净偿付资金 / 未来账单逐项对账 |
 
 流程分 3 步，每一步单独提交：
 
@@ -128,9 +129,24 @@ export interface NextPeriodPreview {
 export interface ActivityPreview {
   revision: number; legal: boolean; error?: string;   // 复用核心错误码
   cash: number; research: number;                     // 确定值
-  occupiesSlot: boolean; skipsNightRecovery: boolean;
+  occupiedSlots: number;                              // 0 = 不占用；train=8、align=4 等以核心为准
+  occupiesUntil: number | null;                       // 预计 busyUntil
+  skipsNightRecovery: boolean;                        // 深夜活动 / overtime
+  joinsOvertime: boolean;
+  relocatesTo: string | null;                         // 例如训练移至 library
   gains: Fact[]; losses: Fact[];                      // 心情 / 好感等确定增量；不确定的标 conditional
 }
+// GameSession 方法（A 调用）：
+//   previewNextPeriod(): NextPeriodPreview
+//   previewActivity(command: Command): ActivityPreview      // 覆盖所有改变 busyUntil / overtime / location 的命令
+//   explainTeamDuos(jobId, draft) / explainActorCapacity(actorId) / explainFinance()
+//   suggestAssignments(jobId, draft): SuggestResult
+//   getExperienceView(): { learning; goal; receipts }       // 不含规则解释
+//   workerSnapshot(): WorkerSnapshot
+
+export interface WorkerSnapshot { contract: number; contentVersion: string; revision: number; lineageId: string; seed: number; state: unknown /* 结构化克隆的 State，A 不读取字段 */; }
+// oot-platform/worker（纯函数，A 的 Worker 导入）：
+//   suggestAssignmentsFromSnapshot(content, snapshot, jobId, draft): SuggestResult
 
 export interface AssignmentSuggestion {
   id: string; kind: 'save-resources' | 'stable-quality' | 'fast-delivery';
@@ -146,12 +162,19 @@ export type SaveStatus =
   | { kind: 'paused'; revision: number; cause: 'external-change' | 'conflict' | 'auto-paused' }
   | { kind: 'error'; revision: number; code: string; exportable: true };
 
+export interface SaveEncoder {                 // 接口与默认实现归 B；A 可注入 Worker 实现
+  encode(input: { content: Content; seed: number; commands: readonly unknown[]; state: unknown }): Promise<string>;
+}
+export type WritePolicy = 'checkpoint' | 'boundary'; // checkpoint 只覆盖 auto；boundary 在同一事务内轮转 backup-1..5
+
 export interface CheckpointCoordinator {
-  enqueue(reason: 'command' | 'import' | 'load' | 'restart' | 'host-checkpoint'): void; // 捕获一致快照后排队，不同步重放
-  drain(): Promise<SaveStatus>;          // 切换前先锁新命令；error/paused 时禁止继续切换
+  enqueue(reason: 'command' | 'host-checkpoint' | 'day-end' | 'restart' | 'import' | 'load'): void; // 捕获一致快照后排队；day-end/restart/import/load 使用 boundary 策略
+  drain(): Promise<SaveStatus>;          // 正常态切换屏障；先锁新命令
+  abandonPending(confirmed: true): void; // 仅 paused/error/存储不可用且用户确认后可用；丢弃未开始的待写，不取消已提交写入
   retry(): Promise<SaveStatus>;          // 只重试写入，绝不重发命令
   subscribe(fn: (s: SaveStatus & { lineageId: string }) => void): () => void;
   readonly lineageId: string;
+  readonly canSwitchWithoutConfirm: boolean; // 正常态为 true；A 据此决定是否弹二次确认
 }
 ```
 
@@ -173,15 +196,24 @@ sequenceDiagram
     UI->>UI: setView, busy=false (不等写入)
     UI->>C: enqueue('command')
     C->>C: 待写槽 = revision n (覆盖更早的待写)
-    C->>D: write(auto, snapshot n, expectedRevision)
+    C->>D: write(auto, snapshot n, expectedRevision, policy=checkpoint)
     D-->>C: ok
     C-->>UI: subscribe: saved(n)，前提是 n 仍是最新；否则保持 dirty
-    Note over UI,C: 导入 / 加载 / 重开：锁新命令，drain 成功后切换；失败保留当前会话
+    Note over C,D: DayEnd / Restarted / 导入 / 读档成功：policy=boundary，同一事务内轮转 backup-1..5
+    Note over UI,C: 正常态切换：锁新命令 → drain 成功 → 切换
+    Note over UI,C: paused / error / 存储不可用：二次确认（可导出）→ abandonPending → 切换；取消则不变
     Note over C,D: CAS 冲突 / 外部更改 → paused，不自动刷新 expectedRevision
 ```
 
 - **快照与执行分离**：当前 `exportSave()` 第一个 await 前还会执行 replay 等同步工作，不能在 enqueue 中直接调用然后宣称“后台”。先捕获同一 `{lineageId, revision}` 的不可变状态/日志，再由调度器执行导出和写入；最多一份在写、一份待写，新快照替换尚未开始的旧快照。不能事后从已变化的 session 导出旧 revision。
-- **busy 门禁**：保存失败不会回滚业务。普通命令可以在保存中继续执行；导入、加载、重开先锁新命令，再 drain 当前队列，成功才切换。error/paused 时中止切换，提供重试与内存导出；导出当前内存快照是失败恢复通道，不能要求保存先成功。取消待写不能代替 drain，旧周目回调需按 lineage 过滤。
+- **busy 门禁与两态切换屏障（裁决 7）**：保存失败不会回滚业务，普通命令可以在保存中继续执行。导入、加载、重开时：
+  - 正常态（`canSwitchWithoutConfirm`）：先锁新命令，再 drain 当前队列，成功才切换；drain 中途转入异常则按下一条处理。
+  - paused / error / 存储不可用：A 弹出二次确认（“当前内存进度尚未保存，将被所选存档替换”），确认框内提供可用的“导出当前进度”；确认后 `abandonPending(true)` 再切换，取消则留在当前会话。这保留了现有“先载入最新档”“存储不可用时导入继续玩”两条恢复路径。
+  - 正常态不得用 `abandonPending` 代替 drain；已提交的写入不能取消；旧周目回调按 lineage 过滤。切换成功后清除 paused、恢复自动保存；存储不可用时显示“已载入但尚未保存”。
+- **备份轮转策略（裁决 6）**：`write()` 新增 `policy`。`checkpoint`（命令检查点、host checkpoint）只覆盖 `auto`；`boundary`（DayEnd、Restarted、成功导入、成功读档）在同一事务内执行现有的 `auto → backup-1 … backup-5` 轮转。测试：连续 50 个命令后 `backup-1` 仍为上一个边界节点。存档界面说明改为“最近 5 个跨日/边界节点”（A 的界面文案）。
+- **关页兜底**：`visibilitychange → hidden` 时尽力 drain 一次，不作为正确性依据，也不显示“已保存”。
+- **多标签**：按命令保存后广播更频繁，其他标签会更快进入暂停；浏览器验收覆盖双标签交替操作下的暂停提示与恢复路径。
+- **SaveEncoder**：协调器只依赖 `SaveEncoder`。默认实现在主线程调用 `saveBrowser`；超预算时 A 可注入 Worker 实现（Worker 宿主与传输成本测量归 A），B 提供“默认实现与注入实现对同一输入逐字节相同”的测试。
 - **hosted checkpoint**：`oot:checkpoint` 消息改为调用 `enqueue('host-checkpoint')` + `drain()`，回执沿用原来的 `{id, ok}`，DSH 协议不变。
 - **LabSaves**：A 在 `office-lab.ts` 中实现协调器要求的存储接口（接口定义由 B 提供），实验室模式仍然只用内存。
 - **UI 表达**：常驻状态显示低干扰的“已保存 / 保存中”；出现 `error`、`paused` 时显示可聚焦的横幅（含导出按钮），不会被普通成功提示或 BarkOverlay 覆盖。
@@ -192,7 +224,7 @@ sequenceDiagram
 ### 3.5 lineage 方案
 
 - B 在 `StoredSave` 上增加可选字段 `meta?: { lineageId: string }`，不进入导出文本/Content/State/hash。保持现有 keyPath；C0 验证旧记录、备份和适配器兼容后再决定具体实现，不预设所有存储后端都无须调整。
-- 新局、`restart` 成功、文件导入时生成新的 UUID；加载某个槽位时沿用该槽的 `lineageId`；自动档写入时带上当前值。
+- 新局、`restart` 成功、文件导入时生成新的 UUID；加载某个槽位时沿用该槽的 `lineageId`；自动档写入时带上当前值。`meta` 与 `text/revision/savedAt` 写在同一条记录里；备份轮转复制整条记录，所以读取旧备份时恢复该时期的 lineage，这是预期行为。
 - UUID 仅由宿主随机源生成，不消费核心 RNG。相同 seed 仍有不同 lineage；失败/取消导入或重开不得切换 ID。旧槽位缺少 meta 时生成，并在下一次合法 CAS 写入一同保存，不为了偏好静默覆盖档案。
 - HostSaves 不支持 meta 时，B 用与存储 CAS 身份绑定的本地映射；不能用 `hosted:<slot>` 这种固定值识别周目。无法可靠关联时生成新 UUID，并一次性提示“阅读与引导偏好已重置”；领域奖励按原档恢复，DSH 协议不变。
 - A 的本地展示元数据（已读、折叠、学习节点的“已看过”）一律放在 `oot-ui:<lineageId>:*` 下，并设上限：最多保留最近 8 个 lineage，更早的清理掉。
@@ -228,10 +260,10 @@ flowchart TD
       A0 --> H1
     end
     subgraph W1["W1 看得懂、能恢复（最小完整交付）"]
-      BW1a["B: CheckpointCoordinator + lineage + 存储故障测试"]
-      BW1b["B: previewNextPeriod / previewActivity + 等价性门禁 + 学习事实"]
-      AW1a["A: 保存状态 UI + use-game 接线 (fixture)"]
-      AW1b["A: 推进摘要、生活占槽、学习节点、群聊已读"]
+      BW1a["B: CheckpointCoordinator + 边界备份 + 两态切换屏障 + lineage + 存储故障测试"]
+      BW1b["B: previewNextPeriod / previewActivity(全部占用命令) + 等价性门禁 → 学习事实(可移 W2)"]
+      AW1a["A: 群聊已读 / 首单说明 / 保存横幅 / 切换确认框 (fixture) → use-game 接线"]
+      AW1b["A: 推进摘要、生活占槽(含训练/对齐/加班)、学习节点"]
       ART1["B: 两张样张 (菜单 / 休息角)"]
       H2(("H2 A 合入 B-W1a，真实保存联调"))
       H3(("H3 A 合入 B-W1b，W1 集成验收"))
@@ -272,7 +304,8 @@ flowchart TD
 **防止空等的规则**：
 
 - C0 期间 A 不写生产代码，只做设计产物。
-- W1 前半 A 用 fixture 开发。
+- W1 前半 A 用 fixture 开发，并优先做不依赖 B 真实服务的卡片：A-W1-5 群聊已读、A-W1-6 首单说明、A-W1-1 中的保存横幅与暂停态切换确认框（R2/N7）。
+- B 的 W1 顺序固定：保存协调器/备份/切换屏障/lineage → 预览 → 学习事实 → 样张；学习事实超期可移 W2 开头，不影响 W1 最小交付（保存 + 预览）。
 - B 的 W2 规则派生可以在 H3 之前开始，只要不改动已冻结的契约字段。
 
 ### 3.8 每条线程的任务卡
@@ -284,13 +317,13 @@ flowchart TD
 | A-C0-1 状态图与五视口线框 | C0 | 全部 | — | `docs/experience31/ux-c0.md`：保存状态、推进摘要、生活占槽、学习节点、候选对比的线框（5 视口），以及主行动优先级 |
 | A-C0-2 插槽规格 | C0 | 美术 | — | `art-slots.md`：8 个插槽的比例、安全区、焦点、暗色处理、加载失败时的空态 |
 | A-C0-3 原因码表 | C0 | 全部 | B 的契约草案 | 每个 reason 有中英标签和兜底文案，先在设计文档会签；H1 后落入 experience-ui-copy.ts |
-| A-W1-1 保存状态与接线 | W1 | EXP-01 | H1 fixture → H2 真实服务 | 按 §3.4 接线；错误/暂停横幅可聚焦、可导出；普通 Web 在“接单 / 派遣 / 赠礼 / 群聊回复 / 交付”后等到“已保存”再刷新，状态一致 |
+| A-W1-1 保存状态与接线 | W1 | EXP-01 | H1 fixture → H2 真实服务 | 按 §3.4 接线；错误/暂停横幅可聚焦、可导出；暂停态切换二次确认框（含导出、取消不变）；存档界面备份说明改为“最近 5 个边界节点”；普通 Web 在“接单 / 派遣 / 赠礼 / 群聊回复 / 交付”后等到“已保存”再刷新，状态一致；外部更改暂停后可经确认读最新档 |
 | A-W1-2 推进摘要 | W1 | EXP-03 | `previewNextPeriod` | HUD 与 StageHub 共用同一份预览；夜间无加班时不暗示合同会工作；展开说明不会触发 `advance` |
-| A-W1-3 生活占槽 | W1 | EXP-02 | `previewActivity` | 深夜 chat/gift/meal/study/story 在按钮旁写明“占用个人时段 · 将跳过今晚恢复”；群聊不标占槽 |
+| A-W1-3 生活占槽 | W1 | EXP-02 | `previewActivity(command)` | 深夜 chat/gift/meal/study/story 写明“占用个人时段 · 将跳过今晚恢复”；训练/对齐写明占用时长与移至图书馆；加班写明睡眠代价；群聊不标占槽；文案只消费预览字段，不自行推算 |
 | A-W1-4 学习节点 | W1 | EXP-04 | 学习事实 + lineage | 七个节点可跳过、重看；CTA 指向具体动作；新 lineage 不继承隐藏状态 |
 | A-W1-5 群聊已读 | W1 | EXP-05 | lineage | 进入正文才标为已读；红点只看已读状态；仍可稍后回复一次 |
 | A-W1-6 首单说明 | W1 | EXP-06（前半）、EXP-07 | 现有 forecast | 首单显示验收线和“为什么适合”，数字全部来自实时 forecast |
-| A-W2-1 候选对比 | W2 | EXP-06 | `suggestAssignments` | 桌面并排、窄屏纵向，显示草稿差值；主线程单段 ≤50ms，超标必须 Worker；旧结果丢弃 |
+| A-W2-1 候选对比 | W2 | EXP-06 | `suggestAssignments` / `workerSnapshot` + `oot-platform/worker` | 桌面并排、窄屏纵向，显示草稿差值；主线程单段 ≤50ms，超标必须 Worker（经 `workerSnapshot`，不拼装 State）；结果按 contentVersion/revision/lineage 校验；旧结果丢弃 |
 | A-W2-2 补救与财务 | W2 | EXP-06、EXP-09 | `explainFinance` | 失败后的真实补救路径；净偿付资金不叫“利润” |
 | A-W2-3 沿用队伍 | W2 | EXP-11 | `previewAssignment` | 只预填草稿，重新校验后由玩家确认，不自动花钱或派遣 |
 | A-W1/2-4 删除规则副本 | W1 → W2 | EXP-14 | B 对应接口和对照已发布 | W1 先迁移停工/推进，W2 收口协同/容量/财务；覆盖五类规则及所有 helper，living-ui 回归通过 |
@@ -301,13 +334,13 @@ flowchart TD
 
 | 卡片 | 批次 | 对应 EXP | 依赖 | 完成定义 |
 |---|---|---|---|---|
-| B-C0-1 契约与 fixture | C0 | 全部 | — | `experience-contract.ts`、`fixtures.ts`（至少包括：首单、深夜 E40/负载 5、加班、有待验收、云额度停工、保存冲突），可编译、有测试 |
-| B-C0-2 存储接口与资产规格 | C0 | EXP-01、美术 | A-C0-2 | 存储接口供 Browser/Host/Lab 三方实现；按插槽规格写出提示词草案 |
-| B-W1-1 保存协调器与 lineage | W1 | EXP-01 | — | 覆盖：连续命令、延迟写、写失败、CAS、多标签、导入/加载/重开交错；529/419 步日志的保存耗时基线（见 R12） |
-| B-W1-2 推进与活动预览 | W1 | EXP-02、EXP-03 | — | 确定性派生、不调用 `advance`；等价性门禁通过；调用前后状态、哈希、RNG、日志都不变 |
+| B-C0-1 契约与 fixture | C0 | 全部 | — | `experience-contract.ts`（含唯一接口总表、`SaveEncoder`、`WritePolicy`、`WorkerSnapshot`）、`oot-platform/fixtures`（至少包括：首单、深夜 E40/负载 5、加班、训练中、有待验收、云额度停工、保存冲突、外部更改暂停、存储不可用），可编译、有测试 |
+| B-C0-2 存储接口与资产规格 | C0 | EXP-01、美术 | A-C0-2 | 存储接口（含 `policy` 参数）供 Browser/Host/Lab 三方实现；按插槽规格写出提示词草案 |
+| B-W1-1 保存协调器、备份策略、切换屏障与 lineage | W1 | EXP-01 | — | 覆盖：连续命令、延迟写、写失败、CAS、多标签、导入/加载/重开交错；50 命令后备份不变、边界写入轮转；暂停态 / 存储不可用下经确认切换成功、取消不变；`SaveEncoder` 默认实现；529/419 步日志的保存耗时基线（见 R12） |
+| B-W1-2 推进与活动预览 | W1 | EXP-02、EXP-03 | — | 确定性派生、不调用 `advance`；`previewActivity(command)` 覆盖所有改变 `busyUntil`/加班名单/location 的命令并逐动作对照真实执行；等价性门禁通过；调用前后状态、哈希、RNG、日志都不变 |
 | B-W1-3 学习事实 | W1 | EXP-04 | — | 七个节点只从成功命令或状态投影得出，增量更新，不在 render 中全日志重算 |
 | B-W1-4 样张 | W1 | 美术 | A-C0-2 | 菜单与休息角两张，manifest 和体积达标，交 A 复核 |
-| B-W2-1 候选搜索 | W2 | EXP-06 | — | 有界搜索（≤256）、固定排序、去重、返回截断信息；不写日志、不自动买资源 |
+| B-W2-1 候选搜索 | W2 | EXP-06 | — | 有界搜索（≤256）、固定排序、去重、返回截断信息；不写日志、不自动买资源；`workerSnapshot` 与 `oot-platform/worker` 纯入口，主线程版与 Worker 版同输入同输出 |
 | B-W1/2-2 规则派生迁移 | W1 → W2 | EXP-14、EXP-09 | C0 | §3.2 五类规则；W1 先交停工/推进接口，W2 交协同/容量/财务；应用层新旧对照不反向污染核心依赖 |
 | B-W2-3 剩余 6 张图 | W2 | 美术 | 样张已放行 | 总计 8 张 ≤900KB；更新 `package-verification` 断言；保护资产哈希不变 |
 | B-W3-1 事实回执与叙事内容 | W3 | EXP-08、EXP-07 | — | `experience-v1.json` 有校验；18 组回执 + 2 组搭档 × 3 阶段；只引用真实证据，证据缺失用中性文本 |
@@ -331,6 +364,10 @@ flowchart TD
 | 候选计算 | 桌面主线程单次阻塞 ≤50ms，超标迁至 Worker；Worker 复制/传输仍计入主线程预算，不以“用了 Worker”自动通过 | 阻断 W2 |
 | 规则副本 | rg 检索 §3.2 函数及相关 helper，再代码审查/行为对照；纯展示包装可留，改名复制公式不算迁移完成 | 阻断 W2 |
 | fixture 隔离 | 开发入口按构建条件隔离；检查生产依赖图、产物与运行时入口不可达，不能仅搜索压缩后函数名 | 阻断合流 |
+| 备份策略（裁决 6） | 50 个命令检查点后备份不变；DayEnd/Restarted/导入/读档才轮转，且与 auto 同一事务；旧记录与 meta 兼容 | 阻断合流 |
+| 暂停态切换（裁决 7） | 外部更改暂停、CAS 冲突、写失败、存储不可用四种情形：确认前可导出、确认后可读档/导入/重开、取消不变；正常态仍必须 drain | 阻断合流 |
+| 占用预览覆盖 | 遍历所有改变 `busyUntil`/加班名单/location 的命令，预览与真实执行一致；新增同类命令未覆盖时测试失败 | 阻断 W1 |
+| 编码与 Worker 等价 | `SaveEncoder` 默认/注入实现逐字节相同；候选搜索主线程/Worker 同输入同输出；A 侧无从 `GameView` 拼装 `State` 的代码 | 阻断合流 |
 
 逐轨迹校验不改变历史命令序列：非 advance 步只检查预览纯净性；advance 步保存预览后再执行原命令。随机影响项必须在 C0 指定影响来源与前提，实际结果据事件/状态差分独立提取，不能只用同一个 helper 自证。另有受控无随机影响 fixture 的严格相等测试；blocked 预览要与真实拒绝原因一致。输出确定/条件/blocked 样本计数、失败位置与原轨迹哈希。旧 529/419 fixtures 保持原文件不动，测试驱动另建。
 
@@ -347,11 +384,15 @@ flowchart TD
 | 允许槽位周目 ID | 平台 meta，不进导出文本与领域哈希；Host 缺映射安全重置，不伪造跨周目稳定身份 |
 | 忽略全部真人试玩要求 | EXP-13 取消，相关任务卡、埋点、漏斗、招募、观察和 W4 门禁全部移除；另行反馈不阻塞 |
 | 接受 A 文件合流约束 | Gemini 修复或确认具体补丁；不由 Codex 单方面跨界修复并自认验收 |
+| 裁决 6：边界备份（R2/N1） | 命令检查点只覆盖 auto；DayEnd/Restarted/导入/读档才轮转 5 个备份；存档界面说明同步（§3.4） |
+| 裁决 7：暂停态经确认切换（R2/N2） | 正常态 drain；paused/error/存储不可用时二次确认 + 导出后 `abandonPending` 再切换（§3.4） |
+
+R2 中 N3–N7 及小问题已并入：§3.2 接口改为 `GameSession` 方法；§3.3 增补 `previewActivity(command)`、`WorkerSnapshot`、`SaveEncoder`、`WritePolicy`、`abandonPending`；§3.4 增补关页兜底与多标签；§3.5 写明 meta 与备份的关系；§3.7–3.8 调整 W1 顺序与任务卡；§3.10 增补门禁。
 
 ## 5. 下一步直接执行顺序
 
 1. 从 D0 开始 C0：B 编写契约、纯函数/存储入口、fixture 与性能协议；A 同时产出状态图、五视口线框和 8 个插槽规格。C0 阶段代码草案尚未冻结时，A 只做设计与契约会签。
-2. H1 锁定共同 SHA 后建立 A/B 独立 worktree。A 用 fixture 完成布局，B 优先保存协调器/lineage；只读玩法派生可与保存测试并行推进，不等待整套美术。
+2. H1 锁定共同 SHA 后建立 A/B 独立 worktree。A 先做不依赖真实服务的群聊已读、首单说明、保存横幅与切换确认框；B 优先保存协调器、边界备份、两态切换屏障与 lineage；只读玩法派生可与保存测试并行推进，不等待整套美术。
 3. H2 接真实保存，H3 接真实预览并删除停工/推进副本。两张样张获得 A 的布局确认后，B 制作其余六张。
 4. H4 收口候选、财务、协同/容量与全部规则副本；H5 收口叙事和成果表现；H6 只裁决本轮技术门禁，并单列历史 HOLD。
 5. 每次发布提供固定 SHA、契约版本、改动清单、实际检查与证据；具体交接字段按主方案 §12。代码实现与记录实现 SHA 的状态文档分开提交。当前文档提交不宣称接口、资产或门禁完成。
