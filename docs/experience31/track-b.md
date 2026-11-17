@@ -1,3 +1,13 @@
+# Receipt assessment and W3 integration — 2026-11-17
+
+B implementation checkpoint pending fixed-SHA record; branch experience-core-wave1. Optional receipt.assessment captures quality/passQuality/qualityLines/qualityBreakdown BEFORE successful deliver/rework, via core's public view. No duplicated formula, save field or domain change. Detached projection rebuilds on import. Both natural traces prove all three outcomes, next-phase score reset, rework penalty reset, nested copy independence and byte-identical export/import. B `pnpm check`: **51 files / 453 tests PASS**; focused projection3 PASS. Existing tests were strengthened, not removed.
+
+A committed W3/I1–I3 **0cd7f5af2008e46d9ebd6a41de0b993fb13034b3** merged into integration **ecd9115585b12bb060879b7f38873f0a2ce13313**, full check **52 files / 468 tests PASS**. I1/I2/I3 code/test fixes reviewed. A handoff still H4; no claim of A browser acceptance. New I4 P1 independent audit fails truthfully: accepted multi-phase quality84.96 is displayed as0. A must consume receipt.assessment for modal score/grade/reasons and audit historical rows; missing assessment must stay neutral. See integration-review.md for exact repro and contract.md for compatible API. B has not edited A-owned files or reverse-merged A.
+
+B service/content/art scope is implemented (8 runtime assets458174 bytes). H1 design/input co-sign complete; H2 isolated service measurements recorded but full UI/Host/transfer/pressure acceptance and unchanged-Host rotation contradiction remain; H3/H4 A code integrated, browser acceptance incomplete; H5 narrative/art UI committed but I4 and rendered crop/reduced-motion acceptance open; H6 full check green but 20-configuration W4/fault/offline evidence incomplete. Main remains d18241a; VF5/Visual Freeze HOLD unchanged. Only local commits. Next: publish B assessment SHA for A, merge B into integration, retain failing audit, review the next committed A fix/evidence before main merge.
+
+Earlier records follow.
+
 # Integration progress and A fixes required — 2026-11-17
 
 **Registered B release b204a0770e16e8ceea2048a46d8932404a9e04d2** (record follows separately), branch experience-core-wave1, D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-core. Includes complete art release 29ee478 (all 8 assets, 458174 bytes), W3 narrative, all services and new auto-load regression/browser probe. A may merge this fixed SHA. No A implementation entered B development branch.
