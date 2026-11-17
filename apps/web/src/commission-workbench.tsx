@@ -188,27 +188,39 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
       {job.status==='review'&&!job.settlement.canDeliver&&<small>{tr('未达验收线，请先返工；当前不能结算。','Below the pass line. Rework before settlement.')}</small>}
       {job.status==='waiting'&&<p class="waiting-notice">{waitingText(job,english)}</p>}
 
-      {showSettlement(job.status)&&(
-       <div class="commission-settlement ui2-settlement">
-        <QualitySealSvg score={job.quality} passLine={job.passQuality} tier={sealTier} english={english}/>
-        <div class="commission-payment">
-         <b>{tr('现金变动','Cash change')} ¥{netCash!==null?netCash.toFixed(2):'—'}</b>
-         <DeliverySummary job={job} english={english} settled={settledEntry} persona={resolveClientPersona(activeCatalog,job)} view={view} receipt={experienceView?findLatestJobReceipt(experienceView.receipts,job.id,job.status==='delivered'?undefined:job.phase):undefined}/>
-         {p.software.includes('explain')&&(
-          <div class="ui2-quality-breakdown">
-           <small>{tr('评分构成（基础 / 审查 / 事件 / 隐藏扣分 / 缺陷扣分）','Breakdown (Base / Review / Event / Hidden / Defect)')}</small>
-           <div class="ui2-breakdown-chips">
-            <span>{tr('基础','Base')} {job.qualityBreakdown.base}</span>
-            <span class="is-up">+{job.qualityBreakdown.review} {tr('审查','Rev')}</span>
-            <span>{job.qualityBreakdown.event>=0?`+${job.qualityBreakdown.event}`:job.qualityBreakdown.event} {tr('事件','Evt')}</span>
-            <span class={job.qualityBreakdown.hiddenPenalty>0?'is-down':''}>−{job.qualityBreakdown.hiddenPenalty} {tr('隐藏','Hid')}</span>
-            <span class={job.qualityBreakdown.defectPenalty>0?'is-down':''}>−{job.qualityBreakdown.defectPenalty} {tr('缺陷','Def')}</span>
+      {showSettlement(job.status)&&(()=>{
+       const latestReceipt=experienceView?findLatestJobReceipt(experienceView.receipts,job.id):undefined;
+       const histAssessment=job.status==='review'?null:(latestReceipt?.assessment??null);
+       const displayQuality=job.status==='review'?job.quality:histAssessment?.quality??null;
+       const displayPass=job.status==='review'?job.passQuality:histAssessment?.passQuality??null;
+       const displayBreakdown=job.status==='review'?job.qualityBreakdown:histAssessment?.qualityBreakdown??null;
+       const displayTier=job.status==='review'
+        ?sealTier
+        :histAssessment
+         ?(histAssessment.quality>=(histAssessment.qualityLines[2]??90)?'excellent':histAssessment.quality>=(histAssessment.qualityLines[1]??75)?'good':histAssessment.quality>=histAssessment.passQuality?'pass':'fail')
+         :'pass';
+       return (
+        <div class="commission-settlement ui2-settlement">
+         {displayQuality!==null&&displayPass!==null&&<QualitySealSvg score={displayQuality} passLine={displayPass} tier={displayTier} english={english}/>}
+         <div class="commission-payment">
+          <b>{tr('现金变动','Cash change')} ¥{netCash!==null?netCash.toFixed(2):'—'}</b>
+          <DeliverySummary job={job} english={english} settled={settledEntry} persona={resolveClientPersona(activeCatalog,job)} view={view} receipt={latestReceipt}/>
+          {p.software.includes('explain')&&displayBreakdown&&(
+           <div class="ui2-quality-breakdown">
+            <small>{tr('评分构成（基础 / 审查 / 事件 / 隐藏扣分 / 缺陷扣分）','Breakdown (Base / Review / Event / Hidden / Defect)')}</small>
+            <div class="ui2-breakdown-chips">
+             <span>{tr('基础','Base')} {displayBreakdown.base}</span>
+             <span class="is-up">+{displayBreakdown.review} {tr('审查','Rev')}</span>
+             <span>{displayBreakdown.event>=0?`+${displayBreakdown.event}`:displayBreakdown.event} {tr('事件','Evt')}</span>
+             <span class={displayBreakdown.hiddenPenalty>0?'is-down':''}>−{displayBreakdown.hiddenPenalty} {tr('隐藏','Hid')}</span>
+             <span class={displayBreakdown.defectPenalty>0?'is-down':''}>−{displayBreakdown.defectPenalty} {tr('缺陷','Def')}</span>
+            </div>
            </div>
-          </div>
-         )}
+          )}
+         </div>
         </div>
-       </div>
-      )}
+       );
+      })()}
 
       {workLayout==='tri'&&(
        <div class="ui2-brief-highlights" aria-label={tr('首屏关键信息','Brief highlights')}>
@@ -227,17 +239,26 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
        </div>
       )}
 
-      {job.status!=='breached'&&(
-       <ExperienceArtSlot
-        slotId={artSlotForJobTemplate(job.template)}
-        variant="outcome"
-        english={english}
-        state={job.status==='delivered'?'delivered':'preview'}
-        badgeText={job.status==='delivered'?tr('已交付成果','Delivered'):tr('成果示意','Outcome preview')}
-        title={english?job.titleEn:job.title}
-        subtitle={job.status==='delivered'?tr(`成交评级 · ${job.quality} 分 · 实收报酬已入账`,`Final quality ${job.quality} · Payout settled`):tr(`质量 ≥ ${job.passQuality} 通过验收 · ${job.workSlots} 工作时段`,`Quality ≥ ${job.passQuality} to pass · ${job.workSlots} work periods`)}
-       />
-      )}
+      {job.status!=='breached'&&(()=>{
+       const histQual=job.status==='delivered'&&experienceView
+        ?findLatestJobReceipt(experienceView.receipts,job.id)?.assessment?.quality??null
+        :null;
+       return (
+        <ExperienceArtSlot
+         slotId={artSlotForJobTemplate(job.template)}
+         variant="outcome"
+         english={english}
+         state={job.status==='delivered'?'delivered':'preview'}
+         badgeText={job.status==='delivered'?tr('已交付成果','Delivered'):tr('成果示意','Outcome preview')}
+         title={english?job.titleEn:job.title}
+         subtitle={job.status==='delivered'
+          ?(histQual!==null
+            ?tr(`成交评级 · ${histQual} 分 · 实收报酬已入账`,`Final quality ${histQual} · Payout settled`)
+            :tr('已验收归档 · 实收报酬已入账','Delivered & settled'))
+          :tr(`质量 ≥ ${job.passQuality} 通过验收 · ${job.workSlots} 工作时段`,`Quality ≥ ${job.passQuality} to pass · ${job.workSlots} work periods`)}
+        />
+       );
+      })()}
 
       {workLayout==='tri'&&<div class="commission-weights">{Object.entries(job.weights).map(([k,v])=><div key={k}><span>{skill(k as keyof typeof skillText)} {Math.round(v*100)}%</span><meter min={0} max={1} value={v}/></div>)}</div>}
       <h3>{workLayout==='tri'?tr('01 · 理解需求','01 · Understand the brief'):tr('委托需求','Commission brief')}</h3>

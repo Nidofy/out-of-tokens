@@ -16,8 +16,11 @@ export interface DeliveryDuoStageNote {
  lines:{speaker:string;zh:string;en:string}[];
 }
 
+export type ReceiptAssessment=NonNullable<ExperienceView['receipts'][number]['assessment']>;
+
 export interface DeliveryFeedbackPayload {
  job:GameView['jobs'][number];
+ assessment:ReceiptAssessment|null;
  cashDelta:number;
  action:'deliver'|'rework';
  outcome:'passed'|'rework'|'failed';
@@ -35,12 +38,30 @@ export function buildDeliveryFeedbackPayload(
  jobId:string,
  action:'deliver'|'rework'
 ):DeliveryFeedbackPayload|null{
- const job=afterView.jobs.find(j=>j.id===jobId);
- if(!job)return null;
+ const rawJob=afterView.jobs.find(j=>j.id===jobId);
+ if(!rawJob)return null;
  const receipt=findLatestJobReceipt(expView.receipts,jobId);
+ const assessment:ReceiptAssessment|null=receipt?.assessment
+  ?{
+    quality:receipt.assessment.quality,
+    passQuality:receipt.assessment.passQuality,
+    qualityLines:[...receipt.assessment.qualityLines] as typeof rawJob.qualityLines,
+    qualityBreakdown:{...receipt.assessment.qualityBreakdown}
+   }
+  :null;
+ // Multi-phase deliver and rework reset afterView.jobs[]; bind display fields to pre-command receipt.assessment.
+ const job:GameView['jobs'][number]=assessment
+  ?{
+    ...rawJob,
+    quality:assessment.quality,
+    passQuality:assessment.passQuality,
+    qualityLines:assessment.qualityLines,
+    qualityBreakdown:assessment.qualityBreakdown
+   }
+  :rawJob;
  const hasPassed=!!receipt?.facts.some(f=>f.certainty==='certain'&&f.reason==='delivery-passed');
  const hasRework=action==='rework'||!!receipt?.facts.some(f=>f.certainty==='certain'&&f.reason==='delivery-rework');
- const outcome:DeliveryFeedbackPayload['outcome']=hasRework?'rework':(hasPassed||job.status==='delivered'||job.status==='waiting')?'passed':'failed';
+ const outcome:DeliveryFeedbackPayload['outcome']=hasRework?'rework':(hasPassed||rawJob.status==='delivered'||rawJob.status==='waiting')?'passed':'failed';
  const receiptCopy=experienceReceiptCopy(receipt,job);
  const duoStages:DeliveryDuoStageNote[]=[];
  if(outcome==='passed'){
@@ -59,6 +80,7 @@ export function buildDeliveryFeedbackPayload(
  }
  return {
   job,
+  assessment,
   cashDelta:afterView.cash-beforeCash,
   action,
   outcome,
@@ -107,10 +129,18 @@ export function DeliveryFeedbackModal({
   };
  },[payload,instantStatic]);
 
- const {job,cashDelta,action,outcome,persona,receipt,duoStages}=payload;
+ const {job,assessment,cashDelta,action,outcome,persona,receipt,duoStages}=payload;
  const receiptCopy=experienceReceiptCopy(receipt,job);
  const slotId=artSlotForJobTemplate(job.template);
- const gradeTier:'excellent'|'good'|'pass'|'fail'=outcome==='rework'||outcome==='failed'?'fail':job.quality>=(job.qualityLines[2]??90)?'excellent':job.quality>=(job.qualityLines[1]??75)?'good':'pass';
+ const gradeTier:'excellent'|'good'|'pass'|'fail'=outcome==='rework'||outcome==='failed'
+  ?'fail'
+  :assessment===null
+   ?'pass'
+   :assessment.quality>=(assessment.qualityLines[2]??90)
+    ?'excellent'
+    :assessment.quality>=(assessment.qualityLines[1]??75)
+     ?'good'
+     :'pass';
  const outcomeTitle=outcome==='rework'
   ?tr('进入返工修正','Returned for rework')
   :outcome==='failed'
@@ -120,6 +150,12 @@ export function DeliveryFeedbackModal({
     :gradeTier==='good'
      ?tr('优良交付 · 验收通过','Good delivery · Accepted')
      :tr('验收通过 · 阶段交付完成','Delivery accepted');
+ const scoreSummaryText=assessment!==null
+  ?tr(`质量评分 ${assessment.quality} / 验收线 ${assessment.passQuality}`,`Quality ${assessment.quality} / Pass line ${assessment.passQuality}`)
+  :tr('本阶段评分快照未单独记录','Phase score snapshot not separately recorded');
+ const breakdownSummaryText=assessment!==null
+  ?`${tr('质量评分','Quality')} ${assessment.quality}（${tr('及格线','Pass')} ${assessment.passQuality}） · ${tr('未澄清扣分','Hidden penalty')} −${assessment.qualityBreakdown.hiddenPenalty} · ${tr('缺陷扣分','Defect penalty')} −${assessment.qualityBreakdown.defectPenalty}`
+  :tr('该条回执未附带独立评分明细，此处不代填后续阶段数值。','No separate assessment snapshot was attached to this receipt.');
  const cashSigned=`${cashDelta>=0?'+':'−'}¥${Math.abs(cashDelta).toFixed(2)}`;
  const avatarSrc=persona?clientAssetSrc(persona.id):null;
 
@@ -141,7 +177,7 @@ export function DeliveryFeedbackModal({
       state={outcome==='passed'?'delivered':'neutral'}
       badgeText={outcome==='passed'?tr('交付完成','Delivered'):outcome==='rework'?tr('返工阶段','Rework'):tr('未通过','Failed')}
       title={outcomeTitle}
-      subtitle={tr(`质量评分 ${job.quality} / 验收线 ${job.passQuality}`,`Quality ${job.quality} / Pass line ${job.passQuality}`)}
+      subtitle={scoreSummaryText}
      />
     </section>
 
@@ -152,7 +188,7 @@ export function DeliveryFeedbackModal({
       {receiptCopy.review?` · ${english?receiptCopy.review.en:receiptCopy.review.zh}`:''}
      </p>
      <small class="ui2-muted-note">
-      {tr('质量评分','Quality')} {job.quality}（{tr('及格线','Pass')} {job.passQuality}） · {tr('未澄清扣分','Hidden penalty')} −{job.qualityBreakdown.hiddenPenalty} · {tr('缺陷扣分','Defect penalty')} −{job.qualityBreakdown.defectPenalty}
+      {breakdownSummaryText}
      </small>
     </section>
 

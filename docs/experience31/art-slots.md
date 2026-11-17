@@ -91,3 +91,22 @@
 - **Failure / Offline Fallback Verified (`http://127.0.0.1:4193/`, real HTTP `404` on `/art/experience/*.webp` & `/sw.js`)**:
   - Both `vignette-rest-corner` and `outcome-tea-menu` transitioned cleanly to `data-art-state="fallback"`, `imgCount: 0`, full `.ui2-art-fallback` copy rendered, and action buttons (`看伙伴精力与作息` / `跳过本条` / `接取委托`) remained enabled and clickable.
 - **Verdict**: **APPROVE** (`outcome-tea-menu` = `APPROVE`, `vignette-rest-corner` = `APPROVE`, `0 px` asset rework requested). Track B is cleared to produce the remaining **6 Art-Batch 7 assets** matching the same typography-free composition, left low-contrast scrim safe zone (vignette), and file size limits (`<= 100 KB` outcomes, `<= 150 KB` vignettes, total `<= 900 KB`).
+
+---
+
+## 6. Complete Art-Batch 7 Eight-Slot 5-Viewport Browser Review Verdict (W3 / W4)
+
+- **Reviewed Track B Complete Release**: `29ee4781d2d637faf963e13cc652842f62b6b482` / `0912342ac296e888f1d2fb7af526069953b20d2f` (`458,174 B` total across all 8 runtime `.webp` assets; 6 × `768×512` outcomes each `<= 100 KB`; 2 × `960×320` vignettes each `<= 150 KB`)
+- **All 8 Slots & Final Tuned `object-position` (`apps/web/src/experience-art-slot.tsx`)**:
+  - `outcome-tea-menu`: `50% 45%`
+  - `outcome-cafe-sign`: `50% 50%` (adjusted from `50% 42%` so chalkboard coffee cup & wooden A-frame center cleanly under `max-height: 152px` at `844×390`)
+  - `outcome-community-web`: `50% 45%`
+  - `outcome-bookshop-system`: `50% 50%`
+  - `outcome-bookshop-guide`: `50% 50%`
+  - `outcome-workshop-display`: `50% 48%`
+  - `vignette-rest-corner`: `68% 50%`
+  - `vignette-first-delivery`: `66% 48%`
+- **Real Chromium Five-Viewport Verification (`1280×720`, `768×1024`, `844×390`, `560×800`, `390×844` × Light/Dark × ZH/EN)**:
+  - Verified live on Commission Workbench, Delivery Feedback modal (`outcome-tea-menu`), Partner Profile (`vignette-rest-corner`), Journal Outcome Wall (`outcome-workshop-display` empty shelf & `vignette-first-delivery` + delivered card), and `?art-preview=1` across all 8 assets: every slot rendered `data-art-state="loaded"` (`complete && naturalWidth > 0`), `0` horizontal overflow, zero baked text/watermarks, and crisp left-scrim contrast on both light and dark modes.
+  - Real HTTP `404` fault server (`http://127.0.0.1:4196/`) verified `[data-art-state="fallback"]` with `0` `<img>` tags in fallback, full readable text, enabled CTAs, and `0` console/page errors.
+- **Final 8-Slot Verdict**: **APPROVE** all 8 Art-Batch 7 assets (`0 px` asset rework required).

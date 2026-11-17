@@ -620,3 +620,95 @@ test('W3: artSlotForJobTemplate, receiptKey, DeliveryFeedback payload order, con
   expect(experienceDuoCopy('unlocked-benefit',mLlama,gDuo.getExperienceView(),{jobs:gDuo.view.jobs}).lines).toEqual([]);
  }
 });
+
+test('I4 regression: multi-phase deliver and rework payloads consume pre-reset receipt.assessment and stay neutral when assessment is missing',()=>{
+ const c=loadFullContent();
+
+ // 1. Multi-phase delivery in unchanged build-2 (project:incubator:1 phase 0 quality 84.96 -> next phase resets job.quality to 0)
+ const build2=JSON.parse(readFileSync(resolve('apps/sim-cli/fixtures/commission-natural-build-2.json'),'utf8')) as {seed:number;commands:Command[]};
+ const gMulti=new GameSession(c,build2.seed,'w3-i4-multiphase');
+ let verifiedMultiphase=false;
+ for(const cmd of build2.commands){
+  const before=gMulti.view;
+  expect(gMulti.send(cmd).error).toBeNull();
+  if(cmd.type!=='deliver')continue;
+  const oldJob=before.jobs.find(j=>j.id===cmd.job);
+  const afterView=gMulti.view;
+  const afterJob=afterView.jobs.find(j=>j.id===cmd.job);
+  if(oldJob&&afterJob&&afterJob.phase>oldJob.phase&&afterJob.quality===0){
+   const exp=gMulti.getExperienceView();
+   const payload=buildDeliveryFeedbackPayload(
+    before.cash,
+    afterView,
+    exp,
+    getLivingCatalog(afterView),
+    getLivingView(afterView),
+    cmd.job,
+    'deliver'
+   );
+   expect(payload).not.toBeNull();
+   expect(payload!.outcome).toBe('passed');
+   expect(payload!.receipt?.assessment?.quality).toBe(oldJob.quality);
+   expect(payload!.assessment?.quality).toBe(oldJob.quality);
+   expect(payload!.assessment?.passQuality).toBe(oldJob.passQuality);
+   expect(payload!.job.quality).toBe(oldJob.quality);
+   verifiedMultiphase=true;
+   break;
+  }
+ }
+ expect(verifiedMultiphase).toBe(true);
+
+ // 2. Rework event retains pre-rework score & penalties in payload.assessment instead of post-rework reset values
+ let verifiedRework=false;
+ for(const traceFile of ['apps/sim-cli/fixtures/commission-natural-build-2.json','apps/sim-cli/fixtures/commission-natural-guide-1.json']){
+  const raw=JSON.parse(readFileSync(resolve(traceFile),'utf8')) as {seed:number;commands:Command[]};
+  const gRew=new GameSession(c,raw.seed,'w3-i4-rework');
+  for(const cmd of raw.commands){
+   const before=gRew.view;
+   expect(gRew.send(cmd).error).toBeNull();
+   if(cmd.type==='rework'){
+    const oldJob=before.jobs.find(j=>j.id===cmd.job)!;
+    const afterView=gRew.view;
+    const exp=gRew.getExperienceView();
+    const payload=buildDeliveryFeedbackPayload(
+     before.cash,
+     afterView,
+     exp,
+     getLivingCatalog(afterView),
+     getLivingView(afterView),
+     cmd.job,
+     'rework'
+    );
+    expect(payload).not.toBeNull();
+    expect(payload!.outcome).toBe('rework');
+    expect(payload!.assessment?.quality).toBe(oldJob.quality);
+    expect(payload!.assessment?.qualityBreakdown).toEqual(oldJob.qualityBreakdown);
+    expect(payload!.job.quality).toBe(oldJob.quality);
+    verifiedRework=true;
+    break;
+   }
+  }
+  if(verifiedRework)break;
+ }
+ expect(verifiedRework).toBe(true);
+
+ // 3. Missing assessment (legacy v1 producer) stays strictly null instead of inheriting current phase quality
+ const expNoAssess=gMulti.getExperienceView();
+ const legacyReceipts=expNoAssess.receipts.map(r=>{
+  const copy={...r};
+  delete copy.assessment;
+  return copy;
+ });
+ const latestId=legacyReceipts.at(-1)!.jobId;
+ const neutralPayload=buildDeliveryFeedbackPayload(
+  gMulti.view.cash,
+  gMulti.view,
+  {...expNoAssess,receipts:legacyReceipts},
+  getLivingCatalog(gMulti.view),
+  getLivingView(gMulti.view),
+  latestId,
+  'deliver'
+ );
+ expect(neutralPayload).not.toBeNull();
+ expect(neutralPayload!.assessment).toBeNull();
+});

@@ -502,7 +502,8 @@
  .ui2-guide-body{display:flex;flex-direction:column;gap:8px;margin-top:6px}
  .ui2-guide-goal{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--ink)}
  .ui2-guide-pills{display:flex;flex-wrap:wrap;gap:4px}
- .ui2-guide-pill{min-height:34px;padding:4px 8px;border-radius:999px;font-size:12px;display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);background:transparent}
+ .ui2-guide-pill{min-height:44px;min-width:44px;padding:6px 10px;border-radius:999px;font-size:12px;display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);background:transparent}
+ .dialog-head button,.ui2-bark-close{min-width:44px;min-height:44px}
  .ui2-guide-pill[aria-selected=true]{border-color:var(--brass);background:var(--brass);color:#1f1710;font-weight:600}
  .ui2-guide-pill[data-observed=true]:not([aria-selected=true]){border-color:#2e6f40;color:#2e6f40}
  :root[data-theme=dark] .ui2-guide-pill[data-observed=true]:not([aria-selected=true]){border-color:#86efac;color:#86efac}
@@ -568,8 +569,9 @@
 
  /* W3: Ordered delivery feedback modal, duo short chains, Journal outcome wall & still-motion */
  .ui2-delivery-dialog{width:min(640px,calc(100vw - 16px));max-height:calc(100dvh - 16px)}
- .ui2-delivery-flow{display:flex;flex-direction:column;gap:10px}
- .ui2-delivery-step{display:flex;flex-direction:column;gap:6px;padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);transition:opacity .22s ease,transform .22s ease}
+ .ui2-delivery-dialog .ui2-art-slot.is-outcome .ui2-art-frame{max-height:164px}
+ .ui2-delivery-flow{display:flex;flex-direction:column;gap:8px}
+ .ui2-delivery-step{display:flex;flex-direction:column;gap:4px;padding:8px 10px;border-radius:12px;background:var(--card);border:1px solid var(--line);transition:opacity .22s ease,transform .22s ease}
  .ui2-delivery-step[data-revealed=false]{opacity:.42;transform:translateY(4px)}
  [data-still=true] .ui2-delivery-step{transition:none;transform:none;opacity:1}
  .ui2-step-index{font-size:12px;font-weight:700;color:var(--muted)}
@@ -617,6 +619,7 @@
   .ui2-plan-grid,.ui2-hw-grid,.ui2-sw-grid,.ui2-rival-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ui2-finance-kpis,.ui2-specs-grid,.ui2-gift-grid,.ui2-duo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ui2-bark-card[data-in-modal=true]{bottom:calc(64px + env(safe-area-inset-bottom))}
+  .studio-app .scene-left-stack,.studio-app .hud-popover,.studio-app .priority-rail,.studio-app .office-camera,.studio-app .priority-feedback{top:116px}
  }
 
  @media(max-width:679px){

@@ -1,6 +1,10 @@
+import {h,render} from 'preact';
 import {BrowserSaves,CheckpointCoordinator,GameSession} from 'oot-platform';
+import type {Draft} from 'oot-platform';
+import {suggestAssignmentsFromSnapshot} from 'oot-platform/worker';
 import {content} from './content.js';
 import {stableDraftKey} from './experience-adapter.js';
+import {ExperienceArtSlot} from './experience-art-slot.js';
 import {createSuggestionClient} from './experience-worker-host.js';
 import {createSaveEncoder} from './save-encoder-host.js';
 
@@ -21,17 +25,37 @@ function summarize(values:readonly number[]){
  };
 }
 
+function isClippedByScrollAncestor(el:HTMLElement,cx:number,cy:number):boolean{
+ let p=el.parentElement;
+ while(p&&p!==document.body&&p!==document.documentElement){
+  const s=getComputedStyle(p);
+  if(['auto','scroll','hidden','clip'].includes(s.overflowY)||['auto','scroll','hidden','clip'].includes(s.overflowX)){
+   const pr=p.getBoundingClientRect();
+   if(cx<pr.left+1||cx>pr.right-1||cy<pr.top+1||cy>pr.bottom-1)return true;
+  }
+  p=p.parentElement;
+ }
+ return false;
+}
+
 function collectDomAudit(){
  const vw=window.innerWidth,vh=window.innerHeight;
  const docOverflowX=document.documentElement.scrollWidth-document.documentElement.clientWidth;
  const bodyOverflowX=document.body.scrollWidth-document.body.clientWidth;
- const selectors='button,summary,select,input,[role="tab"]';
+ const openDialogs=[...document.querySelectorAll<HTMLDialogElement>('dialog[open]')];
+ const scope:ParentNode=openDialogs.at(-1)??document.body;
+ const candidates=[...scope.querySelectorAll<HTMLElement>('button,summary,select,input,[role="tab"]')];
+ const extraBark=document.querySelector<HTMLElement>('.ui2-bark-card');
+ if(extraBark&&!scope.contains(extraBark)){
+  candidates.push(...extraBark.querySelectorAll<HTMLElement>('button'));
+ }
  const shortControls:{label:string;tag:string;w:number;h:number}[]=[];
  const hitTests:{label:string;cx:number;cy:number;pass:boolean;hitTag:string;hitClass:string}[]=[];
 
- for(const node of document.querySelectorAll<HTMLElement>(selectors)){
+ for(const node of candidates){
   const style=getComputedStyle(node);
-  if(style.visibility==='hidden'||style.display==='none')continue;
+  if(style.visibility==='hidden'||style.display==='none'||style.pointerEvents==='none')continue;
+  if((node as HTMLButtonElement).disabled)continue;
   const r=node.getBoundingClientRect();
   if(r.width<=0||r.height<=0)continue;
   if(r.right<0||r.bottom<0||r.left>vw||r.top>vh)continue;
@@ -39,19 +63,19 @@ function collectDomAudit(){
   if((node.tagName==='BUTTON'||node.getAttribute('role')==='tab')&&(r.width<43.5||r.height<43.5)){
    shortControls.push({label,tag:node.tagName,w:Math.round(r.width*10)/10,h:Math.round(r.height*10)/10});
   }
-  const cx=Math.round(r.left+r.width/2),cy=Math.round(r.top+r.height/2);
-  if(cx>=2&&cy>=2&&cx<=vw-2&&cy<=vh-2){
-   const hit=document.elementFromPoint(cx,cy) as HTMLElement|null;
-   const pass=!!hit&&(hit===node||node.contains(hit)||hit.contains(node));
-   hitTests.push({
-    label,
-    cx,
-    cy,
-    pass,
-    hitTag:hit?.tagName??'NONE',
-    hitClass:(hit?.className&&typeof hit.className==='string'?hit.className:'').slice(0,48)
-   });
-  }
+  const cx=Math.round(Math.min(vw-2,Math.max(2,r.left+r.width/2)));
+  const cy=Math.round(Math.min(vh-2,Math.max(2,r.top+r.height/2)));
+  if(isClippedByScrollAncestor(node,cx,cy))continue;
+  const hit=document.elementFromPoint(cx,cy) as HTMLElement|null;
+  const pass=!!hit&&(hit===node||node.contains(hit)||hit.contains(node));
+  hitTests.push({
+   label,
+   cx,
+   cy,
+   pass,
+   hitTag:hit?.tagName??'NONE',
+   hitClass:(hit?.className&&typeof hit.className==='string'?hit.className:'').slice(0,48)
+  });
  }
 
  const artSlots=[...document.querySelectorAll<HTMLElement>('[data-slot-id]')].map(el=>{
@@ -83,19 +107,77 @@ function collectDomAudit(){
  };
 }
 
+function postDiagReport(kind:string,body:string){
+ try{
+  void fetch(`./__diag_report?kind=${encodeURIComponent(kind)}`,{
+   method:'POST',
+   headers:{'content-type':'application/json'},
+   body
+  }).catch(()=>{});
+ }catch{ /* optional diagnostic collector */ }
+}
+
 export function startExpAudit(){
  const out=document.createElement('output');
  out.id='exp-audit';
  out.hidden=true;
  document.body.append(out);
+ let lastJson='';
  const write=()=>{
-  try{out.textContent=JSON.stringify(collectDomAudit());}catch{ /* ignore mid-unmount read */ }
+  try{
+   const json=JSON.stringify(collectDomAudit());
+   out.textContent=json;
+   if(json!==lastJson){
+    lastJson=json;
+    postDiagReport('audit',json);
+   }
+  }catch{ /* ignore mid-unmount read */ }
  };
  write();
- setInterval(write,350);
+ setInterval(write,400);
  window.addEventListener('resize',write,{passive:true});
- window.addEventListener('click',()=>setTimeout(write,60),true);
- window.addEventListener('keydown',()=>setTimeout(write,60),true);
+ window.addEventListener('click',()=>setTimeout(write,80),true);
+ window.addEventListener('keydown',()=>setTimeout(write,80),true);
+}
+
+export function startArtPreview(){
+ const sp=new URLSearchParams(location.search);
+ const dark=sp.get('theme')==='dark';
+ const english=sp.get('locale')==='en';
+ document.documentElement.dataset.theme=dark?'dark':'light';
+ document.documentElement.lang=english?'en':'zh-CN';
+ const slots=[
+  {id:'outcome-tea-menu',variant:'outcome' as const,zh:'茶坊手绘菜单',en:'Tea shop menu'},
+  {id:'outcome-cafe-sign',variant:'outcome' as const,zh:'街角咖啡馆双语手写牌',en:'Corner cafe chalkboard sign'},
+  {id:'outcome-community-web',variant:'outcome' as const,zh:'社区活动网页',en:'Community event web page'},
+  {id:'outcome-bookshop-system',variant:'outcome' as const,zh:'旧书店会员积分与订单台账',en:'Used bookshop order & points'},
+  {id:'outcome-bookshop-guide',variant:'outcome' as const,zh:'旧书店使用指南手册',en:'Used bookshop user handbook'},
+  {id:'outcome-workshop-display',variant:'outcome' as const,zh:'工作室成果展架空位',en:'Studio outcome display shelf'},
+  {id:'vignette-rest-corner',variant:'vignette' as const,zh:'夜间作息角横幅',en:'Night rest corner vignette'},
+  {id:'vignette-first-delivery',variant:'vignette' as const,zh:'首单交付里程碑横幅',en:'First delivery milestone vignette'}
+ ];
+ const host=document.getElementById('app')!;
+ render(
+  h('main',{style:{padding:'12px',minHeight:'100dvh',background:'var(--paper)',color:'var(--ink)'}},
+   h('h1',{style:{margin:'0 0 8px',fontSize:'18px'}},`${english?'Art-Batch 7 Five-Viewport Crop Review':'Art-Batch 7 全八槽五视口裁切核验'} (${window.innerWidth}x${window.innerHeight})`),
+   h('div',{class:'ui2-outcome-grid'},
+    slots.map(s=>
+     h('div',{key:s.id,class:'ui2-outcome-card'},
+      h(ExperienceArtSlot,{
+       slotId:s.id,
+       variant:s.variant,
+       english,
+       state:s.id==='outcome-workshop-display'?'neutral':'delivered',
+       badgeText:s.id,
+       title:english?s.en:s.zh,
+       subtitle:english?'Crop & readability check across 5 viewports':'五视口裁切与安全区文字可读性核验'
+      })
+     )
+    )
+   )
+  ),
+  host
+ );
 }
 
 export async function startExpPerf(){
@@ -220,40 +302,84 @@ export async function startExpPerf(){
    });
   }
 
-  // Candidate Search Worker benchmark (5 warmups + 30 samples)
+  // Candidate Search Worker benchmark (5 warmups + 30 samples for opening-176 & controlled-full-roster-256)
   const candClient=createSuggestionClient();
   const openSession=new GameSession(content,1);
   const openJob=openSession.view.jobs.find(j=>j.template==='menu')!;
   const openDraft=[{character:'qwen',role:'worker' as const,mode:'cloud' as const}];
   const openDraftObj={team:openDraft,draftKey:stableDraftKey(openJob.id,openDraft)};
 
-  const blockingMs:number[]=[];
-  const roundTripMs:number[]=[];
-  const workerComputeMs:number[]=[];
-  const evaluatedCounts:number[]=[];
-  let usedSearchWorker=false;
-
-  for(let i=-5;i<30;i++){
-   const tClone=performance.now();
-   const snap=openSession.workerSnapshot();
-   const cloneMs=performance.now()-tClone;
-   const {result,timing}=await candClient.suggest(snap,cloneMs,openJob.id,openDraftObj);
-   usedSearchWorker=usedSearchWorker||timing.usedWorker;
-   const direct=openSession.suggestAssignments(openJob.id,openDraftObj);
-   if(JSON.stringify(result.suggestions)!==JSON.stringify(direct.suggestions)){
-    throw Error('WORKER_SEARCH_PARITY_MISMATCH');
-   }
-   if(i>=0){
-    blockingMs.push(timing.mainThreadBlockingMs);
-    roundTripMs.push(timing.roundTripMs);
-    workerComputeMs.push(timing.workerComputeMs);
-    evaluatedCounts.push(result.evaluated);
+  const fullSession=new GameSession(content,1);
+  const fullSnap=fullSession.workerSnapshot();
+  for(const v of content.versions){
+   if(!fullSnap.state.actors.some(a=>a.id===v.character)){
+    fullSnap.state.actors.push({id:v.character,version:v.id,energy:100,mood:70,load:0,busyUntil:0});
+    fullSnap.state.campaign!.relations[v.character]={...fullSnap.state.campaign!.relations.qwen!,bonuses:{},stories:[],training:null};
    }
   }
+  const fullDraftObj={team:[],draftKey:'wide'};
+
+  const runSearchCase=async(
+   name:string,
+   getSnap:()=>{snap:ReturnType<GameSession['workerSnapshot']>;cloneMs:number},
+   jobId:string,
+   draftObj:Draft
+  )=>{
+   const blockingMs:number[]=[];
+   const roundTripMs:number[]=[];
+   const workerComputeMs:number[]=[];
+   const evaluatedCounts:number[]=[];
+   let usedSearchWorker=false;
+   let truncated=false;
+
+   for(let i=-5;i<30;i++){
+    const {snap,cloneMs}=getSnap();
+    const {result,timing}=await candClient.suggest(snap,cloneMs,jobId,draftObj);
+    usedSearchWorker=usedSearchWorker||timing.usedWorker;
+    truncated=truncated||result.truncated;
+    const direct=suggestAssignmentsFromSnapshot(content,snap,jobId,draftObj);
+    if(JSON.stringify(result.suggestions)!==JSON.stringify(direct.suggestions)){
+     throw Error(`WORKER_SEARCH_PARITY_MISMATCH_${name}`);
+    }
+    if(i>=0){
+     blockingMs.push(timing.mainThreadBlockingMs);
+     roundTripMs.push(timing.roundTripMs);
+     workerComputeMs.push(timing.workerComputeMs);
+     evaluatedCounts.push(result.evaluated);
+    }
+   }
+
+   return {
+    name,
+    jobId,
+    usedSearchWorker,
+    evaluated:evaluatedCounts[0]??0,
+    truncated,
+    summary:{
+     mainThreadBlockingMs:summarize(blockingMs),
+     roundTripMs:summarize(roundTripMs),
+     workerComputeMs:summarize(workerComputeMs)
+    },
+    samples:{mainThreadBlockingMs:blockingMs,roundTripMs,workerComputeMs}
+   };
+  };
+
+  const candOpen=await runSearchCase('opening-176',()=>{
+   const t=performance.now();
+   const snap=openSession.workerSnapshot();
+   return {snap,cloneMs:performance.now()-t};
+  },openJob.id,openDraftObj);
+
+  const candFull=await runSearchCase('controlled-full-roster-256',()=>{
+   const t=performance.now();
+   const snap=structuredClone(fullSnap);
+   return {snap,cloneMs:performance.now()-t};
+  },'0-0',fullDraftObj);
+
   candClient.dispose();
   observer?.disconnect();
 
-  out.textContent=JSON.stringify({
+  const jsonReport=JSON.stringify({
    visibility:document.visibilityState,
    ua:navigator.userAgent,
    cores:navigator.hardwareConcurrency,
@@ -262,22 +388,22 @@ export async function startExpPerf(){
    longTaskCount:longTasks.length,
    maxLongTaskMs:longTasks.length?Math.max(...longTasks):0,
    saveResults,
-   candidateSearch:{
-    jobId:openJob.id,
-    usedSearchWorker,
-    evaluated:evaluatedCounts[0]??0,
-    summary:{
-     mainThreadBlockingMs:summarize(blockingMs),
-     roundTripMs:summarize(roundTripMs),
-     workerComputeMs:summarize(workerComputeMs)
-    },
-    samples:{mainThreadBlockingMs:blockingMs,roundTripMs,workerComputeMs}
-   }
+   candidateSearchCases:[candOpen,candFull]
   },null,2);
+  out.textContent=jsonReport;
   out.dataset.status='done';
+  postDiagReport('perf',jsonReport);
+  const pre=document.createElement('pre');
+  pre.id='exp-perf-pre';
+  pre.dataset.status='done';
+  pre.style.cssText='position:fixed;inset:12px;z-index:99999;overflow:auto;margin:0;padding:12px;border-radius:12px;background:#111815;color:#d6f5d6;font:12px/1.4 monospace;';
+  pre.textContent=jsonReport;
+  document.body.append(pre);
  }catch(err){
   observer?.disconnect();
-  out.textContent=JSON.stringify({error:err instanceof Error?err.message:String(err)});
+  const errJson=JSON.stringify({error:err instanceof Error?err.message:String(err)});
+  out.textContent=errJson;
   out.dataset.status='error';
+  postDiagReport('perf-error',errJson);
  }
 }

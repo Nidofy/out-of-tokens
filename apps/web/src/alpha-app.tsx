@@ -125,9 +125,18 @@ export function AlphaApp(){
  const [returnTo,setReturnTo]=useState<ReturnContext|null>(null);
 
  const [mapOpen,setMapOpen]=useState(false),[settings,setSettings]=useState(false),[saves,setSaves]=useState(false);
- const [dark,setDark]=useState(visualReviewEnabled&&new URLSearchParams(location.search).get('theme')==='dark');
- const [still,setStill]=useState(visualReviewEnabled&&new URLSearchParams(location.search).get('motion')==='still');
- const [english,setEnglish]=useState(visualReviewEnabled&&new URLSearchParams(location.search).get('locale')==='en');
+ const [dark,setDark]=useState(()=>{
+  if(visualReviewEnabled&&new URLSearchParams(location.search).has('theme'))return new URLSearchParams(location.search).get('theme')==='dark';
+  try{return localStorage.getItem('oot-display-theme')==='1';}catch{return false;}
+ });
+ const [still,setStill]=useState(()=>{
+  if(visualReviewEnabled&&new URLSearchParams(location.search).has('motion'))return new URLSearchParams(location.search).get('motion')==='still';
+  try{return localStorage.getItem('oot-display-motion')==='1';}catch{return false;}
+ });
+ const [english,setEnglish]=useState(()=>{
+  if(visualReviewEnabled&&new URLSearchParams(location.search).has('locale'))return new URLSearchParams(location.search).get('locale')==='en';
+  try{return localStorage.getItem('oot-display-locale')==='1';}catch{return false;}
+ });
  const [reloadReady,setReloadReady]=useState(false),[update,setUpdate]=useState<ServiceWorker|null>(null);
  const [hud,setHud]=useState<'board'|'view'|'more'|null>(null);
  const [ritual,setRitual]=useState<RitualCard|null>(null),[ritualReady,setRitualReady]=useState(false);
@@ -444,9 +453,24 @@ export function AlphaApp(){
   fx('message',reply?.targetActor);
  };
 
- useEffect(()=>{document.documentElement.lang=english?'en':'zh-CN';},[english]);
+ useEffect(()=>{
+  document.documentElement.lang=english?'en':'zh-CN';
+  if(!visualReviewEnabled||!new URLSearchParams(location.search).has('locale')){
+   try{localStorage.setItem('oot-display-locale',english?'1':'0');}catch{/* Storage denied is harmless. */}
+  }
+ },[english]);
  useEffect(()=>{if(!('serviceWorker'in navigator)||visualReviewEnabled||new URLSearchParams(location.search).has('desktop')||new URLSearchParams(location.search).has('dsh'))return;let live=true;const changed=controllerTracker(navigator.serviceWorker.controller);void navigator.serviceWorker.register('./sw.js').then(reg=>{const observe=()=>{if(live)setUpdate(waitingUpdate(reg,!!navigator.serviceWorker.controller));};observe();reg.waiting?.addEventListener('statechange',observe);reg.addEventListener('updatefound',()=>reg.installing?.addEventListener('statechange',observe));navigator.serviceWorker.addEventListener('controllerchange',()=>{if(live){setUpdate(null);if(changed(navigator.serviceWorker.controller))setReloadReady(true);}});}).catch(()=>{});return()=>{live=false;};},[]);
- useEffect(()=>{document.documentElement.dataset.theme=dark?'dark':'light';document.documentElement.dataset.motion=still?'still':'full';},[dark,still]);
+ useEffect(()=>{
+  document.documentElement.dataset.theme=dark?'dark':'light';
+  document.documentElement.dataset.motion=still?'still':'full';
+  const sp=new URLSearchParams(location.search);
+  if(!visualReviewEnabled||!sp.has('theme')){
+   try{localStorage.setItem('oot-display-theme',dark?'1':'0');}catch{/* Storage denied is harmless. */}
+  }
+  if(!visualReviewEnabled||!sp.has('motion')){
+   try{localStorage.setItem('oot-display-motion',still?'1':'0');}catch{/* Storage denied is harmless. */}
+  }
+ },[dark,still]);
 
  const hubTitle={actors:actorId&&panel==='actors'?`${names[actorId]} · ${tr('伙伴档案','Profile')}`:tr('工作室伙伴','Our teammates'),jobs:tr('委托日志','Commission log'),studio:tr('经营工作室','Studio hub'),journal:tr('事务所手账','Studio journal')}[panel??'actors'];
  const hubBack=panel==='actors'&&actorId&&actorEntry==='gallery'?{label:tr('返回画廊','Back to gallery'),onClick:closeActor}:panel==='jobs'&&jobInDetail&&matchMedia('(max-width:679px)').matches?{label:tr('返回列表','Back to list'),onClick:()=>selectCommission(null)}:null;
