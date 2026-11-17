@@ -1,3 +1,38 @@
+# B release and integration staging — 2026-11-17
+
+Latest registered implementation: **244018cfae492cf1196299d0fbd967f32c9b805e** (experience-core-wave1; D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-core). A may merge this fixed SHA, including W3 ee0c04a, W2 bda560c and W1 7a9f3df. Contract v1 remains unchanged. Separate integration/experience31 worktree: D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-integration, created from main d18241a then fast-forwarded to this B release. No A implementation merged into B or integration yet; A's W1-only merge a6b9c49 is observed, not treated as final delivery.
+
+Final preflight: pnpm check **51 files / 452 tests PASS**, staged diff check PASS. Strengthened activity tests reverse-check every changed actor and all projected costs/location/recovery fields; compile-checked inventory covers all 17 command and 26 campaign-action tags. Test-harness import/count failures retained and corrected without weakening old assertions. Archived baseline code d18241a generated opening/529/419 saves; all three import and re-export byte-identically with identical state/content fingerprints. Nine altered hash/version imports reject without changing session identity. Scope is compatibility with the frozen 3.1 base, not arbitrary historical content or a verified old-version launch entry. Offline baseline install failure retained; executable source-bundle fallback uses installed lock-identical dependencies, no network. Evidence ../commission-evidence/experience31/w4-preflight/244018cfae492cf1196299d0fbd967f32c9b805e/ includes original archive, synthetic saves, compatibility.json, logs and raw-file hashes.
+
+Protected domain content/persistence/DSH/historical traces/old assets/content.ts/living-art.ts are unchanged. Main is clean at d18241a, no push/deploy. Integration staging is not H6 acceptance; final A merge and real-service checks remain required.
+
+| Gate | Current verified state | Required next input |
+|---|---|---|
+| H1 | Shared v1 API/design freeze published at 7a9f3df; A co-sign recorded | A acknowledgement of amended longer performance fixture remains open |
+| H2 | Coordinator, CAS/lineage/two-state switch tested | A Browser/Host/Lab + actual Worker/performance evidence; unchanged Host protocol still cannot express boundary-only rotation |
+| H3 | Pure period/activity previews, full trace matrices, learning, two actual samples | A rule migration/UI verification and explicit sample crop approval |
+| H4 | Bounded search + five shared rule services and comparisons ready | A integration/50ms browser measurements; six images cannot start before crop approval |
+| H5 | 18 bilingual receipts + two three-stage duo chains and fact gates ready | Six remaining images, A narrative/art hookup, viewport/failure/reduced-motion checks |
+| H6 | Independent branch staged with B; baseline saves/regression/offline integrity checked | Fixed A final release, full integrated checks and 20 browser configurations before main merge |
+
+| EXP | B status / remaining integration |
+|---|---|
+| 01 | Storage services/test evidence ready; Host rotation limitation and actual A adapters remain open |
+| 02–04 | Activity/period/learning services ready; A display/skip/review integration open |
+| 05 | A-owned; its Pre-H2 evidence exists, final integrated acceptance open |
+| 06 | Candidate service ready; A comparison/edit/scheduling evidence open |
+| 07–08 | Narrative selectors/receipts/duo facts ready; A presentation and six images open |
+| 09 | Finance explanation ready; A consumption and copy open |
+| 10 | Frozen-base import/export fingerprints proven; arbitrary older content remains explicitly incompatible |
+| 11 | Existing core legality and bounded draft service available; A reuse flow acceptance open |
+| 12 | Excluded |
+| 13 | Cancelled |
+| 14 | Five public rule replacements/matrices ready; A must remove its copies after real-service verification |
+
+No EXP is marked end-to-end CLOSED from B-only tests. Historical VF5 / Visual Freeze HOLD retained. Next dependency actions: A merges registered B release, publishes Worker/adapters and sample APPROVE/REWORK; B then produces six remaining images and merges A's registered final release into the prepared integration branch. The Host rotation incompatibility must stay explicit, never hidden as a passed H2 check.
+
+Earlier records follow.
+
 # W3 presentation release — 2026-11-17
 
 Registered implementation SHA ee0c04a66b1faa731f712d5a9bbf0db133ebba87, branch experience-core-wave1, worktree D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-core. A may merge this fixed SHA; it includes W1 7a9f3df and W2 bda560c. Contract v1 remains compatible. Git confirms A merged W1 at a6b9c49; its browser integration/approval is not inferred from that merge.
