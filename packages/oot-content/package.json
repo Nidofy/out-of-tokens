@@ -10,6 +10,10 @@
     "./browser": {
       "types": "./src/browser.ts",
       "default": "./dist/browser.js"
+    },
+    "./presentation": {
+      "types": "./src/presentation.ts",
+      "default": "./dist/presentation.js"
     }
   },
   "dependencies": {

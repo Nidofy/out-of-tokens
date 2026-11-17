@@ -1,3 +1,14 @@
+# W3 standalone presentation entry (contract v1, additive)
+
+`content/presentation/experience-v1.json` contains six scenes x passed/rework/failed (18 bilingual receipts), and `bluewhale-qwen` / `mistral-llama` x three two-speaker stages. It is validated via browser-safe `oot-content/presentation`; it is never merged into domain Content or persisted. Reference validation against full Content is a release test. Strict keys reject rewards; IDs, speakers, template ownership, scene/outcome completeness and translation placeholders are validated.
+
+A imports only `experienceReceiptCopy` / `experienceDuoCopy` from B-owned `apps/web/src/experience-copy.ts`:
+- `experienceReceiptCopy(receipt, job)` accepts a receipt from `getExperienceView()` and matching current view job (`id`, `template`). Unknown templates use the generic workshop scene. Missing/mismatched/ambiguous or conditional outcome proof returns neutral copy. Participant IDs require actual certain contribution facts; review text additionally requires actual reviewer contribution.
+- `experienceDuoCopy(stage, duo, experienceView, context)` uses a duo from the same `session.view.living.duos`. First-shared-delivery requires `context.jobs` from that view and the earliest proven passed receipt with both actors' actual roles. Each speaker's response includes that job subject and only their recorded contribution roles. Missing history or failed delivery is neutral, never a positive invented memory.
+- Tea-ready uses the core `duo.canUnlock` result, preserving occupancy/scene/delivery constraints. Unlocked-benefit requires `context.explanation`, `context.jobId`, `context.draftKey`; all contract/content/revision/lineage/job/draft identity must match. Active returns dialogue, explicitly inactive returns inactive copy, missing/stale returns neutral. Actual benefit numbers and inactive reason remain the core explanation/forecast's responsibility. No award, unlock or command is issued by copy selectors.
+
+Every result is detached. Keep the receipt's occurrence/job/phase key when presenting history; never match participation against today's assigned team. A owns display, once-only presentation/preferences and locale selection. This release contains no UI wiring or browser acceptance. Six remaining Art-Batch 7 assets still require A's explicit two-sample crop approval.
+
 # W2 runtime activation (compatible contract v1)
 
 GameSession now implements ExperienceSession at compile time: suggestAssignments, explainActorCapacity, explainTeamDuos and explainFinance join W1 methods. oot-platform/worker exports the actual suggestAssignmentsFromSnapshot function. A can remove all five EXP-14 rule categories after testing real integration; no A source was changed here.
