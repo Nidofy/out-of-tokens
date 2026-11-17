@@ -60,10 +60,10 @@ test('session explanation endpoints bind current revision and draft identity',()
 });
 
 import {getViewModel} from 'oot-core';
-import {evaluateTeamDuos} from '../web/src/living-adapter.js';
-import {actorEffectiveContext,isActorOverloaded} from '../web/src/scene-layout.js';
-import {ledgerWindowSummary} from '../web/src/ui2-logic.js';
-test('application-layer migration matrix compares every duo across modes, categories, periods and locks',()=>{
+import {formatDuoEvaluations} from '../web/src/experience-adapter.js';
+import {getLivingCatalog} from '../web/src/living-adapter.js';
+import {reactionFor} from '../web/src/scene-layout.js';
+test('application-layer migration matrix validates core explainDuos through formatDuoEvaluations across modes, categories, periods and locks',()=>{
  const full={...c,campaign:{...c.campaign!,initial:[...new Set(c.versions.map(v=>v.character))]}};
  const templates=[...new Map(c.commissions.map(t=>[`${t.category}:${t.delivery}`,t])).values()];
  let compared=0;
@@ -71,13 +71,15 @@ test('application-layer migration matrix compares every duo across modes, catego
   const s=createInitialState(full,1);s.absoluteSlot=slot;s.jobs[0]!.template=template.id;s.campaign!.duos=unlocked?[duo.id]:[];
   const team:Member[]=duo.actors.map(character=>({character,role:'worker',mode}));
   const view=getViewModel(s,full),job=view.jobs[0]!;
-  const old=evaluateTeamDuos(view,job,team).find(x=>x.duo.id===duo.id)!;
-  expect(explainDuos(s,full,job.id,team).find(x=>x.duoId===duo.id)?.state).toBe(old.state);compared++;
+  const coreDuos=explainDuos(s,full,job.id,team);
+  const coreEntry=coreDuos.find(x=>x.duoId===duo.id)!;
+  const uiEntry=formatDuoEvaluations({contract:EXPERIENCE_CONTRACT,contentVersion:full.version,revision:0,lineageId:'matrix',jobId:job.id,draftKey:'matrix',duos:coreDuos},view,getLivingCatalog(view)).find(x=>x.duo.id===duo.id)!;
+  expect(uiEntry.state).toBe(coreEntry.state);compared++;
  }
  expect(compared).toBeGreaterThan(500);
 },20000);
-test('application-layer capacity and ledger migrations agree for known old-correct cases',()=>{
+test('application-layer capacity and ledger migrations use core explainCapacity and explainMoney without local rule copies',()=>{
  const s=createInitialState(c,1);s.campaign!.hardware.storage=3;
- for(const actor of s.actors)for(const load of [0,10,30]){actor.load=load;const view=getViewModel(s,c),fresh=explainCapacity(s,c,actor.id);expect(fresh.context).toBe(actorEffectiveContext(view,actor.id));expect(fresh.overloaded).toBe(isActorOverloaded(view,actor.id));}
- s.ledger=[{slot:0,amount:100,reason:'loan'},{slot:0,amount:-10,reason:'buy'}];expect(explainMoney(s,c).recentLedgerSummary).toEqual(ledgerWindowSummary(getViewModel(s,c).ledger));
+ for(const actor of s.actors)for(const load of [0,10,30]){actor.load=load;const view=getViewModel(s,c),fresh=explainCapacity(s,c,actor.id);expect(fresh.overloaded).toBe(load>fresh.context);if(actor.energy>=35&&actor.mood<82&&!view.possibleStops.includes(actor.id))expect(reactionFor(view,actor.id,fresh.overloaded)).toBe(fresh.overloaded?'surprised':'neutral');}
+ s.ledger=[{slot:0,amount:100,reason:'loan'},{slot:0,amount:-10,reason:'buy'}];expect(explainMoney(s,c).recentLedgerSummary).toEqual({count:2,inflow:100,outflow:10,net:90});
 });

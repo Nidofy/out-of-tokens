@@ -65,15 +65,6 @@ export function topJobSkillWeights(weights:Record<Skill,number>,limit=2):{skill:
   .map(([skill,weight])=>({skill,weight,pct:Math.round(weight*100)}));
 }
 
-export function ledgerWindowSummary(ledger:readonly {slot:number;reason:string;amount:number}[]){
- let inflow=0,outflow=0;
- for(const row of ledger){
-  if(row.amount>=0)inflow+=row.amount;
-  else outflow+=Math.abs(row.amount);
- }
- return {count:ledger.length,inflow:Number(inflow.toFixed(2)),outflow:Number(outflow.toFixed(2)),net:Number((inflow-outflow).toFixed(2))};
-}
-
 export interface CameraTargetValues {
  x:number;
  y:number;

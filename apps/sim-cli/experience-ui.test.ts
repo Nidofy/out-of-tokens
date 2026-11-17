@@ -2,13 +2,15 @@ import {expect,test} from 'vitest';
 import {existsSync,readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {loadFullContent} from 'oot-content';
+import type {Command} from 'oot-core';
 import {CheckpointCoordinator,GameSession,switchImportedSession} from 'oot-platform';
 import {experienceFixture} from 'oot-platform/fixtures';
 import {defaultSaveEncoder} from 'oot-platform/worker';
 import {LabSaves,labSession} from '../web/src/office-lab.js';
-import {describeActivityPreview,formatAdvanceDisplay} from '../web/src/experience-adapter.js';
+import {computeCandidateDelta,describeActivityPreview,formatAdvanceDisplay,formatDuoEvaluations,formatFactLine,stableDraftKey} from '../web/src/experience-adapter.js';
 import {experienceArt} from '../web/src/experience-art.js';
 import {encodeViaWorkerProtocol} from '../web/src/save-encoder-host.js';
+import {acceptSuggestionResult,suggestViaWorkerProtocol} from '../web/src/experience-worker-host.js';
 import {
  backupPolicyCopy,
  buildSampleTeamDraft,
@@ -330,4 +332,75 @@ test('H3: previewNextPeriod and previewActivity adapters consume core previews a
   const graph=JSON.parse(readFileSync(graphPath,'utf8')) as {fixtureReachable:boolean};
   expect(graph.fixtureReachable).toBe(false);
  }
+});
+
+test('H4: Candidate Worker protocol matches GameSession.suggestAssignments and rejects stale revision, lineage, and draftKey',()=>{
+ const c=loadFullContent();
+ const g=new GameSession(c,1,'lineage-w2');
+ const menu=g.view.jobs.find(j=>j.template==='menu')!;
+ const qwenDraft=[{character:'qwen',role:'worker' as const,mode:'cloud' as const}];
+ const draftKey=stableDraftKey(menu.id,qwenDraft);
+ const draft={team:qwenDraft,draftKey};
+ const snap=g.workerSnapshot();
+
+ const direct=g.suggestAssignments(menu.id,draft);
+ const {result:viaWorker}=suggestViaWorkerProtocol(snap,menu.id,draft);
+ expect(viaWorker).toEqual(direct);
+ expect(viaWorker.suggestions.length).toBeGreaterThanOrEqual(1);
+ expect(viaWorker.evaluated).toBeLessThanOrEqual(256);
+
+ // Current identity & draftKey pass; stale revision, wrong lineage, or modified draftKey must drop
+ expect(acceptSuggestionResult(viaWorker,snap,draftKey)).toBe(true);
+ expect(acceptSuggestionResult(viaWorker,{...snap,revision:snap.revision+1},draftKey)).toBe(false);
+ expect(acceptSuggestionResult(viaWorker,{...snap,lineageId:'other-lineage'},draftKey)).toBe(false);
+ expect(acceptSuggestionResult(viaWorker,snap,stableDraftKey(menu.id,[]))).toBe(false);
+
+ // Candidate delta compares cleanly against live previewAssignment forecast without mutating state
+ const preview=g.previewAssignment(menu.id,qwenDraft);
+ expect(preview.forecast).not.toBeNull();
+ const firstCand=viaWorker.suggestions[0]!;
+ const delta=computeCandidateDelta(firstCand,preview.forecast);
+ expect(typeof delta.cloudDelta).toBe('number');
+ expect(formatFactLine(firstCand.costs[0]!,false)).toContain('云端');
+
+ // Duo & finance explanations consume core services and map W2 reason codes without labeling netSolvency as profit
+ const duoExp=g.explainTeamDuos(menu.id,draft);
+ const formattedDuos=formatDuoEvaluations(duoExp,g.view,g.view.catalog!.living!);
+ expect(formattedDuos.every(d=>d.reasonZh.length>0&&d.reasonEn.length>0)).toBe(true);
+ const qwenOnlyDuos=formatDuoEvaluations(duoExp,g.view,g.view.catalog!.living!,new Set(['qwen']));
+ expect(qwenOnlyDuos).toEqual([]);
+ expect(resolveReasonCopy('duo-clarification-only',false)).toContain('需求澄清');
+ expect(resolveReasonCopy('save-resources',true).toLowerCase()).toContain('quota');
+ const fin=g.explainFinance();
+ expect(fin.bills.length).toBeGreaterThanOrEqual(1);
+ expect(resolveReasonCopy(fin.bills[0]!.reason,true)).not.toContain('Status note');
+});
+
+test('H4: SaveEncoder Worker protocol matches defaultSaveEncoder across opening, build-2, guide-1, and 962-command stress trajectory',async()=>{
+ const c=loadFullContent();
+
+ // 1. Replay build-2 (529 cmds) & guide-1 (419 cmds) transcripts into live GameSessions for byte-for-byte parity
+ for(const traceFile of ['apps/sim-cli/fixtures/commission-natural-build-2.json','apps/sim-cli/fixtures/commission-natural-guide-1.json']){
+  const raw=JSON.parse(readFileSync(resolve(traceFile),'utf8')) as {seed:number;commands:Command[]};
+  const g=new GameSession(c,raw.seed,`trace-${raw.seed}`);
+  for(const cmd of raw.commands)expect(g.send(cmd).error).toBeNull();
+  const snap=g.checkpointSnapshot();
+  expect(await encodeViaWorkerProtocol(snap.input)).toBe(await defaultSaveEncoder.encode(snap.input));
+  const half=Math.floor(snap.input.commands.length/2);
+  expect(await encodeViaWorkerProtocol({...snap.input,throughCommand:half})).toBe(await defaultSaveEncoder.encode({...snap.input,throughCommand:half}));
+ }
+
+ // 2. Amended 962-command seed21 stress input (3 visits + advance x 240 slots with restarts)
+ const gStress=new GameSession(c,21,'stress-seed21');
+ for(let slot=0;slot<240;slot++){
+  if(gStress.view.bankrupt)expect(gStress.send({type:'restart'}).error).toBeNull();
+  for(const id of ['library','canteen','workshop'] as const){
+   expect(gStress.send({type:'campaign',action:'visit',id}).error).toBeNull();
+  }
+  expect(gStress.send({type:'advance'}).error).toBeNull();
+ }
+ const stressSnap=gStress.checkpointSnapshot();
+ expect(stressSnap.input.commands).toHaveLength(962);
+ expect(await encodeViaWorkerProtocol(stressSnap.input)).toBe(await defaultSaveEncoder.encode(stressSnap.input));
+ expect(await encodeViaWorkerProtocol({...stressSnap.input,throughCommand:600})).toBe(await defaultSaveEncoder.encode({...stressSnap.input,throughCommand:600}));
 });

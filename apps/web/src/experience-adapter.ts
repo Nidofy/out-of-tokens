@@ -1,6 +1,7 @@
-import type {GameView} from 'oot-platform';
-import type {ActivityPreview,Condition,Fact,NextPeriodPreview} from 'oot-platform';
+import type {Member} from 'oot-core';
+import type {ActivityPreview,AssignmentSuggestion,Condition,DuoExplanation,Fact,GameSession,GameView,NextPeriodPreview} from 'oot-platform';
 import {resolveReasonCopy} from './experience-ui-copy.js';
+import type {DuoDef,LivingContent,LivingDuoView} from './living-adapter.js';
 import {names} from './presentation.js';
 import {sceneText} from './ui-labels.js';
 
@@ -287,4 +288,125 @@ export function actorStopKindFromPreview(stops:NextPeriodPreview['stops']|undefi
  const stop=stops?.find(s=>s.actorId===actorId);
  if(!stop)return null;
  return stop.reason==='local-capacity'?'local':'cloud';
+}
+
+export function stableDraftKey(jobId:string,members:readonly Member[]):string{
+ const sorted=[...members].sort((a,b)=>a.character<b.character?-1:a.character>b.character?1:0);
+ return `${jobId}:${sorted.map(m=>`${m.character}:${m.role}:${m.mode}`).join('|')}`;
+}
+
+export function formatFactLine(fact:Fact,english:boolean):string{
+ const label=resolveReasonCopy(fact.reason,english);
+ if(fact.amount===undefined)return label;
+ const amountText=fact.unit==='cash'
+  ?`¥${fact.amount.toFixed(fact.amount%1===0?0:2)}`
+  :fact.unit==='quota'
+   ?`${fact.amount} T`
+   :fact.unit==='capacity'
+    ?`${fact.amount} ${english?'local':'本地'}`
+    :`${fact.amount}`;
+ return `${label} · ${amountText}`;
+}
+
+export interface CandidateDelta {
+ workSlotsDelta:number|null;
+ cloudDelta:number|null;
+ localDelta:number|null;
+ qualityFloorDelta:number|null;
+ qualityCeilingDelta:number|null;
+}
+
+type AssignmentForecastValue=NonNullable<ReturnType<GameSession['previewAssignment']>['forecast']>;
+
+/** Computes display deltas between a suggested plan and the player's current valid draft forecast. */
+export function computeCandidateDelta(
+ candidate:AssignmentSuggestion,
+ draftForecast:AssignmentForecastValue|null
+):CandidateDelta{
+ if(!draftForecast){
+  return {workSlotsDelta:null,cloudDelta:null,localDelta:null,qualityFloorDelta:null,qualityCeilingDelta:null};
+ }
+ const cq=candidate.forecast.quality;
+ const dq=draftForecast.quality;
+ return {
+  workSlotsDelta:candidate.forecast.workSlots-draftForecast.workSlots,
+  cloudDelta:Number((candidate.forecast.cloud-draftForecast.cloud).toFixed(2)),
+  localDelta:Number((candidate.forecast.local-draftForecast.local).toFixed(2)),
+  qualityFloorDelta:cq?.[0]!==undefined&&dq?.[0]!==undefined?cq[0]-dq[0]:null,
+  qualityCeilingDelta:cq?.[1]!==undefined&&dq?.[1]!==undefined?cq[1]-dq[1]:null
+ };
+}
+
+export interface TeamDuoDisplay {
+ duo:LivingDuoView;
+ def:DuoDef;
+ state:'locked'|'inactive'|'active';
+ reason:string;
+ statusZh:string;
+ statusEn:string;
+ reasonZh:string;
+ reasonEn:string;
+}
+
+/** Formats core GameSession.explainTeamDuos() output without duplicating any duo rule logic in UI. */
+export function formatDuoEvaluations(
+ explanation:DuoExplanation,
+ view:GameView,
+ catalog:LivingContent,
+ teamActorIds?:ReadonlySet<string>
+):TeamDuoDisplay[]{
+ const out:TeamDuoDisplay[]=[];
+ for(const item of explanation.duos){
+  if(item.reason==='duo-team-missing'&&!teamActorIds)continue;
+  const duo=view.living.duos.find(d=>d.id===item.duoId);
+  const def=catalog.duos.find(d=>d.id===item.duoId);
+  if(!duo||!def)continue;
+  if(teamActorIds&&!duo.actors.every(id=>teamActorIds.has(id)))continue;
+
+  if(item.state==='locked'){
+   const rem=Math.max(0,def.minDeliveries-duo.sharedDeliveries);
+   out.push({
+    duo,
+    def,
+    state:'locked',
+    reason:item.reason,
+    statusZh:'未解锁',
+    statusEn:'Locked',
+    reasonZh:rem===0?'同队交付已达标，前往伙伴档案召开搭档茶会解锁':`还差 ${rem} 次同队交付可召开茶会解锁`,
+    reasonEn:rem===0?'Co-deliveries met; host duo tea in Partner Profile to unlock':`${rem} more co-delivery needed for duo tea`
+   });
+   continue;
+  }
+
+  if(item.state==='active'){
+   out.push({
+    duo,
+    def,
+    state:'active',
+    reason:item.reason,
+    statusZh:'当前生效',
+    statusEn:'Active',
+    reasonZh:duo.desc,
+    reasonEn:duo.descEn
+   });
+   continue;
+  }
+
+  const clarifyOnly=item.reason==='duo-clarification-only';
+  out.push({
+   duo,
+   def,
+   state:'inactive',
+   reason:item.reason,
+   statusZh:clarifyOnly?'仅澄清生效':'当前不生效',
+   statusEn:clarifyOnly?'Clarify only':'Inactive',
+   reasonZh:clarifyOnly||item.reason==='duo-conditions-unmet'||item.reason==='duo-mode-mismatch'
+    ?`${resolveReasonCopy(item.reason,false)}（${duo.desc}）`
+    :resolveReasonCopy(item.reason,false),
+   reasonEn:clarifyOnly||item.reason==='duo-conditions-unmet'||item.reason==='duo-mode-mismatch'
+    ?`${resolveReasonCopy(item.reason,true)} (${duo.descEn})`
+    :resolveReasonCopy(item.reason,true)
+  });
+ }
+ return out;
 }

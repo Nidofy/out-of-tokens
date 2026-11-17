@@ -1,13 +1,13 @@
 import type {Command} from 'oot-core';
 import {worlds} from 'oot-core';
-import type {ActivityPreview,GameView} from 'oot-platform';
+import type {ActivityPreview,FinanceExplanation,GameView} from 'oot-platform';
 import {Icon} from './icons.js';
-import {describeActivityPreview} from './experience-adapter.js';
+import {describeActivityPreview,formatFactLine} from './experience-adapter.js';
 import {ExperienceArtSlot} from './experience-art-slot.js';
+import {financeNetSolvencyNote} from './experience-ui-copy.js';
 import {souvenirIds} from './generated-art.js';
 import {ledgerLabel} from './player-labels.js';
 import {names} from './presentation.js';
-import {ledgerWindowSummary} from './ui2-logic.js';
 import {periodText} from './decision-panels.js';
 
 export type JournalTab='chronicle'|'ledger'|'bids'|'expedition';
@@ -29,14 +29,15 @@ type JournalHubProps={
  send:(cmd:Command)=>Promise<boolean>;
  hideTabs?:boolean;
  previewActivity?:(cmd:Command)=>ActivityPreview;
+ finance:FinanceExplanation;
 };
 
-export function JournalHub({view,english,locked,tab,setTab,send,hideTabs,previewActivity}:JournalHubProps){
+export function JournalHub({view,english,locked,tab,setTab,send,hideTabs,previewActivity,finance}:JournalHubProps){
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!,f=p.finale!;
  const chapterTitles=[tr('开源车库联盟','Open-source garage'),tr('第一笔大订单','The first large order'),tr('模型更新之夜','Model release night'),tr('429危机','The 429 crisis'),tr('最后一个Token','The last token')];
  const act=(action:'expedition'|'ending'|'endless'|'bid'|'challenge',id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
- const ledgerSummary=ledgerWindowSummary(view.ledger);
+ const ledgerSummary=finance.recentLedgerSummary;
  const deliveredCount=view.jobs.filter(j=>j.status==='delivered').length;
 
  return (
@@ -93,11 +94,20 @@ export function JournalHub({view,english,locked,tab,setTab,send,hideTabs,preview
    {tab==='ledger'&&(
     <div class="ui2-ledger-pane">
      <div class="ui2-finance-kpis">
-      <div class="ui2-kpi-card"><small>{tr('当前账面现金','Cash balance')}</small><b>¥{view.cash.toFixed(2)}</b></div>
-      <div class="ui2-kpi-card" data-crisis={view.liquidCash<0}><small>{tr('净偿付资金','Net solvency')}</small><b>¥{view.liquidCash.toFixed(2)}</b></div>
-      <div class="ui2-kpi-card"><small>{tr(`近 ${ledgerSummary.count} 笔入账`,`Last ${ledgerSummary.count} inflow`)}</small><b class="is-up">+¥{ledgerSummary.inflow.toFixed(2)}</b></div>
-      <div class="ui2-kpi-card"><small>{tr(`近 ${ledgerSummary.count} 笔支出`,`Last ${ledgerSummary.count} outflow`)}</small><b class="is-down">−¥{ledgerSummary.outflow.toFixed(2)}</b></div>
+      <div class="ui2-kpi-card"><small>{tr('当前账面现金','Cash balance')}</small><b>¥{finance.cash.toFixed(2)}</b></div>
+      <div class="ui2-kpi-card" data-crisis={finance.netSolvency<0}><small>{tr('净偿付资金（非利润）','Net solvency (not profit)')}</small><b>¥{finance.netSolvency.toFixed(2)}</b></div>
+      <div class="ui2-kpi-card"><small>{tr('未完结预付款 / 在贷','Unfinished advances / Loan')}</small><b>¥{finance.unfinishedAdvances.toFixed(2)} / ¥{finance.loan}</b></div>
+      <div class="ui2-kpi-card"><small>{tr(`近 ${ledgerSummary.count} 笔流水净流动（非利润）`,`Last ${ledgerSummary.count} cash net (not profit)`)}</small><b class={ledgerSummary.net>=0?'is-up':'is-down'}>{ledgerSummary.net>=0?'+':''}¥{ledgerSummary.net.toFixed(2)} (+{ledgerSummary.inflow.toFixed(0)} / −{ledgerSummary.outflow.toFixed(0)})</b></div>
      </div>
+     <p class="ui2-inline-hint"><Icon name="info"/> {financeNetSolvencyNote(english)}</p>
+     {finance.bills.length>0&&(
+      <section class="ui2-card" aria-label={tr('近期已知账单拆分','Known upcoming liabilities')}>
+       <h4>{tr('近期已知待结算账单（不揣测未来收入）','Known upcoming bills (no speculative future income)')}</h4>
+       <ul class="ui2-ledger-list">
+        {finance.bills.map((bill,idx)=><li key={idx}><span><b>{formatFactLine(bill,english)}</b></span><b>¥{(bill.amount??0).toFixed(2)}</b></li>)}
+       </ul>
+      </section>
+     )}
 
      <div class="ui2-ledger-cols">
       <section class="ui2-card">

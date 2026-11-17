@@ -536,6 +536,35 @@
  .ui2-art-fallback-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
  .ui2-art-fallback-copy b{font-size:14px}
  .ui2-art-fallback-copy small{font-size:12px;color:var(--muted)}
+
+ /* W2: Candidate comparison cards (3-col desktop, stacked narrow) & remedies bar */
+ .ui2-candidates-section{display:flex;flex-direction:column;gap:8px;padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
+ .ui2-candidates-head{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:8px}
+ .ui2-candidates-head h4{margin:0 0 2px;font-size:14px;display:flex;align-items:center;gap:6px}
+ .ui2-sample-team-actions{display:flex;flex-wrap:wrap;gap:6px}
+ .ui2-sample-team-actions button{min-height:44px;padding:6px 10px;display:inline-flex;align-items:center;gap:5px;font-size:12px}
+ .ui2-candidates-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+ @media(max-width:899px){.ui2-candidates-grid{grid-template-columns:minmax(0,1fr)}}
+ @media(min-width:960px) and (min-height:600px){.ui2-candidates-section{grid-column:1 / -1}}
+ .ui2-candidate-card{display:flex;flex-direction:column;gap:8px;padding:10px;border-radius:10px;background:var(--solid);border:1px solid var(--line);min-width:0}
+ .ui2-candidate-card[data-selected=true]{border-color:var(--selected-indicator);box-shadow:inset 0 0 0 1px var(--selected-indicator)}
+ .ui2-candidate-card header{display:flex;align-items:baseline;justify-content:space-between;gap:6px;flex-wrap:wrap}
+ .ui2-candidate-card header b{font-size:13px;color:var(--ink)}
+ .ui2-candidate-card header span{font-size:12px;color:var(--muted)}
+ .ui2-candidate-team{display:flex;flex-direction:column;gap:4px}
+ .ui2-candidate-member{display:flex;align-items:center;gap:6px;font-size:12px}
+ .ui2-candidate-member img{width:24px;height:24px;border-radius:6px;object-fit:cover;flex:none}
+ .ui2-candidate-member em{font-style:normal;color:var(--ink);overflow-wrap:anywhere}
+ .ui2-candidate-costs{display:flex;flex-direction:column;gap:2px}
+ .ui2-candidate-costs small{font-size:12px;color:var(--muted);line-height:1.35}
+ .ui2-candidate-delta{margin:0;font-size:12px;line-height:1.35;color:var(--ink);font-weight:600}
+ .ui2-candidate-card button{margin-top:auto;min-height:44px;width:100%;font-size:12px;font-weight:600}
+ .ui2-candidate-empty{padding:10px;border-radius:10px;background:var(--solid);border:1px dashed var(--line)}
+ .ui2-candidate-empty p{margin:4px 0 0;font-size:12px;color:var(--muted)}
+ .ui2-remedies-box{display:grid;gap:6px;margin:8px 0;padding:10px;border-radius:10px;background:var(--card);border:1px solid var(--brass)}
+ .ui2-remedies-box b{font-size:12px}
+ .ui2-remedies-actions{display:flex;flex-wrap:wrap;gap:6px}
+ .ui2-remedies-actions button{min-height:44px;display:inline-flex;align-items:center;gap:6px;font-size:12px}
 }
 
 @layer ui2-responsive {
