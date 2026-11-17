@@ -69,18 +69,29 @@ export class BrowserSaves {
                     return;
                 }
                 next = expectedRevision + 1;
-                // Rotations and the new pointer commit together in one transaction.
-                if (id === 'auto' && previous && policy === 'boundary') {
-                    for (let i = 1; i < 5; i++) {
-                        const backup = store.get(`backup-${i}`);
-                        backup.onsuccess = () => {
-                            if (backup.result)
-                                store.put({ ...backup.result, id: `backup-${i + 1}` });
-                        };
-                    }
-                    store.put({ ...previous, id: 'backup-1' });
+                const nextRecord = { id, text, revision: next, savedAt: Date.now(), ...(capturedMeta ? { meta: capturedMeta } : {}) } satisfies StoredSave;
+                // Keep the last boundary separately: ordinary checkpoints replace auto.
+                // This private platform record never enters save text or the public slot list.
+                if (id === 'auto') {
+                    const head = store.get('boundary-head');
+                    head.onsuccess = () => {
+                        const boundary = (head.result as StoredSave | undefined) ?? previous;
+                        if (boundary && policy === 'boundary') {
+                            for (let i = 1; i < 5; i++) {
+                                const backup = store.get(`backup-${i}`);
+                                backup.onsuccess = () => {
+                                    if (backup.result)
+                                        store.put({ ...backup.result, id: `backup-${i + 1}` });
+                                };
+                            }
+                            store.put({ ...boundary, id: 'backup-1' });
+                        }
+                        // Legacy databases have no head; preserve their known recovery point.
+                        if (policy === 'boundary' || !head.result)
+                            store.put({ ...(policy === 'boundary' ? nextRecord : boundary ?? nextRecord), id: 'boundary-head' });
+                    };
                 }
-                store.put({ id, text, revision: next, savedAt: Date.now(), ...(capturedMeta ? { meta: capturedMeta } : {}) } satisfies StoredSave);
+                store.put(nextRecord);
             };
         });
         this.channel?.postMessage({ id, revision });

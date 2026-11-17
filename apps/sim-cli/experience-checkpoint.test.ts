@@ -17,7 +17,7 @@ test('50 command checkpoints preserve boundary backups and their original lineag
     await expect(storage.write('auto', 'stale', 1, 'boundary', { lineageId: 'wrong' })).rejects.toThrow('SAVE_CONFLICT');
     expect((await storage.list()).slice(4)).toEqual(backups);
     await storage.write('auto', 'next-boundary', 52, 'boundary', { lineageId: 'third' });
-    expect((await storage.read('backup-1'))?.text).toBe('command-49');
+    expect((await storage.read('backup-1'))?.text).toBe('boundary');
     expect((await storage.read('backup-2'))?.meta?.lineageId).toBe('old');
     await storage.close();
 });
@@ -222,7 +222,7 @@ test('manual auto-load after drain remains unsaved until a fresh load boundary c
     const next=new CheckpointCoordinator(()=>session.checkpointSnapshot(),storage,disk.revision);
     next.enqueue('load');expect((await next.drain()).kind).toBe('saved');
     expect((await storage.read('auto'))!.text).toBe(original);
-    expect((await storage.read('backup-1'))!.text).toBe(disk.text);
+    expect((await storage.read('backup-1'))!.text).toBe(original);
     expect((await storage.read('backup-1'))!.meta?.lineageId).toBe(session.lineageId);
     next.dispose();await storage.close();
 });
