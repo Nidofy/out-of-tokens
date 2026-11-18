@@ -275,3 +275,5 @@ VF4-A固定实现 d3e0c87d96bf4fe3baa77ab745163d8baa9ca052；实现提交前stag
 2026-11-18 closure/experience31-visual：基线06aebde / 实现3ec1908（含6f27926），本轮无产品实现改动。离线安装与pnpm check53/474 PASS，git diff --check通过；独立生产桌面/390px全圈及DEV故障注入等补验归档commission-evidence/closure-1117。VF5 36+36相对门槛仍HOLD，Tier扩展诊断1008组仍需A时序/层级，详见docs/visual-closure-20261118.md。所有本轮4241–4248服务已停止、测试页关闭、视口恢复；独立origin可丢弃浏览器数据保留供续测，不声称清空。Windows设置未改，DSH未安装候选。用户明确延期真机触摸。仅文档checkpoint及已验PM-01本地合流，未push或部署。
 
 2026-11-18 主线快进843e0e5完成；干净SHA运行package-playtest，Web/DSH重建PASS，verify-playtest核验819文件PASS。记录见docs/experience31/closure-merge-record.md。未发布/安装，视觉门禁仍HOLD。
+
+2026-11-18 用户批准后实际安装843e0e5候选：819文件复验PASS；DSH0.2.2-rc.1原生安装器因engines.dsh=0.2.1-rc.5拒绝。未启用、未绕过版本保护，无游戏保存/冲突等真实宿主验收。REA静态清单及认证路由核对归档commission-evidence/dsh-native-1118；仅文档更新，无产品源码变化，未重复旧完整测试。

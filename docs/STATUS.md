@@ -1,3 +1,5 @@
+2026-11-18 用户已明确允许当前DSH配置安装843e0e5候选；实际原生安装失败：宿主0.2.2-rc.1拒绝engines.dsh=0.2.1-rc.5。819文件再次校验通过，未绕过版本检查；关闭弹窗后oot-dsh不在已安装列表，小院仍列出（不等于共存验收）。只读当前ASAR接口核对发现/api认证路由及Fetch registry须与旧根路径适配联合验证，未盲改版本声明。真实DSH仍HOLD，详见experience31/dsh-native-20261118.md；原安装权限阻塞已解除，现为版本/接口适配阻塞。
+
 2026-11-18 本地合流已执行：codex/m1-foundation 从干净bb97135快进至843e0e5e5930ae3b701b19c8c6d9e5c747238e33，包含PM-01 A/B修复与独立功能补验。固定SHA候选包artifacts/out-of-tokens-843e0e5构建完成、819文件完整性校验通过；未安装或发布。VF5/Visual Freeze、Tier动态、系统字号和真实DSH门禁仍保留，真机触摸用户延期。详见experience31/closure-merge-record.md。
 
 2026-11-18 收尾独立复核：固定实现3ec1908（已含B 6f27926），独立工作树closure/experience31-visual。pnpm check 53文件474测试PASS；桌面/390px各自接单至交付互动保存刷新、写失败重试、不可用存储确认切换、图片404、Bark顶层/关闭/赠礼及搭档负载组合补验PASS，PM-01 CLOSED，允许本地合流。新VF5正式36+唯一确认36全部完整且无降频，但确认十二人assetsReady414.05ms较c68541d+15.24%，继续HOLD，600秒长驻未启动。Tier2/3修正版1008组诊断锚点/mask零差异，入座/横向遮挡仍需A层级合同，禁止正式接入。真机触摸用户明确延期；系统字号访问超时未改设置；真实DSH为0.2.2-rc.1与包契约0.2.1-rc.5不同，未装入用户Profile。详见experience31/closure-20261118.md、visual-closure-20261118.md及GEMINI_VISUAL_CLOSURE_PROMPT_20261118.md。未push/部署；本地主线合流SHA另记。
