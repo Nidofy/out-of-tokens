@@ -1,3 +1,5 @@
+2026-11-18 后续状态：本文的PM-01 PASS/CLOSED保持；末尾列出的3.1功能实屏缺口已在新独立工作树补验，局部功能裁决PASS并允许本地主线合入。详情与精确覆盖边界见closure-20261118.md。下文保留原审查时点的HOLD历史，不将其改写成当时已完成。VF5/Visual Freeze及设备/真实宿主门禁仍HOLD。
+
 # Living Studio 3.1：PM-01 返修后独立复验
 
 2026-11-17（Asia/Shanghai）。固定实现 **3ec1908a6f43dc87fd69e330d1bbd7b83849fd18**。
