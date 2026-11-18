@@ -277,3 +277,6 @@ VF4-A固定实现 d3e0c87d96bf4fe3baa77ab745163d8baa9ca052；实现提交前stag
 2026-11-18 主线快进843e0e5完成；干净SHA运行package-playtest，Web/DSH重建PASS，verify-playtest核验819文件PASS。记录见docs/experience31/closure-merge-record.md。未发布/安装，视觉门禁仍HOLD。
 
 2026-11-18 用户批准后实际安装843e0e5候选：819文件复验PASS；DSH0.2.2-rc.1原生安装器因engines.dsh=0.2.1-rc.5拒绝。未启用、未绕过版本保护，无游戏保存/冲突等真实宿主验收。REA静态清单及认证路由核对归档commission-evidence/dsh-native-1118；仅文档更新，无产品源码变化，未重复旧完整测试。
+
+
+2026-11-18 visual-independent-1118：主线3489b3c实际pnpm check53/474 PASS，仓外编译探针与原生指针验证基础桌透明/实色及布局保存刷新恢复。原生系统reduced=true镜头10941帧8次变换；受控动画6725帧113次变换，最大差<0.0005，零超0.001；后者不作为正式性能样本。首个探针rootTarget未初始化异常保留并加守卫重验；首构建EPERM后授权成功。系统字号无可操作窗口，未改设置。维持Gemini A修复分工，无产品实现修改；DSH用户暂缓，真机触摸延期。测试页关闭/视口恢复/已核实Node24240及10352停止，独立origin测试数据保留。报告与Gemini交接更新；VF5原失败及环境证据限制保留。

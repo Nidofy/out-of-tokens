@@ -1,3 +1,5 @@
+2026-11-18 最新执行约束与独立补验：用户明确维持Gemini修复A前端/UI/Pixi、Codex验收合流；DSH安装验证暂缓，真机触摸继续延期。本轮主线pnpm check 53文件474测试PASS，无产品源码/美术修改。基础桌透明/实色原生点击、布局保存退出刷新恢复、原生减少动态模式共同变换PASS；受控完整动画诊断113次变换零超阈值，但不代替真实完整动态环境。系统设置直接启动无可操作窗口，200%字号仍HOLD且设置未改。旧VF5未记录系统减少动态查询，完整动态环境声明须收窄；保留72样本及失败HOLD，不开同SHA第三批。Gemini新实现、Tier动态合同和Visual Freeze仍待完成。详见visual-independent-20261118.md及更新的GEMINI_VISUAL_CLOSURE_PROMPT_20261118.md。
+
 2026-11-18 用户已明确允许当前DSH配置安装843e0e5候选；实际原生安装失败：宿主0.2.2-rc.1拒绝engines.dsh=0.2.1-rc.5。819文件再次校验通过，未绕过版本检查；关闭弹窗后oot-dsh不在已安装列表，小院仍列出（不等于共存验收）。只读当前ASAR接口核对发现/api认证路由及Fetch registry须与旧根路径适配联合验证，未盲改版本声明。真实DSH仍HOLD，详见experience31/dsh-native-20261118.md；原安装权限阻塞已解除，现为版本/接口适配阻塞。
 
 2026-11-18 本地合流已执行：codex/m1-foundation 从干净bb97135快进至843e0e5e5930ae3b701b19c8c6d9e5c747238e33，包含PM-01 A/B修复与独立功能补验。固定SHA候选包artifacts/out-of-tokens-843e0e5构建完成、819文件完整性校验通过；未安装或发布。VF5/Visual Freeze、Tier动态、系统字号和真实DSH门禁仍保留，真机触摸用户延期。详见experience31/closure-merge-record.md。
