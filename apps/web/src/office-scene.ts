@@ -59,7 +59,7 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
  }
  function mountFurniture(node:Container,t:Texture,key:string,kind:string){
   const sprite=new Sprite(t);sprite.position.set(-140,-200);sprite.width=280;sprite.height=240;node.addChild(sprite);
-  if(hitKinds.includes(kind))node.hitArea=workHits.get(key)??{contains(x:number,y:number){const hit=ensureWorkHit(key,t);node.hitArea=hit;return hit.contains(x,y);}};
+  if(hitKinds.includes(kind))node.hitArea=workHits.get(key)??{contains(x:number,y:number){if(x<-140||x>=140||y<-200||y>=40)return false;const hit=ensureWorkHit(key,t);node.hitArea=hit;return hit.contains(x,y);}};
  }
  function furniture(kind:string,layer:'front'|'back'){
   const key=kind+'-'+layer;

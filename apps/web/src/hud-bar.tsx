@@ -1,5 +1,5 @@
 import type {RefObject} from 'preact';
-import {useMemo,useRef,useState} from 'preact/hooks';
+import {useLayoutEffect,useMemo,useRef,useState} from 'preact/hooks';
 import type {GameView} from 'oot-platform';
 import {Icon} from './icons.js';
 import {PeriodClockIcon,PeriodDots} from './ornaments.js';
@@ -26,6 +26,7 @@ type HudBarProps={
  locked:boolean;
  hud:'board'|'view'|'more'|null;
  panel:HubPanel|null;
+ dockHidden?:boolean;
  placeLabel:string;
  chapterTitle:string;
  advance:FormattedAdvanceInfo;
@@ -41,6 +42,7 @@ type HudBarProps={
  onTeaBreak:()=>void;
  onOpenStudioFinance:()=>void;
  onOpenPanel:(next:HubPanel)=>void;
+ onWarmDock?:()=>void;
  onOpenOffice:()=>void;
  onOpenSaves:()=>void;
  onOpenSettings:()=>void;
@@ -57,7 +59,9 @@ type HudBarProps={
 };
 
 export function HudBar(props:HudBarProps){
- const {view,english,dark,still,locked,hud,panel,placeLabel,chapterTitle,advance,deltas,unreadThreads,teaReady,audioPrefs,saveStatus,jobsTrigger}=props;
+ const {view,english,dark,still,locked,hud,panel,dockHidden=false,placeLabel,chapterTitle,advance,deltas,unreadThreads,teaReady,audioPrefs,saveStatus,jobsTrigger}=props;
+ const dockRef=useRef<HTMLElement>(null);
+ useLayoutEffect(()=>{if(dockRef.current)dockRef.current.inert=dockHidden;},[dockHidden]);
  const cbRef=useRef(props);
  cbRef.current=props;
  const tr=(zh:string,en:string)=>english?en:zh;
@@ -209,7 +213,7 @@ export function HudBar(props:HudBarProps){
  ),[advance,previewOpen,confirmAdvance,english]);
 
  const dockNav=useMemo(()=>(
-  <nav class="studio-dock ui2-dock" aria-label={tr('工作室导航','Studio navigation')}>
+  <nav ref={dockRef} class="studio-dock ui2-dock" aria-hidden={dockHidden?'true':undefined} aria-label={tr('工作室导航','Studio navigation')} onPointerEnter={()=>cbRef.current.onWarmDock?.()}>
    {(['actors','jobs','studio','journal'] as const).map((id,i)=><button key={id} ref={id==='jobs'?jobsTrigger:null} aria-pressed={panel===id} onClick={()=>cbRef.current.onOpenPanel(id)}>
     <Icon name={['people','briefcase','home','book'][i]!}/>
     <span>{[tr('伙伴','Team'),tr('委托','Jobs'),tr('工作室','Studio'),tr('手账','Journal')][i]}</span>
@@ -217,7 +221,7 @@ export function HudBar(props:HudBarProps){
     {id==='studio'&&view.chapterGoal.ready&&<i class="dock-dot is-ready"/>}
    </button>)}
   </nav>
- ),[panel,english,reviewCount,view.chapterGoal.ready,jobsTrigger]);
+ ),[panel,dockHidden,english,reviewCount,view.chapterGoal.ready,jobsTrigger]);
 
  return (
   <>

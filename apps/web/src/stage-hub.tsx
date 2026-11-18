@@ -1,4 +1,4 @@
-import {useState,useRef,useEffect,useMemo} from 'preact/hooks';
+import {useState,useRef,useEffect,useLayoutEffect,useMemo} from 'preact/hooks';
 import type {ComponentChildren} from 'preact';
 import type {GameView} from 'oot-platform';
 import {Icon} from './icons.js';
@@ -45,6 +45,10 @@ type StageHubProps={
  cbRef.current.onCancel=onCancel;
  const stateRef=useRef({previewOpen,confirmAdvance});
  stateRef.current={previewOpen,confirmAdvance};
+
+ useLayoutEffect(()=>{
+  if(dialogRef.current)dialogRef.current.inert=!open;
+ },[open]);
 
  useEffect(()=>{
   const node=dialogRef.current;
@@ -162,7 +166,7 @@ type StageHubProps={
  return (
   <>
    <div class="stage-hub-scrim" data-open={open?'true':'false'} aria-hidden="true"/>
-   <dialog ref={dialogRef} open={open||undefined} tabIndex={-1} class="stage-hub" data-hub={hub} data-has-back={backAction?'true':undefined} data-has-tabs={tabs?'true':undefined} aria-modal={open?'true':undefined} aria-label={title} onKeyDown={e=>{if(e.key==='Escape'&&previewOpen){e.preventDefault();e.stopPropagation();suppressEscCloseRef.current=true;queueMicrotask(()=>{suppressEscCloseRef.current=false;});setPreviewOpen(false);requestAnimationFrame(()=>previewTriggerRef.current?.focus({preventScroll:true}));}}}>
+   <dialog ref={dialogRef} open={open||undefined} aria-hidden={!open?'true':undefined} tabIndex={-1} class="stage-hub" data-hub={hub} data-has-back={backAction?'true':undefined} data-has-tabs={tabs?'true':undefined} aria-modal={open?'true':undefined} aria-label={title} onKeyDown={e=>{if(e.key==='Escape'&&previewOpen){e.preventDefault();e.stopPropagation();suppressEscCloseRef.current=true;queueMicrotask(()=>{suppressEscCloseRef.current=false;});setPreviewOpen(false);requestAnimationFrame(()=>previewTriggerRef.current?.focus({preventScroll:true}));}}}>
     <div class="stage-hub-frame">
      {railNav}
      <div class="stage-hub-main">

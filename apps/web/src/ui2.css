@@ -53,11 +53,11 @@
  .studio-app[data-panel]:not([data-panel=closed]) .priority-feedback:not(:empty){display:flex;visibility:hidden}
  .studio-app .scene-left-stack .onboarding p{font-size:12px;line-height:1.45;margin:4px 0 8px}
 
- .stage-hub-scrim{position:fixed;inset:0;z-index:79;background:var(--stage-scrim)}
- .stage-hub-scrim[data-open=false]{visibility:hidden;pointer-events:none}
- dialog.stage-hub{position:fixed;inset:0;margin:auto;z-index:80;width:min(1160px,calc(100vw - 32px));height:min(660px,calc(100dvh - 40px));max-width:none;max-height:none;padding:0;overflow:hidden;border-radius:16px;background:var(--paper);backdrop-filter:none;border:1px solid var(--brass);box-shadow:0 20px 60px rgba(18,12,8,.42);animation:none}
- dialog.stage-hub[open]{display:flex;flex-direction:column;visibility:visible;pointer-events:auto}
- dialog.stage-hub:not([open]){display:flex;flex-direction:column;visibility:hidden;pointer-events:none}
+ .stage-hub-scrim{position:fixed;inset:0;z-index:79;background:var(--stage-scrim);will-change:opacity;contain:strict}
+ .stage-hub-scrim[data-open=false]{opacity:0;pointer-events:none}
+ dialog.stage-hub{position:fixed;inset:0;margin:auto;z-index:80;width:min(1160px,calc(100vw - 32px));height:min(660px,calc(100dvh - 40px));max-width:none;max-height:none;padding:0;overflow:hidden;border-radius:16px;background:var(--paper);backdrop-filter:none;border:1px solid var(--brass);box-shadow:0 16px 40px rgba(18,12,8,.38);animation:none;will-change:opacity;transform:translateZ(0);contain:layout paint}
+ dialog.stage-hub[open]{display:flex;flex-direction:column;opacity:1;visibility:visible;pointer-events:auto}
+ dialog.stage-hub:not([open]){display:flex;flex-direction:column;opacity:0;visibility:visible;pointer-events:none}
  .stage-hub-frame{display:flex;flex:1;min-height:0}
  .stage-hub-rail{width:76px;flex:none;display:flex;flex-direction:column;gap:6px;padding:10px 6px;background:var(--tool-surface);border-right:1px solid var(--line)}
  .stage-hub-rail button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:58px;padding:6px 4px;border-radius:12px;background:transparent;border:1px solid transparent;color:var(--tool-ink);box-shadow:none;font-size:12px}
