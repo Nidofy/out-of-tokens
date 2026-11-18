@@ -158,6 +158,10 @@ export function syncWorkstationTarget(state:WorkstationMotionState,placement:{x:
   else if(state.stage==='depart')state.stage='approach';
   return;
  }
+ if(state.station&&(state.stage==='stand'||state.stage==='depart')){
+  state.bx=placement.x;state.by=placement.y;state.tx=placement.x;state.ty=placement.y;state.zone=placement.zone;
+  return;
+ }
  if(state.station&&(state.stage==='seat'||state.stage==='work'||(state.stage==='approach'&&Math.abs(state.x-state.station.x)<110&&state.y<=state.station.y))){
   state.bx=placement.x;state.by=placement.y;state.tx=placement.x;state.ty=placement.y;state.zone=placement.zone;
   state.stage=state.stage==='approach'?'depart':'stand';

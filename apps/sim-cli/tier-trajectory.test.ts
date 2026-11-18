@@ -126,3 +126,143 @@ test('reduced-motion still mode snaps immediately to settled work and idle state
  const s2=stepWorkstationTrajectory(w,16,true,[620]);
  expect(s2).toMatchObject({sit:0,zIndex:655,deskSeated:false,scaleY:655,walking:false});
 });
+
+test('VC-R1: repeated sync during stand or depart is idempotent with zero foot/scale jump',()=>{
+ const deskRows=[620,750,795,880];
+ for(const target of [{x:215,y:900,zone:'lounge',activity:'idle'},{x:900,y:795,zone:'work',activity:'work'}]){
+  const w=makeWalker(640,795);
+  w.stage='work';w.station={x:640,y:795};w.bx=640;w.by=795;w.tx=640;w.ty=795;w.zone='work';w.arrived=1;
+  syncWorkstationTarget(w,target,false);
+  const s1=stepWorkstationTrajectory(w,100,false,deskRows);
+  const footBefore=w.y+s1.sit,scaleBefore=s1.scaleY,arrivedBefore=w.arrived;
+  expect(w.stage).toBe('stand');
+
+  for(let r=0;r<5;r++){
+   syncWorkstationTarget(w,target,false);
+   const s0=stepWorkstationTrajectory(w,0,false,deskRows);
+   expect(w.stage).toBe('stand');
+   expect(w.station).toEqual({x:640,y:795});
+   expect(w.arrived).toBe(arrivedBefore);
+   expect(w.y+s0.sit).toBe(footBefore);
+   expect(s0.scaleY).toBe(scaleBefore);
+  }
+
+  while(w.stage==='stand')stepWorkstationTrajectory(w,16,false,deskRows);
+  expect(w.stage).toBe('depart');
+  const d1=stepWorkstationTrajectory(w,32,false,deskRows);
+  const depFoot=w.y+d1.sit,depScale=d1.scaleY,depX=w.x,depY=w.y;
+  for(let r=0;r<5;r++){
+   syncWorkstationTarget(w,target,false);
+   const s0=stepWorkstationTrajectory(w,0,false,deskRows);
+   expect(w.stage).toBe('depart');
+   expect(w.station).toEqual({x:640,y:795});
+   expect(w.x).toBe(depX);
+   expect(w.y).toBe(depY);
+   expect(w.y+s0.sit).toBe(depFoot);
+   expect(s0.scaleY).toBe(depScale);
+  }
+ }
+});
+
+test('VC-R1: every-frame sync + step maintains continuous world feet and scaleY across full transfers',()=>{
+ const deskRows=[620,750,795,880];
+ const w=makeWalker(335,655);
+ const work1={x:640,y:620,zone:'work',activity:'work'};
+ const work2={x:900,y:795,zone:'work',activity:'work'};
+ const lounge={x:215,y:900,zone:'lounge',activity:'idle'};
+
+ const trace=(target:{x:number;y:number;zone:string;activity:string},until:()=>boolean)=>{
+  syncWorkstationTarget(w,target,false);
+  let step=stepWorkstationTrajectory(w,0,false,deskRows);
+  let prevFoot=w.y+step.sit,prevScale=step.scaleY,prevX=w.x;
+  const stages=[w.stage];
+  let maxFootDelta=0,maxScaleDelta=0,maxXDelta=0;
+  for(let i=0;i<500;i++){
+   syncWorkstationTarget(w,target,false);
+   const s0=stepWorkstationTrajectory(w,0,false,deskRows);
+   expect(Math.abs((w.y+s0.sit)-prevFoot)).toBeLessThanOrEqual(0.001);
+   expect(Math.abs(s0.scaleY-prevScale)).toBeLessThanOrEqual(0.001);
+
+   step=stepWorkstationTrajectory(w,16,false,deskRows);
+   const foot=w.y+step.sit;
+   maxFootDelta=Math.max(maxFootDelta,Math.abs(foot-prevFoot));
+   maxScaleDelta=Math.max(maxScaleDelta,Math.abs(step.scaleY-prevScale));
+   maxXDelta=Math.max(maxXDelta,Math.abs(w.x-prevX));
+   expect(Math.abs(foot-prevFoot)).toBeLessThanOrEqual(6);
+   expect(Math.abs(step.scaleY-prevScale)).toBeLessThanOrEqual(6);
+   expect(Math.abs(w.x-prevX)).toBeLessThanOrEqual(6);
+   if(stages[stages.length-1]!==w.stage)stages.push(w.stage);
+   prevFoot=foot;prevScale=step.scaleY;prevX=w.x;
+   if(until())break;
+  }
+  return {stages,maxFootDelta,maxScaleDelta,maxXDelta};
+ };
+
+ const toWork1=trace(work1,()=>w.stage==='work');
+ expect(toWork1.stages).toEqual(['approach','seat','work']);
+
+ const transfer=trace(work2,()=>w.stage==='work'&&w.station?.x===900);
+ expect(transfer.stages).toEqual(['stand','depart','approach','seat','work']);
+
+ const exit=trace(lounge,()=>w.stage==='idle'&&Math.hypot(w.x-215,w.y-900)<1);
+ expect(exit.stages).toEqual(['stand','depart','idle']);
+});
+
+test('VC-R1: mid-exit destination changes and return-to-origin preserve continuity and zero-dt sync invariants',()=>{
+ const deskRows=[620,750,795,880];
+ const w=makeWalker(640,795);
+ w.stage='work';w.station={x:640,y:795};w.bx=640;w.by=795;w.tx=640;w.ty=795;w.zone='work';w.arrived=1;
+ const step=stepWorkstationTrajectory(w,0,false,deskRows);
+ let prevFoot=w.y+step.sit,prevScale=step.scaleY;
+
+ const assertZeroJumpSync=(target:{x:number;y:number;zone:string;activity:string})=>{
+  syncWorkstationTarget(w,target,false);
+  const s0=stepWorkstationTrajectory(w,0,false,deskRows);
+  expect(Math.abs((w.y+s0.sit)-prevFoot)).toBeLessThanOrEqual(0.001);
+  expect(Math.abs(s0.scaleY-prevScale)).toBeLessThanOrEqual(0.001);
+  return s0;
+ };
+ const stepFrame=(target:{x:number;y:number;zone:string;activity:string},ms=16)=>{
+  assertZeroJumpSync(target);
+  const s=stepWorkstationTrajectory(w,ms,false,deskRows);
+  const foot=w.y+s.sit;
+  expect(Math.abs(foot-prevFoot)).toBeLessThanOrEqual(6);
+  expect(Math.abs(s.scaleY-prevScale)).toBeLessThanOrEqual(6);
+  prevFoot=foot;prevScale=s.scaleY;
+  return s;
+ };
+
+ // Start standing toward lounge, retarget mid-stand to work-2, then mid-depart to work-3, then back to lounge.
+ const lounge={x:215,y:900,zone:'lounge',activity:'idle'};
+ const work2={x:900,y:795,zone:'work',activity:'work'};
+ const work3={x:1160,y:620,zone:'work',activity:'work'};
+ const work1={x:640,y:795,zone:'work',activity:'work'};
+
+ for(let i=0;i<6;i++)stepFrame(lounge);
+ expect(w.stage).toBe('stand');
+ expect(w.station).toEqual({x:640,y:795});
+
+ for(let i=0;i<5;i++)stepFrame(work2);
+ expect(['stand','depart']).toContain(w.stage);
+ expect(w.station).toEqual({x:640,y:795});
+
+ while(w.stage==='stand')stepFrame(work2);
+ expect(w.stage).toBe('depart');
+ for(let i=0;i<10;i++)stepFrame(work3);
+ expect(w.stage).toBe('depart');
+ expect(w.station).toEqual({x:640,y:795});
+
+ // Re-engage same work-1 station mid-depart behind desk -> must reverse cleanly to approach -> seat -> work without jumping.
+ assertZeroJumpSync(work1);
+ expect(w.stage).toBe('approach');
+ while(w.stage!=='work')stepFrame(work1);
+ expect(w.x).toBe(640);expect(w.y).toBe(795);
+
+ // Simulated camera/resize zero-dt sync across stand -> depart -> approach(work3) -> seat -> work.
+ stepFrame(work3);
+ while(w.stage!=='work'||w.station?.x!==1160){
+  assertZeroJumpSync(work3);
+  stepFrame(work3);
+ }
+ expect(w.x).toBe(1160);expect(w.y).toBe(620);
+});
