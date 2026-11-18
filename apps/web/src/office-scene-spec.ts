@@ -119,3 +119,148 @@ export function actorOutsideFrame(x:number,y:number,height:number,scale:number,o
  const cx=offset.x+x*scale,foot=offset.y+y*scale;
  return cx-48*scale<0||cx+48*scale>width||foot-height*scale<0||foot+26>viewportHeight;
 }
+
+export type WorkstationStage='idle'|'approach'|'seat'|'work'|'stand'|'depart';
+export type WorkstationMotionState={stage:WorkstationStage;station:{x:number;y:number}|null;x:number;y:number;bx:number;by:number;tx:number;ty:number;zone:string;activity:string;arrived:number};
+export type WorkstationStepResult={sit:number;zIndex:number;deskSeated:boolean;scaleY:number;walking:boolean;tagOffset:number};
+
+const WORK_SIDE_GAP_OFFSET=124;
+const WORK_FRONT_AISLE_OFFSET=22;
+const WORK_CHAIR_BACK_OFFSET=46;
+const WORK_SEAT_OFFSET=48;
+const WORK_SEAT_MS=260;
+
+function sameStation(a:{x:number;y:number}|null,placement:{x:number;y:number;zone:string}){
+ return !!a&&placement.zone==='work'&&a.x===placement.x&&a.y===placement.y;
+}
+function aisleZIndex(y:number,deskRows:readonly number[]){
+ for(const rowY of deskRows)if(Math.abs(y-rowY)<=14)return Math.max(y,rowY+4);
+ return y;
+}
+function stepPoint(x:number,y:number,tx:number,ty:number,maxStep:number){
+ const dx=tx-x,dy=ty-y,d=Math.hypot(dx,dy);
+ if(d<=maxStep||d<=0.001)return {x:tx,y:ty,moved:d>0.5,done:true};
+ return {x:x+dx/d*maxStep,y:y+dy/d*maxStep,moved:true,done:false};
+}
+
+export function syncWorkstationTarget(state:WorkstationMotionState,placement:{x:number;y:number;zone:string;activity:string},still:boolean){
+ state.activity=placement.activity;
+ if(still){
+  state.bx=placement.x;state.by=placement.y;state.tx=placement.x;state.ty=placement.y;
+  state.x=placement.x;state.y=placement.y;state.zone=placement.zone;state.arrived=1;
+  state.station=placement.zone==='work'?{x:placement.x,y:placement.y}:null;
+  state.stage=placement.zone==='work'?'work':'idle';
+  return;
+ }
+ if(state.station&&sameStation(state.station,placement)){
+  state.bx=placement.x;state.by=placement.y;state.tx=placement.x;state.ty=placement.y;state.zone=placement.zone;
+  if(state.stage==='stand')state.stage='seat';
+  else if(state.stage==='depart')state.stage='approach';
+  return;
+ }
+ if(state.station&&(state.stage==='seat'||state.stage==='work'||(state.stage==='approach'&&Math.abs(state.x-state.station.x)<110&&state.y<=state.station.y))){
+  state.bx=placement.x;state.by=placement.y;state.tx=placement.x;state.ty=placement.y;state.zone=placement.zone;
+  state.stage=state.stage==='approach'?'depart':'stand';
+  return;
+ }
+ if(placement.zone==='work'){
+  state.station={x:placement.x,y:placement.y};
+  state.bx=placement.x;state.by=placement.y;state.tx=placement.x;state.ty=placement.y;state.zone='work';
+  state.arrived=0;state.stage='approach';
+  return;
+ }
+ if(state.bx!==placement.x||state.by!==placement.y){state.arrived=0;state.bx=placement.x;state.by=placement.y;}
+ if(state.stage!=='depart'){state.station=null;state.stage='idle';state.tx=state.bx;state.ty=state.by;}
+ else{state.tx=state.bx;state.ty=state.by;}
+ state.zone=placement.zone;
+}
+
+export function stepWorkstationTrajectory(state:WorkstationMotionState,ms:number,still:boolean,deskRows:readonly number[]=[]):WorkstationStepResult{
+ if(still){
+  state.x=state.tx;state.y=state.ty;state.arrived=1;
+  state.station=state.zone==='work'?{x:state.bx,y:state.by}:null;
+  state.stage=state.zone==='work'?'work':'idle';
+  return {
+   sit:state.zone==='work'?-WORK_SEAT_OFFSET:0,
+   zIndex:state.y,
+   deskSeated:state.zone==='work',
+   scaleY:state.y,
+   walking:false,
+   tagOffset:state.zone==='work'?workLabelOffset:16
+  };
+ }
+ const speed=ms*(state.stage==='idle'&&state.zone==='lounge'&&state.arrived>=1?.09:.35);
+ if(state.stage==='stand'&&state.station){
+  const sy=state.station.y;
+  state.x=state.station.x;state.y=sy;
+  state.arrived=Math.max(0,state.arrived-ms/WORK_SEAT_MS);
+  const sit=-WORK_CHAIR_BACK_OFFSET-(WORK_SEAT_OFFSET-WORK_CHAIR_BACK_OFFSET)*state.arrived;
+  const deskSeated=state.arrived>.6;
+  const scaleY=sy-WORK_CHAIR_BACK_OFFSET*(1-state.arrived);
+  if(state.arrived<=0){
+   state.stage='depart';state.y=sy-WORK_CHAIR_BACK_OFFSET;
+   return {sit:0,zIndex:sy,deskSeated:false,scaleY:sy-WORK_CHAIR_BACK_OFFSET,walking:false,tagOffset:16};
+  }
+  return {sit,zIndex:sy,deskSeated,scaleY,walking:false,tagOffset:workLabelOffset};
+ }
+ if(state.stage==='depart'&&state.station){
+  const sx=state.station.x,sy=state.station.y,entryX=sx-WORK_SIDE_GAP_OFFSET,frontY=sy+WORK_FRONT_AISLE_OFFSET,backY=sy-WORK_CHAIR_BACK_OFFSET;
+  let walking=false,zIndex=state.y;
+  if(Math.abs(state.x-entryX)>1.5&&state.y<=backY+4){
+   const s=stepPoint(state.x,state.y,entryX,backY,speed);
+   state.x=s.x;state.y=s.y;walking=s.moved;
+   zIndex=Math.abs(state.x-sx)<104?sy:aisleZIndex(state.y,deskRows);
+  }else{
+   const s=stepPoint(state.x,state.y,entryX,frontY,speed);
+   state.x=s.x;state.y=s.y;walking=s.moved;
+   zIndex=state.y>sy-2?Math.max(state.y,sy+4):state.y;
+   if(s.done){
+    if(state.zone==='work'){state.station={x:state.bx,y:state.by};state.stage='approach';state.arrived=0;}
+    else{state.station=null;state.stage='idle';state.arrived=0;}
+   }
+  }
+  return {sit:0,zIndex,deskSeated:false,scaleY:state.y,walking,tagOffset:16};
+ }
+ if(state.stage==='approach'&&state.station){
+  const sx=state.station.x,sy=state.station.y,entryX=sx-WORK_SIDE_GAP_OFFSET,frontY=sy+WORK_FRONT_AISLE_OFFSET,backY=sy-WORK_CHAIR_BACK_OFFSET;
+  let walking=false,zIndex=aisleZIndex(state.y,deskRows);
+  const behindCorridor=Math.abs(state.y-backY)<=1.5&&state.x>=entryX-2&&state.x<=sx+2;
+  if(!behindCorridor&&Math.abs(state.x-entryX)>2){
+   const wpY=state.y>backY?frontY:backY;
+   const s=stepPoint(state.x,state.y,entryX,wpY,speed);
+   state.x=s.x;state.y=s.y;walking=s.moved;
+   zIndex=aisleZIndex(state.y,deskRows);
+  }else if(!behindCorridor){
+   const s=stepPoint(state.x,state.y,entryX,backY,speed);
+   state.x=s.x;state.y=s.y;walking=s.moved;
+   zIndex=state.y>sy-2?Math.max(state.y,sy+4):state.y;
+  }else{
+   const s=stepPoint(state.x,state.y,sx,backY,speed);
+   state.x=s.x;state.y=s.y;walking=s.moved;
+   zIndex=Math.abs(state.x-sx)<104?sy:state.y;
+   if(s.done){
+    state.x=sx;state.y=sy;state.stage='seat';state.arrived=0;
+    return {sit:-WORK_CHAIR_BACK_OFFSET,zIndex:sy,deskSeated:false,scaleY:backY,walking:false,tagOffset:workLabelOffset};
+   }
+  }
+  return {sit:0,zIndex,deskSeated:false,scaleY:state.y,walking,tagOffset:16};
+ }
+ if((state.stage==='seat'||state.stage==='work')&&state.station){
+  const sy=state.station.y;
+  state.x=state.station.x;state.y=sy;
+  if(state.stage==='seat'){
+   state.arrived=Math.min(1,state.arrived+ms/WORK_SEAT_MS);
+   if(state.arrived>=1)state.stage='work';
+  }else state.arrived=1;
+  const sit=-WORK_CHAIR_BACK_OFFSET-(WORK_SEAT_OFFSET-WORK_CHAIR_BACK_OFFSET)*state.arrived;
+  const deskSeated=state.arrived>.6;
+  const scaleY=sy-WORK_CHAIR_BACK_OFFSET*(1-state.arrived);
+  return {sit,zIndex:sy,deskSeated,scaleY,walking:false,tagOffset:workLabelOffset};
+ }
+ const dx=state.tx-state.x,dy=state.ty-state.y,d=Math.hypot(dx,dy);
+ if(d>1){
+  const s=stepPoint(state.x,state.y,state.tx,state.ty,speed);
+  state.x=s.x;state.y=s.y;
+ }else state.arrived=Math.min(1,state.arrived+ms/400);
+ return {sit:0,zIndex:aisleZIndex(state.y,deskRows),deskSeated:false,scaleY:state.y,walking:d>2,tagOffset:16};
+}
