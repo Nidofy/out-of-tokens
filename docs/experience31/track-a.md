@@ -1,16 +1,36 @@
 # Track A Progress Log — Living Studio 3.1
 
-- **Active Rework Worktree (PM-01)**: `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-pm01-fix` (Historical Wave 1–4 worktree: `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-ui`)
-- **Active Rework Branch (PM-01)**: `experience-ui-pm01-fix` (Historical Wave 1–4 branch: `experience-ui-wave1` @ `66849a93`)
-- **Fixed Reviewed Baseline SHA**: `bb971352c9c5f81a836be922f73b3047aa1f7697` (Original W1–W4 baseline: `d18241a7aa9c5876367867fe78d9bfdd99d0f0ae`)
-- **Track B Published / Isolated Minimal Fix SHA**: `6f27926a98a413790868245f819eeeb3b4fe727a` (`review/experience31-post-merge` `BrowserSaves` `boundary-head` fix, not merged into main; prior Wave 1–4 release: `0912342ac296e888f1d2fb7af526069953b20d2f`)
-- **Prior W4 Implementation SHA**: `c8cf69f59aee3f66e390a4944c6bb30c69929b44`
-- **Contract Version**: `EXPERIENCE_CONTRACT = 1` (H1 Contract v1 frozen + `receipt.assessment` compatible addition + amended 962-command stress fixture acknowledged in `ux-c0.md` §6.4)
-- **Historical Holds Preserved**: `VF5 / Visual Freeze HOLD`, physical touch / 200% OS font / real DSH host holds remain unchanged; protected `apps/dsh/**` POST server rotation limitation vs Browser boundary-only policy stays explicit; post-merge independent browser coverage gaps & self-fix non-approval caveat preserved per `docs/experience31/post-merge-independent-review.md`.
+- **Active Visual Closure Worktree**: `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-visual-closure-1118` (`gemini/visual-closure-1118` branched from `51c50b6880ad71ec712ed2a949d78d80c1626a19`)
+- **Latest Frozen Track A Implementation SHA**: `735b0aec66a04ec392f9d741ae7f9042a38d3828` (preceded by A1 perf fix `<A1_SHA> = b63d8825299d6f274e227186d8d6b66f339495a6`)
+- **Visual Closure Evidence Directory**: `D:\Documents\FeiyangChen\devApps\ai-game\commission-evidence\visual-closure-1118-gemini\`
+- **Prior Rework Worktree (PM-01)**: `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-pm01-fix` (`experience-ui-pm01-fix` @ `3ec1908a`; Historical W1–W4 worktree: `D:\Documents\FeiyangChen\devApps\ai-game\out-of-tokens-experience-ui` @ `66849a93`)
+- **Prior Reviewed Baseline / Fix SHAs**: `bb971352c9c5f81a836be922f73b3047aa1f7697` / `6f27926a98a413790868245f819eeeb3b4fe727a` (merged into `codex/m1-foundation` ahead of `51c50b6880ad71ec712ed2a949d78d80c1626a19`)
+- **Contract Version**: `EXPERIENCE_CONTRACT = 1`
+- **Explicit Holds Retained**: `VF5 Formal 36 + 600s Soak on 735b0ae` (**HOLD** at preflight due to host ~2Hz Chromium BeginFrame compositor occlusion throttling; `0` formal batches consumed), OS `prefers-reduced-motion: no-preference` full-motion gate (`osPrefersReducedMotion=true` on host), Windows 200% OS font scaling, physical touch device, real DSH `V0.2.2-rc.1` install/auth verification (deferred by user), Tier 2/3 production shop/rule integration, and Codex independent review / Visual Freeze sign-off.
 
 ---
 
 ## Checkpoint History
+
+### 10. Visual Closure Follow-Up — A1 Startup/Modal Latency Fix, A2 5-Stage Workstation Trajectory & A3 Native Regressions (2026-11-18)
+- **Base Mainline SHA**: `51c50b6880ad71ec712ed2a949d78d80c1626a19` (`codex/m1-foundation`)
+- **Commits**:
+  1. **`b63d8825299d6f274e227186d8d6b66f339495a6`** (`A1`): `perf(web): optimize VF5 scene startup and StageHub modal open/close latency`
+     - Owned files (`14` Track A files): `apps/web/src/alpha-app.tsx`, `audio-foley.ts`, `commission.css`, `hud-bar.tsx`, `main.tsx`, `office-scene.ts`, `onboarding.tsx`, `scene-preload.ts` (new), `scene.ts`, `stage-chatter.tsx`, `stage-hub.tsx`, `ui2.css`, `vf1.css`, `village-ui.css`.
+     - Root-cause attribution (`vf5-attribution/attribution-summary.json`): eliminated eager Pixi env/font/furniture contention at first paint (`scene-preload.ts`, deferred portrait warming, microtask `queueSync`), memoized heavy `HudBar`/`AlphaApp` trees, switched non-urgent overlays (`StageChatterOverlay`, `PeriodBeatBanner`, `.onboarding`, `.priority-feedback`) from display-none/unmount churn to `visibility: hidden`, and replaced native `HTMLDialogElement.showModal()`/`close()` on pre-mounted `StageHubShell` (which triggered ~5.5ms C++ whole-document `inert` invalidation) with open-attribute modal scrim (`backdrop` + `aria-modal="true"` + capture `Escape`/`Tab` focus trap). Preserved `alpha >= 96` lazy `ensureWorkHit`, layout/camera/listener identities, furniture count, and full `assetsReady` semantics.
+     - Un-throttled `120Hz` A1 attribution (`v8-final` vs `c68541d`, `n=3` per cell at `1280×720`, DPR `1.75`, `inGameMotion=full`, `osPrefersReducedMotion=true`, `0` throttled / `0` >=250ms / `0` visibility): `standard` `assetsReady` median `374.40ms` vs `374.90ms` (`-0.13%`), `inputP95` `19.10ms` vs `18.20ms` (`+4.95%`), `frameP95` `8.60ms` (`0.00%`); `twelve` `assetsReady` median `485.10ms` vs `510.30ms` (`-4.94%`), `inputP95` `17.70ms` vs `17.60ms` (`+0.57%`), `frameP95` `8.60ms` (`0.00%`). Note: attribution data from `b63d882`; does not substitute for frozen `735b0ae` formal VF5 batch + 600s soak.
+  2. **`735b0aec66a04ec392f9d741ae7f9042a38d3828`** (`A2 / Frozen <IMPL_SHA>`): `feat(web): add 5-stage workstation state machine and dynamic zIndex calibration`
+     - Owned files (`3` Track A files): `apps/web/src/office-scene-spec.ts` (`WorkstationStage`, `WorkstationMotionState`, `syncWorkstationTarget`, `stepWorkstationTrajectory`, `aisleZIndex`), `apps/web/src/office-scene.ts`, `apps/sim-cli/tier-trajectory.test.ts` (new, 5 tests). Zero prototype PNG or `art-batch-4` references in `apps/` or `packages/`.
+     - External real-scene calibration (`tier-dynamic/`, 12 characters × 2 Tiers × 3 depths `620/795/880` × 16 lifecycle samples = `1,152` samples, `captures/summary.json`, `art-envelope-spec.md`): `maskParityErrors = 0`, `maxFeetError = 0`, `legVisibilityErrors = 0`, `shadowVisibilityErrors = 0`, `badgeOverlapCount = 0`, `eyeMouthTotalHits = 0` (`0/1152`), front aisle (`[-160,-32,0,32,80]`) `walkerAboveFront = true` & `0/72` effective occlusion (`depart-behind`: `71/72` `0px`, `glm-t3-d620` `2px` hair-tip touch with `0px` eye/mouth overlap). Native `isTrusted: true` Tier 3 hits (`tier-dynamic/captures/native-clicks-summary.json`) passed for both actor (`actorTaps=1`) and furniture (`furnitureTaps=1`).
+- **A3 Targeted Native Regressions on Frozen `735b0ae` (`a3-regression/`) — PASS**:
+  - `captures/native-hit.json` + `native-hit-opaque.jpg`: `4` `isTrusted: true` inputs; transparent `(358, 403.3)` missed, actor `(223.3, 373.3)` opened `DeepSeek · 伙伴档案` + closed on `Escape`, unoccupied `f2` `(590, 490)` opened `布置办公室` (`data-mode="layout"`), reserved `f1` `(415, 495)` opened `委托日志`; `overThreshold = 0`.
+  - `captures/layout-restore.json` + `layout-restored.jpg`: moved `f1` `work-1 -> work-4`, saved (`保存布置`), reloaded page, reopened `布置办公室` -> `work1Label = "工位 1 空位"`, `work4Label = "工位 4 小木桌 · 板凳 · 旧电脑"`, `overThreshold = 0`.
+  - `captures/camera-native.json` + `captures/environment.json`: `1280×720`, `inGameMotion="full"`, `osPrefersReducedMotion=true`, `effectiveAnimationBranch="reduced-still"`, `364` frames, `32` changed, `maxError = 0.000364 <= 0.001`, `overThreshold = 0`.
+  - `captures/camera-controlled-full.json` + `controlled-full.jpg`: `--controlled-full` diagnostic (`82` frames, `31` changed, `maxError = 0.000490 <= 0.001`, `overThreshold = 0`; `diagnosticOnly: true, substitutesForOsFullMotionGate: false`).
+- **VF5 Formal Protocol Status (`vf5-formal/`, `hold-verdict.json`) — HOLD**:
+  - `protocol.json` and pre-built bundles (`perf-builds/{current,1745653,c68541d}`) locked on disk for frozen `735b0ae` vs `1745653` & `c68541d`.
+  - Preflight (`captures/preflight.json`: `assetsReady=1149.5ms`, `throttledFrames=218`, `~525–541ms` 2Hz cadence, `longTasks=[]`, `tickBeforePresence<=0.8ms`, `visibilityChanges=0`), `c68541d` `4273` control (`>6125ms` at `VF5:READY`), and single 6s preflight recheck (`6694ms` at `VF5:READY`) all hit host Windows/Antigravity Chromium BeginFrame occlusion throttling. Zero formal batches or 600s soaks executed on `735b0ae`.
+- **Gate Checks at Closure**: `protected-zero-diff.txt` = `0` bytes across all protected/Codex paths vs `51c50b6`; `pnpm check` = **54 test files / 479 tests PASS**, `tsc -b`, `eslint`, `oot-web` + `oot-dsh` builds PASS (`check.log`); `git diff --check` = `0`.
 
 ### 9. Post-Merge Rework PM-01 — `LabSaves` Boundary Retention & Boundary Regression Fixes (2026-11-17)
 - **Reviewed Baseline SHA**: `bb971352c9c5f81a836be922f73b3047aa1f7697`
