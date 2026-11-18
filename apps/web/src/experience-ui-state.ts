@@ -100,11 +100,23 @@ export function readLearningPrefs(store:UiKeyValueStore,lineageId:string):Learni
  }catch{return {skippedNodes:[],skippedAll:false};}
 }
 
+const learningListeners=new Set<() => void>();
+
+export function subscribeLearningPrefs(listener:()=>void):()=>void{
+ learningListeners.add(listener);
+ return()=>{learningListeners.delete(listener);};
+}
+
+function notifyLearningPrefs():void{
+ for(const listener of learningListeners)listener();
+}
+
 export function skipLearningNode(store:UiKeyValueStore,lineageId:string,node:LearningNodeId):LearningPrefs{
  touchUiLineage(store,lineageId);
  const prefs=readLearningPrefs(store,lineageId);
  if(!prefs.skippedNodes.includes(node))prefs.skippedNodes=[...prefs.skippedNodes,node];
  store.setItem(lineageKey(lineageId,'learning'),JSON.stringify(prefs));
+ notifyLearningPrefs();
  return prefs;
 }
 
@@ -113,6 +125,7 @@ export function skipAllLearning(store:UiKeyValueStore,lineageId:string,skippedAl
  const prefs=readLearningPrefs(store,lineageId);
  prefs.skippedAll=skippedAll;
  store.setItem(lineageKey(lineageId,'learning'),JSON.stringify(prefs));
+ notifyLearningPrefs();
  return prefs;
 }
 
@@ -120,6 +133,7 @@ export function resumeLearning(store:UiKeyValueStore,lineageId:string):LearningP
  touchUiLineage(store,lineageId);
  const prefs:LearningPrefs={skippedNodes:[],skippedAll:false};
  store.setItem(lineageKey(lineageId,'learning'),JSON.stringify(prefs));
+ notifyLearningPrefs();
  return prefs;
 }
 

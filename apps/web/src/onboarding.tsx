@@ -3,9 +3,14 @@ import type {ExperienceView,GameView} from 'oot-platform';
 import {Icon} from './icons.js';
 import {ExperienceArtSlot} from './experience-art-slot.js';
 import {resolveReasonCopy} from './experience-ui-copy.js';
-import {readLearningPrefs,resumeLearning,skipAllLearning,skipLearningNode} from './experience-ui-state.js';
-import type {LearningNodeId,UiKeyValueStore} from './experience-ui-state.js';
+import {readLearningPrefs,resumeLearning,skipAllLearning,skipLearningNode,subscribeLearningPrefs} from './experience-ui-state.js';
+import type {LearningNodeId,LearningPrefs,UiKeyValueStore} from './experience-ui-state.js';
 import type {HubPanel} from './ui2-logic.js';
+
+export function shouldHideSceneOnboarding(experience:ExperienceView,prefs:LearningPrefs):boolean{
+ if(prefs.skippedAll)return true;
+ return experience.learning.length>0&&experience.learning.every(item=>item.observed||prefs.skippedNodes.includes(item.node));
+}
 
 interface NodeCopy {
  labelZh:string;
@@ -104,6 +109,7 @@ export function Onboarding({
  uiStore,
  english,
  hidden,
+ surface='scene',
  openJob,
  openPanel,
  openFinance
@@ -114,7 +120,8 @@ export function Onboarding({
  lineageId:string;
  uiStore:UiKeyValueStore;
  english:boolean;
- hidden?:boolean;
+ hidden?:boolean|undefined;
+ surface?:'scene'|'drawer'|undefined;
  openJob:(id:string)=>void;
  openPanel:(id:HubPanel)=>void;
  openFinance?:()=>void;
@@ -124,6 +131,16 @@ export function Onboarding({
  const [open,setOpen]=useState(()=>!readLearningPrefs(uiStore,lineageId).skippedAll&&(view.campaign?.chapter??0)===0);
  const [selectedNode,setSelectedNode]=useState<LearningNodeId|null>(null);
  const mountedSync=useRef({uiStore,lineageId});
+ const prefsRef=useRef(prefs);
+ prefsRef.current=prefs;
+
+ useEffect(()=>subscribeLearningPrefs(()=>{
+  const prev=prefsRef.current;
+  const next=readLearningPrefs(uiStore,lineageId);
+  setPrefs(next);
+  if(next.skippedAll)setOpen(false);
+  else if(prev.skippedAll)setOpen(true);
+ }),[uiStore,lineageId]);
 
  useEffect(()=>{
   if(mountedSync.current.uiStore===uiStore&&mountedSync.current.lineageId===lineageId)return;
@@ -202,7 +219,17 @@ export function Onboarding({
       <span>{tr('回形针 · 7项核心引导','Paperclip · 7-step guide')} ({observedCount}/7)</span>
       <b>{prefs.skippedAll?tr('重开','Reopen'):open?'−':'+'}</b>
      </button>
-     {(prefs.skippedAll||prefs.skippedNodes.length>0)&&(
+     {surface==='scene'?(
+      <button
+       type="button"
+       class="ui2-guide-close"
+       aria-label={tr('关闭引导','Close guide')}
+       title={tr('关闭主界面引导（可在右上工作看板重开）','Close guide (reopen anytime in Work Board)')}
+       onClick={handleSkipAll}
+      >
+       <Icon name="close"/>
+      </button>
+     ):(prefs.skippedAll||prefs.skippedNodes.length>0)&&(
       <button type="button" class="ui2-guide-reopen" onClick={handleReopenAll}>
        {tr('重看全部','Reopen all')}
       </button>
@@ -263,13 +290,18 @@ export function Onboarding({
        {!activeSkipped&&(
         <button type="button" onClick={handleSkipNode}>{tr('跳过本条','Skip step')}</button>
        )}
+       {surface==='scene'&&prefs.skippedNodes.length>0&&(
+        <button type="button" onClick={handleReopenAll}>{tr('重看全部','Reopen all')}</button>
+       )}
        <button type="button" onClick={handleSkipAll}>{tr('跳过全部','Skip all')}</button>
       </div>
      </div>
     )}
    </>
   );
- },[open,prefs,selectedNode,experience,view,english]);
+ },[open,prefs,selectedNode,experience,view,english,surface]);
+
+ if(surface==='scene'&&shouldHideSceneOnboarding(experience,prefs))return null;
 
  return (
   <aside class="onboarding" hidden={hidden} aria-label={tr('回形针经营引导','Paperclip studio guide')}>

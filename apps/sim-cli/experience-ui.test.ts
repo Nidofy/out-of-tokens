@@ -46,6 +46,9 @@ import {
  filterValidLastTeamMembers
 } from '../web/src/experience-ui-state.js';
 import {executeManualSlotLoad,shouldConfirmBeforeSwitch,switchReasonFromSaveStatus} from '../web/src/use-game.js';
+import {saveBannerIncidentKey} from '../web/src/save-status-ui.js';
+import {shouldHideSceneOnboarding} from '../web/src/onboarding.js';
+import {subscribeLearningPrefs} from '../web/src/experience-ui-state.js';
 
 test('oot-ui:<lineageId>:* isolates metadata per lineage and evicts LRU beyond 8 namespaces without touching non-oot-ui keys',()=>{
  const store=createMemoryUiStore();
@@ -786,4 +789,45 @@ test('PM-01 regression: LabSaves five-backup rotation, cross-lineage metadata, C
  expect(await lab.write('auto','post-close-0',0,'boundary',{lineageId:'fresh'})).toBe(1);
  expect(await lab.read('backup-1')).toBeNull();
  await lab.close();
+});
+
+test('UI quickfix: save error copy, dismissible banner incident grouping, and scene onboarding close/sync',()=>{
+ expect(resolveReasonCopy('INCOMPATIBLE_SAVE',false)).toContain('旧版不兼容自动档');
+ expect(resolveReasonCopy('INCOMPATIBLE_SAVE',false)).not.toContain('状态提示（代码：');
+ expect(resolveReasonCopy('STORAGE_WRITE_FAILED',true)).toContain('memory');
+
+ const incomp={kind:'error' as const,revision:1,lineageId:'run-a',code:'INCOMPATIBLE_SAVE',exportable:true,storageUnavailable:true};
+ const laterCmd={kind:'error' as const,revision:2,lineageId:'run-a',code:'STORAGE_UNAVAILABLE',exportable:true,storageUnavailable:true};
+ const resolved={kind:'saved' as const,revision:3,lineageId:'run-a'};
+ const transientWriteErr={kind:'error' as const,revision:4,lineageId:'run-a',code:'STORAGE_WRITE_FAILED',storageUnavailable:false};
+ const conflictPause={kind:'paused' as const,revision:5,lineageId:'run-a',cause:'conflict' as const};
+
+ const k1=saveBannerIncidentKey(incomp);
+ expect(k1).not.toBeNull();
+ expect(saveBannerIncidentKey(laterCmd)).toBe(k1);
+ expect(saveBannerIncidentKey(resolved)).toBeNull();
+ expect(saveBannerIncidentKey(transientWriteErr)).not.toBe(k1);
+ expect(saveBannerIncidentKey(conflictPause)).not.toBe(saveBannerIncidentKey(transientWriteErr));
+ expect(saveBannerIncidentKey({...incomp,lineageId:'run-b'})).not.toBe(k1);
+
+ const g=new GameSession(loadFullContent(),1,'lineage-guide-sync');
+ const initialExp=g.getExperienceView();
+ const store=createMemoryUiStore();
+ expect(shouldHideSceneOnboarding(initialExp,readLearningPrefs(store,'lineage-guide-sync'))).toBe(false);
+
+ let events=0;
+ const stop=subscribeLearningPrefs(()=>{events++;});
+ skipAllLearning(store,'lineage-guide-sync',true);
+ expect(events).toBe(1);
+ expect(shouldHideSceneOnboarding(initialExp,readLearningPrefs(store,'lineage-guide-sync'))).toBe(true);
+
+ resumeLearning(store,'lineage-guide-sync');
+ expect(events).toBe(2);
+ expect(shouldHideSceneOnboarding(initialExp,readLearningPrefs(store,'lineage-guide-sync'))).toBe(false);
+
+ for(const item of initialExp.learning){
+  skipLearningNode(store,'lineage-guide-sync',item.node);
+ }
+ expect(shouldHideSceneOnboarding(initialExp,readLearningPrefs(store,'lineage-guide-sync'))).toBe(true);
+ stop();
 });

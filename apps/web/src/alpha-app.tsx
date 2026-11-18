@@ -42,7 +42,7 @@ import {BarkOverlay} from './bark-overlay.js';
 import type {BarkPayload} from './bark-overlay.js';
 import {createBrowserUiStore,createMemoryUiStore,readThreadReadIds,markThreadRead,countUnreadThreads,readLastTeamDraft,writeLastTeamDraft} from './experience-ui-state.js';
 import type {Member} from 'oot-core';
-import {SaveAlertBanner,SwitchConfirmDialog} from './save-status-ui.js';
+import {SaveAlertBanner,SwitchConfirmDialog,saveBannerIncidentKey} from './save-status-ui.js';
 
 type Tr=(zh:string,en:string)=>string;
 type ReturnContext={panel:'jobs';jobId:string}|{panel:'actors';actorId:string};
@@ -145,6 +145,7 @@ export function AlphaApp(){
  const [periodBeat,setPeriodBeat]=useState<string|null>(null);
  const [anchors,setAnchors]=useState<Record<string,ActorHeadAnchor>>({});
  const [chatterStep,setChatterStep]=useState(0),[banterPhase,setBanterPhase]=useState<0|1>(0);
+ const [dismissedSaveKey,setDismissedSaveKey]=useState<string|null>(null);
  const [uiStore]=useState(()=>game.lab?createMemoryUiStore():createBrowserUiStore());
  const [readThreadIds,setReadThreadIds]=useState<Set<string>>(()=>readThreadReadIds(uiStore,game.lineageId));
  const [lastTeam,setLastTeam]=useState<Member[]>(()=>readLastTeamDraft(uiStore,game.lineageId));
@@ -168,7 +169,7 @@ export function AlphaApp(){
  const tracking=trackingState(view,trackedJobId),tracked=tracking.id;
  useEffect(()=>{if(trackedJobId&&!tracking.pinned)setTrackedJobId(null);},[tracking.pinned,trackedJobId]);
 
- const clearTransientState=()=>{prevSnap.current=null;seenRituals.current.clear();lastSlotRef.current=null;setTrackedJobId(null);setDraftTeams({});setReturnTo(null);setActiveBark(null);setPeriodBeat(null);setDeliveryFeedback(null);};
+ const clearTransientState=()=>{prevSnap.current=null;seenRituals.current.clear();lastSlotRef.current=null;setTrackedJobId(null);setDraftTeams({});setReturnTo(null);setActiveBark(null);setPeriodBeat(null);setDeliveryFeedback(null);setDismissedSaveKey(null);};
  const commissionReturnFocus=()=>[commissionTrigger.current,jobsTrigger.current,boardTrigger.current].find(e=>e?.isConnected&&!e.closest('dialog,.studio-drawer,.priority-rail'))??boardTrigger.current;
  const selectCommission=(id:string|null)=>{if(jobId!==id&&jobId)game.dismissLocalFeedback({surface:'job',id:jobId});updateJobId(id);setJobInDetail(!!id);};
  const setJobId=(id:string|null)=>{if(id){if(panel!=='jobs')commissionTrigger.current=document.activeElement as HTMLElement;setHud(null);setActorId(null);updatePanel('jobs');}selectCommission(id);};
@@ -378,8 +379,11 @@ export function AlphaApp(){
    <div class="ui2-card"><small class="ui2-muted-note">{english?'May stop this period':'本槽可能停工'}: {view.possibleStops.map(id=>names[id]).join(', ')||'—'}</small></div>
   </div>
  ),[posterCards,english,view.possibleStops,capacityByActor,showPortraits]);
+ const saveIncidentKey=saveBannerIncidentKey(game.saveStatus);
+ const showSaveBanner=!!saveIncidentKey&&dismissedSaveKey!==saveIncidentKey;
+ useEffect(()=>{if(!saveIncidentKey&&dismissedSaveKey!==null)setDismissedSaveKey(null);},[saveIncidentKey,dismissedSaveKey]);
  const imminentBreach=view.jobs.some(j=>['accepted','working','review'].includes(j.status)&&j.deadline-view.absoluteSlot<=1);
- const urgentPriorityActive=game.saveStatus.kind==='paused'||game.saveStatus.kind==='error'||!!view.pending||imminentBreach;
+ const urgentPriorityActive=(showSaveBanner&&(game.saveStatus.kind==='paused'||game.saveStatus.kind==='error'))||!!view.pending||imminentBreach;
 
  useEffect(()=>{
   const unlock=()=>unlockAudio();
@@ -497,9 +501,9 @@ export function AlphaApp(){
  const hubTitle={actors:actorId&&activeHub==='actors'?`${names[actorId]} · ${tr('伙伴档案','Profile')}`:tr('工作室伙伴','Our teammates'),jobs:tr('委托日志','Commission log'),studio:tr('经营工作室','Studio hub'),journal:tr('事务所手账','Studio journal')}[activeHub];
  const hubBack=activeHub==='actors'&&actorId&&actorEntry==='gallery'?{label:tr('返回画廊','Back to gallery'),onClick:closeActor}:activeHub==='jobs'&&jobInDetail&&matchMedia('(max-width:679px)').matches?{label:tr('返回列表','Back to list'),onClick:()=>selectCommission(null)}:null;
  const rawHubNotice=hideGenericDone?null:activeHub==='actors'&&actorId&&feedbackChannel==='actor'?notice:activeHub==='jobs'&&commissionNotice(game.feedback,jobId)?notice:null;
- const saveAlertNotice=useMemo(()=>game.saveStatus.kind==='paused'||game.saveStatus.kind==='error'||game.saveStatus.kind==='imported-unsaved'
-  ?<SaveAlertBanner status={game.saveStatus} english={english} busy={busy} onExport={()=>void game.exportFile()} onOpenSaves={()=>{setHud(null);setSaves(true);void game.refresh();}} onRetry={()=>void game.retrySave()}/>
-  :null,[game.saveStatus,english,busy]);
+ const saveAlertNotice=useMemo(()=>showSaveBanner
+  ?<SaveAlertBanner status={game.saveStatus} english={english} busy={busy} onExport={()=>void game.exportFile()} onOpenSaves={()=>{setHud(null);setSaves(true);void game.refresh();}} onRetry={()=>{setDismissedSaveKey(null);void game.retrySave();}} onDismiss={()=>setDismissedSaveKey(saveIncidentKey)}/>
+  :null,[showSaveBanner,saveIncidentKey,game.saveStatus,english,busy]);
  const hubNotice=(saveAlertNotice||rawHubNotice)?<>{saveAlertNotice}{rawHubNotice}</>:null;
  const hubTabs=useMemo(()=>activeHub==='actors'&&!actorId?(
   <div role="tablist" aria-label={tr('伙伴筛选','Filter teammates')}>
@@ -539,24 +543,27 @@ export function AlphaApp(){
     </section>
    )}
    <CommissionHudTracker view={view} id={tracked} english={english} open={id=>appCbRef.current.setJobId(id)} track={id=>appCbRef.current.setTrackedJobId(id)} locate={tracked&&jobFocus(view,tracked)?()=>locate(jobFocus(view,tracked)):undefined}/>
-   <Onboarding hidden={!!(arranging||locationsOpen)} isolated={!!game.lab} view={view} experience={experienceView} lineageId={game.lineageId} uiStore={uiStore} english={english} openJob={id=>appCbRef.current.setJobId(id)} openPanel={id=>{appCbRef.current.setPanel(id);if(id==='jobs')appCbRef.current.setJobFilter('posted');}} openFinance={()=>{appCbRef.current.setStudioTab('finance');appCbRef.current.setPanel('studio');}}/>
+   <Onboarding hidden={!!(arranging||locationsOpen)} surface="scene" isolated={!!game.lab} view={view} experience={experienceView} lineageId={game.lineageId} uiStore={uiStore} english={english} openJob={id=>appCbRef.current.setJobId(id)} openPanel={id=>{appCbRef.current.setPanel(id);if(id==='jobs')appCbRef.current.setJobFilter('posted');}} openFinance={()=>{appCbRef.current.setStudioTab('finance');appCbRef.current.setPanel('studio');}}/>
   </div>
  ),[arranging,hud,cameraMoved,locationsOpen,offscreen,view,p.scene,english,tracked,experienceView,game.lineageId,game.lab,uiStore]);
 
  const priorityFeedbackLayer=useMemo(()=>(
   <div class="priority-feedback">
-   <SaveAlertBanner
-    status={game.saveStatus}
-    english={english}
-    busy={busy}
-    onExport={()=>void appCbRef.current.game.exportFile()}
-    onOpenSaves={()=>{appCbRef.current.setHud(null);appCbRef.current.setSaves(true);void appCbRef.current.game.refresh();}}
-    onRetry={()=>void appCbRef.current.game.retrySave()}
-   />
+   {showSaveBanner&&(
+    <SaveAlertBanner
+     status={game.saveStatus}
+     english={english}
+     busy={busy}
+     onExport={()=>void appCbRef.current.game.exportFile()}
+     onOpenSaves={()=>{appCbRef.current.setHud(null);appCbRef.current.setSaves(true);void appCbRef.current.game.refresh();}}
+     onRetry={()=>{setDismissedSaveKey(null);void appCbRef.current.game.retrySave();}}
+     onDismiss={()=>setDismissedSaveKey(saveIncidentKey)}
+    />
+   )}
    {view.liquidCash<0&&<button class="crisis-chip" onClick={()=>{appCbRef.current.setStudioTab('finance');appCbRef.current.setPanel('studio');}}><Icon name="warning"/> {tr('现金流预警 · 净偿付资金','Cash-flow warning · Net solvency')} ¥{view.liquidCash.toFixed(0)} · {view.crises}/3</button>}
    {(update||reloadReady)&&<button class="update-chip" onClick={()=>{appCbRef.current.setHud(null);appCbRef.current.setSaves(true);}}>{tr('新版本可用 · 先保存进度','Update available · Save progress first')}</button>}
   </div>
- ),[game.saveStatus,english,busy,view.liquidCash,view.crises,update,reloadReady]);
+ ),[showSaveBanner,saveIncidentKey,game.saveStatus,english,busy,view.liquidCash,view.crises,update,reloadReady]);
 
  const messengerLayer=useMemo(()=>chatOpen&&secondary?(
   <secondary.MessengerDrawer
@@ -646,7 +653,7 @@ export function AlphaApp(){
        <p>{tr('空闲伙伴','Available')}: {view.actors.filter(a=>!a.busy&&a.location!=='expedition').map(a=>names[a.id]).join(' · ')||'—'}</p>
        {view.jobs.filter(j=>['accepted','working','waiting','review'].includes(j.status)).sort((a,b)=>Number(b.status==='review')-Number(a.status==='review')||a.deadline-b.deadline).map(j=><button key={j.id} onClick={()=>setJobId(j.id)}><b>{english?j.titleEn:j.title}</b><small>{tr(({accepted:'待派遣',working:'执行中',waiting:'等下一期',review:'待验收'} as Record<string,string>)[j.status]!,j.status)} · {j.progress}/{j.work} WP</small></button>)}
       </details>
-      <Onboarding isolated={!!game.lab} view={view} experience={experienceView} lineageId={game.lineageId} uiStore={uiStore} english={english} openJob={setJobId} openPanel={id=>{setPanel(id);if(id==='jobs')setJobFilter('posted');}} openFinance={()=>{setHud(null);setStudioTab('finance');setPanel('studio');}}/>
+      <Onboarding surface="drawer" isolated={!!game.lab} view={view} experience={experienceView} lineageId={game.lineageId} uiStore={uiStore} english={english} openJob={setJobId} openPanel={id=>{setPanel(id);if(id==='jobs')setJobFilter('posted');}} openFinance={()=>{setHud(null);setStudioTab('finance');setPanel('studio');}}/>
      </div>
     </aside>
    )}
@@ -866,7 +873,7 @@ export function AlphaApp(){
      english={english}
      busy={busy}
      onExport={()=>void game.exportFile()}
-     onRetry={()=>void game.retrySave()}
+     onRetry={()=>{setDismissedSaveKey(null);void game.retrySave();}}
     />
     {(update||reloadReady)&&<p class="system-update"><button onClick={()=>update?activateUpdate(update,navigator.serviceWorker,()=>location.reload()):location.reload()}>{tr('已保存或导出进度，刷新到新版本','Progress saved or exported — refresh to new version')}</button></p>}
     {game.hosted&&<button disabled={busy} onClick={()=>void game.reconcile()}>{tr('只读核对自动档（保留当前进度）','Reconcile autosave without replacing current progress')}</button>}
