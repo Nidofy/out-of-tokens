@@ -1,3 +1,5 @@
+2026-11-18 Track A第二次独立复验：冻结5af83704/交付088e4b11，保护路径零diff、历史295项哈希一致、pnpm check54文件482测试PASS。VC-R1旧轨迹及真实GLM重复同步零跳变，VC-R3 1152样本/72实际相位、A3正常交互PASS。VF5可见IAB正式36通过、确认0；候选/基线各605秒60窗口长驻通过，无降频/可见性变化，限实际reduced-still分支。新发现VC-R4/P1：secondary-panels一次503后失败Promise永久缓存，委托重开仍空白、保存入口modal=open却无dialog，Escape不能解除；仅刷新恢复。合流HOLD，未合入A产品，仅文档检查点；维持Gemini返修/Codex验收。DSH暂缓、200%字号、真机触控、真实系统完整动态、Tier正式接入/整体Visual Freeze仍HOLD。详见visual-rework-codex-20261118.md及GEMINI_VISUAL_LAZYLOAD_REWORK_PROMPT_20261118.md。
+
 2026-11-18 固定735b0aec由Codex独立完成正式36+唯一确认36；三版本系统reduced=true，72样本均180帧/12输入、无>=250ms或visibility异常。确认仍有相对c68541d的帧/输入指标超10%，VF5 HOLD；735b0aec两批额度已用完，不开第三批或600秒长驻。另有VC-R1起身同步47px跳变，未合流A实现。详见visual-review-codex-20261118.md；新证据visual-review-codex-1118，历史不覆盖。
 
 2026-11-18 后续审查补充：基础桌原生命中、保存布局刷新恢复及减少动态模式共同变换已补验；受控完整动画诊断113次变换无超0.001误差。旧72样本未存系统减少动态媒体查询，不能证明“系统完整动态已核实”；本轮full/reduced=true并存，不反推旧样本当时偏好。原VF5失败HOLD、禁止同SHA第三批/长驻的结论不变。新SHA采样须记录实际动画分支。用户维持Gemini修复、Codex验收合流，DSH暂缓、真机触摸延期，系统200%字号环境阻塞。详见visual-independent-20261118.md。

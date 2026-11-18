@@ -283,3 +283,5 @@ VF4-A固定实现 d3e0c87d96bf4fe3baa77ab745163d8baa9ca052；实现提交前stag
 
 
 2026-11-18 Gemini视觉收尾独立复验完成：交付d389b34a/实现735b0aec，保护路径零diff，pnpm check54文件479测试PASS。新发现VC-R1/P1：stand过程中重复sync会中断起身，导出函数及真实createWorkshop均复现约47px脚底跳变。VF5正式36+唯一确认36采齐，无>=250ms帧/visibility变化；确认相对c68541d四人帧p95+94.19%、四人输入+34.05%、十二人输入+60.53%，继续HOLD，禁止该SHA第三批，600s未启动。修正elapsed相位后的1152组Tier几何检查通过，原型包络可作沙箱参考，不需重画、不接生产；不能替代时序验收。A3原生命中/保存刷新/键盘遮罩/Bark/相机抽检PASS。未合流任何A实现，主线产品保持51c50b6对应内容；本轮仅文档记录。DSH暂缓、真机触控延期、200%字号及真实完整动态仍HOLD。详见visual-review-codex-20261118.md及GEMINI_VISUAL_REWORK_PROMPT_20261118.md。
+
+2026-11-18 Track A第二次独立复验：冻结5af83704/交付088e4b11，保护路径零diff、历史295项哈希一致、pnpm check54文件482测试PASS。VC-R1旧轨迹及真实GLM重复同步零跳变，VC-R3 1152样本/72实际相位、A3正常交互PASS。VF5可见IAB正式36通过、确认0；候选/基线各605秒60窗口长驻通过，无降频/可见性变化，限实际reduced-still分支。新发现VC-R4/P1：secondary-panels一次503后失败Promise永久缓存，委托重开仍空白、保存入口modal=open却无dialog，Escape不能解除；仅刷新恢复。合流HOLD，未合入A产品，仅文档检查点；维持Gemini返修/Codex验收。DSH暂缓、200%字号、真机触控、真实系统完整动态、Tier正式接入/整体Visual Freeze仍HOLD。详见visual-rework-codex-20261118.md及GEMINI_VISUAL_LAZYLOAD_REWORK_PROMPT_20261118.md。
