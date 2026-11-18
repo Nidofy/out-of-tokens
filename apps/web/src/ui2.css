@@ -20,7 +20,7 @@
  @keyframes ui2-float-up{0%{opacity:0;transform:translateY(6px)}25%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-14px)}}
 
  .ui2-advance-wrap{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));z-index:42;display:flex;flex-direction:column;align-items:flex-end;gap:8px;pointer-events:none}
- .studio-app:is([data-mode=layout],[data-overlay=more],[data-overlay=board]) .ui2-advance-wrap,.studio-app:has(dialog[open]) .ui2-advance-wrap{visibility:hidden}
+ .studio-app:is([data-mode=layout],[data-overlay=more],[data-overlay=board]) .ui2-advance-wrap,.studio-app[data-modal=open] .ui2-advance-wrap{visibility:hidden}
  .ui2-advance-btn{pointer-events:auto;display:inline-flex;align-items:center;gap:10px;min-width:196px;min-height:54px;padding:8px 18px;border-radius:18px;background:linear-gradient(180deg,#f5dfae 0%,#dfb871 100%);color:#2c2015;border:1px solid #fff4d8;box-shadow:0 6px 20px rgba(24,17,12,.34);text-align:left}
  .ui2-advance-btn:hover:not(:disabled){filter:brightness(1.04);color:#2c2015}
  .ui2-advance-btn[data-urgent=true]{border-color:#d85a3a;box-shadow:0 0 0 2px rgba(216,90,58,.45),0 6px 20px rgba(24,17,12,.36)}
@@ -48,11 +48,16 @@
  .ui2-dot.is-ready{background:var(--sage)}
  .studio-app .scene-left-stack :is(.scene-tools,.scene-presence){position:static;max-width:100%;margin:0}
  .studio-app .scene-left-stack .onboarding{position:static;width:min(292px,100%);max-width:none;background:var(--paper);border:1px solid var(--brass);box-shadow:0 6px 18px rgba(24,17,12,.2)}
+ .studio-app .scene-left-stack :is(.scene-tools,.onboarding)[hidden]{display:none}
+ .studio-app[data-panel]:not([data-panel=closed]) .scene-left-stack .onboarding:not([hidden]){display:block}
+ .studio-app[data-panel]:not([data-panel=closed]) .priority-feedback:not(:empty){display:flex;visibility:hidden}
  .studio-app .scene-left-stack .onboarding p{font-size:12px;line-height:1.45;margin:4px 0 8px}
 
- dialog.stage-hub{width:min(1160px,calc(100vw - 32px));height:min(660px,calc(100dvh - 40px));max-width:none;max-height:none;padding:0;overflow:hidden;border-radius:16px;background:var(--paper);border:1px solid var(--brass);box-shadow:0 20px 60px rgba(18,12,8,.42)}
- dialog.stage-hub::backdrop{background:var(--stage-scrim);backdrop-filter:none}
- dialog.stage-hub[open]{display:flex;flex-direction:column}
+ .stage-hub-scrim{position:fixed;inset:0;z-index:79;background:var(--stage-scrim)}
+ .stage-hub-scrim[data-open=false]{visibility:hidden;pointer-events:none}
+ dialog.stage-hub{position:fixed;inset:0;margin:auto;z-index:80;width:min(1160px,calc(100vw - 32px));height:min(660px,calc(100dvh - 40px));max-width:none;max-height:none;padding:0;overflow:hidden;border-radius:16px;background:var(--paper);backdrop-filter:none;border:1px solid var(--brass);box-shadow:0 20px 60px rgba(18,12,8,.42);animation:none}
+ dialog.stage-hub[open]{display:flex;flex-direction:column;visibility:visible;pointer-events:auto}
+ dialog.stage-hub:not([open]){display:flex;flex-direction:column;visibility:hidden;pointer-events:none}
  .stage-hub-frame{display:flex;flex:1;min-height:0}
  .stage-hub-rail{width:76px;flex:none;display:flex;flex-direction:column;gap:6px;padding:10px 6px;background:var(--tool-surface);border-right:1px solid var(--line)}
  .stage-hub-rail button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:58px;padding:6px 4px;border-radius:12px;background:transparent;border:1px solid transparent;color:var(--tool-ink);box-shadow:none;font-size:12px}
@@ -641,7 +646,7 @@
   .stage-hub-top{padding:6px 8px;gap:6px}
   .stage-hub-title-row{flex:1 1 100%;min-width:0;gap:6px}
   .stage-hub-right{flex:1 1 100%;justify-content:flex-end;gap:6px}
-  dialog.stage-hub:has(.stage-hub-back) .commission-back{display:none}
+  dialog.stage-hub[data-has-back=true] .commission-back{display:none}
   .stage-hub-advance span{display:none}
   .ui2-vitals-grid,.ui2-actions-grid,.ui2-skills-rhythm,.ui2-plan-grid,.ui2-hw-grid,.ui2-sw-grid,.ui2-rival-grid,.ui2-souvenir-shelf,.ui2-gift-grid,.ui2-duo-grid,.ui2-messenger-layout{grid-template-columns:minmax(0,1fr)}
   .ui2-thread-list{flex-direction:row;overflow-x:auto;overflow-y:hidden;padding-bottom:4px}
@@ -693,7 +698,7 @@
   .stage-hub-right{flex:none}
   .stage-hub-tabs{order:0;flex:1 1 auto;min-width:0}
   .stage-hub-tabs>[role=tablist]{width:auto}
-  dialog.stage-hub:has(.stage-hub-tabs) .stage-hub-title-row:not(:has(.stage-hub-back)){display:none}
+  dialog.stage-hub[data-has-tabs=true]:not([data-has-back=true]) .stage-hub-title-row{display:none}
   .ui2-commission-pane .ui2-hub-inner-tabs{margin:4px 8px 0;padding:2px}
   .work-steps button,.work-confirm button{min-height:44px}
   .work-confirm small{font-size:12px}

@@ -1,5 +1,5 @@
 import type {RefObject} from 'preact';
-import {useRef,useState} from 'preact/hooks';
+import {useMemo,useRef,useState} from 'preact/hooks';
 import type {GameView} from 'oot-platform';
 import {Icon} from './icons.js';
 import {PeriodClockIcon,PeriodDots} from './ornaments.js';
@@ -57,7 +57,9 @@ type HudBarProps={
 };
 
 export function HudBar(props:HudBarProps){
- const {view,english,dark,still,locked,hud,panel,placeLabel,chapterTitle,advance,deltas,unreadThreads,teaReady,audioPrefs,saveStatus,onDismissDelta,onOpenHud,onOpenMap,onOpenChat,onTeaBreak,onOpenStudioFinance,onOpenPanel,onOpenOffice,onOpenSaves,onOpenSettings,onToggleLocale,onToggleTheme,onToggleSfx,onToggleAmbience,onAdvance,onOpenJob,moreTrigger,boardTrigger,chatTrigger,jobsTrigger}=props;
+ const {view,english,dark,still,locked,hud,panel,placeLabel,chapterTitle,advance,deltas,unreadThreads,teaReady,audioPrefs,saveStatus,jobsTrigger}=props;
+ const cbRef=useRef(props);
+ cbRef.current=props;
  const tr=(zh:string,en:string)=>english?en:zh;
  const p=view.campaign!;
  const [confirmAdvance,setConfirmAdvance]=useState(false);
@@ -69,16 +71,16 @@ export function HudBar(props:HudBarProps){
  const alertCount=reviewCount+(view.liquidCash<0?1:0)+(view.debtDue>0&&view.absoluteSlot<view.debtSlot?1:0);
 
  const handleAdvance=()=>{
-  if(advance.disabled)return;
-  if(advance.urgentReviewIds.length>0&&!confirmAdvance){
+  if(cbRef.current.advance.disabled)return;
+  if(cbRef.current.advance.urgentReviewIds.length>0&&!confirmAdvance){
    setConfirmAdvance(true);
    return;
   }
   setConfirmAdvance(false);
-  onAdvance();
+  cbRef.current.onAdvance();
  };
 
- return (
+ const headerAndPopover=useMemo(()=>(
   <>
    <header class="studio-hud ui2-hud">
     <div class="ui2-clock-pill" title={tr(`第${view.day}天 · 距周结约 ${daysToWeekly} 天`,`Day ${view.day} · Weekly bill in ~${daysToWeekly}d`)}>
@@ -87,53 +89,53 @@ export function HudBar(props:HudBarProps){
      <PeriodDots slot={view.absoluteSlot}/>
      <small class="ui2-week-countdown">{tr(`周结${daysToWeekly}d`,`Bill ${daysToWeekly}d`)}</small>
     </div>
-    <button class="hud-place" title={`${chapterTitle} · ${tr('打开园区地图','Open studio map')}`} onClick={onOpenMap}>
+    <button class="hud-place" title={`${chapterTitle} · ${tr('打开园区地图','Open studio map')}`} onClick={()=>cbRef.current.onOpenMap()}>
      <Icon name="pin"/><span>{placeLabel}</span>
     </button>
     <div class="hud-resources ui2-resources">
-     <button class={view.liquidCash<0?'is-crisis':''} aria-label={tr(`账面现金 ¥${view.cash.toFixed(0)}，净偿付资金 ¥${view.liquidCash.toFixed(0)}`,`Cash ¥${view.cash.toFixed(0)}, net solvency ¥${view.liquidCash.toFixed(0)}`)} title={tr(`账面现金 ¥${view.cash.toFixed(0)} · 净偿付资金 ¥${view.liquidCash.toFixed(0)}`,`Cash ¥${view.cash.toFixed(0)} · Net solvency ¥${view.liquidCash.toFixed(0)}`)} onClick={onOpenStudioFinance}>
+     <button class={view.liquidCash<0?'is-crisis':''} aria-label={tr(`账面现金 ¥${view.cash.toFixed(0)}，净偿付资金 ¥${view.liquidCash.toFixed(0)}`,`Cash ¥${view.cash.toFixed(0)}, net solvency ¥${view.liquidCash.toFixed(0)}`)} title={tr(`账面现金 ¥${view.cash.toFixed(0)} · 净偿付资金 ¥${view.liquidCash.toFixed(0)}`,`Cash ¥${view.cash.toFixed(0)} · Net solvency ¥${view.liquidCash.toFixed(0)}`)} onClick={()=>cbRef.current.onOpenStudioFinance()}>
       {view.liquidCash<0?<Icon name="warning"/>:<Icon name="wallet"/>}
       <span>¥{view.cash.toFixed(0)}</span>
      </button>
-     <button aria-label={tr('云端额度','Cloud quota')} title={tr('云端算力额度 · 点击管理','Cloud compute quota · Manage')} onClick={onOpenStudioFinance}>
+     <button aria-label={tr('云端额度','Cloud quota')} title={tr('云端算力额度 · 点击管理','Cloud compute quota · Manage')} onClick={()=>cbRef.current.onOpenStudioFinance()}>
       <Icon name="bolt"/>
       <span>{(view.quota+view.purchased).toFixed(0)} T</span>
      </button>
-     <button class="hud-local-cap" aria-label={tr('单槽本地算力上限','Local capacity per slot')} title={tr('单槽本地算力上限','Local compute capacity')} onClick={onOpenStudioFinance}>
+     <button class="hud-local-cap" aria-label={tr('单槽本地算力上限','Local capacity per slot')} title={tr('单槽本地算力上限','Local compute capacity')} onClick={()=>cbRef.current.onOpenStudioFinance()}>
       <Icon name="chip"/>
       <span>{view.localCapacity}</span>
      </button>
-     <button class="hud-rep-rp" aria-label={tr(`声望 ${view.reputation}，研发点 ${p.research} RP`,`Reputation ${view.reputation}, ${p.research} RP`)} title={tr(`声望 ${view.reputation} · 研发点 ${p.research} RP`,`Reputation ${view.reputation} · ${p.research} RP`)} onClick={()=>onOpenPanel('studio')}>
+     <button class="hud-rep-rp" aria-label={tr(`声望 ${view.reputation}，研发点 ${p.research} RP`,`Reputation ${view.reputation}, ${p.research} RP`)} title={tr(`声望 ${view.reputation} · 研发点 ${p.research} RP`,`Reputation ${view.reputation} · ${p.research} RP`)} onClick={()=>cbRef.current.onOpenPanel('studio')}>
       <Icon name="star"/>
       <span>{view.reputation} · {p.research} RP</span>
      </button>
      {!still&&deltas.length>0&&(
       <div class="ui2-delta-layer" aria-hidden="true">
-       {deltas.map(d=><span key={d.id} class={`ui2-delta-pop ${d.positive?'is-up':'is-down'}`} onAnimationEnd={()=>onDismissDelta(d.id)}>{d.text}</span>)}
+       {deltas.map(d=><span key={d.id} class={`ui2-delta-pop ${d.positive?'is-up':'is-down'}`} onAnimationEnd={()=>cbRef.current.onDismissDelta(d.id)}>{d.text}</span>)}
       </div>
      )}
     </div>
     <span class="hud-spacer"/>
-    <SaveStatusPill status={saveStatus} english={english} onClick={onOpenSaves}/>
-    <button ref={chatTrigger} class="ui2-hud-icon" title={tr('工坊群聊 (C)','Team chat (C)')} aria-label={tr('工坊群聊 (C)','Team chat (C)')} onClick={onOpenChat}>
+    <SaveStatusPill status={saveStatus} english={english} onClick={()=>cbRef.current.onOpenSaves()}/>
+    <button ref={cbRef.current.chatTrigger} class="ui2-hud-icon" title={tr('工坊群聊 (C)','Team chat (C)')} aria-label={tr('工坊群聊 (C)','Team chat (C)')} onClick={()=>cbRef.current.onOpenChat()}>
      <Icon name="chat"/>{unreadThreads>0&&<i class="hud-badge"/>}
     </button>
-    <button ref={boardTrigger} class="ui2-hud-icon" title={tr('工作看板与待办','Work board & notices')} aria-label={tr('工作看板与待办','Work board & notices')} aria-expanded={hud==='board'} onClick={()=>onOpenHud('board')}>
+    <button ref={cbRef.current.boardTrigger} class="ui2-hud-icon" title={tr('工作看板与待办','Work board & notices')} aria-label={tr('工作看板与待办','Work board & notices')} aria-expanded={hud==='board'} onClick={()=>cbRef.current.onOpenHud('board')}>
      <Icon name="notifications"/>{alertCount>0&&<i class="hud-badge"/>}
     </button>
-    <button class="ui2-hud-icon" title={tr('视角控制','Scene camera')} aria-label={tr('视角控制','Scene camera')} aria-expanded={hud==='view'} onClick={()=>onOpenHud('view')}>
+    <button class="ui2-hud-icon" title={tr('视角控制','Scene camera')} aria-label={tr('视角控制','Scene camera')} aria-expanded={hud==='view'} onClick={()=>cbRef.current.onOpenHud('view')}>
      <Icon name="view"/>
     </button>
-    <button ref={moreTrigger} class="ui2-hud-icon" title={tr('工作室终端','Studio terminal')} aria-label={tr('工作室终端','Studio terminal')} aria-expanded={hud==='more'} onClick={()=>onOpenHud('more')}>
+    <button ref={cbRef.current.moreTrigger} class="ui2-hud-icon" title={tr('工作室终端','Studio terminal')} aria-label={tr('工作室终端','Studio terminal')} aria-expanded={hud==='more'} onClick={()=>cbRef.current.onOpenHud('more')}>
      <Icon name="terminal"/>
     </button>
    </header>
 
    {hud==='more'&&(
-    <section class="hud-popover ui2-terminal" aria-label={tr('工作室终端','Studio terminal')} onKeyDown={e=>{if(e.key==='Escape')onOpenHud('more');}}>
+    <section class="hud-popover ui2-terminal" aria-label={tr('工作室终端','Studio terminal')} onKeyDown={e=>{if(e.key==='Escape')cbRef.current.onOpenHud('more');}}>
      <header class="drawer-head">
       <h2><Icon name="terminal"/> {tr('工作室终端','Studio terminal')}</h2>
-      <button aria-label={tr('关闭面板','Close panel')} onClick={()=>onOpenHud('more')}><Icon name="close"/></button>
+      <button aria-label={tr('关闭面板','Close panel')} onClick={()=>cbRef.current.onOpenHud('more')}><Icon name="close"/></button>
      </header>
      <div class="drawer-content ui2-terminal-body">
       <div class="ui2-terminal-card">
@@ -145,71 +147,85 @@ export function HudBar(props:HudBarProps){
        </div>
       </div>
       <div class="ui2-terminal-grid">
-       {view.office&&<button disabled={locked||p.scene!=='workshop'} title={p.scene!=='workshop'?tr('仅在工作室场景可布置','Available in workshop scene'):''} onClick={onOpenOffice}><Icon name="decor"/><span>{tr('布置办公室','Arrange office')}</span></button>}
-       <button disabled={locked||!teaReady} title={!teaReady&&p.scene!=='workshop'?tr('需在工作室场景举办','Available in workshop scene'):''} onClick={()=>{onOpenHud('more');onTeaBreak();}}><Icon name="cup"/><span>{(p.lastTeaDay??0)>=view.day?tr('今日已茶歇','Tea used'):tr('工坊茶歇 ¥80','Tea break ¥80')}</span></button>
-       <button onClick={()=>onOpenHud('board')}><Icon name="notifications"/><span>{tr('工作看板','Work board')}</span></button>
-       <button onClick={onOpenMap}><Icon name="map"/><span>{tr('园区地图','Studio map')}</span></button>
-       <button onClick={onOpenSaves}><Icon name="save"/><span>{tr('存档与备份','Saves')}</span></button>
-       <button onClick={onOpenSettings}><Icon name="settings"/><span>{tr('系统设置','Settings')}</span></button>
-       <button onClick={()=>onOpenPanel('journal')}><Icon name="book"/><span>{tr('事务所履历','Chronicle')}</span></button>
+       {view.office&&<button disabled={locked||p.scene!=='workshop'} title={p.scene!=='workshop'?tr('仅在工作室场景可布置','Available in workshop scene'):''} onClick={()=>cbRef.current.onOpenOffice()}><Icon name="decor"/><span>{tr('布置办公室','Arrange office')}</span></button>}
+       <button disabled={locked||!teaReady} title={!teaReady&&p.scene!=='workshop'?tr('需在工作室场景举办','Available in workshop scene'):''} onClick={()=>{cbRef.current.onOpenHud('more');cbRef.current.onTeaBreak();}}><Icon name="cup"/><span>{(p.lastTeaDay??0)>=view.day?tr('今日已茶歇','Tea used'):tr('工坊茶歇 ¥80','Tea break ¥80')}</span></button>
+       <button onClick={()=>cbRef.current.onOpenHud('board')}><Icon name="notifications"/><span>{tr('工作看板','Work board')}</span></button>
+       <button onClick={()=>cbRef.current.onOpenMap()}><Icon name="map"/><span>{tr('园区地图','Studio map')}</span></button>
+       <button onClick={()=>cbRef.current.onOpenSaves()}><Icon name="save"/><span>{tr('存档与备份','Saves')}</span></button>
+       <button onClick={()=>cbRef.current.onOpenSettings()}><Icon name="settings"/><span>{tr('系统设置','Settings')}</span></button>
+       <button onClick={()=>cbRef.current.onOpenPanel('journal')}><Icon name="book"/><span>{tr('事务所履历','Chronicle')}</span></button>
       </div>
       <div class="ui2-terminal-toggles">
-       <button aria-pressed={english} onClick={onToggleLocale}><Icon name="locale"/><span>{english?'English':'中文'}</span></button>
-       <button aria-pressed={dark} onClick={onToggleTheme}><Icon name={dark?'moon':'sun'}/><span>{dark?tr('深色模式','Dark mode'):tr('浅色模式','Light mode')}</span></button>
-       <button aria-pressed={audioPrefs.sfx} onClick={onToggleSfx}><Icon name={audioPrefs.sfx?'volume':'mute'}/><span>{audioPrefs.sfx?tr('音效 开','SFX on'):tr('音效 关','SFX off')}</span></button>
-       <button aria-pressed={audioPrefs.ambience} onClick={onToggleAmbience}><Icon name={audioPrefs.ambience?'volume':'mute'}/><span>{audioPrefs.ambience?tr('底噪 开','Ambience on'):tr('底噪 关','Ambience off')}</span></button>
+       <button aria-pressed={english} onClick={()=>cbRef.current.onToggleLocale()}><Icon name="locale"/><span>{english?'English':'中文'}</span></button>
+       <button aria-pressed={dark} onClick={()=>cbRef.current.onToggleTheme()}><Icon name={dark?'moon':'sun'}/><span>{dark?tr('深色模式','Dark mode'):tr('浅色模式','Light mode')}</span></button>
+       <button aria-pressed={audioPrefs.sfx} onClick={()=>cbRef.current.onToggleSfx()}><Icon name={audioPrefs.sfx?'volume':'mute'}/><span>{audioPrefs.sfx?tr('音效 开','SFX on'):tr('音效 关','SFX off')}</span></button>
+       <button aria-pressed={audioPrefs.ambience} onClick={()=>cbRef.current.onToggleAmbience()}><Icon name={audioPrefs.ambience?'volume':'mute'}/><span>{audioPrefs.ambience?tr('底噪 开','Ambience on'):tr('底噪 关','Ambience off')}</span></button>
       </div>
      </div>
     </section>
    )}
+  </>
+ ),[view,english,dark,still,locked,hud,placeLabel,chapterTitle,deltas,unreadThreads,teaReady,audioPrefs,saveStatus]);
 
-   <nav class="studio-dock ui2-dock" aria-label={tr('工作室导航','Studio navigation')}>
-    {(['actors','jobs','studio','journal'] as const).map((id,i)=><button key={id} ref={id==='jobs'?jobsTrigger:null} aria-pressed={panel===id} onClick={()=>onOpenPanel(id)}>
-     <Icon name={['people','briefcase','home','book'][i]!}/>
-     <span>{[tr('伙伴','Team'),tr('委托','Jobs'),tr('工作室','Studio'),tr('手账','Journal')][i]}</span>
-     {id==='jobs'&&reviewCount>0&&<i class="dock-dot"/>}
-     {id==='studio'&&view.chapterGoal.ready&&<i class="dock-dot is-ready"/>}
-    </button>)}
-   </nav>
-
-   <div class="ui2-advance-wrap">
-    <AdvancePreviewPopover
-     display={advance}
-     open={previewOpen}
-     english={english}
-     onClose={()=>{setPreviewOpen(false);requestAnimationFrame(()=>previewTriggerRef.current?.focus({preventScroll:true}));}}
-    />
-    {confirmAdvance&&advance.urgentReviewIds[0]&&(
-     <div class="ui2-advance-confirm" role="alert">
-      <p><Icon name="warning"/> {tr('有待验收委托即将逾期，直接推进将按违约结算。','A commission awaiting review is due now. Advancing will breach it.')}</p>
-      <div class="button-row">
-       <button onClick={()=>{setConfirmAdvance(false);onOpenJob(advance.urgentReviewIds[0]!);}}>{tr('先去验收','Review first')}</button>
-       <button class="primary" onClick={()=>{setConfirmAdvance(false);onAdvance();}}>{tr('仍推进','Proceed')}</button>
-       <button onClick={()=>setConfirmAdvance(false)}>{tr('取消','Cancel')}</button>
-      </div>
+ const advanceWrap=useMemo(()=>(
+  <div class="ui2-advance-wrap">
+   <AdvancePreviewPopover
+    display={advance}
+    open={previewOpen}
+    english={english}
+    onClose={()=>{setPreviewOpen(false);requestAnimationFrame(()=>previewTriggerRef.current?.focus({preventScroll:true}));}}
+   />
+   {confirmAdvance&&advance.urgentReviewIds[0]&&(
+    <div class="ui2-advance-confirm" role="alert">
+     <p><Icon name="warning"/> {tr('有待验收委托即将逾期，直接推进将按违约结算。','A commission awaiting review is due now. Advancing settles it as breached.')}</p>
+     <div class="button-row">
+      <button onClick={()=>{setConfirmAdvance(false);cbRef.current.onOpenJob(advance.urgentReviewIds[0]!);}}>{tr('先去验收','Review first')}</button>
+      <button class="primary" onClick={()=>{setConfirmAdvance(false);cbRef.current.onAdvance();}}>{tr('仍推进','Proceed')}</button>
+      <button onClick={()=>setConfirmAdvance(false)}>{tr('取消','Cancel')}</button>
      </div>
-    )}
-    <div class="ui2-advance-row">
-     <button
-      ref={previewTriggerRef}
-      type="button"
-      class="ui2-advance-info-btn"
-      aria-expanded={previewOpen}
-      aria-label={tr('查看下一时段推进预览','Preview next period')}
-      title={tr('展开下一时段预览（不推进）','Expand next period preview (does not advance)')}
-      onClick={()=>setPreviewOpen(v=>!v)}
-     >
-      <Icon name="info"/>
-     </button>
-     <button class="advance-period ui2-advance-btn" disabled={advance.disabled} title={advance.disabledReason??advance.subtitle} onClick={handleAdvance} data-urgent={advance.urgentReviewIds.length>0}>
-      <span class="ui2-advance-icon"><Icon name="play"/></span>
-      <span class="ui2-advance-copy">
-       <b>{advance.label}</b>
-       <small>{advance.disabledReason??advance.subtitle}</small>
-      </span>
-     </button>
     </div>
+   )}
+   <div class="ui2-advance-row">
+    <button
+     ref={previewTriggerRef}
+     type="button"
+     class="ui2-advance-info-btn"
+     aria-expanded={previewOpen}
+     aria-label={tr('查看下一时段推进预览','Preview next period')}
+     title={tr('展开下一时段预览（不推进）','Expand next period preview (does not advance)')}
+     onClick={()=>setPreviewOpen(v=>!v)}
+    >
+     <Icon name="info"/>
+    </button>
+    <button class="advance-period ui2-advance-btn" disabled={advance.disabled} title={advance.disabledReason??advance.subtitle} onClick={handleAdvance} data-urgent={advance.urgentReviewIds.length>0}>
+     <span class="ui2-advance-icon"><Icon name="play"/></span>
+     <span class="ui2-advance-copy">
+      <b>{advance.label}</b>
+      <small>{advance.disabledReason??advance.subtitle}</small>
+     </span>
+    </button>
    </div>
+  </div>
+ ),[advance,previewOpen,confirmAdvance,english]);
+
+ const dockNav=useMemo(()=>(
+  <nav class="studio-dock ui2-dock" aria-label={tr('工作室导航','Studio navigation')}>
+   {(['actors','jobs','studio','journal'] as const).map((id,i)=><button key={id} ref={id==='jobs'?jobsTrigger:null} aria-pressed={panel===id} onClick={()=>cbRef.current.onOpenPanel(id)}>
+    <Icon name={['people','briefcase','home','book'][i]!}/>
+    <span>{[tr('伙伴','Team'),tr('委托','Jobs'),tr('工作室','Studio'),tr('手账','Journal')][i]}</span>
+    {id==='jobs'&&reviewCount>0&&<i class="dock-dot"/>}
+    {id==='studio'&&view.chapterGoal.ready&&<i class="dock-dot is-ready"/>}
+   </button>)}
+  </nav>
+ ),[panel,english,reviewCount,view.chapterGoal.ready,jobsTrigger]);
+
+ return (
+  <>
+   {headerAndPopover}
+
+   {dockNav}
+
+   {advanceWrap}
   </>
  );
 }

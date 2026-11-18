@@ -1,6 +1,7 @@
 import {chapterBannerArt,eventArt,ritualBackdropArt} from './generated-art.js';
 import './generated-art.css';
 import {sceneCamera,initialSceneCamera,dismissPresence} from './scene-navigation.js';
+import {loadScene,preloadWorkshop} from './scene-preload.js';
 import {visualReviewEnabled} from './visual-review.js';
 import {actorFocus,jobFocus,zoneNames,clampOfficePan,zoomOfficeCamera,defaultCameraPan} from './office-scene-spec.js';
 import type {CameraPan,OfficeFocus,CameraZone} from './office-scene-spec.js';
@@ -13,7 +14,7 @@ import {controllerTracker} from './update-observer.js';
 import {Icon} from './icons.js';
 import {Portrait,actorIds,sceneArt,chapterPlaces} from './studio-ui.js';
 import {waitingUpdate,activateUpdate} from './updates.js';
-import {useEffect,useRef,useState,useReducer} from 'preact/hooks';
+import {useEffect,useMemo,useRef,useState,useReducer} from 'preact/hooks';
 import {Dialog,SaveSlots} from './dialog.js';
 import {CommissionLog} from './commission-log.js';
 import type {DraftTeam,JobFilter} from './commission-workbench.js';
@@ -56,56 +57,53 @@ type Tr=(zh:string,en:string)=>string;
 type ReturnContext={panel:'jobs';jobId:string}|{panel:'actors';actorId:string};
 type RitualCard={kind:'recruit'|'version'|'chapter';title:string;subtitle:string;badge:string;img:string;themeColor:string;sWord?:string};
 
-let sceneModule:Promise<typeof import('./scene.js')>|undefined;
-const loadScene=()=>sceneModule??=import('./scene.js');
-/** Begin the always-visible scene download alongside the first UI render. */
-export function preloadWorkshop(){void loadScene().catch(()=>{});}
+export {preloadWorkshop};
+let warmedPortraits:HTMLImageElement[]|null=null;
 
 function Scene({view,english,select,furniture,camera,zone,zoom,pan,onCamera,presence,anchors,paused,capacityByActor}:{paused:boolean;zone:CameraZone;zoom:number;pan:CameraPan;onCamera:(next:{zoom:number;pan:CameraPan;clearFocus?:boolean|undefined})=>void;presence:(ids:string[])=>void;anchors?:(next:Record<string,ActorHeadAnchor>)=>void;camera:OfficeFocus;view:GameView;english:boolean;select:(id:string)=>void;furniture:(id:string)=>void;capacityByActor?:Readonly<Record<string,CapacityExplanation>>}){
  const host=useRef<HTMLDivElement>(null),scene=useRef<Awaited<ReturnType<typeof import('./scene.js')['createWorkshop']>>|null>(null),latest=useRef({view,english,camera,zone,zoom,pan,paused,capacityByActor}),presenceRef=useRef(presence),anchorsRef=useRef(anchors),cameraRef=useRef(onCamera),click=useRef(select),furnitureClick=useRef(furniture);
  furnitureClick.current=furniture;latest.current={view,english,camera,zone,zoom,pan,paused,capacityByActor};presenceRef.current=presence;anchorsRef.current=anchors;cameraRef.current=onCamera;click.current=select;
  const[failed,setFailed]=useState(false);
- useEffect(()=>{let dead=false;void loadScene().then(m=>{if(import.meta.env.DEV&&new URLSearchParams(location.search).get('test-fault')==='renderer')throw Error('TEST_RENDER_FAILURE');return m;}).then(m=>m.createWorkshop(host.current!,id=>click.current(id),id=>furnitureClick.current(id),ids=>presenceRef.current(ids),next=>cameraRef.current(next),next=>anchorsRef.current?.(next))).then(s=>{if(dead){s.destroy();return;}scene.current=s;s.update(latest.current.view,latest.current.english?'en':'zh',latest.current.camera,latest.current.zone,latest.current.zoom,latest.current.pan,latest.current.paused,latest.current.capacityByActor);}).catch(()=>{if(!dead)setFailed(true);});return()=>{dead=true;scene.current?.destroy();scene.current=null;};},[]);
+ useEffect(()=>{let dead=false;void loadScene().then(m=>{if(import.meta.env.DEV&&new URLSearchParams(location.search).get('test-fault')==='renderer')throw Error('TEST_RENDER_FAILURE');return m;}).then(m=>m.createWorkshop(host.current!,id=>click.current(id),id=>furnitureClick.current(id),ids=>presenceRef.current(ids),next=>cameraRef.current(next),next=>anchorsRef.current?.(next),latest.current.view)).then(s=>{if(dead){s.destroy();return;}scene.current=s;s.update(latest.current.view,latest.current.english?'en':'zh',latest.current.camera,latest.current.zone,latest.current.zoom,latest.current.pan,latest.current.paused,latest.current.capacityByActor);}).catch(()=>{if(!dead)setFailed(true);});return()=>{dead=true;scene.current?.destroy();scene.current=null;};},[]);
  useEffect(()=>scene.current?.update(view,english?'en':'zh',camera,zone,zoom,pan,paused,capacityByActor),[view,english,camera,zone,zoom,pan,paused,capacityByActor]);
  return <div class="workshop" ref={host} aria-label={english?'Current scene; use the navigation below':'当前场景；可通过下方导航操作'}>{failed&&<p class="scene-fallback">{english?'Scene unavailable. All controls below still work.':'场景暂不可用，下方操作仍可使用。'}</p>}</div>;
 }
 
 const messages:Record<string,[string,string]>={DONE:['安排好了。','Done.'],SAVED:['进度已保存。','Progress saved.'],LOADED:['存档已载入。','Save loaded.'],EXPORTED:['已导出进度。','Save exported.'],BAD_JSON:['JSON格式损坏，当前进度不变。','Invalid JSON. Current progress is unchanged.'],EXTERNAL_CHANGE:['另一窗口更新了存档，自动保存已暂停。请先载入最新档。','Another tab updated saves. Autosave paused; load the latest save.'],AUTO_PAUSED:['自动存档暂停，请先载入最新档。','Autosave paused. Load the latest save.'],SAVE_CONFLICT:['存档已被更新，请载入后再保存。','Save changed elsewhere. Load it before saving.'],STORAGE_UNAVAILABLE:['存储不可用，可继续玩并导出进度。','Storage unavailable. Continue playing and export your progress.'],IMPORTED_NO_STORAGE:['文件已载入，后续请用导出保存。','Imported. Use export to save further progress.'],INCOMPATIBLE_SAVE:['版本不兼容，请用原版本打开。','Incompatible save. Open it with its original version.'],HASH_MISMATCH:['存档校验失败，当前进度保持不变。','Save integrity check failed. Current progress is unchanged.'],ACTOR_BUSY:['伙伴正在忙碌，请推进时段或换人。','This character is busy. Advance time or choose someone else.'],ACTOR_ELSEWHERE:['先去同一场景找伙伴。','Visit the character in their current scene.'],WRONG_SCENE:['这项活动需要去食堂或图书馆。','Visit the appropriate scene for this activity.'],INSUFFICIENT_RESOURCES:['现金或研发点不足。','Not enough cash or research points.'],INSUFFICIENT_CASH:['现金不足。','Not enough cash.'],STORY_LOCKED:['剧情好感、位置或时段条件未满足。','Story requirements, location or availability are not met.'],CHAPTER_LOCKED:['本章经营目标尚未完成。','This chapter business goal is not complete.'],CRISIS_SMALL_ONLY:['危机期仅能接总量≤40WP的合同。','During a crisis, only contracts up to 40 total WP are allowed.'],VERSION_LOCKED:['请先研发该版本。','Research that version first.'],UPGRADE_LOCKED:['请完成前置研发；已安装升级不能重复购买。','Complete prerequisites; installed upgrades cannot be bought twice.'],TRAINING_LIMIT:['已达该版本训练上限。','This version has reached its training limit.'],TRAINING_LOCKED:['只有空闲开源角色能训练。','Only idle open-source characters can train.'],RECRUIT_LOCKED:['招募需要达到章节、声望和资金条件，且不能重复招募。','Recruitment requires the chapter, reputation and cash; each teammate joins once.'],INVALID_ROLES:['至少一位执行者，负责人和审查者各最多一位。','Use at least one worker and at most one planner and reviewer.'],PENDING_CHOICE:['先处理当前事件。','Resolve the pending event first.'],Clarified:['揭示了新的需求，请查看委托。','A requirement was revealed. Check the commission.'],ClarificationMiss:['这次未揭示新要求，仍消耗个人时段。','No new requirement was revealed; the personal slot was used.'],DayEnd:['新的一天，配额已刷新。','A new day; quota refreshed.'],SlotResolved:['时段已推进。','Time advanced.'],CommandApplied:['委托操作已完成。','Commission updated.'],PendingChoice:['发生了一件事。','An event needs your decision.']};
+Object.assign(messages,officeErrors,{
+ PROJECT_LOCKED:['当前章节尚未开放该项目，或项目还未开始。','This project is unavailable in this chapter or has not started.'],
+ PROJECT_ACTIVE:['路线已经确定，请继续当前项目。','A route is already selected. Continue the current project.'],
+ PROJECT_ROUTE:['请选择有效的交付路线。','Choose a valid delivery route.'],
+ PROJECT_NOT_READY:['先完成当前合同，并达到项目验收要求。','Finish this contract and meet the project acceptance requirement.'],
+ PROJECT_COMPLETE:['项目已经归档，不会重复发奖。','This project is archived; rewards cannot be claimed again.'],
+ ScopeAgreed:['范围已确认，请核对新合同再接单。','Scope agreed. Read the revised contract before accepting.'],
+ SCOPE_NOT_CLARIFIED:['先澄清全部需求，并等待下个时段再协商。','Clarify every requirement and wait until the next period before agreeing on scope.'],
+ ACCEPTED:['接单成功，请为委托安排执行者。','Accepted. Assign a worker to begin.'],
+ ASSIGNED:['队伍已就位，推进时段开始工作。','Team assigned. Advance time to work.'],
+ RECONCILED:['自动档已只读核对，当前进度保留；可以继续保存。','Autosave reconciled. Current progress is preserved.'],
+ RECONCILED_EMPTY:['宿主确认所有槽位为空，可以重新保存。','Host confirmed empty slots. You may save again.'],
+ EXISTING_SAVE:['宿主已有存档，请显式载入，不覆盖。','A save exists. Load it explicitly before writing.'],
+ WRITE_UNCERTAIN:['上次写入结果不确定，请先载入最新档对账；也可导出当前进度。','Write outcome unknown. Load the latest save to reconcile, or export current progress.'],
+ Restarted:['新的工作室，新的开始。','A new studio, a new start.'],
+ ENDING_FINISHED:['本周目已结束，可选择继续无尽经营。','This run has ended. Continue in endless mode.'],
+ CHALLENGE_TEAM:['队伍不符合本周挑战，请调整版本或部署方式。','Adjust versions or deployment for this weekly challenge.'],
+ HOST_CLOSED:['宿主已关闭，请重新打开工坊。','Host closed. Reopen the workshop.'],
+ INVALID_TEAM:['至少一位执行者，伙伴不可重复；第0–2章最多4人，后续最多6人。','Choose at least one worker without duplicates; at most 4 members in chapters 0–2, then 6.'],
+ TOOL_LOCKED:['工具岗位需要先研发工具调用升级，且最多安排1名工具人。','Research the tool-calling upgrade first; at most one tool teammate is allowed.'],
+ STILL_CLARIFYING:['澄清占用尚未结束，请推进到下一时段后再接单或试算。','Clarification is still in progress. Advance one period before accepting or previewing.'],
+ TEA_COOLDOWN:['今日工坊茶歇已经办过了，明天再来吧。','Today’s studio tea break has already been held.'],
+ DUO_LOCKED:['尚未满足搭档茶会解锁条件（需同队交付2次且未解锁）。','Duo synergy requirements are not yet met.'],
+ THREAD_LOCKED:['该群聊话题暂不可回复或已回复过。','This chat thread is locked or already answered.'],
+ UNKNOWN_GIFT:['未找到该心意礼物。','Unknown gift item.'],
+ TIRED:['伙伴精力不足，请先休息或用餐。','Not enough energy. Rest or have a meal first.'],
+ LINEAGE_RESET:['宿主存档来源已重置，本局提示与未读状态将按新会话记录。','Host save lineage reset; UI unread and onboarding flags start fresh for this run.'],
+ SESSION_SWITCHING:['正在切换会话，请稍候再操作。','Session switch in progress; wait a moment before sending commands.'],
+ SWITCH_REQUIRES_CONFIRMATION:['存在未保存或异常状态，请先导出并确认后再切换存档。','Confirm discarding or exporting unsaved progress before switching saves.'],
+ ALREADY_HERE:['伙伴已经在工作室里了。','This teammate is already at the workshop.']
+});
+for(const code of ['FINALE_LOCKED','ENDING_LOCKED','ENDLESS_LOCKED','EXPEDITION_LOCKED','BID_LOCKED','CHALLENGE_LOCKED'])messages[code]=['条件尚未满足，请查看面板要求。','Requirements are not met. Check the panel.'];
 
 export function AlphaApp(){
- Object.assign(messages,officeErrors);
- Object.assign(messages,{
-  PROJECT_LOCKED:['当前章节尚未开放该项目，或项目还未开始。','This project is unavailable in this chapter or has not started.'],
-  PROJECT_ACTIVE:['路线已经确定，请继续当前项目。','A route is already selected. Continue the current project.'],
-  PROJECT_ROUTE:['请选择有效的交付路线。','Choose a valid delivery route.'],
-  PROJECT_NOT_READY:['先完成当前合同，并达到项目验收要求。','Finish this contract and meet the project acceptance requirement.'],
-  PROJECT_COMPLETE:['项目已经归档，不会重复发奖。','This project is archived; rewards cannot be claimed again.'],
-  ScopeAgreed:['范围已确认，请核对新合同再接单。','Scope agreed. Read the revised contract before accepting.'],
-  SCOPE_NOT_CLARIFIED:['先澄清全部需求，并等待下个时段再协商。','Clarify every requirement and wait until the next period before agreeing on scope.'],
-  ACCEPTED:['接单成功，请为委托安排执行者。','Accepted. Assign a worker to begin.'],
-  ASSIGNED:['队伍已就位，推进时段开始工作。','Team assigned. Advance time to work.'],
-  RECONCILED:['自动档已只读核对，当前进度保留；可以继续保存。','Autosave reconciled. Current progress is preserved.'],
-  RECONCILED_EMPTY:['宿主确认所有槽位为空，可以重新保存。','Host confirmed empty slots. You may save again.'],
-  EXISTING_SAVE:['宿主已有存档，请显式载入，不覆盖。','A save exists. Load it explicitly before writing.'],
-  WRITE_UNCERTAIN:['上次写入结果不确定，请先载入最新档对账；也可导出当前进度。','Write outcome unknown. Load the latest save to reconcile, or export current progress.'],
-  Restarted:['新的工作室，新的开始。','A new studio, a new start.'],
-  ENDING_FINISHED:['本周目已结束，可选择继续无尽经营。','This run has ended. Continue in endless mode.'],
-  CHALLENGE_TEAM:['队伍不符合本周挑战，请调整版本或部署方式。','Adjust versions or deployment for this weekly challenge.'],
-  HOST_CLOSED:['宿主已关闭，请重新打开工坊。','Host closed. Reopen the workshop.'],
-  INVALID_TEAM:['至少一位执行者，伙伴不可重复；第0–2章最多4人，后续最多6人。','Choose at least one worker without duplicates; at most 4 members in chapters 0–2, then 6.'],
-  TOOL_LOCKED:['工具岗位需要先研发工具调用升级，且最多安排1名工具人。','Research the tool-calling upgrade first; at most one tool teammate is allowed.'],
-  STILL_CLARIFYING:['澄清占用尚未结束，请推进到下一时段后再接单或试算。','Clarification is still in progress. Advance one period before accepting or previewing.'],
-  TEA_COOLDOWN:['今日工坊茶歇已经办过了，明天再来吧。','Today’s studio tea break has already been held.'],
-  DUO_LOCKED:['尚未满足搭档茶会解锁条件（需同队交付2次且未解锁）。','Duo synergy requirements are not yet met.'],
-  THREAD_LOCKED:['该群聊话题暂不可回复或已回复过。','This chat thread is locked or already answered.'],
-  UNKNOWN_GIFT:['未找到该心意礼物。','Unknown gift item.'],
-  TIRED:['伙伴精力不足，请先休息或用餐。','Not enough energy. Rest or have a meal first.'],
-  LINEAGE_RESET:['宿主存档来源已重置，本局提示与未读状态将按新会话记录。','Host save lineage reset; UI unread and onboarding flags start fresh for this run.'],
-  SESSION_SWITCHING:['正在切换会话，请稍候再操作。','Session switch in progress; wait a moment before sending commands.'],
-  SWITCH_REQUIRES_CONFIRMATION:['存在未保存或异常状态，请先导出并确认后再切换存档。','Confirm discarding or exporting unsaved progress before switching saves.'],
-  ALREADY_HERE:['伙伴已经在工作室里了。','This teammate is already at the workshop.']
- });
- for(const code of ['FINALE_LOCKED','ENDING_LOCKED','ENDLESS_LOCKED','EXPEDITION_LOCKED','BID_LOCKED','CHALLENGE_LOCKED'])messages[code]=['条件尚未满足，请查看面板要求。','Requirements are not met. Check the panel.'];
 
  const [{sceneFocus,editorFocus,cameraZone,zoom:cameraZoom,pan:cameraPan},cameraDispatch]=useReducer(sceneCamera,initialSceneCamera);
  const [offscreen,setOffscreen]=useState<string[]>([]),[locationsOpen,setLocationsOpen]=useState(false),locationsTrigger=useRef<HTMLButtonElement>(null);
@@ -113,6 +111,9 @@ export function AlphaApp(){
 
  const game=useGame(),{view,busy,send}=game;
  const [panel,updatePanel]=useState<HubPanel|null>(null);
+ const [hubWarm,setHubWarm]=useState(false);
+ const lastHubRef=useRef<HubPanel>('actors');
+ if(panel)lastHubRef.current=panel;
  const [studioTab,setStudioTab]=useState<StudioTab>('overview');
  const [journalTab,setJournalTab]=useState<JournalTab>('chronicle');
  const [preferredProfileTab,setPreferredProfileTab]=useState<ProfileTab>('vitals');
@@ -196,8 +197,6 @@ export function AlphaApp(){
   setActiveBark(null);setHud(null);setLocationsOpen(false);
   setActorEntry('direct');setActorId(id);updatePanel('actors');
  };
-
- const openGalleryActor=(id:string)=>{setActorEntry('gallery');setActorId(id);};
 
  const openOffice=(ctx?:ReturnContext)=>{
   if(ctx)setReturnTo(ctx);
@@ -312,7 +311,7 @@ export function AlphaApp(){
  const message=shownMessage.startsWith('DELIVERED:')?tr('本阶段已结算，现金变动 ¥','Phase settled. Cash change ¥')+shownMessage.slice(10):shownMessage?(messages[shownMessage]?.[english?1:0]??tr('操作提示：','Action: ')+code):tr('读一张委托，再安排合适的伙伴。','Read a commission, then choose the right team.');
  const feedbackChannel=feedbackSurface(game.feedback,{job:job?.id,actor:actorId??undefined,saves,modal:!!(panel||chatOpen||view.pending||view.bankrupt||saves||settings||mapOpen||arranging||ritual||game.pendingSwitch)});
  const hideGenericDone=!!activeBark&&shownMessage==='DONE';
- const notice=<FeedbackNotice feedback={game.feedback} message={message} english={english} dismiss={game.dismissFeedback}/>;
+ const notice=useMemo(()=><FeedbackNotice feedback={game.feedback} message={message} english={english} dismiss={game.dismissFeedback}/>,[game.feedback,message,english,game.dismissFeedback]);
  const life=(action:Extract<Command,{type:'campaign'}>['action'],id:string,target?:string)=>void send({type:'campaign',action,id,...(target?{target}:{})});
  const fx=(kind:Parameters<typeof playFoley>[0],speakActor?:string)=>{if(still||!audioPrefs.sfx)return;playFoley(kind,true);if(speakActor)playVoiceBlip(speakActor,3,true);};
  const triggerBark=(bark:BarkPayload)=>{
@@ -344,18 +343,41 @@ export function AlphaApp(){
  const toggleSfx=()=>{unlockAudio();setAudioPrefs(prev=>{const next={...prev,sfx:!prev.sfx};writeAudioPrefs(next);if(next.sfx)playFoley('tap',true);return next;});};
  const toggleAmbience=()=>{unlockAudio();setAudioPrefs(prev=>{const next={...prev,ambience:!prev.ambience};writeAudioPrefs(next);return next;});};
  const scene=(id:keyof typeof sceneText|'expedition')=>id==='expedition'?tr('远征中','On expedition'):sceneText[id][english?1:0];
- const skill=(id:keyof typeof skillText)=>skillText[id][english?1:0];
  const chapterTitles=[tr('开源车库联盟','Open-source garage'),tr('第一笔大订单','The first large order'),tr('模型更新之夜','Model release night'),tr('429危机','The 429 crisis'),tr('最后一个Token','The last token')];
- const nextPeriod=game.session.previewNextPeriod();
- const experienceView=game.session.getExperienceView();
- const financeExplanation=game.session.explainFinance();
- const capacityByActor=Object.fromEntries(view.actors.map(a=>[a.id,game.session.explainActorCapacity(a.id)]));
+ const hubOpen=!!(panel&&!view.pending&&!view.bankrupt);
+ const activeHub:HubPanel=panel??lastHubRef.current;
+ const nextPeriod=useMemo(()=>game.session.previewNextPeriod(),[game.session,view]);
+ const experienceView=useMemo(()=>game.session.getExperienceView(),[game.session,view]);
+ const needsFinance=hubOpen&&(activeHub==='studio'||activeHub==='journal');
+ const financeExplanation=useMemo(()=>needsFinance?game.session.explainFinance():null,[game.session,view,needsFinance]);
+ const capacityByActor=useMemo(()=>Object.fromEntries(view.actors.map(a=>[a.id,game.session.explainActorCapacity(a.id)])),[game.session,view]);
  const previewAct=(c:Command)=>game.session.previewActivity(c);
- const advanceInfo=formatAdvanceDisplay(nextPeriod,busy,arranging,english,view.jobs);
- const livingCatalog=getLivingCatalog(view);
- const livingView=getLivingView(view);
- const unreadThreads=countUnreadThreads(livingView.threads,readThreadIds);
- const chatterBubble=pickStageChatter(view,livingCatalog,livingView,english,chatterStep,nextPeriod.stops,capacityByActor);
+ const advanceInfo=useMemo(()=>formatAdvanceDisplay(nextPeriod,busy,arranging,english,view.jobs),[nextPeriod,busy,arranging,english,view.jobs]);
+ const livingCatalog=useMemo(()=>getLivingCatalog(view),[view]);
+ const livingView=useMemo(()=>getLivingView(view),[view]);
+ const unreadThreads=useMemo(()=>countUnreadThreads(livingView.threads,readThreadIds),[livingView.threads,readThreadIds]);
+ const chatterBubble=useMemo(()=>pickStageChatter(view,livingCatalog,livingView,english,chatterStep,nextPeriod.stops,capacityByActor),[view,livingCatalog,livingView,english,chatterStep,nextPeriod.stops,capacityByActor]);
+ const sceneView=useMemo(()=>layoutItems&&view.office?{...view,office:{...view.office,items:layoutItems}}:view,[view,layoutItems]);
+ const posterCards=useMemo(()=>actorIds.filter(id=>actorFilter==='all'||(actorFilter==='recruited')===view.actors.some(a=>a.id===id)).map(id=>{
+  const a=view.actors.find(x=>x.id===id),r=catalog.recruits.find(x=>x.character===id),poster=characterPosters[id]!,v=catalog.versions.find(x=>a?x.id===a.version:x.character===id)!,visual=resolveCharacterVisual(id,v.id),block=r?recruitmentBlock(view,r,locked):null;
+  const top=Object.entries(a?.skills??v.skills).filter(([k])=>k!=='recall').sort((x,y)=>y[1]-x[1]).slice(0,2).map(([k])=>k);
+  return {id,a,r,poster,v,visual,reason:block?recruitmentReasons[block]:null,top};
+ }),[view,catalog,actorFilter,locked]);
+ const actorsGallery=useMemo(()=>(
+  <div class="ui2-hub-content">
+   <div class="poster-grid ui2-poster-grid">
+    {posterCards.map(({id,a,r,poster,v,visual,reason,top})=>(
+     <button class="poster-card" key={id} data-character={id} data-recruited={!!a} data-mirror={poster.mirror} style={{'--poster-color':poster.themeColor}} onClick={()=>{setActorEntry('gallery');setActorId(id);}}>
+      <span class="poster-title"><strong class="poster-word">{poster.sWord}</strong><b>{names[id]}</b><span>{poster.tagline[english?1:0]}</span><small>{v.name}</small></span>
+      <img class="poster-art" src={visual.src} alt="" decoding="async"/>
+      <span class="poster-check-strip"><span class="poster-stamp">STUDIO O.T.</span>{(['code','write','reason','create','media'] as const).map(k=><span key={k}>{top.includes(k)?'☑':'□'} {skillText[k][english?1:0]}</span>)}</span>
+      <span class="poster-status-bar">{a?`${a.location==='expedition'?(english?'On expedition':'远征中'):sceneText[a.location][english?1:0]} · ${english?'Energy':'精力'} ${a.energy} · ${english?'Mood':'心情'} ${a.mood} · ${english?'Load':'负载'} ${a.load}/${capacityByActor[a.id]?.context??''}`:r?<>{english?'Not recruited':'待招募'} · ¥{r.cost} · {english?'Reputation':'声望'} {r.reputation} · {english?'Chapter':'开放章节'} {r.minChapter??0}<br/>{reason?reason[english?1:0]:(english?'Eligible · View profile':'可招募 · 点击查看档案')}</>:null}</span>
+     </button>
+    ))}
+   </div>
+   <div class="ui2-card"><small class="ui2-muted-note">{english?'May stop this period':'本槽可能停工'}: {view.possibleStops.map(id=>names[id]).join(', ')||'—'}</small></div>
+  </div>
+ ),[posterCards,english,view.possibleStops,capacityByActor]);
  const imminentBreach=view.jobs.some(j=>['accepted','working','review'].includes(j.status)&&j.deadline-view.absoluteSlot<=1);
  const urgentPriorityActive=game.saveStatus.kind==='paused'||game.saveStatus.kind==='error'||!!view.pending||imminentBreach;
 
@@ -376,6 +398,15 @@ export function AlphaApp(){
   }
  },[view.absoluteSlot,busy,english]);
  useEffect(()=>{if(!periodBeat)return;const t=setTimeout(()=>setPeriodBeat(null),still?2200:3400);return()=>clearTimeout(t);},[periodBeat,still]);
+ useEffect(()=>{if(busy||hubWarm)return;const t=setTimeout(()=>{
+  if(!warmedPortraits){
+   warmedPortraits=actorIds.map(id=>{
+    const a=view.actors.find(x=>x.id===id),v=view.catalog?.versions.find(x=>a?x.id===a.version:x.character===id);
+    const im=new Image();im.decoding='async';im.src=resolveCharacterVisual(id,v?.id).src;void im.decode?.().catch(()=>{});return im;
+   });
+  }
+  setHubWarm(true);
+ },700);return()=>clearTimeout(t);},[busy,hubWarm]);
  useEffect(()=>{if(!activeBark)return;const t=setTimeout(dismissBark,still?4500:5400);return()=>clearTimeout(t);},[activeBark?.id,still]);
  useEffect(()=>{if(ritual)fx('stamp');},[ritual]);
  useEffect(()=>{if(shownMessage.startsWith('DELIVERED:'))fx('coin');},[shownMessage]);
@@ -472,52 +503,105 @@ export function AlphaApp(){
   }
  },[dark,still]);
 
- const hubTitle={actors:actorId&&panel==='actors'?`${names[actorId]} · ${tr('伙伴档案','Profile')}`:tr('工作室伙伴','Our teammates'),jobs:tr('委托日志','Commission log'),studio:tr('经营工作室','Studio hub'),journal:tr('事务所手账','Studio journal')}[panel??'actors'];
- const hubBack=panel==='actors'&&actorId&&actorEntry==='gallery'?{label:tr('返回画廊','Back to gallery'),onClick:closeActor}:panel==='jobs'&&jobInDetail&&matchMedia('(max-width:679px)').matches?{label:tr('返回列表','Back to list'),onClick:()=>selectCommission(null)}:null;
- const rawHubNotice=hideGenericDone?null:panel==='actors'&&actorId&&feedbackChannel==='actor'?notice:panel==='jobs'&&commissionNotice(game.feedback,jobId)?notice:null;
- const saveAlertNotice=game.saveStatus.kind==='paused'||game.saveStatus.kind==='error'||game.saveStatus.kind==='imported-unsaved'
+ const hubTitle={actors:actorId&&activeHub==='actors'?`${names[actorId]} · ${tr('伙伴档案','Profile')}`:tr('工作室伙伴','Our teammates'),jobs:tr('委托日志','Commission log'),studio:tr('经营工作室','Studio hub'),journal:tr('事务所手账','Studio journal')}[activeHub];
+ const hubBack=activeHub==='actors'&&actorId&&actorEntry==='gallery'?{label:tr('返回画廊','Back to gallery'),onClick:closeActor}:activeHub==='jobs'&&jobInDetail&&matchMedia('(max-width:679px)').matches?{label:tr('返回列表','Back to list'),onClick:()=>selectCommission(null)}:null;
+ const rawHubNotice=hideGenericDone?null:activeHub==='actors'&&actorId&&feedbackChannel==='actor'?notice:activeHub==='jobs'&&commissionNotice(game.feedback,jobId)?notice:null;
+ const saveAlertNotice=useMemo(()=>game.saveStatus.kind==='paused'||game.saveStatus.kind==='error'||game.saveStatus.kind==='imported-unsaved'
   ?<SaveAlertBanner status={game.saveStatus} english={english} busy={busy} onExport={()=>void game.exportFile()} onOpenSaves={()=>{setHud(null);setSaves(true);void game.refresh();}} onRetry={()=>void game.retrySave()}/>
-  :null;
+  :null,[game.saveStatus,english,busy]);
  const hubNotice=(saveAlertNotice||rawHubNotice)?<>{saveAlertNotice}{rawHubNotice}</>:null;
- const hubTabs=panel==='actors'&&!actorId?(
+ const hubTabs=useMemo(()=>activeHub==='actors'&&!actorId?(
   <div role="tablist" aria-label={tr('伙伴筛选','Filter teammates')}>
    {(['all','recruited','available'] as const).map((f,i)=><button key={f} role="tab" aria-selected={actorFilter===f} onClick={()=>setActorFilter(f)}>{[tr('全部','All'),tr('已入驻','Recruited'),tr('待招募','Available')][i]} ({[actorIds.length,view.actors.length,actorIds.length-view.actors.length][i]})</button>)}
   </div>
- ):panel==='studio'?(
+ ):activeHub==='studio'?(
   <div role="tablist" aria-label={tr('工作室功能区','Studio sections')}>
    {([['overview',tr('章节与总览','Chapter & overview')],['finance',tr('算力与财务','Compute & finance')],['tech',tr('软硬研发','Hardware & tech')]] as const).map(([id,label])=><button key={id} role="tab" aria-selected={studioTab===id} onClick={()=>setStudioTab(id)}>{label}</button>)}
   </div>
- ):panel==='journal'?(
+ ):activeHub==='journal'?(
   <div role="tablist" aria-label={tr('手账栏目','Journal sections')}>
    {([['chronicle',tr('事务所履历','Chronicle')],['ledger',tr('收支与算力','Ledger & usage')],['bids',tr('对手竞标','Rival bids')],['expedition',tr('远征与终局','Expeditions & endings')]] as const).map(([id,label])=><button key={id} role="tab" aria-selected={journalTab===id} onClick={()=>setJournalTab(id)}>{label}</button>)}
   </div>
- ):null;
+ ):null,[activeHub,actorId,actorFilter,studioTab,journalTab,english,view.actors.length]);
 
+ const appCbRef=useRef({openOffice,openDirectActor,setJobId,setHud,setLocationsOpen,setOffscreen,updateAnchors,cameraDispatch,closeLocations,stepZoom,resetCamera,setTrackedJobId,setPanel,setJobFilter,setStudioTab,handleReplyChat,dismissBark,updatePanel,setMapOpen,setSaves,fx,unlockAudio,send,readThreadIds,uiStore,game,clearTransientState,markThreadRead});
+ appCbRef.current={openOffice,openDirectActor,setJobId,setHud,setLocationsOpen,setOffscreen,updateAnchors,cameraDispatch,closeLocations,stepZoom,resetCamera,setTrackedJobId,setPanel,setJobFilter,setStudioTab,handleReplyChat,dismissBark,updatePanel,setMapOpen,setSaves,fx,unlockAudio,send,readThreadIds,uiStore,game,clearTransientState,markThreadRead};
+
+ const sceneStageLayer=useMemo(()=>(
+  <div class="scene-stage" data-period={view.absoluteSlot%4}>
+   <Scene paused={modalOpen&&!arranging} camera={arranging?editorFocus:sceneFocus} zone={arranging?'overview':cameraZone} zoom={arranging?1:cameraZoom} pan={arranging?defaultCameraPan:cameraPan} capacityByActor={capacityByActor} onCamera={next=>appCbRef.current.cameraDispatch({type:'zoom',zoom:next.zoom,pan:next.pan,clearFocus:next.clearFocus})} presence={ids=>appCbRef.current.setOffscreen(ids)} anchors={next=>appCbRef.current.updateAnchors(next)} view={sceneView} english={english} select={id=>appCbRef.current.openDirectActor(id)} furniture={id=>{const reservation=Object.values(sceneView.office?.reservations??{}).find(r=>r.item===id);if(reservation&&!reservation.job.startsWith('clarify:'))appCbRef.current.setJobId(reservation.job);else if(sceneView.campaign?.scene==='workshop'&&!locked){appCbRef.current.openOffice();}}}/>
+   <StageChatterOverlay bubble={chatterBubble} step={banterPhase} anchors={anchors} view={sceneView} hidden={modalOpen||arranging||urgentPriorityActive} onInspectActor={id=>{appCbRef.current.unlockAudio();appCbRef.current.fx('tap',id);appCbRef.current.openDirectActor(id);}}/>
+   {hud==='view'&&<nav class="office-camera" aria-label={tr('场景视角','Scene camera')}><div class="camera-zones">{(Object.keys(zoneNames) as CameraZone[]).map(id=><button key={id} aria-pressed={!sceneFocus&&cameraZone===id&&Math.abs(cameraPan.x)<1&&Math.abs(cameraPan.y)<1} onClick={()=>{appCbRef.current.cameraDispatch({type:'zone',zone:id});}}>{zoneNames[id][english?1:0]}</button>)}</div><div class="camera-zoom-row" role="group" aria-label={tr('镜头缩放','Camera zoom')}><button aria-label={tr('缩小','Zoom out')} disabled={!sceneFocus&&cameraZoom<=1} onClick={()=>appCbRef.current.stepZoom(-.1)}>−</button><output aria-label={tr('当前缩放','Current zoom')}>{Math.round((sceneFocus?1.6*cameraZoom:cameraZoom)*100)}%</output><button aria-label={tr('放大','Zoom in')} disabled={cameraZoom>=1.5} onClick={()=>appCbRef.current.stepZoom(.1)}>+</button><button disabled={!cameraMoved} onClick={()=>appCbRef.current.resetCamera()}>{tr('恢复全景','Reset view')}</button></div><small class="camera-hint">{tr('单指拖动平移 · 双指或滚轮缩放','Drag to pan · Pinch or wheel to zoom')}</small></nav>}
+  </div>
+ ),[view.absoluteSlot,modalOpen,arranging,editorFocus,sceneFocus,cameraZone,cameraZoom,cameraPan,capacityByActor,sceneView,english,chatterBubble,banterPhase,anchors,urgentPriorityActive,hud,locked,cameraMoved]);
+
+ const sceneLeftStack=useMemo(()=>(
+  <div class="scene-left-stack">
+   <div class="scene-tools" hidden={!!(arranging||(hud&&hud!=='view'))}>
+    {cameraMoved&&<button class="reset-view" onClick={()=>appCbRef.current.resetCamera()}>{tr('返回全景','Reset view')}</button>}
+    <button ref={locationsTrigger} aria-expanded={locationsOpen} onClick={()=>{appCbRef.current.setLocationsOpen(!locationsOpen);appCbRef.current.setHud(null);appCbRef.current.updatePanel(null);}}>{tr('伙伴位置','Locations')} · {offscreen.length+view.actors.filter(a=>a.location!==p.scene).length} {tr('画外','out of view')}</button>
+   </div>
+   {!arranging&&locationsOpen&&(
+    <section class="scene-presence" aria-label={tr('伙伴位置','Teammate locations')}>
+     <header><b>{tr('伙伴位置','Teammate locations')}</b><button aria-label={tr('关闭位置列表','Close locations')} onClick={()=>appCbRef.current.closeLocations('close')}><Icon name="close"/></button></header>
+     {view.actors.map(a=><div key={a.id}><span><b>{names[a.id]}</b><small>{a.location!==p.scene?scene(a.location):offscreen.includes(a.id)?tr('同场景 · 画外','Here · out of view'):tr('同场景 · 画内','Here · in view')}</small></span><button onClick={()=>{const focus=actorFocus(view,a.id);if(focus)locate(focus);else{appCbRef.current.setLocationsOpen(false);appCbRef.current.openDirectActor(a.id);}}}>{actorFocus(view,a.id)?tr('定位','Locate'):tr('查看伙伴','View teammate')}</button></div>)}
+    </section>
+   )}
+   <CommissionHudTracker view={view} id={tracked} english={english} open={id=>appCbRef.current.setJobId(id)} track={id=>appCbRef.current.setTrackedJobId(id)} locate={tracked&&jobFocus(view,tracked)?()=>locate(jobFocus(view,tracked)):undefined}/>
+   <Onboarding hidden={!!(arranging||locationsOpen)} isolated={!!game.lab} view={view} experience={experienceView} lineageId={game.lineageId} uiStore={uiStore} english={english} openJob={id=>appCbRef.current.setJobId(id)} openPanel={id=>{appCbRef.current.setPanel(id);if(id==='jobs')appCbRef.current.setJobFilter('posted');}} openFinance={()=>{appCbRef.current.setStudioTab('finance');appCbRef.current.setPanel('studio');}}/>
+  </div>
+ ),[arranging,hud,cameraMoved,locationsOpen,offscreen,view,p.scene,english,tracked,experienceView,game.lineageId,game.lab,uiStore]);
+
+ const priorityFeedbackLayer=useMemo(()=>(
+  <div class="priority-feedback">
+   <SaveAlertBanner
+    status={game.saveStatus}
+    english={english}
+    busy={busy}
+    onExport={()=>void appCbRef.current.game.exportFile()}
+    onOpenSaves={()=>{appCbRef.current.setHud(null);appCbRef.current.setSaves(true);void appCbRef.current.game.refresh();}}
+    onRetry={()=>void appCbRef.current.game.retrySave()}
+   />
+   {view.liquidCash<0&&<button class="crisis-chip" onClick={()=>{appCbRef.current.setStudioTab('finance');appCbRef.current.setPanel('studio');}}><Icon name="warning"/> {tr('现金流预警 · 净偿付资金','Cash-flow warning · Net solvency')} ¥{view.liquidCash.toFixed(0)} · {view.crises}/3</button>}
+   {(update||reloadReady)&&<button class="update-chip" onClick={()=>{appCbRef.current.setHud(null);appCbRef.current.setSaves(true);}}>{tr('新版本可用 · 先保存进度','Update available · Save progress first')}</button>}
+  </div>
+ ),[game.saveStatus,english,busy,view.liquidCash,view.crises,update,reloadReady]);
+
+ const messengerLayer=useMemo(()=>(
+  <MessengerDrawer
+   open={chatOpen}
+   close={()=>setChatOpen(false)}
+   threads={livingView.threads}
+   readIds={readThreadIds}
+   onMarkRead={tid=>{const next=appCbRef.current.markThreadRead(uiStore,game.lineageId,tid);setReadThreadIds(new Set(next));}}
+   english={english}
+   still={still}
+   locked={locked}
+   previewActivity={previewAct}
+   onReply={(tid,idx)=>{void appCbRef.current.handleReplyChat(tid,idx);}}
+   returnFocus={()=>chatTrigger.current}
+  />
+ ),[chatOpen,livingView.threads,readThreadIds,english,still,locked,uiStore,game.lineageId]);
+
+ const switchConfirmLayer=useMemo(()=>(
+  <SwitchConfirmDialog
+   request={game.pendingSwitch}
+   english={english}
+   busy={busy}
+   exportedInModal={game.exportedInSwitchModal}
+   onExport={()=>void appCbRef.current.game.exportFromSwitchModal()}
+   onConfirm={()=>void appCbRef.current.game.confirmPendingSwitch()}
+   onCancel={game.cancelPendingSwitch}
+  />
+ ),[game.pendingSwitch,english,busy,game.exportedInSwitchModal,game.cancelPendingSwitch]);
+
+ const dialogOpen=!!(hubOpen||mapOpen||saves||settings||chatOpen||view.pending||view.bankrupt||ritual||deliveryFeedback||game.pendingSwitch);
  return (
-  <div class="studio-app" onKeyDown={e=>{if(e.key==='Escape'&&!modalOpen){if(locationsOpen){closeLocations('escape');e.preventDefault();e.stopPropagation();}else if(hud){setHud(null);e.stopPropagation();}}}} data-panel={panel??'closed'} data-view-open={hud==='view'} data-overlay={hud??'closed'} data-mode={arranging?'layout':'office'}>
+  <div class="studio-app" onKeyDown={e=>{if(e.key==='Escape'&&!modalOpen){if(locationsOpen){closeLocations('escape');e.preventDefault();e.stopPropagation();}else if(hud){setHud(null);e.stopPropagation();}}}} data-panel={panel??'closed'} data-modal={dialogOpen?'open':'closed'} data-view-open={hud==='view'} data-overlay={hud??'closed'} data-mode={arranging?'layout':'office'}>
    {game.lab&&<div class="office-lab-badge">LAB · {game.lab} · isolated memory saves</div>}
-   <div class="scene-stage" data-period={view.absoluteSlot%4}>
-    <Scene paused={modalOpen&&!arranging} camera={arranging?editorFocus:sceneFocus} zone={arranging?'overview':cameraZone} zoom={arranging?1:cameraZoom} pan={arranging?defaultCameraPan:cameraPan} capacityByActor={capacityByActor} onCamera={next=>cameraDispatch({type:'zoom',zoom:next.zoom,pan:next.pan,clearFocus:next.clearFocus})} presence={setOffscreen} anchors={updateAnchors} view={layoutItems&&view.office?{...view,office:{...view.office,items:layoutItems}}:view} english={english} select={openDirectActor} furniture={id=>{const reservation=Object.values(view.office?.reservations??{}).find(r=>r.item===id);if(reservation&&!reservation.job.startsWith('clarify:'))setJobId(reservation.job);else if(view.campaign?.scene==='workshop'&&!locked){openOffice();}}}/>
-    <StageChatterOverlay bubble={chatterBubble} step={banterPhase} anchors={anchors} view={view} hidden={modalOpen||arranging||urgentPriorityActive} onInspectActor={id=>{unlockAudio();fx('tap',id);openDirectActor(id);}}/>
-    {hud==='view'&&<nav class="office-camera" aria-label={tr('场景视角','Scene camera')}><div class="camera-zones">{(Object.keys(zoneNames) as CameraZone[]).map(id=><button key={id} aria-pressed={!sceneFocus&&cameraZone===id&&Math.abs(cameraPan.x)<1&&Math.abs(cameraPan.y)<1} onClick={()=>{cameraDispatch({type:'zone',zone:id});}}>{zoneNames[id][english?1:0]}</button>)}</div><div class="camera-zoom-row" role="group" aria-label={tr('镜头缩放','Camera zoom')}><button aria-label={tr('缩小','Zoom out')} disabled={!sceneFocus&&cameraZoom<=1} onClick={()=>stepZoom(-.1)}>−</button><output aria-label={tr('当前缩放','Current zoom')}>{Math.round((sceneFocus?1.6*cameraZoom:cameraZoom)*100)}%</output><button aria-label={tr('放大','Zoom in')} disabled={cameraZoom>=1.5} onClick={()=>stepZoom(.1)}>+</button><button disabled={!cameraMoved} onClick={resetCamera}>{tr('恢复全景','Reset view')}</button></div><small class="camera-hint">{tr('单指拖动平移 · 双指或滚轮缩放','Drag to pan · Pinch or wheel to zoom')}</small></nav>}
-   </div>
+   {sceneStageLayer}
 
-   <div class="scene-left-stack">
-    {!arranging&&!panel&&(!hud||hud==='view')&&(
-     <div class="scene-tools">
-      {cameraMoved&&<button class="reset-view" onClick={resetCamera}>{tr('返回全景','Reset view')}</button>}
-      <button ref={locationsTrigger} aria-expanded={locationsOpen} onClick={()=>{setLocationsOpen(!locationsOpen);setHud(null);updatePanel(null);}}>{tr('伙伴位置','Locations')} · {offscreen.length+view.actors.filter(a=>a.location!==p.scene).length} {tr('画外','out of view')}</button>
-     </div>
-    )}
-    {!arranging&&locationsOpen&&(
-     <section class="scene-presence" aria-label={tr('伙伴位置','Teammate locations')}>
-      <header><b>{tr('伙伴位置','Teammate locations')}</b><button aria-label={tr('关闭位置列表','Close locations')} onClick={()=>closeLocations('close')}><Icon name="close"/></button></header>
-      {view.actors.map(a=><div key={a.id}><span><b>{names[a.id]}</b><small>{a.location!==p.scene?scene(a.location):offscreen.includes(a.id)?tr('同场景 · 画外','Here · out of view'):tr('同场景 · 画内','Here · in view')}</small></span><button onClick={()=>{const focus=actorFocus(view,a.id);if(focus)locate(focus);else{setLocationsOpen(false);openDirectActor(a.id);}}}>{actorFocus(view,a.id)?tr('定位','Locate'):tr('查看伙伴','View teammate')}</button></div>)}
-     </section>
-    )}
-    <CommissionHudTracker view={view} id={tracked} english={english} open={setJobId} track={setTrackedJobId} locate={tracked&&jobFocus(view,tracked)?()=>locate(jobFocus(view,tracked)):undefined}/>
-    {!arranging&&!panel&&!locationsOpen&&<Onboarding isolated={!!game.lab} view={view} experience={experienceView} lineageId={game.lineageId} uiStore={uiStore} english={english} openJob={setJobId} openPanel={id=>{setPanel(id);if(id==='jobs')setJobFilter('posted');}} openFinance={()=>{setStudioTab('finance');setPanel('studio');}}/>}
-   </div>
+   {sceneLeftStack}
 
    <HudBar
     view={view}
@@ -558,7 +642,7 @@ export function AlphaApp(){
    />
 
    <PeriodBeatBanner text={periodBeat} hidden={modalOpen||arranging||urgentPriorityActive}/>
-   {!(panel&&!view.pending&&!view.bankrupt)&&<BarkOverlay bark={activeBark} view={view} english={english} onClose={dismissBark}/>}
+   <BarkOverlay bark={hubOpen?null:activeBark} view={view} english={english} onClose={dismissBark}/>
 
    {hud==='board'&&(
     <aside class="priority-rail" aria-label={tr('工作看板','Work board')} onKeyDown={e=>{if(e.key==='Escape')setHud(null);}}>
@@ -574,23 +658,13 @@ export function AlphaApp(){
     </aside>
    )}
 
-   <div class="priority-feedback">
-    <SaveAlertBanner
-     status={game.saveStatus}
-     english={english}
-     busy={busy}
-     onExport={()=>void game.exportFile()}
-     onOpenSaves={()=>{setHud(null);setSaves(true);void game.refresh();}}
-     onRetry={()=>void game.retrySave()}
-    />
-    {view.liquidCash<0&&<button class="crisis-chip" onClick={()=>{setStudioTab('finance');setPanel('studio');}}><Icon name="warning"/> {tr('现金流预警 · 净偿付资金','Cash-flow warning · Net solvency')} ¥{view.liquidCash.toFixed(0)} · {view.crises}/3</button>}
-    {(update||reloadReady)&&<button class="update-chip" onClick={()=>{setHud(null);setSaves(true);}}>{tr('新版本可用 · 先保存进度','Update available · Save progress first')}</button>}
-   </div>
+   {priorityFeedbackLayer}
    {feedbackChannel==='global'&&!hideGenericDone&&<div class="status-toast">{notice}</div>}
 
-   {panel&&!view.pending&&!view.bankrupt&&(
+   {(hubOpen||hubWarm)&&!view.pending&&!view.bankrupt&&(
     <StageHubShell
-     hub={panel}
+     open={hubOpen}
+     hub={activeHub}
      switchHub={next=>{setActiveBark(null);if(next==='studio'&&returnTo?.panel!=='jobs')setReturnTo(null);setPanel(next);}}
      title={hubTitle}
      tabs={hubTabs}
@@ -602,15 +676,15 @@ export function AlphaApp(){
      onOpenReview={id=>setJobId(id)}
      english={english}
      close={closeHub}
-     returnFocus={panel==='jobs'?commissionReturnFocus:()=>managementTrigger.current}
-     overlay={<BarkOverlay bark={activeBark} view={view} english={english} inModal onClose={dismissBark}/>}
+     returnFocus={activeHub==='jobs'?commissionReturnFocus:()=>managementTrigger.current}
+     overlay={hubOpen&&activeBark?<BarkOverlay bark={activeBark} view={view} english={english} inModal onClose={dismissBark}/>:null}
      onCancel={()=>{
-      if(panel==='actors'&&actorId&&actorEntry==='gallery'){closeActor();return true;}
-      if(panel==='jobs'&&jobInDetail&&matchMedia('(max-width:679px)').matches){selectCommission(null);return true;}
+      if(activeHub==='actors'&&actorId&&actorEntry==='gallery'){closeActor();return true;}
+      if(activeHub==='jobs'&&jobInDetail&&matchMedia('(max-width:679px)').matches){selectCommission(null);return true;}
       return false;
      }}
     >
-     {panel==='actors'&&actorId?(
+     {activeHub==='actors'&&actorId?(
       <PartnerProfile
        key="stage-profile"
        characterId={actorId}
@@ -640,23 +714,9 @@ export function AlphaApp(){
        experienceView={experienceView}
        suppressVignettes={urgentPriorityActive}
       />
-     ):panel==='actors'?(
-      <div class="ui2-hub-content">
-       <div class="poster-grid ui2-poster-grid">
-        {actorIds.filter(id=>actorFilter==='all'||(actorFilter==='recruited')===view.actors.some(a=>a.id===id)).map(id=>{
-         const a=view.actors.find(x=>x.id===id),r=catalog.recruits.find(x=>x.character===id),poster=characterPosters[id]!,v=catalog.versions.find(x=>a?x.id===a.version:x.character===id)!,visual=resolveCharacterVisual(id,v.id),block=r?recruitmentBlock(view,r,locked):null;
-         const top=Object.entries(a?.skills??v.skills).filter(([k])=>k!=='recall').sort((a,b)=>b[1]-a[1]).slice(0,2).map(([k])=>k);
-         return <button class="poster-card" key={id} data-character={id} data-recruited={!!a} data-mirror={poster.mirror} style={{'--poster-color':poster.themeColor}} onClick={()=>openGalleryActor(id)}>
-          <span class="poster-title"><strong class="poster-word">{poster.sWord}</strong><b>{names[id]}</b><span>{poster.tagline[english?1:0]}</span><small>{v.name}</small></span>
-          <img class="poster-art" src={visual.src} alt="" loading="lazy"/>
-          <span class="poster-check-strip"><span class="poster-stamp">STUDIO O.T.</span>{(['code','write','reason','create','media'] as const).map(k=><span key={k}>{top.includes(k)?'☑':'□'} {skill(k)}</span>)}</span>
-          <span class="poster-status-bar">{a?`${scene(a.location)} · ${tr('精力','Energy')} ${a.energy} · ${tr('心情','Mood')} ${a.mood} · ${tr('负载','Load')} ${a.load}/${capacityByActor[a.id]?.context??''}`:r?<>{tr('待招募','Not recruited')} · ¥{r.cost} · {tr('声望','Reputation')} {r.reputation} · {tr('开放章节','Chapter')} {r.minChapter??0}<br/>{block?recruitmentReasons[block][english?1:0]:tr('可招募 · 点击查看档案','Eligible · View profile')}</>:null}</span>
-         </button>;
-        })}
-       </div>
-       <div class="ui2-card"><small class="ui2-muted-note">{tr('本槽可能停工','May stop this period')}: {view.possibleStops.map(id=>names[id]).join(', ')||'—'}</small></div>
-      </div>
-     ):panel==='jobs'?(
+     ):activeHub==='actors'?(
+      actorsGallery
+     ):activeHub==='jobs'?(
       <CommissionLog
        selected={jobId}
        select={selectCommission}
@@ -702,7 +762,7 @@ export function AlphaApp(){
        onWorkBark={aid=>{fx('tap',aid);}}
        previewActivity={previewAct}
       />
-     ):panel==='studio'?(
+     ):activeHub==='studio'?(
       <StudioHub
        view={view}
        english={english}
@@ -718,10 +778,10 @@ export function AlphaApp(){
        teaReady={livingView.teaReady}
        onTeaBreak={()=>{void handleTeaBreak();}}
        previewActivity={previewAct}
-       finance={financeExplanation}
+       finance={financeExplanation??game.session.explainFinance()}
       />
      ):(
-      <JournalHub view={view} english={english} locked={locked} tab={journalTab} setTab={setJournalTab} send={send} hideTabs previewActivity={previewAct} finance={financeExplanation} experienceView={experienceView} suppressVignettes={urgentPriorityActive}/>
+      <JournalHub view={view} english={english} locked={locked} tab={journalTab} setTab={setJournalTab} send={send} hideTabs previewActivity={previewAct} finance={financeExplanation??game.session.explainFinance()} experienceView={experienceView} suppressVignettes={urgentPriorityActive}/>
      )}
     </StageHubShell>
    )}
@@ -758,19 +818,7 @@ export function AlphaApp(){
     <footer class="system-footer"><p>{tr('独立本机存档 · 无真实模型调用','Local independent saves · No real model calls')}</p><a href="./PAPER-DOLL-LICENSE.txt">PaperDoll · MIT</a> · <a href="./art/ai-village/LICENSE.txt" target="_blank" rel="noreferrer">AI Village Q版角色</a></footer>
    </Dialog>}
 
-   <MessengerDrawer
-    open={chatOpen}
-    close={()=>setChatOpen(false)}
-    threads={livingView.threads}
-    readIds={readThreadIds}
-    onMarkRead={tid=>{const next=markThreadRead(uiStore,game.lineageId,tid);setReadThreadIds(new Set(next));}}
-    english={english}
-    still={still}
-    locked={locked}
-    previewActivity={previewAct}
-    onReply={(tid,idx)=>{void handleReplyChat(tid,idx);}}
-    returnFocus={()=>chatTrigger.current}
-   />
+   {messengerLayer}
 
    {view.pending&&(()=>{
     const pendingActor=view.actors.find(a=>view.pending!.actors.includes(a.id));
@@ -834,15 +882,7 @@ export function AlphaApp(){
     <section class="save-transfer" aria-label={tr('文件备份','File backups')}><h3>{tr('文件备份','File backups')}</h3><button disabled={busy} onClick={()=>void game.exportFile()}>{tr('导出当前进度','Export current progress')}</button><label>{tr('导入文件','Import file')}<input type="file" accept="application/json,.json" disabled={busy} onChange={e=>{e.currentTarget.closest('dialog')?.focus({preventScroll:true});const file=e.currentTarget.files?.[0];if(file)game.requestImportFile(file,clearTransientState);e.currentTarget.value='';}}/></label></section>
    </Dialog>}
 
-   <SwitchConfirmDialog
-    request={game.pendingSwitch}
-    english={english}
-    busy={busy}
-    exportedInModal={game.exportedInSwitchModal}
-    onExport={()=>void game.exportFromSwitchModal()}
-    onConfirm={()=>void game.confirmPendingSwitch()}
-    onCancel={game.cancelPendingSwitch}
-   />
+   {switchConfirmLayer}
 
    {arranging&&view.office&&<OfficeEditor view={view} session={game.session} english={english} send={send} onPreview={(items,camera)=>{setLayoutItems(items);cameraDispatch({type:'preview',focus:camera});}} close={()=>{setArranging(false);setLayoutItems(null);cameraDispatch({type:'editor-close'});if(returnTo?.panel==='jobs'){const j=returnTo.jobId;setReturnTo(null);setJobId(j);}}}/>}
 

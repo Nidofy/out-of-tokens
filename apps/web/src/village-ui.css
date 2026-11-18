@@ -63,7 +63,7 @@ dialog::-webkit-scrollbar-thumb,.drawer-content::-webkit-scrollbar-thumb,.office
 .studio-app[data-overlay]:not([data-overlay=closed]) .studio-dock{visibility:hidden}
 dialog{width:min(740px,calc(100% - 24px));max-height:80dvh;border-radius:var(--r-md);padding:20px;font-size:var(--fs-base)}
 dialog::backdrop{background:rgba(28,21,16,.44);backdrop-filter:blur(4px)}
-.studio-app:has(dialog[open])>:is(.priority-rail,.studio-drawer,.hud-popover,.studio-dock,.priority-feedback,.status-toast,.scene-tools,.scene-presence){visibility:hidden}
+.studio-app[data-modal=open]>:is(.priority-rail,.studio-drawer,.hud-popover,.studio-dock,.priority-feedback,.status-toast,.scene-tools,.scene-presence){visibility:hidden}
 .dialog-head{top:-20px;margin:-20px -20px 14px;padding:10px 16px;background:var(--solid);border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(43,29,18,.06)}
 .dialog-head h2{font-size:var(--fs-lg)}.dialog-head button{min-height:44px;min-width:44px;padding:4px 8px;background:transparent;border:0;box-shadow:none}
 .studio-app .job-card,.studio-app .campaign-panel,.studio-app .project-panel,.studio-app .finance-summary,.studio-app .actor-card{border:1px solid var(--line);border-radius:var(--r-sm);background:var(--card);box-shadow:inset 0 1px 0 rgba(255,255,255,.28);padding:10px 12px;margin-bottom:8px}
