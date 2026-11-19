@@ -8,6 +8,7 @@ import {bakeOfficeNavGrid,extractOfficePois,findNavPath,isCellWalkable,pickRoamT
 import {DEFAULT_POSE_SCALE,poseScaleFor,resolvePoseAnchors,resolvePoseSpec} from '../web/src/art/maple-chibi-rig.js';
 import type {ChibiFxCatalogItem,MapleChibiRigData} from '../web/src/art/chibi-types.js';
 import {slotPoint} from '../web/src/office-scene-spec.js';
+import {chibiCharacters} from '../web/src/chibi-art.js';
 
 describe('Phase 1 & 2 MapleChibi engine: NavGrid A*, ActorBrain HFSM, back_3q and 18-FX schema', () => {
  it('routes around workstation desks without clipping through blocked footprints', () => {
@@ -213,23 +214,33 @@ describe('Phase 1 & 2 MapleChibi engine: NavGrid A*, ActorBrain HFSM, back_3q an
   expect(JSON.stringify(view)).toBe(before);
  });
 
- it('loads shipped bluewhale rig.json (with back_3q) and 18-item fx/catalog.json', () => {
-  const rig = JSON.parse(
-   readFileSync(resolve('apps/web/public/art/chibi/characters/bluewhale/rig.json'), 'utf8')
-  ) as MapleChibiRigData;
+ it('loads all 12 studio characters rig.json (with back_3q & calibrated scales) and 18-item fx/catalog.json', () => {
+  expect(chibiCharacters).toHaveLength(12);
+  for (const id of chibiCharacters) {
+   const rig = JSON.parse(
+    readFileSync(resolve(`apps/web/public/art/chibi/characters/${id}/rig.json`), 'utf8')
+   ) as MapleChibiRigData;
+   expect(rig.schemaVersion).toBe(2);
+   expect(rig.renderer).toBe('maple-chibi');
+   expect(rig.id).toBe(id);
+   expect(poseScaleFor(rig, 'stand_3q')).toBe(DEFAULT_POSE_SCALE.stand_3q);
+   expect(poseScaleFor(rig, 'back_3q')).toBe(1);
+   expect(resolvePoseSpec(rig, 'back_3q').file).toBe('back_3q.webp');
+   expect(rig.optionalPoses?.back_3q?.file).toBe('back_3q.webp');
+   expect(resolvePoseAnchors(rig, 'work_front').headTop[1]).toBeGreaterThan(resolvePoseAnchors(rig, 'stand_3q').headTop[1]);
+   expect(rig.motionProfile.walkSpeed).toBeGreaterThan(0.8);
+   if (id === 'bluewhale') {
+    expect(poseScaleFor(rig, 'work_front')).toBeGreaterThan(1);
+    expect(poseScaleFor(rig, 'rest_3q')).toBeLessThan(1);
+   } else {
+    expect(poseScaleFor(rig, 'work_front')).toBe(1);
+    expect(poseScaleFor(rig, 'rest_3q')).toBe(1);
+   }
+  }
+
   const fx = JSON.parse(
    readFileSync(resolve('apps/web/public/art/chibi/fx/catalog.json'), 'utf8')
   ) as ChibiFxCatalogItem[];
-
-  expect(rig.schemaVersion).toBe(2);
-  expect(rig.renderer).toBe('maple-chibi');
-  expect(poseScaleFor(rig, 'stand_3q')).toBe(DEFAULT_POSE_SCALE.stand_3q);
-  expect(poseScaleFor(rig, 'work_front')).toBeGreaterThan(1);
-  expect(poseScaleFor(rig, 'rest_3q')).toBeLessThan(1);
-  expect(poseScaleFor(rig, 'back_3q')).toBe(1);
-  expect(resolvePoseSpec(rig, 'back_3q').file).toBe('back_3q.webp');
-  expect(resolvePoseAnchors(rig, 'work_front').headTop[1]).toBeGreaterThan(resolvePoseAnchors(rig, 'stand_3q').headTop[1]);
-  expect(rig.optionalPoses?.back_3q?.file).toBe('back_3q.webp');
   expect(fx).toHaveLength(18);
   expect(new Set(fx.map(item => item.id)).size).toBe(18);
  });

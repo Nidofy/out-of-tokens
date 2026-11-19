@@ -30,9 +30,14 @@ let ambGain:GainNode|null=null;
 let ambStop:(()=>void)|null=null;
 let ambKey='';
 
+let lastEmoteAt=0;
+
 function audioSuppressed():boolean{
  if(typeof window==='undefined'||typeof document==='undefined')return true;
- return document.documentElement.dataset.motion==='still'||matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const pref=document.documentElement.dataset.motion;
+ if(pref==='still')return true;
+ if(pref==='full')return false;
+ return matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
 function getContext():AudioContext|null{
@@ -69,12 +74,26 @@ export function unlockAudio():void{
  getContext();
 }
 
-export function playFoley(kind:'flip'|'tap'|'stamp'|'coin'|'message'|'advance',enabled=true):void{
+export function playFoley(kind:'flip'|'tap'|'stamp'|'coin'|'message'|'advance'|'emote',enabled=true):void{
  if(!enabled||audioSuppressed())return;
  const ac=getContext();
  if(!ac||ac.state!=='running')return;
  const now=ac.currentTime;
  try{
+  if(kind==='emote'){
+   if(now-lastEmoteAt<1.8)return;
+   lastEmoteAt=now;
+   const osc=ac.createOscillator(),gain=ac.createGain();
+   osc.type='sine';
+   osc.frequency.setValueAtTime(520,now);
+   osc.frequency.exponentialRampToValueAtTime(760,now+0.045);
+   gain.gain.setValueAtTime(0.001,now);
+   gain.gain.linearRampToValueAtTime(0.014,now+0.008);
+   gain.gain.exponentialRampToValueAtTime(0.0008,now+0.055);
+   osc.connect(gain);gain.connect(ac.destination);
+   osc.start(now);osc.stop(now+0.065);
+   return;
+  }
   if(kind==='flip'){
    if(flipCtx!==ac||!flipBuf){
     const len=Math.floor(ac.sampleRate*0.065);
