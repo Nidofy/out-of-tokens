@@ -1,3 +1,5 @@
+2026-11-19 Art-Batch 10B 完成。kimi、gemini、grok、glm、minimax、seedance 各新增 5 张姿态和 1 份 rig。十二人工坊在五种视口均挂载 12 个 MapleChibiRig，旧角色回退计数为 0。全员双排合照见 `art/art-batch-10b/review/all-12-lineup.png`。
+
 2026-11-19 Art-Batch 10A 完成。qwen、llama、mistral、gpt、claude 各交付 5 张姿态和 1 份 rig，25 张 WebP 共 908,514 字节。五人均已注册静态白名单，离线清单覆盖 30 个新增运行文件。六人站姿对照见 `art/art-batch-10a/review/batch10a-overview.png`。
 
 2026-11-19 Art-Batch 9 完成。bluewhale 增加朝右斜背姿态，全员共享贴片库共 18 项。新增 11 张 WebP 共 73,402 字节。核验图见 `art/art-batch-9/review/batch9-review.png`。

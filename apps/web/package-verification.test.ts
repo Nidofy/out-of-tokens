@@ -129,7 +129,8 @@ const batch8Fx = ['emote-focus', 'emote-sweat', 'emote-crash', 'emote-zzz',
 const batch9Fx = ['emote-slack', 'emote-anger', 'emote-dizzy', 'emote-heart', 'emote-alert',
  'emote-spark', 'prop-doc_page', 'prop-smoke_puff', 'prop-dust_step', 'prop-heal_leaf'];
 
-const batch10Characters = ['qwen', 'llama', 'mistral', 'gpt', 'claude'] as const;
+const batch10ACharacters = ['qwen', 'llama', 'mistral', 'gpt', 'claude'] as const;
+const batch10BCharacters = ['kimi', 'gemini', 'grok', 'glm', 'minimax', 'seedance'] as const;
 const chibiPoses = ['stand_3q', 'walk_3q', 'work_front', 'rest_3q', 'back_3q'] as const;
 
 type Pixels = [string, number, number, number[], number[], number | null, number, number];
@@ -157,8 +158,8 @@ function inspectChibiPixels(paths: string[]): Pixels[] {
  return JSON.parse(inspect.stdout);
 }
 
-it('limits chibi paths to six characters and eighteen shipped stickers', () => {
- expect(chibiCharacters).toEqual(['bluewhale', ...batch10Characters]);
+it('limits chibi paths to all twelve studio partners and eighteen shipped stickers', () => {
+ expect(chibiCharacters).toEqual(['bluewhale', ...batch10ACharacters, ...batch10BCharacters]);
  expect(chibiFxIds).toEqual([...batch8Fx, ...batch9Fx]);
  for (const id of chibiCharacters) {
   expect(hasChibiRig(id)).toBe(true);
@@ -303,16 +304,26 @@ type Batch10Entry = {
 const batch10Profiles = {
  qwen: [1, 9, 3.1, 0.055, 0.024], llama: [0.96, 9, 2.9, 0.05, 0.024],
  mistral: [1.08, 11, 3.5, 0.065, 0.026], gpt: [1, 9, 3, 0.05, 0.023], claude: [0.98, 8.5, 2.95, 0.05, 0.022],
+ kimi: [0.98, 9, 3, 0.05, 0.023], gemini: [1.04, 10, 3.25, 0.058, 0.025],
+ grok: [1.06, 10.5, 3.35, 0.06, 0.026], glm: [0.94, 8, 2.8, 0.045, 0.021],
+ minimax: [1.02, 9.5, 3.15, 0.055, 0.025], seedance: [1.05, 10, 3.3, 0.058, 0.025],
 };
-const batch10Versions = {qwen: 'qwen.qwq', llama: 'llama.3.1', mistral: 'mistral.large', gpt: 'gpt.4o', claude: 'claude.sonnet'};
+const batch10Versions = {
+ qwen: 'qwen.qwq', llama: 'llama.3.1', mistral: 'mistral.large', gpt: 'gpt.4o', claude: 'claude.sonnet',
+ kimi: 'kimi.k2', gemini: 'gemini.pro', grok: 'grok.3', glm: 'glm.plus', minimax: 'minimax.01', seedance: 'seedance.pro',
+};
 
-it.each(batch10Characters)('verifies Art-Batch 10A masters, rig, decoded poses and offline copies for %s', id => {
- const batch = 'art/art-batch-10a';
+const phase3Cases = [
+ ...batch10ACharacters.map(id => ({id, batchName: '10A', count: batch10ACharacters.length})),
+ ...batch10BCharacters.map(id => ({id, batchName: '10B', count: batch10BCharacters.length})),
+];
+it.each(phase3Cases)('verifies Art-Batch $batchName masters, rig, decoded poses and offline copies for $id', ({id, batchName, count}) => {
+ const batch = 'art/art-batch-' + batchName.toLowerCase();
  const publicDir = `art/chibi/characters/${id}`;
  const read = (path: string) => readFileSync(resolve(path));
  const sha = (path: string) => createHash('sha256').update(read(path)).digest('hex');
  const all: Batch10Entry[] = JSON.parse(readFileSync(join(batch, 'manifest.json'), 'utf8'));
- expect(all).toHaveLength(batch10Characters.length * 12);
+ expect(all).toHaveLength(count * 12);
  const entries = all.filter(e => e.characterId === id);
  const masters = entries.filter(e => !e.publicFile);
  const runtime = entries.filter(e => e.publicFile && e.id !== 'rig');

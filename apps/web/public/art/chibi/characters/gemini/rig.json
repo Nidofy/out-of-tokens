@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 2,
+  "renderer": "maple-chibi",
+  "id": "gemini",
+  "canvas": [
+    512,
+    512
+  ],
+  "feet": [
+    256,
+    480
+  ],
+  "visibleHeight": 400,
+  "facingDefault": "right",
+  "heightScale": 1.0,
+  "anchors": {
+    "headTop": [
+      262,
+      81
+    ],
+    "faceCenter": [
+      287,
+      241
+    ],
+    "emoteLeft": [
+      172,
+      133
+    ],
+    "emoteRight": [
+      351,
+      133
+    ],
+    "propHand": [
+      323,
+      341
+    ],
+    "deskClipY": 370
+  },
+  "poses": {
+    "stand_3q": {
+      "file": "stand_3q.webp",
+      "mirrorable": true,
+      "feet": [
+        256,
+        480
+      ],
+      "visibleHeight": 400,
+      "poseScale": 1.0,
+      "headWidthRatio": 1.0,
+      "anchors": {
+        "headTop": [
+          262,
+          81
+        ],
+        "faceCenter": [
+          287,
+          241
+        ],
+        "emoteLeft": [
+          172,
+          133
+        ],
+        "emoteRight": [
+          351,
+          133
+        ],
+        "propHand": [
+          323,
+          341
+        ],
+        "deskClipY": 370
+      }
+    },
+    "walk_3q": {
+      "file": "walk_3q.webp",
+      "mirrorable": true,
+      "feet": [
+        256,
+        480
+      ],
+      "visibleHeight": 400,
+      "poseScale": 1.0,
+      "headWidthRatio": 1.0,
+      "anchors": {
+        "headTop": [
+          220,
+          81
+        ],
+        "faceCenter": [
+          246,
+          241
+        ],
+        "emoteLeft": [
+          133,
+          133
+        ],
+        "emoteRight": [
+          308,
+          133
+        ],
+        "propHand": [
+          281,
+          341
+        ],
+        "deskClipY": 370
+      }
+    },
+    "work_front": {
+      "file": "work_front.webp",
+      "mirrorable": false,
+      "feet": [
+        256,
+        480
+      ],
+      "visibleHeight": 384,
+      "poseScale": 1.0,
+      "headWidthRatio": 1.0,
+      "anchors": {
+        "headTop": [
+          254,
+          97
+        ],
+        "faceCenter": [
+          278,
+          251
+        ],
+        "emoteLeft": [
+          168,
+          147
+        ],
+        "emoteRight": [
+          339,
+          147
+        ],
+        "propHand": [
+          312,
+          347
+        ],
+        "deskClipY": 370
+      }
+    },
+    "rest_3q": {
+      "file": "rest_3q.webp",
+      "mirrorable": true,
+      "feet": [
+        256,
+        480
+      ],
+      "visibleHeight": 383,
+      "poseScale": 1.0,
+      "headWidthRatio": 1.0,
+      "anchors": {
+        "headTop": [
+          232,
+          98
+        ],
+        "faceCenter": [
+          255,
+          251
+        ],
+        "emoteLeft": [
+          151,
+          148
+        ],
+        "emoteRight": [
+          312,
+          148
+        ],
+        "propHand": [
+          287,
+          347
+        ],
+        "deskClipY": 370
+      }
+    }
+  },
+  "optionalPoses": {
+    "back_3q": {
+      "file": "back_3q.webp",
+      "mirrorable": true,
+      "feet": [
+        256,
+        480
+      ],
+      "visibleHeight": 400,
+      "poseScale": 1.0,
+      "headWidthRatio": 1.0,
+      "anchors": {
+        "headTop": [
+          256,
+          81
+        ],
+        "faceCenter": [
+          286,
+          241
+        ],
+        "emoteLeft": [
+          150,
+          133
+        ],
+        "emoteRight": [
+          361,
+          133
+        ],
+        "propHand": [
+          328,
+          341
+        ],
+        "deskClipY": 370
+      }
+    },
+    "react_front": null
+  },
+  "faceOverrides": null,
+  "motionProfile": {
+    "walkSpeed": 1.04,
+    "hopHeight": 10,
+    "stepCadenceHz": 3.25,
+    "squashAmount": 0.058,
+    "breathAmp": 0.025
+  }
+}
