@@ -43,6 +43,9 @@ import type {BarkPayload} from './bark-overlay.js';
 import {createBrowserUiStore,createMemoryUiStore,readThreadReadIds,markThreadRead,countUnreadThreads,readLastTeamDraft,writeLastTeamDraft} from './experience-ui-state.js';
 import type {Member} from 'oot-core';
 import {SaveAlertBanner,SwitchConfirmDialog,saveBannerIncidentKey} from './save-status-ui.js';
+import {Dialog} from './dialog.js';
+import {createSecondaryLoader} from './secondary-loader.js';
+import type {SecondaryLoadState,SecondaryLoadStatus} from './secondary-loader.js';
 
 type Tr=(zh:string,en:string)=>string;
 type ReturnContext={panel:'jobs';jobId:string}|{panel:'actors';actorId:string};
@@ -50,9 +53,64 @@ type RitualCard={kind:'recruit'|'version'|'chapter';title:string;subtitle:string
 type SecondaryPanels=typeof import('./secondary-panels.js');
 
 export {preloadWorkshop};
-let secondaryMod:SecondaryPanels|null=null;
-let secondaryTask:Promise<SecondaryPanels>|undefined;
-const loadSecondaryPanels=()=>secondaryTask??=import('./secondary-panels.js').then(m=>(secondaryMod=m));
+const secondaryLoader=createSecondaryLoader<SecondaryPanels>(()=>import('./secondary-panels.js'),import.meta.url);
+
+function SecondaryFallbackSurface({
+ status,
+ english,
+ onRetry,
+ onCancel,
+ cancelLabel,
+ mandatoryNote,
+ extraAction
+}:{
+ status:SecondaryLoadStatus;
+ english:boolean;
+ onRetry:()=>void;
+ onCancel?:(()=>void)|undefined;
+ cancelLabel?:string|undefined;
+ mandatoryNote?:string|undefined;
+ extraAction?:{label:string;disabled?:boolean;onClick:()=>void}|undefined;
+}){
+ const tr=(zh:string,en:string)=>english?en:zh;
+ const retryRef=useRef<HTMLButtonElement>(null);
+ const failed=status==='error';
+ const loading=status==='loading'||status==='idle';
+ useEffect(()=>{
+  if(!failed)return;
+  const active=document.activeElement;
+  if(!active||active===document.body||active.tagName==='DIALOG'||!active.closest('button,[tabindex]')){
+   requestAnimationFrame(()=>retryRef.current?.focus({preventScroll:true}));
+  }
+ },[failed]);
+ return (
+  <div class="ui2-secondary-fallback" data-load-state={status} role={failed?'alert':'status'} aria-live={failed?'assertive':'polite'}>
+   <div class="ui2-secondary-fallback-copy">
+    <Icon name={failed?'warning':'refresh'}/>
+    <div>
+     <b>{failed?tr('界面模块加载失败（当前进度安全保留在内存中）','Interface module failed to load (progress kept safely in memory)'):tr('正在载入界面模块…','Loading interface module…')}</b>
+     <p>{mandatoryNote??(failed?tr('可能是网络或服务短暂中断所致；恢复后可直接重试，无需刷新整页或重开游戏。','A temporary network or server interruption may have occurred. Retry directly here without reloading or restarting.'):tr('正在准备完整面板内容，请稍候；也可随时取消返回主画面。','Preparing panel content. You can cancel back to the studio anytime.'))}</p>
+    </div>
+   </div>
+   <div class="ui2-secondary-fallback-actions">
+    <button ref={retryRef} type="button" class="primary ui2-secondary-retry" disabled={loading} onClick={onRetry}>
+     <Icon name="refresh"/>
+     <span>{loading?tr('加载中…','Loading…'):tr('重试加载','Retry load')}</span>
+    </button>
+    {extraAction&&(
+     <button type="button" disabled={extraAction.disabled} onClick={extraAction.onClick}>
+      <span>{extraAction.label}</span>
+     </button>
+    )}
+    {onCancel&&(
+     <button type="button" class="ui2-secondary-cancel" onClick={onCancel}>
+      <span>{cancelLabel??tr('关闭并返回','Close')}</span>
+     </button>
+    )}
+   </div>
+  </div>
+ );
+}
 
 function Scene({view,english,select,furniture,camera,zone,zoom,pan,onCamera,presence,anchors,paused,capacityByActor}:{paused:boolean;zone:CameraZone;zoom:number;pan:CameraPan;onCamera:(next:{zoom:number;pan:CameraPan;clearFocus?:boolean|undefined})=>void;presence:(ids:string[])=>void;anchors?:(next:Record<string,ActorHeadAnchor>)=>void;camera:OfficeFocus;view:GameView;english:boolean;select:(id:string)=>void;furniture:(id:string)=>void;capacityByActor?:Readonly<Record<string,CapacityExplanation>>}){
  const host=useRef<HTMLDivElement>(null),scene=useRef<Awaited<ReturnType<typeof import('./scene.js')['createWorkshop']>>|null>(null),latest=useRef({view,english,camera,zone,zoom,pan,paused,capacityByActor}),presenceRef=useRef(presence),anchorsRef=useRef(anchors),cameraRef=useRef(onCamera),click=useRef(select),furnitureClick=useRef(furniture);
@@ -107,7 +165,9 @@ export function AlphaApp(){
  const game=useGame(),{view,busy,send}=game;
  const [panel,updatePanel]=useState<HubPanel|null>(null);
  const [portraitsWarm,setPortraitsWarm]=useState(false);
- const [secondary,setSecondary]=useState<SecondaryPanels|null>(()=>secondaryMod);
+ const [secondaryState,setSecondaryState]=useState<SecondaryLoadState<SecondaryPanels>>(()=>secondaryLoader.getState());
+ const secondary=secondaryState.module;
+ const retrySecondary=()=>{void secondaryLoader.retry();};
  const lastHubRef=useRef<HubPanel>('actors');
  if(panel)lastHubRef.current=panel;
  const [studioTab,setStudioTab]=useState<StudioTab>('overview');
@@ -155,7 +215,7 @@ export function AlphaApp(){
  },[uiStore,game.lineageId]);
 
  const moreTrigger=useRef<HTMLButtonElement>(null),boardTrigger=useRef<HTMLButtonElement>(null),chatTrigger=useRef<HTMLButtonElement>(null),jobsTrigger=useRef<HTMLButtonElement>(null);
- const commissionTrigger=useRef<HTMLElement|null>(null),officeTrigger=useRef<HTMLElement|null>(null),officeDockIndex=useRef(-1),managementTrigger=useRef<HTMLElement|null>(null);
+ const commissionTrigger=useRef<HTMLElement|null>(null),officeTrigger=useRef<HTMLElement|null>(null),officeDockIndex=useRef(-1),managementTrigger=useRef<HTMLElement|null>(null),savesTrigger=useRef<HTMLElement|null>(null),mapTrigger=useRef<HTMLElement|null>(null);
  const prevSnap=useRef<{cash:number;quota:number;rp:number;actors:string[];chapter:number;versions:Record<string,string>;awakened:string[]}|null>(null);
  const seenRituals=useRef<Set<string>>(new Set());
  const hydrated=useRef(false);
@@ -195,11 +255,29 @@ export function AlphaApp(){
   setActorEntry('direct');setActorId(id);updatePanel('actors');
  };
 
+ const captureReturnTrigger=(fallback:HTMLElement|null)=>{
+  const active=document.activeElement as HTMLElement|null;
+  return active&&active!==document.body&&!active.closest('.hud-popover,dialog,.priority-rail,.priority-feedback')?active:fallback;
+ };
+ const openSavesModal=(fallback:HTMLElement|null=moreTrigger.current)=>{
+  savesTrigger.current=captureReturnTrigger(fallback);
+  setActiveBark(null);setHud(null);setSaves(true);void game.refresh();
+ };
+ const openMapModal=(fallback:HTMLElement|null=moreTrigger.current)=>{
+  mapTrigger.current=captureReturnTrigger(fallback);
+  setActiveBark(null);setHud(null);updatePanel(null);setMapOpen(true);
+ };
  const openOffice=(ctx?:ReturnContext)=>{
   if(ctx)setReturnTo(ctx);
   officeTrigger.current=panel?managementTrigger.current:moreTrigger.current;
   officeDockIndex.current=Array.from(document.querySelectorAll('.studio-dock button')).findIndex(button=>button===officeTrigger.current);
   setHud(null);updatePanel(null);setArranging(true);
+ };
+ const closeOfficeEditor=()=>{
+  setArranging(false);
+  setLayoutItems(null);
+  cameraDispatch({type:'editor-close'});
+  if(returnTo?.panel==='jobs'){const j=returnTo.jobId;setReturnTo(null);setJobId(j);}
  };
 
  useEffect(()=>{if(arranging||!officeTrigger.current)return;const frame=requestAnimationFrame(()=>{const trigger=officeDockIndex.current>=0?document.querySelectorAll<HTMLButtonElement>('.studio-dock button')[officeDockIndex.current]:officeTrigger.current;trigger?.focus({preventScroll:true});officeTrigger.current=null;});return()=>cancelAnimationFrame(frame);},[arranging]);
@@ -292,7 +370,7 @@ export function AlphaApp(){
    if(!cmd)return;
    e.preventDefault();
    if(cmd.type==='panel'){setActiveBark(null);setChatOpen(false);setPanel(cmd.panel);}
-   else if(cmd.type==='map'){setActiveBark(null);setHud(null);setChatOpen(false);setMapOpen(m=>!m);}
+   else if(cmd.type==='map'){if(!mapOpen)mapTrigger.current=captureReturnTrigger(moreTrigger.current);setActiveBark(null);setHud(null);setChatOpen(false);setMapOpen(m=>!m);}
    else if(cmd.type==='chat'){setActiveBark(null);setHud(null);updatePanel(null);setChatOpen(o=>!o);}
    else if(cmd.type==='actor-step'&&actorId){
     const idx=actorIds.indexOf(actorId);
@@ -345,8 +423,16 @@ export function AlphaApp(){
  const activeHub:HubPanel=panel??lastHubRef.current;
  const showPortraits=portraitsWarm||hubOpen;
  useEffect(()=>{if(hubOpen&&!portraitsWarm)setPortraitsWarm(true);},[hubOpen,portraitsWarm]);
+ useEffect(()=>secondaryLoader.subscribe(setSecondaryState),[]);
  const needSecondary=!!(arranging||chatOpen||saves||settings||mapOpen||view.pending||view.bankrupt||ritual||deliveryFeedback||(hubOpen&&(activeHub!=='actors'||!!actorId)));
- useEffect(()=>{if(needSecondary&&!secondary)void loadSecondaryPanels().then(m=>setSecondary(m));},[needSecondary,secondary]);
+ useEffect(()=>{if(needSecondary&&secondaryState.status==='idle')void secondaryLoader.ensure();},[needSecondary,secondaryState.status]);
+ useEffect(()=>{
+  if(!secondary)return;
+  requestAnimationFrame(()=>{
+   if(document.activeElement&&document.activeElement!==document.body)return;
+   document.querySelector<HTMLElement>('dialog[open] button:not(:disabled),[role="dialog"][aria-modal="true"] button:not(:disabled),dialog[open]')?.focus({preventScroll:true});
+  });
+ },[secondary]);
  const nextPeriod=useMemo(()=>game.session.previewNextPeriod(),[game.session,view]);
  const experienceView=useMemo(()=>game.session.getExperienceView(),[game.session,view]);
  const needsFinance=hubOpen&&(activeHub==='studio'||activeHub==='journal');
@@ -502,7 +588,7 @@ export function AlphaApp(){
  const hubBack=activeHub==='actors'&&actorId&&actorEntry==='gallery'?{label:tr('返回画廊','Back to gallery'),onClick:closeActor}:activeHub==='jobs'&&jobInDetail&&matchMedia('(max-width:679px)').matches?{label:tr('返回列表','Back to list'),onClick:()=>selectCommission(null)}:null;
  const rawHubNotice=hideGenericDone?null:activeHub==='actors'&&actorId&&feedbackChannel==='actor'?notice:activeHub==='jobs'&&commissionNotice(game.feedback,jobId)?notice:null;
  const saveAlertNotice=useMemo(()=>showSaveBanner
-  ?<SaveAlertBanner status={game.saveStatus} english={english} busy={busy} onExport={()=>void game.exportFile()} onOpenSaves={()=>{setHud(null);setSaves(true);void game.refresh();}} onRetry={()=>{setDismissedSaveKey(null);void game.retrySave();}} onDismiss={()=>setDismissedSaveKey(saveIncidentKey)}/>
+  ?<SaveAlertBanner status={game.saveStatus} english={english} busy={busy} onExport={()=>void game.exportFile()} onOpenSaves={()=>openSavesModal()} onRetry={()=>{setDismissedSaveKey(null);void game.retrySave();}} onDismiss={()=>setDismissedSaveKey(saveIncidentKey)}/>
   :null,[showSaveBanner,saveIncidentKey,game.saveStatus,english,busy]);
  const hubNotice=(saveAlertNotice||rawHubNotice)?<>{saveAlertNotice}{rawHubNotice}</>:null;
  const hubTabs=useMemo(()=>activeHub==='actors'&&!actorId?(
@@ -519,8 +605,8 @@ export function AlphaApp(){
   </div>
  ):null,[activeHub,actorId,actorFilter,studioTab,journalTab,english,view.actors.length]);
 
- const appCbRef=useRef({openOffice,openDirectActor,setJobId,setHud,setLocationsOpen,setOffscreen,updateAnchors,cameraDispatch,closeLocations,stepZoom,resetCamera,setTrackedJobId,setPanel,setJobFilter,setStudioTab,handleReplyChat,dismissBark,updatePanel,setMapOpen,setSaves,fx,unlockAudio,send,readThreadIds,uiStore,game,clearTransientState,markThreadRead});
- appCbRef.current={openOffice,openDirectActor,setJobId,setHud,setLocationsOpen,setOffscreen,updateAnchors,cameraDispatch,closeLocations,stepZoom,resetCamera,setTrackedJobId,setPanel,setJobFilter,setStudioTab,handleReplyChat,dismissBark,updatePanel,setMapOpen,setSaves,fx,unlockAudio,send,readThreadIds,uiStore,game,clearTransientState,markThreadRead};
+ const appCbRef=useRef({openOffice,openDirectActor,openSavesModal,openMapModal,setJobId,setHud,setLocationsOpen,setOffscreen,updateAnchors,cameraDispatch,closeLocations,stepZoom,resetCamera,setTrackedJobId,setPanel,setJobFilter,setStudioTab,handleReplyChat,dismissBark,updatePanel,setMapOpen,setSaves,fx,unlockAudio,send,readThreadIds,uiStore,game,clearTransientState,markThreadRead});
+ appCbRef.current={openOffice,openDirectActor,openSavesModal,openMapModal,setJobId,setHud,setLocationsOpen,setOffscreen,updateAnchors,cameraDispatch,closeLocations,stepZoom,resetCamera,setTrackedJobId,setPanel,setJobFilter,setStudioTab,handleReplyChat,dismissBark,updatePanel,setMapOpen,setSaves,fx,unlockAudio,send,readThreadIds,uiStore,game,clearTransientState,markThreadRead};
 
  const sceneStageLayer=useMemo(()=>(
   <div class="scene-stage" data-period={view.absoluteSlot%4}>
@@ -555,31 +641,37 @@ export function AlphaApp(){
      english={english}
      busy={busy}
      onExport={()=>void appCbRef.current.game.exportFile()}
-     onOpenSaves={()=>{appCbRef.current.setHud(null);appCbRef.current.setSaves(true);void appCbRef.current.game.refresh();}}
+     onOpenSaves={()=>appCbRef.current.openSavesModal()}
      onRetry={()=>{setDismissedSaveKey(null);void appCbRef.current.game.retrySave();}}
      onDismiss={()=>setDismissedSaveKey(saveIncidentKey)}
     />
    )}
    {view.liquidCash<0&&<button class="crisis-chip" onClick={()=>{appCbRef.current.setStudioTab('finance');appCbRef.current.setPanel('studio');}}><Icon name="warning"/> {tr('现金流预警 · 净偿付资金','Cash-flow warning · Net solvency')} ¥{view.liquidCash.toFixed(0)} · {view.crises}/3</button>}
-   {(update||reloadReady)&&<button class="update-chip" onClick={()=>{appCbRef.current.setHud(null);appCbRef.current.setSaves(true);}}>{tr('新版本可用 · 先保存进度','Update available · Save progress first')}</button>}
+   {(update||reloadReady)&&<button class="update-chip" onClick={()=>appCbRef.current.openSavesModal()}>{tr('新版本可用 · 先保存进度','Update available · Save progress first')}</button>}
   </div>
  ),[showSaveBanner,saveIncidentKey,game.saveStatus,english,busy,view.liquidCash,view.crises,update,reloadReady]);
 
- const messengerLayer=useMemo(()=>chatOpen&&secondary?(
-  <secondary.MessengerDrawer
-   open={chatOpen}
-   close={()=>setChatOpen(false)}
-   threads={livingView.threads}
-   readIds={readThreadIds}
-   onMarkRead={tid=>{const next=appCbRef.current.markThreadRead(uiStore,game.lineageId,tid);setReadThreadIds(new Set(next));}}
-   english={english}
-   still={still}
-   locked={locked}
-   previewActivity={previewAct}
-   onReply={(tid,idx)=>{void appCbRef.current.handleReplyChat(tid,idx);}}
-   returnFocus={()=>chatTrigger.current}
-  />
- ):null,[chatOpen,secondary,livingView.threads,readThreadIds,english,still,locked,uiStore,game.lineageId]);
+ const messengerLayer=useMemo(()=>chatOpen?(
+  secondary?(
+   <secondary.MessengerDrawer
+    open={chatOpen}
+    close={()=>setChatOpen(false)}
+    threads={livingView.threads}
+    readIds={readThreadIds}
+    onMarkRead={tid=>{const next=appCbRef.current.markThreadRead(uiStore,game.lineageId,tid);setReadThreadIds(new Set(next));}}
+    english={english}
+    still={still}
+    locked={locked}
+    previewActivity={previewAct}
+    onReply={(tid,idx)=>{void appCbRef.current.handleReplyChat(tid,idx);}}
+    returnFocus={()=>chatTrigger.current}
+   />
+  ):(
+   <Dialog system className="messenger-fallback-dialog" returnFocus={()=>chatTrigger.current} title={tr('工坊群聊','Studio chat')} close={()=>setChatOpen(false)}>
+    <SecondaryFallbackSurface status={secondaryState.status} english={english} onRetry={retrySecondary} onCancel={()=>setChatOpen(false)}/>
+   </Dialog>
+  )
+ ):null,[chatOpen,secondary,secondaryState.status,livingView.threads,readThreadIds,english,still,locked,uiStore,game.lineageId]);
 
  const switchConfirmLayer=useMemo(()=>(
   <SwitchConfirmDialog
@@ -593,9 +685,9 @@ export function AlphaApp(){
   />
  ),[game.pendingSwitch,english,busy,game.exportedInSwitchModal,game.cancelPendingSwitch]);
 
- const dialogOpen=!!(hubOpen||mapOpen||saves||settings||chatOpen||view.pending||view.bankrupt||ritual||deliveryFeedback||game.pendingSwitch);
+ const dialogOpen=!!(hubOpen||mapOpen||saves||settings||chatOpen||(arranging&&!secondary)||view.pending||view.bankrupt||ritual||deliveryFeedback||game.pendingSwitch);
  return (
-  <div class="studio-app" onKeyDown={e=>{if(e.key==='Escape'&&!modalOpen){if(locationsOpen){closeLocations('escape');e.preventDefault();e.stopPropagation();}else if(hud){setHud(null);e.stopPropagation();}}}} data-panel={panel??'closed'} data-modal={dialogOpen?'open':'closed'} data-view-open={hud==='view'} data-overlay={hud??'closed'} data-mode={arranging?'layout':'office'}>
+  <div class="studio-app" onKeyDown={e=>{if(e.key==='Escape'&&!modalOpen){if(locationsOpen){closeLocations('escape');e.preventDefault();e.stopPropagation();}else if(hud){setHud(null);e.stopPropagation();}}}} data-panel={panel??'closed'} data-modal={dialogOpen?'open':'closed'} data-view-open={hud==='view'} data-overlay={hud??'closed'} data-mode={arranging&&!!secondary?'layout':'office'}>
    {game.lab&&<div class="office-lab-badge">LAB · {game.lab} · isolated memory saves</div>}
    {sceneStageLayer}
 
@@ -620,14 +712,14 @@ export function AlphaApp(){
     saveStatus={game.saveStatus}
     onDismissDelta={id=>setDeltas(list=>list.filter(d=>d.id!==id))}
     onOpenHud={openHud}
-    onOpenMap={()=>{setActiveBark(null);setHud(null);setMapOpen(true);}}
+    onOpenMap={()=>openMapModal()}
     onOpenChat={()=>{unlockAudio();setActiveBark(null);setHud(null);updatePanel(null);setChatOpen(true);fx('flip');}}
     onTeaBreak={()=>{void handleTeaBreak();}}
     onOpenStudioFinance={()=>{setActiveBark(null);setStudioTab('finance');setPanel('studio');}}
     onOpenPanel={id=>{setActiveBark(null);setChatOpen(false);setPanel(panel===id?null:id);setTimeout(()=>{unlockAudio();fx('flip');},0);}}
     onWarmDock={()=>{if(!portraitsWarm)setPortraitsWarm(true);}}
     onOpenOffice={()=>openOffice()}
-    onOpenSaves={()=>{setActiveBark(null);setHud(null);setSaves(true);void game.refresh();}}
+    onOpenSaves={()=>openSavesModal()}
     onOpenSettings={()=>{setActiveBark(null);setHud(null);setSettings(true);}}
     onToggleLocale={()=>setEnglish(!english)}
     onToggleTheme={()=>setDark(!dark)}
@@ -697,7 +789,7 @@ export function AlphaApp(){
        close={closeActor}
        closePanel={closeHub}
        openJob={setJobId}
-       openMap={()=>{setActiveBark(null);updatePanel(null);setMapOpen(true);}}
+       openMap={()=>openMapModal(moreTrigger.current)}
        selectCharacter={id=>setActorId(id)}
        preferredTab={preferredProfileTab}
        setPreferredTab={setPreferredProfileTab}
@@ -713,7 +805,7 @@ export function AlphaApp(){
        capacity={capacityByActor[actorId]}
        experienceView={experienceView}
        suppressVignettes={urgentPriorityActive}
-      />:null
+      />:<SecondaryFallbackSurface status={secondaryState.status} english={english} onRetry={retrySecondary} onCancel={closeActor} cancelLabel={tr('返回伙伴列表','Back to teammates')}/>
      ):activeHub==='actors'?(
       actorsGallery
      ):activeHub==='jobs'?(
@@ -732,7 +824,7 @@ export function AlphaApp(){
        onJumpToOffice={draft=>{if(jobId){setDraftTeams(prev=>({...prev,[jobId]:draft}));openOffice({panel:'jobs',jobId});}}}
        onJumpToFinance={draft=>{if(jobId){setDraftTeams(prev=>({...prev,[jobId]:draft}));setReturnTo({panel:'jobs',jobId});setStudioTab('finance');updatePanel('studio');}}}
        onJumpToActor={(aid,draft)=>{if(jobId){setDraftTeams(prev=>({...prev,[jobId]:draft}));setReturnTo({panel:'jobs',jobId});setActorEntry('direct');setPreferredProfileTab('vitals');setActorId(aid);updatePanel('actors');}}}
-       onOpenMap={()=>{updatePanel(null);setMapOpen(true);}}
+       onOpenMap={()=>openMapModal(moreTrigger.current)}
        onDetailStateChange={setJobInDetail}
        view={view}
        english={english}
@@ -761,7 +853,7 @@ export function AlphaApp(){
        livingCatalog={livingCatalog}
        onWorkBark={aid=>{fx('tap',aid);}}
        previewActivity={previewAct}
-      />:null
+      />:<SecondaryFallbackSurface status={secondaryState.status} english={english} onRetry={retrySecondary} onCancel={closeHub} cancelLabel={tr('关闭面板','Close panel')}/>
      ):activeHub==='studio'?(
       secondary?<secondary.StudioHub
        view={view}
@@ -772,102 +864,136 @@ export function AlphaApp(){
        send={cmd=>{setActiveBark(null);return send(cmd);}}
        onOpenOffice={()=>openOffice(returnTo?.panel==='jobs'?returnTo:undefined)}
        onSwitchHub={next=>setPanel(next)}
-       onOpenMap={()=>{updatePanel(null);setMapOpen(true);}}
+       onOpenMap={()=>openMapModal(moreTrigger.current)}
        returnBanner={returnTo?.panel==='jobs'?{label:tr('正处理派遣算力/设施缺口','Resolving assignment requirement'),onReturn:()=>{const targetJob=returnTo.jobId;setReturnTo(null);setJobId(targetJob);}}:null}
        hideTabs
        teaReady={livingView.teaReady}
        onTeaBreak={()=>{void handleTeaBreak();}}
        previewActivity={previewAct}
        finance={financeExplanation??game.session.explainFinance()}
-      />:null
+      />:<SecondaryFallbackSurface status={secondaryState.status} english={english} onRetry={retrySecondary} onCancel={closeHub} cancelLabel={tr('关闭面板','Close panel')}/>
      ):(
-      secondary?<secondary.JournalHub view={view} english={english} locked={locked} tab={journalTab} setTab={setJournalTab} send={send} hideTabs previewActivity={previewAct} finance={financeExplanation??game.session.explainFinance()} experienceView={experienceView} suppressVignettes={urgentPriorityActive}/>:null
+      secondary?<secondary.JournalHub view={view} english={english} locked={locked} tab={journalTab} setTab={setJournalTab} send={send} hideTabs previewActivity={previewAct} finance={financeExplanation??game.session.explainFinance()} experienceView={experienceView} suppressVignettes={urgentPriorityActive}/>:<SecondaryFallbackSurface status={secondaryState.status} english={english} onRetry={retrySecondary} onCancel={closeHub} cancelLabel={tr('关闭面板','Close panel')}/>
      )}
     </StageHubShell>
    )}
 
-   {mapOpen&&secondary&&<secondary.Dialog system className="map-dialog" title={tr('去哪里坐坐？','Where shall we go?')} close={()=>setMapOpen(false)}>
-    <p>{tr('切换场景不推进时段。伙伴按自己的日程活动。','Changing scenes does not advance time. Teammates follow their own schedules.')}</p>
-    {locked&&<p class="system-caption">{busy?tr('正在处理操作，请稍候再切换场景。','An operation is in progress. Please wait before travelling.'):tr('请先处理当前事件或经营状态，再切换场景。','Resolve the current event or studio state before travelling.')}</p>}
-    <div class="world-map">
-     <svg class="map-road" viewBox="0 0 600 350" preserveAspectRatio="none" aria-hidden="true"><path d="M100 70 Q300 50 300 175 T500 280" fill="none" stroke="#b08c63" stroke-width="12" stroke-dasharray="12 8"/></svg>
-     {(Object.keys(sceneText) as (keyof typeof sceneText)[]).map(id=>{
-      const night=view.absoluteSlot%4>=2;
-      const hint=id==='workshop'?(night?tr('加班筹备 · 查看委托进度','Overtime prep · Check jobs'):tr('接单 · 派遣 · 布置','Jobs · Assign · Layout')):id==='canteen'?(night?tr('夜间聚餐 · 休息聊天','Evening meal · Rest & chat'):tr('吃饭 ¥30 · 休息 · 聊天','Meals ¥30 · Rest · Chat')):(night?tr('晚间共学 +2RP · 微调/访友','Evening study +2RP · Train'):tr('学习 +2RP · 微调 · 访友','Study +2RP · Train · Visit'));
-      return <button key={id} disabled={locked} aria-pressed={p.scene===id} onClick={()=>{life('visit',id);setMapOpen(false);}}>
-       <img src={sceneArt(id,p.chapter,night)} alt=""/>
-       {p.scene===id&&<span class="ui2-here-pill">{tr('当前所在','Current')}</span>}
-       <b>{scene(id)}</b>
-       <span class="map-people">{view.actors.filter(a=>a.location===id&&(id===p.scene||p.software.includes('messenger'))).map(a=><span key={a.id} title={names[a.id]}><Portrait id={a.id} variant="map"/></span>)}</span>
-       <span class="ui2-map-hint"><Icon name={id==='workshop'?'briefcase':id==='canteen'?'sun':'book'}/><small>{hint}</small></span>
-      </button>;
-     })}
-    </div>
-   </secondary.Dialog>}
+   {mapOpen&&<Dialog system className="map-dialog" returnFocus={()=>mapTrigger.current??moreTrigger.current} title={tr('去哪里坐坐？','Where shall we go?')} close={()=>setMapOpen(false)}>
+    {secondary?(
+     <>
+      <p>{tr('切换场景不推进时段。伙伴按自己的日程活动。','Changing scenes does not advance time. Teammates follow their own schedules.')}</p>
+      {locked&&<p class="system-caption">{busy?tr('正在处理操作，请稍候再切换场景。','An operation is in progress. Please wait before travelling.'):tr('请先处理当前事件或经营状态，再切换场景。','Resolve the current event or studio state before travelling.')}</p>}
+      <div class="world-map">
+       <svg class="map-road" viewBox="0 0 600 350" preserveAspectRatio="none" aria-hidden="true"><path d="M100 70 Q300 50 300 175 T500 280" fill="none" stroke="#b08c63" stroke-width="12" stroke-dasharray="12 8"/></svg>
+       {(Object.keys(sceneText) as (keyof typeof sceneText)[]).map(id=>{
+        const night=view.absoluteSlot%4>=2;
+        const hint=id==='workshop'?(night?tr('加班筹备 · 查看委托进度','Overtime prep · Check jobs'):tr('接单 · 派遣 · 布置','Jobs · Assign · Layout')):id==='canteen'?(night?tr('夜间聚餐 · 休息聊天','Evening meal · Rest & chat'):tr('吃饭 ¥30 · 休息 · 聊天','Meals ¥30 · Rest · Chat')):(night?tr('晚间共学 +2RP · 微调/访友','Evening study +2RP · Train'):tr('学习 +2RP · 微调 · 访友','Study +2RP · Train · Visit'));
+        return <button key={id} disabled={locked} aria-pressed={p.scene===id} onClick={()=>{life('visit',id);setMapOpen(false);}}>
+         <img src={sceneArt(id,p.chapter,night)} alt=""/>
+         {p.scene===id&&<span class="ui2-here-pill">{tr('当前所在','Current')}</span>}
+         <b>{scene(id)}</b>
+         <span class="map-people">{view.actors.filter(a=>a.location===id&&(id===p.scene||p.software.includes('messenger'))).map(a=><span key={a.id} title={names[a.id]}><Portrait id={a.id} variant="map"/></span>)}</span>
+         <span class="ui2-map-hint"><Icon name={id==='workshop'?'briefcase':id==='canteen'?'sun':'book'}/><small>{hint}</small></span>
+        </button>;
+       })}
+      </div>
+     </>
+    ):(
+     <SecondaryFallbackSurface status={secondaryState.status} english={english} onRetry={retrySecondary} onCancel={()=>setMapOpen(false)}/>
+    )}
+   </Dialog>}
 
-   {settings&&secondary&&<secondary.Dialog system className="settings-dialog" returnFocus={()=>moreTrigger.current} title={tr('让这里更合心意','Make yourself at home')} close={()=>setSettings(false)}>
-    <p class="system-intro">{tr('调整界面的语言与显示方式。','Choose the language and appearance of your studio.')}</p>
-    <div class="settings-list">
-     <button aria-pressed={english} onClick={()=>setEnglish(!english)}><span>{tr('界面语言','Interface language')}</span><b>{english?'English':'中文'}</b></button>
-     <button aria-pressed={dark} onClick={()=>setDark(!dark)}><span>{tr('深色界面','Dark interface')}</span><b>{dark?tr('开启','On'):tr('关闭','Off')}</b></button>
-     <button aria-pressed={still} onClick={()=>setStill(!still)}><span>{tr('减少动态效果','Reduce motion')}</span><b>{still?tr('开启','On'):tr('关闭','Off')}</b></button>
-     <button aria-pressed={audioPrefs.sfx} onClick={toggleSfx}><span>{tr('界面与气泡音效','UI & voice blips')}</span><b>{audioPrefs.sfx?tr('开启','On'):tr('关闭','Off')}</b></button>
-     <button aria-pressed={audioPrefs.ambience} onClick={toggleAmbience}><span>{tr('场景环境底噪','Scene ambience')}</span><b>{audioPrefs.ambience?tr('开启','On'):tr('关闭','Off')}</b></button>
-     <button onClick={()=>{setSettings(false);setSaves(true);void game.refresh();}}>{tr('存档与备份','Saves and backups')}</button>
-    </div>
-    <footer class="system-footer"><p>{tr('独立本机存档 · 无真实模型调用','Local independent saves · No real model calls')}</p><a href="./PAPER-DOLL-LICENSE.txt">PaperDoll · MIT</a> · <a href="./art/ai-village/LICENSE.txt" target="_blank" rel="noreferrer">AI Village Q版角色</a></footer>
-   </secondary.Dialog>}
+   {settings&&<Dialog system className="settings-dialog" returnFocus={()=>moreTrigger.current} title={tr('让这里更合心意','Make yourself at home')} close={()=>setSettings(false)}>
+    {secondary?(
+     <>
+      <p class="system-intro">{tr('调整界面的语言与显示方式。','Choose the language and appearance of your studio.')}</p>
+      <div class="settings-list">
+       <button aria-pressed={english} onClick={()=>setEnglish(!english)}><span>{tr('界面语言','Interface language')}</span><b>{english?'English':'中文'}</b></button>
+       <button aria-pressed={dark} onClick={()=>setDark(!dark)}><span>{tr('深色界面','Dark interface')}</span><b>{dark?tr('开启','On'):tr('关闭','Off')}</b></button>
+       <button aria-pressed={still} onClick={()=>setStill(!still)}><span>{tr('减少动态效果','Reduce motion')}</span><b>{still?tr('开启','On'):tr('关闭','Off')}</b></button>
+       <button aria-pressed={audioPrefs.sfx} onClick={toggleSfx}><span>{tr('界面与气泡音效','UI & voice blips')}</span><b>{audioPrefs.sfx?tr('开启','On'):tr('关闭','Off')}</b></button>
+       <button aria-pressed={audioPrefs.ambience} onClick={toggleAmbience}><span>{tr('场景环境底噪','Scene ambience')}</span><b>{audioPrefs.ambience?tr('开启','On'):tr('关闭','Off')}</b></button>
+       <button onClick={()=>{setSettings(false);openSavesModal(moreTrigger.current);}}>{tr('存档与备份','Saves and backups')}</button>
+      </div>
+      <footer class="system-footer"><p>{tr('独立本机存档 · 无真实模型调用','Local independent saves · No real model calls')}</p><a href="./PAPER-DOLL-LICENSE.txt">PaperDoll · MIT</a> · <a href="./art/ai-village/LICENSE.txt" target="_blank" rel="noreferrer">AI Village Q版角色</a></footer>
+     </>
+    ):(
+     <SecondaryFallbackSurface status={secondaryState.status} english={english} onRetry={retrySecondary} onCancel={()=>setSettings(false)}/>
+    )}
+   </Dialog>}
 
    {messengerLayer}
 
-   {view.pending&&secondary&&(()=>{
+   {view.pending&&(()=>{
     const pendingActor=view.actors.find(a=>view.pending!.actors.includes(a.id));
     const taggedId=actorIds.find(id=>view.pending!.id.includes(id));
     const evActor=pendingActor??(taggedId?view.actors.find(a=>a.id===taggedId):undefined)??view.actors.find(a=>a.location===p.scene)??view.actors[0];
     return (
-     <secondary.Dialog className="pending-choice ui2-event-dialog" title={english?view.pending.titleEn??view.pending.title:view.pending.title} close={()=>{}} dismissible={false}>
-      <div class="ui2-event-layout">
-       <div class="ui2-event-media">
-        <img class="event-cover" src={eventArt(view.pending.id)} alt=""/>
-        {evActor&&(
-         <div class="ui2-event-actor">
-          <div class="ui2-event-actor-avatar">
-           <img class="ui2-event-portrait" src={`./art/ai-village/portraits/${evActor.id}.png`} alt=""/>
-           <EmoteBadge emote="sweat" view={view}/>
+     <Dialog className="pending-choice ui2-event-dialog" system={!secondary} title={english?view.pending.titleEn??view.pending.title:view.pending.title} close={()=>{}} dismissible={false}>
+      {secondary?(
+       <div class="ui2-event-layout">
+        <div class="ui2-event-media">
+         <img class="event-cover" src={eventArt(view.pending.id)} alt=""/>
+         {evActor&&(
+          <div class="ui2-event-actor">
+           <div class="ui2-event-actor-avatar">
+            <img class="ui2-event-portrait" src={`./art/ai-village/portraits/${evActor.id}.png`} alt=""/>
+            <EmoteBadge emote="sweat" view={view}/>
+           </div>
+           <div>
+            <b>{names[evActor.id]??evActor.id}</b>
+            <small>“{pickEventQuote(livingCatalog,view.pending.id,evActor.id,english)}”</small>
+           </div>
           </div>
-          <div>
-           <b>{names[evActor.id]??evActor.id}</b>
-           <small>“{pickEventQuote(livingCatalog,view.pending.id,evActor.id,english)}”</small>
-          </div>
-         </div>
-        )}
-        <p class="ui2-muted-note"><Icon name="warning"/> {tr('先作选择，时间才会继续。','Choose an action before time continues.')}</p>
+         )}
+         <p class="ui2-muted-note"><Icon name="warning"/> {tr('先作选择，时间才会继续。','Choose an action before time continues.')}</p>
+        </div>
+        <div class="ui2-event-choices">
+         {view.pending.choices.map((c,index)=><button key={index} class="ui2-choice-card" disabled={busy} onClick={()=>void send({type:'choose',index})}>
+          <b>{english?c.labelEn??c.label:c.label}</b>
+          <span class="ui2-choice-tags">
+           {c.cost!==0&&<em class="is-down">{tr('现金','Cash')} −¥{c.cost}</em>}
+           {c.multiplier!==1&&<em>{tr('速度','Speed')} ×{c.multiplier}</em>}
+           {c.effects?.map((e,ei)=><em key={ei}>{effectLabel(e.kind,e.value,english)}</em>)}
+           {c.cost===0&&c.multiplier===1&&!c.effects?.length&&<em>{tr('无直接数值调整','No direct stat delta')}</em>}
+          </span>
+         </button>)}
+        </div>
        </div>
-       <div class="ui2-event-choices">
-        {view.pending.choices.map((c,index)=><button key={index} class="ui2-choice-card" disabled={busy} onClick={()=>void send({type:'choose',index})}>
-         <b>{english?c.labelEn??c.label:c.label}</b>
-         <span class="ui2-choice-tags">
-          {c.cost!==0&&<em class="is-down">{tr('现金','Cash')} −¥{c.cost}</em>}
-          {c.multiplier!==1&&<em>{tr('速度','Speed')} ×{c.multiplier}</em>}
-          {c.effects?.map((e,ei)=><em key={ei}>{effectLabel(e.kind,e.value,english)}</em>)}
-          {c.cost===0&&c.multiplier===1&&!c.effects?.length&&<em>{tr('无直接数值调整','No direct stat delta')}</em>}
-         </span>
-        </button>)}
-       </div>
-      </div>
-     </secondary.Dialog>
+      ):(
+       <SecondaryFallbackSurface
+        status={secondaryState.status}
+        english={english}
+        onRetry={retrySecondary}
+        mandatoryNote={tr('当前有待决策事件，恢复加载界面模块后即可查看选项并继续推进。','A pending studio event requires your decision. Retry loading the interface module to view choices and continue.')}
+        extraAction={{label:tr('导出当前进度','Export current progress'),disabled:busy,onClick:()=>void game.exportFile()}}
+       />
+      )}
+     </Dialog>
     );
    })()}
 
-   {view.bankrupt&&!view.pending&&secondary&&<secondary.Dialog system className="bankrupt-dialog" title={tr('先喘口气，再重新出发。','Take a breath. Start again.')} close={()=>{}} dismissible={false}>
-    <p>{tr('工作室资金已低于破产底线。你可以保留部分创始人经验并开启新的一轮经营，或者载入更早期的手动存档调整策略。','Studio funds dropped below the bankruptcy floor. Restart with founder experience or load an earlier manual save.')}</p>
-    <div class="button-row">
-     <button class="primary" disabled={busy} onClick={()=>game.requestRestart(clearTransientState)}>{tr('继承经验重开','Restart with founder experience')}</button>
-     <button disabled={busy} onClick={()=>{setSaves(true);void game.refresh();}}>{tr('打开存档列表','Open saves')}</button>
-    </div>
-   </secondary.Dialog>}
+   {view.bankrupt&&!view.pending&&<Dialog system className="bankrupt-dialog" title={tr('先喘口气，再重新出发。','Take a breath. Start again.')} close={()=>{}} dismissible={false}>
+    {secondary?(
+     <>
+      <p>{tr('工作室资金已低于破产底线。你可以保留部分创始人经验并开启新的一轮经营，或者载入更早期的手动存档调整策略。','Studio funds dropped below the bankruptcy floor. Restart with founder experience or load an earlier manual save.')}</p>
+      <div class="button-row">
+       <button class="primary" disabled={busy} onClick={()=>game.requestRestart(clearTransientState)}>{tr('继承经验重开','Restart with founder experience')}</button>
+       <button disabled={busy} onClick={()=>openSavesModal()}>{tr('打开存档列表','Open saves')}</button>
+      </div>
+     </>
+    ):(
+     <SecondaryFallbackSurface
+      status={secondaryState.status}
+      english={english}
+      onRetry={retrySecondary}
+      mandatoryNote={tr('工作室已触发破产保护，恢复加载界面模块后可选择继承经验重开或载入存档。','Studio bankruptcy triggered. Retry loading the interface module to restart with founder XP or load a save.')}
+      extraAction={{label:tr('导出当前进度','Export current progress'),disabled:busy,onClick:()=>void game.exportFile()}}
+     />
+    )}
+   </Dialog>}
 
-   {saves&&secondary&&<secondary.Dialog system className="saves-dialog" returnFocus={()=>moreTrigger.current} title={tr('存档与备份','Saves and backups')} close={()=>setSaves(false)} notice={feedbackChannel==='saves'?notice:null}>
+   {saves&&<Dialog system className="saves-dialog" returnFocus={()=>savesTrigger.current??moreTrigger.current} title={tr('存档与备份','Saves and backups')} close={()=>setSaves(false)} notice={feedbackChannel==='saves'?notice:null}>
     <SaveAlertBanner
      status={game.saveStatus}
      english={english}
@@ -875,18 +1001,36 @@ export function AlphaApp(){
      onExport={()=>void game.exportFile()}
      onRetry={()=>{setDismissedSaveKey(null);void game.retrySave();}}
     />
-    {(update||reloadReady)&&<p class="system-update"><button onClick={()=>update?activateUpdate(update,navigator.serviceWorker,()=>location.reload()):location.reload()}>{tr('已保存或导出进度，刷新到新版本','Progress saved or exported — refresh to new version')}</button></p>}
-    {game.hosted&&<button disabled={busy} onClick={()=>void game.reconcile()}>{tr('只读核对自动档（保留当前进度）','Reconcile autosave without replacing current progress')}</button>}
-    <p class="system-intro">{secondary.backupPolicyCopy(english,game.hosted).dialogIntro}</p>
-    <secondary.SaveSlots records={game.records} busy={busy} english={english} hosted={game.hosted} save={id=>void game.save(id)} load={id=>game.requestLoad(id,clearTransientState)}/>
-    <section class="save-transfer" aria-label={tr('文件备份','File backups')}><h3>{tr('文件备份','File backups')}</h3><button disabled={busy} onClick={()=>void game.exportFile()}>{tr('导出当前进度','Export current progress')}</button><label>{tr('导入文件','Import file')}<input type="file" accept="application/json,.json" disabled={busy} onChange={e=>{e.currentTarget.closest('dialog')?.focus({preventScroll:true});const file=e.currentTarget.files?.[0];if(file)game.requestImportFile(file,clearTransientState);e.currentTarget.value='';}}/></label></section>
-   </secondary.Dialog>}
+    {secondary?(
+     <>
+      {(update||reloadReady)&&<p class="system-update"><button onClick={()=>update?activateUpdate(update,navigator.serviceWorker,()=>location.reload()):location.reload()}>{tr('已保存或导出进度，刷新到新版本','Progress saved or exported — refresh to new version')}</button></p>}
+      {game.hosted&&<button disabled={busy} onClick={()=>void game.reconcile()}>{tr('只读核对自动档（保留当前进度）','Reconcile autosave without replacing current progress')}</button>}
+      <p class="system-intro">{secondary.backupPolicyCopy(english,game.hosted).dialogIntro}</p>
+      <secondary.SaveSlots records={game.records} busy={busy} english={english} hosted={game.hosted} save={id=>void game.save(id)} load={id=>game.requestLoad(id,clearTransientState)}/>
+      <section class="save-transfer" aria-label={tr('文件备份','File backups')}><h3>{tr('文件备份','File backups')}</h3><button disabled={busy} onClick={()=>void game.exportFile()}>{tr('导出当前进度','Export current progress')}</button><label>{tr('导入文件','Import file')}<input type="file" accept="application/json,.json" disabled={busy} onChange={e=>{e.currentTarget.closest('dialog')?.focus({preventScroll:true});const file=e.currentTarget.files?.[0];if(file)game.requestImportFile(file,clearTransientState);e.currentTarget.value='';}}/></label></section>
+     </>
+    ):(
+     <SecondaryFallbackSurface
+      status={secondaryState.status}
+      english={english}
+      onRetry={retrySecondary}
+      onCancel={()=>setSaves(false)}
+      extraAction={{label:tr('导出当前进度','Export current progress'),disabled:busy,onClick:()=>void game.exportFile()}}
+     />
+    )}
+   </Dialog>}
 
    {switchConfirmLayer}
 
-   {arranging&&view.office&&secondary&&<secondary.OfficeEditor view={view} session={game.session} english={english} send={send} onPreview={(items,camera)=>{setLayoutItems(items);cameraDispatch({type:'preview',focus:camera});}} close={()=>{setArranging(false);setLayoutItems(null);cameraDispatch({type:'editor-close'});if(returnTo?.panel==='jobs'){const j=returnTo.jobId;setReturnTo(null);setJobId(j);}}}/>}
+   {arranging&&view.office&&(secondary?(
+    <secondary.OfficeEditor view={view} session={game.session} english={english} send={send} onPreview={(items,camera)=>{setLayoutItems(items);cameraDispatch({type:'preview',focus:camera});}} close={closeOfficeEditor}/>
+   ):(
+    <Dialog system className="office-fallback-dialog" returnFocus={()=>officeTrigger.current??moreTrigger.current} title={tr('布置办公室','Arrange office')} close={closeOfficeEditor}>
+     <SecondaryFallbackSurface status={secondaryState.status} english={english} onRetry={retrySecondary} onCancel={closeOfficeEditor}/>
+    </Dialog>
+   ))}
 
-   {deliveryFeedback&&!view.pending&&!view.bankrupt&&secondary&&(
+   {deliveryFeedback&&!view.pending&&!view.bankrupt&&(secondary?(
     <secondary.DeliveryFeedbackModal
      payload={deliveryFeedback}
      english={english}
@@ -894,9 +1038,13 @@ export function AlphaApp(){
      returnFocus={()=>jobsTrigger.current??moreTrigger.current}
      close={()=>setDeliveryFeedback(null)}
     />
-   )}
+   ):(
+    <Dialog system className="delivery-fallback-dialog" returnFocus={()=>jobsTrigger.current??moreTrigger.current} title={tr('交付结算','Delivery feedback')} close={()=>setDeliveryFeedback(null)}>
+     <SecondaryFallbackSurface status={secondaryState.status} english={english} onRetry={retrySecondary} onCancel={()=>setDeliveryFeedback(null)}/>
+    </Dialog>
+   ))}
 
-   {ritual&&secondary&&<secondary.Dialog className="ui2-ritual-dialog" title={ritual.badge} close={()=>{if(ritualReady)setRitual(null);}}>
+   {ritual&&<Dialog className="ui2-ritual-dialog" title={ritual.badge} close={()=>{if(ritualReady)setRitual(null);}}>
     <div class="ui2-ritual-stage" style={{'--poster-color':ritual.themeColor}} onClick={()=>{if(ritualReady)setRitual(null);}}>
      <img class="ui2-ritual-backdrop" src={ritualBackdropArt} alt="" aria-hidden="true"/>
      <div class="ui2-ritual-beam" aria-hidden="true"/>
@@ -909,7 +1057,7 @@ export function AlphaApp(){
      </div>
      <button class="ui2-ritual-skip" onClick={e=>{e.stopPropagation();setRitual(null);}}>{tr('继续','Continue')}</button>
     </div>
-   </secondary.Dialog>}
+   </Dialog>}
   </div>
  );
 }

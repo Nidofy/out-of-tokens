@@ -722,6 +722,19 @@
   .ui2-advance-popover{max-height:calc(100dvh - 120px)}
  }
 
+ .ui2-secondary-fallback{display:grid;gap:14px;padding:16px;margin:12px;border-radius:14px;background:var(--card);border:1px solid var(--line);color:var(--ink)}
+ .ui2-secondary-fallback[data-load-state=error]{border-color:var(--danger)}
+ .ui2-secondary-fallback-copy{display:flex;align-items:flex-start;gap:10px}
+ .ui2-secondary-fallback-copy>svg{width:20px;height:20px;flex:none;margin-top:2px;color:var(--brass)}
+ .ui2-secondary-fallback[data-load-state=error] .ui2-secondary-fallback-copy>svg{color:var(--danger)}
+ .ui2-secondary-fallback-copy>div{flex:1;min-width:0}
+ .ui2-secondary-fallback-copy b{display:block;font-size:14px;line-height:1.4;overflow-wrap:anywhere}
+ .ui2-secondary-fallback-copy p{margin:4px 0 0;font-size:13px;line-height:1.5;color:var(--muted);overflow-wrap:anywhere}
+ .ui2-secondary-fallback-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+ .ui2-secondary-fallback-actions button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;padding:8px 14px;font-size:13px}
+ .ui2-secondary-fallback-actions button svg{width:15px;height:15px}
+ .system-body>.ui2-secondary-fallback,.stage-hub-body>.ui2-secondary-fallback{margin:12px}
+
  @media(prefers-reduced-motion:reduce){.ui2-choice-card,.ui2-delta-pop,.ui2-stage-chatter,.ui2-stage-bubble,.ui2-period-beat,.ui2-bark-card,.ui2-advance-popover,.ui2-art-slot img,.ui2-delivery-step{transition:none;animation:none}}
  [data-motion=still] .ui2-choice-card,[data-motion=still] .ui2-delta-pop,[data-motion=still] .ui2-stage-chatter,[data-motion=still] .ui2-stage-bubble,[data-motion=still] .ui2-period-beat,[data-motion=still] .ui2-bark-card,[data-motion=still] .ui2-advance-popover,[data-motion=still] .ui2-art-slot img,[data-motion=still] .ui2-delivery-step{transition:none;animation:none}
 }

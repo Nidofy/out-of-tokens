@@ -4,18 +4,41 @@ import {manualSlots,saveSlots} from 'oot-platform';
 import type {SaveSlot,StoredSave,WritableSlot} from 'oot-platform';
 import {backupPolicyCopy} from './experience-ui-copy.js';
 
+export interface NonDismissibleDialogLike {
+ open:boolean;
+ isConnected:boolean;
+ showModal:()=>void;
+ focus:(options?:FocusOptions)=>void;
+ querySelector:<E extends HTMLElement=HTMLElement>(selectors:string)=>E|null;
+}
+
+/** Re-opens mandatory modal dialogs when Chromium CloseWatcher forces native Escape dismissal without prior user activation. */
+export function guardNonDismissibleDialog(dialog:NonDismissibleDialogLike|null,mounted:boolean,dismissible:boolean):boolean{
+ if(!mounted||dismissible||!dialog?.isConnected||dialog.open)return false;
+ dialog.showModal();
+ const focusTarget=dialog.querySelector<HTMLElement>('.ui2-secondary-retry:not(:disabled),button:not(:disabled),[tabindex]:not([tabindex="-1"])')??dialog;
+ focusTarget.focus({preventScroll:true});
+ return true;
+}
+
 export function Dialog({title,close,children,dismissible=true,className='',layout,system=false,notice,returnFocus}:{title:string;close:()=>void;children:ComponentChildren;dismissible?:boolean;className?:string;layout?:'tri'|'single';system?:boolean;notice?:ComponentChildren;returnFocus?:()=>HTMLElement|null}){
  const ref=useRef<HTMLDialogElement>(null);
+ const mountedRef=useRef(false);
+ const dismissibleRef=useRef(dismissible);
+ dismissibleRef.current=dismissible;
+ const restoreMandatoryOpen=()=>{guardNonDismissibleDialog(ref.current,mountedRef.current,dismissibleRef.current);};
  useLayoutEffect(()=>{
   const previous=returnFocus?.()??document.activeElement as HTMLElement|null,dialog=ref.current!;
-  dialog.showModal();dialog.focus({preventScroll:true});
-  return()=>{dialog.close();queueMicrotask(()=>{
+  mountedRef.current=true;
+  if(!dialog.open)dialog.showModal();
+  dialog.focus({preventScroll:true});
+  return()=>{mountedRef.current=false;if(dialog.open)dialog.close();queueMicrotask(()=>{
    // A replacement modal owns focus; restoring an old trigger would steal it.
    if(document.querySelector('dialog[open],[role="dialog"][aria-modal="true"]'))return;
    if(previous?.isConnected)previous.focus({preventScroll:true});
   });};
  },[]);
- return <dialog data-layout={layout} class={`${className}${system?' system-dialog':''}`} ref={ref} tabIndex={-1} aria-label={title} onCancel={e=>{e.preventDefault();if(dismissible)close();}}><div class="dialog-head"><h2>{title}</h2>{dismissible&&<button aria-label="Close / 关闭" onClick={close}>×</button>}</div>{system?<>{notice&&<div class="system-notice">{notice}</div>}<div class="system-body">{children}</div></>:children}</dialog>;
+ return <dialog data-layout={layout} class={`${className}${system?' system-dialog':''}`} ref={ref} tabIndex={-1} aria-label={title} onKeyDown={e=>{if(!dismissible&&e.key==='Escape'){e.preventDefault();e.stopPropagation();}}} onCancel={e=>{e.preventDefault();if(dismissible)close();else queueMicrotask(restoreMandatoryOpen);}} onClose={restoreMandatoryOpen}><div class="dialog-head"><h2>{title}</h2>{dismissible&&<button aria-label="Close / 关闭" onClick={close}>×</button>}</div>{system?<>{notice&&<div class="system-notice">{notice}</div>}<div class="system-body">{children}</div></>:children}</dialog>;
 }
 
 /** Stable slot IDs own records; partial or reordered storage responses never relabel a save. */

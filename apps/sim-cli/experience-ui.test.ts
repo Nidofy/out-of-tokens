@@ -49,6 +49,8 @@ import {executeManualSlotLoad,shouldConfirmBeforeSwitch,switchReasonFromSaveStat
 import {saveBannerIncidentKey} from '../web/src/save-status-ui.js';
 import {shouldHideSceneOnboarding} from '../web/src/onboarding.js';
 import {subscribeLearningPrefs} from '../web/src/experience-ui-state.js';
+import {createSecondaryLoader,resolveRetryModuleUrl} from '../web/src/secondary-loader.js';
+import {guardNonDismissibleDialog} from '../web/src/dialog.js';
 
 test('oot-ui:<lineageId>:* isolates metadata per lineage and evicts LRU beyond 8 namespaces without touching non-oot-ui keys',()=>{
  const store=createMemoryUiStore();
@@ -830,4 +832,110 @@ test('UI quickfix: save error copy, dismissible banner incident grouping, and sc
  }
  expect(shouldHideSceneOnboarding(initialExp,readLearningPrefs(store,'lineage-guide-sync'))).toBe(true);
  stop();
+});
+
+test('VC-R4: resolveRetryModuleUrl extracts Rollup chunk URL under subpaths, appends vcr4Retry, and rejects cross-origin targets',()=>{
+ const compiled='()=>a(()=>import(`./secondary-panels-WzmqbCMa.js`),[],import.meta.url)';
+ expect(resolveRetryModuleUrl(compiled,'http://127.0.0.1:4297/run-chunk-fault/assets/index-B9DifAnd.js',1))
+  .toBe('http://127.0.0.1:4297/run-chunk-fault/assets/secondary-panels-WzmqbCMa.js?vcr4Retry=1');
+ expect(resolveRetryModuleUrl(compiled,'http://127.0.0.1:4297/run-chunk-fault/assets/index-B9DifAnd.js',2))
+  .toBe('http://127.0.0.1:4297/run-chunk-fault/assets/secondary-panels-WzmqbCMa.js?vcr4Retry=2');
+ expect(resolveRetryModuleUrl('()=>loadChunk()','http://127.0.0.1:4297/assets/index.js',1,'TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:4297/assets/secondary-panels-B1pa5jO6.js'))
+  .toBe('http://127.0.0.1:4297/assets/secondary-panels-B1pa5jO6.js?vcr4Retry=1');
+ expect(resolveRetryModuleUrl('()=>import("https://evil.example/secondary.js")','http://127.0.0.1:4297/assets/index.js',1)).toBeNull();
+ expect(resolveRetryModuleUrl(compiled,'http://127.0.0.1:4297/assets/index.js',0)).toBeNull();
+});
+
+test('VC-R4: createSecondaryLoader avoids poisoning retries, prevents auto-retry loops, deduplicates in-flight calls, and busts failed ESM cache',async()=>{
+ type FakeMod={tag:string};
+ const observedStatuses:string[]=[];
+ const requestedUrls:string[]=[];
+ const cachedUrl='http://127.0.0.1:4297/assets/secondary-panels-B1pa5jO6.js';
+ let serverRecovered=false;
+ let gateResolve!:((v:FakeMod)=>void);
+
+ // Simulates Chromium module map caching the failed initial URL forever while accepting new cache-busted URLs.
+ const rawImporter=Object.assign(
+  ()=>{
+   requestedUrls.push(cachedUrl);
+   return Promise.reject(new TypeError(`Failed to fetch dynamically imported module: ${cachedUrl}`));
+  },
+  {toString:()=>'()=>a(()=>import("./secondary-panels-B1pa5jO6.js"),[],import.meta.url)'}
+ );
+
+ const dynamicImporter=(url:string)=>{
+  requestedUrls.push(url);
+  if(!serverRecovered)return Promise.reject(Error('HTTP_503'));
+  return new Promise<FakeMod>(res=>{gateResolve=res;});
+ };
+
+ const loader=createSecondaryLoader<FakeMod>(rawImporter,'http://127.0.0.1:4297/assets/index-Abc.js',dynamicImporter);
+ const unsub=loader.subscribe(s=>observedStatuses.push(s.status));
+
+ // 1. Initial failure resolves null cleanly (no unhandled rejection) and moves to error.
+ const first=await loader.ensure();
+ expect(first).toBeNull();
+ expect(loader.getState()).toEqual({status:'error',module:null,error:'SECONDARY_LOAD_FAILED',attempts:1});
+
+ // 2. Re-opening panels while errored (ensure()) must NOT auto-retry in the background.
+ expect(await loader.ensure()).toBeNull();
+ expect(loader.getState().attempts).toBe(1);
+ expect(requestedUrls).toEqual([cachedUrl]);
+
+ // 3. Explicit retry while server recovers uses ?vcr4Retry=1 and deduplicates concurrent clicks.
+ serverRecovered=true;
+ const r1=loader.retry();
+ const r2=loader.retry();
+ expect(loader.getState().status).toBe('loading');
+ await Promise.resolve();
+ expect(requestedUrls).toEqual([cachedUrl,`${cachedUrl}?vcr4Retry=1`]);
+ const expectedMod={tag:'recovered-secondary'};
+ gateResolve(expectedMod);
+ expect(await Promise.all([r1,r2])).toEqual([expectedMod,expectedMod]);
+ expect(loader.getState()).toEqual({status:'ready',module:expectedMod,error:null,attempts:2});
+
+ // 4. Subsequent opens reuse ready module with zero additional requests.
+ expect(await loader.ensure()).toBe(expectedMod);
+ expect(await loader.retry()).toBe(expectedMod);
+ expect(requestedUrls).toHaveLength(2);
+ expect(observedStatuses).toEqual(['loading','error','loading','ready']);
+ unsub();
+});
+
+test('VC-R4: guardNonDismissibleDialog re-opens non-dismissible modal forced closed by CloseWatcher without reopening unmounted or dismissible dialogs',()=>{
+ let focusedTarget='none';
+ let showModalCount=0;
+ const retryBtn={focus:()=>{focusedTarget='retry';}} as unknown as HTMLElement;
+ const fakeDialog={
+  open:false,
+  isConnected:true,
+  showModal(){showModalCount++;this.open=true;},
+  focus(){focusedTarget='dialog';},
+  querySelector<E extends HTMLElement=HTMLElement>(selectors:string){
+   return (selectors.includes('.ui2-secondary-retry')?retryBtn:null) as E|null;
+  }
+ };
+
+ // 1. Forced native close on an active non-dismissible modal restores modal open + focus.
+ expect(guardNonDismissibleDialog(fakeDialog,true,false)).toBe(true);
+ expect(fakeDialog.open).toBe(true);
+ expect(showModalCount).toBe(1);
+ expect(focusedTarget).toBe('retry');
+
+ // 2. Repeated Escape native close also restores open state.
+ fakeDialog.open=false;
+ focusedTarget='none';
+ expect(guardNonDismissibleDialog(fakeDialog,true,false)).toBe(true);
+ expect(fakeDialog.open).toBe(true);
+ expect(showModalCount).toBe(2);
+ expect(focusedTarget).toBe('retry');
+
+ // 3. Already-open, dismissible, unmounted, or disconnected dialogs never re-open.
+ expect(guardNonDismissibleDialog(fakeDialog,true,false)).toBe(false);
+ fakeDialog.open=false;
+ expect(guardNonDismissibleDialog(fakeDialog,true,true)).toBe(false);
+ expect(guardNonDismissibleDialog(fakeDialog,false,false)).toBe(false);
+ expect(guardNonDismissibleDialog({...fakeDialog,isConnected:false},true,false)).toBe(false);
+ expect(guardNonDismissibleDialog(null,true,false)).toBe(false);
+ expect(showModalCount).toBe(2);
 });
