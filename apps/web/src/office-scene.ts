@@ -3,11 +3,16 @@ import {visualReviewEnabled} from './visual-review.js';
 import {Application,Assets,Container,Graphics,Sprite,Text,Texture,WebGLRenderer,loadEnvironmentExtensions} from 'pixi.js';
 import 'pixi.js/unsafe-eval';
 import type {CapacityExplanation,GameView} from 'oot-platform';
-import {PaperDoll} from './art/paper-doll.js';
-import {loadVillageCharacter,activityPose,characterHeight} from './village-characters.js';
+import {MapleChibiRig,PaperDollRigAdapter} from './art/maple-chibi-rig.js';
+import {loadChibiFxBundle,loadMapleChibiRig,shouldUseChibiRig,warmChibiAssets} from './art/chibi-loader.js';
+import {resolveActorBrain} from './art/actor-brain.js';
+import type {CharacterVisualRig,Facing,PoiKind} from './art/chibi-types.js';
+import {loadVillageCharacter,characterHeight} from './village-characters.js';
 import {reactionFor} from './scene-layout.js';
-import {officeCamera,clampZoom,clampOfficePan,zoomOfficeCamera,defaultCameraPan,slotPoint,clearIdleFurniture,actorPlacements,actorOutsideFrame,workFurnitureHitArea,separateOfficeLabels,syncWorkstationTarget,stepWorkstationTrajectory} from './office-scene-spec.js';
+import {officeCamera,clampZoom,clampOfficePan,zoomOfficeCamera,defaultCameraPan,slotPoint,actorPlacements,actorOutsideFrame,workFurnitureHitArea,separateOfficeLabels,syncWorkstationTarget,stepWorkstationTrajectory} from './office-scene-spec.js';
 import type {CameraPan,CameraZone,OfficeFocus,WorkstationMotionState,WorkstationStage} from './office-scene-spec.js';
+import {bakeOfficeNavGrid,extractOfficePois,findNavPath,pickRoamTarget} from './office-nav.js';
+import type {NavPoint,OfficeNavGrid,OfficePoi} from './office-nav.js';
 import {actorHitArea,furnitureHitArea} from './office-hit-area.js';
 import {names} from './presentation.js';
 import {sceneArt} from './studio-ui.js';
@@ -18,11 +23,17 @@ import {fnvHash} from './living-adapter.js';
 const pixiEnvReady=typeof window!=='undefined'&&WebGLRenderer?loadEnvironmentExtensions(false):Promise.resolve();
 
 export type ActorHeadAnchor={x:number;y:number;visible:boolean};
-type Walker=WorkstationMotionState&{root:Container;shadow:Graphics;paper?:PaperDoll;badge:Container;badgeBg:Graphics;tag:Text;lastTag:string;lastBoost:boolean;id:string;stage:WorkstationStage;height:number;};
+type Walker=WorkstationMotionState&{
+ root:Container;shadow:Graphics;rig?:CharacterVisualRig;
+ badge:Container;badgeBg:Graphics;tag:Text;lastTag:string;lastBoost:boolean;
+ id:string;stage:WorkstationStage;height:number;
+ facing:Facing;path:NavPoint[];poiId:string|null;poiKind:PoiKind;poiFacing:Facing;nextRoamAt:number;
+};
 
 export function warmWorkshopAssets(view:GameView){
  const scene=view.campaign?.scene??'workshop';
- for(const a of view.actors)if(a.location===scene)void loadVillageCharacter(a.id).catch(()=>{});
+ warmChibiAssets(view);
+ for(const a of view.actors)if(a.location===scene&&!shouldUseChibiRig(a.id))void loadVillageCharacter(a.id).catch(()=>{});
  const items=scene==='workshop'?(view.office?.items??[]):[{id:'public-table',kind:scene==='canteen'?'dining':'reading',slot:'meeting-1'}];
  const seen=new Set<string>();
  for(const i of items){
@@ -49,8 +60,39 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
  const inputAbort=new AbortController(),sig={signal:inputAbort.signal},pointers=new Map<number,{startX:number;startY:number;x:number;y:number}>();
  const fixed=visualReviewEnabled?Number(new URLSearchParams(location.search).get('animation-time')??NaN):NaN;
  let lastPresence='';
- const objects=new Map<string,{back:Container;front:Container;kind:string}>(),walkers=new Map<string,Walker>(),textures=new Map<string,Texture>(),requested=new Set<string>(),workHits=new Map<string,ReturnType<typeof workFurnitureHitArea>>(),wander=new Map<string,{ox:number;oy:number;nextAt:number}>();
+ const objects=new Map<string,{back:Container;front:Container;kind:string}>(),walkers=new Map<string,Walker>(),textures=new Map<string,Texture>(),requested=new Set<string>(),workHits=new Map<string,ReturnType<typeof workFurnitureHitArea>>();
  const hitKinds=['basic','standard','whiteboard','coffee','sofa','server','dining','reading'];
+ let navKey='',navGrid:OfficeNavGrid=bakeOfficeNavGrid([]),officePois:OfficePoi[]=[];
+
+ function mountActorRig(target:Walker,id:string){
+  const mountLegacy=()=>loadVillageCharacter(id).then(rig=>{
+   if(dead)return;
+   const adapter=new PaperDollRigAdapter(rig.character,rig.textures);
+   target.rig=adapter;
+   target.root.addChild(adapter.root);
+   queueSync();
+  });
+  if(shouldUseChibiRig(id)){
+   void Promise.all([loadMapleChibiRig(id),loadChibiFxBundle()]).then(([chibi,fx])=>{
+    if(dead)return;
+    const rig=new MapleChibiRig(chibi.data,chibi.textures,fx);
+    target.rig=rig;
+    target.root.addChild(rig.root);
+    queueSync();
+   }).catch(()=>mountLegacy()).catch(()=>{target.tag.text+=' · Art unavailable';});
+  }else{
+   void mountLegacy().catch(()=>{target.tag.text+=' · Art unavailable';});
+  }
+ }
+
+ function ensureNav(scene:string,chapter:number,items:readonly {id:string;kind:string;slot:string|null}[]){
+  const nextKey=`${scene}:${chapter}:${items.filter(i=>i.slot).map(i=>`${i.id}:${i.kind}:${i.slot}`).join(',')}`;
+  if(nextKey===navKey)return;
+  navKey=nextKey;
+  const obstacles=items.filter(i=>i.slot).map(i=>({kind:i.kind,...slotPoint(i.slot!,chapter)}));
+  navGrid=bakeOfficeNavGrid(obstacles);
+  officePois=extractOfficePois(items,chapter,scene);
+ }
 
  function ensureWorkHit(key:string,t:Texture){
   let hit=workHits.get(key);
@@ -81,21 +123,28 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
  function queueSync(){if(syncQueued||dead)return;syncQueued=true;queueMicrotask(()=>{syncQueued=false;sync();});}
  function sync(){if(!latest||dead)return;const v=latest,scene=v.campaign?.scene??'workshop',chapter=v.campaign?.chapter??0;layout=host.closest('[data-mode="layout"]')!==null;
   const still=matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.dataset.motion==='still'||Number.isFinite(fixed);
-  if(scene!==lastScene){for(const a of walkers.values()){a.x=100;a.y=980;a.bx=100;a.by=980;a.tx=100;a.ty=980;a.stage='idle';a.station=null;a.arrived=0;}wander.clear();lastScene=scene;anchorDirty=true;}
+  if(scene!==lastScene){for(const a of walkers.values()){a.x=100;a.y=980;a.bx=100;a.by=980;a.tx=100;a.ty=980;a.stage='idle';a.station=null;a.arrived=0;a.path=[];a.poiId=null;a.poiKind=null;a.facing='right';a.nextRoamAt=0;}lastScene=scene;anchorDirty=true;}
   const targetCam=officeCamera(app.screen.width,app.screen.height,layout?'overview':zone,layoutFocus,layout?1:zoom,layout?defaultCameraPan:pan);
   if(!camDisplay||camBypass||still||layout)camDisplay={x:targetCam.x,y:targetCam.y,scale:targetCam.scale};
   applyCameraValues(targetCam,camDisplay);
   background.set(sceneArt(scene,chapter,v.absoluteSlot%4>=2),v.absoluteSlot%4>=2);
   const items=scene==='workshop'?(v.office?.items??[]):[{id:'public-table',kind:scene==='canteen'?'dining':'reading',slot:'meeting-1'}];
+  ensureNav(scene,chapter,items);
   const present=new Set(items.filter(i=>i.slot).map(i=>i.id));for(const [id,o] of objects)if(!present.has(id)){o.back.destroy({children:true});o.front.destroy({children:true});objects.delete(id);}
   for(const i of items){if(!i.slot)continue;let object=objects.get(i.id);if(object&&object.kind!==i.kind){object.back.destroy({children:true});object.front.destroy({children:true});objects.delete(i.id);object=undefined;}if(!object){object={kind:i.kind,back:furniture(i.kind,'back'),front:furniture(i.kind,'front')};objects.set(i.id,object);world.addChild(object.back,object.front);for(const layer of [object.back,object.front]){const key=i.kind+'-'+(layer===object.front?'front':'back');layer.eventMode='static';layer.cursor='pointer';if(!textures.has(key))layer.hitArea=hitKinds.includes(i.kind)?(workHits.get(key)??{contains:()=>false}):furnitureHitArea(i.kind,layer===object.front?'front':'back');else if(!hitKinds.includes(i.kind))layer.hitArea=furnitureHitArea(i.kind,layer===object.front?'front':'back');layer.on('pointertap',()=>{if(!gestureMoved&&performance.now()>=suppressTapUntil)onFurniture?.(i.id);});}}const p=slotPoint(i.slot,chapter);object.back.position.set(p.x,p.y);object.front.position.set(p.x,p.y);object.back.zIndex=p.y-2;object.front.zIndex=p.y+2;object.back.eventMode=layout?'none':'static';object.front.eventMode=layout?'none':'static';}
   const members=v.actors.filter(a=>a.location===scene);for(const [id,a] of walkers){a.root.visible=members.some(m=>m.id===id);a.badge.visible=a.root.visible;}
-  const placements=actorPlacements(v);for(const a of members){let w=walkers.get(a.id);if(!w){const root=new Container(),badge=new Container(),badgeBg=new Graphics(),tag=new Text({text:names[a.id]??a.id,style:{fontSize:12,fill:0xfff7ea,fontFamily:'PingFang SC, Microsoft YaHei, sans-serif',fontWeight:'600'}});tag.anchor.set(.5,0);badge.addChild(badgeBg,tag);labels.addChild(badge);world.addChild(root);const shadow=new Graphics().ellipse(4,5,38,9).fill({color:0x3b2a1d,alpha:.09}).ellipse(3,4,28,6.5).fill({color:0x3b2a1d,alpha:.14}).ellipse(1,3,17,4).fill({color:0x2c1e14,alpha:.22});root.addChild(shadow);root.eventMode='static';root.cursor='pointer';root.hitArea=actorHitArea(false);root.on('pointertap',()=>{if(!gestureMoved&&performance.now()>=suppressTapUntil)onSelect(a.id);});w={id:a.id,root,shadow,badge,badgeBg,tag,lastTag:'\0',lastBoost:false,stage:'idle',station:null,x:100,y:980,bx:100,by:980,tx:100,ty:980,activity:'idle',zone:'lounge',arrived:0,height:characterHeight(a.id,980)};walkers.set(a.id,w);const target=w;void loadVillageCharacter(a.id).then(rig=>{if(dead)return;target.paper=new PaperDoll(rig.character,rig.textures);target.paper.root.tint=0xfff5e8;target.paper.root.pivot.set(...rig.character.feet);target.paper.root.scale.set(target.height/rig.character.visibleHeight);target.root.addChild(target.paper.root);queueSync();}).catch(()=>{target.tag.text+=' · Art unavailable';});}
+  const placements=actorPlacements(v);for(const a of members){let w=walkers.get(a.id);if(!w){const root=new Container(),badge=new Container(),badgeBg=new Graphics(),tag=new Text({text:names[a.id]??a.id,style:{fontSize:12,fill:0xfff7ea,fontFamily:'PingFang SC, Microsoft YaHei, sans-serif',fontWeight:'600'}});tag.anchor.set(.5,0);badge.addChild(badgeBg,tag);labels.addChild(badge);world.addChild(root);const shadow=new Graphics().ellipse(4,5,38,9).fill({color:0x3b2a1d,alpha:.09}).ellipse(3,4,28,6.5).fill({color:0x3b2a1d,alpha:.14}).ellipse(1,3,17,4).fill({color:0x2c1e14,alpha:.22});root.addChild(shadow);root.eventMode='static';root.cursor='pointer';root.hitArea=actorHitArea(false);root.on('pointertap',()=>{if(!gestureMoved&&performance.now()>=suppressTapUntil)onSelect(a.id);});w={id:a.id,root,shadow,badge,badgeBg,tag,lastTag:'\0',lastBoost:false,stage:'idle',station:null,x:100,y:980,bx:100,by:980,tx:100,ty:980,activity:'idle',zone:'lounge',arrived:0,height:characterHeight(a.id,980),facing:'right',path:[],poiId:null,poiKind:null,poiFacing:'right',nextRoamAt:elapsed+2+(fnvHash(a.id)%350)/100};walkers.set(a.id,w);mountActorRig(w,a.id);}
    w.root.visible=true;w.root.alpha=layout?.28:1;w.badge.visible=!layout;const r=v.office?.reservations[a.id];const placement=placements.find(p=>p.id===a.id)!,seated=placement.seated;
    w.height=characterHeight(a.id,placement.y);
    const targetChanged=w.bx!==placement.x||w.by!==placement.y;
    syncWorkstationTarget(w,placement,still);
-   if(targetChanged){const wd=wander.get(a.id);if(wd){wd.ox=0;wd.oy=0;}}const wd=wander.get(a.id);if(w.stage==='idle'){w.tx=w.bx+(placement.zone==='lounge'&&wd?wd.ox:0);w.ty=w.by+(placement.zone==='lounge'&&wd?wd.oy:0);}w.root.renderable=true;w.root.eventMode=layout?'none':'static';
+   if(w.stage!=='idle'||still){w.path=[];w.poiId=null;w.poiKind=null;}
+   else if(targetChanged){
+    w.poiId=null;w.poiKind=null;
+    w.path=Math.hypot(w.bx-w.x,w.by-w.y)>40?findNavPath(navGrid,{x:w.x,y:w.y},{x:w.bx,y:w.by}):[{x:w.bx,y:w.by}];
+    const first=w.path[0];if(first){w.tx=first.x;w.ty=first.y;}else{w.tx=w.bx;w.ty=w.by;}
+   }
+   w.root.renderable=true;w.root.eventMode=layout?'none':'static';
    const bonus=latestCapacity?.[a.id]?.activeEfficiency??0,boost=seated&&bonus>0?` ✦+${Math.round(bonus*100)}%`:'',tired=a.energy<35?' ⚡':'';
    const hasBoost=!!boost,tagText=(names[a.id]??a.id)+(seated?(english?(camDisplay.scale<.6?'\n':' · ')+(r!.zone==='work'?'Work':'Meet')+boost:r!.zone==='work'?(camDisplay.scale<.6?'\n电脑':' · 电脑')+boost:(camDisplay.scale<.6?'\n会议':' · 会议')):'')+tired;
    if(tagText!==w.lastTag||hasBoost!==w.lastBoost){
@@ -123,30 +172,50 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
   }else{pulseRing.visible=false;pulseTarget=null;}
 
   const chapterNow=latest.campaign?.chapter??0,deskRows=(latest.campaign?.scene==='workshop'?(latest.office?.items??[]):[{kind:'dining',slot:'meeting-1'}]).filter(i=>i.slot&&['basic','standard'].includes(i.kind)).map(i=>slotPoint(i.slot!,chapterNow).y);
+  const animTime=Number.isFinite(fixed)?fixed:elapsed;
   const sitOffsets=new Map<string,number>();
   const outside:string[]=[];for(const w of walkers.values()){if(!w.root.visible)continue;
-   if(w.stage==='idle'){if(still||paused||layout||Number.isFinite(fixed)){w.tx=w.bx;w.ty=w.by;}else if(w.zone==='lounge'&&w.activity==='idle'&&w.arrived>=1){
-    let wd=wander.get(w.id);if(!wd){wd={ox:0,oy:0,nextAt:elapsed+2+(fnvHash(w.id)%350)/100};wander.set(w.id,wd);}
-    if(elapsed>=wd.nextAt){
-     const h=fnvHash(`${w.id}:${Math.floor(elapsed*10)}`),chapter=latest.campaign?.chapter??0,scene=latest.campaign?.scene??'workshop';
-     if(h%3===0&&(wd.ox!==0||wd.oy!==0)){wd.ox=0;wd.oy=0;}else{
-      const ang=(h%360)*(Math.PI/180),rad=24+(h%34),cand={x:Math.max(170,Math.min(1770,w.bx+Math.cos(ang)*rad)),y:Math.max(580,Math.min(980,w.by+Math.sin(ang)*(rad*.55)))};
-      const furn=scene==='workshop'?(latest.office?.items??[]).filter(i=>i.slot&&(['whiteboard','coffee','sofa','server'].includes(i.kind)||(chapter>0&&['basic','standard'].includes(i.kind)))).map(i=>({kind:i.kind,...slotPoint(i.slot!,chapter)})):[];
-      const others=[...walkers.values()].filter(o=>o.id!==w.id&&o.root.visible).map(o=>({x:o.tx,y:o.ty}));
-      const cleared=clearIdleFurniture(cand,furn,others),ox=cleared.x-w.bx,oy=cleared.y-w.by;
-      if(Math.hypot(ox,oy)<=96&&!others.some(o=>Math.abs(o.x-cleared.x)<96&&Math.abs(o.y-cleared.y)<120)){wd.ox=ox;wd.oy=oy;}else{wd.ox=0;wd.oy=0;}
+   if(w.stage==='idle'){
+    if(still||paused||layout||Number.isFinite(fixed)){
+     w.path=[];w.poiId=null;w.poiKind=null;w.tx=w.bx;w.ty=w.by;w.facing='right';
+    }else{
+     if(w.path.length>0){
+      while(w.path.length>1&&Math.hypot(w.path[0]!.x-w.x,w.path[0]!.y-w.y)<=8)w.path.shift();
+      const head=w.path[0]!;w.tx=head.x;w.ty=head.y;
+      if(w.path.length===1&&Math.hypot(head.x-w.x,head.y-w.y)<=2)w.path.shift();
+     }else if(w.zone==='lounge'&&(w.activity==='idle'||w.activity==='rest')&&w.arrived>=1&&elapsed>=w.nextRoamAt){
+      const actor=latest.actors.find(a=>a.id===w.id);
+      const preferRest=w.activity==='rest'||(actor?.energy??100)<40;
+      const occupied=[...walkers.values()].filter(o=>o.id!==w.id&&o.root.visible).map(o=>({x:o.path.at(-1)?.x??o.tx,y:o.path.at(-1)?.y??o.ty}));
+      const reservedPoiIds=new Set<string>();
+      for(const o of walkers.values())if(o.id!==w.id&&o.root.visible&&o.poiId)reservedPoiIds.add(o.poiId);
+      const choice=pickRoamTarget({actorId:w.id,seedKey:`${Math.floor(elapsed*10)}:${latest.absoluteSlot}`,preferRest,origin:{x:w.bx,y:w.by},grid:navGrid,pois:officePois,occupied,reservedPoiIds});
+      w.poiId=choice.poiId;w.poiKind=choice.poiKind;w.poiFacing=choice.facing;
+      w.path=findNavPath(navGrid,{x:w.x,y:w.y},choice.point);
+      const first=w.path[0];if(first){w.tx=first.x;w.ty=first.y;}
+      w.nextRoamAt=elapsed+5.2+(fnvHash(`${w.id}:wait:${Math.floor(elapsed)}`)%450)/100;
      }
-     wd.nextAt=elapsed+4.5+(h%400)/100;
-     w.tx=w.bx+wd.ox;w.ty=w.by+wd.oy;
     }
-   }}
+   }else{
+    w.path=[];w.poiId=null;w.poiKind=null;
+   }
+   const prevX=w.x;
    const step=stepWorkstationTrajectory(w,ms,still,deskRows);
    const sit=step.sit,deskSeated=step.deskSeated;sitOffsets.set(w.id,sit);
-   w.height=characterHeight(w.id,step.scaleY);w.root.position.set(w.x,w.y);w.root.zIndex=step.zIndex;w.root.hitArea=actorHitArea(deskSeated);w.shadow.visible=!deskSeated;if(w.paper){w.paper.root.scale.set(w.height/w.paper.character.visibleHeight);w.paper.root.y=sit;for(const leg of ['leg-left','leg-right']){const n=w.paper.nodes.get(leg);if(n)n.visible=!deskSeated;}w.paper.apply(activityPose(w.paper.character,Number.isFinite(fixed)?fixed:elapsed,w.activity,step.walking,reactionFor(latest,w.id,!!latestCapacity?.[w.id]?.overloaded),still));}
+   if(still){w.facing='right';}
+   else if(step.walking&&Math.abs(w.x-prevX)>0.35){w.facing=w.x>prevX?'right':'left';}
+   else if(!step.walking&&w.poiKind&&!deskSeated){w.facing=w.poiFacing;}
+   w.height=characterHeight(w.id,step.scaleY);w.root.position.set(w.x,w.y);w.root.zIndex=step.zIndex;w.root.hitArea=actorHitArea(deskSeated);w.shadow.visible=!deskSeated;
+   if(w.rig){
+    const overloaded=!!latestCapacity?.[w.id]?.overloaded;
+    const reaction=reactionFor(latest,w.id,overloaded);
+    const brain=resolveActorBrain({view:latest,actorId:w.id,activity:w.activity,zone:w.zone,deskSeated,walking:step.walking,reaction,overloaded,poiKind:w.poiKind,elapsed:animTime,still});
+    w.rig.update({elapsed:animTime,dtMs:ms,height:w.height,sitOffset:sit,deskSeated,walking:step.walking,facing:w.facing,activity:w.activity,reaction,brain,still});
+   }
    if(actorOutsideFrame(w.x,w.y,w.height+(deskSeated?48:0),activeCam.scale,targetCam,app.screen.width,app.screen.height))outside.push(w.id);
    const tagOffset=step.tagOffset;w.badge.position.set(activeCam.x+w.x*activeCam.scale,Math.min(targetCam.clip.y+targetCam.clip.height-w.badge.height-4,activeCam.y+(w.y+tagOffset)*activeCam.scale+(w.zone==='meeting'&&activeCam.scale<.8&&latest.office?.reservations[w.id]?.seat===1?22:0)));if(!outside.includes(w.id))w.badge.x=Math.max(targetCam.clip.x+w.badge.width/2,Math.min(targetCam.clip.x+targetCam.clip.width-w.badge.width/2,w.badge.x));w.badge.visible=!layout&&w.root.visible&&w.root.renderable&&w.badge.x-w.badge.width/2>=targetCam.clip.x&&w.badge.x+w.badge.width/2<=targetCam.clip.x+targetCam.clip.width;
   }
-  const faces=[...walkers.values()].filter(w=>w.root.visible&&w.root.renderable).flatMap(w=>{const face=w.paper?.nodes.get('face');if(!face)return [];const b=face.getBounds();return [{x:b.x,y:b.y,width:b.width,height:b.height}];});
+  const faces=[...walkers.values()].filter(w=>w.root.visible&&w.root.renderable).flatMap(w=>{const b=w.rig?.getFaceBounds();return b?[b]:[];});
   for(const row of separateOfficeLabels([...walkers.values()].filter(w=>w.badge.visible).map(w=>({id:w.id,x:w.badge.x,y:w.badge.y-2,width:w.badge.width,height:w.badge.height})),app.screen.width,app.screen.height,faces)){const w=walkers.get(row.id)!;w.badge.position.set(row.x,row.y+2);}
   const presence=outside.join('|');if(presence!==lastPresence){lastPresence=presence;onPresence?.(outside);}
   if(onAnchors&&(anchorDirty||ms===0||elapsed-lastAnchorEmit>=0.08)){
@@ -154,7 +223,8 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
    const anchors:Record<string,ActorHeadAnchor>={};
    for(const w of walkers.values()){
     const sitY=sitOffsets.get(w.id)??(w.zone==='work'?-48*w.arrived:0);
-    anchors[w.id]={x:Math.round(activeCam.x+w.x*activeCam.scale),y:Math.round(activeCam.y+(w.y+sitY-w.height)*activeCam.scale),visible:!layout&&w.root.visible&&w.root.renderable&&!outside.includes(w.id)};
+    const head=w.rig?w.rig.getHeadAnchorOffset(w.height,sitY):{x:0,y:sitY-w.height};
+    anchors[w.id]={x:Math.round(activeCam.x+(w.x+head.x)*activeCam.scale),y:Math.round(activeCam.y+(w.y+head.y)*activeCam.scale),visible:!layout&&w.root.visible&&w.root.renderable&&!outside.includes(w.id)};
    }
    onAnchors(anchors);
   }
