@@ -89,7 +89,7 @@ export type PoiKind = 'coffee' | 'sofa' | 'whiteboard' | 'server' | 'social' | '
 export interface ActorBrainState {
  macroState: MacroState;
  subAction: SubAction;
- poseKey: ChibiPoseKey;
+ poseKey: ChibiAnyPoseKey;
  primaryFx: ChibiFxId | null;
  secondaryFx: ChibiFxId | null;
  particleFx: ChibiFxId | null;
@@ -102,6 +102,7 @@ export interface ActorVisualInput {
  sitOffset: number;
  deskSeated: boolean;
  walking: boolean;
+ walkingBack?: boolean;
  facing: Facing;
  activity: string;
  reaction: Expression;

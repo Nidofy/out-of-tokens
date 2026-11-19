@@ -293,6 +293,12 @@ export function extractOfficePois(
  return pois;
 }
 
+export interface SocialPeerCandidate {
+ id: string;
+ x: number;
+ y: number;
+}
+
 export interface PickRoamInput {
  actorId: string;
  seedKey: string;
@@ -303,13 +309,20 @@ export interface PickRoamInput {
  pois: readonly OfficePoi[];
  occupied: readonly NavPoint[];
  reservedPoiIds: ReadonlySet<string>;
+ socialPeers?: readonly SocialPeerCandidate[];
 }
 
 /**
- * Deterministic presentation-layer POI selector for autonomous roaming & resting.
+ * Deterministic presentation-layer POI selector for autonomous roaming, resting, and peer socializing.
  */
-export function pickRoamTarget(input: PickRoamInput): {point: NavPoint; poiId: string | null; poiKind: PoiKind; facing: Facing} {
- const {actorId, seedKey, preferRest, origin, current, grid, pois, occupied, reservedPoiIds} = input;
+export function pickRoamTarget(input: PickRoamInput): {
+ point: NavPoint;
+ poiId: string | null;
+ poiKind: PoiKind;
+ facing: Facing;
+ socialPartnerId?: string;
+} {
+ const {actorId, seedKey, preferRest, origin, current, grid, pois, occupied, reservedPoiIds, socialPeers} = input;
  const h = fnvHash(`${actorId}:${seedKey}`);
 
  const isFarEnough = (p: NavPoint) => !current || Math.hypot(p.x - current.x, p.y - current.y) >= 48;
@@ -318,6 +331,31 @@ export function pickRoamTarget(input: PickRoamInput): {point: NavPoint; poiId: s
   if (!isCellWalkable(grid, cell.c, cell.r)) return false;
   return !occupied.some(o => Math.abs(o.x - p.x) < 92 && Math.abs(o.y - p.y) < 76);
  };
+
+ // 1/5 chance during daily idle to walk beside a stationary idle peer for a face-to-face chat.
+ if (!preferRest && socialPeers && socialPeers.length > 0 && h % 5 === 1) {
+  const peer = socialPeers[h % socialPeers.length]!;
+  const sides: readonly {x: number; y: number; facing: Facing}[] = [
+   {x: clamp(peer.x - 108, 170, 1770), y: clamp(peer.y + 4, 580, 960), facing: 'right'},
+   {x: clamp(peer.x + 108, 170, 1770), y: clamp(peer.y + 4, 580, 960), facing: 'left'}
+  ];
+  const others = occupied.filter(o => Math.hypot(o.x - peer.x, o.y - peer.y) > 12);
+  const spot = sides.find(s => {
+   if (!isFarEnough(s)) return false;
+   const cell = worldToCell(grid, s);
+   if (!isCellWalkable(grid, cell.c, cell.r)) return false;
+   return !others.some(o => Math.abs(o.x - s.x) < 92 && Math.abs(o.y - s.y) < 76);
+  });
+  if (spot) {
+   return {
+    point: {x: spot.x, y: spot.y},
+    poiId: `social:${peer.id}`,
+    poiKind: 'social',
+    facing: spot.facing,
+    socialPartnerId: peer.id
+   };
+  }
+ }
 
  // 1/4 chance to return to home lounge anchor when not explicitly seeking rest furniture.
  if (!preferRest && h % 4 === 0 && isFree(origin) && isFarEnough(origin)) {

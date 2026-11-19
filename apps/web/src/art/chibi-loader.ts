@@ -1,11 +1,19 @@
 import {Assets, Texture} from 'pixi.js';
 import type {GameView} from 'oot-platform';
 import {chibiFxArt, chibiFxIds, chibiRigPath, hasChibiRig} from '../chibi-art.js';
-import type {ChibiFxCatalogItem, ChibiFxId, ChibiPoseKey, MapleChibiRigData} from './chibi-types.js';
+import type {
+ ChibiFxCatalogItem,
+ ChibiFxId,
+ ChibiOptionalPoseKey,
+ ChibiPoseKey,
+ MapleChibiRigData
+} from './chibi-types.js';
+
+export type LoadedPoseTextures = Record<ChibiPoseKey, Texture> & Partial<Record<ChibiOptionalPoseKey, Texture>>;
 
 export interface LoadedMapleChibi {
  data: MapleChibiRigData;
- textures: Record<ChibiPoseKey, Texture>;
+ textures: LoadedPoseTextures;
 }
 
 export interface LoadedChibiFxBundle {
@@ -21,7 +29,17 @@ const DEFAULT_FX_CATALOG: readonly Omit<ChibiFxCatalogItem, 'sha256' | 'bytes'>[
  {id: 'emote-excited', file: 'emote-excited.webp', anchor: 'emoteLeft', animationPreset: 'pop', scale: 1.0},
  {id: 'emote-daze', file: 'emote-daze.webp', anchor: 'headTop', animationPreset: 'float', scale: 1.0},
  {id: 'prop-code_bit', file: 'prop-code_bit.webp', anchor: 'propHand', animationPreset: 'rise', scale: 0.7},
- {id: 'prop-coffee_cup', file: 'prop-coffee_cup.webp', anchor: 'emoteRight', animationPreset: 'float', scale: 0.9}
+ {id: 'prop-coffee_cup', file: 'prop-coffee_cup.webp', anchor: 'emoteRight', animationPreset: 'float', scale: 0.9},
+ {id: 'emote-slack', file: 'emote-slack.webp', anchor: 'emoteRight', animationPreset: 'float', scale: 0.9},
+ {id: 'emote-anger', file: 'emote-anger.webp', anchor: 'emoteLeft', animationPreset: 'shake', scale: 0.9},
+ {id: 'emote-dizzy', file: 'emote-dizzy.webp', anchor: 'headTop', animationPreset: 'float', scale: 1.0},
+ {id: 'emote-heart', file: 'emote-heart.webp', anchor: 'emoteRight', animationPreset: 'pop', scale: 0.9},
+ {id: 'emote-alert', file: 'emote-alert.webp', anchor: 'headTop', animationPreset: 'pop', scale: 1.0},
+ {id: 'emote-spark', file: 'emote-spark.webp', anchor: 'emoteLeft', animationPreset: 'pulse', scale: 0.9},
+ {id: 'prop-doc_page', file: 'prop-doc_page.webp', anchor: 'propHand', animationPreset: 'rise', scale: 0.7},
+ {id: 'prop-smoke_puff', file: 'prop-smoke_puff.webp', anchor: 'headTop', animationPreset: 'rise', scale: 0.8},
+ {id: 'prop-dust_step', file: 'prop-dust_step.webp', anchor: 'propHand', animationPreset: 'pop', scale: 0.55},
+ {id: 'prop-heal_leaf', file: 'prop-heal_leaf.webp', anchor: 'emoteRight', animationPreset: 'float', scale: 0.75}
 ];
 
 const rigCache = new Map<string, Promise<LoadedMapleChibi>>();
@@ -118,10 +136,30 @@ export function loadMapleChibiRig(characterId: string): Promise<LoadedMapleChibi
     return [key, tex] as const;
    })
   );
-  return {
-   data,
-   textures: Object.fromEntries(entries) as Record<ChibiPoseKey, Texture>
-  };
+
+  const optionalKeys: readonly ChibiOptionalPoseKey[] = ['back_3q', 'react_front'];
+  const optionalEntries = await Promise.all(
+   optionalKeys.map(async key => {
+    const spec = data.optionalPoses?.[key];
+    if (!spec?.file) return null;
+    try {
+     const tex = await Assets.load<Texture>(base + spec.file);
+     return [key, tex] as const;
+    } catch {
+     return null;
+    }
+   })
+  );
+
+  const validOptionals = optionalEntries.filter(
+   (e): e is readonly [ChibiOptionalPoseKey, Texture] => e !== null
+  );
+  const textures = Object.fromEntries<Texture>([
+   ...entries,
+   ...validOptionals
+  ]) as LoadedPoseTextures;
+
+  return {data, textures};
  })();
 
  rigCache.set(characterId, task);

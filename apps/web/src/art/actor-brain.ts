@@ -1,6 +1,6 @@
 import type {GameView} from 'oot-platform';
 import type {Expression} from './types.js';
-import type {ActorBrainState, ChibiFxId, ChibiPoseKey, MacroState, PoiKind, SubAction} from './chibi-types.js';
+import type {ActorBrainState, ChibiAnyPoseKey, ChibiFxId, MacroState, PoiKind, SubAction} from './chibi-types.js';
 import {fnvHash} from '../living-adapter.js';
 
 export interface ResolveActorBrainInput {
@@ -10,6 +10,7 @@ export interface ResolveActorBrainInput {
  zone: string;
  deskSeated: boolean;
  walking: boolean;
+ walkingBack?: boolean;
  reaction: Expression;
  overloaded: boolean;
  poiKind: PoiKind;
@@ -18,11 +19,11 @@ export interface ResolveActorBrainInput {
 }
 
 /**
- * Pure presentation-layer HFSM router.
+ * Pure presentation-layer HFSM router (Phase 2 full 18-FX + back_3q rear-view support).
  * Strictly read-only on GameView and uses local fnvHash; never touches simulation RNG or save state.
  */
 export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainState {
- const {view, actorId, activity, zone, deskSeated, walking, reaction, overloaded, poiKind, elapsed, still} = input;
+ const {view, actorId, activity, zone, deskSeated, walking, walkingBack = false, reaction, overloaded, poiKind, elapsed, still} = input;
  const actor = view.actors.find(a => a.id === actorId);
  const energy = actor?.energy ?? 100;
  const mood = actor?.mood ?? 65;
@@ -35,7 +36,14 @@ export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainStat
  const isWorking = zone === 'work' || zone === 'meeting' || activity === 'work' || activity === 'review' || activity === 'think';
  if (isWorking) {
   const macroState: MacroState = 'WORK';
-  const poseKey: ChibiPoseKey = walking ? 'walk_3q' : deskSeated ? 'work_front' : 'stand_3q';
+  const meetingRear = !walking && !deskSeated && zone === 'meeting';
+  const poseKey: ChibiAnyPoseKey = walking
+   ? (walkingBack ? 'back_3q' : 'walk_3q')
+   : deskSeated
+    ? 'work_front'
+    : meetingRear
+     ? 'back_3q'
+     : 'stand_3q';
 
   if (overloaded) {
    return {
@@ -43,8 +51,8 @@ export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainStat
     subAction: 'overloaded',
     poseKey,
     primaryFx: 'emote-crash',
-    secondaryFx: 'emote-sweat',
-    particleFx: null
+    secondaryFx: mood < 50 ? 'emote-anger' : 'emote-sweat',
+    particleFx: 'prop-smoke_puff'
    };
   }
   if (blocked) {
@@ -52,8 +60,8 @@ export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainStat
     macroState,
     subAction: 'blocked',
     poseKey,
-    primaryFx: 'emote-sweat',
-    secondaryFx: null,
+    primaryFx: 'emote-alert',
+    secondaryFx: energy < 40 ? 'emote-dizzy' : 'emote-sweat',
     particleFx: null
    };
   }
@@ -62,9 +70,9 @@ export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainStat
     macroState,
     subAction: 'reviewing',
     poseKey,
-    primaryFx: reaction === 'happy' ? 'emote-excited' : 'emote-focus',
+    primaryFx: reaction === 'happy' ? 'emote-spark' : 'emote-focus',
     secondaryFx: null,
-    particleFx: deskSeated ? 'prop-code_bit' : null
+    particleFx: walking ? null : 'prop-doc_page'
    };
   }
   // Purely visual slacking easter egg when mood/energy dips (only in live motion, never alters simulation).
@@ -73,7 +81,7 @@ export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainStat
     macroState,
     subAction: 'slacking',
     poseKey,
-    primaryFx: 'emote-daze',
+    primaryFx: 'emote-slack',
     secondaryFx: null,
     particleFx: null
    };
@@ -82,7 +90,7 @@ export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainStat
    macroState,
    subAction: 'typing',
    poseKey,
-   primaryFx: reaction === 'happy' ? 'emote-excited' : 'emote-focus',
+   primaryFx: reaction === 'happy' ? 'emote-spark' : 'emote-focus',
    secondaryFx: energy < 40 ? 'emote-sweat' : null,
    particleFx: deskSeated ? 'prop-code_bit' : null
   };
@@ -97,25 +105,38 @@ export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainStat
   (!walking && (poiKind === 'sofa' || poiKind === 'coffee'));
  if (isResting) {
   const macroState: MacroState = 'REST';
-  const poseKey: ChibiPoseKey = walking ? 'walk_3q' : 'rest_3q';
+  const brewingAtCoffee = !walking && poiKind === 'coffee';
+  const poseKey: ChibiAnyPoseKey = walking
+   ? (walkingBack ? 'back_3q' : 'walk_3q')
+   : brewingAtCoffee
+    ? 'back_3q'
+    : 'rest_3q';
   let subAction: SubAction = 'napping';
   let primaryFx: ChibiFxId | null = 'emote-zzz';
+  let secondaryFx: ChibiFxId | null = null;
+  let particleFx: ChibiFxId | null = null;
 
   if (activity === 'meal') {
    subAction = 'dining';
    primaryFx = 'prop-coffee_cup';
+   secondaryFx = 'emote-heart';
   } else if (activity === 'read') {
    subAction = 'reading';
-   primaryFx = 'emote-daze';
+   primaryFx = 'emote-spark';
+   particleFx = 'prop-doc_page';
   } else if (poiKind === 'coffee') {
    subAction = 'coffee_break';
    primaryFx = 'prop-coffee_cup';
+   particleFx = 'prop-heal_leaf';
   } else if (poiKind === 'sofa') {
    subAction = activity === 'rest' || reaction === 'sleepy' || energy < 45 || period === 3 ? 'napping' : 'sofa_chill';
    primaryFx = subAction === 'napping' ? 'emote-zzz' : 'prop-coffee_cup';
+   particleFx = 'prop-heal_leaf';
   } else if (energy < 35 || period === 3 || activity === 'rest') {
    subAction = 'napping';
    primaryFx = 'emote-zzz';
+   secondaryFx = energy < 22 ? 'emote-dizzy' : null;
+   particleFx = 'prop-heal_leaf';
   }
 
   return {
@@ -123,19 +144,19 @@ export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainStat
    subAction,
    poseKey,
    primaryFx: walking ? null : primaryFx,
-   secondaryFx: reaction === 'surprised' ? 'emote-sweat' : null,
-   particleFx: null
+   secondaryFx: reaction === 'surprised' ? 'emote-alert' : walking ? null : secondaryFx,
+   particleFx: walking ? null : particleFx
   };
  }
 
- // 3. DAILY macro state: idle, autonomous roam, inspect, social, celebrate.
+ // 3. DAILY macro state: idle, autonomous roam, inspect (back_3q), social, celebrate.
  const macroState: MacroState = 'DAILY';
  if (walking) {
   return {
    macroState,
    subAction: 'roam',
-   poseKey: 'walk_3q',
-   primaryFx: reaction === 'surprised' ? 'emote-sweat' : reaction === 'happy' ? 'emote-excited' : null,
+   poseKey: walkingBack ? 'back_3q' : 'walk_3q',
+   primaryFx: reaction === 'surprised' ? 'emote-alert' : reaction === 'happy' ? 'emote-excited' : null,
    secondaryFx: null,
    particleFx: null
   };
@@ -146,7 +167,7 @@ export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainStat
    subAction: 'celebrate',
    poseKey: 'stand_3q',
    primaryFx: 'emote-excited',
-   secondaryFx: null,
+   secondaryFx: 'emote-heart',
    particleFx: null
   };
  }
@@ -155,8 +176,8 @@ export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainStat
    macroState,
    subAction: 'idle',
    poseKey: 'stand_3q',
-   primaryFx: 'emote-sweat',
-   secondaryFx: null,
+   primaryFx: 'emote-alert',
+   secondaryFx: 'emote-sweat',
    particleFx: null
   };
  }
@@ -164,10 +185,10 @@ export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainStat
   return {
    macroState,
    subAction: 'inspect',
-   poseKey: 'stand_3q',
-   primaryFx: 'emote-daze',
+   poseKey: 'back_3q',
+   primaryFx: poiKind === 'whiteboard' ? 'emote-spark' : 'emote-daze',
    secondaryFx: null,
-   particleFx: null
+   particleFx: poiKind === 'whiteboard' ? 'prop-doc_page' : 'prop-code_bit'
   };
  }
  if (poiKind === 'social') {
@@ -175,7 +196,7 @@ export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainStat
    macroState,
    subAction: 'social',
    poseKey: 'stand_3q',
-   primaryFx: roll < 50 ? 'emote-excited' : null,
+   primaryFx: roll < 55 ? 'emote-heart' : 'emote-spark',
    secondaryFx: null,
    particleFx: null
   };
@@ -185,7 +206,7 @@ export function resolveActorBrain(input: ResolveActorBrainInput): ActorBrainStat
   macroState,
   subAction: 'idle',
   poseKey: 'stand_3q',
-  primaryFx: !still && roll < 18 ? 'emote-daze' : null,
+  primaryFx: !still ? (roll < 12 ? 'emote-daze' : roll < 22 ? 'emote-slack' : null) : null,
   secondaryFx: null,
   particleFx: null
  };

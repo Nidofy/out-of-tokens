@@ -3,29 +3,34 @@ import type {
  ActorVisualInput,
  CharacterVisualRig,
  ChibiAnchors,
+ ChibiAnyPoseKey,
  ChibiFxAnimationPreset,
  ChibiFxId,
+ ChibiOptionalPoseKey,
  ChibiPoseKey,
+ ChibiPoseSpec,
  MapleChibiRigData
 } from './chibi-types.js';
-import type {LoadedChibiFxBundle} from './chibi-loader.js';
+import type {LoadedChibiFxBundle, LoadedPoseTextures} from './chibi-loader.js';
 import {PaperDoll} from './paper-doll.js';
 import {activityPose} from '../village-characters.js';
 import type {Character} from './types.js';
 
 /**
- * Per-pose visual head-size calibration so standing, walking, seated desk work,
- * and curled resting poses maintain pixel-consistent head proportion in-game.
+ * Per-pose visual head-size calibration so standing, walking, rear-view,
+ * seated desk work, and curled resting poses maintain consistent head scale.
  */
-export const DEFAULT_POSE_SCALE: Readonly<Record<ChibiPoseKey, number>> = {
+export const DEFAULT_POSE_SCALE: Readonly<Record<ChibiAnyPoseKey, number>> = {
  stand_3q: 1.0,
  walk_3q: 1.0,
  work_front: 1.1,
- rest_3q: 0.94
+ rest_3q: 0.94,
+ back_3q: 1.0,
+ react_front: 1.0
 };
 
 interface DustPuff {
- gfx: Graphics;
+ node: Container;
  x: number;
  y: number;
  vx: number;
@@ -35,20 +40,26 @@ interface DustPuff {
 
 const FX_BASE_WORLD_SIZE = 40;
 
-export function poseScaleFor(data: MapleChibiRigData, poseKey: ChibiPoseKey): number {
- return data.poses[poseKey]?.poseScale ?? DEFAULT_POSE_SCALE[poseKey];
+export function resolvePoseSpec(data: MapleChibiRigData, poseKey: ChibiAnyPoseKey): ChibiPoseSpec {
+ if (poseKey in data.poses) return data.poses[poseKey as ChibiPoseKey];
+ const opt = data.optionalPoses?.[poseKey as ChibiOptionalPoseKey];
+ return opt ?? data.poses.stand_3q;
 }
 
-export function resolvePoseAnchors(data: MapleChibiRigData, poseKey: ChibiPoseKey): ChibiAnchors {
- return data.poses[poseKey]?.anchors ?? data.anchors;
+export function poseScaleFor(data: MapleChibiRigData, poseKey: ChibiAnyPoseKey): number {
+ return resolvePoseSpec(data, poseKey).poseScale ?? DEFAULT_POSE_SCALE[poseKey];
+}
+
+export function resolvePoseAnchors(data: MapleChibiRigData, poseKey: ChibiAnyPoseKey): ChibiAnchors {
+ return resolvePoseSpec(data, poseKey).anchors ?? data.anchors;
 }
 
 /**
- * 4-layer MapleStory-inspired chibi character rig:
- * L0 GroundFX (walking dust puffs)
- * L1 BodyRig (pose sprite + horizontal flip spring + MapleStory squash/stretch/hop)
+ * 4-layer MapleStory-inspired chibi character rig (Phase 2: back_3q + 18-FX + sprite dust/particles):
+ * L0 GroundFX (prop-dust_step footstep puffs)
+ * L1 BodyRig (pose sprite + horizontal turn + smooth cosine stride/work/rest dynamics)
  * L2 Expression FX layer (shared comic emote stickers with mirrored anchor coords)
- * L3 Prop & ambient particles (e.g. rising workstation code bits)
+ * L3 Prop & ambient particles (code_bit, doc_page, smoke_puff, heal_leaf)
  */
 export class MapleChibiRig implements CharacterVisualRig {
  readonly kind = 'maple-chibi' as const;
@@ -65,7 +76,7 @@ export class MapleChibiRig implements CharacterVisualRig {
  private readonly particles: Sprite[] = [];
  private readonly dustPool: DustPuff[] = [];
 
- private currentPose: ChibiPoseKey = 'stand_3q';
+ private currentPose: ChibiAnyPoseKey = 'stand_3q';
  private facingDisplay = 1; // +1 right, -1 left
  private walkPhase = 0;
  private walkBlend = 0;
@@ -74,7 +85,7 @@ export class MapleChibiRig implements CharacterVisualRig {
 
  constructor(
   private readonly data: MapleChibiRigData,
-  private readonly textures: Record<ChibiPoseKey, Texture>,
+  private readonly textures: LoadedPoseTextures,
   private readonly fxBundle?: LoadedChibiFxBundle
  ) {
   this.root.sortableChildren = true;
@@ -102,15 +113,26 @@ export class MapleChibiRig implements CharacterVisualRig {
    this.particleLayer.addChild(sp);
   }
 
+  const dustTex = fxBundle?.textures.get('prop-dust_step');
   for (let i = 0; i < 3; i++) {
-   const gfx = new Graphics()
-    .circle(0, 0, 3.2)
-    .fill({color: 0xe6d3bc, alpha: 0.36})
-    .circle(3.5, 0.8, 2.1)
-    .fill({color: 0xf2e4d0, alpha: 0.28});
-   gfx.visible = false;
-   this.groundLayer.addChild(gfx);
-   this.dustPool.push({gfx, x: 0, y: 0, vx: 0, age: 1, life: 0.32});
+   const node = new Container();
+   if (dustTex) {
+    const sp = new Sprite(dustTex);
+    sp.anchor.set(0.5);
+    const scale = 18 / Math.max(1, dustTex.width);
+    sp.scale.set(scale);
+    node.addChild(sp);
+   } else {
+    const gfx = new Graphics()
+     .circle(0, 0, 3.2)
+     .fill({color: 0xe6d3bc, alpha: 0.36})
+     .circle(3.5, 0.8, 2.1)
+     .fill({color: 0xf2e4d0, alpha: 0.28});
+    node.addChild(gfx);
+   }
+   node.visible = false;
+   this.groundLayer.addChild(node);
+   this.dustPool.push({node, x: 0, y: 0, vx: 0, age: 1, life: 0.34});
   }
 
   this.root.addChild(this.groundLayer, this.bodyLayer, this.fxLayer, this.particleLayer);
@@ -120,31 +142,33 @@ export class MapleChibiRig implements CharacterVisualRig {
   const puff = this.dustPool[this.dustCursor % this.dustPool.length]!;
   this.dustCursor++;
   puff.x = -facingSign * 14;
-  puff.y = -2;
-  puff.vx = -facingSign * 26;
+  puff.y = -3;
+  puff.vx = -facingSign * 22;
   puff.age = 0;
   puff.life = 0.34;
-  puff.gfx.visible = true;
-  puff.gfx.position.set(puff.x, puff.y);
-  puff.gfx.scale.set(0.65);
-  puff.gfx.alpha = 0.72;
+  puff.node.visible = true;
+  puff.node.position.set(puff.x, puff.y);
+  puff.node.scale.set(facingSign * 0.65, 0.65);
+  puff.node.alpha = 0.62;
  }
 
  private stepDust(dtSec: number, still: boolean): void {
   for (const puff of this.dustPool) {
    if (still || puff.age >= puff.life) {
-    puff.gfx.visible = false;
+    puff.node.visible = false;
     continue;
    }
    puff.age += dtSec;
    if (puff.age >= puff.life) {
-    puff.gfx.visible = false;
+    puff.node.visible = false;
     continue;
    }
    const t = puff.age / puff.life;
-   puff.gfx.position.set(puff.x + puff.vx * puff.age, puff.y - t * 9);
-   puff.gfx.scale.set(0.65 + t * 0.75);
-   puff.gfx.alpha = (1 - t) * 0.65;
+   const sign = puff.vx <= 0 ? 1 : -1;
+   const s = 0.65 + t * 0.55;
+   puff.node.position.set(puff.x + puff.vx * puff.age, puff.y - t * 8);
+   puff.node.scale.set(sign * s, s);
+   puff.node.alpha = (1 - t) * 0.58;
   }
  }
 
@@ -192,35 +216,35 @@ export class MapleChibiRig implements CharacterVisualRig {
   if (!still) {
    const preset: ChibiFxAnimationPreset = meta.animationPreset;
    if (preset === 'pulse') {
-    const p = Math.sin(phase * 5.2);
-    sx = scaleBase * (1 + p * 0.1);
-    sy = scaleBase * (1 + p * 0.1);
-    dy -= 2 + p * 2.5;
+    const p = Math.sin(phase * 4.2);
+    sx = scaleBase * (1 + p * 0.08);
+    sy = scaleBase * (1 + p * 0.08);
+    dy -= 2 + p * 2.0;
    } else if (preset === 'drop') {
-    const cycle = (phase * 1.15) % 1;
-    dy += cycle * 11 - 4;
-    sx = scaleBase * (1 - cycle * 0.12);
-    sy = scaleBase * (1 + cycle * 0.14);
+    const cycle = (phase * 1.1) % 1;
+    dy += cycle * 10 - 4;
+    sx = scaleBase * (1 - cycle * 0.1);
+    sy = scaleBase * (1 + cycle * 0.12);
     alpha = cycle > 0.78 ? (1 - cycle) / 0.22 : 0.95;
    } else if (preset === 'shake') {
-    dx += Math.sin(phase * 28) * 2.6;
-    dy += Math.cos(phase * 22) * 1.3 - 4;
-    rot = Math.sin(phase * 18) * 0.08;
+    dx += Math.sin(phase * 22) * 2.0;
+    dy += Math.cos(phase * 18) * 1.0 - 4;
+    rot = Math.sin(phase * 14) * 0.06;
    } else if (preset === 'float') {
-    const wave = Math.sin(phase * 2.4);
-    dx += Math.cos(phase * 1.5) * 2.5;
-    dy += wave * 4.5 - 4;
-    alpha = 0.86 + wave * 0.1;
+    const wave = Math.sin(phase * 2.1);
+    dx += Math.cos(phase * 1.4) * 2.2;
+    dy += wave * 4.0 - 4;
+    alpha = 0.88 + wave * 0.08;
    } else if (preset === 'pop') {
-    const bounce = Math.abs(Math.sin(phase * 4.4));
-    sx = scaleBase * (0.9 + bounce * 0.22);
-    sy = scaleBase * (0.9 + bounce * 0.22);
-    dy -= bounce * 5;
-    rot = Math.sin(phase * 4.4) * 0.12;
+    const lift = (1 - Math.cos(phase * 5.2)) * 0.5;
+    sx = scaleBase * (0.92 + lift * 0.16);
+    sy = scaleBase * (0.92 + lift * 0.16);
+    dy -= lift * 4.5;
+    rot = Math.sin(phase * 2.6) * 0.08;
    } else if (preset === 'rise') {
-    const cycle = (phase * 0.9) % 1;
+    const cycle = (phase * 0.85) % 1;
     dy -= cycle * 18;
-    alpha = Math.sin(cycle * Math.PI) * 0.95;
+    alpha = Math.sin(cycle * Math.PI) * 0.94;
    }
   }
 
@@ -249,39 +273,52 @@ export class MapleChibiRig implements CharacterVisualRig {
    for (const sp of this.particles) sp.visible = false;
    return;
   }
-  const hand = anchors.propHand ?? anchors.faceCenter;
-  const originX = (hand[0] - feet[0]) * baseScale * facingSign;
-  const originY = (hand[1] - feet[1]) * baseScale + sitY - 24;
-  const scaleBase = 20 / Math.max(1, tex.width);
+  const isSmoke = particleId === 'prop-smoke_puff';
+  const isHeal = particleId === 'prop-heal_leaf';
+  const anchor = isSmoke ? anchors.headTop : isHeal ? anchors.faceCenter : (anchors.propHand ?? anchors.faceCenter);
+  const originX = (anchor[0] - feet[0]) * baseScale * facingSign;
+  const originY = (anchor[1] - feet[1]) * baseScale + sitY - (isSmoke ? 20 : isHeal ? 8 : 24);
+  const targetPx = isSmoke ? 24 : isHeal ? 20 : 20;
+  const scaleBase = targetPx / Math.max(1, tex.width);
+  const speed = isSmoke ? 0.65 : isHeal ? 0.48 : 0.72;
 
   this.particles.forEach((sp, idx) => {
-   const cycle = (elapsed * 0.75 + idx * 0.5) % 1;
+   const cycle = (elapsed * speed + idx * 0.5) % 1;
    sp.texture = tex;
    sp.visible = true;
+   const spreadX = isSmoke ? (idx === 0 ? -10 : 12) : isHeal ? (idx === 0 ? -24 : 24) : (idx === 0 ? -14 : 14);
+   const driftY = isSmoke ? 34 : isHeal ? 26 : 30;
    sp.position.set(
-    originX + (idx === 0 ? -14 : 14) + Math.sin(cycle * Math.PI * 2 + idx) * 6,
-    originY - cycle * 32
+    originX + spreadX + Math.sin(cycle * Math.PI * 2 + idx) * (isHeal ? 7 : 5),
+    originY - cycle * driftY
    );
-   const s = scaleBase * (0.75 + Math.sin(cycle * Math.PI) * 0.35);
+   const s = scaleBase * (isSmoke ? 0.65 + cycle * 0.65 : 0.75 + Math.sin(cycle * Math.PI) * 0.3);
    sp.scale.set(s);
-   sp.alpha = Math.sin(cycle * Math.PI) * 0.85;
-   sp.rotation = (cycle - 0.5) * 0.35;
+   sp.alpha = Math.sin(cycle * Math.PI) * (isSmoke ? 0.78 : 0.86);
+   sp.rotation = isSmoke ? (cycle - 0.5) * 0.25 : (cycle - 0.5) * 0.3;
   });
  }
 
+ private resolveAvailablePose(requested: ChibiAnyPoseKey): ChibiAnyPoseKey {
+  if (this.textures[requested]) return requested;
+  return 'stand_3q';
+ }
+
  update(input: ActorVisualInput): void {
-  const {elapsed, dtMs, height, sitOffset, deskSeated, walking, facing, brain, still} = input;
+  const {elapsed, dtMs, height, sitOffset, deskSeated, walking, walkingBack = false, facing, brain, still} = input;
   const dtSec = Math.max(0, dtMs) / 1000;
   const profile = this.data.motionProfile;
 
-  // Choose pose: calm, grounded 2-frame stride with smooth walkBlend fade in/out.
-  let poseKey: ChibiPoseKey = brain.poseKey;
+  // Choose pose: calm, grounded stride; gracefully supports back_3q when walking up or inspecting rear POIs.
+  let requestedPose: ChibiAnyPoseKey = brain.poseKey;
   if (walking && !still) {
    const strideHz = Math.max(1.2, profile.stepCadenceHz * 0.56); // ~1.8 cycles/s (~278ms per pose)
    this.walkPhase += dtSec * strideHz;
    this.walkBlend = Math.min(1, this.walkBlend + dtSec * 6.5);
    const stepBucket = Math.floor(this.walkPhase * 2);
-   poseKey = stepBucket % 2 === 1 ? 'walk_3q' : 'stand_3q';
+   requestedPose = walkingBack && this.textures.back_3q
+    ? 'back_3q'
+    : (stepBucket % 2 === 1 ? 'walk_3q' : 'stand_3q');
    if (stepBucket !== this.lastStepBucket) {
     this.lastStepBucket = stepBucket;
     if (stepBucket % 4 === 0) this.spawnDust(facing === 'right' ? 1 : -1);
@@ -292,21 +329,22 @@ export class MapleChibiRig implements CharacterVisualRig {
     this.walkPhase = 0;
     this.lastStepBucket = -1;
    }
-   if (walking && still) poseKey = 'stand_3q';
+   if (walking && still) requestedPose = 'stand_3q';
   }
   if (deskSeated) {
-   poseKey = 'work_front';
+   requestedPose = 'work_front';
    this.walkBlend = 0;
    this.walkPhase = 0;
   }
 
+  const poseKey = this.resolveAvailablePose(requestedPose);
   this.currentPose = poseKey;
-  const poseSpec = this.data.poses[poseKey];
+  const poseSpec = resolvePoseSpec(this.data, poseKey);
   const feet = poseSpec.feet ?? this.data.feet;
   const anchors = resolvePoseAnchors(this.data, poseKey);
 
   // Swap texture & pivot cleanly.
-  const tex = this.textures[poseKey];
+  const tex = this.textures[poseKey] ?? this.textures.stand_3q;
   if (this.bodySprite.texture !== tex) this.bodySprite.texture = tex;
   this.bodySprite.pivot.set(feet[0], feet[1]);
 
@@ -340,7 +378,7 @@ export class MapleChibiRig implements CharacterVisualRig {
    if (walking || this.walkBlend > 0.01) {
     const b = this.walkBlend;
     const cosWave = Math.cos(this.walkPhase * Math.PI * 2);
-    const smoothLift = (1 - cosWave) * 0.5; // 0..1 smooth cosine bob (no sharp cusps)
+    const smoothLift = (1 - cosWave) * 0.5;
     const hopAmp = Math.min(3.0, profile.hopHeight * 0.28);
     const squashAmp = Math.min(0.013, profile.squashAmount * 0.22);
     offsetY -= smoothLift * hopAmp * b;
@@ -368,7 +406,6 @@ export class MapleChibiRig implements CharacterVisualRig {
      dynScaleY = 1 + nod * 0.01;
      rotation = Math.sin(elapsed * 1.4) * 0.014;
     } else {
-     // typing: calm, steady micro-rhythm
      const tap = (1 + Math.sin(elapsed * 5.0)) * 0.5;
      offsetY -= tap * 1.0;
      dynScaleX = 1 + (0.5 - tap) * 0.012;
@@ -395,7 +432,6 @@ export class MapleChibiRig implements CharacterVisualRig {
     dynScaleY = 1 - (0.5 - lift) * 0.03;
     rotation = Math.sin(elapsed * 3.25) * 0.02;
    } else {
-    // DAILY idle / inspect / social
     const breath = Math.sin(elapsed * 1.9);
     const amp = profile.breathAmp * 0.48;
     dynScaleY = 1 + breath * amp;
@@ -417,14 +453,13 @@ export class MapleChibiRig implements CharacterVisualRig {
  }
 
  getFaceBounds(): {x: number; y: number; width: number; height: number} | null {
-  const poseSpec = this.data.poses[this.currentPose];
+  const poseSpec = resolvePoseSpec(this.data, this.currentPose);
   const feet = poseSpec.feet ?? this.data.feet;
   const anchors = resolvePoseAnchors(this.data, this.currentPose);
   const scaleX = Math.abs(this.bodySprite.scale.x);
   const scaleY = Math.abs(this.bodySprite.scale.y);
   if (scaleX <= 0 || scaleY <= 0) return null;
 
-  // Use true pose faceCenter/headTop anchors so transparent canvas padding never skews label avoidance.
   const localFaceY = (anchors.faceCenter[1] - feet[1]) * scaleY;
   const localTopY = (anchors.headTop[1] - feet[1]) * scaleY;
   const halfH = Math.max(20, (localFaceY - localTopY) * 0.72);
@@ -440,7 +475,7 @@ export class MapleChibiRig implements CharacterVisualRig {
  }
 
  getHeadAnchorOffset(height: number, sitOffset: number): {x: number; y: number} {
-  const poseSpec = this.data.poses[this.currentPose];
+  const poseSpec = resolvePoseSpec(this.data, this.currentPose);
   const feet = poseSpec.feet ?? this.data.feet;
   const anchors = resolvePoseAnchors(this.data, this.currentPose);
   const pScale = poseScaleFor(this.data, this.currentPose);

@@ -6,7 +6,7 @@ import {content} from './content.js';
 import {actorIds} from './studio-ui.js';
 import {createWorkshop} from './scene.js';
 
-type BluewhaleDemoMode='daily'|'work'|'overload'|'rest';
+type BluewhaleDemoMode='daily'|'work'|'review'|'overload'|'blocked'|'rest';
 
 // DEV-only visual fixture; never uses useGame, storage or actual player state.
 export function SceneLab(){
@@ -41,8 +41,9 @@ export function SceneLab(){
   }
   const bw=s.actors.find(a=>a.id==='bluewhale');
   let cap:Readonly<Record<string,CapacityExplanation>>|undefined;
+  let vm=getViewModel(s,c);
   if(scene==='workshop'){
-   if(demoMode==='work'||demoMode==='overload'){
+   if(demoMode==='work'||demoMode==='overload'||demoMode==='blocked'){
     const job=s.jobs[0]!;
     job.status='working';
     job.team=[{character:'bluewhale',role:'worker',mode:'local'},{character:'qwen',role:'reviewer',mode:'cloud'}];
@@ -51,16 +52,35 @@ export function SceneLab(){
      office.reservations.qwen={item:'f4',seat:0,job:job.id,zone:'meeting'};
     }
     if(demoMode==='overload'){
-     cap={bluewhale:{actorId:'bluewhale',activeJobCount:2,activeLoad:2,overloaded:true,activeEfficiency:0.15,activeEnergyCost:22,station:'basic',workRole:'worker',effectiveLoad:2,loadPenalty:0.25,projectedLoad:2,projectedOverloaded:true,energy:42,lowEnergy:false,energyPenalty:0,mood:45,moodFactor:1,effectiveOutputFactor:0.75} as unknown as CapacityExplanation};
+     if(bw)bw.mood=42;
+     cap={bluewhale:{actorId:'bluewhale',activeJobCount:2,activeLoad:2,overloaded:true,activeEfficiency:0.15,activeEnergyCost:22,station:'basic',workRole:'worker',effectiveLoad:2,loadPenalty:0.25,projectedLoad:2,projectedOverloaded:true,energy:42,lowEnergy:false,energyPenalty:0,mood:42,moodFactor:1,effectiveOutputFactor:0.75} as unknown as CapacityExplanation};
     }
+    if(demoMode==='blocked'){
+     if(bw)bw.energy=32;
+    }
+    vm=getViewModel(s,c);
+    if(demoMode==='blocked'){
+     vm={...vm,possibleStops:['bluewhale']};
+    }
+   }else if(demoMode==='review'){
+    const job=s.jobs[0]!;
+    job.status='working';
+    job.team=[{character:'bluewhale',role:'reviewer',mode:'cloud'},{character:'qwen',role:'worker',mode:'local'}];
+    if(office){
+     office.reservations.bluewhale={item:'f4',seat:0,job:job.id,zone:'meeting'};
+     office.reservations.qwen={item:'f1',seat:0,job:job.id,zone:'work'};
+    }
+    vm=getViewModel(s,c);
    }else if(demoMode==='rest'){
     s.absoluteSlot=3;
     if(bw)bw.energy=28;
+    vm=getViewModel(s,c);
    }
   }else{
    for(const a of s.actors)a.busyUntil=1;
+   vm=getViewModel(s,c);
   }
-  renderer.current.update(getViewModel(s,c),'zh',null,'overview',undefined,undefined,false,cap);
+  renderer.current.update(vm,'zh',null,'overview',undefined,undefined,false,cap);
  },[ready,scene,level,demoMode]);
 
  return (
@@ -72,7 +92,7 @@ export function SceneLab(){
      {(['workshop','canteen','library'] as const).map(id=><button key={id} onClick={()=>setScene(id)}>{id}</button>)}
      {[0,1,3].map(n=><button key={n} onClick={()=>setLevel(n)}>Office {n}</button>)}
      <span>| Bluewhale:</span>
-     {(['daily','work','overload','rest'] as const).map(m=><button key={m} style={demoMode===m?'font-weight:700;text-decoration:underline':''} onClick={()=>setDemoMode(m)}>{m}</button>)}
+     {(['daily','work','review','overload','blocked','rest'] as const).map(m=><button key={m} style={demoMode===m?'font-weight:700;text-decoration:underline':''} onClick={()=>setDemoMode(m)}>{m}</button>)}
      <button onClick={()=>setLegacyFallback(v=>!v)}>{legacyFallback?'Rig: Legacy PaperDoll':'Rig: MapleChibi'}</button>
      <button onClick={()=>setStillDemo(v=>!v)}>{stillDemo?'Motion: Still':'Motion: Full'}</button>
     </div>

@@ -5,11 +5,11 @@ import {createInitialState,getViewModel} from 'oot-core';
 import {loadFullContent} from 'oot-content';
 import {resolveActorBrain} from '../web/src/art/actor-brain.js';
 import {bakeOfficeNavGrid,extractOfficePois,findNavPath,isCellWalkable,pickRoamTarget} from '../web/src/office-nav.js';
-import {DEFAULT_POSE_SCALE,poseScaleFor,resolvePoseAnchors} from '../web/src/art/maple-chibi-rig.js';
+import {DEFAULT_POSE_SCALE,poseScaleFor,resolvePoseAnchors,resolvePoseSpec} from '../web/src/art/maple-chibi-rig.js';
 import type {ChibiFxCatalogItem,MapleChibiRigData} from '../web/src/art/chibi-types.js';
 import {slotPoint} from '../web/src/office-scene-spec.js';
 
-describe('Phase 1 MapleChibi engine: NavGrid A*, ActorBrain HFSM, and Rig schema', () => {
+describe('Phase 1 & 2 MapleChibi engine: NavGrid A*, ActorBrain HFSM, back_3q and 18-FX schema', () => {
  it('routes around workstation desks without clipping through blocked footprints', () => {
   const desk = slotPoint('work-2', 0); // (900, 795)
   const grid = bakeOfficeNavGrid([
@@ -25,7 +25,6 @@ describe('Phase 1 MapleChibi engine: NavGrid A*, ActorBrain HFSM, and Rig schema
   expect(path.length).toBeGreaterThanOrEqual(2);
   expect(path.at(-1)).toEqual(goal);
 
-  // Sample segments between waypoints: no intermediate point may pass through the desk center footprint.
   const all = [start, ...path];
   for (let i = 0; i < all.length - 1; i++) {
    const a = all[i]!;
@@ -41,7 +40,7 @@ describe('Phase 1 MapleChibi engine: NavGrid A*, ActorBrain HFSM, and Rig schema
   }
  });
 
- it('extracts coffee/sofa/whiteboard POIs and deterministically prioritizes rest POIs when tired', () => {
+ it('extracts coffee/sofa/whiteboard POIs, supports rest prioritization and peer social spots', () => {
   const items = [
    {id: 'f1', kind: 'basic', slot: 'work-1'},
    {id: 'f4', kind: 'whiteboard', slot: 'meeting-1'},
@@ -81,9 +80,33 @@ describe('Phase 1 MapleChibi engine: NavGrid A*, ActorBrain HFSM, and Rig schema
   const col = Math.floor((restPickA.point.x - grid.originX) / grid.cellSize);
   const row = Math.floor((restPickA.point.y - grid.originY) / grid.cellSize);
   expect(isCellWalkable(grid, col, row)).toBe(true);
+
+  // Verify peer social pairing triggers cleanly on deterministic seeds when an open aisle peer is available.
+  let socialPick = null;
+  for (let i = 0; i < 30; i++) {
+   const pick = pickRoamTarget({
+    actorId: 'bluewhale',
+    seedKey: `social-probe-${i}`,
+    preferRest: false,
+    origin: {x: 335, y: 655},
+    current: {x: 335, y: 655},
+    grid,
+    pois,
+    occupied: [{x: 900, y: 920}],
+    reservedPoiIds: new Set(),
+    socialPeers: [{id: 'qwen', x: 900, y: 920}]
+   });
+   if (pick.poiKind === 'social') {
+    socialPick = pick;
+    break;
+   }
+  }
+  expect(socialPick).not.toBeNull();
+  expect(socialPick!.socialPartnerId).toBe('qwen');
+  expect(Math.abs(socialPick!.point.x - 900)).toBeGreaterThanOrEqual(100);
  });
 
- it('maps DAILY, WORK, and REST macro states and A1 comic FX deterministically without mutating view', () => {
+ it('maps DAILY, WORK, REST, back_3q rear views and full 18-FX routing without mutating view', () => {
   const c = loadFullContent();
   const s = createInitialState(c, 1);
   const view = getViewModel(s, c);
@@ -100,6 +123,16 @@ describe('Phase 1 MapleChibi engine: NavGrid A*, ActorBrain HFSM, and Rig schema
   expect(workTyping.primaryFx).toBe('emote-focus');
   expect(workTyping.particleFx).toBe('prop-code_bit');
 
+  const workReviewMeeting = resolveActorBrain({
+   view, actorId: 'bluewhale', activity: 'review', zone: 'meeting',
+   deskSeated: false, walking: false, reaction: 'neutral', overloaded: false,
+   poiKind: null, elapsed: 4, still: false
+  });
+  expect(workReviewMeeting.macroState).toBe('WORK');
+  expect(workReviewMeeting.subAction).toBe('reviewing');
+  expect(workReviewMeeting.poseKey).toBe('back_3q');
+  expect(workReviewMeeting.particleFx).toBe('prop-doc_page');
+
   const workOverload = resolveActorBrain({
    view, actorId: 'bluewhale', activity: 'work', zone: 'work',
    deskSeated: true, walking: false, reaction: 'surprised', overloaded: true,
@@ -108,7 +141,16 @@ describe('Phase 1 MapleChibi engine: NavGrid A*, ActorBrain HFSM, and Rig schema
   expect(workOverload.macroState).toBe('WORK');
   expect(workOverload.subAction).toBe('overloaded');
   expect(workOverload.primaryFx).toBe('emote-crash');
-  expect(workOverload.secondaryFx).toBe('emote-sweat');
+  expect(workOverload.particleFx).toBe('prop-smoke_puff');
+
+  const blockedView = {...view, possibleStops: ['bluewhale']};
+  const workBlocked = resolveActorBrain({
+   view: blockedView, actorId: 'bluewhale', activity: 'work', zone: 'work',
+   deskSeated: true, walking: false, reaction: 'surprised', overloaded: false,
+   poiKind: null, elapsed: 4, still: false
+  });
+  expect(workBlocked.subAction).toBe('blocked');
+  expect(workBlocked.primaryFx).toBe('emote-alert');
 
   const restNap = resolveActorBrain({
    view, actorId: 'bluewhale', activity: 'rest', zone: 'lounge',
@@ -118,6 +160,7 @@ describe('Phase 1 MapleChibi engine: NavGrid A*, ActorBrain HFSM, and Rig schema
   expect(restNap.macroState).toBe('REST');
   expect(restNap.poseKey).toBe('rest_3q');
   expect(restNap.primaryFx).toBe('emote-zzz');
+  expect(restNap.particleFx).toBe('prop-heal_leaf');
 
   const restCoffee = resolveActorBrain({
    view, actorId: 'bluewhale', activity: 'idle', zone: 'lounge',
@@ -126,8 +169,27 @@ describe('Phase 1 MapleChibi engine: NavGrid A*, ActorBrain HFSM, and Rig schema
   });
   expect(restCoffee.macroState).toBe('REST');
   expect(restCoffee.subAction).toBe('coffee_break');
-  expect(restCoffee.poseKey).toBe('rest_3q');
+  expect(restCoffee.poseKey).toBe('back_3q');
   expect(restCoffee.primaryFx).toBe('prop-coffee_cup');
+
+  const dailyInspectWb = resolveActorBrain({
+   view, actorId: 'bluewhale', activity: 'idle', zone: 'lounge',
+   deskSeated: false, walking: false, reaction: 'neutral', overloaded: false,
+   poiKind: 'whiteboard', elapsed: 4, still: false
+  });
+  expect(dailyInspectWb.macroState).toBe('DAILY');
+  expect(dailyInspectWb.subAction).toBe('inspect');
+  expect(dailyInspectWb.poseKey).toBe('back_3q');
+  expect(dailyInspectWb.primaryFx).toBe('emote-spark');
+  expect(dailyInspectWb.particleFx).toBe('prop-doc_page');
+
+  const dailySocial = resolveActorBrain({
+   view, actorId: 'bluewhale', activity: 'idle', zone: 'lounge',
+   deskSeated: false, walking: false, reaction: 'neutral', overloaded: false,
+   poiKind: 'social', elapsed: 4, still: false
+  });
+  expect(dailySocial.subAction).toBe('social');
+  expect(['emote-heart', 'emote-spark']).toContain(dailySocial.primaryFx);
 
   const dailyCelebrate = resolveActorBrain({
    view, actorId: 'bluewhale', activity: 'idle', zone: 'lounge',
@@ -138,20 +200,20 @@ describe('Phase 1 MapleChibi engine: NavGrid A*, ActorBrain HFSM, and Rig schema
   expect(dailyCelebrate.subAction).toBe('celebrate');
   expect(dailyCelebrate.poseKey).toBe('stand_3q');
   expect(dailyCelebrate.primaryFx).toBe('emote-excited');
+  expect(dailyCelebrate.secondaryFx).toBe('emote-heart');
 
-  const dailyWalk = resolveActorBrain({
+  const dailyWalkUp = resolveActorBrain({
    view, actorId: 'bluewhale', activity: 'idle', zone: 'lounge',
-   deskSeated: false, walking: true, reaction: 'neutral', overloaded: false,
+   deskSeated: false, walking: true, walkingBack: true, reaction: 'neutral', overloaded: false,
    poiKind: 'roam', elapsed: 4, still: false
   });
-  expect(dailyWalk.macroState).toBe('DAILY');
-  expect(dailyWalk.subAction).toBe('roam');
-  expect(dailyWalk.poseKey).toBe('walk_3q');
+  expect(dailyWalkUp.subAction).toBe('roam');
+  expect(dailyWalkUp.poseKey).toBe('back_3q');
 
   expect(JSON.stringify(view)).toBe(before);
  });
 
- it('loads shipped bluewhale rig.json and fx/catalog.json with calibrated per-pose scale and anchors', () => {
+ it('loads shipped bluewhale rig.json (with back_3q) and 18-item fx/catalog.json', () => {
   const rig = JSON.parse(
    readFileSync(resolve('apps/web/public/art/chibi/characters/bluewhale/rig.json'), 'utf8')
   ) as MapleChibiRigData;
@@ -164,6 +226,8 @@ describe('Phase 1 MapleChibi engine: NavGrid A*, ActorBrain HFSM, and Rig schema
   expect(poseScaleFor(rig, 'stand_3q')).toBe(DEFAULT_POSE_SCALE.stand_3q);
   expect(poseScaleFor(rig, 'work_front')).toBeGreaterThan(1);
   expect(poseScaleFor(rig, 'rest_3q')).toBeLessThan(1);
+  expect(poseScaleFor(rig, 'back_3q')).toBe(1);
+  expect(resolvePoseSpec(rig, 'back_3q').file).toBe('back_3q.webp');
   expect(resolvePoseAnchors(rig, 'work_front').headTop[1]).toBeGreaterThan(resolvePoseAnchors(rig, 'stand_3q').headTop[1]);
   expect(rig.optionalPoses?.back_3q?.file).toBe('back_3q.webp');
   expect(fx).toHaveLength(18);
