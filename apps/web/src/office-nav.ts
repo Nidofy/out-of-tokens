@@ -298,6 +298,7 @@ export interface PickRoamInput {
  seedKey: string;
  preferRest: boolean;
  origin: NavPoint;
+ current?: NavPoint;
  grid: OfficeNavGrid;
  pois: readonly OfficePoi[];
  occupied: readonly NavPoint[];
@@ -308,9 +309,10 @@ export interface PickRoamInput {
  * Deterministic presentation-layer POI selector for autonomous roaming & resting.
  */
 export function pickRoamTarget(input: PickRoamInput): {point: NavPoint; poiId: string | null; poiKind: PoiKind; facing: Facing} {
- const {actorId, seedKey, preferRest, origin, grid, pois, occupied, reservedPoiIds} = input;
+ const {actorId, seedKey, preferRest, origin, current, grid, pois, occupied, reservedPoiIds} = input;
  const h = fnvHash(`${actorId}:${seedKey}`);
 
+ const isFarEnough = (p: NavPoint) => !current || Math.hypot(p.x - current.x, p.y - current.y) >= 48;
  const isFree = (p: NavPoint) => {
   const cell = worldToCell(grid, p);
   if (!isCellWalkable(grid, cell.c, cell.r)) return false;
@@ -318,15 +320,17 @@ export function pickRoamTarget(input: PickRoamInput): {point: NavPoint; poiId: s
  };
 
  // 1/4 chance to return to home lounge anchor when not explicitly seeking rest furniture.
- if (!preferRest && h % 4 === 0 && isFree(origin)) {
+ if (!preferRest && h % 4 === 0 && isFree(origin) && isFarEnough(origin)) {
   return {point: {x: origin.x, y: origin.y}, poiId: null, poiKind: null, facing: h % 2 === 0 ? 'right' : 'left'};
  }
 
  const available = pois.filter(p => !reservedPoiIds.has(p.id) && isFree(p));
+ const movedAvailable = available.filter(isFarEnough);
+ const candidateList = movedAvailable.length > 0 ? movedAvailable : available;
  const preferred = preferRest
-  ? available.filter(p => p.kind === 'sofa' || p.kind === 'coffee')
-  : available;
- const pool = preferred.length > 0 ? preferred : available;
+  ? candidateList.filter(p => p.kind === 'sofa' || p.kind === 'coffee')
+  : candidateList;
+ const pool = preferred.length > 0 ? preferred : candidateList;
  if (pool.length > 0) {
   const chosen = pool[h % pool.length]!;
   return {point: {x: chosen.x, y: chosen.y}, poiId: chosen.id, poiKind: chosen.kind, facing: chosen.facing};

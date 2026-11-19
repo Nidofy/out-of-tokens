@@ -120,9 +120,17 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
   host.style.backgroundRepeat='no-repeat';
  }
 
+ function isSceneStill(){
+  if(Number.isFinite(fixed))return true;
+  const pref=document.documentElement.dataset.motion;
+  if(pref==='still')return true;
+  if(pref==='full')return false;
+  return matchMedia('(prefers-reduced-motion: reduce)').matches;
+ }
+
  function queueSync(){if(syncQueued||dead)return;syncQueued=true;queueMicrotask(()=>{syncQueued=false;sync();});}
  function sync(){if(!latest||dead)return;const v=latest,scene=v.campaign?.scene??'workshop',chapter=v.campaign?.chapter??0;layout=host.closest('[data-mode="layout"]')!==null;
-  const still=matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.dataset.motion==='still'||Number.isFinite(fixed);
+  const still=isSceneStill();
   if(scene!==lastScene){for(const a of walkers.values()){a.x=100;a.y=980;a.bx=100;a.by=980;a.tx=100;a.ty=980;a.stage='idle';a.station=null;a.arrived=0;a.path=[];a.poiId=null;a.poiKind=null;a.facing='right';a.nextRoamAt=0;}lastScene=scene;anchorDirty=true;}
   const targetCam=officeCamera(app.screen.width,app.screen.height,layout?'overview':zone,layoutFocus,layout?1:zoom,layout?defaultCameraPan:pan);
   if(!camDisplay||camBypass||still||layout)camDisplay={x:targetCam.x,y:targetCam.y,scale:targetCam.scale};
@@ -133,16 +141,21 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
   const present=new Set(items.filter(i=>i.slot).map(i=>i.id));for(const [id,o] of objects)if(!present.has(id)){o.back.destroy({children:true});o.front.destroy({children:true});objects.delete(id);}
   for(const i of items){if(!i.slot)continue;let object=objects.get(i.id);if(object&&object.kind!==i.kind){object.back.destroy({children:true});object.front.destroy({children:true});objects.delete(i.id);object=undefined;}if(!object){object={kind:i.kind,back:furniture(i.kind,'back'),front:furniture(i.kind,'front')};objects.set(i.id,object);world.addChild(object.back,object.front);for(const layer of [object.back,object.front]){const key=i.kind+'-'+(layer===object.front?'front':'back');layer.eventMode='static';layer.cursor='pointer';if(!textures.has(key))layer.hitArea=hitKinds.includes(i.kind)?(workHits.get(key)??{contains:()=>false}):furnitureHitArea(i.kind,layer===object.front?'front':'back');else if(!hitKinds.includes(i.kind))layer.hitArea=furnitureHitArea(i.kind,layer===object.front?'front':'back');layer.on('pointertap',()=>{if(!gestureMoved&&performance.now()>=suppressTapUntil)onFurniture?.(i.id);});}}const p=slotPoint(i.slot,chapter);object.back.position.set(p.x,p.y);object.front.position.set(p.x,p.y);object.back.zIndex=p.y-2;object.front.zIndex=p.y+2;object.back.eventMode=layout?'none':'static';object.front.eventMode=layout?'none':'static';}
   const members=v.actors.filter(a=>a.location===scene);for(const [id,a] of walkers){a.root.visible=members.some(m=>m.id===id);a.badge.visible=a.root.visible;}
-  const placements=actorPlacements(v);for(const a of members){let w=walkers.get(a.id);if(!w){const root=new Container(),badge=new Container(),badgeBg=new Graphics(),tag=new Text({text:names[a.id]??a.id,style:{fontSize:12,fill:0xfff7ea,fontFamily:'PingFang SC, Microsoft YaHei, sans-serif',fontWeight:'600'}});tag.anchor.set(.5,0);badge.addChild(badgeBg,tag);labels.addChild(badge);world.addChild(root);const shadow=new Graphics().ellipse(4,5,38,9).fill({color:0x3b2a1d,alpha:.09}).ellipse(3,4,28,6.5).fill({color:0x3b2a1d,alpha:.14}).ellipse(1,3,17,4).fill({color:0x2c1e14,alpha:.22});root.addChild(shadow);root.eventMode='static';root.cursor='pointer';root.hitArea=actorHitArea(false);root.on('pointertap',()=>{if(!gestureMoved&&performance.now()>=suppressTapUntil)onSelect(a.id);});w={id:a.id,root,shadow,badge,badgeBg,tag,lastTag:'\0',lastBoost:false,stage:'idle',station:null,x:100,y:980,bx:100,by:980,tx:100,ty:980,activity:'idle',zone:'lounge',arrived:0,height:characterHeight(a.id,980),facing:'right',path:[],poiId:null,poiKind:null,poiFacing:'right',nextRoamAt:elapsed+2+(fnvHash(a.id)%350)/100};walkers.set(a.id,w);mountActorRig(w,a.id);}
+  const placements=actorPlacements(v);for(const a of members){let w=walkers.get(a.id);if(!w){const root=new Container(),badge=new Container(),badgeBg=new Graphics(),tag=new Text({text:names[a.id]??a.id,style:{fontSize:12,fill:0xfff7ea,fontFamily:'PingFang SC, Microsoft YaHei, sans-serif',fontWeight:'600'}});tag.anchor.set(.5,0);badge.addChild(badgeBg,tag);labels.addChild(badge);world.addChild(root);const shadow=new Graphics().ellipse(4,5,38,9).fill({color:0x3b2a1d,alpha:.09}).ellipse(3,4,28,6.5).fill({color:0x3b2a1d,alpha:.14}).ellipse(1,3,17,4).fill({color:0x2c1e14,alpha:.22});root.addChild(shadow);root.eventMode='static';root.cursor='pointer';root.hitArea=actorHitArea(false);root.on('pointertap',()=>{if(!gestureMoved&&performance.now()>=suppressTapUntil)onSelect(a.id);});w={id:a.id,root,shadow,badge,badgeBg,tag,lastTag:'\0',lastBoost:false,stage:'idle',station:null,x:100,y:980,bx:100,by:980,tx:100,ty:980,activity:'idle',zone:'lounge',arrived:0,height:characterHeight(a.id,980),facing:'right',path:[],poiId:null,poiKind:null,poiFacing:'right',nextRoamAt:elapsed+1.4+(fnvHash(a.id)%240)/100};walkers.set(a.id,w);mountActorRig(w,a.id);}
    w.root.visible=true;w.root.alpha=layout?.28:1;w.badge.visible=!layout;const r=v.office?.reservations[a.id];const placement=placements.find(p=>p.id===a.id)!,seated=placement.seated;
    w.height=characterHeight(a.id,placement.y);
    const targetChanged=w.bx!==placement.x||w.by!==placement.y;
+   const prevTx=w.tx,prevTy=w.ty;
    syncWorkstationTarget(w,placement,still);
    if(w.stage!=='idle'||still){w.path=[];w.poiId=null;w.poiKind=null;}
    else if(targetChanged){
     w.poiId=null;w.poiKind=null;
     w.path=Math.hypot(w.bx-w.x,w.by-w.y)>40?findNavPath(navGrid,{x:w.x,y:w.y},{x:w.bx,y:w.by}):[{x:w.bx,y:w.by}];
     const first=w.path[0];if(first){w.tx=first.x;w.ty=first.y;}else{w.tx=w.bx;w.ty=w.by;}
+   }else{
+    const head=w.path[0];
+    w.tx=head?head.x:prevTx;
+    w.ty=head?head.y:prevTy;
    }
    w.root.renderable=true;w.root.eventMode=layout?'none':'static';
    const bonus=latestCapacity?.[a.id]?.activeEfficiency??0,boost=seated&&bonus>0?` ✦+${Math.round(bonus*100)}%`:'',tired=a.energy<35?' ⚡':'';
@@ -156,7 +169,7 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
   tick(0);
  }
 
- function tick(ms:number){if(!latest)return;const still=matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.dataset.motion==='still'||Number.isFinite(fixed);const targetCam=officeCamera(app.screen.width,app.screen.height,layout?'overview':zone,layoutFocus,layout?1:zoom,layout?defaultCameraPan:pan);
+ function tick(ms:number){if(!latest)return;const still=isSceneStill();const targetCam=officeCamera(app.screen.width,app.screen.height,layout?'overview':zone,layoutFocus,layout?1:zoom,layout?defaultCameraPan:pan);
   if(ms>0){
    const damped=stepDampedCamera(camDisplay??{x:targetCam.x,y:targetCam.y,scale:targetCam.scale},{x:targetCam.x,y:targetCam.y,scale:targetCam.scale},ms,still||camBypass||pointers.size>0);
    camDisplay=damped.values;
@@ -182,18 +195,21 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
      if(w.path.length>0){
       while(w.path.length>1&&Math.hypot(w.path[0]!.x-w.x,w.path[0]!.y-w.y)<=8)w.path.shift();
       const head=w.path[0]!;w.tx=head.x;w.ty=head.y;
-      if(w.path.length===1&&Math.hypot(head.x-w.x,head.y-w.y)<=2)w.path.shift();
+      if(w.path.length===1&&Math.hypot(head.x-w.x,head.y-w.y)<=2){
+       w.path.shift();
+       w.nextRoamAt=elapsed+3.0+(fnvHash(`${w.id}:dwell:${Math.floor(elapsed*10)}`)%320)/100;
+      }
      }else if(w.zone==='lounge'&&(w.activity==='idle'||w.activity==='rest')&&w.arrived>=1&&elapsed>=w.nextRoamAt){
       const actor=latest.actors.find(a=>a.id===w.id);
       const preferRest=w.activity==='rest'||(actor?.energy??100)<40;
       const occupied=[...walkers.values()].filter(o=>o.id!==w.id&&o.root.visible).map(o=>({x:o.path.at(-1)?.x??o.tx,y:o.path.at(-1)?.y??o.ty}));
       const reservedPoiIds=new Set<string>();
       for(const o of walkers.values())if(o.id!==w.id&&o.root.visible&&o.poiId)reservedPoiIds.add(o.poiId);
-      const choice=pickRoamTarget({actorId:w.id,seedKey:`${Math.floor(elapsed*10)}:${latest.absoluteSlot}`,preferRest,origin:{x:w.bx,y:w.by},grid:navGrid,pois:officePois,occupied,reservedPoiIds});
+      const choice=pickRoamTarget({actorId:w.id,seedKey:`${Math.floor(elapsed*10)}:${latest.absoluteSlot}`,preferRest,origin:{x:w.bx,y:w.by},current:{x:w.x,y:w.y},grid:navGrid,pois:officePois,occupied,reservedPoiIds});
       w.poiId=choice.poiId;w.poiKind=choice.poiKind;w.poiFacing=choice.facing;
       w.path=findNavPath(navGrid,{x:w.x,y:w.y},choice.point);
       const first=w.path[0];if(first){w.tx=first.x;w.ty=first.y;}
-      w.nextRoamAt=elapsed+5.2+(fnvHash(`${w.id}:wait:${Math.floor(elapsed)}`)%450)/100;
+      w.nextRoamAt=elapsed+3.5+(fnvHash(`${w.id}:wait:${Math.floor(elapsed)}`)%300)/100;
      }
     }
    }else{

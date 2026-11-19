@@ -12,10 +12,15 @@ type BluewhaleDemoMode='daily'|'work'|'overload'|'rest';
 export function SceneLab(){
  const host=useRef<HTMLDivElement>(null),renderer=useRef<Awaited<ReturnType<typeof createWorkshop>>|null>(null);
  const [scene,setScene]=useState<Scene>('workshop'),[level,setLevel]=useState(0),[picked,setPicked]=useState(''),[ready,setReady]=useState(false);
- const [demoMode,setDemoMode]=useState<BluewhaleDemoMode>('work'),[legacyFallback,setLegacyFallback]=useState(false);
+ const [demoMode,setDemoMode]=useState<BluewhaleDemoMode>('daily'),[legacyFallback,setLegacyFallback]=useState(false),[stillDemo,setStillDemo]=useState(false);
+
+ useEffect(()=>{
+  document.documentElement.dataset.motion=stillDemo?'still':'full';
+ },[stillDemo]);
 
  useEffect(()=>{
   document.documentElement.dataset.chibi=legacyFallback?'legacy':'';
+  document.documentElement.dataset.motion=stillDemo?'still':'full';
   let dead=false;
   setReady(false);
   void createWorkshop(host.current!,setPicked).then(r=>{
@@ -69,6 +74,7 @@ export function SceneLab(){
      <span>| Bluewhale:</span>
      {(['daily','work','overload','rest'] as const).map(m=><button key={m} style={demoMode===m?'font-weight:700;text-decoration:underline':''} onClick={()=>setDemoMode(m)}>{m}</button>)}
      <button onClick={()=>setLegacyFallback(v=>!v)}>{legacyFallback?'Rig: Legacy PaperDoll':'Rig: MapleChibi'}</button>
+     <button onClick={()=>setStillDemo(v=>!v)}>{stillDemo?'Motion: Still':'Motion: Full'}</button>
     </div>
     <p style="margin:6px 0 0">Selected: {picked||'none'} · {scene} · Office {level} · Bluewhale: {demoMode} · {legacyFallback?'legacy':'maple-chibi'}</p>
    </div>
