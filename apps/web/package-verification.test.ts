@@ -129,11 +129,41 @@ const batch8Fx = ['emote-focus', 'emote-sweat', 'emote-crash', 'emote-zzz',
 const batch9Fx = ['emote-slack', 'emote-anger', 'emote-dizzy', 'emote-heart', 'emote-alert',
  'emote-spark', 'prop-doc_page', 'prop-smoke_puff', 'prop-dust_step', 'prop-heal_leaf'];
 
-it('limits chibi paths to bluewhale and the eighteen shipped stickers', () => {
- expect(chibiCharacters).toEqual(['bluewhale']);
+const batch10Characters = ['qwen', 'llama', 'mistral', 'gpt', 'claude'] as const;
+const chibiPoses = ['stand_3q', 'walk_3q', 'work_front', 'rest_3q', 'back_3q'] as const;
+
+type Pixels = [string, number, number, number[], number[], number | null, number, number];
+
+function inspectChibiPixels(paths: string[]): Pixels[] {
+ const inspect = spawnSync('python', ['-c', [
+  'import json, math, sys',
+  'from PIL import Image, ImageChops',
+  'result = []',
+  'for path in sys.argv[1:]:',
+  '    with Image.open(path) as image:',
+  '        alpha = image.getchannel("A")',
+  '        l,t,r,b = alpha.getbbox()',
+  '        band = alpha.crop((l, b-math.ceil((b-t)*0.15), r, b))',
+  '        columns = [x+l for y in range(band.height) for x in range(band.width) if band.getpixel((x,y))] if image.width == 512 else []',
+  '        head = alpha.crop((l,t,r,t+math.ceil((b-t)*0.45))).getbbox()',
+  '        red,green,blue = image.convert("RGB").split()',
+  '        ink = ImageChops.lighter(red, ImageChops.lighter(green,blue)).point(lambda c: 255 if c==0 else 0)',
+  '        cutoff = 1 if image.format == "WEBP" else 14',
+  '        black = ImageChops.multiply(ink, alpha.point(lambda a: 255 if a>=cutoff else 0)).histogram()[255]',
+  '        result.append([image.format, *image.size, alpha.getextrema(), [l,t,r,b], sum(columns)/len(columns) if columns else None, head[2]-head[0], black])',
+  'print(json.dumps(result))',
+ ].join('\n'), ...paths], {encoding: 'utf8'});
+ expect(inspect.status, inspect.error?.message ?? inspect.stderr).toBe(0);
+ return JSON.parse(inspect.stdout);
+}
+
+it('limits chibi paths to six characters and eighteen shipped stickers', () => {
+ expect(chibiCharacters).toEqual(['bluewhale', ...batch10Characters]);
  expect(chibiFxIds).toEqual([...batch8Fx, ...batch9Fx]);
- expect(hasChibiRig('bluewhale')).toBe(true);
- expect(chibiRigPath('bluewhale')).toBe('./art/chibi/characters/bluewhale/rig.json');
+ for (const id of chibiCharacters) {
+  expect(hasChibiRig(id)).toBe(true);
+  expect(chibiRigPath(id)).toBe(`./art/chibi/characters/${id}/rig.json`);
+ }
  for (const id of chibiFxIds) expect(chibiFxArt(id)).toBe(`./art/chibi/fx/${id}.webp`);
  for (const id of ['', '../bluewhale', 'fx/../../x', '..\\bluewhale', '%2e%2e', '/emote-focus',
   'constructor', '__proto__', 'toString', 'Bluewhale', 'emote-focus?x']) {
@@ -167,28 +197,8 @@ it.each([8, 9])('checks Art-Batch %i PNGs, decoded WebP geometry, rig, catalog a
  const runtime = entries.filter(e => e.publicFile);
  expect(masters.map(e => e.id).sort()).toEqual([...masterIds].sort());
  expect(runtime.map(e => e.id).sort()).toEqual([...runtimeIds].sort());
- // Decode the alpha plane independently of the exporter and metadata, including for untouched PNGs.
- const inspect = spawnSync('python', ['-c', [
-  'import json, math, sys',
-  'from PIL import Image, ImageChops',
-  'result = []',
-  'for path in sys.argv[1:]:',
-  '    with Image.open(path) as image:',
-  '        alpha = image.getchannel("A")',
-  '        l,t,r,b = alpha.getbbox()',
-  '        band = alpha.crop((l, b-math.ceil((b-t)*0.15), r, b))',
-  '        columns = [x+l for y in range(band.height) for x in range(band.width) if band.getpixel((x,y))] if image.width == 512 else []',
-  '        head = alpha.crop((l,t,r,t+math.ceil((b-t)*0.45))).getbbox()',
-  '        red,green,blue = image.convert("RGB").split()',
-  '        ink = ImageChops.lighter(red, ImageChops.lighter(green,blue)).point(lambda c: 255 if c==0 else 0)',
-  '        cutoff = 1 if image.format == "WEBP" else 14',
-  '        black = ImageChops.multiply(ink, alpha.point(lambda a: 255 if a>=cutoff else 0)).histogram()[255]',
-  '        result.append([image.format, *image.size, alpha.getextrema(), [l,t,r,b], sum(columns)/len(columns) if columns else None, head[2]-head[0], black])',
-  'print(json.dumps(result))',
- ].join('\n'), ...entries.map(e => resolve(batch, e.file)), resolve('apps/web/public', characterDir, 'stand_3q.webp')], {encoding: 'utf8'});
- expect(inspect.status, inspect.error?.message ?? inspect.stderr).toBe(0);
- type Pixels = [string, number, number, number[], number[], number | null, number, number];
- const pixels: Pixels[] = JSON.parse(inspect.stdout);
+ const pixels = inspectChibiPixels([...entries.map(e => resolve(batch, e.file)),
+  resolve('apps/web/public', characterDir, 'stand_3q.webp')]);
  const rig = JSON.parse(readFileSync(resolve('apps/web/public', paths[0]!), 'utf8'));
  expect(rig).toMatchObject({schemaVersion: 2, renderer: 'maple-chibi', id: 'bluewhale', canvas: [512,512],
   feet: [256,480], visibleHeight: 400, facingDefault: 'right', heightScale: 1, optionalPoses: {back_3q: {file: 'back_3q.webp'},
@@ -275,9 +285,109 @@ it.each([8, 9])('checks Art-Batch %i PNGs, decoded WebP geometry, rig, catalog a
   }
  }
  const offline = JSON.parse(readFileSync(resolve('apps/web/dist/offline-assets.json'), 'utf8')) as {assets: string[]};
- const allChibiPaths = [characterDir + '/rig.json', 'art/chibi/fx/catalog.json',
-  ...[...poseIds, 'back_3q'].map(id => characterDir + '/' + id + '.webp'),
+ const allChibiPaths = ['art/chibi/fx/catalog.json',
+  ...chibiCharacters.flatMap(id => ['rig.json', ...chibiPoses.map(p => p + '.webp')]
+   .map(name => `art/chibi/characters/${id}/${name}`)),
   ...chibiFxIds.map(id => chibiFxArt(id).slice(2))];
  expect(offline.assets.filter(p => p.startsWith('art/chibi/')).sort()).toEqual(allChibiPaths.sort());
  for (const path of paths) expect(sha(join('apps/web/dist', path))).toBe(sha(join('apps/web/public', path)));
+});
+
+type Batch10Entry = {
+ characterId: string; id: string; file: string; publicFile?: string; sha256: string; bytes: number;
+ width: number; height: number; alphaRange: number[]; alphaBounds: number[]; model: string; tool: string;
+ sourceSha256?: string; masterSha256?: string; blackPixelsAtAlpha14OrAbove?: number; visiblePureBlackPixels?: number;
+ references?: {file: string; sha256: string}[]; parameters: {transparent_background: boolean};
+ normalization?: {visibleHeight: number; poseScale: number; headWidthRatio: number; shoeCentroidX: number};
+};
+const batch10Profiles = {
+ qwen: [1, 9, 3.1, 0.055, 0.024], llama: [0.96, 9, 2.9, 0.05, 0.024],
+ mistral: [1.08, 11, 3.5, 0.065, 0.026], gpt: [1, 9, 3, 0.05, 0.023], claude: [0.98, 8.5, 2.95, 0.05, 0.022],
+};
+const batch10Versions = {qwen: 'qwen.qwq', llama: 'llama.3.1', mistral: 'mistral.large', gpt: 'gpt.4o', claude: 'claude.sonnet'};
+
+it.each(batch10Characters)('verifies Art-Batch 10A masters, rig, decoded poses and offline copies for %s', id => {
+ const batch = 'art/art-batch-10a';
+ const publicDir = `art/chibi/characters/${id}`;
+ const read = (path: string) => readFileSync(resolve(path));
+ const sha = (path: string) => createHash('sha256').update(read(path)).digest('hex');
+ const all: Batch10Entry[] = JSON.parse(readFileSync(join(batch, 'manifest.json'), 'utf8'));
+ expect(all).toHaveLength(batch10Characters.length * 12);
+ const entries = all.filter(e => e.characterId === id);
+ const masters = entries.filter(e => !e.publicFile);
+ const runtime = entries.filter(e => e.publicFile && e.id !== 'rig');
+ const names = ['ref_sheet', ...chibiPoses];
+ const inventory = ['rig.json', ...chibiPoses.map(pose => pose + '.webp')].sort();
+ const masterDir = `${batch}/masters/${id}`;
+ const offline = JSON.parse(readFileSync('apps/web/dist/offline-assets.json', 'utf8')) as {assets: string[]};
+ expect(readdirSync(masterDir).sort()).toEqual(names.map(pose => pose + '.png').sort());
+ expect(masters.map(e => e.id).sort()).toEqual([...names].sort());
+ expect(runtime.map(e => e.id).sort()).toEqual([...chibiPoses].sort());
+ expect(entries.filter(e => e.id === 'rig')).toHaveLength(1);
+ expect(readdirSync(join('apps/web/public', publicDir)).sort()).toEqual(inventory);
+ expect(offline.assets.filter(path => path.startsWith(publicDir + '/')).sort()).toEqual(inventory.map(name => publicDir + '/' + name));
+ for (const e of entries) {
+  const file = e.publicFile ? e.file : join(batch, e.file);
+  expect(read(file).length).toBe(e.bytes);
+  expect(sha(file)).toBe(e.sha256);
+  if (e.publicFile) {
+   expect(e.publicFile).toBe(`${publicDir}/${e.id === 'rig' ? 'rig.json' : e.id + '.webp'}`);
+   expect(e.file).toBe('apps/web/public/' + e.publicFile);
+   expect(sha(join('apps/web/dist', e.publicFile))).toBe(e.sha256);
+  }
+ }
+ const rig = JSON.parse(readFileSync(join('apps/web/public', publicDir, 'rig.json'), 'utf8'));
+ const [walkSpeed, hopHeight, stepCadenceHz, squashAmount, breathAmp] = batch10Profiles[id];
+ expect(rig).toMatchObject({schemaVersion: 2, renderer: 'maple-chibi', id, feet: [256,480], visibleHeight: 400,
+  canvas: [512,512], facingDefault: 'right', heightScale: 1, optionalPoses: {react_front: null}, faceOverrides: null,
+  motionProfile: {walkSpeed, hopHeight, stepCadenceHz, squashAmount, breathAmp}});
+ expect(Object.keys(rig.poses).sort()).toEqual(chibiPoses.slice(0,4).sort());
+ expect(Object.keys(rig.optionalPoses).sort()).toEqual(['back_3q', 'react_front']);
+ expect(rig.anchors).toEqual(rig.poses.stand_3q.anchors);
+ const images = [...masters, ...runtime];
+ const pixels = inspectChibiPixels(images.map(e => resolve(e.publicFile ? e.file : join(batch, e.file))));
+ const standWidth = pixels[images.findIndex(e => e.publicFile && e.id === 'stand_3q')]![6];
+ for (const [i, e] of images.entries()) {
+  const [format, width, height, range, bounds, center, headWidth, black] = pixels[i]!;
+  expect([format, width, height, range, bounds, black]).toEqual([e.publicFile ? 'WEBP' : 'PNG', e.width, e.height,
+   e.alphaRange, e.alphaBounds, 0]);
+  expect(width).toBe(height);
+  expect(range).toEqual([0,255]);
+  expect(e).toMatchObject({tool: 'built-in image_gen', model: 'unknown; not exposed', parameters: {transparent_background: true}});
+  const master = `${masterDir}/${e.id}.png`;
+  if (!e.publicFile) {
+   expect(e.file).toBe(`masters/${id}/${e.id}.png`);
+   expect(e.sourceSha256).toBe(e.sha256);
+   expect(e.blackPixelsAtAlpha14OrAbove).toBe(black);
+   const portrait = `apps/web/public/art/ai-village/portraits/${id}.png`;
+   const ref = masterDir + '/ref_sheet.png';
+   const references = e.id === 'ref_sheet' ? [portrait, `apps/web/public/art/stage-b/${batch10Versions[id]}.webp`,
+    'art/art-batch-8/masters/bluewhale/ref_sheet.png'] : [ref, ['walk_3q','back_3q'].includes(e.id) ? masterDir + '/stand_3q.png' : portrait];
+   expect(e.references).toEqual(references.map(file => ({file, sha256: sha(file)})));
+   continue;
+  }
+  expect(e.masterSha256).toBe(sha(master));
+  expect(e.visiblePureBlackPixels).toBe(black);
+  expect(width).toBe(512);
+  expect(e.bytes).toBeLessThan(90000);
+  const [l,t,r,b] = bounds as [number, number, number, number];
+  const visibleHeight = b-t;
+  expect(b-1).toBe(480);
+  expect(Math.min(l, 512-r)).toBeGreaterThanOrEqual(12);
+  expect(Math.abs(center! - 256)).toBeLessThan(1);
+  expect(headWidth).toBe(standWidth);
+  const seated = e.id === 'work_front' || e.id === 'rest_3q';
+  if (seated) {
+   expect(visibleHeight).toBeGreaterThanOrEqual(356);
+   expect(visibleHeight).toBeLessThanOrEqual(392);
+  } else expect(visibleHeight).toBe(400);
+  const pose = e.id === 'back_3q' ? rig.optionalPoses.back_3q : rig.poses[e.id];
+  expect(pose).toMatchObject({file: e.id + '.webp', mirrorable: e.id !== 'work_front', feet: [256,480],
+   visibleHeight, headWidthRatio: headWidth/standWidth, poseScale: 1, anchors: {deskClipY: 370}});
+  expect(pose.anchors.headTop[1]).toBe(t);
+  if (e.id === 'work_front') expect(pose.anchors.propHand[1]).toBeLessThan(370);
+  expect(e.normalization).toMatchObject({visibleHeight, feet: [256,480], headWidthRatio: headWidth/standWidth,
+   headWidth, standHeadWidth: standWidth, quality: 88, method: 6, poseScale: 1});
+  expect(e.normalization!.shoeCentroidX).toBeCloseTo(center!, 5);
+ }
 });

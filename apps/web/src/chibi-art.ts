@@ -1,4 +1,4 @@
-export const chibiCharacters = ['bluewhale'] as const;
+export const chibiCharacters = ['bluewhale', 'qwen', 'llama', 'mistral', 'gpt', 'claude'] as const;
 export const chibiFxIds = [
     'emote-focus', 'emote-sweat', 'emote-crash', 'emote-zzz',
     'emote-excited', 'emote-daze', 'prop-code_bit', 'prop-coffee_cup',
