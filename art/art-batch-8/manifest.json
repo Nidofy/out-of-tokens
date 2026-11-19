@@ -1,0 +1,1181 @@
+[
+  {
+    "id": "ref_sheet",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-431986f6-f568-4be8-a845-154d91061fc5.png",
+    "prompt": "Use case: identity-preserve. Create a canonical full-body 2D chibi character design reference sprite for Out of Tokens character bluewhale, strictly preserving identity from the provided references: deep-to-sky blue wavy twin curls with top curved ahoge, large sparkling sapphire blue eyes, whale-fin shaped side ears, white frilled maid headband with a bright blue bow on the right side, navy-and-white frilled maid dress with a tiny clean whale silhouette emblem on the apron, cute curled blue whale tail behind her, and dark blue Mary Jane shoes with white socks. MapleStory-inspired expressive 2.2-head-tall chibi proportions with large head and lively readable silhouette. Outer-bold inner-fine linework: a clean, continuous, closed, slightly bolder deep warm cocoa-brown outer silhouette outline (never pure harsh black #000000), paired with delicate fine warm inner lines for hair strands, lace and folds. Soft warm hand-painted shading with smooth blended shadows, gentle rosy cheeks, and restrained warm highlights (no rigid flat cel-shading blocks, no messy sketchy paint noise). Standing upright in a clear 3/4 front-right facing pose, bright cheerful smile, relaxed arms at sides, feet planted neatly. Complete full-body centered on a square 1024x1024 canvas with generous 12% empty transparent margin on all sides; nothing cropped. Genuine transparent background. Strictly NO ground shadow, NO cast shadow under feet, NO props, NO furniture, NO text, NO letters, NO watermark. Layout is a small character thumbnail precisely in the middle of an oversized transparent square: leave the top quarter AND the bottom quarter entirely empty. The whole character including hair and soles fits between 25% and 75% of canvas height. Right-facing means facing the viewer's right, with bow on the viewer's right. Preserve rich cobalt crown, luminous azure curled hair tips, gold waist buttons and shoe buckles. Do not zoom to fill.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [
+      {
+        "file": "apps/web/public/art/ai-village/portraits/bluewhale.png",
+        "sha256": "c2b5f342ac03ac19612c0cb5f5450534fcbfd7526a37dece89a0a299cd43e68b"
+      },
+      {
+        "file": "apps/web/public/art/stage-b/bluewhale.r1.webp",
+        "sha256": "8ea8181da3380a8f776ba0786791da695552abd171921d2bd54a69c2b09f56c4"
+      }
+    ],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "masters/bluewhale/ref_sheet.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 627644,
+    "sha256": "15d0e69f0e2cd9da3e619f8ec8130edd285fc410e2dc52c119c3bf5c743a04a3",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      33,
+      17,
+      1224,
+      1238
+    ],
+    "processing": "untouched PNG",
+    "subjectBoundsAfterNoiseThreshold": [
+      387,
+      282,
+      897,
+      1052
+    ]
+  },
+  {
+    "id": "stand_3q",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-960cb0e7-2970-4ac2-89c6-1d027bc978e4.png",
+    "prompt": "Use case: identity-preserve. Game-ready 2D chibi idle sprite for Out of Tokens character bluewhale, matching the exact character design, 2.2-head chibi proportions, warm hand-painted shading, and outer-bold deep warm cocoa-brown silhouette outline (fine inner lines, no pure black #000000) of the provided ref_sheet. Pose: 3/4 front-right facing relaxed standing idle pose, feet planted lightly together, knees softly relaxed, hands resting naturally near skirt sides, whale tail gently lifted behind, bright friendly cheerful everyday smile. Full body completely visible from top ahoge to shoe soles with generous 12% transparent margins all around on a square canvas. Genuine transparent background. Strictly NO ground shadow under feet, NO floor, NO furniture, NO props, NO text, NO watermark. Draw the character SMALL inside an oversized transparent square. Keep the complete figure including ahoge and shoes entirely inside the middle 55 percent of canvas height, leaving the top and bottom fifths fully clear. Follow reference 1's deep-blue crown, turquoise curls, viewer-right bow, whale apron emblem, double-button waist, short white socks, dark Mary Janes with gold buckles and one lifted fluked tail behind the body on viewer right. Soft, warm smooth washes with cocoa silhouette. Face toward the RIGHT edge of the image.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [
+      {
+        "file": "art/art-batch-8/masters/bluewhale/ref_sheet.png",
+        "sha256": "15d0e69f0e2cd9da3e619f8ec8130edd285fc410e2dc52c119c3bf5c743a04a3"
+      },
+      {
+        "file": "apps/web/public/art/ai-village/portraits/bluewhale.png",
+        "sha256": "c2b5f342ac03ac19612c0cb5f5450534fcbfd7526a37dece89a0a299cd43e68b"
+      }
+    ],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "masters/bluewhale/stand_3q.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 441708,
+    "sha256": "6b23f872be2deb25394770c1d704edea48d90dc426d770a8a7e691b173924fd4",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      33,
+      120,
+      1240,
+      1204
+    ],
+    "processing": "untouched PNG",
+    "subjectBoundsAfterNoiseThreshold": [
+      434,
+      351,
+      845,
+      957
+    ]
+  },
+  {
+    "id": "stand_3q",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-960cb0e7-2970-4ac2-89c6-1d027bc978e4.png",
+    "prompt": "Use case: identity-preserve. Game-ready 2D chibi idle sprite for Out of Tokens character bluewhale, matching the exact character design, 2.2-head chibi proportions, warm hand-painted shading, and outer-bold deep warm cocoa-brown silhouette outline (fine inner lines, no pure black #000000) of the provided ref_sheet. Pose: 3/4 front-right facing relaxed standing idle pose, feet planted lightly together, knees softly relaxed, hands resting naturally near skirt sides, whale tail gently lifted behind, bright friendly cheerful everyday smile. Full body completely visible from top ahoge to shoe soles with generous 12% transparent margins all around on a square canvas. Genuine transparent background. Strictly NO ground shadow under feet, NO floor, NO furniture, NO props, NO text, NO watermark. Draw the character SMALL inside an oversized transparent square. Keep the complete figure including ahoge and shoes entirely inside the middle 55 percent of canvas height, leaving the top and bottom fifths fully clear. Follow reference 1's deep-blue crown, turquoise curls, viewer-right bow, whale apron emblem, double-button waist, short white socks, dark Mary Janes with gold buckles and one lifted fluked tail behind the body on viewer right. Soft, warm smooth washes with cocoa silhouette. Face toward the RIGHT edge of the image.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [
+      {
+        "file": "art/art-batch-8/masters/bluewhale/ref_sheet.png",
+        "sha256": "15d0e69f0e2cd9da3e619f8ec8130edd285fc410e2dc52c119c3bf5c743a04a3"
+      },
+      {
+        "file": "apps/web/public/art/ai-village/portraits/bluewhale.png",
+        "sha256": "c2b5f342ac03ac19612c0cb5f5450534fcbfd7526a37dece89a0a299cd43e68b"
+      }
+    ],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "runtime/characters/bluewhale/stand_3q.webp",
+    "width": 512,
+    "height": 512,
+    "bytes": 37798,
+    "sha256": "76f61d3e5e091e37db8a2a81fe21c239c04cccb97a1b54fae990bf6ff0d7d7a9",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      128,
+      81,
+      399,
+      481
+    ],
+    "publicFile": "art/chibi/characters/bluewhale/stand_3q.webp",
+    "masterSha256": "6b23f872be2deb25394770c1d704edea48d90dc426d770a8a7e691b173924fd4",
+    "normalization": {
+      "targetHeight": 400,
+      "visibleHeight": 400,
+      "feet": [
+        256,
+        480
+      ],
+      "shoeCentroidX": 256.49843,
+      "shoeSliceRows": 60,
+      "warnings": [],
+      "pasteXY": [
+        128,
+        81
+      ],
+      "cleanedSize": [
+        411,
+        606
+      ],
+      "scaledSize": [
+        271,
+        400
+      ],
+      "alphaCutoff": 14,
+      "connectivity": 8,
+      "minComponentFraction": 0.0015,
+      "quality": 88,
+      "method": 6,
+      "cocoaCorrectionPasses": 1
+    }
+  },
+  {
+    "id": "walk_3q",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-f0e3225f-73c5-4675-8287-5f5fdef032c5.png",
+    "prompt": "Use case: identity-preserve. Game-ready 2D chibi brisk walking stride sprite (frame 2 of a 2-frame bouncy MapleStory-style walk loop) for Out of Tokens character bluewhale. Must match the EXACT head size, total body height, hair length, dress details, whale tail, warm soft hand-painted shading, and continuous bold warm cocoa-brown outer outline (fine inner lines, no pure black #000000) of the provided stand_3q and ref_sheet sprites. Pose: 3/4 front-right facing lively mid-stride step forward, right foot stepping forward slightly lifted, left foot pushing back, arms swinging playfully in opposite rhythm, hair curls and ahoge bouncing slightly with joyful motion, cheerful energetic open-mouth smile. Full body completely visible with generous 12% transparent margins all around on a square canvas. Genuine transparent background. Strictly NO ground shadow, NO motion lines, NO dust, NO props, NO text, NO watermark. Draw a small sprite centered in the middle 55 percent of a square transparent canvas, with generous empty space above and below. Match reference 2 closely: exact head, blue curled hair tips, viewer-right bow, right-side lifted tail, gold buttons and dark Mary Janes. Only change pose into an obvious happy stepping stride with counter-swinging arms. Nose, toes and stride point toward SCREEN RIGHT.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [
+      {
+        "file": "art/art-batch-8/masters/bluewhale/ref_sheet.png",
+        "sha256": "15d0e69f0e2cd9da3e619f8ec8130edd285fc410e2dc52c119c3bf5c743a04a3"
+      },
+      {
+        "file": "art/art-batch-8/masters/bluewhale/stand_3q.png",
+        "sha256": "6b23f872be2deb25394770c1d704edea48d90dc426d770a8a7e691b173924fd4"
+      }
+    ],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "masters/bluewhale/walk_3q.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 611231,
+    "sha256": "af8bad1241227bb84b4ce9664cdcd2b7d849302e21c1dc1453909cb8defaa3db",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      41,
+      61,
+      1160,
+      1230
+    ],
+    "processing": "untouched PNG",
+    "subjectBoundsAfterNoiseThreshold": [
+      362,
+      268,
+      882,
+      1032
+    ]
+  },
+  {
+    "id": "walk_3q",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-f0e3225f-73c5-4675-8287-5f5fdef032c5.png",
+    "prompt": "Use case: identity-preserve. Game-ready 2D chibi brisk walking stride sprite (frame 2 of a 2-frame bouncy MapleStory-style walk loop) for Out of Tokens character bluewhale. Must match the EXACT head size, total body height, hair length, dress details, whale tail, warm soft hand-painted shading, and continuous bold warm cocoa-brown outer outline (fine inner lines, no pure black #000000) of the provided stand_3q and ref_sheet sprites. Pose: 3/4 front-right facing lively mid-stride step forward, right foot stepping forward slightly lifted, left foot pushing back, arms swinging playfully in opposite rhythm, hair curls and ahoge bouncing slightly with joyful motion, cheerful energetic open-mouth smile. Full body completely visible with generous 12% transparent margins all around on a square canvas. Genuine transparent background. Strictly NO ground shadow, NO motion lines, NO dust, NO props, NO text, NO watermark. Draw a small sprite centered in the middle 55 percent of a square transparent canvas, with generous empty space above and below. Match reference 2 closely: exact head, blue curled hair tips, viewer-right bow, right-side lifted tail, gold buttons and dark Mary Janes. Only change pose into an obvious happy stepping stride with counter-swinging arms. Nose, toes and stride point toward SCREEN RIGHT.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [
+      {
+        "file": "art/art-batch-8/masters/bluewhale/ref_sheet.png",
+        "sha256": "15d0e69f0e2cd9da3e619f8ec8130edd285fc410e2dc52c119c3bf5c743a04a3"
+      },
+      {
+        "file": "art/art-batch-8/masters/bluewhale/stand_3q.png",
+        "sha256": "6b23f872be2deb25394770c1d704edea48d90dc426d770a8a7e691b173924fd4"
+      }
+    ],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "runtime/characters/bluewhale/walk_3q.webp",
+    "width": 512,
+    "height": 512,
+    "bytes": 37090,
+    "sha256": "9cbc21a1ab81d93a3d9c91d1fddc8f0937bacedea92cca6cdefb050ec8fab0c5",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      120,
+      81,
+      392,
+      481
+    ],
+    "publicFile": "art/chibi/characters/bluewhale/walk_3q.webp",
+    "masterSha256": "af8bad1241227bb84b4ce9664cdcd2b7d849302e21c1dc1453909cb8defaa3db",
+    "normalization": {
+      "targetHeight": 400,
+      "visibleHeight": 400,
+      "feet": [
+        256,
+        480
+      ],
+      "shoeCentroidX": 256.18013,
+      "shoeSliceRows": 60,
+      "warnings": [],
+      "pasteXY": [
+        120,
+        81
+      ],
+      "cleanedSize": [
+        520,
+        764
+      ],
+      "scaledSize": [
+        272,
+        400
+      ],
+      "alphaCutoff": 14,
+      "connectivity": 8,
+      "minComponentFraction": 0.0015,
+      "quality": 88,
+      "method": 6,
+      "cocoaCorrectionPasses": 0
+    }
+  },
+  {
+    "id": "work_front",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-8a449b1c-de8f-4551-9c0c-b2e6e67eed64.png",
+    "prompt": "Use case: identity-preserve. Game-ready 2D chibi seated workstation sprite for Out of Tokens character bluewhale, matching the exact character identity, 2.2-head chibi proportions, warm soft hand-painted shading, and continuous bold warm cocoa-brown outer outline (fine inner lines, no pure black #000000) of the provided ref_sheet. Pose: front-facing seated posture leaning slightly forward in deep focus, both cute hands raised forward at chest/waist level typing attentively on an invisible desk keyboard, legs tucked neatly downward in seated position, focused determined expression with slightly narrowed concentrated eyes and small serious mouth. Do NOT draw any desk, chair, monitor, or keyboard (the game engine renders the furniture layers separately). Full seated body completely visible with generous 12% transparent margins on a square canvas. Genuine transparent background. Strictly NO furniture, NO desk, NO chair, NO ground shadow, NO text, NO watermark. Draw the character SMALL inside an oversized transparent square. Keep the complete figure including ahoge and shoes entirely inside the middle 55 percent of canvas height, leaving the top and bottom fifths fully clear. Follow reference 1's deep-blue crown, turquoise curls, viewer-right bow, whale apron emblem, double-button waist, short white socks, dark Mary Janes with gold buckles and one lifted fluked tail behind the body on viewer right. Soft, warm smooth washes with cocoa silhouette. Show a front-facing seated typing pose, focused on invisible keys.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [
+      {
+        "file": "art/art-batch-8/masters/bluewhale/ref_sheet.png",
+        "sha256": "15d0e69f0e2cd9da3e619f8ec8130edd285fc410e2dc52c119c3bf5c743a04a3"
+      },
+      {
+        "file": "apps/web/public/art/ai-village/portraits/bluewhale.png",
+        "sha256": "c2b5f342ac03ac19612c0cb5f5450534fcbfd7526a37dece89a0a299cd43e68b"
+      }
+    ],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "masters/bluewhale/work_front.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 623028,
+    "sha256": "40843b96df277f889bd0df2b1fef71fed76bae03d0edf1b4ae03e2cdd81b23ef",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      43,
+      37,
+      1194,
+      1222
+    ],
+    "processing": "untouched PNG",
+    "subjectBoundsAfterNoiseThreshold": [
+      381,
+      301,
+      892,
+      1044
+    ]
+  },
+  {
+    "id": "work_front",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-8a449b1c-de8f-4551-9c0c-b2e6e67eed64.png",
+    "prompt": "Use case: identity-preserve. Game-ready 2D chibi seated workstation sprite for Out of Tokens character bluewhale, matching the exact character identity, 2.2-head chibi proportions, warm soft hand-painted shading, and continuous bold warm cocoa-brown outer outline (fine inner lines, no pure black #000000) of the provided ref_sheet. Pose: front-facing seated posture leaning slightly forward in deep focus, both cute hands raised forward at chest/waist level typing attentively on an invisible desk keyboard, legs tucked neatly downward in seated position, focused determined expression with slightly narrowed concentrated eyes and small serious mouth. Do NOT draw any desk, chair, monitor, or keyboard (the game engine renders the furniture layers separately). Full seated body completely visible with generous 12% transparent margins on a square canvas. Genuine transparent background. Strictly NO furniture, NO desk, NO chair, NO ground shadow, NO text, NO watermark. Draw the character SMALL inside an oversized transparent square. Keep the complete figure including ahoge and shoes entirely inside the middle 55 percent of canvas height, leaving the top and bottom fifths fully clear. Follow reference 1's deep-blue crown, turquoise curls, viewer-right bow, whale apron emblem, double-button waist, short white socks, dark Mary Janes with gold buckles and one lifted fluked tail behind the body on viewer right. Soft, warm smooth washes with cocoa silhouette. Show a front-facing seated typing pose, focused on invisible keys.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [
+      {
+        "file": "art/art-batch-8/masters/bluewhale/ref_sheet.png",
+        "sha256": "15d0e69f0e2cd9da3e619f8ec8130edd285fc410e2dc52c119c3bf5c743a04a3"
+      },
+      {
+        "file": "apps/web/public/art/ai-village/portraits/bluewhale.png",
+        "sha256": "c2b5f342ac03ac19612c0cb5f5450534fcbfd7526a37dece89a0a299cd43e68b"
+      }
+    ],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "runtime/characters/bluewhale/work_front.webp",
+    "width": 512,
+    "height": 512,
+    "bytes": 31108,
+    "sha256": "7d845eb46dbace793f89984b7d7b897537ebe7f6599f9a1aa56b1a5d0ce41552",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      143,
+      133,
+      382,
+      481
+    ],
+    "publicFile": "art/chibi/characters/bluewhale/work_front.webp",
+    "masterSha256": "40843b96df277f889bd0df2b1fef71fed76bae03d0edf1b4ae03e2cdd81b23ef",
+    "normalization": {
+      "targetHeight": 348,
+      "visibleHeight": 348,
+      "feet": [
+        256,
+        480
+      ],
+      "shoeCentroidX": 255.60075,
+      "shoeSliceRows": 53,
+      "warnings": [],
+      "pasteXY": [
+        143,
+        133
+      ],
+      "cleanedSize": [
+        511,
+        743
+      ],
+      "scaledSize": [
+        239,
+        348
+      ],
+      "alphaCutoff": 14,
+      "connectivity": 8,
+      "minComponentFraction": 0.0015,
+      "quality": 88,
+      "method": 6,
+      "cocoaCorrectionPasses": 0
+    }
+  },
+  {
+    "id": "rest_3q",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-4859dab0-61af-4d5f-ab40-6b5ecc44d914.png",
+    "prompt": "Use case: identity-preserve. Game-ready 2D chibi cozy resting sprite for Out of Tokens character bluewhale, matching the exact character identity, 2.2-head chibi proportions, warm soft hand-painted shading, and continuous bold warm cocoa-brown outer outline (fine inner lines, no pure black #000000) of the provided ref_sheet. Pose: 3/4 front-right facing relaxed lounging/sitting break pose, shoulders gently dropped, holding a small warm cream ceramic mug close to chest with both hands (subtle cozy comfort without giant steam), relaxed happy curved squinting eyes and soft blush, legs casually tucked/dangling in a soft resting pose, whale tail curled calmly. Do NOT draw any sofa, chair or floor. Full body completely visible with generous 12% transparent margins on a square canvas. Genuine transparent background. Strictly NO furniture, NO ground shadow, NO text, NO watermark. Draw the character SMALL inside an oversized transparent square. Keep the complete figure including ahoge and shoes entirely inside the middle 55 percent of canvas height, leaving the top and bottom fifths fully clear. Follow reference 1's deep-blue crown, turquoise curls, viewer-right bow, whale apron emblem, double-button waist, short white socks, dark Mary Janes with gold buckles and one lifted fluked tail behind the body on viewer right. Soft, warm smooth washes with cocoa silhouette. Face toward the RIGHT edge of the image.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [
+      {
+        "file": "art/art-batch-8/masters/bluewhale/ref_sheet.png",
+        "sha256": "15d0e69f0e2cd9da3e619f8ec8130edd285fc410e2dc52c119c3bf5c743a04a3"
+      },
+      {
+        "file": "apps/web/public/art/ai-village/portraits/bluewhale.png",
+        "sha256": "c2b5f342ac03ac19612c0cb5f5450534fcbfd7526a37dece89a0a299cd43e68b"
+      }
+    ],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "masters/bluewhale/rest_3q.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 559862,
+    "sha256": "fa68d7ffca57932f8271333ac98420d113265afcce5c38a2082359a7df2cc8ac",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      71,
+      29,
+      1146,
+      1172
+    ],
+    "processing": "untouched PNG",
+    "subjectBoundsAfterNoiseThreshold": [
+      378,
+      304,
+      902,
+      1027
+    ]
+  },
+  {
+    "id": "rest_3q",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-4859dab0-61af-4d5f-ab40-6b5ecc44d914.png",
+    "prompt": "Use case: identity-preserve. Game-ready 2D chibi cozy resting sprite for Out of Tokens character bluewhale, matching the exact character identity, 2.2-head chibi proportions, warm soft hand-painted shading, and continuous bold warm cocoa-brown outer outline (fine inner lines, no pure black #000000) of the provided ref_sheet. Pose: 3/4 front-right facing relaxed lounging/sitting break pose, shoulders gently dropped, holding a small warm cream ceramic mug close to chest with both hands (subtle cozy comfort without giant steam), relaxed happy curved squinting eyes and soft blush, legs casually tucked/dangling in a soft resting pose, whale tail curled calmly. Do NOT draw any sofa, chair or floor. Full body completely visible with generous 12% transparent margins on a square canvas. Genuine transparent background. Strictly NO furniture, NO ground shadow, NO text, NO watermark. Draw the character SMALL inside an oversized transparent square. Keep the complete figure including ahoge and shoes entirely inside the middle 55 percent of canvas height, leaving the top and bottom fifths fully clear. Follow reference 1's deep-blue crown, turquoise curls, viewer-right bow, whale apron emblem, double-button waist, short white socks, dark Mary Janes with gold buckles and one lifted fluked tail behind the body on viewer right. Soft, warm smooth washes with cocoa silhouette. Face toward the RIGHT edge of the image.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [
+      {
+        "file": "art/art-batch-8/masters/bluewhale/ref_sheet.png",
+        "sha256": "15d0e69f0e2cd9da3e619f8ec8130edd285fc410e2dc52c119c3bf5c743a04a3"
+      },
+      {
+        "file": "apps/web/public/art/ai-village/portraits/bluewhale.png",
+        "sha256": "c2b5f342ac03ac19612c0cb5f5450534fcbfd7526a37dece89a0a299cd43e68b"
+      }
+    ],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "runtime/characters/bluewhale/rest_3q.webp",
+    "width": 512,
+    "height": 512,
+    "bytes": 35240,
+    "sha256": "0ee8a935ac0e25b559354a57811141a1cd7ef5861d0e4d4cc4ae62f2d9ee4136",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      110,
+      81,
+      400,
+      481
+    ],
+    "publicFile": "art/chibi/characters/bluewhale/rest_3q.webp",
+    "masterSha256": "fa68d7ffca57932f8271333ac98420d113265afcce5c38a2082359a7df2cc8ac",
+    "normalization": {
+      "targetHeight": 400,
+      "visibleHeight": 400,
+      "feet": [
+        256,
+        480
+      ],
+      "shoeCentroidX": 255.97807,
+      "shoeSliceRows": 60,
+      "warnings": [],
+      "pasteXY": [
+        110,
+        81
+      ],
+      "cleanedSize": [
+        524,
+        723
+      ],
+      "scaledSize": [
+        290,
+        400
+      ],
+      "alphaCutoff": 14,
+      "connectivity": 8,
+      "minComponentFraction": 0.0015,
+      "quality": 88,
+      "method": 6,
+      "cocoaCorrectionPasses": 0
+    }
+  },
+  {
+    "id": "emote-focus",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-0bb19e27-b164-4768-a132-0bc2d932f444.png",
+    "prompt": "A lively golden-amber and warm orange mini determination flame emblem with two tiny diamond sparkles, conveying intense work focus. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Draw ONLY a single simple rounded little amber flame with smooth soft golden light near its core, and TWO separate four-point diamond sparks. Empty center of flame. Absolutely no paper, checklists, pen, books, emblem overlays, gear, badges or extra objects. Dark warm cocoa contour #40291e.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "masters/fx/emote-focus.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 592138,
+    "sha256": "98957960cf7ae1ae526117e216169add9a46cc2f7b0790a1ad73b074662ef381",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      0,
+      19,
+      1238,
+      1254
+    ],
+    "processing": "untouched PNG",
+    "subjectBoundsAfterNoiseThreshold": [
+      249,
+      207,
+      1023,
+      1031
+    ]
+  },
+  {
+    "id": "emote-focus",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-0bb19e27-b164-4768-a132-0bc2d932f444.png",
+    "prompt": "A lively golden-amber and warm orange mini determination flame emblem with two tiny diamond sparkles, conveying intense work focus. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Draw ONLY a single simple rounded little amber flame with smooth soft golden light near its core, and TWO separate four-point diamond sparks. Empty center of flame. Absolutely no paper, checklists, pen, books, emblem overlays, gear, badges or extra objects. Dark warm cocoa contour #40291e.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "runtime/fx/emote-focus.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 3874,
+    "sha256": "3c9636c3264ea5818798acd7f61281bceb95948ae4ffe3f351d8ff6766c0b165",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      19,
+      16,
+      109,
+      112
+    ],
+    "publicFile": "art/chibi/fx/emote-focus.webp",
+    "masterSha256": "98957960cf7ae1ae526117e216169add9a46cc2f7b0790a1ad73b074662ef381",
+    "normalization": {
+      "safeBox": [
+        96,
+        96
+      ],
+      "pasteXY": [
+        19,
+        16
+      ],
+      "cleanedSize": [
+        774,
+        824
+      ],
+      "scaledSize": [
+        90,
+        96
+      ],
+      "alphaCutoff": 14,
+      "connectivity": 8,
+      "minComponentFraction": 0.0015,
+      "quality": 88,
+      "method": 6,
+      "cocoaCorrectionPasses": 0
+    }
+  },
+  {
+    "id": "emote-sweat",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-93bde7da-e7d2-4d08-be13-edf51ae39cfb.png",
+    "prompt": "A pair of exaggerated glossy sky-blue manga sweat drops (one large teardrop, one tiny drop) tilted dynamically, conveying flustered effort or overload panic. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Keep all ornament inside the middle 65% of the canvas with wide empty margins. Use the same warm dark cocoa ink around every shape and smooth restrained painted highlights. No cast shadows or detached ambient flecks.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "masters/fx/emote-sweat.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 458825,
+    "sha256": "fc5377656fad11e192ac9471d29c4966ddb1125077b70fb647a034fed87823ec",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      49,
+      21,
+      1222,
+      1222
+    ],
+    "processing": "untouched PNG",
+    "subjectBoundsAfterNoiseThreshold": [
+      288,
+      260,
+      930,
+      1025
+    ]
+  },
+  {
+    "id": "emote-sweat",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-93bde7da-e7d2-4d08-be13-edf51ae39cfb.png",
+    "prompt": "A pair of exaggerated glossy sky-blue manga sweat drops (one large teardrop, one tiny drop) tilted dynamically, conveying flustered effort or overload panic. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Keep all ornament inside the middle 65% of the canvas with wide empty margins. Use the same warm dark cocoa ink around every shape and smooth restrained painted highlights. No cast shadows or detached ambient flecks.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "runtime/fx/emote-sweat.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 3616,
+    "sha256": "d702c2866dd03bbcb8d2d5a207f576d5b22b76c77b73d86046f054e3e5e58c2e",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      23,
+      16,
+      104,
+      112
+    ],
+    "publicFile": "art/chibi/fx/emote-sweat.webp",
+    "masterSha256": "fc5377656fad11e192ac9471d29c4966ddb1125077b70fb647a034fed87823ec",
+    "normalization": {
+      "safeBox": [
+        96,
+        96
+      ],
+      "pasteXY": [
+        23,
+        16
+      ],
+      "cleanedSize": [
+        642,
+        765
+      ],
+      "scaledSize": [
+        81,
+        96
+      ],
+      "alphaCutoff": 14,
+      "connectivity": 8,
+      "minComponentFraction": 0.0015,
+      "quality": 88,
+      "method": 6,
+      "cocoaCorrectionPasses": 0
+    }
+  },
+  {
+    "id": "emote-crash",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-9d300779-d4d0-4a05-884b-6a7bf6aa4562.png",
+    "prompt": "A compact dark indigo-slate moody gloom cloud with three crisp vertical comic gloom lines and a tiny muted purple lightning squiggle underneath, conveying burnout or crash shock. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Keep all ornament inside the middle 65% of the canvas with wide empty margins. Use the same warm dark cocoa ink around every shape and smooth restrained painted highlights. No cast shadows or detached ambient flecks.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "masters/fx/emote-crash.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 457133,
+    "sha256": "a61fb8f37323b9531d27d418a12e4b7508642b94c9b46b897979bfaaf73151ad",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      0,
+      33,
+      1208,
+      1198
+    ],
+    "processing": "untouched PNG",
+    "subjectBoundsAfterNoiseThreshold": [
+      277,
+      364,
+      973,
+      963
+    ]
+  },
+  {
+    "id": "emote-crash",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-9d300779-d4d0-4a05-884b-6a7bf6aa4562.png",
+    "prompt": "A compact dark indigo-slate moody gloom cloud with three crisp vertical comic gloom lines and a tiny muted purple lightning squiggle underneath, conveying burnout or crash shock. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Keep all ornament inside the middle 65% of the canvas with wide empty margins. Use the same warm dark cocoa ink around every shape and smooth restrained painted highlights. No cast shadows or detached ambient flecks.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "runtime/fx/emote-crash.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 3080,
+    "sha256": "65760660be2a023749b08a869b29a089dac362f05cf7653d09c68d7e9942e768",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      16,
+      22,
+      112,
+      105
+    ],
+    "publicFile": "art/chibi/fx/emote-crash.webp",
+    "masterSha256": "a61fb8f37323b9531d27d418a12e4b7508642b94c9b46b897979bfaaf73151ad",
+    "normalization": {
+      "safeBox": [
+        96,
+        96
+      ],
+      "pasteXY": [
+        16,
+        22
+      ],
+      "cleanedSize": [
+        696,
+        599
+      ],
+      "scaledSize": [
+        96,
+        83
+      ],
+      "alphaCutoff": 14,
+      "connectivity": 8,
+      "minComponentFraction": 0.0015,
+      "quality": 88,
+      "method": 6,
+      "cocoaCorrectionPasses": 0
+    }
+  },
+  {
+    "id": "emote-zzz",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-4c535c71-b82f-449d-a3e5-f948224f961d.png",
+    "prompt": "A soft sleepy floating translucent lavender-blue bubble cluster with three charming curved crescent-like sleep swirl marks (pure abstract comic sleep symbols, no harsh blocky typography), conveying cozy dozing off. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Keep all ornament inside the middle 65% of the canvas with wide empty margins. Use the same warm dark cocoa ink around every shape and smooth restrained painted highlights. No cast shadows or detached ambient flecks.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "masters/fx/emote-zzz.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 582194,
+    "sha256": "afc42d201fb57f399dd12bccd3a6280c4342d13556c1c9730ab07232c1c8063e",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      0,
+      21,
+      1218,
+      1222
+    ],
+    "processing": "untouched PNG",
+    "subjectBoundsAfterNoiseThreshold": [
+      238,
+      196,
+      1075,
+      1032
+    ]
+  },
+  {
+    "id": "emote-zzz",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-4c535c71-b82f-449d-a3e5-f948224f961d.png",
+    "prompt": "A soft sleepy floating translucent lavender-blue bubble cluster with three charming curved crescent-like sleep swirl marks (pure abstract comic sleep symbols, no harsh blocky typography), conveying cozy dozing off. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Keep all ornament inside the middle 65% of the canvas with wide empty margins. Use the same warm dark cocoa ink around every shape and smooth restrained painted highlights. No cast shadows or detached ambient flecks.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "runtime/fx/emote-zzz.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 3800,
+    "sha256": "c3d648dc90348ce43f237e3cf3e6ba49ec0d9cf3e245e2136b077eaa77cf37af",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      16,
+      16,
+      112,
+      112
+    ],
+    "publicFile": "art/chibi/fx/emote-zzz.webp",
+    "masterSha256": "afc42d201fb57f399dd12bccd3a6280c4342d13556c1c9730ab07232c1c8063e",
+    "normalization": {
+      "safeBox": [
+        96,
+        96
+      ],
+      "pasteXY": [
+        16,
+        16
+      ],
+      "cleanedSize": [
+        837,
+        836
+      ],
+      "scaledSize": [
+        96,
+        96
+      ],
+      "alphaCutoff": 14,
+      "connectivity": 8,
+      "minComponentFraction": 0.0015,
+      "quality": 88,
+      "method": 6,
+      "cocoaCorrectionPasses": 0
+    }
+  },
+  {
+    "id": "emote-excited",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-4ca490c9-4e88-4c0b-b501-65951f145082.png",
+    "prompt": "A vibrant cluster of three warm golden four-point stars and two tiny pastel-coral joy sparkles bursting playfully outward, conveying celebration and excitement. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Keep all ornament inside the middle 65% of the canvas with wide empty margins. Use the same warm dark cocoa ink around every shape and smooth restrained painted highlights. No cast shadows or detached ambient flecks.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "masters/fx/emote-excited.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 482847,
+    "sha256": "80956986c1fd2362437c8643bc51369377519387fed43f6b62fc77bf0721a5da",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      65,
+      13,
+      1226,
+      1228
+    ],
+    "processing": "untouched PNG",
+    "subjectBoundsAfterNoiseThreshold": [
+      246,
+      238,
+      964,
+      1006
+    ]
+  },
+  {
+    "id": "emote-excited",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-4ca490c9-4e88-4c0b-b501-65951f145082.png",
+    "prompt": "A vibrant cluster of three warm golden four-point stars and two tiny pastel-coral joy sparkles bursting playfully outward, conveying celebration and excitement. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Keep all ornament inside the middle 65% of the canvas with wide empty margins. Use the same warm dark cocoa ink around every shape and smooth restrained painted highlights. No cast shadows or detached ambient flecks.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "runtime/fx/emote-excited.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 5700,
+    "sha256": "866dd2e16c7b1c0957075521d6e695a64abdb3d7cc10120754f20faf18db2613",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      19,
+      16,
+      109,
+      112
+    ],
+    "publicFile": "art/chibi/fx/emote-excited.webp",
+    "masterSha256": "80956986c1fd2362437c8643bc51369377519387fed43f6b62fc77bf0721a5da",
+    "normalization": {
+      "safeBox": [
+        96,
+        96
+      ],
+      "pasteXY": [
+        19,
+        16
+      ],
+      "cleanedSize": [
+        718,
+        768
+      ],
+      "scaledSize": [
+        90,
+        96
+      ],
+      "alphaCutoff": 14,
+      "connectivity": 8,
+      "minComponentFraction": 0.0015,
+      "quality": 88,
+      "method": 6,
+      "cocoaCorrectionPasses": 0
+    }
+  },
+  {
+    "id": "emote-daze",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-3cfe647c-af55-4c0e-bfa4-5eaeb2e93b10.png",
+    "prompt": "A cute puffy cream-ivory mini thought cloud with three neat warm cocoa-brown round dots arranged horizontally inside, conveying spacing out or daydreaming. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Keep all ornament inside the middle 65% of the canvas with wide empty margins. Use the same warm dark cocoa ink around every shape and smooth restrained painted highlights. No cast shadows or detached ambient flecks.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "masters/fx/emote-daze.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 579779,
+    "sha256": "2b61d6e30a23b4cc2bc205eda19f4330a9adf4f9d595184d338377605a099eac",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      0,
+      63,
+      1226,
+      1232
+    ],
+    "processing": "untouched PNG",
+    "subjectBoundsAfterNoiseThreshold": [
+      196,
+      297,
+      1021,
+      1009
+    ]
+  },
+  {
+    "id": "emote-daze",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-3cfe647c-af55-4c0e-bfa4-5eaeb2e93b10.png",
+    "prompt": "A cute puffy cream-ivory mini thought cloud with three neat warm cocoa-brown round dots arranged horizontally inside, conveying spacing out or daydreaming. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Keep all ornament inside the middle 65% of the canvas with wide empty margins. Use the same warm dark cocoa ink around every shape and smooth restrained painted highlights. No cast shadows or detached ambient flecks.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "runtime/fx/emote-daze.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 3312,
+    "sha256": "878775208631b52698afe4fc59ba9af8bea68f17ffa12dea10828a8ea6e8db32",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      16,
+      22,
+      112,
+      105
+    ],
+    "publicFile": "art/chibi/fx/emote-daze.webp",
+    "masterSha256": "2b61d6e30a23b4cc2bc205eda19f4330a9adf4f9d595184d338377605a099eac",
+    "normalization": {
+      "safeBox": [
+        96,
+        96
+      ],
+      "pasteXY": [
+        16,
+        22
+      ],
+      "cleanedSize": [
+        825,
+        712
+      ],
+      "scaledSize": [
+        96,
+        83
+      ],
+      "alphaCutoff": 14,
+      "connectivity": 8,
+      "minComponentFraction": 0.0015,
+      "quality": 88,
+      "method": 6,
+      "cocoaCorrectionPasses": 0
+    }
+  },
+  {
+    "id": "prop-code_bit",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-2cac481f-db5b-4e7c-bfeb-9cb87e402d11.png",
+    "prompt": "A miniature glowing translucent turquoise-and-gold holographic geometric diamond chip with two tiny orbiting spark pixels, used as a subtle floating work output particle above a workstation. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. The ENTIRE image consists of exactly THREE floating shapes: one translucent turquoise-and-gold faceted rhombus, and two little independent square sparks. All three have a crisp cocoa-brown outline. The area below the gem is entirely empty transparent space. No workstation, NO furniture, NO base, no table, no platform, no projector, no ground, no shadow, no orbit rings. Tight restrained jewel highlight.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "masters/fx/prop-code_bit.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 260126,
+    "sha256": "843eb1819a7214641d99dbb45f1bc67aca59910bdc2dc4dd128e75ff04b352c5",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      41,
+      55,
+      1234,
+      1254
+    ],
+    "processing": "untouched PNG",
+    "subjectBoundsAfterNoiseThreshold": [
+      373,
+      243,
+      888,
+      695
+    ]
+  },
+  {
+    "id": "prop-code_bit",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-2cac481f-db5b-4e7c-bfeb-9cb87e402d11.png",
+    "prompt": "A miniature glowing translucent turquoise-and-gold holographic geometric diamond chip with two tiny orbiting spark pixels, used as a subtle floating work output particle above a workstation. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. The ENTIRE image consists of exactly THREE floating shapes: one translucent turquoise-and-gold faceted rhombus, and two little independent square sparks. All three have a crisp cocoa-brown outline. The area below the gem is entirely empty transparent space. No workstation, NO furniture, NO base, no table, no platform, no projector, no ground, no shadow, no orbit rings. Tight restrained jewel highlight.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "runtime/fx/prop-code_bit.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 3584,
+    "sha256": "adf049e655b9b1395b06cf084957c403b81b0a023015af7da63d2e821b1782de",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      16,
+      22,
+      112,
+      106
+    ],
+    "publicFile": "art/chibi/fx/prop-code_bit.webp",
+    "masterSha256": "843eb1819a7214641d99dbb45f1bc67aca59910bdc2dc4dd128e75ff04b352c5",
+    "normalization": {
+      "safeBox": [
+        96,
+        96
+      ],
+      "pasteXY": [
+        16,
+        22
+      ],
+      "cleanedSize": [
+        515,
+        452
+      ],
+      "scaledSize": [
+        96,
+        84
+      ],
+      "alphaCutoff": 14,
+      "connectivity": 8,
+      "minComponentFraction": 0.0015,
+      "quality": 88,
+      "method": 6,
+      "cocoaCorrectionPasses": 0
+    }
+  },
+  {
+    "id": "prop-coffee_cup",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-94fa3985-dd3e-4611-ae3f-737cc41fd321.png",
+    "prompt": "A cute miniature cozy cream ceramic mug filled with rich cocoa-brown coffee and a delicate warm ivory heart-shaped curl of gentle steam rising above it, used as a floating break-time indicator. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Keep all ornament inside the middle 65% of the canvas with wide empty margins. Use the same warm dark cocoa ink around every shape and smooth restrained painted highlights. No cast shadows or detached ambient flecks.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "masters/fx/prop-coffee_cup.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 535516,
+    "sha256": "e94aca2088235ae7e2567da95b4eb9312e0adc0d07c0f7b776b9b80699817445",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      0,
+      21,
+      1234,
+      1254
+    ],
+    "processing": "untouched PNG",
+    "subjectBoundsAfterNoiseThreshold": [
+      321,
+      258,
+      940,
+      1019
+    ]
+  },
+  {
+    "id": "prop-coffee_cup",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "sourceFile": "exec-94fa3985-dd3e-4611-ae3f-737cc41fd321.png",
+    "prompt": "A cute miniature cozy cream ceramic mug filled with rich cocoa-brown coffee and a delicate warm ivory heart-shaped curl of gentle steam rising above it, used as a floating break-time indicator. MapleStory-inspired expressive 2D anime game comic sticker icon. Clean continuous bold deep warm cocoa-brown outer outline (never harsh black #000000), delicate inner accents, warm soft hand-painted shading with lively crisp readability at 32px-48px display size. Single centered isolated graphic with generous 15% empty transparent margins on a square canvas. Genuine transparent background. Strictly NO text letters unless explicitly specified, NO border frame, NO background box, NO ground shadow, NO character faces, NO watermark. Keep all ornament inside the middle 65% of the canvas with wide empty margins. Use the same warm dark cocoa ink around every shape and smooth restrained painted highlights. No cast shadows or detached ambient flecks.",
+    "parameters": {
+      "transparent_background": true
+    },
+    "references": [],
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "file": "runtime/fx/prop-coffee_cup.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 4436,
+    "sha256": "cd244031f20f2504ffaf8d7154596e25fa298c821a410d521b84cbe567849cc2",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      25,
+      16,
+      103,
+      112
+    ],
+    "publicFile": "art/chibi/fx/prop-coffee_cup.webp",
+    "masterSha256": "e94aca2088235ae7e2567da95b4eb9312e0adc0d07c0f7b776b9b80699817445",
+    "normalization": {
+      "safeBox": [
+        96,
+        96
+      ],
+      "pasteXY": [
+        25,
+        16
+      ],
+      "cleanedSize": [
+        619,
+        761
+      ],
+      "scaledSize": [
+        78,
+        96
+      ],
+      "alphaCutoff": 14,
+      "connectivity": 8,
+      "minComponentFraction": 0.0015,
+      "quality": 88,
+      "method": 6,
+      "cocoaCorrectionPasses": 0
+    }
+  }
+]

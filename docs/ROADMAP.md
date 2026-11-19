@@ -1,3 +1,5 @@
+2026-11-19 Art-Batch 8 美术与路径映射已交付。13 张原始 PNG、12 张 WebP、rig、FX 目录和离线包验证通过。下一阶段依赖人工审核核验图。
+
 2026-11-13 委托后续阶段3 BLOCKED/HOLD：阶段2本地检查点为 1745653315e0fc50e50e8fbbfbbad8bf16611190（848配置、28真实点击、41文件333测试）。其隔离构建完成三版本×两场景×六轮首批36+唯一确认36冷HTTP缓存样本，共12,960帧/432次点击；确认批四人/十二人assetsReady对c68541d为+19.67%/+126.96%，输入与主机负载亦波动，不能可靠归因或声称最小修复闭环。早期上中位值触发确认的统计偏离、全部原始不利数据均保留。清理时发现工作区由另一工作流提交6fd5fe67537c03dbe70071094a34c025c181fd54，Stage B/PWA已变化；本轮完整保留该提交，1745653证据不能验收新HEAD。详见 docs/VF5_CHECKPOINT.md、仓库外 ../commission-checkpoints-20261113/vf5-performance-hold.json。当前委托阶段3停止，待固定新基线与受控性能复测窗口裁决；未继续阶段4。长会话、完整离线包assetsReady、200%系统字体、SW全分支、UI-OFFLINE-01仍OPEN/HOLD；真机软键盘、物理读屏器、真实DSH安装继续OPEN/HOLD。独立Art-Batch记录的“继续Batch 2”不表示本轮已解除阶段3停止条件。
 
 阶段3停止检查点验证：在保留6fd5fe6的当前工作区运行 pnpm check，41文件334测试及类型/lint/Web/DSH构建通过；git diff --check通过。仅新增/更新状态文档，无业务源码修复。本轮自启5184、5185、5187、5188、5189端口均关闭，测试浏览器tab关闭、viewport重置、可见性恢复；未终止其他工作流进程。README/workflow/lock/scripts/packages/dialog/partner相对本轮基线零diff；初始7委托文件与README/workflow哈希另行核对。本轮未push、部署、付费API或拷入参考截图。

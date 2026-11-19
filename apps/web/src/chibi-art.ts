@@ -1,0 +1,18 @@
+export const chibiCharacters = ['bluewhale'] as const;
+export const chibiFxIds = [
+    'emote-focus', 'emote-sweat', 'emote-crash', 'emote-zzz',
+    'emote-excited', 'emote-daze', 'prop-code_bit', 'prop-coffee_cup',
+] as const;
+
+export function hasChibiRig(characterId: string): boolean {
+    return chibiCharacters.some(id => id === characterId);
+}
+
+export function chibiRigPath(characterId: string): string | null {
+    return hasChibiRig(characterId) ? `./art/chibi/characters/${characterId}/rig.json` : null;
+}
+
+export function chibiFxArt(id: string): string {
+    const safeId = chibiFxIds.find(candidate => candidate === id) ?? 'emote-excited';
+    return `./art/chibi/fx/${safeId}.webp`;
+}

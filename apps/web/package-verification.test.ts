@@ -121,3 +121,132 @@ it('verifies all eight Batch 7 assets, provenance, whitelist, dimensions and off
  }
  expect(total).toBeLessThanOrEqual(900000);
 });
+
+import {chibiCharacters, chibiFxIds, hasChibiRig, chibiRigPath, chibiFxArt} from './src/chibi-art.js';
+
+it('limits Art-Batch 8 paths to the phase one character and eight shared stickers', () => {
+ expect(chibiCharacters).toEqual(['bluewhale']);
+ expect(chibiFxIds).toEqual(['emote-focus', 'emote-sweat', 'emote-crash', 'emote-zzz',
+  'emote-excited', 'emote-daze', 'prop-code_bit', 'prop-coffee_cup']);
+ expect(hasChibiRig('bluewhale')).toBe(true);
+ expect(chibiRigPath('bluewhale')).toBe('./art/chibi/characters/bluewhale/rig.json');
+ for (const id of chibiFxIds) expect(chibiFxArt(id)).toBe(`./art/chibi/fx/${id}.webp`);
+ for (const id of ['', '../bluewhale', 'fx/../../x', '..\\bluewhale', '%2e%2e', '/emote-focus',
+  'constructor', '__proto__', 'toString', 'Bluewhale', 'emote-focus?x']) {
+  expect(hasChibiRig(id)).toBe(false);
+  expect(chibiRigPath(id)).toBeNull();
+  expect(chibiFxArt(id)).toBe('./art/chibi/fx/emote-excited.webp');
+ }
+});
+
+it('checks Art-Batch 8 PNGs, decoded WebP geometry, rig, catalog and every offline copy', () => {
+ const batch = 'art/art-batch-8';
+ const characterDir = 'art/chibi/characters/bluewhale';
+ const poseIds = ['stand_3q', 'walk_3q', 'work_front', 'rest_3q'];
+ const ref = batch + '/masters/bluewhale/ref_sheet.png';
+ const portrait = 'apps/web/public/art/ai-village/portraits/bluewhale.png';
+ const paths = [characterDir + '/rig.json', 'art/chibi/fx/catalog.json'];
+ const sha = (path: string) => createHash('sha256').update(readFileSync(resolve(path))).digest('hex');
+ type Entry = {
+  id: string; file: string; publicFile?: string; sha256: string; bytes: number;
+  width: number; height: number; alphaBounds: number[]; alphaRange: number[];
+  model: string; tool: string; parameters: {transparent_background: boolean}; prompt: string;
+  references: {file: string; sha256: string}[]; masterSha256?: string;
+  normalization?: {visibleHeight: number; feet: number[]; shoeCentroidX: number; warnings: string[]};
+ };
+ const entries: Entry[] = JSON.parse(readFileSync(join(batch, 'manifest.json'), 'utf8'));
+ const masterIds = ['ref_sheet', ...poseIds, ...chibiFxIds];
+ const masters = entries.filter(e => !e.publicFile);
+ const runtime = entries.filter(e => e.publicFile);
+ expect(masters.map(e => e.id).sort()).toEqual([...masterIds].sort());
+ expect(runtime.map(e => e.id).sort()).toEqual(masterIds.slice(1).sort());
+ // Decode the alpha plane independently of the exporter and metadata, including for untouched PNGs.
+ const inspect = spawnSync('python', ['-c', [
+  'import json, math, sys',
+  'from PIL import Image',
+  'result = []',
+  'for path in sys.argv[1:]:',
+  '    with Image.open(path) as image:',
+  '        alpha = image.getchannel("A")',
+  '        l,t,r,b = alpha.getbbox()',
+  '        band = alpha.crop((l, b-math.ceil((b-t)*0.15), r, b))',
+  '        columns = [x+l for y in range(band.height) for x in range(band.width) if band.getpixel((x,y))] if image.width == 512 else []',
+  '        result.append([image.format, *image.size, alpha.getextrema(), [l,t,r,b], sum(columns)/len(columns) if columns else None])',
+  'print(json.dumps(result))',
+ ].join('\n'), ...entries.map(e => resolve(batch, e.file))], {encoding: 'utf8'});
+ expect(inspect.status, inspect.error?.message ?? inspect.stderr).toBe(0);
+ type Pixels = [string, number, number, number[], number[], number | null];
+ const pixels: Pixels[] = JSON.parse(inspect.stdout);
+ const rig = JSON.parse(readFileSync(resolve('apps/web/public', paths[0]!), 'utf8'));
+ expect(rig).toMatchObject({schemaVersion: 2, renderer: 'maple-chibi', id: 'bluewhale', canvas: [512,512],
+  feet: [256,480], visibleHeight: 400, facingDefault: 'right', heightScale: 1, optionalPoses: {back_3q: null,
+   react_front: null}, faceOverrides: null, motionProfile: {walkSpeed: 1, hopHeight: 10, stepCadenceHz: 3.2,
+   squashAmount: 0.06, breathAmp: 0.025}});
+ expect(Object.keys(rig.poses).sort()).toEqual([...poseIds].sort());
+ expect(rig.anchors).toEqual(rig.poses.stand_3q.anchors);
+ const catalog = JSON.parse(readFileSync(resolve('apps/web/public', paths[1]!), 'utf8')) as
+  {id: string; file: string; bytes: number; sha256: string; anchor: string; animationPreset: string; scale: number}[];
+ expect(catalog.map(item => item.id).sort()).toEqual([...chibiFxIds].sort());
+ for (const [index, e] of entries.entries()) {
+  const pose = poseIds.includes(e.id);
+  const character = e.id === 'ref_sheet' || pose;
+  const masterFile = `masters/${character ? 'bluewhale' : 'fx'}/${e.id}.png`;
+  const relative = `${pose ? 'characters/bluewhale' : 'fx'}/${e.id}.webp`;
+  expect(e.file).toBe(e.publicFile ? 'runtime/' + relative : masterFile);
+  const local = resolve(batch, e.file);
+  expect(sha(local)).toBe(e.sha256);
+  expect(readFileSync(local).length).toBe(e.bytes);
+  expect(e.tool).toBe('built-in image_gen');
+  expect(e.model).toBe('unknown; not exposed');
+  expect(e.parameters.transparent_background).toBe(true);
+  expect(e.prompt.length).toBeGreaterThan(100);
+  const references = e.id === 'ref_sheet' ? [portrait, 'apps/web/public/art/stage-b/bluewhale.r1.webp']
+   : e.id === 'walk_3q' ? [ref, batch + '/masters/bluewhale/stand_3q.png'] : pose ? [ref, portrait] : [];
+  expect(e.references).toEqual(references.map(file => ({file, sha256: sha(file)})));
+  const [format, width, height, range, bounds, centroid] = pixels[index]!;
+  expect([format, width, height, range, bounds]).toEqual([
+   e.publicFile ? 'WEBP' : 'PNG', e.width, e.height, e.alphaRange, e.alphaBounds]);
+  expect(range).toEqual([0,255]);
+  expect(width).toBe(height);
+  if (!e.publicFile) continue;
+  expect(e.masterSha256).toBe(sha(join(batch, masterFile)));
+  expect(e.publicFile).toBe('art/chibi/' + relative);
+  paths.push(e.publicFile);
+  expect(sha(resolve('apps/web/public', e.publicFile))).toBe(e.sha256);
+  expect(width).toBe(pose ? 512 : 128);
+  expect(e.bytes).toBeLessThan(pose ? 90000 : 25000);
+  const [left, top, right, bottom] = bounds as [number, number, number, number];
+  if (pose) {
+   const actualHeight = bottom - top;
+   expect(left).toBeGreaterThanOrEqual(12);
+   expect(right - 1).toBeLessThanOrEqual(500);
+   expect(bottom - 1).toBe(480);
+   expect(actualHeight).toBe(e.id === 'work_front' ? 348 : 400);
+   expect(centroid).not.toBeNull();
+   expect(Math.abs(centroid! - 256)).toBeLessThanOrEqual(0.5);
+   expect(e.normalization!.shoeCentroidX).toBeCloseTo(centroid!, 4);
+   expect(e.normalization).toMatchObject({visibleHeight: actualHeight, feet: [256,480], warnings: []});
+   const config = rig.poses[e.id];
+   expect(config).toMatchObject({file: e.id + '.webp', feet: [256,480], visibleHeight: actualHeight,
+    mirrorable: e.id !== 'work_front', warnings: []});
+   if (e.id === 'work_front') expect(config.seatedOffsetY).toBe(-42);
+   expect(config.anchors.deskClipY).toBe(370);
+   expect(config.anchors.headTop[1]).toBe(top);
+   for (const name of ['headTop', 'faceCenter', 'emoteLeft', 'emoteRight', 'propHand']) {
+    const point = config.anchors[name];
+    expect(point).toHaveLength(2);
+    expect(point.every((v: number) => Number.isInteger(v) && v >= 0 && v < 512)).toBe(true);
+   }
+  } else {
+   expect(Math.min(left, top, 128-right, 128-bottom)).toBeGreaterThanOrEqual(16);
+   const item = catalog.find(item => item.id === e.id)!;
+   expect(item).toMatchObject({file: e.id + '.webp', bytes: e.bytes, sha256: e.sha256});
+   expect(['headTop', 'emoteLeft', 'emoteRight', 'propHand']).toContain(item.anchor);
+   expect(['pulse', 'drop', 'shake', 'float', 'pop', 'rise']).toContain(item.animationPreset);
+   expect(item.scale).toBeGreaterThan(0);
+  }
+ }
+ const offline = JSON.parse(readFileSync(resolve('apps/web/dist/offline-assets.json'), 'utf8')) as {assets: string[]};
+ expect(offline.assets.filter(p => p.startsWith('art/chibi/')).sort()).toEqual([...paths].sort());
+ for (const path of paths) expect(sha(join('apps/web/dist', path))).toBe(sha(join('apps/web/public', path)));
+});
