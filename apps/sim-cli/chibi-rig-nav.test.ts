@@ -165,7 +165,8 @@ describe('Phase 1 MapleChibi engine: NavGrid A*, ActorBrain HFSM, and Rig schema
   expect(poseScaleFor(rig, 'work_front')).toBeGreaterThan(1);
   expect(poseScaleFor(rig, 'rest_3q')).toBeLessThan(1);
   expect(resolvePoseAnchors(rig, 'work_front').headTop[1]).toBeGreaterThan(resolvePoseAnchors(rig, 'stand_3q').headTop[1]);
-  expect(fx).toHaveLength(8);
-  expect(new Set(fx.map(item => item.id)).size).toBe(8);
+  expect(rig.optionalPoses?.back_3q?.file).toBe('back_3q.webp');
+  expect(fx).toHaveLength(18);
+  expect(new Set(fx.map(item => item.id)).size).toBe(18);
  });
 });

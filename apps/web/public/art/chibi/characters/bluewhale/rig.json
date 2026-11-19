@@ -172,7 +172,39 @@
     }
   },
   "optionalPoses": {
-    "back_3q": null,
+    "back_3q": {
+      "file": "back_3q.webp",
+      "mirrorable": true,
+      "feet": [
+        256,
+        480
+      ],
+      "visibleHeight": 400,
+      "anchors": {
+        "headTop": [
+          251,
+          81
+        ],
+        "faceCenter": [
+          275,
+          241
+        ],
+        "emoteLeft": [
+          168,
+          133
+        ],
+        "emoteRight": [
+          334,
+          133
+        ],
+        "propHand": [
+          308,
+          341
+        ],
+        "deskClipY": 370
+      },
+      "warnings": []
+    },
     "react_front": null
   },
   "faceOverrides": null,

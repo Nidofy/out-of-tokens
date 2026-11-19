@@ -124,10 +124,14 @@ it('verifies all eight Batch 7 assets, provenance, whitelist, dimensions and off
 
 import {chibiCharacters, chibiFxIds, hasChibiRig, chibiRigPath, chibiFxArt} from './src/chibi-art.js';
 
-it('limits Art-Batch 8 paths to the phase one character and eight shared stickers', () => {
+const batch8Fx = ['emote-focus', 'emote-sweat', 'emote-crash', 'emote-zzz',
+ 'emote-excited', 'emote-daze', 'prop-code_bit', 'prop-coffee_cup'];
+const batch9Fx = ['emote-slack', 'emote-anger', 'emote-dizzy', 'emote-heart', 'emote-alert',
+ 'emote-spark', 'prop-doc_page', 'prop-smoke_puff', 'prop-dust_step', 'prop-heal_leaf'];
+
+it('limits chibi paths to bluewhale and the eighteen shipped stickers', () => {
  expect(chibiCharacters).toEqual(['bluewhale']);
- expect(chibiFxIds).toEqual(['emote-focus', 'emote-sweat', 'emote-crash', 'emote-zzz',
-  'emote-excited', 'emote-daze', 'prop-code_bit', 'prop-coffee_cup']);
+ expect(chibiFxIds).toEqual([...batch8Fx, ...batch9Fx]);
  expect(hasChibiRig('bluewhale')).toBe(true);
  expect(chibiRigPath('bluewhale')).toBe('./art/chibi/characters/bluewhale/rig.json');
  for (const id of chibiFxIds) expect(chibiFxArt(id)).toBe(`./art/chibi/fx/${id}.webp`);
@@ -139,11 +143,11 @@ it('limits Art-Batch 8 paths to the phase one character and eight shared sticker
  }
 });
 
-it('checks Art-Batch 8 PNGs, decoded WebP geometry, rig, catalog and every offline copy', () => {
- const batch = 'art/art-batch-8';
+it.each([8, 9])('checks Art-Batch %i PNGs, decoded WebP geometry, rig, catalog and offline copies', batchNo => {
+ const batch = 'art/art-batch-' + batchNo;
  const characterDir = 'art/chibi/characters/bluewhale';
  const poseIds = ['stand_3q', 'walk_3q', 'work_front', 'rest_3q'];
- const ref = batch + '/masters/bluewhale/ref_sheet.png';
+ const ref = 'art/art-batch-8/masters/bluewhale/ref_sheet.png';
  const portrait = 'apps/web/public/art/ai-village/portraits/bluewhale.png';
  const paths = [characterDir + '/rig.json', 'art/chibi/fx/catalog.json'];
  const sha = (path: string) => createHash('sha256').update(readFileSync(resolve(path))).digest('hex');
@@ -152,18 +156,21 @@ it('checks Art-Batch 8 PNGs, decoded WebP geometry, rig, catalog and every offli
   width: number; height: number; alphaBounds: number[]; alphaRange: number[];
   model: string; tool: string; parameters: {transparent_background: boolean}; prompt: string;
   references: {file: string; sha256: string}[]; masterSha256?: string;
-  normalization?: {visibleHeight: number; feet: number[]; shoeCentroidX: number; warnings: string[]};
+  visiblePureBlackPixels?: number;
+  normalization?: {visibleHeight: number; feet: number[]; shoeCentroidX: number; warnings: string[];
+   standHeadWidth?: number; backHeadWidth?: number; headWidthRatio?: number};
  };
  const entries: Entry[] = JSON.parse(readFileSync(join(batch, 'manifest.json'), 'utf8'));
- const masterIds = ['ref_sheet', ...poseIds, ...chibiFxIds];
+ const runtimeIds = batchNo === 8 ? [...poseIds, ...batch8Fx] : ['back_3q', ...batch9Fx];
+ const masterIds = batchNo === 8 ? ['ref_sheet', ...runtimeIds] : runtimeIds;
  const masters = entries.filter(e => !e.publicFile);
  const runtime = entries.filter(e => e.publicFile);
  expect(masters.map(e => e.id).sort()).toEqual([...masterIds].sort());
- expect(runtime.map(e => e.id).sort()).toEqual(masterIds.slice(1).sort());
+ expect(runtime.map(e => e.id).sort()).toEqual([...runtimeIds].sort());
  // Decode the alpha plane independently of the exporter and metadata, including for untouched PNGs.
  const inspect = spawnSync('python', ['-c', [
   'import json, math, sys',
-  'from PIL import Image',
+  'from PIL import Image, ImageChops',
   'result = []',
   'for path in sys.argv[1:]:',
   '    with Image.open(path) as image:',
@@ -171,24 +178,34 @@ it('checks Art-Batch 8 PNGs, decoded WebP geometry, rig, catalog and every offli
   '        l,t,r,b = alpha.getbbox()',
   '        band = alpha.crop((l, b-math.ceil((b-t)*0.15), r, b))',
   '        columns = [x+l for y in range(band.height) for x in range(band.width) if band.getpixel((x,y))] if image.width == 512 else []',
-  '        result.append([image.format, *image.size, alpha.getextrema(), [l,t,r,b], sum(columns)/len(columns) if columns else None])',
+  '        head = alpha.crop((l,t,r,t+math.ceil((b-t)*0.45))).getbbox()',
+  '        red,green,blue = image.convert("RGB").split()',
+  '        ink = ImageChops.lighter(red, ImageChops.lighter(green,blue)).point(lambda c: 255 if c==0 else 0)',
+  '        cutoff = 1 if image.format == "WEBP" else 14',
+  '        black = ImageChops.multiply(ink, alpha.point(lambda a: 255 if a>=cutoff else 0)).histogram()[255]',
+  '        result.append([image.format, *image.size, alpha.getextrema(), [l,t,r,b], sum(columns)/len(columns) if columns else None, head[2]-head[0], black])',
   'print(json.dumps(result))',
- ].join('\n'), ...entries.map(e => resolve(batch, e.file))], {encoding: 'utf8'});
+ ].join('\n'), ...entries.map(e => resolve(batch, e.file)), resolve('apps/web/public', characterDir, 'stand_3q.webp')], {encoding: 'utf8'});
  expect(inspect.status, inspect.error?.message ?? inspect.stderr).toBe(0);
- type Pixels = [string, number, number, number[], number[], number | null];
+ type Pixels = [string, number, number, number[], number[], number | null, number, number];
  const pixels: Pixels[] = JSON.parse(inspect.stdout);
  const rig = JSON.parse(readFileSync(resolve('apps/web/public', paths[0]!), 'utf8'));
  expect(rig).toMatchObject({schemaVersion: 2, renderer: 'maple-chibi', id: 'bluewhale', canvas: [512,512],
-  feet: [256,480], visibleHeight: 400, facingDefault: 'right', heightScale: 1, optionalPoses: {back_3q: null,
+  feet: [256,480], visibleHeight: 400, facingDefault: 'right', heightScale: 1, optionalPoses: {back_3q: {file: 'back_3q.webp'},
    react_front: null}, faceOverrides: null, motionProfile: {walkSpeed: 1, hopHeight: 10, stepCadenceHz: 3.2,
    squashAmount: 0.06, breathAmp: 0.025}});
  expect(Object.keys(rig.poses).sort()).toEqual([...poseIds].sort());
  expect(rig.anchors).toEqual(rig.poses.stand_3q.anchors);
  const catalog = JSON.parse(readFileSync(resolve('apps/web/public', paths[1]!), 'utf8')) as
   {id: string; file: string; bytes: number; sha256: string; anchor: string; animationPreset: string; scale: number}[];
- expect(catalog.map(item => item.id).sort()).toEqual([...chibiFxIds].sort());
+ expect(catalog.map(item => item.id)).toEqual(chibiFxIds);
+ // Preserve every historical field and catalog position at the Phase 1 baseline.
+ const jsonHash = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
+ expect(jsonHash({...rig, optionalPoses: {...rig.optionalPoses, back_3q: null}}))
+  .toBe('ba25d939bf71b681cfea4ccbd0b40fd0df22058193625fa1c82aaa9b7aaa19e7');
+ expect(jsonHash(catalog.slice(0, 8))).toBe('9dbe42f1255777b708f23afdfb946294e0685b954a0b0c427e153a792426d37a');
  for (const [index, e] of entries.entries()) {
-  const pose = poseIds.includes(e.id);
+  const pose = poseIds.includes(e.id) || e.id === 'back_3q';
   const character = e.id === 'ref_sheet' || pose;
   const masterFile = `masters/${character ? 'bluewhale' : 'fx'}/${e.id}.png`;
   const relative = `${pose ? 'characters/bluewhale' : 'fx'}/${e.id}.webp`;
@@ -200,15 +217,21 @@ it('checks Art-Batch 8 PNGs, decoded WebP geometry, rig, catalog and every offli
   expect(e.model).toBe('unknown; not exposed');
   expect(e.parameters.transparent_background).toBe(true);
   expect(e.prompt.length).toBeGreaterThan(100);
-  const references = e.id === 'ref_sheet' ? [portrait, 'apps/web/public/art/stage-b/bluewhale.r1.webp']
-   : e.id === 'walk_3q' ? [ref, batch + '/masters/bluewhale/stand_3q.png'] : pose ? [ref, portrait] : [];
+  let references: string[] = [];
+  if (e.id === 'ref_sheet') references = [portrait, 'apps/web/public/art/stage-b/bluewhale.r1.webp'];
+  else if (e.id === 'walk_3q' || e.id === 'back_3q') references = [ref, 'art/art-batch-8/masters/bluewhale/stand_3q.png'];
+  else if (pose) references = [ref, portrait];
+  else if (batchNo === 9) references = ['emote-focus', 'emote-sweat', 'prop-coffee_cup']
+   .map(id => 'art/art-batch-8/masters/fx/' + id + '.png');
   expect(e.references).toEqual(references.map(file => ({file, sha256: sha(file)})));
-  const [format, width, height, range, bounds, centroid] = pixels[index]!;
+  const [format, width, height, range, bounds, centroid, headWidth, black] = pixels[index]!;
   expect([format, width, height, range, bounds]).toEqual([
    e.publicFile ? 'WEBP' : 'PNG', e.width, e.height, e.alphaRange, e.alphaBounds]);
   expect(range).toEqual([0,255]);
   expect(width).toBe(height);
+  if (batchNo === 9) expect(black).toBe(0);
   if (!e.publicFile) continue;
+  if (batchNo === 9) expect(e.visiblePureBlackPixels).toBe(black);
   expect(e.masterSha256).toBe(sha(join(batch, masterFile)));
   expect(e.publicFile).toBe('art/chibi/' + relative);
   paths.push(e.publicFile);
@@ -226,7 +249,12 @@ it('checks Art-Batch 8 PNGs, decoded WebP geometry, rig, catalog and every offli
    expect(Math.abs(centroid! - 256)).toBeLessThanOrEqual(0.5);
    expect(e.normalization!.shoeCentroidX).toBeCloseTo(centroid!, 4);
    expect(e.normalization).toMatchObject({visibleHeight: actualHeight, feet: [256,480], warnings: []});
-   const config = rig.poses[e.id];
+   const config = e.id === 'back_3q' ? rig.optionalPoses.back_3q : rig.poses[e.id];
+   if (e.id === 'back_3q') {
+    const standWidth = pixels.at(-1)![6];
+    expect(e.normalization).toMatchObject({standHeadWidth: standWidth, backHeadWidth: headWidth,
+     headWidthRatio: headWidth / standWidth});
+   }
    expect(config).toMatchObject({file: e.id + '.webp', feet: [256,480], visibleHeight: actualHeight,
     mirrorable: e.id !== 'work_front', warnings: []});
    if (e.id === 'work_front') expect(config.seatedOffsetY).toBe(-42);
@@ -247,6 +275,9 @@ it('checks Art-Batch 8 PNGs, decoded WebP geometry, rig, catalog and every offli
   }
  }
  const offline = JSON.parse(readFileSync(resolve('apps/web/dist/offline-assets.json'), 'utf8')) as {assets: string[]};
- expect(offline.assets.filter(p => p.startsWith('art/chibi/')).sort()).toEqual([...paths].sort());
+ const allChibiPaths = [characterDir + '/rig.json', 'art/chibi/fx/catalog.json',
+  ...[...poseIds, 'back_3q'].map(id => characterDir + '/' + id + '.webp'),
+  ...chibiFxIds.map(id => chibiFxArt(id).slice(2))];
+ expect(offline.assets.filter(p => p.startsWith('art/chibi/')).sort()).toEqual(allChibiPaths.sort());
  for (const path of paths) expect(sha(join('apps/web/dist', path))).toBe(sha(join('apps/web/public', path)));
 });

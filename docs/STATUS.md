@@ -1,3 +1,5 @@
+2026-11-19 Art-Batch 9 完成。bluewhale 增加朝右斜背姿态，全员共享贴片库共 18 项。新增 11 张 WebP 共 73,402 字节。核验图见 `art/art-batch-9/review/batch9-review.png`。
+
 2026-11-19 Codex独立复验443cd699/303815b8：候选完整check54/486通过、429项历史/来件哈希一致、保护路径零diff。VC-R4旧链路及事件/破产首次加载恢复、UI引导关闭重开、保存告警保留通过。VF5可见IAB正式36通过，确认0；候选/基线各605秒60窗口长驻通过，限系统reduced-still。允许本地合流，无Codex改写A产品源码。严格页面内Tab循环仍需改善（本轮观察到原生dialog边界转移至浏览器焦点，无背景控件误入或软锁，P2）；真实完整动态、200%字号、真机触控、DSH、Tier正式接入及整体Visual Freeze继续HOLD。详见visual-vcr4-codex-20261119.md；合流SHA另记。
 
 2026-11-19 Art-Batch 8 已完成美术导出与静态门禁。bluewhale 四姿态和八枚共享贴片共 172,638 字节，参考母版仅归档。核验图位于 `art/art-batch-8/review/batch8-review.png`，场景接入待人工审核。
