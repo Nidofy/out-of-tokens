@@ -1,11 +1,16 @@
-import {useEffect,useState} from 'preact/hooks';
+import {useEffect,useMemo,useRef,useState} from 'preact/hooks';
 import type {ExperienceView,GameView} from 'oot-platform';
 import {Icon} from './icons.js';
 import {ExperienceArtSlot} from './experience-art-slot.js';
 import {resolveReasonCopy} from './experience-ui-copy.js';
-import {readLearningPrefs,resumeLearning,skipAllLearning,skipLearningNode} from './experience-ui-state.js';
-import type {LearningNodeId,UiKeyValueStore} from './experience-ui-state.js';
+import {readLearningPrefs,resumeLearning,skipAllLearning,skipLearningNode,subscribeLearningPrefs} from './experience-ui-state.js';
+import type {LearningNodeId,LearningPrefs,UiKeyValueStore} from './experience-ui-state.js';
 import type {HubPanel} from './ui2-logic.js';
+
+export function shouldHideSceneOnboarding(experience:ExperienceView,prefs:LearningPrefs):boolean{
+ if(prefs.skippedAll)return true;
+ return experience.learning.length>0&&experience.learning.every(item=>item.observed||prefs.skippedNodes.includes(item.node));
+}
 
 interface NodeCopy {
  labelZh:string;
@@ -103,6 +108,8 @@ export function Onboarding({
  lineageId,
  uiStore,
  english,
+ hidden,
+ surface='scene',
  openJob,
  openPanel,
  openFinance
@@ -113,6 +120,8 @@ export function Onboarding({
  lineageId:string;
  uiStore:UiKeyValueStore;
  english:boolean;
+ hidden?:boolean|undefined;
+ surface?:'scene'|'drawer'|undefined;
  openJob:(id:string)=>void;
  openPanel:(id:HubPanel)=>void;
  openFinance?:()=>void;
@@ -121,8 +130,21 @@ export function Onboarding({
  const [prefs,setPrefs]=useState(()=>readLearningPrefs(uiStore,lineageId));
  const [open,setOpen]=useState(()=>!readLearningPrefs(uiStore,lineageId).skippedAll&&(view.campaign?.chapter??0)===0);
  const [selectedNode,setSelectedNode]=useState<LearningNodeId|null>(null);
+ const mountedSync=useRef({uiStore,lineageId});
+ const prefsRef=useRef(prefs);
+ prefsRef.current=prefs;
+
+ useEffect(()=>subscribeLearningPrefs(()=>{
+  const prev=prefsRef.current;
+  const next=readLearningPrefs(uiStore,lineageId);
+  setPrefs(next);
+  if(next.skippedAll)setOpen(false);
+  else if(prev.skippedAll)setOpen(true);
+ }),[uiStore,lineageId]);
 
  useEffect(()=>{
+  if(mountedSync.current.uiStore===uiStore&&mountedSync.current.lineageId===lineageId)return;
+  mountedSync.current={uiStore,lineageId};
   const nextPrefs=readLearningPrefs(uiStore,lineageId);
   setPrefs(nextPrefs);
   setOpen(!nextPrefs.skippedAll&&(view.campaign?.chapter??0)===0);
@@ -166,100 +188,124 @@ export function Onboarding({
   setOpen(true);
  };
 
- const runCta=()=>{
-  if(activeNode==='bill'&&openFinance){openFinance();return;}
-  if(activeNode==='accept'||activeNode==='assign'||activeNode==='deliver'||activeNode==='clarify'){
-   const target=activeNode==='deliver'
-    ?view.jobs.find(j=>j.status==='review')
-    :activeNode==='assign'
-     ?view.jobs.find(j=>j.status==='accepted')
-     :activeNode==='clarify'
-      ?view.jobs.find(j=>j.status==='posted'&&j.hidden>0)
-      :view.jobs.find(j=>j.template==='menu'&&j.status==='posted')??view.jobs.find(j=>j.status==='posted');
-   if(target){openJob(target.id);return;}
-  }
-  openPanel(meta.panel);
- };
-
  const goalLine=experience.goal?resolveReasonCopy(experience.goal.reason,english):null;
+ const cbRef=useRef({openJob,openPanel,openFinance});
+ cbRef.current={openJob,openPanel,openFinance};
+
+ const body=useMemo(()=>{
+  const runCtaAction=()=>{
+   if(activeNode==='bill'&&cbRef.current.openFinance){cbRef.current.openFinance();return;}
+   if(activeNode==='accept'||activeNode==='assign'||activeNode==='deliver'||activeNode==='clarify'){
+    const target=activeNode==='deliver'
+     ?view.jobs.find(j=>j.status==='review')
+     :activeNode==='assign'
+      ?view.jobs.find(j=>j.status==='accepted')
+      :activeNode==='clarify'
+       ?view.jobs.find(j=>j.status==='posted'&&j.hidden>0)
+       :view.jobs.find(j=>j.template==='menu'&&j.status==='posted')??view.jobs.find(j=>j.status==='posted');
+    if(target){cbRef.current.openJob(target.id);return;}
+   }
+   cbRef.current.openPanel(meta.panel);
+  };
+  return (
+   <>
+    <div class="ui2-guide-head">
+     <button
+      type="button"
+      class="guide-toggle"
+      aria-expanded={open}
+      onClick={handleToggle}
+     >
+      <span>{tr('回形针 · 7项核心引导','Paperclip · 7-step guide')} ({observedCount}/7)</span>
+      <b>{prefs.skippedAll?tr('重开','Reopen'):open?'−':'+'}</b>
+     </button>
+     {surface==='scene'?(
+      <button
+       type="button"
+       class="ui2-guide-close"
+       aria-label={tr('关闭引导','Close guide')}
+       title={tr('关闭主界面引导（可在右上工作看板重开）','Close guide (reopen anytime in Work Board)')}
+       onClick={handleSkipAll}
+      >
+       <Icon name="close"/>
+      </button>
+     ):(prefs.skippedAll||prefs.skippedNodes.length>0)&&(
+      <button type="button" class="ui2-guide-reopen" onClick={handleReopenAll}>
+       {tr('重看全部','Reopen all')}
+      </button>
+     )}
+    </div>
+
+    {open&&(
+     <div class="ui2-guide-body">
+      {goalLine&&(
+       <small class="ui2-guide-goal">
+        <Icon name="spark"/> {tr('当前建议：','Suggested: ')}{goalLine}
+       </small>
+      )}
+
+      <div class="ui2-guide-pills" role="tablist" aria-label={tr('七项学习节点','Seven learning steps')}>
+       {experience.learning.map(item=>{
+        const m=NODE_META[item.node];
+        const skipped=prefs.skippedNodes.includes(item.node);
+        return (
+         <button
+          key={item.node}
+          type="button"
+          role="tab"
+          aria-selected={item.node===activeNode}
+          class="ui2-guide-pill"
+          data-observed={item.observed?'true':'false'}
+          data-skipped={skipped?'true':'false'}
+          onClick={()=>setSelectedNode(item.node)}
+         >
+          {item.observed&&<Icon name="check"/>}
+          <span>{english?m.labelEn:m.labelZh}</span>
+         </button>
+        );
+       })}
+      </div>
+
+      <p class="ui2-guide-copy">
+       <b>{english?meta.labelEn:meta.labelZh}</b>
+       {activeObserved&&<em> · {tr('已实践','Observed')}</em>}
+       {activeSkipped&&<em> · {tr('已跳过','Skipped')}</em>}
+       {' — '}
+       {english?meta.textEn:meta.textZh}
+      </p>
+
+      {activeNode==='rest'&&(
+       <ExperienceArtSlot
+        slotId="vignette-rest-corner"
+        variant="vignette"
+        english={english}
+        badgeText={tr('作息提示','Rest vignette')}
+        title={tr('休整与深夜睡眠恢复','Rest & night sleep recovery')}
+        subtitle={tr('空槽休息恢复精力；占满深夜时段将跳过睡前恢复与清零负载','Rest restores energy; occupying Night slot skips sleep & load clear')}
+       />
+      )}
+
+      <div class="ui2-guide-actions">
+       <button type="button" class="primary" onClick={runCtaAction}>{english?meta.ctaEn:meta.ctaZh}</button>
+       {!activeSkipped&&(
+        <button type="button" onClick={handleSkipNode}>{tr('跳过本条','Skip step')}</button>
+       )}
+       {surface==='scene'&&prefs.skippedNodes.length>0&&(
+        <button type="button" onClick={handleReopenAll}>{tr('重看全部','Reopen all')}</button>
+       )}
+       <button type="button" onClick={handleSkipAll}>{tr('跳过全部','Skip all')}</button>
+      </div>
+     </div>
+    )}
+   </>
+  );
+ },[open,prefs,selectedNode,experience,view,english,surface]);
+
+ if(surface==='scene'&&shouldHideSceneOnboarding(experience,prefs))return null;
 
  return (
-  <aside class="onboarding" aria-label={tr('回形针经营引导','Paperclip studio guide')}>
-   <div class="ui2-guide-head">
-    <button
-     type="button"
-     class="guide-toggle"
-     aria-expanded={open}
-     onClick={handleToggle}
-    >
-     <span>{tr('回形针 · 7项核心引导','Paperclip · 7-step guide')} ({observedCount}/7)</span>
-     <b>{prefs.skippedAll?tr('重开','Reopen'):open?'−':'+'}</b>
-    </button>
-    {(prefs.skippedAll||prefs.skippedNodes.length>0)&&(
-     <button type="button" class="ui2-guide-reopen" onClick={handleReopenAll}>
-      {tr('重看全部','Reopen all')}
-     </button>
-    )}
-   </div>
-
-   {open&&(
-    <div class="ui2-guide-body">
-     {goalLine&&(
-      <small class="ui2-guide-goal">
-       <Icon name="spark"/> {tr('当前建议：','Suggested: ')}{goalLine}
-      </small>
-     )}
-
-     <div class="ui2-guide-pills" role="tablist" aria-label={tr('七项学习节点','Seven learning steps')}>
-      {experience.learning.map(item=>{
-       const m=NODE_META[item.node];
-       const skipped=prefs.skippedNodes.includes(item.node);
-       return (
-        <button
-         key={item.node}
-         type="button"
-         role="tab"
-         aria-selected={item.node===activeNode}
-         class="ui2-guide-pill"
-         data-observed={item.observed?'true':'false'}
-         data-skipped={skipped?'true':'false'}
-         onClick={()=>setSelectedNode(item.node)}
-        >
-         {item.observed&&<Icon name="check"/>}
-         <span>{english?m.labelEn:m.labelZh}</span>
-        </button>
-       );
-      })}
-     </div>
-
-     <p class="ui2-guide-copy">
-      <b>{english?meta.labelEn:meta.labelZh}</b>
-      {activeObserved&&<em> · {tr('已实践','Observed')}</em>}
-      {activeSkipped&&<em> · {tr('已跳过','Skipped')}</em>}
-      {' — '}
-      {english?meta.textEn:meta.textZh}
-     </p>
-
-     {activeNode==='rest'&&(
-      <ExperienceArtSlot
-       slotId="vignette-rest-corner"
-       variant="vignette"
-       english={english}
-       badgeText={tr('作息提示','Rest vignette')}
-       title={tr('休整与深夜睡眠恢复','Rest & night sleep recovery')}
-       subtitle={tr('空槽休息恢复精力；占满深夜时段将跳过睡前恢复与清零负载','Rest restores energy; occupying Night slot skips sleep & load clear')}
-      />
-     )}
-
-     <div class="ui2-guide-actions">
-      <button type="button" class="primary" onClick={runCta}>{english?meta.ctaEn:meta.ctaZh}</button>
-      {!activeSkipped&&(
-       <button type="button" onClick={handleSkipNode}>{tr('跳过本条','Skip step')}</button>
-      )}
-      <button type="button" onClick={handleSkipAll}>{tr('跳过全部','Skip all')}</button>
-     </div>
-    </div>
-   )}
+  <aside class="onboarding" hidden={hidden} aria-label={tr('回形针经营引导','Paperclip studio guide')}>
+   {body}
   </aside>
  );
 }

@@ -24,6 +24,8 @@ const voiceprints:Readonly<Record<string,VoiceSpec>>={
 };
 
 let ctx:AudioContext|null=null;
+let flipCtx:AudioContext|null=null;
+let flipBuf:AudioBuffer|null=null;
 let ambGain:GainNode|null=null;
 let ambStop:(()=>void)|null=null;
 let ambKey='';
@@ -74,12 +76,15 @@ export function playFoley(kind:'flip'|'tap'|'stamp'|'coin'|'message'|'advance',e
  const now=ac.currentTime;
  try{
   if(kind==='flip'){
-   const len=Math.floor(ac.sampleRate*0.065);
-   const buf=ac.createBuffer(1,len,ac.sampleRate);
-   const ch=buf.getChannelData(0);
-   for(let i=0;i<len;i++)ch[i]=(Math.random()*2-1)*Math.sin((i/len)*Math.PI);
+   if(flipCtx!==ac||!flipBuf){
+    const len=Math.floor(ac.sampleRate*0.065);
+    const buf=ac.createBuffer(1,len,ac.sampleRate);
+    const ch=buf.getChannelData(0);
+    for(let i=0;i<len;i++)ch[i]=(Math.random()*2-1)*Math.sin((i/len)*Math.PI);
+    flipCtx=ac;flipBuf=buf;
+   }
    const src=ac.createBufferSource();
-   src.buffer=buf;
+   src.buffer=flipBuf;
    const filter=ac.createBiquadFilter();
    filter.type='bandpass';filter.frequency.value=1250;filter.Q.value=1.4;
    const gain=ac.createGain();

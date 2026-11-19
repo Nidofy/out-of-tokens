@@ -3,7 +3,7 @@
 .scene-left-stack{position:absolute;z-index:40;left:max(16px,env(safe-area-inset-left));top:72px;display:flex;flex-direction:column;gap:8px;width:min(340px,calc(100vw - 32px));pointer-events:none}
 .scene-left-stack .scene-tools,.scene-left-stack .scene-presence{position:static;max-width:100%;margin:0}
 .scene-left-stack button,.scene-left-stack .scene-presence{pointer-events:auto}
-.studio-app:has(dialog[open]) .scene-left-stack,.studio-app[data-mode=layout] .scene-left-stack,.studio-app:not([data-panel=closed]) .scene-left-stack,.studio-app:not([data-overlay=closed]) .scene-left-stack{visibility:hidden}
+.studio-app[data-modal=open] .scene-left-stack,.studio-app[data-mode=layout] .scene-left-stack,.studio-app:not([data-panel=closed]) .scene-left-stack,.studio-app:not([data-overlay=closed]) .scene-left-stack{visibility:hidden}
 .scene-left-stack:has(.scene-presence) .commission-tracker{display:none}
 .commission-tracker{display:flex;align-items:center;width:292px;max-width:100%;color:#fff4df;background:linear-gradient(90deg,#2c221ae0,#2c221a9e 75%,transparent);pointer-events:none}
 .commission-tracker button{pointer-events:auto;flex:none;background:transparent;border:0;box-shadow:none;color:inherit;padding:0;min-width:44px;min-height:44px}

@@ -1,3 +1,4 @@
+import './scene-preload.js';
 import {render} from 'preact';
 import {AlphaApp,preloadWorkshop} from './alpha-app.js';
 import './style.css';

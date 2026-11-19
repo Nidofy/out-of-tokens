@@ -20,7 +20,7 @@
  @keyframes ui2-float-up{0%{opacity:0;transform:translateY(6px)}25%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-14px)}}
 
  .ui2-advance-wrap{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));z-index:42;display:flex;flex-direction:column;align-items:flex-end;gap:8px;pointer-events:none}
- .studio-app:is([data-mode=layout],[data-overlay=more],[data-overlay=board]) .ui2-advance-wrap,.studio-app:has(dialog[open]) .ui2-advance-wrap{visibility:hidden}
+ .studio-app:is([data-mode=layout],[data-overlay=more],[data-overlay=board]) .ui2-advance-wrap,.studio-app[data-modal=open] .ui2-advance-wrap{visibility:hidden}
  .ui2-advance-btn{pointer-events:auto;display:inline-flex;align-items:center;gap:10px;min-width:196px;min-height:54px;padding:8px 18px;border-radius:18px;background:linear-gradient(180deg,#f5dfae 0%,#dfb871 100%);color:#2c2015;border:1px solid #fff4d8;box-shadow:0 6px 20px rgba(24,17,12,.34);text-align:left}
  .ui2-advance-btn:hover:not(:disabled){filter:brightness(1.04);color:#2c2015}
  .ui2-advance-btn[data-urgent=true]{border-color:#d85a3a;box-shadow:0 0 0 2px rgba(216,90,58,.45),0 6px 20px rgba(24,17,12,.36)}
@@ -48,11 +48,16 @@
  .ui2-dot.is-ready{background:var(--sage)}
  .studio-app .scene-left-stack :is(.scene-tools,.scene-presence){position:static;max-width:100%;margin:0}
  .studio-app .scene-left-stack .onboarding{position:static;width:min(292px,100%);max-width:none;background:var(--paper);border:1px solid var(--brass);box-shadow:0 6px 18px rgba(24,17,12,.2)}
+ .studio-app .scene-left-stack :is(.scene-tools,.onboarding)[hidden]{display:none}
+ .studio-app[data-panel]:not([data-panel=closed]) .scene-left-stack .onboarding:not([hidden]){display:block}
+ .studio-app[data-panel]:not([data-panel=closed]) .priority-feedback:not(:empty){display:flex;visibility:hidden}
  .studio-app .scene-left-stack .onboarding p{font-size:12px;line-height:1.45;margin:4px 0 8px}
 
- dialog.stage-hub{width:min(1160px,calc(100vw - 32px));height:min(660px,calc(100dvh - 40px));max-width:none;max-height:none;padding:0;overflow:hidden;border-radius:16px;background:var(--paper);border:1px solid var(--brass);box-shadow:0 20px 60px rgba(18,12,8,.42)}
- dialog.stage-hub::backdrop{background:var(--stage-scrim);backdrop-filter:none}
- dialog.stage-hub[open]{display:flex;flex-direction:column}
+ .stage-hub-scrim{position:fixed;inset:0;z-index:79;background:var(--stage-scrim);will-change:opacity;contain:strict}
+ .stage-hub-scrim[data-open=false]{opacity:0;pointer-events:none}
+ dialog.stage-hub{position:fixed;inset:0;margin:auto;z-index:80;width:min(1160px,calc(100vw - 32px));height:min(660px,calc(100dvh - 40px));max-width:none;max-height:none;padding:0;overflow:hidden;border-radius:16px;background:var(--paper);backdrop-filter:none;border:1px solid var(--brass);box-shadow:0 16px 40px rgba(18,12,8,.38);animation:none;will-change:opacity;transform:translateZ(0);contain:layout paint}
+ dialog.stage-hub[open]{display:flex;flex-direction:column;opacity:1;visibility:visible;pointer-events:auto}
+ dialog.stage-hub:not([open]){display:flex;flex-direction:column;opacity:0;visibility:visible;pointer-events:none}
  .stage-hub-frame{display:flex;flex:1;min-height:0}
  .stage-hub-rail{width:76px;flex:none;display:flex;flex-direction:column;gap:6px;padding:10px 6px;background:var(--tool-surface);border-right:1px solid var(--line)}
  .stage-hub-rail button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:58px;padding:6px 4px;border-radius:12px;background:transparent;border:1px solid transparent;color:var(--tool-ink);box-shadow:none;font-size:12px}
@@ -439,9 +444,12 @@
 
  .ui2-save-banner{display:grid;gap:8px;padding:10px 12px;border-radius:12px;background:var(--paper);border:2px solid var(--danger);box-shadow:0 8px 24px rgba(18,12,8,.34);color:var(--ink)}
  .ui2-save-banner-copy{display:flex;align-items:flex-start;gap:8px}
- .ui2-save-banner-copy svg{width:18px;height:18px;color:var(--danger);flex:none;margin-top:2px}
+ .ui2-save-banner-copy>svg{width:18px;height:18px;color:var(--danger);flex:none;margin-top:2px}
+ .ui2-save-banner-copy>div{flex:1;min-width:0}
  .ui2-save-banner-copy b{display:block;font-size:13px;line-height:1.35}
  .ui2-save-banner-copy p{margin:2px 0 0;font-size:12px;color:var(--muted);line-height:1.4}
+ .ui2-save-banner-close{flex:none;min-width:44px;min-height:44px;padding:0;margin:-4px -4px 0 0;display:grid;place-items:center;background:transparent;border:1px solid transparent;border-radius:10px;box-shadow:none}
+ .ui2-save-banner-close svg{width:16px;height:16px}
  .ui2-save-banner-actions{display:flex;flex-wrap:wrap;gap:6px}
  .ui2-save-banner-actions button{display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:6px 10px;font-size:12px}
  .saves-dialog .ui2-save-banner{margin-bottom:12px}
@@ -497,7 +505,9 @@
  :root[data-theme=dark] .ui2-act-preview[data-skip=true],:root[data-theme=dark] .ui2-act-warn{color:#fdba74}
 
  .ui2-guide-head{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
- .ui2-guide-head .guide-toggle{flex:1 1 auto;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;font-size:13px;font-weight:600;text-align:left}
+ .ui2-guide-head .guide-toggle{flex:1 1 auto;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;font-size:13px;font-weight:600;text-align:left}
+ .ui2-guide-close{flex:none;min-width:44px;min-height:44px;padding:0;display:grid;place-items:center;background:transparent;border:1px solid var(--line);border-radius:10px;box-shadow:none}
+ .ui2-guide-close svg{width:16px;height:16px}
  .ui2-guide-reopen{min-height:44px;padding:0 10px;font-size:12px}
  .ui2-guide-body{display:flex;flex-direction:column;gap:8px;margin-top:6px}
  .ui2-guide-goal{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--ink)}
@@ -641,7 +651,7 @@
   .stage-hub-top{padding:6px 8px;gap:6px}
   .stage-hub-title-row{flex:1 1 100%;min-width:0;gap:6px}
   .stage-hub-right{flex:1 1 100%;justify-content:flex-end;gap:6px}
-  dialog.stage-hub:has(.stage-hub-back) .commission-back{display:none}
+  dialog.stage-hub[data-has-back=true] .commission-back{display:none}
   .stage-hub-advance span{display:none}
   .ui2-vitals-grid,.ui2-actions-grid,.ui2-skills-rhythm,.ui2-plan-grid,.ui2-hw-grid,.ui2-sw-grid,.ui2-rival-grid,.ui2-souvenir-shelf,.ui2-gift-grid,.ui2-duo-grid,.ui2-messenger-layout{grid-template-columns:minmax(0,1fr)}
   .ui2-thread-list{flex-direction:row;overflow-x:auto;overflow-y:hidden;padding-bottom:4px}
@@ -693,7 +703,7 @@
   .stage-hub-right{flex:none}
   .stage-hub-tabs{order:0;flex:1 1 auto;min-width:0}
   .stage-hub-tabs>[role=tablist]{width:auto}
-  dialog.stage-hub:has(.stage-hub-tabs) .stage-hub-title-row:not(:has(.stage-hub-back)){display:none}
+  dialog.stage-hub[data-has-tabs=true]:not([data-has-back=true]) .stage-hub-title-row{display:none}
   .ui2-commission-pane .ui2-hub-inner-tabs{margin:4px 8px 0;padding:2px}
   .work-steps button,.work-confirm button{min-height:44px}
   .work-confirm small{font-size:12px}
@@ -711,6 +721,19 @@
   .ui2-art-vignette-copy{padding:8px 10px}
   .ui2-advance-popover{max-height:calc(100dvh - 120px)}
  }
+
+ .ui2-secondary-fallback{display:grid;gap:14px;padding:16px;margin:12px;border-radius:14px;background:var(--card);border:1px solid var(--line);color:var(--ink)}
+ .ui2-secondary-fallback[data-load-state=error]{border-color:var(--danger)}
+ .ui2-secondary-fallback-copy{display:flex;align-items:flex-start;gap:10px}
+ .ui2-secondary-fallback-copy>svg{width:20px;height:20px;flex:none;margin-top:2px;color:var(--brass)}
+ .ui2-secondary-fallback[data-load-state=error] .ui2-secondary-fallback-copy>svg{color:var(--danger)}
+ .ui2-secondary-fallback-copy>div{flex:1;min-width:0}
+ .ui2-secondary-fallback-copy b{display:block;font-size:14px;line-height:1.4;overflow-wrap:anywhere}
+ .ui2-secondary-fallback-copy p{margin:4px 0 0;font-size:13px;line-height:1.5;color:var(--muted);overflow-wrap:anywhere}
+ .ui2-secondary-fallback-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+ .ui2-secondary-fallback-actions button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;padding:8px 14px;font-size:13px}
+ .ui2-secondary-fallback-actions button svg{width:15px;height:15px}
+ .system-body>.ui2-secondary-fallback,.stage-hub-body>.ui2-secondary-fallback{margin:12px}
 
  @media(prefers-reduced-motion:reduce){.ui2-choice-card,.ui2-delta-pop,.ui2-stage-chatter,.ui2-stage-bubble,.ui2-period-beat,.ui2-bark-card,.ui2-advance-popover,.ui2-art-slot img,.ui2-delivery-step{transition:none;animation:none}}
  [data-motion=still] .ui2-choice-card,[data-motion=still] .ui2-delta-pop,[data-motion=still] .ui2-stage-chatter,[data-motion=still] .ui2-stage-bubble,[data-motion=still] .ui2-period-beat,[data-motion=still] .ui2-bark-card,[data-motion=still] .ui2-advance-popover,[data-motion=still] .ui2-art-slot img,[data-motion=still] .ui2-delivery-step{transition:none;animation:none}

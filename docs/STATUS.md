@@ -1,3 +1,5 @@
+2026-11-19 Codex独立复验443cd699/303815b8：候选完整check54/486通过、429项历史/来件哈希一致、保护路径零diff。VC-R4旧链路及事件/破产首次加载恢复、UI引导关闭重开、保存告警保留通过。VF5可见IAB正式36通过，确认0；候选/基线各605秒60窗口长驻通过，限系统reduced-still。允许本地合流，无Codex改写A产品源码。严格页面内Tab循环仍需改善（本轮观察到原生dialog边界转移至浏览器焦点，无背景控件误入或软锁，P2）；真实完整动态、200%字号、真机触控、DSH、Tier正式接入及整体Visual Freeze继续HOLD。详见visual-vcr4-codex-20261119.md；合流SHA另记。
+
 2026-11-19 Art-Batch 8 已完成美术导出与静态门禁。bluewhale 四姿态和八枚共享贴片共 172,638 字节，参考母版仅归档。核验图位于 `art/art-batch-8/review/batch8-review.png`，场景接入待人工审核。
 
 2026-11-18 Track A第二次独立复验：冻结5af83704/交付088e4b11，保护路径零diff、历史295项哈希一致、pnpm check54文件482测试PASS。VC-R1旧轨迹及真实GLM重复同步零跳变，VC-R3 1152样本/72实际相位、A3正常交互PASS。VF5可见IAB正式36通过、确认0；候选/基线各605秒60窗口长驻通过，无降频/可见性变化，限实际reduced-still分支。新发现VC-R4/P1：secondary-panels一次503后失败Promise永久缓存，委托重开仍空白、保存入口modal=open却无dialog，Escape不能解除；仅刷新恢复。合流HOLD，未合入A产品，仅文档检查点；维持Gemini返修/Codex验收。DSH暂缓、200%字号、真机触控、真实系统完整动态、Tier正式接入/整体Visual Freeze仍HOLD。详见visual-rework-codex-20261118.md及GEMINI_VISUAL_LAZYLOAD_REWORK_PROMPT_20261118.md。

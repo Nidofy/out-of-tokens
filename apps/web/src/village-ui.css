@@ -32,7 +32,7 @@ dialog::-webkit-scrollbar-thumb,.drawer-content::-webkit-scrollbar-thumb,.office
 .studio-app .hud-resources svg{width:15px;height:15px;color:#edd094}
 .studio-app .studio-hud .advance-period{width:auto;padding:0 16px;gap:6px;font-size:var(--fs-sm);font-weight:600;background:var(--primary-bg);color:var(--primary-ink);border:1px solid var(--brass);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 3px 12px rgba(24,17,12,.38)}
 .hud-badge{position:absolute;width:7px;height:7px;right:6px;top:6px;background:#e05336;border:1px solid #fff8eb;border-radius:50%}
-.studio-app .studio-dock{position:absolute;left:max(12px,env(safe-area-inset-left));right:auto;bottom:max(12px,env(safe-area-inset-bottom));transform:none;z-index:40;width:308px;height:54px;display:flex;gap:4px;padding:4px 6px;margin:0;background:var(--hud-pill);border:1px solid rgba(216,184,128,.4);border-radius:18px;box-shadow:0 6px 20px rgba(24,17,12,.28);backdrop-filter:blur(12px);color:#fff7ea}
+.studio-app .studio-dock{position:absolute;left:max(12px,env(safe-area-inset-left));right:auto;bottom:max(12px,env(safe-area-inset-bottom));transform:none;z-index:40;width:308px;height:54px;display:flex;gap:4px;padding:4px 6px;margin:0;background:var(--hud-pill);border:1px solid rgba(216,184,128,.4);border-radius:18px;box-shadow:0 6px 20px rgba(24,17,12,.28);backdrop-filter:blur(12px);color:#fff7ea;will-change:opacity}
 .studio-app .studio-dock button{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;width:auto;min-height:44px;gap:2px;padding:2px 4px;font-size:var(--fs-xs);line-height:1.1;color:inherit;background:transparent;border:1px solid transparent;border-radius:13px;box-shadow:none;text-shadow:0 1px 2px rgba(18,12,8,.65)}
 .studio-app .studio-dock button[aria-pressed=true]{background:linear-gradient(180deg,rgba(222,186,122,.28),rgba(222,186,122,.12));color:#ffe8b8;border-color:rgba(226,192,132,.55);font-weight:700;text-decoration:none}
 .studio-app .studio-drawer,.studio-app .hud-popover,.studio-app .priority-rail,.studio-app .office-camera,dialog,.studio-app .presentation-receipt,.studio-app .status-toast,.studio-app .crisis-chip,.studio-app .update-chip{background:var(--paper);backdrop-filter:blur(16px) saturate(1.06);border:1px solid var(--brass);border-radius:var(--r-md);box-shadow:inset 0 0 0 1px rgba(255,250,240,.5),0 12px 34px rgba(34,24,16,.24);color:var(--ink);text-shadow:none;animation:panel-in .15s cubic-bezier(.22,1,.36,1)}
@@ -60,10 +60,11 @@ dialog::-webkit-scrollbar-thumb,.drawer-content::-webkit-scrollbar-thumb,.office
 .studio-app[data-view-open=true] .scene-stage canvas{pointer-events:none}
 .studio-app .office-camera button{font-size:var(--fs-sm);min-height:44px;background:var(--card);color:var(--ink)}
 .studio-app .office-camera button[aria-pressed=true]{background:var(--primary-bg);color:var(--primary-ink)}
-.studio-app[data-overlay]:not([data-overlay=closed]) .studio-dock{visibility:hidden}
+.studio-app[data-overlay]:not([data-overlay=closed]) .studio-dock{opacity:0;pointer-events:none}
 dialog{width:min(740px,calc(100% - 24px));max-height:80dvh;border-radius:var(--r-md);padding:20px;font-size:var(--fs-base)}
 dialog::backdrop{background:rgba(28,21,16,.44);backdrop-filter:blur(4px)}
-.studio-app:has(dialog[open])>:is(.priority-rail,.studio-drawer,.hud-popover,.studio-dock,.priority-feedback,.status-toast,.scene-tools,.scene-presence){visibility:hidden}
+.studio-app[data-modal=open]>:is(.priority-rail,.studio-drawer,.hud-popover,.priority-feedback,.status-toast,.scene-tools,.scene-presence){visibility:hidden}
+.studio-app[data-modal=open]>.studio-dock{opacity:0;pointer-events:none}
 .dialog-head{top:-20px;margin:-20px -20px 14px;padding:10px 16px;background:var(--solid);border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(43,29,18,.06)}
 .dialog-head h2{font-size:var(--fs-lg)}.dialog-head button{min-height:44px;min-width:44px;padding:4px 8px;background:transparent;border:0;box-shadow:none}
 .studio-app .job-card,.studio-app .campaign-panel,.studio-app .project-panel,.studio-app .finance-summary,.studio-app .actor-card{border:1px solid var(--line);border-radius:var(--r-sm);background:var(--card);box-shadow:inset 0 1px 0 rgba(255,255,255,.28);padding:10px 12px;margin-bottom:8px}

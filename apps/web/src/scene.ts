@@ -1,1 +1,1 @@
-export {createWorkshop} from './office-scene.js';
+export {createWorkshop,warmWorkshopAssets} from './office-scene.js';

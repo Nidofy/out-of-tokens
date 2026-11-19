@@ -41,13 +41,20 @@ export function SaveStatusPill({status,english,onClick}:{status:UiSaveStatus;eng
  );
 }
 
+export function saveBannerIncidentKey(status:UiSaveStatus):string|null{
+ if(status.kind!=='paused'&&status.kind!=='error'&&status.kind!=='imported-unsaved')return null;
+ const reason=status.storageUnavailable?'storage-unavailable':`${status.cause??''}:${status.code??''}`;
+ return `${status.lineageId}:${status.kind}:${reason}`;
+}
+
 export function SaveAlertBanner({
  status,
  english,
  busy,
  onExport,
  onOpenSaves,
- onRetry
+ onRetry,
+ onDismiss
 }:{
  status:UiSaveStatus;
  english:boolean;
@@ -55,6 +62,7 @@ export function SaveAlertBanner({
  onExport:()=>void;
  onOpenSaves?:()=>void;
  onRetry?:()=>void;
+ onDismiss?:()=>void;
 }){
  const copy=saveAlertBannerCopy(status,english);
  if(!copy)return null;
@@ -67,6 +75,17 @@ export function SaveAlertBanner({
      <b>{copy.title}</b>
      <p>{copy.detail}</p>
     </div>
+    {onDismiss&&(
+     <button
+      type="button"
+      class="ui2-save-banner-close"
+      aria-label={tr('关闭保存提示','Dismiss save alert')}
+      title={tr('关闭浮层提示（顶部状态胶囊与存档面板仍可随时查看）','Dismiss banner (status pill and Saves dialog remain available)')}
+      onClick={onDismiss}
+     >
+      <Icon name="close"/>
+     </button>
+    )}
    </div>
    <div class="ui2-save-banner-actions">
     <button type="button" disabled={busy} onClick={onExport}>

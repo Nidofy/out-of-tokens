@@ -26,7 +26,7 @@ export function StageChatterOverlay({
  hidden:boolean;
  onInspectActor:(id:string)=>void;
 }){
- if(hidden||!bubble)return null;
+ if(!bubble)return null;
  const activeId=step===1&&bubble.buddyId?bubble.buddyId:bubble.actorId;
  const text=step===1&&bubble.buddyText?bubble.buddyText:bubble.text;
  const anchor=anchors[activeId];
@@ -40,7 +40,7 @@ export function StageChatterOverlay({
  const accent=characterPosters[activeId]?.themeColor??'#8b673c';
 
  return (
-  <div class="ui2-stage-chatter" style={{left:`${left}px`,top:`${top}px`,'--poster-color':accent}}>
+  <div class="ui2-stage-chatter" style={{left:`${left}px`,top:`${top}px`,'--poster-color':accent,visibility:hidden?'hidden':'visible',pointerEvents:hidden?'none':undefined}}>
    <button class="ui2-stage-bubble" aria-label={`${names[activeId]??activeId}: ${text}`} onClick={()=>onInspectActor(activeId)}>
     <EmoteBadge emote={bubble.emote} view={view}/>
     <span class="ui2-bubble-copy">
@@ -53,9 +53,9 @@ export function StageChatterOverlay({
 }
 
 export function PeriodBeatBanner({text,hidden}:{text:string|null;hidden:boolean}){
- if(hidden||!text)return null;
+ if(!text)return null;
  return (
-  <div class="ui2-period-beat" role="status" aria-live="polite">
+  <div class="ui2-period-beat" role="status" aria-live="polite" style={hidden?{visibility:'hidden',pointerEvents:'none'}:undefined}>
    <Icon name="spark"/>
    <span>{text}</span>
   </div>
