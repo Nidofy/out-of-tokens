@@ -66,7 +66,9 @@ export class MapleChibiRig implements CharacterVisualRig {
  private readonly dustPool: DustPuff[] = [];
 
  private currentPose: ChibiPoseKey = 'stand_3q';
- private facingDisplay = 1; // +1 right, -1 left (interpolated for crisp turn squeeze)
+ private facingDisplay = 1; // +1 right, -1 left
+ private walkPhase = 0;
+ private walkBlend = 0;
  private lastStepBucket = -1;
  private dustCursor = 0;
 
@@ -102,13 +104,13 @@ export class MapleChibiRig implements CharacterVisualRig {
 
   for (let i = 0; i < 3; i++) {
    const gfx = new Graphics()
-    .circle(0, 0, 5)
-    .fill({color: 0xe6d3bc, alpha: 0.65})
-    .circle(5, 1, 3.2)
-    .fill({color: 0xf2e4d0, alpha: 0.5});
+    .circle(0, 0, 3.2)
+    .fill({color: 0xe6d3bc, alpha: 0.36})
+    .circle(3.5, 0.8, 2.1)
+    .fill({color: 0xf2e4d0, alpha: 0.28});
    gfx.visible = false;
    this.groundLayer.addChild(gfx);
-   this.dustPool.push({gfx, x: 0, y: 0, vx: 0, age: 1, life: 0.34});
+   this.dustPool.push({gfx, x: 0, y: 0, vx: 0, age: 1, life: 0.32});
   }
 
   this.root.addChild(this.groundLayer, this.bodyLayer, this.fxLayer, this.particleLayer);
@@ -272,23 +274,31 @@ export class MapleChibiRig implements CharacterVisualRig {
   const dtSec = Math.max(0, dtMs) / 1000;
   const profile = this.data.motionProfile;
 
-  // Choose pose: alternate stand_3q <-> walk_3q at step cadence while moving.
+  // Choose pose: calm, grounded 2-frame stride with smooth walkBlend fade in/out.
   let poseKey: ChibiPoseKey = brain.poseKey;
-  let stepProgress = 0;
   if (walking && !still) {
-   const stepCycle = elapsed * profile.stepCadenceHz;
-   const stepBucket = Math.floor(stepCycle * 2);
-   stepProgress = (stepCycle * 2) % 1;
+   const strideHz = Math.max(1.2, profile.stepCadenceHz * 0.56); // ~1.8 cycles/s (~278ms per pose)
+   this.walkPhase += dtSec * strideHz;
+   this.walkBlend = Math.min(1, this.walkBlend + dtSec * 6.5);
+   const stepBucket = Math.floor(this.walkPhase * 2);
    poseKey = stepBucket % 2 === 1 ? 'walk_3q' : 'stand_3q';
    if (stepBucket !== this.lastStepBucket) {
     this.lastStepBucket = stepBucket;
-    if (stepBucket % 2 === 0) this.spawnDust(facing === 'right' ? 1 : -1);
+    if (stepBucket % 4 === 0) this.spawnDust(facing === 'right' ? 1 : -1);
    }
   } else {
-   this.lastStepBucket = -1;
+   this.walkBlend = still ? 0 : Math.max(0, this.walkBlend - dtSec * 7.5);
+   if (this.walkBlend <= 0.01) {
+    this.walkPhase = 0;
+    this.lastStepBucket = -1;
+   }
    if (walking && still) poseKey = 'stand_3q';
   }
-  if (deskSeated) poseKey = 'work_front';
+  if (deskSeated) {
+   poseKey = 'work_front';
+   this.walkBlend = 0;
+   this.walkPhase = 0;
+  }
 
   this.currentPose = poseKey;
   const poseSpec = this.data.poses[poseKey];
@@ -304,22 +314,22 @@ export class MapleChibiRig implements CharacterVisualRig {
   const pScale = poseScaleFor(this.data, poseKey);
   const baseScale = (height / this.data.visibleHeight) * this.data.heightScale * pScale;
 
-  // Smooth horizontal turn squeeze (work_front never mirrors).
+  // Smooth horizontal turn without jarring squash (work_front never mirrors).
   const defaultSign = this.data.facingDefault === 'left' ? -1 : 1;
   const desiredSign = poseSpec.mirrorable ? (facing === 'right' ? 1 : -1) * defaultSign : 1;
   if (still || dtSec <= 0) {
    this.facingDisplay = desiredSign;
   } else {
-   const turnSpeed = 16; // ~0.12s full flip
+   const turnSpeed = 14;
    const diff = desiredSign - this.facingDisplay;
    const step = Math.sign(diff) * Math.min(Math.abs(diff), dtSec * turnSpeed);
    this.facingDisplay += step;
-   if (Math.abs(this.facingDisplay) < 0.18) {
-    this.facingDisplay = Math.sign(desiredSign) * 0.18;
+   if (Math.abs(this.facingDisplay) < 0.35) {
+    this.facingDisplay = Math.sign(desiredSign) * 0.35;
    }
   }
 
-  // Procedural MapleStory squash/stretch/hop/typing/rest dynamics.
+  // Refined, smooth C-infinity dynamics: nimble & cozy without mechanical jitter.
   let offsetX = 0;
   let offsetY = deskSeated ? sitOffset - 6 : sitOffset;
   let dynScaleX = 1;
@@ -327,65 +337,70 @@ export class MapleChibiRig implements CharacterVisualRig {
   let rotation = 0;
 
   if (!still) {
-   if (walking) {
-    const hop = Math.sin(stepProgress * Math.PI);
-    offsetY -= hop * profile.hopHeight;
-    const squash = (1 - hop) * profile.squashAmount;
-    dynScaleX = 1 + squash - hop * (profile.squashAmount * 0.5);
-    dynScaleY = 1 - squash + hop * (profile.squashAmount * 0.65);
-    rotation = (facing === 'right' ? 1 : -1) * (0.03 + hop * 0.025);
+   if (walking || this.walkBlend > 0.01) {
+    const b = this.walkBlend;
+    const cosWave = Math.cos(this.walkPhase * Math.PI * 2);
+    const smoothLift = (1 - cosWave) * 0.5; // 0..1 smooth cosine bob (no sharp cusps)
+    const hopAmp = Math.min(3.0, profile.hopHeight * 0.28);
+    const squashAmp = Math.min(0.013, profile.squashAmount * 0.22);
+    offsetY -= smoothLift * hopAmp * b;
+    dynScaleX = 1 + cosWave * squashAmp * b;
+    dynScaleY = 1 - cosWave * squashAmp * b;
+    rotation = (facing === 'right' ? 1 : -1) * 0.016 * b;
    } else if (brain.macroState === 'WORK') {
     if (brain.subAction === 'overloaded') {
-     offsetX = Math.sin(elapsed * 34) * 1.6;
-     const pulse = Math.sin(elapsed * 14);
-     dynScaleX = 1 + pulse * 0.025;
-     dynScaleY = 1 - pulse * 0.025;
-     rotation = Math.sin(elapsed * 18) * 0.02;
+     offsetX = Math.sin(elapsed * 20) * 0.65;
+     const pulse = Math.sin(elapsed * 8);
+     dynScaleX = 1 + pulse * 0.01;
+     dynScaleY = 1 - pulse * 0.01;
+     rotation = Math.sin(elapsed * 10) * 0.008;
     } else if (brain.subAction === 'blocked') {
-     const sigh = Math.sin(elapsed * 1.8);
-     dynScaleY = 0.97 + sigh * 0.015;
-     dynScaleX = 1.02 - sigh * 0.01;
-     rotation = -0.02 + sigh * 0.01;
+     const sigh = Math.sin(elapsed * 1.6);
+     dynScaleY = 0.985 + sigh * 0.009;
+     dynScaleX = 1.01 - sigh * 0.006;
+     rotation = -0.012 + sigh * 0.006;
     } else if (brain.subAction === 'slacking') {
-     const sway = Math.sin(elapsed * 1.9);
-     rotation = sway * 0.055;
-     dynScaleY = 1 + Math.sin(elapsed * 3.8) * 0.015;
+     const sway = Math.sin(elapsed * 1.6);
+     rotation = sway * 0.028;
+     dynScaleY = 1 + Math.sin(elapsed * 3.2) * 0.008;
     } else if (brain.subAction === 'reviewing') {
-     const nod = Math.sin(elapsed * 3.2);
-     dynScaleY = 1 + nod * 0.02;
-     rotation = Math.sin(elapsed * 1.6) * 0.03;
+     const nod = Math.sin(elapsed * 2.4);
+     dynScaleY = 1 + nod * 0.01;
+     rotation = Math.sin(elapsed * 1.4) * 0.014;
     } else {
-     // typing: crisp MapleStory desk tapping rhythm
-     const tap = Math.abs(Math.sin(elapsed * 8.5));
-     offsetY -= tap * 2.2;
-     dynScaleX = 1 + (1 - tap) * 0.022;
-     dynScaleY = 1 - (1 - tap) * 0.022;
+     // typing: calm, steady micro-rhythm
+     const tap = (1 + Math.sin(elapsed * 5.0)) * 0.5;
+     offsetY -= tap * 1.0;
+     dynScaleX = 1 + (0.5 - tap) * 0.012;
+     dynScaleY = 1 - (0.5 - tap) * 0.012;
     }
    } else if (brain.macroState === 'REST') {
     if (brain.subAction === 'napping') {
-     const cycle = (elapsed * 0.38) % 1;
-     const droop = cycle < 0.85 ? cycle / 0.85 : 1 - (cycle - 0.85) / 0.15;
-     dynScaleY = 1 - droop * 0.045;
-     dynScaleX = 1 + droop * 0.035;
-     rotation = (facing === 'right' ? 1 : -1) * droop * 0.045;
+     const cycle = (elapsed * 0.34) % 1;
+     const droop = cycle < 0.82 ? Math.sin((cycle / 0.82) * (Math.PI / 2)) : Math.cos(((cycle - 0.82) / 0.18) * (Math.PI / 2));
+     dynScaleY = 1 - droop * 0.022;
+     dynScaleX = 1 + droop * 0.016;
+     rotation = (facing === 'right' ? 1 : -1) * droop * 0.024;
     } else {
-     const breath = Math.sin(elapsed * 1.6);
-     dynScaleY = 1 + breath * (profile.breathAmp * 1.25);
-     dynScaleX = 1 - breath * (profile.breathAmp * 0.85);
-     rotation = Math.sin(elapsed * 0.9) * 0.022;
+     const breath = Math.sin(elapsed * 1.5);
+     const amp = profile.breathAmp * 0.55;
+     dynScaleY = 1 + breath * amp;
+     dynScaleX = 1 - breath * (amp * 0.7);
+     rotation = Math.sin(elapsed * 0.8) * 0.01;
     }
    } else if (brain.subAction === 'celebrate') {
-    const hop = Math.abs(Math.sin(elapsed * 5.2));
-    offsetY -= hop * (profile.hopHeight * 1.35);
-    dynScaleX = 1 + (1 - hop) * 0.07 - hop * 0.04;
-    dynScaleY = 1 - (1 - hop) * 0.07 + hop * 0.05;
-    rotation = Math.sin(elapsed * 5.2) * 0.04;
+    const lift = (1 - Math.cos(elapsed * 6.5)) * 0.5;
+    offsetY -= lift * 4.5;
+    dynScaleX = 1 + (0.5 - lift) * 0.03;
+    dynScaleY = 1 - (0.5 - lift) * 0.03;
+    rotation = Math.sin(elapsed * 3.25) * 0.02;
    } else {
     // DAILY idle / inspect / social
-    const breath = Math.sin(elapsed * 2.4);
-    dynScaleY = 1 + breath * profile.breathAmp;
-    dynScaleX = 1 - breath * (profile.breathAmp * 0.7);
-    rotation = brain.subAction === 'social' ? Math.sin(elapsed * 3.1) * 0.03 : Math.sin(elapsed * 1.1) * 0.012;
+    const breath = Math.sin(elapsed * 1.9);
+    const amp = profile.breathAmp * 0.48;
+    dynScaleY = 1 + breath * amp;
+    dynScaleX = 1 - breath * (amp * 0.65);
+    rotation = brain.subAction === 'social' ? Math.sin(elapsed * 2.2) * 0.014 : Math.sin(elapsed * 1.0) * 0.007;
    }
   }
 

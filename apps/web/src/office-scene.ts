@@ -219,7 +219,7 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
    const step=stepWorkstationTrajectory(w,ms,still,deskRows);
    const sit=step.sit,deskSeated=step.deskSeated;sitOffsets.set(w.id,sit);
    if(still){w.facing='right';}
-   else if(step.walking&&Math.abs(w.x-prevX)>0.35){w.facing=w.x>prevX?'right':'left';}
+   else if(step.walking&&Math.abs(w.x-prevX)>0.75){w.facing=w.x>prevX?'right':'left';}
    else if(!step.walking&&w.poiKind&&!deskSeated){w.facing=w.poiFacing;}
    w.height=characterHeight(w.id,step.scaleY);w.root.position.set(w.x,w.y);w.root.zIndex=step.zIndex;w.root.hitArea=actorHitArea(deskSeated);w.shadow.visible=!deskSeated;
    if(w.rig){
