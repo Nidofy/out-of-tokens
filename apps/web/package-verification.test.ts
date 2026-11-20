@@ -7,6 +7,7 @@ import {spawnSync} from 'node:child_process';
 import {chapterBannerArt,projectCoverArt,financeArt,ritualBackdropArt,stampSealCrestArt} from './src/generated-art.js';
 import {emoteArt,giftArt,clientArt,teaBreakArt} from './src/living-art.js';
 import {decorPropArt, decorPropIds, furnitureKinds, furnitureLayerArt, furniturePreviewArt} from './src/furniture-art.js';
+import {avatarPortraitArt, basePortraitArt, flagshipPortraitArt, portraitCharacters} from './src/portraits-art.js';
 
 // Full-batch byte comparisons exceeded 5s before Batch 6 on this Windows host.
 // This is an integrity test, not a performance gate; retain every byte assertion.
@@ -551,4 +552,114 @@ it('checks Art-Batch 11 layer registration, desk opacity, catalog anchors and ed
   '    assert abs(center-128)<=0.5 and abs(center-obj["alphaCentroidX"])<1e-6, obj["id"]',
  ].join('\n')], {encoding: 'utf8'});
  expect(result.status, result.error?.message ?? result.stderr).toBe(0);
+});
+
+const portraitTiers = ['base', 'flagship', 'avatar'] as const;
+const portraitPaths = {base: basePortraitArt, flagship: flagshipPortraitArt, avatar: avatarPortraitArt};
+const batch12ACharacters = ['bluewhale', ...batch10ACharacters] as const;
+type PortraitTier = typeof portraitTiers[number];
+type ArtFile = {file: string; sha256: string; bytes: number};
+type PortraitMaster = ArtFile & {method: string; references: ArtFile[]};
+type PortraitEntry = {
+ path: string; width: number; height: number; sha256: string; bytes: number;
+ alphaRange: number[]; alphaBounds: [number, number, number, number]; visiblePureBlackPixels: number;
+ eyes: [number, number][]; headRegion: [number, number, number, number]; headCentroid: [number, number]; eyeCenter: [number, number];
+};
+
+it('resolves each shipped portrait tier and rejects unknown or path-like character IDs', () => {
+ expect(portraitCharacters).toEqual(batch12ACharacters);
+ for (const tier of portraitTiers) {
+  const directory = tier === 'avatar' ? 'avatars' : tier;
+  for (const id of portraitCharacters) expect(portraitPaths[tier](id)).toBe(`./art/portraits/${directory}/${id}.webp`);
+  for (const id of ['', 'Bluewhale', '../qwen', '%2fclaude', 'llama.webp', 'gpt?x', '__proto__', 'constructor']) {
+   expect(portraitPaths[tier](id)).toBeNull();
+  }
+ }
+});
+
+it('decodes all 18 Art-Batch 12A portraits and verifies their origins, catalog and both offline packages', () => {
+ const batch = 'art/art-batch-12a';
+ const directory = 'art/portraits/';
+ const publicRoot = 'apps/web/public';
+ const manifest: {
+  catalog: ArtFile; masters: Record<string, Record<PortraitTier, PortraitMaster>>;
+  runtime: (ArtFile & {id: string; tier: PortraitTier; sourceSha256: string; encoder: {quality: number; method: number}})[];
+ } = JSON.parse(readFileSync(join(batch, 'manifest.json'), 'utf8'));
+ const catalog: {characters: Record<string, Record<PortraitTier, PortraitEntry>>} = JSON.parse(readFileSync(manifest.catalog.file, 'utf8'));
+ const digest = (path: string) => {
+  const bytes = readFileSync(path);
+  return {bytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex')};
+ };
+ expect(catalog).toMatchObject({schemaVersion: 1, portraitCanvas: [768, 1024], avatarCanvas: [256, 256]});
+ expect(Object.keys(catalog.characters).sort()).toEqual([...portraitCharacters].sort());
+ expect(Object.keys(manifest.masters).sort()).toEqual([...batch12ACharacters].sort());
+ expect(manifest.catalog.file).toBe(publicRoot + '/' + directory + 'catalog.json');
+ expect(manifest.catalog).toMatchObject(digest(manifest.catalog.file));
+ expect(manifest.runtime).toHaveLength(18);
+ const published = new Map([[directory + 'catalog.json', manifest.catalog.sha256]]);
+ const files: PortraitEntry[] = [];
+ for (const id of batch12ACharacters) {
+  const entries = catalog.characters[id]!;
+  const masters = manifest.masters[id]!;
+  const refBatch = id === 'bluewhale' ? '8' : '10a';
+  const version = id === 'bluewhale' ? 'bluewhale.r1' : batch10Versions[id];
+  const refPaths = [`art/art-batch-${refBatch}/masters/${id}/ref_sheet.png`, `${publicRoot}/art/stage-b/${version}.webp`];
+  expect(Object.keys(entries).sort()).toEqual([...portraitTiers].sort());
+  expect(readdirSync(join(batch, 'masters', id)).sort()).toEqual(portraitTiers.map(t => t + '.png').sort());
+  for (const tier of portraitTiers) {
+   const entry = entries[tier], master = masters[tier];
+   expect(master.file).toBe(`${batch}/masters/${id}/${tier}.png`);
+   expect(master).toMatchObject(digest(master.file));
+   const refs = master.references.map(r => r.file);
+   for (const ref of master.references) expect(ref).toMatchObject(digest(ref.file));
+   if (master.method === 'built-in image_gen') {
+    expect(refs.slice(0, 2)).toEqual(refPaths);
+    if (tier !== 'base') expect(refs[2]).toBe(masters.base.file);
+   } else {
+    expect([tier, master.method, refs]).toEqual(['avatar', 'native-resolution contour crop', [masters.base.file]]);
+   }
+   const publicFile = directory + entry.path;
+   expect('./' + publicFile).toBe(portraitPaths[tier](id));
+   const file = publicRoot + '/' + publicFile;
+   const actual = digest(file);
+   expect(entry).toMatchObject(actual);
+   const runtime = manifest.runtime.find(e => e.id === id && e.tier === tier);
+   expect(runtime).toMatchObject({file, ...actual, sourceSha256: master.sha256, encoder: {method: 6}});
+   expect(runtime!.encoder.quality).toBeGreaterThanOrEqual(86);
+   expect(runtime!.encoder.quality).toBeLessThanOrEqual(90);
+   published.set(publicFile, actual.sha256);
+   files.push(entry);
+  }
+ }
+ const pixels = inspectChibiPixels(files.map(e => resolve(publicRoot, directory, e.path)));
+ for (const [i, entry] of files.entries()) {
+  const [format, w, h, range, bounds, , , black] = pixels[i]!;
+  expect([format, w, h, range, bounds, black]).toEqual(['WEBP', entry.width, entry.height, entry.alphaRange, entry.alphaBounds, 0]);
+  expect([range, entry.visiblePureBlackPixels]).toEqual([[0, 255], 0]);
+  const [l, t, r, b] = entry.alphaBounds;
+  const [hl, ht, hr, hb] = entry.headRegion;
+  const [hx, hy] = entry.headCentroid;
+  expect(l <= hl && hl < hx && hx < hr && hr <= r && t <= ht && ht < hy && hy < hb && hb <= b).toBe(true);
+  expect(entry.eyes).toHaveLength(2);
+  for (const axis of [0, 1] as const) {
+   expect(entry.eyeCenter[axis]).toBeCloseTo((entry.eyes[0]![axis] + entry.eyes[1]![axis]) / 2, 1);
+  }
+  if (entry.path.startsWith('avatars/')) {
+   expect([w, h]).toEqual([256, 256]);
+   expect(entry.bytes).toBeLessThanOrEqual(35000);
+   expect(Math.min(l, t, w - r, h - b)).toBeGreaterThanOrEqual(10);
+   for (const [, y] of entry.eyes) expect(y >= h * 0.38 && y <= h * 0.54).toBe(true);
+   expect(Math.abs(entry.eyeCenter[0] - w / 2)).toBeLessThanOrEqual(16);
+  } else {
+   expect([w, h]).toEqual([768, 1024]);
+   expect(entry.bytes).toBeLessThanOrEqual(140000);
+   expect(t >= 24 && Math.min(l, w - r) >= 12 && b - t >= 840 && b - t <= 972 && b >= 990 && b <= h).toBe(true);
+  }
+ }
+ expect(published.size).toBe(19);
+ for (const root of ['apps/web/dist', 'apps/dsh/dist/web']) {
+  const offline: {assets: string[]} = JSON.parse(readFileSync(join(root, 'offline-assets.json'), 'utf8'));
+  expect(offline.assets.filter(p => p.startsWith(directory)).sort()).toEqual([...published.keys()].sort());
+  for (const [path, hash] of published) expect(digest(join(root, path)).sha256).toBe(hash);
+ }
 });

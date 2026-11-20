@@ -1,0 +1,781 @@
+{
+  "schemaVersion": 1,
+  "portraitCanvas": [
+    768,
+    1024
+  ],
+  "avatarCanvas": [
+    256,
+    256
+  ],
+  "characters": {
+    "bluewhale": {
+      "base": {
+        "path": "base/bluewhale.webp",
+        "width": 768,
+        "height": 1024,
+        "bytes": 115606,
+        "sha256": "84e80477df386ec08eb11fa958cbf7a3b85b7ed5ac9607ddce459e4fabdbdbfd",
+        "alphaBounds": [
+          58,
+          104,
+          710,
+          1024
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            370.91,
+            337.19
+          ],
+          [
+            440.52,
+            317.39
+          ]
+        ],
+        "headRegion": [
+          280,
+          185,
+          500,
+          406
+        ],
+        "headCentroid": [
+          390.0,
+          295.5
+        ],
+        "eyeCenter": [
+          405.72,
+          327.29
+        ]
+      },
+      "flagship": {
+        "path": "flagship/bluewhale.webp",
+        "width": 768,
+        "height": 1024,
+        "bytes": 129876,
+        "sha256": "894fe242eda4f8cc6113de6e2618f3ec2deda0c9cf0184942048c602c3803882",
+        "alphaBounds": [
+          43,
+          104,
+          725,
+          1024
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            353.0,
+            317.39
+          ],
+          [
+            413.72,
+            296.31
+          ]
+        ],
+        "headRegion": [
+          255,
+          184,
+          471,
+          377
+        ],
+        "headCentroid": [
+          362.99,
+          280.51
+        ],
+        "eyeCenter": [
+          383.36,
+          306.85
+        ]
+      },
+      "avatar": {
+        "path": "avatars/bluewhale.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 19682,
+        "sha256": "7a3bcc487a58385f188625e54228ea4eaaa45474c34b6a4b4985f698fa99d71c",
+        "alphaBounds": [
+          21,
+          12,
+          223,
+          234
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            112.27,
+            135.95
+          ],
+          [
+            149.14,
+            125.46
+          ]
+        ],
+        "headRegion": [
+          64,
+          55,
+          181,
+          172
+        ],
+        "headCentroid": [
+          122.51,
+          113.5
+        ],
+        "eyeCenter": [
+          130.7,
+          130.7
+        ]
+      }
+    },
+    "qwen": {
+      "base": {
+        "path": "base/qwen.webp",
+        "width": 768,
+        "height": 1024,
+        "bytes": 115998,
+        "sha256": "b83cd6a37d8290a889d81bd3fb12d87a4ab72eb716b0f2657f1371b1e2c2b0cd",
+        "alphaBounds": [
+          71,
+          104,
+          697,
+          1024
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            382.72,
+            332.24
+          ],
+          [
+            451.99,
+            312.36
+          ]
+        ],
+        "headRegion": [
+          288,
+          168,
+          519,
+          402
+        ],
+        "headCentroid": [
+          403.5,
+          285.0
+        ],
+        "eyeCenter": [
+          417.36,
+          322.3
+        ]
+      },
+      "flagship": {
+        "path": "flagship/qwen.webp",
+        "width": 768,
+        "height": 1024,
+        "bytes": 134556,
+        "sha256": "07764f263f9071bee771720868bcaab0e9b3e0403e4b50cd33fd7f304e98586a",
+        "alphaBounds": [
+          44,
+          104,
+          723,
+          1024
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            333.4,
+            314.23
+          ],
+          [
+            395.37,
+            293.14
+          ]
+        ],
+        "headRegion": [
+          256,
+          164,
+          461,
+          374
+        ],
+        "headCentroid": [
+          358.5,
+          269.0
+        ],
+        "eyeCenter": [
+          364.38,
+          303.68
+        ]
+      },
+      "avatar": {
+        "path": "avatars/qwen.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 21222,
+        "sha256": "04c461358cd8fbc6771b6b6a68a689b7a7211b6c014a2a14f0f28340441bc312",
+        "alphaBounds": [
+          17,
+          12,
+          233,
+          238
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            114.47,
+            135.98
+          ],
+          [
+            151.93,
+            125.22
+          ]
+        ],
+        "headRegion": [
+          63,
+          47,
+          188,
+          174
+        ],
+        "headCentroid": [
+          125.5,
+          110.49
+        ],
+        "eyeCenter": [
+          133.2,
+          130.6
+        ]
+      }
+    },
+    "llama": {
+      "base": {
+        "path": "base/llama.webp",
+        "width": 768,
+        "height": 1024,
+        "bytes": 136972,
+        "sha256": "0d9ff3a76b3e1b17a8861c2a58f2efd255ecfb86875afe6bc1073cfa8a15da96",
+        "alphaBounds": [
+          74,
+          104,
+          693,
+          1024
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            366.91,
+            319.16
+          ],
+          [
+            440.29,
+            300.0
+          ]
+        ],
+        "headRegion": [
+          284,
+          165,
+          498,
+          398
+        ],
+        "headCentroid": [
+          391.0,
+          281.5
+        ],
+        "eyeCenter": [
+          403.6,
+          309.58
+        ]
+      },
+      "flagship": {
+        "path": "flagship/llama.webp",
+        "width": 768,
+        "height": 1024,
+        "bytes": 135458,
+        "sha256": "092cd0c64f6937fcd8d1c7253d87c77b525f6f7f161c34e856349d4d60a7621f",
+        "alphaBounds": [
+          40,
+          104,
+          728,
+          1024
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            327.94,
+            302.14
+          ],
+          [
+            392.28,
+            281.12
+          ]
+        ],
+        "headRegion": [
+          243,
+          171,
+          431,
+          371
+        ],
+        "headCentroid": [
+          337.0,
+          271.0
+        ],
+        "eyeCenter": [
+          360.11,
+          291.63
+        ]
+      },
+      "avatar": {
+        "path": "avatars/llama.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 17802,
+        "sha256": "732bb4901b0e804f438b5eb54fc0c1456a4deb60ff15d93396bf5dba4411232c",
+        "alphaBounds": [
+          12,
+          24,
+          237,
+          221
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            114.53,
+            132.81
+          ],
+          [
+            151.42,
+            123.19
+          ]
+        ],
+        "headRegion": [
+          73,
+          55,
+          181,
+          172
+        ],
+        "headCentroid": [
+          127.01,
+          113.5
+        ],
+        "eyeCenter": [
+          132.98,
+          128.0
+        ]
+      }
+    },
+    "mistral": {
+      "base": {
+        "path": "base/mistral.webp",
+        "width": 768,
+        "height": 1024,
+        "bytes": 127990,
+        "sha256": "4ff265053628fc5a3ae0c0fc7ac7012b077ecafe9935a0744eb1f4880d0f715d",
+        "alphaBounds": [
+          50,
+          104,
+          718,
+          1024
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            449.36,
+            330.73
+          ],
+          [
+            510.8,
+            311.13
+          ]
+        ],
+        "headRegion": [
+          362,
+          193,
+          558,
+          397
+        ],
+        "headCentroid": [
+          460.0,
+          295.0
+        ],
+        "eyeCenter": [
+          480.08,
+          320.93
+        ]
+      },
+      "flagship": {
+        "path": "flagship/mistral.webp",
+        "width": 768,
+        "height": 1024,
+        "bytes": 138900,
+        "sha256": "9309b6afb933a22856d129be4af0c763aa0ac66b2ecbda304075d788b91e726b",
+        "alphaBounds": [
+          31,
+          104,
+          737,
+          1024
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            391.61,
+            334.17
+          ],
+          [
+            448.51,
+            312.34
+          ]
+        ],
+        "headRegion": [
+          301,
+          207,
+          489,
+          388
+        ],
+        "headCentroid": [
+          395.0,
+          297.5
+        ],
+        "eyeCenter": [
+          420.06,
+          323.26
+        ]
+      },
+      "avatar": {
+        "path": "avatars/mistral.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 27008,
+        "sha256": "3f00638fa81bc611826634488939989c9a1b374b2284e3439344f12f684ffa1c",
+        "alphaBounds": [
+          14,
+          12,
+          239,
+          239
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            111.04,
+            128.91
+          ],
+          [
+            144.77,
+            127.27
+          ]
+        ],
+        "headRegion": [
+          80,
+          67,
+          176,
+          170
+        ],
+        "headCentroid": [
+          128.0,
+          118.5
+        ],
+        "eyeCenter": [
+          127.9,
+          128.09
+        ]
+      }
+    },
+    "gpt": {
+      "base": {
+        "path": "base/gpt.webp",
+        "width": 768,
+        "height": 1024,
+        "bytes": 126830,
+        "sha256": "9de404e0cad5c4a25e16693d1cc4c3fd64c020eabf430b29a69b3ce8b71e61d6",
+        "alphaBounds": [
+          81,
+          104,
+          687,
+          1024
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            377.95,
+            325.87
+          ],
+          [
+            446.77,
+            311.84
+          ]
+        ],
+        "headRegion": [
+          297,
+          170,
+          516,
+          399
+        ],
+        "headCentroid": [
+          406.51,
+          284.53
+        ],
+        "eyeCenter": [
+          412.36,
+          318.86
+        ]
+      },
+      "flagship": {
+        "path": "flagship/gpt.webp",
+        "width": 768,
+        "height": 1024,
+        "bytes": 135164,
+        "sha256": "dc1e02b60955fdbf233f117c42e7cf49ed5129e5487eb36b615b9061bde312a7",
+        "alphaBounds": [
+          45,
+          104,
+          723,
+          1024
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            379.2,
+            315.27
+          ],
+          [
+            446.42,
+            299.27
+          ]
+        ],
+        "headRegion": [
+          300,
+          165,
+          500,
+          380
+        ],
+        "headCentroid": [
+          400.19,
+          273.26
+        ],
+        "eyeCenter": [
+          412.81,
+          307.27
+        ]
+      },
+      "avatar": {
+        "path": "avatars/gpt.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 20616,
+        "sha256": "d6b055b66602e52bf2b7a786398906451fe7403207d2c884ddd804a91b0a029a",
+        "alphaBounds": [
+          34,
+          12,
+          234,
+          230
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            112.92,
+            134.31
+          ],
+          [
+            150.79,
+            126.6
+          ]
+        ],
+        "headRegion": [
+          68,
+          48,
+          189,
+          175
+        ],
+        "headCentroid": [
+          128.53,
+          111.55
+        ],
+        "eyeCenter": [
+          131.85,
+          130.45
+        ]
+      }
+    },
+    "claude": {
+      "base": {
+        "path": "base/claude.webp",
+        "width": 768,
+        "height": 1024,
+        "bytes": 136150,
+        "sha256": "edc655716ecfaf8698a5565cd67a8a1160784b26253dc395a64f6355b26fdcf2",
+        "alphaBounds": [
+          42,
+          104,
+          726,
+          1024
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            353.83,
+            305.41
+          ],
+          [
+            428.14,
+            288.89
+          ]
+        ],
+        "headRegion": [
+          278,
+          115,
+          489,
+          383
+        ],
+        "headCentroid": [
+          383.5,
+          249.01
+        ],
+        "eyeCenter": [
+          390.98,
+          297.15
+        ]
+      },
+      "flagship": {
+        "path": "flagship/claude.webp",
+        "width": 768,
+        "height": 1024,
+        "bytes": 138436,
+        "sha256": "c3e07f0418220d7510df33b66eaeb9bc045aa01d2c754c8877e510b909eea97b",
+        "alphaBounds": [
+          36,
+          104,
+          732,
+          1024
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            362.13,
+            329.17
+          ],
+          [
+            420.67,
+            315.02
+          ]
+        ],
+        "headRegion": [
+          284,
+          180,
+          470,
+          390
+        ],
+        "headCentroid": [
+          376.97,
+          285.37
+        ],
+        "eyeCenter": [
+          391.4,
+          322.1
+        ]
+      },
+      "avatar": {
+        "path": "avatars/claude.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 20722,
+        "sha256": "80a1f3c8201c65ede776f73bfb64fbd7ef16b62600e7d67b973e51c7124cad3a",
+        "alphaBounds": [
+          15,
+          12,
+          243,
+          230
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "eyes": [
+          [
+            106.89,
+            132.75
+          ],
+          [
+            151.39,
+            122.86
+          ]
+        ],
+        "headRegion": [
+          62,
+          19,
+          188,
+          179
+        ],
+        "headCentroid": [
+          125.0,
+          99.02
+        ],
+        "eyeCenter": [
+          129.14,
+          127.8
+        ]
+      }
+    }
+  }
+}

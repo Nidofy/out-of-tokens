@@ -1,0 +1,205 @@
+{
+  "bluewhale": {
+    "versions": [
+      "V3",
+      "R1"
+    ],
+    "references": [
+      "art/art-batch-8/masters/bluewhale/ref_sheet.png",
+      "apps/web/public/art/stage-b/bluewhale.r1.webp"
+    ],
+    "base": {
+      "sourceFile": "exec-2d2f778e-df28-4887-af19-8a57ce8bae3d.png",
+      "sourceSha256": "45f89aa229d0967529e4c55dc76e8b016efe595f0c7ed1ea75a5f6b1750eca43",
+      "headRegion": [395, 135, 740, 481],
+      "eyes": [
+        [538, 373],
+        [647, 342]
+      ]
+    },
+    "flagship": {
+      "sourceFile": "exec-6985d938-7f51-4aae-bfe0-54f879c5d994.png",
+      "sourceSha256": "50aa18288337ba42450fce3cb6f9c3e2fb22e17ed3047b78579eea666dec9e6a",
+      "headRegion": [337, 130, 675, 432],
+      "eyes": [
+        [490, 339],
+        [585, 306]
+      ]
+    },
+    "avatar": {
+      "bottomY": 660,
+      "arcCurvature": 0.00145,
+      "eyeTarget": [0.51, 0.51]
+    }
+  },
+  "qwen": {
+    "versions": [
+      "2.5",
+      "QwQ"
+    ],
+    "references": [
+      "art/art-batch-10a/masters/qwen/ref_sheet.png",
+      "apps/web/public/art/stage-b/qwen.qwq.webp"
+    ],
+    "base": {
+      "sourceFile": "exec-87e732d6-02b4-4872-b212-dcc4d337c7b8.png",
+      "sourceSha256": "b6d449c89bb4fe5f1513334b852aa426784f60027941c87af84bfd6b6500776c",
+      "headRegion": [395, 113, 755, 478],
+      "eyes": [
+        [542, 369],
+        [650, 338]
+      ]
+    },
+    "flagship": {
+      "sourceFile": "exec-57d6f928-cca5-480b-957c-f811269ed411.png",
+      "sourceSha256": "d9fdf68fa9dc52c55ac788dfe33523e079c7f442a77c5ff3659132b5797fc2bd",
+      "headRegion": [360, 123, 670, 442],
+      "eyes": [
+        [477, 351],
+        [571, 319]
+      ]
+    },
+    "avatar": {
+      "bottomY": 661,
+      "arcCurvature": 0.00125,
+      "eyeTarget": [0.52, 0.51]
+    }
+  },
+  "llama": {
+    "versions": [
+      "3",
+      "3.1"
+    ],
+    "references": [
+      "art/art-batch-10a/masters/llama/ref_sheet.png",
+      "apps/web/public/art/stage-b/llama.3.1.webp"
+    ],
+    "base": {
+      "sourceFile": "exec-53cdd433-b5a1-4629-9d97-faf9079c7bad.png",
+      "sourceSha256": "31512fe9940015c511dcbb1efd7208acfe493ef1da7429640fc57345e5bb4dda",
+      "headRegion": [391, 102, 727, 467],
+      "eyes": [
+        [521, 344],
+        [636, 314]
+      ],
+      "redrawnFrom": "rejected/llama-base-01.png"
+    },
+    "flagship": {
+      "sourceFile": "exec-17b56d8d-58d5-4f6b-9d41-c09589f81227.png",
+      "sourceSha256": "f4db65b96d67d24ddb28606169108c4f04f1d039c9cc0d1cc177c8103fcfe0b1",
+      "headRegion": [322, 109, 618, 423],
+      "eyes": [
+        [456, 315],
+        [557, 282]
+      ]
+    },
+    "avatar": {
+      "bottomY": 617,
+      "arcCurvature": 0.00135,
+      "eyeTarget": [0.52, 0.50]
+    }
+  },
+  "mistral": {
+    "versions": [
+      "7B",
+      "Large"
+    ],
+    "references": [
+      "art/art-batch-10a/masters/mistral/ref_sheet.png",
+      "apps/web/public/art/stage-b/mistral.large.webp"
+    ],
+    "base": {
+      "sourceFile": "exec-3b964fc3-5304-4067-8fec-67a15d35abbe.png",
+      "sourceSha256": "5318a3f23b42bb469c71ded34a3381eefd0f45846de0ffd1aff7659b564ec547",
+      "headRegion": [492, 172, 792, 485],
+      "eyes": [
+        [626, 383],
+        [720, 353]
+      ],
+      "redrawnFrom": "rejected/mistral-base-01.png"
+    },
+    "flagship": {
+      "sourceFile": "exec-52a06e98-fe25-4dbd-907f-8b2d61e8fcdc.png",
+      "sourceSha256": "12ff835520ba2d63002d04ed0270ba8e4bb712602bb57c819c39086cbb591bbc",
+      "headRegion": [417, 198, 701, 472],
+      "eyes": [
+        [554, 390],
+        [640, 357]
+      ]
+    },
+    "avatar": {
+      "sourceFile": "exec-42c0b77b-1bf3-4920-acb6-ecc415c50e1a.png",
+      "sourceSha256": "5369777f707e431dd73a240549738040569feeae0bd99f16c4da6ee79cafb6f1",
+      "headRegion": [374, 306, 902, 869],
+      "eyes": [[545, 645], [730, 636]],
+      "eyeTarget": [0.50, 0.50]
+    }
+  },
+  "gpt": {
+    "versions": [
+      "3.5",
+      "4o"
+    ],
+    "references": [
+      "art/art-batch-10a/masters/gpt/ref_sheet.png",
+      "apps/web/public/art/stage-b/gpt.4o.webp"
+    ],
+    "base": {
+      "sourceFile": "exec-9a1b1a43-abb7-421c-8251-2ad6580985d3.png",
+      "sourceSha256": "59a4bfa019866d53d77d7da4d77f25c4f5690a8f94f9076e80dc7390a227912a",
+      "headRegion": [400, 103, 744, 463],
+      "eyes": [
+        [527, 348],
+        [635, 326]
+      ]
+    },
+    "flagship": {
+      "sourceFile": "exec-960c6f9a-c16a-425a-9485-5b9ea943f721.png",
+      "sourceSha256": "240818dd0bdf05523a80b7f848505e672b53640ecd3fc75b59bf049f929e1dfe",
+      "headRegion": [412, 103, 723, 438],
+      "eyes": [
+        [535, 337],
+        [640, 312]
+      ]
+    },
+    "avatar": {
+      "bottomY": 618,
+      "arcCurvature": 0.00123,
+      "eyeTarget": [0.515, 0.51]
+    }
+  },
+  "claude": {
+    "versions": [
+      "Haiku",
+      "Sonnet"
+    ],
+    "references": [
+      "art/art-batch-10a/masters/claude/ref_sheet.png",
+      "apps/web/public/art/stage-b/claude.sonnet.webp"
+    ],
+    "base": {
+      "sourceFile": "exec-b628cad1-8ae0-459d-8242-171c152a64f9.png",
+      "sourceSha256": "ee7cd19b4af4c3c3ec4895dcfaba5806dce642b66aaaed765b90d65683f65b65",
+      "headRegion": [377, 17, 709, 439],
+      "eyes": [
+        [496, 317],
+        [613, 291]
+      ],
+      "redrawnFrom": "rejected/claude-base-01.png"
+    },
+    "flagship": {
+      "sourceFile": "exec-18de7c24-4e40-4027-b0f2-4ee90a4fb355.png",
+      "sourceSha256": "18bd0cbc7673340ee6caa5d6284fbda0b2a9ee8acc5b869ae463bdb39c997784",
+      "headRegion": [387, 125, 676, 451],
+      "eyes": [
+        [509, 357],
+        [600, 335]
+      ]
+    },
+    "avatar": {
+      "bottomY": 570,
+      "arcCurvature": 0.00155,
+      "eyeTarget": [0.505, 0.50]
+    }
+  }
+}

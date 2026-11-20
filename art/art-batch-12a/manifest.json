@@ -1,0 +1,854 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in image_gen",
+  "model": "not exposed",
+  "parameters": {
+    "transparent_background": true
+  },
+  "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+  "masters": {
+    "bluewhale": {
+      "base": {
+        "file": "art/art-batch-12a/masters/bluewhale/base.png",
+        "bytes": 2172941,
+        "sha256": "45f89aa229d0967529e4c55dc76e8b016efe595f0c7ed1ea75a5f6b1750eca43",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-2d2f778e-df28-4887-af19-8a57ce8bae3d.png",
+        "references": [
+          {
+            "file": "art/art-batch-8/masters/bluewhale/ref_sheet.png",
+            "bytes": 627644,
+            "sha256": "15d0e69f0e2cd9da3e619f8ec8130edd285fc410e2dc52c119c3bf5c743a04a3"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/bluewhale.r1.webp",
+            "bytes": 94624,
+            "sha256": "8ea8181da3380a8f776ba0786791da695552abd171921d2bd54a69c2b09f56c4"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          31,
+          0,
+          1073,
+          1448
+        ]
+      },
+      "flagship": {
+        "file": "art/art-batch-12a/masters/bluewhale/flagship.png",
+        "bytes": 2771976,
+        "sha256": "50aa18288337ba42450fce3cb6f9c3e2fb22e17ed3047b78579eea666dec9e6a",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-6985d938-7f51-4aae-bfe0-54f879c5d994.png",
+        "references": [
+          {
+            "file": "art/art-batch-8/masters/bluewhale/ref_sheet.png",
+            "bytes": 627644,
+            "sha256": "15d0e69f0e2cd9da3e619f8ec8130edd285fc410e2dc52c119c3bf5c743a04a3"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/bluewhale.r1.webp",
+            "bytes": 94624,
+            "sha256": "8ea8181da3380a8f776ba0786791da695552abd171921d2bd54a69c2b09f56c4"
+          },
+          {
+            "file": "art/art-batch-12a/masters/bluewhale/base.png",
+            "bytes": 2172941,
+            "sha256": "45f89aa229d0967529e4c55dc76e8b016efe595f0c7ed1ea75a5f6b1750eca43"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1074,
+          1448
+        ]
+      },
+      "avatar": {
+        "file": "art/art-batch-12a/masters/bluewhale/avatar.png",
+        "bytes": 792969,
+        "sha256": "ee3548c62dce07ba71f2759d3a12d7588a6bf89c1e19dee60ec6025658be1045",
+        "method": "native-resolution contour crop",
+        "references": [
+          {
+            "file": "art/art-batch-12a/masters/bluewhale/base.png",
+            "bytes": 2172941,
+            "sha256": "45f89aa229d0967529e4c55dc76e8b016efe595f0c7ed1ea75a5f6b1750eca43"
+          }
+        ],
+        "width": 757,
+        "height": 757,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          61,
+          37,
+          658,
+          690
+        ]
+      }
+    },
+    "qwen": {
+      "base": {
+        "file": "art/art-batch-12a/masters/qwen/base.png",
+        "bytes": 2131543,
+        "sha256": "b6d449c89bb4fe5f1513334b852aa426784f60027941c87af84bfd6b6500776c",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-87e732d6-02b4-4872-b212-dcc4d337c7b8.png",
+        "references": [
+          {
+            "file": "art/art-batch-10a/masters/qwen/ref_sheet.png",
+            "bytes": 775484,
+            "sha256": "1ce1100501658592b751a6d709423ce1eeb23aafa78ab4a36fa185e5d49682c2"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/qwen.qwq.webp",
+            "bytes": 77950,
+            "sha256": "6aef0ea101701c048c0f77e1e29a1fd8951790a7860eef0d15aa7de33df8a83a"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          50,
+          11,
+          1070,
+          1448
+        ]
+      },
+      "flagship": {
+        "file": "art/art-batch-12a/masters/qwen/flagship.png",
+        "bytes": 2470002,
+        "sha256": "d9fdf68fa9dc52c55ac788dfe33523e079c7f442a77c5ff3659132b5797fc2bd",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-57d6f928-cca5-480b-957c-f811269ed411.png",
+        "references": [
+          {
+            "file": "art/art-batch-10a/masters/qwen/ref_sheet.png",
+            "bytes": 775484,
+            "sha256": "1ce1100501658592b751a6d709423ce1eeb23aafa78ab4a36fa185e5d49682c2"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/qwen.qwq.webp",
+            "bytes": 77950,
+            "sha256": "6aef0ea101701c048c0f77e1e29a1fd8951790a7860eef0d15aa7de33df8a83a"
+          },
+          {
+            "file": "art/art-batch-12a/masters/qwen/base.png",
+            "bytes": 2131543,
+            "sha256": "b6d449c89bb4fe5f1513334b852aa426784f60027941c87af84bfd6b6500776c"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          30,
+          1078,
+          1448
+        ]
+      },
+      "avatar": {
+        "file": "art/art-batch-12a/masters/qwen/avatar.png",
+        "bytes": 816671,
+        "sha256": "872b4d6ef61fda9d902dc111b5e9aca14cdbfc3549a762919cf0c7258bcb7d53",
+        "method": "native-resolution contour crop",
+        "references": [
+          {
+            "file": "art/art-batch-12a/masters/qwen/base.png",
+            "bytes": 2131543,
+            "sha256": "b6d449c89bb4fe5f1513334b852aa426784f60027941c87af84bfd6b6500776c"
+          }
+        ],
+        "width": 738,
+        "height": 738,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          50,
+          36,
+          671,
+          685
+        ]
+      }
+    },
+    "llama": {
+      "base": {
+        "file": "art/art-batch-12a/masters/llama/base.png",
+        "bytes": 2481285,
+        "sha256": "31512fe9940015c511dcbb1efd7208acfe493ef1da7429640fc57345e5bb4dda",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-53cdd433-b5a1-4629-9d97-faf9079c7bad.png",
+        "references": [
+          {
+            "file": "art/art-batch-10a/masters/llama/ref_sheet.png",
+            "bytes": 676660,
+            "sha256": "35bc4acbc36bcc6df22e895a1cb0fccd3fa7bda7fcc5a8d39854f0843e4ada54"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/llama.3.1.webp",
+            "bytes": 87526,
+            "sha256": "27994a6dcc899c0927ad436331e16354f8b7efd68c0f2d35baf765b5e1a034c5"
+          },
+          {
+            "file": "art/art-batch-12a/rejected/llama-base-01.png",
+            "bytes": 2348016,
+            "sha256": "e65392441597ec7a7edee116c6be6a4f9944cec8678dfc607e6aa7b4813c7589"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1085,
+          1448
+        ]
+      },
+      "flagship": {
+        "file": "art/art-batch-12a/masters/llama/flagship.png",
+        "bytes": 3138861,
+        "sha256": "f4db65b96d67d24ddb28606169108c4f04f1d039c9cc0d1cc177c8103fcfe0b1",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-17b56d8d-58d5-4f6b-9d41-c09589f81227.png",
+        "references": [
+          {
+            "file": "art/art-batch-10a/masters/llama/ref_sheet.png",
+            "bytes": 676660,
+            "sha256": "35bc4acbc36bcc6df22e895a1cb0fccd3fa7bda7fcc5a8d39854f0843e4ada54"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/llama.3.1.webp",
+            "bytes": 87526,
+            "sha256": "27994a6dcc899c0927ad436331e16354f8b7efd68c0f2d35baf765b5e1a034c5"
+          },
+          {
+            "file": "art/art-batch-12a/masters/llama/base.png",
+            "bytes": 2481285,
+            "sha256": "31512fe9940015c511dcbb1efd7208acfe493ef1da7429640fc57345e5bb4dda"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1086,
+          1448
+        ]
+      },
+      "avatar": {
+        "file": "art/art-batch-12a/masters/llama/avatar.png",
+        "bytes": 938722,
+        "sha256": "05612db63ec8879f739b30fa7da3e9c637ef44188a8ff543251d1092b59a7c50",
+        "method": "native-resolution contour crop",
+        "references": [
+          {
+            "file": "art/art-batch-12a/masters/llama/base.png",
+            "bytes": 2481285,
+            "sha256": "31512fe9940015c511dcbb1efd7208acfe493ef1da7429640fc57345e5bb4dda"
+          }
+        ],
+        "width": 798,
+        "height": 798,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          38,
+          77,
+          737,
+          688
+        ]
+      }
+    },
+    "mistral": {
+      "base": {
+        "file": "art/art-batch-12a/masters/mistral/base.png",
+        "bytes": 2492246,
+        "sha256": "5318a3f23b42bb469c71ded34a3381eefd0f45846de0ffd1aff7659b564ec547",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-3b964fc3-5304-4067-8fec-67a15d35abbe.png",
+        "references": [
+          {
+            "file": "art/art-batch-10a/masters/mistral/ref_sheet.png",
+            "bytes": 641399,
+            "sha256": "05efb77e05fed1b702b4ee2067aa6603b0ed49595d9c96c5934f2ebb33b1d408"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/mistral.large.webp",
+            "bytes": 95232,
+            "sha256": "907bfdacf2faa90c3f57903e5e086dd88a8e92b9604b54576f9e14d8fb2fd374"
+          },
+          {
+            "file": "art/art-batch-12a/rejected/mistral-base-01.png",
+            "bytes": 2615996,
+            "sha256": "1b5efe037a6cdd4917c592ece933f6dcd4c4590111d3358eab613f8175e0b2cd"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          17,
+          1046,
+          1448
+        ]
+      },
+      "flagship": {
+        "file": "art/art-batch-12a/masters/mistral/flagship.png",
+        "bytes": 2831624,
+        "sha256": "12ff835520ba2d63002d04ed0270ba8e4bb712602bb57c819c39086cbb591bbc",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-52a06e98-fe25-4dbd-907f-8b2d61e8fcdc.png",
+        "references": [
+          {
+            "file": "art/art-batch-10a/masters/mistral/ref_sheet.png",
+            "bytes": 641399,
+            "sha256": "05efb77e05fed1b702b4ee2067aa6603b0ed49595d9c96c5934f2ebb33b1d408"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/mistral.large.webp",
+            "bytes": 95232,
+            "sha256": "907bfdacf2faa90c3f57903e5e086dd88a8e92b9604b54576f9e14d8fb2fd374"
+          },
+          {
+            "file": "art/art-batch-12a/masters/mistral/base.png",
+            "bytes": 2492246,
+            "sha256": "5318a3f23b42bb469c71ded34a3381eefd0f45846de0ffd1aff7659b564ec547"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          25,
+          1086,
+          1448
+        ]
+      },
+      "avatar": {
+        "file": "art/art-batch-12a/masters/mistral/avatar.png",
+        "bytes": 2784985,
+        "sha256": "5369777f707e431dd73a240549738040569feeae0bd99f16c4da6ee79cafb6f1",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-42c0b77b-1bf3-4920-acb6-ecc415c50e1a.png",
+        "references": [
+          {
+            "file": "art/art-batch-10a/masters/mistral/ref_sheet.png",
+            "bytes": 641399,
+            "sha256": "05efb77e05fed1b702b4ee2067aa6603b0ed49595d9c96c5934f2ebb33b1d408"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/mistral.large.webp",
+            "bytes": 95232,
+            "sha256": "907bfdacf2faa90c3f57903e5e086dd88a8e92b9604b54576f9e14d8fb2fd374"
+          },
+          {
+            "file": "art/art-batch-12a/masters/mistral/base.png",
+            "bytes": 2492246,
+            "sha256": "5318a3f23b42bb469c71ded34a3381eefd0f45846de0ffd1aff7659b564ec547"
+          }
+        ],
+        "width": 1254,
+        "height": 1254,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1253,
+          1254
+        ]
+      }
+    },
+    "gpt": {
+      "base": {
+        "file": "art/art-batch-12a/masters/gpt/base.png",
+        "bytes": 2292368,
+        "sha256": "59a4bfa019866d53d77d7da4d77f25c4f5690a8f94f9076e80dc7390a227912a",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-9a1b1a43-abb7-421c-8251-2ad6580985d3.png",
+        "references": [
+          {
+            "file": "art/art-batch-10a/masters/gpt/ref_sheet.png",
+            "bytes": 737228,
+            "sha256": "147fcac22dbe465b9948c8884661632cbebd3c52ec83e26bacd33bce6252b3ce"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/gpt.4o.webp",
+            "bytes": 88654,
+            "sha256": "e99b8d697b01cd27cfa0d6ab129e4ffbbd67fac32594d6ba6a07b5dd4662454e"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1070,
+          1448
+        ]
+      },
+      "flagship": {
+        "file": "art/art-batch-12a/masters/gpt/flagship.png",
+        "bytes": 2899612,
+        "sha256": "240818dd0bdf05523a80b7f848505e672b53640ecd3fc75b59bf049f929e1dfe",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-960c6f9a-c16a-425a-9485-5b9ea943f721.png",
+        "references": [
+          {
+            "file": "art/art-batch-10a/masters/gpt/ref_sheet.png",
+            "bytes": 737228,
+            "sha256": "147fcac22dbe465b9948c8884661632cbebd3c52ec83e26bacd33bce6252b3ce"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/gpt.4o.webp",
+            "bytes": 88654,
+            "sha256": "e99b8d697b01cd27cfa0d6ab129e4ffbbd67fac32594d6ba6a07b5dd4662454e"
+          },
+          {
+            "file": "art/art-batch-12a/masters/gpt/base.png",
+            "bytes": 2292368,
+            "sha256": "59a4bfa019866d53d77d7da4d77f25c4f5690a8f94f9076e80dc7390a227912a"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1076,
+          1448
+        ]
+      },
+      "avatar": {
+        "file": "art/art-batch-12a/masters/gpt/avatar.png",
+        "bytes": 744438,
+        "sha256": "b254a3cd95aa7f9c43a910515d73ecc0f88029d5e239bba474bfa3d1021aa767",
+        "method": "native-resolution contour crop",
+        "references": [
+          {
+            "file": "art/art-batch-12a/masters/gpt/base.png",
+            "bytes": 2292368,
+            "sha256": "59a4bfa019866d53d77d7da4d77f25c4f5690a8f94f9076e80dc7390a227912a"
+          }
+        ],
+        "width": 730,
+        "height": 730,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          95,
+          35,
+          666,
+          654
+        ]
+      }
+    },
+    "claude": {
+      "base": {
+        "file": "art/art-batch-12a/masters/claude/base.png",
+        "bytes": 2634620,
+        "sha256": "ee7cd19b4af4c3c3ec4895dcfaba5806dce642b66aaaed765b90d65683f65b65",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-b628cad1-8ae0-459d-8242-171c152a64f9.png",
+        "references": [
+          {
+            "file": "art/art-batch-10a/masters/claude/ref_sheet.png",
+            "bytes": 610550,
+            "sha256": "d76c0288606bca90ed28214bfa969d9e334dbc9e5111d723a403a382fb981d88"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/claude.sonnet.webp",
+            "bytes": 87946,
+            "sha256": "efcccbfbff9562c8fae8f83e45e1035ca0793ffebcc37d94869c401745ec4bbb"
+          },
+          {
+            "file": "art/art-batch-12a/rejected/claude-base-01.png",
+            "bytes": 2585066,
+            "sha256": "403445861ad79f3db216fd2095aff5769ab36edcf938fdbf4cc40d9b507dd582"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1086,
+          1448
+        ]
+      },
+      "flagship": {
+        "file": "art/art-batch-12a/masters/claude/flagship.png",
+        "bytes": 2665164,
+        "sha256": "18bd0cbc7673340ee6caa5d6284fbda0b2a9ee8acc5b869ae463bdb39c997784",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-18de7c24-4e40-4027-b0f2-4ee90a4fb355.png",
+        "references": [
+          {
+            "file": "art/art-batch-10a/masters/claude/ref_sheet.png",
+            "bytes": 610550,
+            "sha256": "d76c0288606bca90ed28214bfa969d9e334dbc9e5111d723a403a382fb981d88"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/claude.sonnet.webp",
+            "bytes": 87946,
+            "sha256": "efcccbfbff9562c8fae8f83e45e1035ca0793ffebcc37d94869c401745ec4bbb"
+          },
+          {
+            "file": "art/art-batch-12a/masters/claude/base.png",
+            "bytes": 2634620,
+            "sha256": "ee7cd19b4af4c3c3ec4895dcfaba5806dce642b66aaaed765b90d65683f65b65"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1086,
+          1448
+        ]
+      },
+      "avatar": {
+        "file": "art/art-batch-12a/masters/claude/avatar.png",
+        "bytes": 780255,
+        "sha256": "6584ed2f1aaabad6f4ffbe4e75d5d03f6b97e7424174b177b5ae30f3bca2dc41",
+        "method": "native-resolution contour crop",
+        "references": [
+          {
+            "file": "art/art-batch-12a/masters/claude/base.png",
+            "bytes": 2634620,
+            "sha256": "ee7cd19b4af4c3c3ec4895dcfaba5806dce642b66aaaed765b90d65683f65b65"
+          }
+        ],
+        "width": 673,
+        "height": 673,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          39,
+          32,
+          638,
+          603
+        ]
+      }
+    }
+  },
+  "runtime": [
+    {
+      "id": "bluewhale",
+      "tier": "base",
+      "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+      "bytes": 115606,
+      "sha256": "84e80477df386ec08eb11fa958cbf7a3b85b7ed5ac9607ddce459e4fabdbdbfd",
+      "sourceSha256": "45f89aa229d0967529e4c55dc76e8b016efe595f0c7ed1ea75a5f6b1750eca43",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0,
+        "liftedPixels": 283
+      }
+    },
+    {
+      "id": "bluewhale",
+      "tier": "flagship",
+      "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+      "bytes": 129876,
+      "sha256": "894fe242eda4f8cc6113de6e2618f3ec2deda0c9cf0184942048c602c3803882",
+      "sourceSha256": "50aa18288337ba42450fce3cb6f9c3e2fb22e17ed3047b78579eea666dec9e6a",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0.8,
+        "liftedPixels": 262
+      }
+    },
+    {
+      "id": "bluewhale",
+      "tier": "avatar",
+      "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+      "bytes": 19682,
+      "sha256": "7a3bcc487a58385f188625e54228ea4eaaa45474c34b6a4b4985f698fa99d71c",
+      "sourceSha256": "ee3548c62dce07ba71f2759d3a12d7588a6bf89c1e19dee60ec6025658be1045",
+      "encoder": {
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0
+      }
+    },
+    {
+      "id": "qwen",
+      "tier": "base",
+      "file": "apps/web/public/art/portraits/base/qwen.webp",
+      "bytes": 115998,
+      "sha256": "b83cd6a37d8290a889d81bd3fb12d87a4ab72eb716b0f2657f1371b1e2c2b0cd",
+      "sourceSha256": "b6d449c89bb4fe5f1513334b852aa426784f60027941c87af84bfd6b6500776c",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0,
+        "liftedPixels": 8
+      }
+    },
+    {
+      "id": "qwen",
+      "tier": "flagship",
+      "file": "apps/web/public/art/portraits/flagship/qwen.webp",
+      "bytes": 134556,
+      "sha256": "07764f263f9071bee771720868bcaab0e9b3e0403e4b50cd33fd7f304e98586a",
+      "sourceSha256": "d9fdf68fa9dc52c55ac788dfe33523e079c7f442a77c5ff3659132b5797fc2bd",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0.65,
+        "liftedPixels": 18
+      }
+    },
+    {
+      "id": "qwen",
+      "tier": "avatar",
+      "file": "apps/web/public/art/portraits/avatars/qwen.webp",
+      "bytes": 21222,
+      "sha256": "04c461358cd8fbc6771b6b6a68a689b7a7211b6c014a2a14f0f28340441bc312",
+      "sourceSha256": "872b4d6ef61fda9d902dc111b5e9aca14cdbfc3549a762919cf0c7258bcb7d53",
+      "encoder": {
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0
+      }
+    },
+    {
+      "id": "llama",
+      "tier": "base",
+      "file": "apps/web/public/art/portraits/base/llama.webp",
+      "bytes": 136972,
+      "sha256": "0d9ff3a76b3e1b17a8861c2a58f2efd255ecfb86875afe6bc1073cfa8a15da96",
+      "sourceSha256": "31512fe9940015c511dcbb1efd7208acfe493ef1da7429640fc57345e5bb4dda",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0,
+        "liftedPixels": 51
+      }
+    },
+    {
+      "id": "llama",
+      "tier": "flagship",
+      "file": "apps/web/public/art/portraits/flagship/llama.webp",
+      "bytes": 135458,
+      "sha256": "092cd0c64f6937fcd8d1c7253d87c77b525f6f7f161c34e856349d4d60a7621f",
+      "sourceSha256": "f4db65b96d67d24ddb28606169108c4f04f1d039c9cc0d1cc177c8103fcfe0b1",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0.65,
+        "liftedPixels": 32
+      }
+    },
+    {
+      "id": "llama",
+      "tier": "avatar",
+      "file": "apps/web/public/art/portraits/avatars/llama.webp",
+      "bytes": 17802,
+      "sha256": "732bb4901b0e804f438b5eb54fc0c1456a4deb60ff15d93396bf5dba4411232c",
+      "sourceSha256": "05612db63ec8879f739b30fa7da3e9c637ef44188a8ff543251d1092b59a7c50",
+      "encoder": {
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0
+      }
+    },
+    {
+      "id": "mistral",
+      "tier": "base",
+      "file": "apps/web/public/art/portraits/base/mistral.webp",
+      "bytes": 127990,
+      "sha256": "4ff265053628fc5a3ae0c0fc7ac7012b077ecafe9935a0744eb1f4880d0f715d",
+      "sourceSha256": "5318a3f23b42bb469c71ded34a3381eefd0f45846de0ffd1aff7659b564ec547",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0.45,
+        "liftedPixels": 5
+      }
+    },
+    {
+      "id": "mistral",
+      "tier": "flagship",
+      "file": "apps/web/public/art/portraits/flagship/mistral.webp",
+      "bytes": 138900,
+      "sha256": "9309b6afb933a22856d129be4af0c763aa0ac66b2ecbda304075d788b91e726b",
+      "sourceSha256": "12ff835520ba2d63002d04ed0270ba8e4bb712602bb57c819c39086cbb591bbc",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0.8,
+        "liftedPixels": 18
+      }
+    },
+    {
+      "id": "mistral",
+      "tier": "avatar",
+      "file": "apps/web/public/art/portraits/avatars/mistral.webp",
+      "bytes": 27008,
+      "sha256": "3f00638fa81bc611826634488939989c9a1b374b2284e3439344f12f684ffa1c",
+      "sourceSha256": "5369777f707e431dd73a240549738040569feeae0bd99f16c4da6ee79cafb6f1",
+      "encoder": {
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0
+      }
+    },
+    {
+      "id": "gpt",
+      "tier": "base",
+      "file": "apps/web/public/art/portraits/base/gpt.webp",
+      "bytes": 126830,
+      "sha256": "9de404e0cad5c4a25e16693d1cc4c3fd64c020eabf430b29a69b3ce8b71e61d6",
+      "sourceSha256": "59a4bfa019866d53d77d7da4d77f25c4f5690a8f94f9076e80dc7390a227912a",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0,
+        "liftedPixels": 8
+      }
+    },
+    {
+      "id": "gpt",
+      "tier": "flagship",
+      "file": "apps/web/public/art/portraits/flagship/gpt.webp",
+      "bytes": 135164,
+      "sha256": "dc1e02b60955fdbf233f117c42e7cf49ed5129e5487eb36b615b9061bde312a7",
+      "sourceSha256": "240818dd0bdf05523a80b7f848505e672b53640ecd3fc75b59bf049f929e1dfe",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0.65,
+        "liftedPixels": 24
+      }
+    },
+    {
+      "id": "gpt",
+      "tier": "avatar",
+      "file": "apps/web/public/art/portraits/avatars/gpt.webp",
+      "bytes": 20616,
+      "sha256": "d6b055b66602e52bf2b7a786398906451fe7403207d2c884ddd804a91b0a029a",
+      "sourceSha256": "b254a3cd95aa7f9c43a910515d73ecc0f88029d5e239bba474bfa3d1021aa767",
+      "encoder": {
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0
+      }
+    },
+    {
+      "id": "claude",
+      "tier": "base",
+      "file": "apps/web/public/art/portraits/base/claude.webp",
+      "bytes": 136150,
+      "sha256": "edc655716ecfaf8698a5565cd67a8a1160784b26253dc395a64f6355b26fdcf2",
+      "sourceSha256": "ee7cd19b4af4c3c3ec4895dcfaba5806dce642b66aaaed765b90d65683f65b65",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0.45,
+        "liftedPixels": 644
+      }
+    },
+    {
+      "id": "claude",
+      "tier": "flagship",
+      "file": "apps/web/public/art/portraits/flagship/claude.webp",
+      "bytes": 138436,
+      "sha256": "c3e07f0418220d7510df33b66eaeb9bc045aa01d2c754c8877e510b909eea97b",
+      "sourceSha256": "18bd0cbc7673340ee6caa5d6284fbda0b2a9ee8acc5b869ae463bdb39c997784",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0.65,
+        "liftedPixels": 234
+      }
+    },
+    {
+      "id": "claude",
+      "tier": "avatar",
+      "file": "apps/web/public/art/portraits/avatars/claude.webp",
+      "bytes": 20722,
+      "sha256": "80a1f3c8201c65ede776f73bfb64fbd7ef16b62600e7d67b973e51c7124cad3a",
+      "sourceSha256": "6584ed2f1aaabad6f4ffbe4e75d5d03f6b97e7424174b177b5ae30f3bca2dc41",
+      "encoder": {
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0
+      }
+    }
+  ],
+  "catalog": {
+    "file": "apps/web/public/art/portraits/catalog.json",
+    "bytes": 14697,
+    "sha256": "71949858e225c432e7df32d6078199795757fd32e2a424256ba5a446a26e5969"
+  }
+}
