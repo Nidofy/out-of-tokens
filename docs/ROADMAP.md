@@ -1,3 +1,5 @@
+2026-11-21 Art-Batch 15A 的六人三表情白名单已可用，信使等界面接入待后续安排。[六人矩阵](../art/art-batch-15a/review/batch15a-expressions-review.png)
+
 2026-11-21 Art-Batch 14 完成，后续页面可使用 expansion 白名单与四处实测地图锚点。[资产与坐标](../harness/reviews/art-batch-14.md)
 
 2026-11-21 Art-Batch 13 完成世界观插画与公共场景摆件。后续引擎可从 `story-art.ts` 取得客户、结局、远征和引导助手路径，从 `furniture-art.ts` 取得食堂与图书馆彩蛋摆件。[本批交付与锚点](../harness/reviews/art-batch-13.md)
