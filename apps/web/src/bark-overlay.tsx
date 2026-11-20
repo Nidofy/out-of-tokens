@@ -1,7 +1,7 @@
 import {Icon} from './icons.js';
-import {characterPosters,stageBPortrait} from './character-profiles.js';
+import {characterPosters} from './character-profiles.js';
+import {resolveAvatarArt} from './art/portrait-resolver.js';
 import {names} from './presentation.js';
-import {isFlagshipUnlocked} from './ui2-logic.js';
 import {EmoteBadge} from './stage-chatter.js';
 import type {EmoteKind,GiftDef} from './living-adapter.js';
 import {giftAssetSrc,giftReactionTier} from './living-adapter.js';
@@ -20,15 +20,12 @@ export interface BarkPayload {
  deltas:string[];
 }
 
-const stageBMap:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'qwen.qwq',llama:'llama.3.1',mistral:'mistral.large',gpt:'gpt.4o',claude:'claude.sonnet',kimi:'kimi.k2',gemini:'gemini.pro'};
-
 export function BarkOverlay({bark,view,english,inModal=false,onClose}:{bark:BarkPayload|null;view:GameView;english:boolean;inModal?:boolean;onClose:()=>void}){
  if(!bark)return null;
  const tr=(zh:string,en:string)=>english?en:zh;
  const accent=characterPosters[bark.actorId]?.themeColor??'#8b673c';
- const ready=isFlagshipUnlocked(view,bark.actorId,stageBMap[bark.actorId]??null);
- const art=(ready?stageBPortrait(bark.actorId):null)??`./art/ai-village/portraits/${bark.actorId}.png`;
- const partnerArt=bark.partnerId?`./art/ai-village/portraits/${bark.partnerId}.png`:null;
+ const art=resolveAvatarArt(bark.actorId);
+ const partnerArt=bark.partnerId?resolveAvatarArt(bark.partnerId):null;
 
  return (
   <div class="ui2-bark-card" data-in-modal={inModal?'true':'false'} role="status" aria-live="polite" style={{'--poster-color':accent}}>

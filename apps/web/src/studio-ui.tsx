@@ -1,10 +1,11 @@
 import {useEffect,useRef} from 'preact/hooks';
 import type {ComponentChildren} from 'preact';
 import {Icon} from './icons.js';
+import {resolveAvatarArt} from './art/portrait-resolver.js';
 export const chapterPlaces=[['开源车库','The open-source garage'],['共享孵化器','The incubator'],['城市事务所','The city studio'],['创意园区','The campus'],['AGI 实验室','The AGI lab']] as const;
 export const sceneArt=(scene:string,chapter:number,night=false)=>`./art/${scene==='workshop'?['garage','incubator','office','campus','lab'][Math.min(4,chapter)]:scene}${night?'-night':''}.webp`;
 export const actorIds=['bluewhale','qwen','llama','mistral','gpt','claude','kimi','gemini','grok','glm','minimax','seedance'];
-export function Portrait({id,variant='list'}:{id:string;variant?:'map'|'list'|'candidate'|'profile'}){return <img loading={variant==='profile'?'eager':'lazy'} decoding="async" class="portrait" data-variant={variant} src={`./art/ai-village/portraits/${id}.png`} alt=""/>;}
+export function Portrait({id,variant='list'}:{id:string;variant?:'map'|'list'|'candidate'|'profile'}){return <img loading={variant==='profile'?'eager':'lazy'} decoding="async" class="portrait" data-variant={variant} src={resolveAvatarArt(id)} alt=""/>;}
 const scrolls:Record<string,number>={};
 export function Drawer({title,route,close,children}:{title:string;route:string;close:()=>void;children:ComponentChildren}){
  const ref=useRef<HTMLDivElement>(null),button=useRef<HTMLButtonElement>(null);

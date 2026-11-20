@@ -8,6 +8,7 @@ import type {SuggestionTimingSample} from './experience-worker-host.js';
 import {ExperienceArtSlot} from './experience-art-slot.js';
 import {experienceDuoCopy} from './experience-copy.js';
 import {Portrait} from './studio-ui.js';
+import {resolveAvatarArt} from './art/portrait-resolver.js';
 import {AssignmentForecast,DeliverySummary,periodText} from './decision-panels.js';
 import {names} from './presentation.js';
 import {skillText} from './ui-labels.js';
@@ -347,7 +348,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
               <div class="ui2-candidate-team">
                {cand.team.map(m=>(
                 <span key={m.character} class="ui2-candidate-member">
-                 <img src={`./art/ai-village/portraits/${m.character}.png`} alt=""/>
+                 <img src={resolveAvatarArt(m.character)} alt=""/>
                  <em>{names[m.character]??m.character} · {roleShort[m.role]} · {m.mode==='cloud'?tr('云端','Cloud'):tr('本地','Local')}</em>
                 </span>
                ))}
@@ -379,7 +380,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
            const m=members[idx];
            return m?(
             <div class="ui2-squad-slot is-filled" key={idx}>
-             <img src={`./art/ai-village/portraits/${m.character}.png`} alt=""/>
+             <img src={resolveAvatarArt(m.character)} alt=""/>
              <span>{roleShort[m.role]}</span>
             </div>
            ):<div class="ui2-squad-slot is-empty" key={idx}><span>+</span></div>;
@@ -421,7 +422,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
 
         {workBark&&(
          <div class="ui2-work-bark" role="status">
-          <img src={`./art/ai-village/portraits/${workBark.actorId}.png`} alt=""/>
+          <img src={resolveAvatarArt(workBark.actorId)} alt=""/>
           <span><b>{names[workBark.actorId]??workBark.actorId}:</b> “{workBark.text}”</span>
          </div>
         )}

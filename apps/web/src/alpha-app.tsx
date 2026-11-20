@@ -7,7 +7,8 @@ import {actorFocus,jobFocus,zoneNames,clampOfficePan,zoomOfficeCamera,defaultCam
 import type {CameraPan,OfficeFocus,CameraZone} from './office-scene-spec.js';
 import type {Furniture} from 'oot-core';
 import {Onboarding} from './onboarding.js';
-import {characterPosters,resolveCharacterVisual,stageBPortrait,recruitmentBlock,recruitmentReasons} from './character-profiles.js';
+import {characterPosters,recruitmentBlock,recruitmentReasons} from './character-profiles.js';
+import {isFlagshipVersion,resolveAvatarArt,resolveBasePortraitArt,resolveCharacterStageArt,resolveFlagshipPortraitArt} from './art/portrait-resolver.js';
 import {effectLabel} from './player-labels.js';
 import {controllerTracker} from './update-observer.js';
 import {Icon} from './icons.js';
@@ -330,20 +331,20 @@ export function AlphaApp(){
     if(addedActor){
      seenRituals.current.add(`rec:${addedActor}`);
      const pos=characterPosters[addedActor]!;
-     setRitual({kind:'recruit',title:names[addedActor]??addedActor,subtitle:pos.tagline[english?1:0],badge:tr('新伙伴入驻','New teammate'),img:`./art/ai-village/portraits/${addedActor}.png`,themeColor:pos.themeColor,sWord:pos.sWord});
+     setRitual({kind:'recruit',title:names[addedActor]??addedActor,subtitle:pos.tagline[english?1:0],badge:tr('新伙伴入驻','New teammate'),img:resolveBasePortraitArt(addedActor),themeColor:pos.themeColor,sWord:pos.sWord});
     }else if(p.chapter>prev.chapter&&!seenRituals.current.has(`ch:${p.chapter}`)){
      seenRituals.current.add(`ch:${p.chapter}`);
      const chapterNames=[tr('开源车库联盟','Open-source garage'),tr('第一笔大订单','The first large order'),tr('模型更新之夜','Model release night'),tr('429危机','The 429 crisis'),tr('最后一个Token','The last token')];
      setRitual({kind:'chapter',title:chapterNames[p.chapter]??'',subtitle:tr('工作室迈入全新阶段','Your studio reached a new stage'),badge:`CHAPTER ${p.chapter}`,img:chapterBannerArt(p.chapter),themeColor:'#9a6318'});
     }else{
-     const switchedAdv=view.actors.find(a=>prev.versions[a.id]&&prev.versions[a.id]!==a.version&&resolveCharacterVisual(a.id,a.version,'profile').src.includes('/art/stage-b/')&&!seenRituals.current.has(`ver:${a.version}`));
+     const switchedAdv=view.actors.find(a=>prev.versions[a.id]&&prev.versions[a.id]!==a.version&&isFlagshipVersion(a.id,a.version)&&!seenRituals.current.has(`ver:${a.version}`));
      if(switchedAdv){
       seenRituals.current.add(`ver:${switchedAdv.version}`);
       const pos=characterPosters[switchedAdv.id]!;
-      setRitual({kind:'version',title:`${names[switchedAdv.id]} · ${switchedAdv.version}`,subtitle:pos.tagline[english?1:0],badge:tr('进阶版本觉醒','Advanced version'),img:resolveCharacterVisual(switchedAdv.id,switchedAdv.version,'profile').src,themeColor:pos.themeColor,sWord:pos.sWord});
+      setRitual({kind:'version',title:`${names[switchedAdv.id]} · ${switchedAdv.version}`,subtitle:pos.tagline[english?1:0],badge:tr('进阶版本觉醒','Advanced version'),img:resolveCharacterStageArt(switchedAdv.id,{versionId:switchedAdv.version,forceForm:'flagship'}).src,themeColor:pos.themeColor,sWord:pos.sWord});
      }else{
       const awakenedId=curAwakened.find(id=>!prev.awakened.includes(id)&&!seenRituals.current.has(`awk:${id}`));
-      const awakenedArt=awakenedId?stageBPortrait(awakenedId):null;
+      const awakenedArt=awakenedId?resolveFlagshipPortraitArt(awakenedId):null;
       if(awakenedId&&awakenedArt){
        seenRituals.current.add(`awk:${awakenedId}`);
        const pos=characterPosters[awakenedId]!;
@@ -446,7 +447,7 @@ export function AlphaApp(){
  const chatterBubble=useMemo(()=>pickStageChatter(view,livingCatalog,livingView,english,chatterStep,nextPeriod.stops,capacityByActor),[view,livingCatalog,livingView,english,chatterStep,nextPeriod.stops,capacityByActor]);
  const sceneView=useMemo(()=>layoutItems&&view.office?{...view,office:{...view.office,items:layoutItems}}:view,[view,layoutItems]);
  const posterCards=useMemo(()=>actorIds.filter(id=>actorFilter==='all'||(actorFilter==='recruited')===view.actors.some(a=>a.id===id)).map(id=>{
-  const a=view.actors.find(x=>x.id===id),r=catalog.recruits.find(x=>x.character===id),poster=characterPosters[id]!,v=catalog.versions.find(x=>a?x.id===a.version:x.character===id)!,visual=resolveCharacterVisual(id,v.id),block=r?recruitmentBlock(view,r,locked):null;
+  const a=view.actors.find(x=>x.id===id),r=catalog.recruits.find(x=>x.character===id),poster=characterPosters[id]!,v=catalog.versions.find(x=>a?x.id===a.version:x.character===id)!,visual=resolveCharacterStageArt(id,{versionId:v.id}),block=r?recruitmentBlock(view,r,locked):null;
   const top=Object.entries(a?.skills??v.skills).filter(([k])=>k!=='recall').sort((x,y)=>y[1]-x[1]).slice(0,2).map(([k])=>k);
   return {id,a,r,poster,v,visual,reason:block?recruitmentReasons[block]:null,top};
  }),[view,catalog,actorFilter,locked]);
@@ -937,7 +938,7 @@ export function AlphaApp(){
          {evActor&&(
           <div class="ui2-event-actor">
            <div class="ui2-event-actor-avatar">
-            <img class="ui2-event-portrait" src={`./art/ai-village/portraits/${evActor.id}.png`} alt=""/>
+            <img class="ui2-event-portrait" src={resolveAvatarArt(evActor.id)} alt=""/>
             <EmoteBadge emote="sweat" view={view}/>
            </div>
            <div>

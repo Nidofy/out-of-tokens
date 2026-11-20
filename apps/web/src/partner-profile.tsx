@@ -7,7 +7,8 @@ import {ExperienceArtSlot} from './experience-art-slot.js';
 import {experienceDuoCopy} from './experience-copy.js';
 import {content} from './content.js';
 import {FlavorPanel} from './flavor-panel.js';
-import {characterProfiles,characterPosters,resolveCharacterVisual,stageBPortrait,versionDelta,recruitmentBlock,recruitmentReasons} from './character-profiles.js';
+import {characterProfiles,characterPosters,versionDelta,recruitmentBlock,recruitmentReasons} from './character-profiles.js';
+import {resolveAvatarArt,resolveCharacterStageArt,resolveFlagshipPortraitArt} from './art/portrait-resolver.js';
 import {names} from './presentation.js';
 import {sceneText,skillText} from './ui-labels.js';
 import {partnerAvailability} from './partner-state.js';
@@ -66,12 +67,12 @@ const stageBMap:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'
  const activeTab=resolveProfileTab(preferredTab,!!actor);
  const v=versions.find(item=>item.id===previewVersionId)??base;
  const stageBId=stageBMap[characterId]??null;
- const flagshipSrc=stageBPortrait(characterId);
+ const flagshipSrc=resolveFlagshipPortraitArt(characterId);
  const flagshipReady=isFlagshipUnlocked(view,characterId,stageBId);
  const isFlagshipShown=!!flagshipSrc&&(stageForm==='flagship'?true:stageForm==='standard'?false:stageBId?v.id===stageBId:flagshipReady);
- const baseVisual=resolveCharacterVisual(characterId,stageBId&&v.id===stageBId?undefined:v.id,'profile');
- const stageArtSrc=isFlagshipShown&&flagshipSrc?flagshipSrc:baseVisual.src;
- const stageWatermark=isFlagshipShown&&flagshipSrc?(flagshipSrc.split('/').pop()?.replace('.webp','').split('.').slice(1).join('.').toUpperCase()||'FLAGSHIP'):baseVisual.versionBadge;
+ const stageVisual=resolveCharacterStageArt(characterId,{versionId:v.id,forceForm:isFlagshipShown?'flagship':'base'});
+ const stageArtSrc=stageVisual.src;
+ const stageWatermark=stageVisual.versionBadge;
  const silhouetteLock=isFlagshipShown&&!flagshipReady;
  const delta=versionDelta(v,base),recruit=catalog.recruits.find(r=>r.character===characterId),block=recruit?recruitmentBlock(view,recruit,locked):null;
  const diff=(n:number)=>`${n>0?'▲ +':n<0?'▼ ':'— '}${n}`;
@@ -93,7 +94,7 @@ const stageBMap:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'
      const member=view.actors.find(x=>x.id===id),rec=catalog.recruits.find(r=>r.character===id);
      const canRec=!!rec&&!recruitmentBlock(view,rec,locked);
      return <button key={id} class="ui2-rail-avatar" role="tab" aria-selected={id===characterId} data-recruited={!!member} style={{'--poster-color':characterPosters[id]!.themeColor}} title={`${names[id]} · ${member?`${tr('精力','Energy')} ${member.energy}`:canRec?tr('可招募','Eligible'):tr('待解锁','Locked')}`} onClick={()=>selectCharacter(id)}>
-      <img src={`./art/ai-village/portraits/${id}.png`} alt=""/>
+      <img src={resolveAvatarArt(id)} alt=""/>
       <span class="ui2-rail-name">{names[id]}</span>
       {member?<i class="ui2-rail-energy" data-low={member.energy<35} style={{width:`${Math.min(100,member.energy)}%`}}/>:<i class="ui2-rail-badge" data-ready={canRec}><Icon name={canRec?'spark':'lock'}/></i>}
      </button>;
@@ -103,8 +104,8 @@ const stageBMap:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'
    <div class="ui2-profile-columns">
     <aside ref={stageRef} class="ui2-profile-stage" style={{'--poster-color':poster.themeColor}}>
      <span class="ui2-stage-watermark" aria-hidden="true">{stageWatermark}</span>
-     <div class="ui2-stage-art" data-inverted={inverted} data-locked-silhouette={silhouetteLock}>
-      <img src={stageArtSrc} alt=""/>
+     <div class="ui2-stage-art" data-art-tier={stageVisual.tier} data-inverted={inverted} data-locked-silhouette={silhouetteLock}>
+      <img key={stageArtSrc} src={stageArtSrc} alt=""/>
       {silhouetteLock&&(
        <div class="ui2-silhouette-lock">
         <Icon name="lock"/>
@@ -201,7 +202,7 @@ const stageBMap:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'
             return (
              <article key={d.id} class="ui2-duo-card" data-unlocked={d.unlocked}>
               <div class="ui2-duo-head">
-               <img src={`./art/ai-village/portraits/${partnerId}.png`} alt=""/>
+               <img src={resolveAvatarArt(partnerId)} alt=""/>
                <div>
                 <b>{tr(d.title,d.titleEn)} · {names[partnerId]??partnerId}</b>
                 <small>{tr(`搭档交付 ${Math.min(d.sharedDeliveries,minDel)}/${minDel}`,`Co-deliveries ${Math.min(d.sharedDeliveries,minDel)}/${minDel}`)} · {d.unlocked?tr('默契已激活','Synergy active'):!recruitedPartner?tr('伙伴未招募','Partner not recruited'):d.sharedDeliveries<minDel?tr('同队交付累计进度','Ship together to unlock'):d.canUnlock?tr('可召开茶会解锁','Ready for duo tea'):tr('需双方空闲且同场景（或已装远程协作）','Both partners must be free & in same scene')}</small>
