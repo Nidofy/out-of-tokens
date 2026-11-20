@@ -1,3 +1,5 @@
+2026-11-21 Art-Batch 14 已交付 18 张中后期成果、软件图标、里程碑与地图资源，Web 与 DSH 均完成离线校验。[验收记录](../harness/reviews/art-batch-14.md)
+
 2026-11-21 Art-Batch 13 已交付。6 位客户圆章、5 张结局 CG、3 张远征卡片、2 个回形针表情及 4 件公共场景摆件共 1,338,018 字节，均已进入 Web 与 DSH 离线包。故事与摆件路径已就绪，页面展示及点击反馈待引擎接入。[核验图与门禁记录](../harness/reviews/art-batch-13.md)
 
 2026-11-20 Art-Batch 12A 赛璐璐终版已交付。六位伙伴的 18 张透明 WebP 共 1,617,572 字节，已进入 Web 与 DSH 离线包。Bluewhale V3 和头像保留定调文件，R1 已修正肩臂。六张个人核验图和双底总览见 `art/art-batch-12a/review/`，完整门禁见 `harness/reviews/art-batch-12a.md`。招募、入驻与伙伴详情的界面接入排在 12B 完成后。
