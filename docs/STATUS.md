@@ -1,3 +1,5 @@
+2026-11-21 Art-Batch 15B 已补齐最后六位伙伴的 18 张表情。12 人的 36 张差分全部进入 Web 与 DSH，Gemini 两个睁眼表情均通过左粉右金色相校验。[验收记录](../harness/reviews/art-batch-15b.md)
+
 2026-11-21 Art-Batch 15A 完成前六位伙伴的 18 张表情差分。解码后的轮廓高度及双轴质心与默认头像一致。[验收记录](../harness/reviews/art-batch-15a.md)
 
 2026-11-21 Art-Batch 14 已交付 18 张中后期成果、软件图标、里程碑与地图资源，Web 与 DSH 均完成离线校验。[验收记录](../harness/reviews/art-batch-14.md)

@@ -1,3 +1,5 @@
+2026-11-21 完成 Art-Batch 15B。12 位伙伴均已有默认、欣喜、慌张、专注四态，已逐格验收全员矩阵。[全员矩阵与核验记录](../harness/reviews/art-batch-15b.md)
+
 2026-11-21 Art-Batch 15A 的六人三表情白名单已可用，信使等界面接入待后续安排。[六人矩阵](../art/art-batch-15a/review/batch15a-expressions-review.png)
 
 2026-11-21 Art-Batch 14 完成，后续页面可使用 expansion 白名单与四处实测地图锚点。[资产与坐标](../harness/reviews/art-batch-14.md)
