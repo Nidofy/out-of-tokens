@@ -1017,11 +1017,12 @@ it('re-exports Batch 14 twice from the masters including the catalog and proof s
 type ExpressionEntry = RuntimeArt & {
  character: string; emotion: string; heightRatio: number; centroidShiftPx: [number, number]; alphaCentroidPx: number[];
 };
-type ExpressionManifest = {assets: {id: string; master: ArtFile; reference: ArtFile; default: ArtFile;
+type ExpressionManifest = {assets: {id: string; master: ArtFile; reference: ArtFile; default: ArtFile; expressionStyle?: ArtFile;
  runtime: ExpressionEntry}[]; catalog: ArtFile; reviews: ArtFile[]};
 const expressionsDir = 'art/portraits/expressions';
 const expressionPublic = 'apps/web/public/' + expressionsDir;
-const expressionCases = [{batch: '15a', reference: '12a', ids: batch12ACharacters}];
+const expressionCases = [{batch: '15a', reference: '12a', ids: batch12ACharacters},
+ {batch: '15b', reference: '12b', ids: batch10BCharacters}];
 
 it('verifies every expression, its identity reference, geometry, whitelist and both offline copies', () => {
  const catalog: {schemaVersion: number; canvas: number[]; assets: ExpressionEntry[]} =
@@ -1039,6 +1040,9 @@ it('verifies every expression, its identity reference, geometry, whitelist and b
   const archive = 'art/art-batch-' + c.batch;
   const manifest: ExpressionManifest = JSON.parse(readFileSync(join(archive, 'manifest.json'), 'utf8'));
   expect(manifest.assets.map(m => m.id)).toEqual(c.ids.flatMap(id => portraitEmotions.map(e => id + '-' + e)));
+  const proofs = ['batch' + c.batch + '-expressions-review.png'];
+  if (c.batch === '15b') proofs.push('all-12-expressions-matrix.png');
+  expect(manifest.reviews.map(r => r.file).sort()).toEqual(proofs.map(name => archive + '/review/' + name).sort());
   expect(readdirSync(join(archive, 'masters')).sort()).toEqual([...c.ids].sort());
   for (const character of c.ids) {
    expect(readdirSync(join(archive, 'masters', character)).sort()).toEqual(portraitEmotions.map(e => e + '.png').sort());
@@ -1055,6 +1059,10 @@ it('verifies every expression, its identity reference, geometry, whitelist and b
    expect(asset.reference.file).toBe('art/art-batch-' + c.reference + '/masters/' + character + '/avatar.png');
    expect(asset.default.file).toBe('apps/web/public/art/portraits/avatars/' + character + '.webp');
    for (const item of [asset.master, asset.reference, asset.default]) expect(fileSha(item.file)).toBe(item.sha256);
+   if (c.batch === '15b') {
+    expect(asset.expressionStyle!.file).toBe('art/art-batch-15a/masters/qwen/' + emotion + '.png');
+    expect(fileSha(asset.expressionStyle!.file)).toBe(asset.expressionStyle!.sha256);
+   }
    expect(entry.bytes).toBeLessThanOrEqual(35000);
    const base = baseline[rows.indexOf(character)]!;
    const [l,t,r,b] = entry.alphaBounds!;
@@ -1083,3 +1091,78 @@ it.each(expressionCases)('repeats the $batch expression export and compares the 
  }
  verifyRepeatExport(archive + '/export.py', outputs);
 }, 180000);
+
+type IrisSample = {centerPx: [number, number]; radiusPx: number; medianRgb: number[]; hueDegrees: number;
+ matchingPixels: number; sampledPixels: number};
+
+function rgbHue([r, g, b]: number[]): number {
+ const high = Math.max(r!, g!, b!), low = Math.min(r!, g!, b!), delta = high - low;
+ if (delta === 0) return 0;
+ const sector = high === r ? (g! - b!) / delta : high === g ? (b! - r!) / delta + 2 : (r! - g!) / delta + 4;
+ return (sector * 60 + 360) % 360;
+}
+
+it.each(['flustered', 'focused'])('decodes Gemini’s pink and gold irises from both packaged %s avatars', emotion => {
+ const catalog: {assets: (ExpressionEntry & {irisColors?: Record<string, IrisSample>})[]} =
+  JSON.parse(readFileSync(join(expressionPublic, 'catalog.json'), 'utf8'));
+ const entry = catalog.assets.find(x => x.character === 'gemini' && x.emotion === emotion)!;
+ const reference: {characters: Record<string, {avatar: {eyes: [number, number][]}}>} =
+  JSON.parse(readFileSync('apps/web/public/art/portraits/catalog.json', 'utf8'));
+ const eyes = reference.characters.gemini!.avatar.eyes.map(pair => pair.map(Math.round));
+ expect(eyes[0]![0]!).toBeLessThan(eyes[1]![0]!);
+ const radius = 4;
+ for (const root of ['apps/web/dist', 'apps/dsh/dist/web']) {
+  const decoded = spawnSync('python', ['-c', [
+   'import json,sys',
+   'from PIL import Image',
+   'with Image.open(sys.argv[1]) as im:',
+   '    im=im.convert("RGB"); rad=int(sys.argv[3]); samples=[]',
+   '    for cx,cy in json.loads(sys.argv[2]):',
+   '        samples.append([im.getpixel((cx+x,cy+y)) for y in range(-rad,rad+1) for x in range(-rad,rad+1) if x*x+y*y<=rad*rad])',
+   'print(json.dumps(samples))',
+  ].join('\n'), join(root, expressionsDir, entry.file), JSON.stringify(eyes), String(radius)], {encoding: 'utf8'});
+  expect(decoded.status, decoded.error?.message ?? decoded.stderr).toBe(0);
+  const disks: number[][][] = JSON.parse(decoded.stdout);
+  for (const [i, [side, lo, hi]] of ([['viewerLeft', 300, 358], ['viewerRight', 20, 65]] as const).entries()) {
+   const samples = disks[i]!;
+   expect(samples.length).toBe(49);
+   const rgb = [0,1,2].map(channel => samples.map(pixel => pixel[channel]!).sort((a,b) => a-b)[24]!);
+   const hue = rgbHue(rgb);
+   expect(hue >= lo && hue <= hi).toBe(true);
+   const matched = samples.filter(pixel => {
+    const h = Number(rgbHue(pixel).toFixed(9)), max = Math.max(...pixel);
+    const saturation = max > 0 ? (max - Math.min(...pixel)) / max : 0;
+    return h >= lo && h <= hi && Number(saturation.toFixed(9)) >= .2;
+   }).length;
+   expect(matched).toBeGreaterThanOrEqual(27);
+   expect(entry.irisColors![side]).toEqual({centerPx: eyes[i], radiusPx: radius, medianRgb: rgb,
+    hueDegrees: Number(hue.toFixed(3)), matchingPixels: matched, sampledPixels: samples.length});
+  }
+ }
+});
+
+it('preserves the crown, bat ribbons, wolf ears, tassels, beret, piano bag, strap and glowing hair ring', () => {
+ const regions = {
+  grok: {crown: [89,29,137,61], leftWing: [25,98,65,134], rightWing: [187,82,221,110]},
+  glm: {leftEar: [45,33,88,85], rightEar: [158,27,196,78], tassels: [172,102,188,154]},
+  minimax: {beret: [76,32,162,61], strap: [110,174,139,210], pianoKeys: [146,217,176,232]},
+  seedance: {cyanRing: [151,50,179,91]},
+ };
+ const check = spawnSync('python', ['-c', [
+  'import json,sys',
+  'import numpy as np',
+  'from pathlib import Path',
+  'from PIL import Image',
+  'root=Path(sys.argv[1]); emotions=json.loads(sys.argv[3])',
+  'for char,regions in json.loads(sys.argv[2]).items():',
+  '    with Image.open(root/"avatars"/(char+".webp")) as im: base=np.array(im,dtype=int)',
+  '    for emotion in emotions:',
+  '        with Image.open(root/"expressions"/(char+"-"+emotion+".webp")) as im: expr=np.array(im,dtype=int)',
+  '        assert np.array_equal(base[:,:,3],expr[:,:,3]), (char,emotion,"silhouette")',
+  '        for name,(l,t,r,b) in regions.items():',
+  '            visible=base[t:b,l:r,3]>=180; assert visible.sum()>50',
+  '            delta=np.abs(base[t:b,l:r,:3]-expr[t:b,l:r,:3])[visible]',
+  '            assert delta.mean()<5 and np.mean(delta.max(axis=1)>30)<0.06,(char,emotion,name,delta.mean())',
+ ].join('\n'), 'apps/web/dist/art/portraits', JSON.stringify(regions), JSON.stringify(portraitEmotions)], {encoding: 'utf8'});
+ expect(check.status, check.error?.message ?? check.stderr).toBe(0);
+});
