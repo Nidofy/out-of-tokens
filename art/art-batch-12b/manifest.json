@@ -1,0 +1,1310 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in image_gen",
+  "model": "not exposed",
+  "parameters": {
+    "transparent_background": true
+  },
+  "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+  "masters": {
+    "kimi": {
+      "base": {
+        "file": "art/art-batch-12b/masters/kimi/base.png",
+        "bytes": 2135571,
+        "sha256": "6148b3f3a4d6a860541142425c66ba108f1a2f89d08f68c59396de75981a1fe7",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-ec36f50c-66ad-49e0-9976-18163abf93ab.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/kimi.jpg",
+            "bytes": 256656,
+            "sha256": "49a4304d74c05e2a231c918e69a9c9a3907e7ec526a8ad3b2128a8c63dc83315",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/kimi/ref_sheet.png",
+            "bytes": 813734,
+            "sha256": "06433b3c5328dedef76c647b720da5dfef00bf07c774a93e52ed8487436665b4"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1086,
+          1448
+        ]
+      },
+      "flagship": {
+        "file": "art/art-batch-12b/masters/kimi/flagship.png",
+        "bytes": 2489960,
+        "sha256": "6c9dc0284f1af26624e03323f0c7446efc07da14e92202664fccb1abbd7d9db6",
+        "editedFrom": {
+          "file": "art/art-batch-12b/studies/kimi-flagship.png",
+          "bytes": 2560194,
+          "sha256": "e69cc101fac92217e5ae58a17d913f0e7571e50f0a49c242818bac131a6702cf",
+          "sourceFile": "exec-92701c92-4f50-47ef-bf41-97d158de4dd3.png",
+          "references": [
+            {
+              "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+              "bytes": 530529,
+              "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+              "external": true
+            },
+            {
+              "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+              "bytes": 94068,
+              "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+            },
+            {
+              "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+              "bytes": 132276,
+              "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+            },
+            {
+              "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+              "bytes": 19052,
+              "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+            },
+            {
+              "file": "../../dsh_docs/live2d_assets/Character-reference/kimi.jpg",
+              "bytes": 256656,
+              "sha256": "49a4304d74c05e2a231c918e69a9c9a3907e7ec526a8ad3b2128a8c63dc83315",
+              "external": true
+            },
+            {
+              "file": "art/art-batch-10b/masters/kimi/ref_sheet.png",
+              "bytes": 813734,
+              "sha256": "06433b3c5328dedef76c647b720da5dfef00bf07c774a93e52ed8487436665b4"
+            },
+            {
+              "file": "art/art-batch-12b/masters/kimi/base.png",
+              "bytes": 2135571,
+              "sha256": "6148b3f3a4d6a860541142425c66ba108f1a2f89d08f68c59396de75981a1fe7"
+            }
+          ]
+        },
+        "attachmentGuide": {
+          "file": "art/art-batch-12b/studies/kimi-five-rule-guide.png",
+          "bytes": 803115,
+          "sha256": "2aed57c7519a371f86928487bd768bcb5c6edfb83cb86db530343684bb824442"
+        },
+        "method": "built-in image_gen",
+        "sourceFile": "exec-02f11b5e-de14-49f3-af01-bfacd7a0f41d.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+            "bytes": 19052,
+            "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/kimi.jpg",
+            "bytes": 256656,
+            "sha256": "49a4304d74c05e2a231c918e69a9c9a3907e7ec526a8ad3b2128a8c63dc83315",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/kimi/ref_sheet.png",
+            "bytes": 813734,
+            "sha256": "06433b3c5328dedef76c647b720da5dfef00bf07c774a93e52ed8487436665b4"
+          },
+          {
+            "file": "art/art-batch-12b/studies/kimi-flagship.png",
+            "bytes": 2560194,
+            "sha256": "e69cc101fac92217e5ae58a17d913f0e7571e50f0a49c242818bac131a6702cf"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1086,
+          1448
+        ]
+      },
+      "avatar": {
+        "file": "art/art-batch-12b/masters/kimi/avatar.png",
+        "bytes": 2106829,
+        "sha256": "6746e3a5b6168642f4084490f78a8605f6d433c848bc3693c2d818a6b0f42a01",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-9d93d455-2eb7-4414-ae20-97a94f2c494c.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+            "bytes": 19052,
+            "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/kimi.jpg",
+            "bytes": 256656,
+            "sha256": "49a4304d74c05e2a231c918e69a9c9a3907e7ec526a8ad3b2128a8c63dc83315",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/kimi/ref_sheet.png",
+            "bytes": 813734,
+            "sha256": "06433b3c5328dedef76c647b720da5dfef00bf07c774a93e52ed8487436665b4"
+          },
+          {
+            "file": "art/art-batch-12b/masters/kimi/base.png",
+            "bytes": 2135571,
+            "sha256": "6148b3f3a4d6a860541142425c66ba108f1a2f89d08f68c59396de75981a1fe7"
+          }
+        ],
+        "width": 1254,
+        "height": 1254,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1254,
+          1254
+        ]
+      }
+    },
+    "gemini": {
+      "base": {
+        "file": "art/art-batch-12b/masters/gemini/base.png",
+        "bytes": 2051500,
+        "sha256": "740d9ce9b526681d9fdefd5e3c81d4f7ffa285c5abe33885bae2740080673ed6",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-822f9def-cc46-4a7f-97a7-d02fd0672d87.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/gemini.jpg",
+            "bytes": 252982,
+            "sha256": "700310c2ca27f088693d01d7eb7df13cb7e72be46926ea3f07a2e17dae1c2687",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/gemini/ref_sheet.png",
+            "bytes": 817709,
+            "sha256": "c070fb6e9ee01b6fec65f50a6d98f7277e45622e97f556aae5cdc730ce9aeae8"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1086,
+          1448
+        ]
+      },
+      "flagship": {
+        "file": "art/art-batch-12b/masters/gemini/flagship.png",
+        "bytes": 2510342,
+        "sha256": "fbfada5d94a3286b3920a9101596aee1064cef2c754919f12687fc951d6cbee2",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-1a7f16bf-75a1-41d1-ba33-82f673b25bdb.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+            "bytes": 19052,
+            "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/gemini.jpg",
+            "bytes": 252982,
+            "sha256": "700310c2ca27f088693d01d7eb7df13cb7e72be46926ea3f07a2e17dae1c2687",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/gemini/ref_sheet.png",
+            "bytes": 817709,
+            "sha256": "c070fb6e9ee01b6fec65f50a6d98f7277e45622e97f556aae5cdc730ce9aeae8"
+          },
+          {
+            "file": "art/art-batch-12b/masters/gemini/base.png",
+            "bytes": 2051500,
+            "sha256": "740d9ce9b526681d9fdefd5e3c81d4f7ffa285c5abe33885bae2740080673ed6"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1086,
+          1448
+        ]
+      },
+      "avatar": {
+        "file": "art/art-batch-12b/masters/gemini/avatar.png",
+        "bytes": 2072258,
+        "sha256": "006e375c8bf2e50fe0db96fb8a42bb0152e13ce27030a5e0a1c87cf4875b9e46",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-19946c19-5e7d-41ef-8fd9-a120d06674fd.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+            "bytes": 19052,
+            "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/gemini.jpg",
+            "bytes": 252982,
+            "sha256": "700310c2ca27f088693d01d7eb7df13cb7e72be46926ea3f07a2e17dae1c2687",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/gemini/ref_sheet.png",
+            "bytes": 817709,
+            "sha256": "c070fb6e9ee01b6fec65f50a6d98f7277e45622e97f556aae5cdc730ce9aeae8"
+          },
+          {
+            "file": "art/art-batch-12b/masters/gemini/base.png",
+            "bytes": 2051500,
+            "sha256": "740d9ce9b526681d9fdefd5e3c81d4f7ffa285c5abe33885bae2740080673ed6"
+          }
+        ],
+        "width": 1254,
+        "height": 1254,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1254,
+          1254
+        ]
+      }
+    },
+    "grok": {
+      "base": {
+        "file": "art/art-batch-12b/masters/grok/base.png",
+        "bytes": 2166516,
+        "sha256": "3b1dd8f81d7bdd26acf2d075096ac7eef6073ab4d8bd82405a95c3d905dd541f",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-be9724be-aa1d-4109-8b15-2b2622acca13.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/grok.jpg",
+            "bytes": 259751,
+            "sha256": "c665e4df00882e27682988ec78229637b5fc148995543d7fd54cd06687721980",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/grok/ref_sheet.png",
+            "bytes": 731523,
+            "sha256": "f898128dc0d1c22bba17c89ee7328a9242e65691835dd2124ff8d54c5fb741b9"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1086,
+          1448
+        ]
+      },
+      "flagship": {
+        "file": "art/art-batch-12b/masters/grok/flagship.png",
+        "bytes": 2483991,
+        "sha256": "0769b0a46868cfc7341770a56b38907a1d0d3adb6796bf1f0910232bb6a78b7f",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-13afd62f-0a59-47cc-a54c-3769f72da5ee.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+            "bytes": 19052,
+            "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/grok.jpg",
+            "bytes": 259751,
+            "sha256": "c665e4df00882e27682988ec78229637b5fc148995543d7fd54cd06687721980",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/grok/ref_sheet.png",
+            "bytes": 731523,
+            "sha256": "f898128dc0d1c22bba17c89ee7328a9242e65691835dd2124ff8d54c5fb741b9"
+          },
+          {
+            "file": "art/art-batch-12b/masters/grok/base.png",
+            "bytes": 2166516,
+            "sha256": "3b1dd8f81d7bdd26acf2d075096ac7eef6073ab4d8bd82405a95c3d905dd541f"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1086,
+          1448
+        ]
+      },
+      "avatar": {
+        "file": "art/art-batch-12b/masters/grok/avatar.png",
+        "bytes": 2220897,
+        "sha256": "f012eea1c6902b7aa6cfb226617248e571e79e35053f950832fb9e262fac9748",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-c20cc31f-b268-43f8-a200-c18ab1feeca2.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+            "bytes": 19052,
+            "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/grok.jpg",
+            "bytes": 259751,
+            "sha256": "c665e4df00882e27682988ec78229637b5fc148995543d7fd54cd06687721980",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/grok/ref_sheet.png",
+            "bytes": 731523,
+            "sha256": "f898128dc0d1c22bba17c89ee7328a9242e65691835dd2124ff8d54c5fb741b9"
+          },
+          {
+            "file": "art/art-batch-12b/masters/grok/base.png",
+            "bytes": 2166516,
+            "sha256": "3b1dd8f81d7bdd26acf2d075096ac7eef6073ab4d8bd82405a95c3d905dd541f"
+          }
+        ],
+        "width": 1254,
+        "height": 1254,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1254,
+          1254
+        ]
+      }
+    },
+    "glm": {
+      "base": {
+        "file": "art/art-batch-12b/masters/glm/base.png",
+        "bytes": 1987144,
+        "sha256": "e573e68fb0bf08b7794fc85626d9f2076f3c59826080e559ca5c4343fc7cd79d",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-63f9f225-f89f-4df2-9386-190b1790a31c.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/glm.jpg",
+            "bytes": 69123,
+            "sha256": "5ec5982f076df725bf0a26c498a02d4b5e9387ed3b9189e76ae89a0cbd2e0f98",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/glm/ref_sheet.png",
+            "bytes": 686942,
+            "sha256": "3ace97f204b1f6eabf0a88338d2e7f93c6d21970a6c5158efebb7c9c0fb790f8"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1086,
+          1448
+        ]
+      },
+      "flagship": {
+        "file": "art/art-batch-12b/masters/glm/flagship.png",
+        "bytes": 2395640,
+        "sha256": "3bd3e208347ca6b9f97d626eff54c3a55ecf968ae3ae40863eb8bcb7bb204abc",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-5bfdf546-5c55-4960-8b5e-f622ff716d60.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+            "bytes": 19052,
+            "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/glm.jpg",
+            "bytes": 69123,
+            "sha256": "5ec5982f076df725bf0a26c498a02d4b5e9387ed3b9189e76ae89a0cbd2e0f98",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/glm/ref_sheet.png",
+            "bytes": 686942,
+            "sha256": "3ace97f204b1f6eabf0a88338d2e7f93c6d21970a6c5158efebb7c9c0fb790f8"
+          },
+          {
+            "file": "art/art-batch-12b/masters/glm/base.png",
+            "bytes": 1987144,
+            "sha256": "e573e68fb0bf08b7794fc85626d9f2076f3c59826080e559ca5c4343fc7cd79d"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          12,
+          1086,
+          1448
+        ]
+      },
+      "avatar": {
+        "file": "art/art-batch-12b/masters/glm/avatar.png",
+        "bytes": 1984563,
+        "sha256": "921a6d1ae63c06875471883f72bd37aa55bb429796642137d56e54387ebdb38d",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-f7c49069-eb63-4b1d-9083-b06ef5e68a2d.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+            "bytes": 19052,
+            "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/glm.jpg",
+            "bytes": 69123,
+            "sha256": "5ec5982f076df725bf0a26c498a02d4b5e9387ed3b9189e76ae89a0cbd2e0f98",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/glm/ref_sheet.png",
+            "bytes": 686942,
+            "sha256": "3ace97f204b1f6eabf0a88338d2e7f93c6d21970a6c5158efebb7c9c0fb790f8"
+          },
+          {
+            "file": "art/art-batch-12b/masters/glm/base.png",
+            "bytes": 1987144,
+            "sha256": "e573e68fb0bf08b7794fc85626d9f2076f3c59826080e559ca5c4343fc7cd79d"
+          }
+        ],
+        "width": 1254,
+        "height": 1254,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          2,
+          12,
+          1224,
+          1254
+        ]
+      }
+    },
+    "minimax": {
+      "base": {
+        "file": "art/art-batch-12b/masters/minimax/base.png",
+        "bytes": 1885288,
+        "sha256": "0afb3cf2c48ed09838513fe5813196e43e727af21cb9a2bc9e10e26a8791bbf9",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-878eb6b7-601b-4169-ba4d-a5f70aae0e57.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/minimax.jpg",
+            "bytes": 24135,
+            "sha256": "f52c53dac59b55e9daf14e5e86e0629c6646a8de9809cd097fd80eb840e60e6b",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/minimax/ref_sheet.png",
+            "bytes": 677478,
+            "sha256": "89de613ab94b6e4e7822b15535391beec628de5be78b325ba451e33360281cf0"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1070,
+          1448
+        ]
+      },
+      "flagship": {
+        "file": "art/art-batch-12b/masters/minimax/flagship.png",
+        "bytes": 2365750,
+        "sha256": "83d63303024b0d91dd9856a0cfadd16aa8bc2cd941f4c73ace57b1f94bde6f46",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-643fb812-df63-4cde-afaf-fb332749d158.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+            "bytes": 19052,
+            "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/minimax.jpg",
+            "bytes": 24135,
+            "sha256": "f52c53dac59b55e9daf14e5e86e0629c6646a8de9809cd097fd80eb840e60e6b",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/minimax/ref_sheet.png",
+            "bytes": 677478,
+            "sha256": "89de613ab94b6e4e7822b15535391beec628de5be78b325ba451e33360281cf0"
+          },
+          {
+            "file": "art/art-batch-12b/masters/minimax/base.png",
+            "bytes": 1885288,
+            "sha256": "0afb3cf2c48ed09838513fe5813196e43e727af21cb9a2bc9e10e26a8791bbf9"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1082,
+          1448
+        ]
+      },
+      "avatar": {
+        "file": "art/art-batch-12b/masters/minimax/avatar.png",
+        "bytes": 1888177,
+        "sha256": "bff0d60e4883f3af6ff44135a5b862c629480a8e84291a0e794d88603a5be7b0",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-5f4a2a60-84ab-4b2d-bcc8-042d7cfc8399.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+            "bytes": 19052,
+            "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/minimax.jpg",
+            "bytes": 24135,
+            "sha256": "f52c53dac59b55e9daf14e5e86e0629c6646a8de9809cd097fd80eb840e60e6b",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/minimax/ref_sheet.png",
+            "bytes": 677478,
+            "sha256": "89de613ab94b6e4e7822b15535391beec628de5be78b325ba451e33360281cf0"
+          },
+          {
+            "file": "art/art-batch-12b/masters/minimax/base.png",
+            "bytes": 1885288,
+            "sha256": "0afb3cf2c48ed09838513fe5813196e43e727af21cb9a2bc9e10e26a8791bbf9"
+          }
+        ],
+        "width": 1254,
+        "height": 1254,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          9,
+          1245,
+          1254
+        ]
+      }
+    },
+    "seedance": {
+      "base": {
+        "file": "art/art-batch-12b/masters/seedance/base.png",
+        "bytes": 2009633,
+        "sha256": "e9c4f70bf07ee312a8dbf7db15b660be4acaf5692384a928e2bc8286271efa6e",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-ee0c0d63-26a6-445a-a18f-16560bd11702.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/seedance.jpg",
+            "bytes": 216761,
+            "sha256": "f49344166bc53209aa118c298d4832b4192f9f20d88bad31c355dd951ad823e6",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/seedance/ref_sheet.png",
+            "bytes": 716544,
+            "sha256": "39d813316fd76eb8e5a42fd81644c719db5b1a672fd65820a38a7fe74f1042d6"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          19,
+          1080,
+          1448
+        ]
+      },
+      "flagship": {
+        "file": "art/art-batch-12b/masters/seedance/flagship.png",
+        "bytes": 2587955,
+        "sha256": "a25320b78326332813530bdf44887623ad4b63d6c26f5083a675638f9a7d6be1",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-48b204e4-9674-45dd-bced-a36d5dc48c79.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+            "bytes": 19052,
+            "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/seedance.jpg",
+            "bytes": 216761,
+            "sha256": "f49344166bc53209aa118c298d4832b4192f9f20d88bad31c355dd951ad823e6",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/seedance/ref_sheet.png",
+            "bytes": 716544,
+            "sha256": "39d813316fd76eb8e5a42fd81644c719db5b1a672fd65820a38a7fe74f1042d6"
+          },
+          {
+            "file": "art/art-batch-12b/masters/seedance/base.png",
+            "bytes": 2009633,
+            "sha256": "e9c4f70bf07ee312a8dbf7db15b660be4acaf5692384a928e2bc8286271efa6e"
+          }
+        ],
+        "width": 1086,
+        "height": 1448,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          1086,
+          1448
+        ]
+      },
+      "avatar": {
+        "file": "art/art-batch-12b/masters/seedance/avatar.png",
+        "bytes": 1783001,
+        "sha256": "4bc91ed3630856520288f94b617b538efdf8295cc5589d5b420fe482caa76e0c",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-ba65f6dd-f8ca-4a4b-b04e-d9deed989fa5.png",
+        "references": [
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+            "bytes": 530529,
+            "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+            "external": true
+          },
+          {
+            "file": "apps/web/public/art/portraits/base/bluewhale.webp",
+            "bytes": 94068,
+            "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66"
+          },
+          {
+            "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
+            "bytes": 132276,
+            "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658"
+          },
+          {
+            "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+            "bytes": 19052,
+            "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+          },
+          {
+            "file": "../../dsh_docs/live2d_assets/Character-reference/seedance.jpg",
+            "bytes": 216761,
+            "sha256": "f49344166bc53209aa118c298d4832b4192f9f20d88bad31c355dd951ad823e6",
+            "external": true
+          },
+          {
+            "file": "art/art-batch-10b/masters/seedance/ref_sheet.png",
+            "bytes": 716544,
+            "sha256": "39d813316fd76eb8e5a42fd81644c719db5b1a672fd65820a38a7fe74f1042d6"
+          },
+          {
+            "file": "art/art-batch-12b/masters/seedance/base.png",
+            "bytes": 2009633,
+            "sha256": "e9c4f70bf07ee312a8dbf7db15b660be4acaf5692384a928e2bc8286271efa6e"
+          }
+        ],
+        "width": 1254,
+        "height": 1254,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          0,
+          26,
+          1252,
+          1254
+        ]
+      }
+    }
+  },
+  "runtime": [
+    {
+      "id": "kimi",
+      "tier": "base",
+      "file": "apps/web/public/art/portraits/base/kimi.webp",
+      "bytes": 120904,
+      "sha256": "28242f2dc7b9de29d33388e68134a338f772a5f0996172cc4ed4c18de39bc932",
+      "sourceSha256": "6148b3f3a4d6a860541142425c66ba108f1a2f89d08f68c59396de75981a1fe7",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0,
+        "liftedPixels": 4
+      }
+    },
+    {
+      "id": "kimi",
+      "tier": "flagship",
+      "file": "apps/web/public/art/portraits/flagship/kimi.webp",
+      "bytes": 134532,
+      "sha256": "4abf1f48bf46ced96d800b2957dc11314787260b660eb8d3c61d3b15a740fc49",
+      "sourceSha256": "6c9dc0284f1af26624e03323f0c7446efc07da14e92202664fccb1abbd7d9db6",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0.45,
+        "liftedPixels": 13
+      }
+    },
+    {
+      "id": "kimi",
+      "tier": "avatar",
+      "file": "apps/web/public/art/portraits/avatars/kimi.webp",
+      "bytes": 21282,
+      "sha256": "1f24d3a38b648e9620935bce5e4f30402dda50bb6c59b49e685fa29fead55717",
+      "sourceSha256": "6746e3a5b6168642f4084490f78a8605f6d433c848bc3693c2d818a6b0f42a01",
+      "encoder": {
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 1
+      }
+    },
+    {
+      "id": "gemini",
+      "tier": "base",
+      "file": "apps/web/public/art/portraits/base/gemini.webp",
+      "bytes": 122902,
+      "sha256": "966f784997238fae39270f50af63e5688ac0a1455a977e0a6df49ebe3a168a46",
+      "sourceSha256": "740d9ce9b526681d9fdefd5e3c81d4f7ffa285c5abe33885bae2740080673ed6",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0,
+        "liftedPixels": 13
+      }
+    },
+    {
+      "id": "gemini",
+      "tier": "flagship",
+      "file": "apps/web/public/art/portraits/flagship/gemini.webp",
+      "bytes": 136974,
+      "sha256": "a53d4cbad0abb9bfc123e7323a819387c7b13e97d2fd0ab0b158df4fb152e9d9",
+      "sourceSha256": "fbfada5d94a3286b3920a9101596aee1064cef2c754919f12687fc951d6cbee2",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0.45,
+        "liftedPixels": 3
+      }
+    },
+    {
+      "id": "gemini",
+      "tier": "avatar",
+      "file": "apps/web/public/art/portraits/avatars/gemini.webp",
+      "bytes": 23654,
+      "sha256": "346382f48525a8da5f3fbe1101f4b5cac8eb44c6056c8ec68dff67ce537874b2",
+      "sourceSha256": "006e375c8bf2e50fe0db96fb8a42bb0152e13ce27030a5e0a1c87cf4875b9e46",
+      "encoder": {
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0
+      }
+    },
+    {
+      "id": "grok",
+      "tier": "base",
+      "file": "apps/web/public/art/portraits/base/grok.webp",
+      "bytes": 135570,
+      "sha256": "5de95c06601b685e3026777e20c1f2638c9a4fb33bf15713e113a4d61d5646a6",
+      "sourceSha256": "3b1dd8f81d7bdd26acf2d075096ac7eef6073ab4d8bd82405a95c3d905dd541f",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0,
+        "liftedPixels": 47
+      }
+    },
+    {
+      "id": "grok",
+      "tier": "flagship",
+      "file": "apps/web/public/art/portraits/flagship/grok.webp",
+      "bytes": 136606,
+      "sha256": "169554ba4133ad674d588e29e6a0a8a7abba5986b7a68a11d50342763f5fc437",
+      "sourceSha256": "0769b0a46868cfc7341770a56b38907a1d0d3adb6796bf1f0910232bb6a78b7f",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0.65,
+        "liftedPixels": 461
+      }
+    },
+    {
+      "id": "grok",
+      "tier": "avatar",
+      "file": "apps/web/public/art/portraits/avatars/grok.webp",
+      "bytes": 27090,
+      "sha256": "0dfcd3387d670b302af0f14d8eefcd04ccfaf71a94ab4c1cb2a05e95c2ce2b40",
+      "sourceSha256": "f012eea1c6902b7aa6cfb226617248e571e79e35053f950832fb9e262fac9748",
+      "encoder": {
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0
+      }
+    },
+    {
+      "id": "glm",
+      "tier": "base",
+      "file": "apps/web/public/art/portraits/base/glm.webp",
+      "bytes": 101436,
+      "sha256": "1eed807c21e6ca23ddd05aa88207efadd6b69a46fd2f49fd2e39976ca4899966",
+      "sourceSha256": "e573e68fb0bf08b7794fc85626d9f2076f3c59826080e559ca5c4343fc7cd79d",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0,
+        "liftedPixels": 8
+      }
+    },
+    {
+      "id": "glm",
+      "tier": "flagship",
+      "file": "apps/web/public/art/portraits/flagship/glm.webp",
+      "bytes": 136370,
+      "sha256": "b5f49b65a1f745b10d739cec906864f49db7e6da6871971f0bcd64b793abddba",
+      "sourceSha256": "3bd3e208347ca6b9f97d626eff54c3a55ecf968ae3ae40863eb8bcb7bb204abc",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0,
+        "liftedPixels": 94
+      }
+    },
+    {
+      "id": "glm",
+      "tier": "avatar",
+      "file": "apps/web/public/art/portraits/avatars/glm.webp",
+      "bytes": 21996,
+      "sha256": "86211dd75edbe09af4db1ad3d58db223a661679f60f7c27f55aa689c5a6e0c58",
+      "sourceSha256": "921a6d1ae63c06875471883f72bd37aa55bb429796642137d56e54387ebdb38d",
+      "encoder": {
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 1
+      }
+    },
+    {
+      "id": "minimax",
+      "tier": "base",
+      "file": "apps/web/public/art/portraits/base/minimax.webp",
+      "bytes": 101494,
+      "sha256": "060db4262f95fe326c387ddd38a4eec01dd9fefb875c1e339820b30a3f2f9e7f",
+      "sourceSha256": "0afb3cf2c48ed09838513fe5813196e43e727af21cb9a2bc9e10e26a8791bbf9",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0,
+        "liftedPixels": 4
+      }
+    },
+    {
+      "id": "minimax",
+      "tier": "flagship",
+      "file": "apps/web/public/art/portraits/flagship/minimax.webp",
+      "bytes": 136550,
+      "sha256": "d71151f5bf92d8e0fd818dd324cb6a4f555eb840b7b2576d360a75ad50918afb",
+      "sourceSha256": "83d63303024b0d91dd9856a0cfadd16aa8bc2cd941f4c73ace57b1f94bde6f46",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0.45,
+        "liftedPixels": 29
+      }
+    },
+    {
+      "id": "minimax",
+      "tier": "avatar",
+      "file": "apps/web/public/art/portraits/avatars/minimax.webp",
+      "bytes": 19922,
+      "sha256": "fed116d3a131c906434aa85bab4e85c93f5ece5e73777819b85709a74cd35e55",
+      "sourceSha256": "bff0d60e4883f3af6ff44135a5b862c629480a8e84291a0e794d88603a5be7b0",
+      "encoder": {
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0
+      }
+    },
+    {
+      "id": "seedance",
+      "tier": "base",
+      "file": "apps/web/public/art/portraits/base/seedance.webp",
+      "bytes": 118850,
+      "sha256": "dceab74a008347ac32998e8f6fa62aef501576211faf06e2fed3060ed767b7c6",
+      "sourceSha256": "e9c4f70bf07ee312a8dbf7db15b660be4acaf5692384a928e2bc8286271efa6e",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0,
+        "liftedPixels": 83
+      }
+    },
+    {
+      "id": "seedance",
+      "tier": "flagship",
+      "file": "apps/web/public/art/portraits/flagship/seedance.webp",
+      "bytes": 131740,
+      "sha256": "00aa9ced9164a064b2b08237a7d095e4a23f79f9b40bae141f97d4633b247c62",
+      "sourceSha256": "a25320b78326332813530bdf44887623ad4b63d6c26f5083a675638f9a7d6be1",
+      "encoder": {
+        "quality": 86,
+        "method": 6,
+        "grainRadius": 0.65,
+        "liftedPixels": 14
+      }
+    },
+    {
+      "id": "seedance",
+      "tier": "avatar",
+      "file": "apps/web/public/art/portraits/avatars/seedance.webp",
+      "bytes": 20056,
+      "sha256": "0875624fa96dcb24fcdb77ffb4ac8ff742b841a0a553bce29a7c7333bee4ad78",
+      "sourceSha256": "4bc91ed3630856520288f94b617b538efdf8295cc5589d5b420fe482caa76e0c",
+      "encoder": {
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0
+      }
+    }
+  ],
+  "catalog": {
+    "file": "apps/web/public/art/portraits/catalog.json",
+    "bytes": 29248,
+    "sha256": "43420a54eb7d7f50c1b9824ddb681fd47643541930f2c6edf9800469ebea0ea8"
+  }
+}

@@ -559,7 +559,16 @@ const portraitPaths = {base: basePortraitArt, flagship: flagshipPortraitArt, ava
 const batch12ACharacters = ['bluewhale', ...batch10ACharacters] as const;
 type PortraitTier = typeof portraitTiers[number];
 type ArtFile = {file: string; sha256: string; bytes: number};
-type PortraitMaster = ArtFile & {method: string; references: ArtFile[]};
+type PortraitReference = ArtFile & {external?: boolean};
+type PortraitMaster = ArtFile & {
+ method: string; references: PortraitReference[];
+ editedFrom?: ArtFile & {references: PortraitReference[]};
+ attachmentGuide?: ArtFile;
+};
+type PortraitManifest = {
+ catalog: ArtFile; masters: Record<string, Record<PortraitTier, PortraitMaster>>;
+ runtime: (ArtFile & {id: string; tier: PortraitTier; sourceSha256: string; encoder: {quality: number; method: number}})[];
+};
 type PortraitEntry = {
  path: string; width: number; height: number; sha256: string; bytes: number;
  alphaRange: number[]; alphaBounds: [number, number, number, number]; visiblePureBlackPixels: number;
@@ -567,7 +576,7 @@ type PortraitEntry = {
 };
 
 it('resolves each shipped portrait tier and rejects unknown or path-like character IDs', () => {
- expect(portraitCharacters).toEqual(batch12ACharacters);
+ expect(portraitCharacters).toEqual([...batch12ACharacters, ...batch10BCharacters]);
  for (const tier of portraitTiers) {
   const directory = tier === 'avatar' ? 'avatars' : tier;
   for (const id of portraitCharacters) expect(portraitPaths[tier](id)).toBe(`./art/portraits/${directory}/${id}.webp`);
@@ -577,33 +586,47 @@ it('resolves each shipped portrait tier and rejects unknown or path-like charact
  }
 });
 
-it('decodes all 18 Art-Batch 12A portraits and verifies their origins, catalog and both offline packages', () => {
- const batch = 'art/art-batch-12a';
+it('decodes all 36 partner portraits and verifies both art batches, the catalog and both offline packages', () => {
  const directory = 'art/portraits/';
  const publicRoot = 'apps/web/public';
- const manifest: {
-  catalog: ArtFile; masters: Record<string, Record<PortraitTier, PortraitMaster>>;
-  runtime: (ArtFile & {id: string; tier: PortraitTier; sourceSha256: string; encoder: {quality: number; method: number}})[];
- } = JSON.parse(readFileSync(join(batch, 'manifest.json'), 'utf8'));
- const catalog: {characters: Record<string, Record<PortraitTier, PortraitEntry>>} = JSON.parse(readFileSync(manifest.catalog.file, 'utf8'));
+ const catalogPath = publicRoot + '/' + directory + 'catalog.json';
+ const catalog: {characters: Record<string, Record<PortraitTier, PortraitEntry>>} = JSON.parse(readFileSync(catalogPath, 'utf8'));
+ const loadBatch = (batch: string): PortraitManifest => JSON.parse(readFileSync(join(batch, 'manifest.json'), 'utf8'));
+ const first = loadBatch('art/art-batch-12a'), second = loadBatch('art/art-batch-12b');
  const digest = (path: string) => {
   const bytes = readFileSync(path);
   return {bytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex')};
  };
  expect(catalog).toMatchObject({schemaVersion: 1, portraitCanvas: [768, 1024], avatarCanvas: [256, 256]});
  expect(Object.keys(catalog.characters).sort()).toEqual([...portraitCharacters].sort());
- expect(Object.keys(manifest.masters).sort()).toEqual([...batch12ACharacters].sort());
- expect(manifest.catalog.file).toBe(publicRoot + '/' + directory + 'catalog.json');
- expect(manifest.catalog).toMatchObject(digest(manifest.catalog.file));
- expect(manifest.runtime).toHaveLength(18);
- const published = new Map([[directory + 'catalog.json', manifest.catalog.sha256]]);
+ expect(Object.keys(first.masters).sort()).toEqual([...batch12ACharacters].sort());
+ expect(Object.keys(second.masters).sort()).toEqual([...batch10BCharacters].sort());
+ expect(first.runtime).toHaveLength(18);
+ expect(second.runtime).toHaveLength(18);
+ expect(second.catalog).toEqual({file: catalogPath, ...digest(catalogPath)});
+ // Recreate the historical six-entry JSON with the original exporter's float formatting.
+ const historical = spawnSync('python', ['-c', [
+  'import json, sys',
+  'from pathlib import Path',
+  'catalog = json.loads(Path(sys.argv[1]).read_bytes())',
+  'catalog["characters"] = {key: catalog["characters"][key] for key in sys.argv[2:]}',
+  'sys.stdout.buffer.write((json.dumps(catalog, ensure_ascii=False, indent=2) + "\\n").encode())',
+ ].join('\n'), catalogPath, ...batch12ACharacters]);
+ expect(historical.status, historical.stderr?.toString()).toBe(0);
+ expect(first.catalog).toEqual({file: catalogPath, bytes: historical.stdout.length,
+  sha256: createHash('sha256').update(historical.stdout).digest('hex')});
+ const published = new Map([[directory + 'catalog.json', second.catalog.sha256]]);
  const files: PortraitEntry[] = [];
- for (const id of batch12ACharacters) {
+ for (const id of portraitCharacters) {
+  const from12A = Object.hasOwn(first.masters, id);
+  const batch = from12A ? 'art/art-batch-12a' : 'art/art-batch-12b';
+  const manifest = from12A ? first : second;
   const entries = catalog.characters[id]!;
   const masters = manifest.masters[id]!;
-  const refBatch = id === 'bluewhale' ? '8' : '10a';
+  const refBatch = id === 'bluewhale' ? '8' : from12A ? '10a' : '10b';
   const version = id === 'bluewhale' ? 'bluewhale.r1' : batch10Versions[id];
-  const refPaths = [`art/art-batch-${refBatch}/masters/${id}/ref_sheet.png`, `${publicRoot}/art/stage-b/${version}.webp`];
+  const lobby = `art/art-batch-${refBatch}/masters/${id}/ref_sheet.png`;
+  const original = '../../dsh_docs/live2d_assets/Character-reference/';
   expect(Object.keys(entries).sort()).toEqual([...portraitTiers].sort());
   expect(readdirSync(join(batch, 'masters', id)).sort()).toEqual(portraitTiers.map(t => t + '.png').sort());
   for (const tier of portraitTiers) {
@@ -611,9 +634,32 @@ it('decodes all 18 Art-Batch 12A portraits and verifies their origins, catalog a
    expect(master.file).toBe(`${batch}/masters/${id}/${tier}.png`);
    expect(master).toMatchObject(digest(master.file));
    const refs = master.references.map(r => r.file);
-   for (const ref of master.references) expect(ref).toMatchObject(digest(ref.file));
-   if (master.method === 'built-in image_gen') {
-    expect(refs.slice(0, 2)).toEqual(refPaths);
+   for (const ref of master.references) {
+    if (ref.file.startsWith(original)) {
+     expect(ref.external).toBe(true);
+     expect(ref.sha256).toMatch(/^[a-f0-9]{64}$/);
+     expect(ref.bytes).toBeGreaterThan(0);
+    } else {
+     expect(ref).toMatchObject(digest(ref.file));
+    }
+   }
+   if (!from12A) {
+    expect(master.method).toBe('built-in image_gen');
+    const styleTiers = tier === 'base' ? ['base', 'flagship'] : ['base', 'flagship', 'avatars'];
+    const parent = master.editedFrom?.file ?? masters.base.file;
+    expect(refs).toEqual([original + 'style_reference.jpg',
+     ...styleTiers.map(t => publicRoot + '/' + directory + t + '/bluewhale.webp'),
+     original + id + '.jpg', lobby, ...(tier === 'base' ? [] : [parent])]);
+    if (master.editedFrom) {
+     expect(parent).toBe(`${batch}/studies/${id}-${tier}.png`);
+     expect(master.editedFrom).toMatchObject(digest(parent));
+     expect(master.editedFrom.references).toEqual([...master.references.slice(0, -1),
+      {file: masters.base.file, ...digest(masters.base.file)}]);
+     const guide = `${batch}/studies/${id}-five-rule-guide.png`;
+     expect(master.attachmentGuide).toEqual({file: guide, ...digest(guide)});
+    }
+   } else if (master.method === 'built-in image_gen') {
+    expect(refs.slice(0, 2)).toEqual([lobby, `${publicRoot}/art/stage-b/${version}.webp`]);
     if (tier !== 'base') expect(refs[2]).toBe(masters.base.file);
    } else {
     expect([tier, master.method, refs]).toEqual(['avatar', 'native-resolution contour crop', [masters.base.file]]);
@@ -647,7 +693,7 @@ it('decodes all 18 Art-Batch 12A portraits and verifies their origins, catalog a
   if (entry.path.startsWith('avatars/')) {
    expect([w, h]).toEqual([256, 256]);
    expect(entry.bytes).toBeLessThanOrEqual(35000);
-   expect(Math.min(l, t, w - r, h - b)).toBeGreaterThanOrEqual(10);
+   expect(Math.min(l, t, w - r, h - b)).toBeGreaterThanOrEqual(12);
    for (const [, y] of entry.eyes) expect(y >= h * 0.38 && y <= h * 0.54).toBe(true);
    expect(Math.abs(entry.eyeCenter[0] - w / 2)).toBeLessThanOrEqual(16);
   } else {
@@ -656,10 +702,49 @@ it('decodes all 18 Art-Batch 12A portraits and verifies their origins, catalog a
    expect(t >= 24 && Math.min(l, w - r) >= 12 && b - t >= 840 && b - t <= 972 && b >= 990 && b <= h).toBe(true);
   }
  }
- expect(published.size).toBe(19);
+ expect(published.size).toBe(37);
  for (const root of ['apps/web/dist', 'apps/dsh/dist/web']) {
   const offline: {assets: string[]} = JSON.parse(readFileSync(join(root, 'offline-assets.json'), 'utf8'));
   expect(offline.assets.filter(p => p.startsWith(directory)).sort()).toEqual([...published.keys()].sort());
   for (const [path, hash] of published) expect(digest(join(root, path)).sha256).toBe(hash);
  }
+});
+
+it('keeps Gemini’s pink iris on the viewer’s left and gold iris on the right in all three decoded portraits', () => {
+ const result = spawnSync('python', ['-c', [
+  'import json, sys',
+  'from pathlib import Path',
+  'from PIL import Image, ImageStat',
+  'root = Path(sys.argv[1])',
+  'entries = json.loads((root / "catalog.json").read_bytes())["characters"]["gemini"]',
+  'for tier, entry in entries.items():',
+  '    left, right = entry["eyes"]',
+  '    assert left[0] < right[0], (tier, left, right)',
+  '    radius = max(1, round((right[0] - left[0]) * 0.14))',
+  '    colors = []',
+  '    with Image.open(root / entry["path"]) as image:',
+  '        for eye in (left, right):',
+  '            x, y = map(round, eye)',
+  '            iris = image.crop((x-radius, y-radius, x+radius+1, y+radius+1)).convert("RGB")',
+  '            colors.append(ImageStat.Stat(iris).median)',
+  '    (pr, pg, pb), (gr, gg, gb) = colors',
+  '    assert pr > pb > pg + 15 and gr > gg > gb + 15, (tier, colors)',
+ ].join('\n'), resolve('apps/web/public/art/portraits')], {encoding: 'utf8'});
+ expect(result.status, result.error?.message ?? result.stderr).toBe(0);
+});
+
+it('preserves the five lines of Kimi K2’s music staff in the decoded WebP', () => {
+ const result = spawnSync('python', ['-c', [
+  'from itertools import groupby',
+  'from PIL import Image',
+  'import sys',
+  'with Image.open(sys.argv[1]) as image:',
+  '    for x in (398, 418, 480):',
+  '        # The staff crosses the navy skirt here, clear of jewelry and star glints.',
+  '        column = image.crop((x, 795, x+1, 880)).convert("RGB")',
+  '        gold = [r >= 190 and g >= 142 and r-b >= 15 for r, g, b in column.getdata()]',
+  '        strokes = sum(1 for lit, pixels in groupby(gold) if lit)',
+  '        assert strokes == 5, (x, strokes)',
+ ].join('\n'), resolve('apps/web/public/art/portraits/flagship/kimi.webp')], {encoding: 'utf8'});
+ expect(result.status, result.error?.message ?? result.stderr).toBe(0);
 });

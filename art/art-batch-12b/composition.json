@@ -1,0 +1,484 @@
+{
+  "styleReference": {
+    "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+    "bytes": 530529,
+    "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1",
+    "external": true
+  },
+  "bluewhaleGuide": {
+    "inputs": [
+      "apps/web/public/art/portraits/base/bluewhale.webp",
+      "apps/web/public/art/portraits/flagship/bluewhale.webp",
+      "apps/web/public/art/portraits/avatars/bluewhale.webp"
+    ],
+    "canvas": [
+      1344,
+      560
+    ],
+    "cell": [
+      448,
+      560
+    ],
+    "fit": [
+      432,
+      544
+    ],
+    "resample": "Pillow ImageOps.contain LANCZOS, centered on true alpha with integer-floor offset",
+    "sha256": "0ca36aaceb60471937818289a7f23cc8ffc13554c8a0540708ec16643ddc78e4"
+  },
+  "characters": {
+    "kimi": {
+      "versions": [
+        "Kimi K1.5",
+        "Kimi K2"
+      ],
+      "themeColor": "#222944",
+      "originalDesign": {
+        "file": "../../dsh_docs/live2d_assets/Character-reference/kimi.jpg",
+        "bytes": 256656,
+        "sha256": "49a4304d74c05e2a231c918e69a9c9a3907e7ec526a8ad3b2128a8c63dc83315",
+        "external": true
+      },
+      "lobbySheet": "art/art-batch-10b/masters/kimi/ref_sheet.png",
+      "base": {
+        "sourceFile": "exec-ec36f50c-66ad-49e0-9976-18163abf93ab.png",
+        "sha256": "6148b3f3a4d6a860541142425c66ba108f1a2f89d08f68c59396de75981a1fe7",
+        "eyes": [
+          [
+            496,
+            360
+          ],
+          [
+            625,
+            326
+          ]
+        ],
+        "headRegion": [
+          361,
+          119,
+          729,
+          481
+        ]
+      },
+      "flagship": {
+        "sourceFile": "exec-02f11b5e-de14-49f3-af01-bfacd7a0f41d.png",
+        "sha256": "6c9dc0284f1af26624e03323f0c7446efc07da14e92202664fccb1abbd7d9db6",
+        "eyes": [
+          [
+            499,
+            355
+          ],
+          [
+            627,
+            318
+          ]
+        ],
+        "headRegion": [
+          357,
+          106,
+          710,
+          468
+        ],
+        "editedFrom": {
+          "file": "art/art-batch-12b/studies/kimi-flagship.png",
+          "sourceFile": "exec-92701c92-4f50-47ef-bf41-97d158de4dd3.png",
+          "sha256": "e69cc101fac92217e5ae58a17d913f0e7571e50f0a49c242818bac131a6702cf"
+        },
+        "attachmentGuide": {
+          "file": "art/art-batch-12b/studies/kimi-five-rule-guide.png",
+          "sha256": "2aed57c7519a371f86928487bd768bcb5c6edfb83cb86db530343684bb824442"
+        }
+      },
+      "avatar": {
+        "sourceFile": "exec-9d93d455-2eb7-4414-ae20-97a94f2c494c.png",
+        "sha256": "6746e3a5b6168642f4084490f78a8605f6d433c848bc3693c2d818a6b0f42a01",
+        "eyes": [
+          [
+            540,
+            560
+          ],
+          [
+            739,
+            527
+          ]
+        ],
+        "headRegion": [
+          350,
+          177,
+          900,
+          749
+        ]
+      }
+    },
+    "gemini": {
+      "versions": [
+        "Gemini 2.5 Flash",
+        "Gemini 1.5 Pro"
+      ],
+      "themeColor": "#675BC8",
+      "originalDesign": {
+        "file": "../../dsh_docs/live2d_assets/Character-reference/gemini.jpg",
+        "bytes": 252982,
+        "sha256": "700310c2ca27f088693d01d7eb7df13cb7e72be46926ea3f07a2e17dae1c2687",
+        "external": true
+      },
+      "lobbySheet": "art/art-batch-10b/masters/gemini/ref_sheet.png",
+      "base": {
+        "sourceFile": "exec-822f9def-cc46-4a7f-97a7-d02fd0672d87.png",
+        "sha256": "740d9ce9b526681d9fdefd5e3c81d4f7ffa285c5abe33885bae2740080673ed6",
+        "eyes": [
+          [
+            499,
+            412
+          ],
+          [
+            629,
+            386
+          ]
+        ],
+        "headRegion": [
+          347,
+          139,
+          705,
+          535
+        ]
+      },
+      "flagship": {
+        "sourceFile": "exec-1a7f16bf-75a1-41d1-ba33-82f673b25bdb.png",
+        "sha256": "fbfada5d94a3286b3920a9101596aee1064cef2c754919f12687fc951d6cbee2",
+        "eyes": [
+          [
+            507,
+            406
+          ],
+          [
+            632,
+            374
+          ]
+        ],
+        "headRegion": [
+          346,
+          132,
+          711,
+          522
+        ]
+      },
+      "avatar": {
+        "sourceFile": "exec-19946c19-5e7d-41ef-8fd9-a120d06674fd.png",
+        "sha256": "006e375c8bf2e50fe0db96fb8a42bb0152e13ce27030a5e0a1c87cf4875b9e46",
+        "eyes": [
+          [
+            557,
+            600
+          ],
+          [
+            750,
+            581
+          ]
+        ],
+        "headRegion": [
+          337,
+          171,
+          906,
+          800
+        ]
+      }
+    },
+    "grok": {
+      "versions": [
+        "Grok 2",
+        "Grok 3"
+      ],
+      "themeColor": "#C98A24",
+      "originalDesign": {
+        "file": "../../dsh_docs/live2d_assets/Character-reference/grok.jpg",
+        "bytes": 259751,
+        "sha256": "c665e4df00882e27682988ec78229637b5fc148995543d7fd54cd06687721980",
+        "external": true
+      },
+      "lobbySheet": "art/art-batch-10b/masters/grok/ref_sheet.png",
+      "base": {
+        "sourceFile": "exec-be9724be-aa1d-4109-8b15-2b2622acca13.png",
+        "sha256": "3b1dd8f81d7bdd26acf2d075096ac7eef6073ab4d8bd82405a95c3d905dd541f",
+        "eyes": [
+          [
+            480,
+            434
+          ],
+          [
+            593,
+            386
+          ]
+        ],
+        "headRegion": [
+          355,
+          165,
+          706,
+          532
+        ]
+      },
+      "flagship": {
+        "sourceFile": "exec-13afd62f-0a59-47cc-a54c-3769f72da5ee.png",
+        "sha256": "0769b0a46868cfc7341770a56b38907a1d0d3adb6796bf1f0910232bb6a78b7f",
+        "eyes": [
+          [
+            470,
+            415
+          ],
+          [
+            581,
+            370
+          ]
+        ],
+        "headRegion": [
+          331,
+          164,
+          685,
+          515
+        ]
+      },
+      "avatar": {
+        "sourceFile": "exec-c20cc31f-b268-43f8-a200-c18ab1feeca2.png",
+        "sha256": "f012eea1c6902b7aa6cfb226617248e571e79e35053f950832fb9e262fac9748",
+        "eyes": [
+          [
+            563,
+            626
+          ],
+          [
+            734,
+            577
+          ]
+        ],
+        "headRegion": [
+          367,
+          249,
+          896,
+          790
+        ]
+      }
+    },
+    "glm": {
+      "versions": [
+        "GLM 4",
+        "GLM Plus"
+      ],
+      "themeColor": "#4A4E57",
+      "originalDesign": {
+        "file": "../../dsh_docs/live2d_assets/Character-reference/glm.jpg",
+        "bytes": 69123,
+        "sha256": "5ec5982f076df725bf0a26c498a02d4b5e9387ed3b9189e76ae89a0cbd2e0f98",
+        "external": true
+      },
+      "lobbySheet": "art/art-batch-10b/masters/glm/ref_sheet.png",
+      "base": {
+        "sourceFile": "exec-63f9f225-f89f-4df2-9386-190b1790a31c.png",
+        "sha256": "e573e68fb0bf08b7794fc85626d9f2076f3c59826080e559ca5c4343fc7cd79d",
+        "eyes": [
+          [
+            493,
+            357
+          ],
+          [
+            610,
+            325
+          ]
+        ],
+        "headRegion": [
+          355,
+          117,
+          702,
+          468
+        ]
+      },
+      "flagship": {
+        "sourceFile": "exec-5bfdf546-5c55-4960-8b5e-f622ff716d60.png",
+        "sha256": "3bd3e208347ca6b9f97d626eff54c3a55ecf968ae3ae40863eb8bcb7bb204abc",
+        "eyes": [
+          [
+            479,
+            324
+          ],
+          [
+            578,
+            293
+          ]
+        ],
+        "headRegion": [
+          323,
+          130,
+          666,
+          423
+        ]
+      },
+      "avatar": {
+        "sourceFile": "exec-f7c49069-eb63-4b1d-9083-b06ef5e68a2d.png",
+        "sha256": "921a6d1ae63c06875471883f72bd37aa55bb429796642137d56e54387ebdb38d",
+        "eyes": [
+          [
+            551,
+            590
+          ],
+          [
+            749,
+            553
+          ]
+        ],
+        "headRegion": [
+          354,
+          224,
+          911,
+          783
+        ]
+      }
+    },
+    "minimax": {
+      "versions": [
+        "MiniMax abab",
+        "MiniMax 01"
+      ],
+      "themeColor": "#A8547E",
+      "originalDesign": {
+        "file": "../../dsh_docs/live2d_assets/Character-reference/minimax.jpg",
+        "bytes": 24135,
+        "sha256": "f52c53dac59b55e9daf14e5e86e0629c6646a8de9809cd097fd80eb840e60e6b",
+        "external": true
+      },
+      "lobbySheet": "art/art-batch-10b/masters/minimax/ref_sheet.png",
+      "base": {
+        "sourceFile": "exec-878eb6b7-601b-4169-ba4d-a5f70aae0e57.png",
+        "sha256": "0afb3cf2c48ed09838513fe5813196e43e727af21cb9a2bc9e10e26a8791bbf9",
+        "eyes": [
+          [
+            492,
+            362
+          ],
+          [
+            615,
+            333
+          ]
+        ],
+        "headRegion": [
+          351,
+          117,
+          707,
+          487
+        ]
+      },
+      "flagship": {
+        "sourceFile": "exec-643fb812-df63-4cde-afaf-fb332749d158.png",
+        "sha256": "83d63303024b0d91dd9856a0cfadd16aa8bc2cd941f4c73ace57b1f94bde6f46",
+        "eyes": [
+          [
+            449,
+            323
+          ],
+          [
+            555,
+            290
+          ]
+        ],
+        "headRegion": [
+          308,
+          106,
+          658,
+          438
+        ]
+      },
+      "avatar": {
+        "sourceFile": "exec-5f4a2a60-84ab-4b2d-bcc8-042d7cfc8399.png",
+        "sha256": "bff0d60e4883f3af6ff44135a5b862c629480a8e84291a0e794d88603a5be7b0",
+        "eyes": [
+          [
+            560,
+            561
+          ],
+          [
+            742,
+            523
+          ]
+        ],
+        "headRegion": [
+          344,
+          184,
+          909,
+          756
+        ]
+      }
+    },
+    "seedance": {
+      "versions": [
+        "Seedance 1.0",
+        "Seedance Pro"
+      ],
+      "themeColor": "#2C7A7B",
+      "originalDesign": {
+        "file": "../../dsh_docs/live2d_assets/Character-reference/seedance.jpg",
+        "bytes": 216761,
+        "sha256": "f49344166bc53209aa118c298d4832b4192f9f20d88bad31c355dd951ad823e6",
+        "external": true
+      },
+      "lobbySheet": "art/art-batch-10b/masters/seedance/ref_sheet.png",
+      "base": {
+        "sourceFile": "exec-ee0c0d63-26a6-445a-a18f-16560bd11702.png",
+        "sha256": "e9c4f70bf07ee312a8dbf7db15b660be4acaf5692384a928e2bc8286271efa6e",
+        "eyes": [
+          [
+            493,
+            327
+          ],
+          [
+            613,
+            292
+          ]
+        ],
+        "headRegion": [
+          359,
+          76,
+          708,
+          441
+        ]
+      },
+      "flagship": {
+        "sourceFile": "exec-48b204e4-9674-45dd-bced-a36d5dc48c79.png",
+        "sha256": "a25320b78326332813530bdf44887623ad4b63d6c26f5083a675638f9a7d6be1",
+        "eyes": [
+          [
+            498,
+            298
+          ],
+          [
+            614,
+            265
+          ]
+        ],
+        "headRegion": [
+          352,
+          68,
+          684,
+          406
+        ]
+      },
+      "avatar": {
+        "sourceFile": "exec-ba65f6dd-f8ca-4a4b-b04e-d9deed989fa5.png",
+        "sha256": "4bc91ed3630856520288f94b617b538efdf8295cc5589d5b420fe482caa76e0c",
+        "eyes": [
+          [
+            517,
+            520
+          ],
+          [
+            701,
+            486
+          ]
+        ],
+        "headRegion": [
+          293,
+          110,
+          848,
+          710
+        ]
+      }
+    }
+  }
+}

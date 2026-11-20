@@ -1,4 +1,7 @@
-export const portraitCharacters = ['bluewhale', 'qwen', 'llama', 'mistral', 'gpt', 'claude'] as const;
+export const portraitCharacters = [
+    'bluewhale', 'qwen', 'llama', 'mistral', 'gpt', 'claude',
+    'kimi', 'gemini', 'grok', 'glm', 'minimax', 'seedance',
+] as const;
 
 function portraitPath(directory: 'base' | 'flagship' | 'avatars', id: string): string | null {
     return portraitCharacters.some(character => character === id) ? `./art/portraits/${directory}/${id}.webp` : null;
