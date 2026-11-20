@@ -1,3 +1,5 @@
+2026-11-19 Art-Batch 11 已交付。8 类家具的 10 张图层、8 张有内容的预览、4 件彩蛋摆件和目录已通过离线包核验。依照现有工位坐标，两张无椅书桌的后沿均为 y224，坐姿双手露出、双腿被挡板遮住。叠合图见 `art/art-batch-11/review/batch11-composite-review.png`。
+
 2026-11-19 Art-Batch 10B 完成。kimi、gemini、grok、glm、minimax、seedance 各新增 5 张姿态和 1 份 rig。十二人工坊在五种视口均挂载 12 个 MapleChibiRig，旧角色回退计数为 0。全员双排合照见 `art/art-batch-10b/review/all-12-lineup.png`。
 
 2026-11-19 Art-Batch 10A 完成。qwen、llama、mistral、gpt、claude 各交付 5 张姿态和 1 份 rig，25 张 WebP 共 908,514 字节。五人均已注册静态白名单，离线清单覆盖 30 个新增运行文件。六人站姿对照见 `art/art-batch-10a/review/batch10a-overview.png`。

@@ -1,0 +1,344 @@
+{
+  "schemaVersion": 1,
+  "layerCanvas": [
+    560,
+    480
+  ],
+  "pixelsPerWorldUnit": 2,
+  "worldOriginPx": [
+    280,
+    400
+  ],
+  "previewCanvas": [
+    256,
+    256
+  ],
+  "decorCanvas": [
+    256,
+    256
+  ],
+  "furniture": [
+    {
+      "kind": "basic",
+      "layers": [
+        "back",
+        "front"
+      ],
+      "preview": "basic-preview.webp",
+      "alphaBounds": {
+        "back": [
+          146,
+          117,
+          414,
+          397
+        ],
+        "front": [
+          47,
+          155,
+          513,
+          429
+        ]
+      },
+      "previewAlphaBounds": [
+        27,
+        60,
+        229,
+        195
+      ],
+      "anchors": {
+        "screenRect": [
+          377,
+          175,
+          118,
+          54
+        ],
+        "seatY": 280
+      }
+    },
+    {
+      "kind": "standard",
+      "layers": [
+        "back",
+        "front"
+      ],
+      "preview": "standard-preview.webp",
+      "alphaBounds": {
+        "back": [
+          147,
+          117,
+          413,
+          397
+        ],
+        "front": [
+          45,
+          144,
+          514,
+          429
+        ]
+      },
+      "previewAlphaBounds": [
+        27,
+        61,
+        229,
+        195
+      ],
+      "anchors": {
+        "screenRect": [
+          380,
+          169,
+          116,
+          56
+        ],
+        "seatY": 265
+      }
+    },
+    {
+      "kind": "whiteboard",
+      "layers": [
+        "back"
+      ],
+      "preview": "whiteboard-preview.webp",
+      "alphaBounds": {
+        "back": [
+          65,
+          53,
+          495,
+          413
+        ]
+      },
+      "previewAlphaBounds": [
+        27,
+        43,
+        229,
+        212
+      ],
+      "anchors": {}
+    },
+    {
+      "kind": "coffee",
+      "layers": [
+        "back"
+      ],
+      "preview": "coffee-preview.webp",
+      "alphaBounds": {
+        "back": [
+          120,
+          95,
+          440,
+          425
+        ]
+      },
+      "previewAlphaBounds": [
+        30,
+        27,
+        226,
+        229
+      ],
+      "anchors": {
+        "steamAnchor": [
+          231,
+          209
+        ]
+      }
+    },
+    {
+      "kind": "sofa",
+      "layers": [
+        "back"
+      ],
+      "preview": "sofa-preview.webp",
+      "alphaBounds": {
+        "back": [
+          37,
+          157,
+          522,
+          425
+        ]
+      },
+      "previewAlphaBounds": [
+        27,
+        72,
+        229,
+        184
+      ],
+      "anchors": {
+        "seatY": 319
+      }
+    },
+    {
+      "kind": "server",
+      "layers": [
+        "back"
+      ],
+      "preview": "server-preview.webp",
+      "alphaBounds": {
+        "back": [
+          170,
+          37,
+          390,
+          427
+        ]
+      },
+      "previewAlphaBounds": [
+        71,
+        27,
+        185,
+        229
+      ],
+      "anchors": {
+        "ledPoints": [
+          [
+            343,
+            113
+          ],
+          [
+            343,
+            149
+          ],
+          [
+            343,
+            184
+          ],
+          [
+            343,
+            219
+          ],
+          [
+            343,
+            254
+          ],
+          [
+            343,
+            289
+          ],
+          [
+            343,
+            324
+          ],
+          [
+            343,
+            359
+          ]
+        ]
+      }
+    },
+    {
+      "kind": "dining",
+      "layers": [
+        "front"
+      ],
+      "preview": "dining-preview.webp",
+      "alphaBounds": {
+        "front": [
+          40,
+          161,
+          520,
+          429
+        ]
+      },
+      "previewAlphaBounds": [
+        27,
+        71,
+        229,
+        184
+      ],
+      "anchors": {}
+    },
+    {
+      "kind": "reading",
+      "layers": [
+        "front"
+      ],
+      "preview": "reading-preview.webp",
+      "alphaBounds": {
+        "front": [
+          40,
+          177,
+          520,
+          429
+        ]
+      },
+      "previewAlphaBounds": [
+        27,
+        75,
+        229,
+        181
+      ],
+      "anchors": {}
+    }
+  ],
+  "decor": [
+    {
+      "id": "decor-studio_cat",
+      "file": "decor-studio_cat.webp",
+      "feet": [
+        128,
+        236
+      ],
+      "visibleHeight": 169,
+      "alphaCentroidX": 127.8959014158015,
+      "alphaBounds": [
+        30,
+        68,
+        228,
+        237
+      ],
+      "sha256": "7be9187dcae7bde1876ef29c1655bdaea840bed7c40c2a3aed8bf087ea7aff4b",
+      "bytes": 11888
+    },
+    {
+      "id": "decor-monstera_pot",
+      "file": "decor-monstera_pot.webp",
+      "feet": [
+        128,
+        236
+      ],
+      "visibleHeight": 198,
+      "alphaCentroidX": 128.20310054457417,
+      "alphaBounds": [
+        50,
+        39,
+        206,
+        237
+      ],
+      "sha256": "c13f643b2556a51a7b3486ea9d71190eaea62f01c8b618d39089b21dec79bcbc",
+      "bytes": 14750
+    },
+    {
+      "id": "decor-token_jar",
+      "file": "decor-token_jar.webp",
+      "feet": [
+        128,
+        236
+      ],
+      "visibleHeight": 198,
+      "alphaCentroidX": 127.70954431307315,
+      "alphaBounds": [
+        69,
+        39,
+        187,
+        237
+      ],
+      "sha256": "9a19e5dbb60c5435a14efc1f4048563b92a5b409a0cd15c421a82a03be98fb19",
+      "bytes": 9556
+    },
+    {
+      "id": "decor-vinyl_player",
+      "file": "decor-vinyl_player.webp",
+      "feet": [
+        128,
+        236
+      ],
+      "visibleHeight": 198,
+      "alphaCentroidX": 127.85165306185165,
+      "alphaBounds": [
+        66,
+        39,
+        191,
+        237
+      ],
+      "sha256": "16d18e20061c86ed3ec4dc3e440cbb8cac816fbaf094000a5b14bb87d3d782f6",
+      "bytes": 8600
+    }
+  ]
+}

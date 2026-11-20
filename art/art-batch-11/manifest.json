@@ -1,0 +1,1183 @@
+[
+  {
+    "id": "basic-back",
+    "file": "masters/basic-back.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "8b6fabd89670b6be03701bc0483a3ae0ce59a5849a9bf5deefdeb1df36aa62f0",
+    "bytes": 832025,
+    "width": 1254,
+    "height": 1254,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      0,
+      17,
+      1240,
+      1230
+    ],
+    "cleanedBounds": [
+      272,
+      256,
+      982,
+      998
+    ],
+    "sourceFile": "exec-035465cd-c1de-4a19-b534-08a280e6f6a6.png",
+    "prompt": "Standalone front-facing simple cozy light-oak wooden frame studio office chair with a warm cream-oatmeal cushioned backrest and seat, compact neat wooden legs. Strictly ONLY the chair—NO desk, NO table, NO monitor.\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nFollow this reference chair's outline and bounding box EXACTLY. Its proportions have been precisely pre-calibrated for a little game character. Repaint the natural material, round small upholstery buttons and caster fittings, but keep identical padding, backrest width, armrest positions, seat height and frame endpoints. Camera is dead center. The entire chair remains in the center 57 percent of this square canvas. No desk, additional prop, floor shadow, glow.",
+    "references": [
+      {
+        "file": "exec-ec1c1b49-42d4-48d9-b263-79695f2cc549.png",
+        "sha256": "21951cdfce924d4aefd5d89dbb3aca146e7bbe21c5ea9b5cedd66cf2be44bb14",
+        "rasterSha256": "44617bc54707fecbde6adaac9c1c747454ffbcb8e1f4d07fb83e3dc886022a98",
+        "render": "Batch 8 alpha cleanup, 504x530 subject centered on 900x900 transparent guide"
+      }
+    ]
+  },
+  {
+    "id": "basic-back",
+    "file": "runtime/basic-back.webp",
+    "publicFile": "art/furniture/basic-back.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "8b6fabd89670b6be03701bc0483a3ae0ce59a5849a9bf5deefdeb1df36aa62f0"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 560,
+    "height": 480,
+    "bytes": 13582,
+    "sha256": "0235997429ac168a97dabf0834fb9bfd4d2651f6fd3d7dc927bed068e27e85f2",
+    "alphaBounds": [
+      146,
+      117,
+      414,
+      397
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "basic-front",
+    "file": "masters/basic-front.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "95ad7c3c829486d308931743f088bf7a4ea9f79531e3ac4289b52011029cd0b4",
+    "bytes": 540763,
+    "width": 1254,
+    "height": 1254,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      25,
+      23,
+      1226,
+      1222
+    ],
+    "cleanedBounds": [
+      195,
+      378,
+      1077,
+      896
+    ],
+    "sourceFile": "exec-e636a6be-07a1-44aa-9e06-7e8e37c94e1a.png",
+    "prompt": "Standalone front-facing compact warm honey-oak wooden studio desk with a solid front modesty panel, clean wooden legs, a charming slightly rounded retro-modern cream-bezel monitor placed on the right side displaying subtle abstract soft-green geometric shapes (no text), a compact ivory keyboard slightly left-of-center, a small blank sticky note pad on the left, and a warm ivory ceramic mug. Strictly NO chair behind or in front of the desk.\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nUse the reference image as a geometric silhouette and placement guide. Paint a beautifully hand-painted FULLY OPAQUE wood desk with no holes through the wooden desktop and full solid front panel. Match its high table surface, long front legs and small right hand monitor. Exact geometry: desk body width including slab equals 2.36 times the vertical drop from the back edge of the tabletop to the foot soles. Imagine a 120 cm wide by 51 cm tall wooden desk. The center of the tabletop rear is bare and straight. Front panel entirely opaque down to 7 cm above floor. Small blank keycaps, no furniture in the background. Keep the object SMALL in the CENTER of a SQUARE canvas, occupying roughly 62% of its width with at least 17% completely empty padding on every edge. No glow, floor or cast shadow.",
+    "references": [
+      {
+        "file": "apps/web/public/art/office/basic-front.svg",
+        "sha256": "e87ee3a2220131bb0ce55efa8d5eb089c07da790542170b269239c26010a9873",
+        "rasterSha256": "253dbbad090bc7b767c470170ef775c32e92bf75c9cd6fbe7af7308deab99542",
+        "render": "PyMuPDF 3x transparent raster, geometry only"
+      }
+    ]
+  },
+  {
+    "id": "basic-front",
+    "file": "runtime/basic-front.webp",
+    "publicFile": "art/furniture/basic-front.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "95ad7c3c829486d308931743f088bf7a4ea9f79531e3ac4289b52011029cd0b4"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 560,
+    "height": 480,
+    "bytes": 13794,
+    "sha256": "88522f2599eec8265a70a9c4d16ddf3133aa0294195019251da40dc85f5b3fa2",
+    "alphaBounds": [
+      47,
+      155,
+      513,
+      429
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "standard-back",
+    "file": "masters/standard-back.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "1e604f55a4a0c20fac20f8f5e81e327710b27f2837beffb7274521c55c90d48c",
+    "bytes": 849018,
+    "width": 1254,
+    "height": 1254,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      19,
+      19,
+      1232,
+      1230
+    ],
+    "cleanedBounds": [
+      273,
+      256,
+      979,
+      1000
+    ],
+    "sourceFile": "exec-719bd6ce-b91c-4a8a-a371-32e20acc4272.png",
+    "prompt": "Standalone front-facing upgraded studio ergonomic high-back office chair in dark walnut framing, plush sage-green woven fabric headrest and backrest, subtle muted brass trim accents. Strictly ONLY the chair—NO desk, NO table, NO monitor.\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nFollow this reference chair's outline and bounding box EXACTLY. Its proportions have been precisely pre-calibrated for a little game character. Repaint the natural material, round small upholstery buttons and caster fittings, but keep identical padding, backrest width, armrest positions, seat height and frame endpoints. Camera is dead center. The entire chair remains in the center 57 percent of this square canvas. No desk, additional prop, floor shadow, glow.",
+    "references": [
+      {
+        "file": "exec-a2c451d3-58b9-49d1-aca7-385805981858.png",
+        "sha256": "b53dd6414dd16dccb9173f8756b388d294ef523ac73d90f05a11db076efc6cb5",
+        "rasterSha256": "e4354933a6b6cc2f8685b31de4ef3aa05ab6aeb5575bf2010f53fd7379559037",
+        "render": "Batch 8 alpha cleanup, 504x530 subject centered on 900x900 transparent guide"
+      }
+    ]
+  },
+  {
+    "id": "standard-back",
+    "file": "runtime/standard-back.webp",
+    "publicFile": "art/furniture/standard-back.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "1e604f55a4a0c20fac20f8f5e81e327710b27f2837beffb7274521c55c90d48c"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 560,
+    "height": 480,
+    "bytes": 20250,
+    "sha256": "4d5498056dd201c344860aaddacc10bf6e04a00cbcfbe5ee8b3b0180f7f680ae",
+    "alphaBounds": [
+      147,
+      117,
+      413,
+      397
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "standard-front",
+    "file": "masters/standard-front.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "46593575d7ba67649db5245b851bc7b2173efb9a58041217270ba192b23d0545",
+    "bytes": 672388,
+    "width": 1254,
+    "height": 1254,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      0,
+      21,
+      1240,
+      1254
+    ],
+    "cleanedBounds": [
+      162,
+      351,
+      1099,
+      921
+    ],
+    "sourceFile": "exec-4643fab2-54c1-4b8d-a522-8ddaf24e9d3d.png",
+    "prompt": "Standalone front-facing upgraded dark walnut and warm maple wood studio workstation desk with refined brass inlay strip and brass foot caps, a sleek charcoal-walnut wide monitor on the right topped with a warm golden brass monitor light bar (subtle abstract glowing geometric waves on screen, no text), a compact mechanical ivory keyboard, a tiny terracotta potted succulent plant on the left corner, and a warm cream ceramic mug. Strictly NO chair behind or in front of the desk.\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nUse the reference image as a geometric silhouette and placement guide. Paint a beautifully hand-painted FULLY OPAQUE wood desk with no holes through the wooden desktop and full solid front panel. Match its high table surface, long front legs and small right hand monitor. Exact geometry: desk body width including slab equals 2.36 times the vertical drop from the back edge of the tabletop to the foot soles. Imagine a 120 cm wide by 51 cm tall wooden desk. The center of the tabletop rear is bare and straight. Front panel entirely opaque down to 7 cm above floor. Small blank keycaps, no furniture in the background. Keep the object SMALL in the CENTER of a SQUARE canvas, occupying roughly 62% of its width with at least 17% completely empty padding on every edge. No glow, floor or cast shadow.",
+    "references": [
+      {
+        "file": "apps/web/public/art/office/standard-front.svg",
+        "sha256": "e9d7508e0e2edbd1de9bb201b700713514b388416e0f5b67009ad31223032177",
+        "rasterSha256": "9978c73332f053640c385389882ca23b37a7f74a05e8ea79ea3e29478c82bd71",
+        "render": "PyMuPDF 3x transparent raster, geometry only"
+      }
+    ]
+  },
+  {
+    "id": "standard-front",
+    "file": "runtime/standard-front.webp",
+    "publicFile": "art/furniture/standard-front.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "46593575d7ba67649db5245b851bc7b2173efb9a58041217270ba192b23d0545"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 560,
+    "height": 480,
+    "bytes": 15000,
+    "sha256": "3142381eeb55ca18ae8ea54f5b0fcc57133f5af2e142ebccb98c5e7ed431ba1c",
+    "alphaBounds": [
+      45,
+      144,
+      514,
+      429
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "whiteboard-back",
+    "file": "masters/whiteboard-back.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "ff34c4891d06f74bf8bd1e9a5cef06a20f378849e0485e6d122194faad6d0e11",
+    "bytes": 901125,
+    "width": 1412,
+    "height": 1114,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      0,
+      7,
+      1374,
+      1098
+    ],
+    "cleanedBounds": [
+      258,
+      214,
+      1154,
+      963
+    ],
+    "sourceFile": "exec-d69c861f-2023-42d0-9866-0d6bf4e399d9.png",
+    "prompt": "Standalone front-facing warm oak-framed mobile studio whiteboard on neat wooden stand legs with small brass caster wheels, clean white board surface displaying a neat hand-drawn abstract node-and-chart diagram with two tiny pastel sticky notes (no readable text or numbers), plus a small wooden marker tray with colored markers.\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nTotal silhouette width : height about 1.27:1, one broad board and compact wheels, strictly upright straight-on. Use three simple circles linked by a line and a tiny bar graph.\nCentered small isolated object, surrounded by at least 16% empty transparent padding on every edge. Use warmly lit dark walnut in every dark detail including thin edges.",
+    "references": []
+  },
+  {
+    "id": "whiteboard-back",
+    "file": "runtime/whiteboard-back.webp",
+    "publicFile": "art/furniture/whiteboard-back.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "ff34c4891d06f74bf8bd1e9a5cef06a20f378849e0485e6d122194faad6d0e11"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 560,
+    "height": 480,
+    "bytes": 25224,
+    "sha256": "46c233cf3b67cb83d341b814120d0a15f66e8ba974d33b7437d5c87beb35ea85",
+    "alphaBounds": [
+      65,
+      53,
+      495,
+      413
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "coffee-back",
+    "file": "masters/coffee-back.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "1c7a98d7e99afa7d9ceb496e914c842efb36f2c7346aeb96027a4141df3b58bf",
+    "bytes": 901080,
+    "width": 1285,
+    "height": 1224,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      0,
+      7,
+      1271,
+      1208
+    ],
+    "cleanedBounds": [
+      247,
+      207,
+      1019,
+      1053
+    ],
+    "sourceFile": "exec-dc2ce5a5-7039-4c5c-8be4-2b6c4a4fb79b.png",
+    "prompt": "Standalone front-facing compact warm oak studio coffee counter cabinet with paneled wood front, topped with a charming retro sage-green and brushed-brass espresso machine on the left and a neat stack of two ivory ceramic coffee cups on the right.\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nComplete counter and machine together approximately square, width : height ~1.05:1. Restrained frontal view. Smooth dial face with no markings and no steam.\nCentered small isolated object, surrounded by at least 16% empty transparent padding on every edge. Use warmly lit dark walnut in every dark detail including thin edges.",
+    "references": []
+  },
+  {
+    "id": "coffee-back",
+    "file": "runtime/coffee-back.webp",
+    "publicFile": "art/furniture/coffee-back.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "1c7a98d7e99afa7d9ceb496e914c842efb36f2c7346aeb96027a4141df3b58bf"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 560,
+    "height": 480,
+    "bytes": 21912,
+    "sha256": "1ffea7c10149d4a8b6258231d6ec415fecf178a4cb9def35c784ff681ffe9739",
+    "alphaBounds": [
+      120,
+      95,
+      440,
+      425
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "sofa-back",
+    "file": "masters/sofa-back.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "9142f970e58300f74163b37923cf8ccb4cf2a06dabe6526086630d5f4b01fca6",
+    "bytes": 1401076,
+    "width": 1635,
+    "height": 962,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      121,
+      0,
+      1579,
+      962
+    ],
+    "cleanedBounds": [
+      221,
+      179,
+      1409,
+      834
+    ],
+    "sourceFile": "exec-be67f211-83b5-40d2-b3f5-a0911ec46bfb.png",
+    "prompt": "Standalone front-facing plush cozy rounded two-seater studio lounge sofa upholstered in soft sage-green and warm oatmeal linen fabric, two plump rounded seat cushions, soft rolled armrests, two small warm cream and terracotta throw pillows tucked at the corners, and short dark walnut tapered legs.\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nCompact comfortable double loveseat; total silhouette width : height about 1.70:1. Symmetric view with its central seat area open.\nCentered small isolated object, surrounded by at least 16% empty transparent padding on every edge. Use warmly lit dark walnut in every dark detail including thin edges.",
+    "references": []
+  },
+  {
+    "id": "sofa-back",
+    "file": "runtime/sofa-back.webp",
+    "publicFile": "art/furniture/sofa-back.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "9142f970e58300f74163b37923cf8ccb4cf2a06dabe6526086630d5f4b01fca6"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 560,
+    "height": 480,
+    "bytes": 24070,
+    "sha256": "8f638e82e9011ae1122c4b4718acf01c7af315c3cad6c660e1eafeb684ac6859",
+    "alphaBounds": [
+      37,
+      157,
+      522,
+      425
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "server-back",
+    "file": "masters/server-back.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "abe698ff4db58ade223bf993f69413a99e04de8872dafc383d703aa78851b31f",
+    "bytes": 319767,
+    "width": 1254,
+    "height": 1254,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      25,
+      21,
+      1152,
+      1230
+    ],
+    "cleanedBounds": [
+      464,
+      358,
+      790,
+      943
+    ],
+    "sourceFile": "exec-64885bd4-371c-48ec-ae36-a0e9a86683f8.png",
+    "prompt": "Standalone front-facing sleek dark walnut-framed modern studio compute server cabinet with matte slate-charcoal front rack bays, clean horizontal ventilation louvers, neat subtle brass trim lines, and small dark unlit status indicator slots (kept neat for dynamic runtime LED overlay; no text or numbers).\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nTotal silhouette width : height about 0.62:1, strictly frontal portrait rectangular cabinet. No illuminated LEDs or labeling.\nCentered small isolated object, surrounded by at least 16% empty transparent padding on every edge. Use warmly lit dark walnut in every dark detail including thin edges.\nIMPORTANT framing correction. Entire prop must look like a small distant inventory icon floating in the center of a SQUARE 1:1 canvas. Zoom OUT substantially, with the object's longest side barely 52% of canvas and at least 22% perfectly clear padding on all four sides. A compact upright server, aspect ratio width:height 0.61. Small circular unlit indicator windows run down the rack. No atmospheric effects or lettering.",
+    "references": []
+  },
+  {
+    "id": "server-back",
+    "file": "runtime/server-back.webp",
+    "publicFile": "art/furniture/server-back.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "abe698ff4db58ade223bf993f69413a99e04de8872dafc383d703aa78851b31f"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 560,
+    "height": 480,
+    "bytes": 14044,
+    "sha256": "a946180efbd458d37cbfe14e87545c6ade34717d6d5871daedf6d7288ecd16bd",
+    "alphaBounds": [
+      170,
+      37,
+      390,
+      427
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "dining-front",
+    "file": "masters/dining-front.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "98fad3b83411425e9164f4e38a78e6d18aa8622146eed6c6300a5c672d03b02d",
+    "bytes": 400521,
+    "width": 1254,
+    "height": 1254,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      25,
+      20,
+      1218,
+      1198
+    ],
+    "cleanedBounds": [
+      288,
+      484,
+      963,
+      861
+    ],
+    "sourceFile": "exec-ffa1a5fe-dbee-43cf-830d-877dfb75c7fe.png",
+    "prompt": "Standalone front-facing cozy warm wooden studio canteen dining table with sturdy wooden legs, neatly set with two charming Japanese wooden bento meal trays, two ceramic tea bowls, a small ceramic teapot, and soft sage-green woven placemats.\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nEntire arranged table width : height ~1.85:1. Symmetrical straight-on camera, no chairs, no text or ground.\nCentered small isolated object, surrounded by at least 16% empty transparent padding on every edge. Use warmly lit dark walnut in every dark detail including thin edges.\nIMPORTANT framing correction. Entire prop must look like a small distant inventory icon floating in the center of a SQUARE 1:1 canvas. Zoom OUT substantially, with the object's longest side barely 52% of canvas and at least 22% perfectly clear padding on all four sides.  No atmospheric effects or lettering.",
+    "references": []
+  },
+  {
+    "id": "dining-front",
+    "file": "runtime/dining-front.webp",
+    "publicFile": "art/furniture/dining-front.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "98fad3b83411425e9164f4e38a78e6d18aa8622146eed6c6300a5c672d03b02d"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 560,
+    "height": 480,
+    "bytes": 30826,
+    "sha256": "d9930b31a402b27c2e0db0d36c646e2c9781e395ec053f88e2f15ff33036161b",
+    "alphaBounds": [
+      40,
+      161,
+      520,
+      429
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "reading-front",
+    "file": "masters/reading-front.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "a04f87ff8cf78c795ebd6a0cad34086b873b394f59f3b7fed066b975aa470270",
+    "bytes": 276686,
+    "width": 1254,
+    "height": 1254,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      0,
+      35,
+      1232,
+      1230
+    ],
+    "cleanedBounds": [
+      285,
+      476,
+      942,
+      821
+    ],
+    "sourceFile": "exec-2efbe05c-f100-4dc5-95b4-d3f4979d52a3.png",
+    "prompt": "Standalone front-facing warm dark walnut library reading table with tapered legs, featuring a cozy muted-brass banker's desk lamp with soft sage-green glass shade, two neat stacks of cloth-bound blank hardcover books, and an open blank parchment notebook.\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nWide low table, total silhouette width : height ~1.85:1. Lamp on one side, no chairs. Book spines and notebook pages are blank.\nCentered small isolated object, surrounded by at least 16% empty transparent padding on every edge. Use warmly lit dark walnut in every dark detail including thin edges.\nIMPORTANT framing correction. Entire prop must look like a small distant inventory icon floating in the center of a SQUARE 1:1 canvas. Zoom OUT substantially, with the object's longest side barely 52% of canvas and at least 22% perfectly clear padding on all four sides.  No atmospheric effects or lettering.",
+    "references": []
+  },
+  {
+    "id": "reading-front",
+    "file": "runtime/reading-front.webp",
+    "publicFile": "art/furniture/reading-front.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "a04f87ff8cf78c795ebd6a0cad34086b873b394f59f3b7fed066b975aa470270"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 560,
+    "height": 480,
+    "bytes": 21268,
+    "sha256": "0f9a03d51d0450baac2a9b31c23d67c8d83620f1bce9581a430bb4101fbcf7ed",
+    "alphaBounds": [
+      40,
+      177,
+      520,
+      429
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "decor-studio_cat",
+    "file": "masters/decor-studio_cat.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "640c27d69a3b245848ac1119adfc48b688c830c4d43486da79315f8eb4e6687b",
+    "bytes": 1022293,
+    "width": 1254,
+    "height": 1254,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      0,
+      19,
+      1250,
+      1254
+    ],
+    "cleanedBounds": [
+      198,
+      267,
+      1055,
+      997
+    ],
+    "sourceFile": "exec-ba2faced-ffd4-4b05-863d-4680973428ba.png",
+    "prompt": "An adorable plump calico-and-ginger chibi studio cat curled peacefully asleep with happy closed eyes on a round plush oatmeal-and-sage-green stitched floor cushion, cute tiny paws tucked in and tail wrapped neatly around the cushion.\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nSingle crisp transparent-edge sticker silhouette of the sleeping calico and cushion. No radiant glow, no halo, no outlines outside the actual silhouette, no atmospheric fog or floor shadow. Everything beyond the cat and cushion is fully transparent. Warm walnut lines. Center the small object inside the middle 60 percent of a square canvas.",
+    "references": []
+  },
+  {
+    "id": "decor-studio_cat",
+    "file": "runtime/decor-studio_cat.webp",
+    "publicFile": "art/furniture/decor-studio_cat.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "640c27d69a3b245848ac1119adfc48b688c830c4d43486da79315f8eb4e6687b"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 256,
+    "height": 256,
+    "bytes": 11888,
+    "sha256": "7be9187dcae7bde1876ef29c1655bdaea840bed7c40c2a3aed8bf087ea7aff4b",
+    "alphaBounds": [
+      30,
+      68,
+      228,
+      237
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "decor-monstera_pot",
+    "file": "masters/decor-monstera_pot.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "a2fab8709d2599a9def80ccda74d489cc03ffcf0b7655cd34c350420bf95e4a2",
+    "bytes": 547947,
+    "width": 1254,
+    "height": 1254,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      0,
+      35,
+      1208,
+      1254
+    ],
+    "cleanedBounds": [
+      342,
+      352,
+      889,
+      1045
+    ],
+    "sourceFile": "exec-4a74ca44-0105-4dc0-9d1b-2c4f160c3a44.png",
+    "prompt": "A lush potted indoor Monstera deliciosa plant with cheerful glossy sage-and-emerald split leaves planted in a rounded warm ivory speckled ceramic planter resting on a low walnut wood plant stand.\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nA single complete isolated prop. Small hand-painted game silhouette. No ground plane. No typography, no numbers or lettering anywhere.\nCentered small isolated object, surrounded by at least 16% empty transparent padding on every edge. Use warmly lit dark walnut in every dark detail including thin edges.\nPaint a real airy split-leaf monstera with a handful of leaves of different silhouettes. DEEP open splits reveal transparent space between the lobes, and two or three open fenestrations per mature leaf. A sharply defined single prop silhouette, solid opaque leafy surfaces, NO ambient glow or soft background aura. Front-facing warm cream ceramic round planter and short walnut stand. Compose on a square canvas; keep the whole object SMALL within the middle 54% of the canvas and at least 20% empty margin on every side.",
+    "references": []
+  },
+  {
+    "id": "decor-monstera_pot",
+    "file": "runtime/decor-monstera_pot.webp",
+    "publicFile": "art/furniture/decor-monstera_pot.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "a2fab8709d2599a9def80ccda74d489cc03ffcf0b7655cd34c350420bf95e4a2"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 256,
+    "height": 256,
+    "bytes": 14750,
+    "sha256": "c13f643b2556a51a7b3486ea9d71190eaea62f01c8b618d39089b21dec79bcbc",
+    "alphaBounds": [
+      50,
+      39,
+      206,
+      237
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "decor-token_jar",
+    "file": "masters/decor-token_jar.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "f10e15fea33efbf7733398fcc9e18b1b87e51141f96cf15b5059e822c29fc895",
+    "bytes": 582313,
+    "width": 1312,
+    "height": 1199,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      0,
+      70,
+      1284,
+      1199
+    ],
+    "cleanedBounds": [
+      409,
+      201,
+      899,
+      1023
+    ],
+    "sourceFile": "exec-934e8fde-f5a1-4bf4-8148-23de7edbf269.png",
+    "prompt": "A charming small round walnut wood side stool topped with a clear round glass apothecary jar with a brushed-brass lid, filled halfway with softly glowing warm golden four-point star token coins.\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nA single complete isolated prop. Small hand-painted game silhouette. No ground plane. No typography, no numbers or lettering anywhere.\nCentered small isolated object, surrounded by at least 16% empty transparent padding on every edge. Use warmly lit dark walnut in every dark detail including thin edges.",
+    "references": []
+  },
+  {
+    "id": "decor-token_jar",
+    "file": "runtime/decor-token_jar.webp",
+    "publicFile": "art/furniture/decor-token_jar.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "f10e15fea33efbf7733398fcc9e18b1b87e51141f96cf15b5059e822c29fc895"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 256,
+    "height": 256,
+    "bytes": 9556,
+    "sha256": "9a19e5dbb60c5435a14efc1f4048563b92a5b409a0cd15c421a82a03be98fb19",
+    "alphaBounds": [
+      69,
+      39,
+      187,
+      237
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "decor-vinyl_player",
+    "file": "masters/decor-vinyl_player.png",
+    "tool": "built-in image_gen",
+    "model": "unknown; not exposed",
+    "parameters": {
+      "transparent_background": true
+    },
+    "license": "User-authorized generation for Out of Tokens; no separate license supplied.",
+    "sha256": "964685161e8d841086e172e464267c56350bb1d2c66adf1d265566de2acc153b",
+    "bytes": 662444,
+    "width": 1312,
+    "height": 1199,
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaBounds": [
+      57,
+      23,
+      1274,
+      1167
+    ],
+    "cleanedBounds": [
+      408,
+      237,
+      892,
+      1002
+    ],
+    "sourceFile": "exec-700f3937-c170-44f5-b0e1-41513254d311.png",
+    "prompt": "A cozy compact mid-century walnut mini record-player stand holding a charming turntable with a dark vinyl disc, tiny muted-brass tonearm, warm cream speaker grille front, and a few colorful blank vinyl record sleeves leaning neatly in the lower wooden cubby.\nWarm modern cozy indie AI studio 2.5D front-facing slightly top-down game prop art matching MapleStory-inspired soft hand-painted chibi game aesthetics. Clean continuous closed medium warm walnut-brown outer outline (#4A3123, slightly softer than character outlines, strictly zero pure black #000000), delicate warm fine inner lines, soft blended hand-painted shading with warm wood, ivory ceramic, sage green fabric and restrained muted brass accents (no rigid flat cel blocks, no messy paint splatter). Front-facing orthographic 2.5D stage perspective matching a horizontal studio room. Complete uncropped object with generous 12% transparent margins. Genuine transparent background. Strictly NO large cast floor shadow, NO characters, NO readable text, NO letters, NO numbers, NO logos, NO room walls, NO watermark.\nA single complete isolated prop. Small hand-painted game silhouette. No ground plane. No typography, no numbers or lettering anywhere.\nCentered small isolated object, surrounded by at least 16% empty transparent padding on every edge. Use warmly lit dark walnut in every dark detail including thin edges.",
+    "references": []
+  },
+  {
+    "id": "decor-vinyl_player",
+    "file": "runtime/decor-vinyl_player.webp",
+    "publicFile": "art/furniture/decor-vinyl_player.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "normalized master",
+    "sourceSha256": [
+      "964685161e8d841086e172e464267c56350bb1d2c66adf1d265566de2acc153b"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 256,
+    "height": 256,
+    "bytes": 8600,
+    "sha256": "16d18e20061c86ed3ec4dc3e440cbb8cac816fbaf094000a5b14bb87d3d782f6",
+    "alphaBounds": [
+      66,
+      39,
+      191,
+      237
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "basic-preview",
+    "file": "runtime/basic-preview.webp",
+    "publicFile": "art/furniture/basic-preview.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "layer composite",
+    "sourceSha256": [
+      "0235997429ac168a97dabf0834fb9bfd4d2651f6fd3d7dc927bed068e27e85f2",
+      "88522f2599eec8265a70a9c4d16ddf3133aa0294195019251da40dc85f5b3fa2"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 256,
+    "height": 256,
+    "bytes": 6234,
+    "sha256": "8d5025a098325533ebef07a53a2592b9bfd46a97dccba428f0cf9d862174ce3e",
+    "alphaBounds": [
+      27,
+      60,
+      229,
+      195
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "standard-preview",
+    "file": "runtime/standard-preview.webp",
+    "publicFile": "art/furniture/standard-preview.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "layer composite",
+    "sourceSha256": [
+      "4d5498056dd201c344860aaddacc10bf6e04a00cbcfbe5ee8b3b0180f7f680ae",
+      "3142381eeb55ca18ae8ea54f5b0fcc57133f5af2e142ebccb98c5e7ed431ba1c"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 256,
+    "height": 256,
+    "bytes": 7148,
+    "sha256": "ac8d3b1461a42ea42678c3c5be50117468a9ef25fa31e30aad99f7062f1b0ef0",
+    "alphaBounds": [
+      27,
+      61,
+      229,
+      195
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "whiteboard-preview",
+    "file": "runtime/whiteboard-preview.webp",
+    "publicFile": "art/furniture/whiteboard-preview.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "layer composite",
+    "sourceSha256": [
+      "46c233cf3b67cb83d341b814120d0a15f66e8ba974d33b7437d5c87beb35ea85"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 256,
+    "height": 256,
+    "bytes": 9582,
+    "sha256": "53b74bb710285254773b27ae9ff2bbcd07e5545f14a467cd3b4619ad5d8cca91",
+    "alphaBounds": [
+      27,
+      43,
+      229,
+      212
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "coffee-preview",
+    "file": "runtime/coffee-preview.webp",
+    "publicFile": "art/furniture/coffee-preview.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "layer composite",
+    "sourceSha256": [
+      "1ffea7c10149d4a8b6258231d6ec415fecf178a4cb9def35c784ff681ffe9739"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 256,
+    "height": 256,
+    "bytes": 11002,
+    "sha256": "f2d9355ac1807345488bb6d181f952db214b95dce87a14caa2790b6bbf302afd",
+    "alphaBounds": [
+      30,
+      27,
+      226,
+      229
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "sofa-preview",
+    "file": "runtime/sofa-preview.webp",
+    "publicFile": "art/furniture/sofa-preview.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "layer composite",
+    "sourceSha256": [
+      "8f638e82e9011ae1122c4b4718acf01c7af315c3cad6c660e1eafeb684ac6859"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 256,
+    "height": 256,
+    "bytes": 6788,
+    "sha256": "bccf3e3daace744fbe52278c8fbfacaac0392e9957cd24e012f7f998fd223dde",
+    "alphaBounds": [
+      27,
+      72,
+      229,
+      184
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "server-preview",
+    "file": "runtime/server-preview.webp",
+    "publicFile": "art/furniture/server-preview.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "layer composite",
+    "sourceSha256": [
+      "a946180efbd458d37cbfe14e87545c6ade34717d6d5871daedf6d7288ecd16bd"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 256,
+    "height": 256,
+    "bytes": 5690,
+    "sha256": "6c6ef4d75593bcca95aca92cb639edd7454351ebfc9424611d62afb7a91e608e",
+    "alphaBounds": [
+      71,
+      27,
+      185,
+      229
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "dining-preview",
+    "file": "runtime/dining-preview.webp",
+    "publicFile": "art/furniture/dining-preview.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "layer composite",
+    "sourceSha256": [
+      "d9930b31a402b27c2e0db0d36c646e2c9781e395ec053f88e2f15ff33036161b"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 256,
+    "height": 256,
+    "bytes": 8280,
+    "sha256": "0a63df66ace5ce36621c583bfc6aee7095d6367810acc7e4cd9f6cad569f0733",
+    "alphaBounds": [
+      27,
+      71,
+      229,
+      184
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "reading-preview",
+    "file": "runtime/reading-preview.webp",
+    "publicFile": "art/furniture/reading-preview.webp",
+    "sourceTool": "built-in image_gen",
+    "sourceModel": "unknown; not exposed",
+    "derivation": "layer composite",
+    "sourceSha256": [
+      "0f9a03d51d0450baac2a9b31c23d67c8d83620f1bce9581a430bb4101fbcf7ed"
+    ],
+    "encoder": {
+      "quality": 88,
+      "method": 6,
+      "warmInkPasses": 0
+    },
+    "width": 256,
+    "height": 256,
+    "bytes": 6310,
+    "sha256": "fda96c7052ee1fe80e4c1b9d8cc1b7b85a7f098d995c6546c6a41c4181620d5f",
+    "alphaBounds": [
+      27,
+      75,
+      229,
+      181
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "visiblePureBlackPixels": 0
+  },
+  {
+    "id": "catalog",
+    "file": "apps/web/public/art/furniture/catalog.json",
+    "publicFile": "art/furniture/catalog.json",
+    "sha256": "062227ca351a894643fb3b58fcef97c9a18f53e969e8e04b0709d2c51646a3c1",
+    "bytes": 5656
+  }
+]

@@ -6,6 +6,7 @@ import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {chapterBannerArt,projectCoverArt,financeArt,ritualBackdropArt,stampSealCrestArt} from './src/generated-art.js';
 import {emoteArt,giftArt,clientArt,teaBreakArt} from './src/living-art.js';
+import {decorPropArt, decorPropIds, furnitureKinds, furnitureLayerArt, furniturePreviewArt} from './src/furniture-art.js';
 
 // Full-batch byte comparisons exceeded 5s before Batch 6 on this Windows host.
 // This is an integrity test, not a performance gate; retain every byte assertion.
@@ -401,4 +402,153 @@ it.each(phase3Cases)('verifies Art-Batch $batchName masters, rig, decoded poses 
    headWidth, standHeadWidth: standWidth, quality: 88, method: 6, poseScale: 1});
   expect(e.normalization!.shoeCentroidX).toBeCloseTo(center!, 5);
  }
+});
+
+const furnitureLayers = {
+ basic: ['back', 'front'], standard: ['back', 'front'], whiteboard: ['back'], coffee: ['back'],
+ sofa: ['back'], server: ['back'], dining: ['front'], reading: ['front'],
+} as const;
+const batch11Decor = ['decor-studio_cat', 'decor-monstera_pot', 'decor-token_jar', 'decor-vinyl_player'];
+
+it('limits Art-Batch 11 paths to shipped layers, previews and decor', () => {
+ expect(furnitureKinds).toEqual(Object.keys(furnitureLayers));
+ expect(decorPropIds).toEqual(batch11Decor);
+ for (const kind of furnitureKinds) {
+  const layers: readonly string[] = furnitureLayers[kind];
+  for (const layer of ['back', 'front'] as const) {
+   expect(furnitureLayerArt(kind, layer)).toBe(layers.includes(layer) ? `./art/furniture/${kind}-${layer}.webp` : null);
+  }
+  expect(furniturePreviewArt(kind)).toBe(`./art/furniture/${kind}-preview.webp`);
+ }
+ for (const id of decorPropIds) expect(decorPropArt(id)).toBe(`./art/furniture/${id}.webp`);
+ for (const invalid of ['', '../../office', 'basic/../sofa', 'basic%2f..', '__proto__', 'constructor', 'toString', 'BASIC']) {
+  expect(furnitureLayerArt(invalid, 'front')).toBeNull();
+  expect(furnitureLayerArt('basic', invalid as 'front')).toBeNull();
+  expect(furniturePreviewArt(invalid)).toBe('./art/furniture/basic-preview.webp');
+  expect(decorPropArt(invalid)).toBe('./art/furniture/decor-studio_cat.webp');
+ }
+});
+
+type FurnitureEntry = {
+ id: string; file: string; publicFile?: string; width?: number; height?: number; bytes: number; sha256: string;
+ alphaRange?: number[]; alphaBounds?: number[]; visiblePureBlackPixels?: number; sourceSha256?: string[];
+};
+
+it('verifies Art-Batch 11 PNGs, decoded WebPs, composite sources, catalog and offline copies', () => {
+ const batch = 'art/art-batch-11';
+ const pub = 'art/furniture/';
+ const entries: FurnitureEntry[] = JSON.parse(readFileSync(join(batch, 'manifest.json'), 'utf8'));
+ const layers = furnitureKinds.flatMap(k => furnitureLayers[k].map(l => k + '-' + l));
+ const previews = furnitureKinds.map(k => k + '-preview');
+ const originals = [...layers, ...batch11Decor];
+ const images = [...originals, ...previews];
+ const inventory = [...images.map(k => k + '.webp'), 'catalog.json'].sort();
+ const sha = (path: string) => createHash('sha256').update(readFileSync(path)).digest('hex');
+ const offline: {assets: string[]} = JSON.parse(readFileSync('apps/web/dist/offline-assets.json', 'utf8'));
+ expect(entries).toHaveLength(37);
+ expect(new Set(entries.map(e => e.file)).size).toBe(37);
+ expect(readdirSync(join(batch, 'masters')).sort()).toEqual(originals.map(k => k + '.png').sort());
+ expect(readdirSync(join(batch, 'runtime')).sort()).toEqual(images.map(k => k + '.webp').sort());
+ expect(readdirSync(join('apps/web/public', pub)).sort()).toEqual(inventory);
+ expect(offline.assets.filter(p => p.startsWith(pub)).sort()).toEqual(inventory.map(p => pub + p));
+ const masters = entries.filter(e => !e.publicFile);
+ const runtime = entries.filter(e => e.publicFile && e.id !== 'catalog');
+ expect(masters.map(e => e.id).sort()).toEqual(originals.sort());
+ expect(runtime.map(e => e.id).sort()).toEqual(images.sort());
+ const byId = (id: string) => runtime.find(e => e.id === id)!;
+ const pixels = inspectChibiPixels([...masters, ...runtime].map(e => resolve(batch, e.file)));
+ for (const [i, e] of [...masters, ...runtime].entries()) {
+  const master = !e.publicFile;
+  expect(e.file).toBe(master ? 'masters/' + e.id + '.png' : 'runtime/' + e.id + '.webp');
+  const path = join(batch, e.file);
+  expect(readFileSync(path).length).toBe(e.bytes);
+  expect(sha(path)).toBe(e.sha256);
+  const [format, w, h, range, bounds, , , black] = pixels[i]!;
+  expect([format, w, h, range, bounds]).toEqual([master ? 'PNG' : 'WEBP', e.width, e.height, e.alphaRange, e.alphaBounds]);
+  if (master) {
+   expect(e).toMatchObject({tool: 'built-in image_gen', model: 'unknown; not exposed', parameters: {transparent_background: true}});
+   expect(range[0]).toBe(0);
+   expect(range[1]).toBeGreaterThanOrEqual(250);
+   continue;
+  }
+  expect(e.publicFile).toBe(pub + e.id + '.webp');
+  for (const folder of ['public', 'dist']) expect(sha(join('apps/web', folder, e.publicFile!))).toBe(e.sha256);
+  expect(e).toMatchObject({visiblePureBlackPixels: 0, encoder: {quality: 88, method: 6}});
+  expect([range, black]).toEqual([[0, 255], 0]);
+  expect([w, h]).toEqual(layers.includes(e.id) ? [560, 480] : [256, 256]);
+  expect(e.bytes).toBeLessThan(w === 560 ? 70000 : 35000);
+  if (previews.includes(e.id)) {
+   const kind = furnitureKinds.find(k => e.id === k + '-preview')!;
+   expect(e.sourceSha256).toEqual(furnitureLayers[kind].map(l => byId(kind + '-' + l).sha256));
+   expect(Math.min(bounds[0]!, bounds[1]!, 256 - bounds[2]!, 256 - bounds[3]!)).toBeGreaterThanOrEqual(26);
+  } else {
+   expect(e.sourceSha256).toEqual([masters.find(m => m.id === e.id)!.sha256]);
+  }
+ }
+ const catalogEntry = entries.find(e => e.id === 'catalog')!;
+ const catalogPath = join('apps/web/public', pub, 'catalog.json');
+ expect(catalogEntry.file).toBe('apps/web/public/art/furniture/catalog.json');
+ expect(catalogEntry.publicFile).toBe(pub + 'catalog.json');
+ expect(readFileSync(catalogPath).length).toBe(catalogEntry.bytes);
+ for (const f of ['public', 'dist']) expect(sha(join('apps/web', f, pub, 'catalog.json'))).toBe(catalogEntry.sha256);
+ const catalog = JSON.parse(readFileSync(catalogPath, 'utf8'));
+ expect(catalog).toMatchObject({schemaVersion: 1, layerCanvas: [560,480], pixelsPerWorldUnit: 2, worldOriginPx: [280,400],
+  previewCanvas: [256,256], decorCanvas: [256,256]});
+ expect(catalog.furniture).toHaveLength(8);
+ for (const [i, kind] of furnitureKinds.entries()) {
+  expect(catalog.furniture[i]).toMatchObject({kind, layers: furnitureLayers[kind], preview: kind + '-preview.webp',
+   alphaBounds: Object.fromEntries(furnitureLayers[kind].map(l => [l, byId(kind + '-' + l).alphaBounds])),
+   previewAlphaBounds: byId(kind + '-preview').alphaBounds});
+ }
+ expect(catalog.decor).toHaveLength(4);
+ for (const [i, id] of batch11Decor.entries()) {
+  const e = byId(id), [l,t,r,b] = e.alphaBounds as [number,number,number,number];
+  expect(catalog.decor[i]).toMatchObject({id, file: id + '.webp', feet: [128,236], visibleHeight: b-t, bytes: e.bytes,
+   sha256: e.sha256, alphaBounds: e.alphaBounds});
+  expect(b-1).toBe(236);
+  expect(Math.min(l,t,256-r)).toBeGreaterThanOrEqual(20);
+  expect(Math.max(r-l,b-t)).toBeGreaterThanOrEqual(192);
+  expect(Math.max(r-l,b-t)).toBeLessThanOrEqual(204);
+ }
+});
+
+it('checks Art-Batch 11 layer registration, desk opacity, catalog anchors and editor composition', () => {
+ const result = spawnSync('python', ['-c', [
+  'import json, numpy as np',
+  'from pathlib import Path',
+  'from PIL import Image',
+  'root = Path("apps/web/public/art/furniture")',
+  'catalog = json.loads((root / "catalog.json").read_bytes())',
+  'dims = {"whiteboard":(430,460,340,360,412),"coffee":(320,350,310,330,424),"sofa":(460,490,265,290,424),"server":(220,250,370,390,426),"dining":(460,500,240,280,428),"reading":(460,500,240,280,428)}',
+  'for obj in catalog["furniture"]:',
+  '    kind = obj["kind"]',
+  '    merged = Image.new("RGBA", (560,480))',
+  '    for layer in obj["layers"]:',
+  '        image = Image.open(root / (kind+"-"+layer+".webp")).convert("RGBA")',
+  '        merged.alpha_composite(image)',
+  '        a = np.asarray(image.getchannel("A")); l,t,r,b = image.getchannel("A").getbbox()',
+  '        assert abs((l+r)/2-280)<=1, kind',
+  '        if kind in ("basic","standard"):',
+  '            if layer=="back": assert 260<=b-t<=290 and b-1==396, kind',
+  '            else:',
+  '                assert 460<=r-l<=500 and b-1==428, kind',
+  '                assert 222<=np.flatnonzero((a[:,210:351]>=248).all(axis=1))[0]<=224, kind',
+  '                assert a[224:261,210:351].min()==255 and a[284:385,180:381].min()==255, kind',
+  '                x,y,w,h=obj["anchors"]["screenRect"]; assert w>0 and h>0 and a[y:y+h,x:x+w].min()>=248, kind',
+  '        else:',
+  '            w0,w1,h0,h1,foot=dims[kind]; assert w0<=r-l<=w1 and h0<=b-t<=h1 and b-1==foot, kind',
+  '    for field in ("seatY",) if kind in ("sofa","basic","standard") else (): assert 0<obj["anchors"][field]<400',
+  '    if kind=="server":',
+  '        assert len(obj["anchors"]["ledPoints"])>=2',
+  '        for x,y in obj["anchors"]["ledPoints"]: assert a[y,x]>=248',
+  '    if kind=="coffee": x,y=obj["anchors"]["steamAnchor"]; assert l<x<r and t<y<b',
+  '    crop=merged.crop(merged.getchannel("A").getbbox()); scale=202/max(crop.size)',
+  '    thumb=crop.resize(tuple(round(v*scale) for v in crop.size),Image.Resampling.LANCZOS).getchannel("A").point(lambda a:a if a>=14 else 0)',
+  '    thumb=thumb.crop(thumb.getbbox()); expected=Image.new("L",(256,256)); expected.paste(thumb,((256-thumb.width)//2,(256-thumb.height)//2))',
+  '    assert expected.tobytes()==Image.open(root/obj["preview"]).getchannel("A").tobytes(), kind',
+  'for obj in catalog["decor"]:',
+  '    a=np.asarray(Image.open(root/obj["file"]).getchannel("A")); center=np.average(np.arange(256),weights=a.sum(axis=0))',
+  '    assert abs(center-128)<=0.5 and abs(center-obj["alphaCentroidX"])<1e-6, obj["id"]',
+ ].join('\n')], {encoding: 'utf8'});
+ expect(result.status, result.error?.message ?? result.stderr).toBe(0);
 });
