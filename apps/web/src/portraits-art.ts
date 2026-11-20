@@ -18,3 +18,11 @@ export function flagshipPortraitArt(id: string): string | null {
 export function avatarPortraitArt(id: string): string | null {
     return portraitPath('avatars', id);
 }
+
+export const portraitEmotions = ['happy', 'flustered', 'focused'] as const;
+const expressionCharacters = ['bluewhale', 'qwen', 'llama', 'mistral', 'gpt', 'claude'];
+
+export function expressionAvatarArt(id: string, emotion: string): string | null {
+    if (!expressionCharacters.includes(id) || !portraitEmotions.some(state => state === emotion)) return null;
+    return `./art/portraits/expressions/${id}-${emotion}.webp`;
+}

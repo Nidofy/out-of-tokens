@@ -7,7 +7,7 @@ import {spawnSync} from 'node:child_process';
 import {chapterBannerArt,projectCoverArt,financeArt,ritualBackdropArt,stampSealCrestArt} from './src/generated-art.js';
 import {emoteArt,giftArt,clientArt,teaBreakArt} from './src/living-art.js';
 import {decorPropArt, decorPropIds, furnitureKinds, furnitureLayerArt, furniturePreviewArt} from './src/furniture-art.js';
-import {avatarPortraitArt, basePortraitArt, flagshipPortraitArt, portraitCharacters} from './src/portraits-art.js';
+import {avatarPortraitArt, basePortraitArt, expressionAvatarArt, flagshipPortraitArt, portraitCharacters, portraitEmotions} from './src/portraits-art.js';
 import {endingArt, paperclipMascotArt, storyClientArt, worldArt} from './src/story-art.js';
 import {expansionOutcomeArt, expansionSoftwareArt, expansionVignetteArt, worldTownMapArt} from './src/expansion-art.js';
 
@@ -711,7 +711,8 @@ it('decodes all 36 partner portraits and verifies both art batches, the catalog 
  expect(published.size).toBe(37);
  for (const root of ['apps/web/dist', 'apps/dsh/dist/web']) {
   const offline: {assets: string[]} = JSON.parse(readFileSync(join(root, 'offline-assets.json'), 'utf8'));
-  expect(offline.assets.filter(p => p.startsWith(directory)).sort()).toEqual([...published.keys()].sort());
+  const legacy = offline.assets.filter(p => p.startsWith(directory) && !p.startsWith(directory + 'expressions/'));
+  expect(legacy.sort()).toEqual([...published.keys()].sort());
   for (const [path, hash] of published) expect(digest(join(root, path)).sha256).toBe(hash);
  }
 });
@@ -881,7 +882,7 @@ function fileSha(path: string): string {
  return createHash('sha256').update(readFileSync(path)).digest('hex');
 }
 
-function decodeRuntimeArt(paths: string[]): (Pick<RuntimeArt, 'width' | 'height' | 'mode' | 'visiblePureBlackPixels' | 'alphaBounds' | 'alphaRange'> & {format: string})[] {
+function decodeRuntimeArt(paths: string[]): (Pick<RuntimeArt, 'width' | 'height' | 'mode' | 'visiblePureBlackPixels' | 'alphaBounds' | 'alphaRange'> & {format: string; alphaCentroidPx?: number[]})[] {
  const result = spawnSync('python', ['-c', [
   'import json, sys',
   'import numpy as np',
@@ -894,6 +895,7 @@ function decodeRuntimeArt(paths: string[]): (Pick<RuntimeArt, 'width' | 'height'
   '        if im.mode == "RGBA":',
   '            alpha = im.getchannel("A"); black &= p[:, :, 3] > 0',
   '            item.update(alphaBounds=alpha.getbbox(), alphaRange=alpha.getextrema())',
+  '            a = p[:, :, 3]; item["alphaCentroidPx"] = [float(np.average(np.arange(n),weights=a.sum(axis=ax))) for ax,n in enumerate(im.size)]',
   '        result.append(dict(**item, visiblePureBlackPixels=int(black.sum())))',
   'print(json.dumps(result))',
  ].join('\n'), ...paths], {encoding: 'utf8'});
@@ -925,6 +927,7 @@ function verifyArtPackages(directory: string, entries: RuntimeArt[], catalog: Ar
     visiblePureBlackPixels: entry.visiblePureBlackPixels});
    expect(pixel.alphaBounds).toEqual(entry.alphaBounds);
    expect(pixel.alphaRange).toEqual(entry.alphaRange);
+   if ('alphaCentroidPx' in entry) expect(pixel.alphaCentroidPx).toEqual(entry.alphaCentroidPx);
    expect(pixel.visiblePureBlackPixels).toBe(0);
    if (entry.mode === 'RGBA') expect(pixel.alphaRange).toEqual([0, 255]);
   }
@@ -1009,4 +1012,74 @@ it('re-exports Batch 14 twice from the masters including the catalog and proof s
  }
  expect(files.size).toBe(23);
  verifyRepeatExport(batch + '/export.py', files);
+}, 180000);
+
+type ExpressionEntry = RuntimeArt & {
+ character: string; emotion: string; heightRatio: number; centroidShiftPx: [number, number]; alphaCentroidPx: number[];
+};
+type ExpressionManifest = {assets: {id: string; master: ArtFile; reference: ArtFile; default: ArtFile;
+ runtime: ExpressionEntry}[]; catalog: ArtFile; reviews: ArtFile[]};
+const expressionsDir = 'art/portraits/expressions';
+const expressionPublic = 'apps/web/public/' + expressionsDir;
+const expressionCases = [{batch: '15a', reference: '12a', ids: batch12ACharacters}];
+
+it('verifies every expression, its identity reference, geometry, whitelist and both offline copies', () => {
+ const catalog: {schemaVersion: number; canvas: number[]; assets: ExpressionEntry[]} =
+  JSON.parse(readFileSync(join(expressionPublic, 'catalog.json'), 'utf8'));
+ expect([catalog.schemaVersion, catalog.canvas]).toEqual([1, [256, 256]]);
+ expect(portraitEmotions).toEqual(['happy', 'flustered', 'focused']);
+ const rows: string[] = expressionCases.flatMap(c => [...c.ids]);
+ expect(catalog.assets.map(e => e.id)).toEqual(rows.flatMap(id => portraitEmotions.map(emotion => id + '-' + emotion)));
+ const baseline = decodeRuntimeArt(rows.map(id => 'apps/web/public/art/portraits/avatars/' + id + '.webp'));
+ for (const id of ['', '../qwen', '__proto__', 'CLAUDE', ...portraitCharacters.filter(id => !rows.includes(id))])
+  expect(expressionAvatarArt(id, 'happy')).toBeNull();
+ for (const emotion of ['', '../happy', '__proto__', 'Happy', 'default']) expect(expressionAvatarArt('qwen', emotion)).toBeNull();
+ let currentCatalog: ArtFile | undefined;
+ for (const c of expressionCases) {
+  const archive = 'art/art-batch-' + c.batch;
+  const manifest: ExpressionManifest = JSON.parse(readFileSync(join(archive, 'manifest.json'), 'utf8'));
+  expect(manifest.assets.map(m => m.id)).toEqual(c.ids.flatMap(id => portraitEmotions.map(e => id + '-' + e)));
+  expect(readdirSync(join(archive, 'masters')).sort()).toEqual([...c.ids].sort());
+  for (const character of c.ids) {
+   expect(readdirSync(join(archive, 'masters', character)).sort()).toEqual(portraitEmotions.map(e => e + '.png').sort());
+  }
+  for (const asset of manifest.assets) {
+   const entry = catalog.assets.find(item => item.id === asset.id)!;
+   const {emotion, character} = entry;
+   const file = asset.id + '.webp';
+   expect(entry).toMatchObject({file, mode: 'RGBA', width: 256, height: 256, alphaRange: [0, 255], visiblePureBlackPixels: 0});
+   expect(asset.id).toBe(character + '-' + emotion);
+   expect(expressionAvatarArt(character, emotion)).toBe('./' + expressionsDir + '/' + file);
+   expect(asset.runtime).toMatchObject({...entry, file: expressionPublic + '/' + file});
+   expect(asset.master.file).toBe(archive + '/masters/' + character + '/' + emotion + '.png');
+   expect(asset.reference.file).toBe('art/art-batch-' + c.reference + '/masters/' + character + '/avatar.png');
+   expect(asset.default.file).toBe('apps/web/public/art/portraits/avatars/' + character + '.webp');
+   for (const item of [asset.master, asset.reference, asset.default]) expect(fileSha(item.file)).toBe(item.sha256);
+   expect(entry.bytes).toBeLessThanOrEqual(35000);
+   const base = baseline[rows.indexOf(character)]!;
+   const [l,t,r,b] = entry.alphaBounds!;
+   expect(Math.min(l!,t!,256-r!,256-b!)).toBeGreaterThanOrEqual(10);
+   const heightRatio = (b! - t!) / (base.alphaBounds![3]! - base.alphaBounds![1]!);
+   expect(entry.heightRatio).toBeCloseTo(heightRatio, 6);
+   expect(heightRatio >= 0.94 && heightRatio <= 1.06).toBe(true);
+   for (const axis of [0,1] as const) {
+    const shift = entry.alphaCentroidPx[axis]! - base.alphaCentroidPx![axis]!;
+    expect(entry.centroidShiftPx[axis]).toBeCloseTo(shift, 5);
+    expect(Math.abs(shift)).toBeLessThanOrEqual(axis === 0 ? 4 : 5);
+   }
+  }
+  currentCatalog = manifest.catalog;
+ }
+ verifyArtPackages(expressionsDir, catalog.assets, currentCatalog!);
+});
+
+it.each(expressionCases)('repeats the $batch expression export and compares the historical catalog and review hashes', ({batch}) => {
+ const archive = 'art/art-batch-' + batch, file = archive + '/manifest.json';
+ const manifest: ExpressionManifest = JSON.parse(readFileSync(file, 'utf8'));
+ const outputs = new Map([[file, fileSha(file)], [manifest.catalog.file, manifest.catalog.sha256]]);
+ for (const item of [...manifest.assets.map(m => m.runtime), ...manifest.reviews]) {
+  expect(fileSha(item.file)).toBe(item.sha256);
+  outputs.set(item.file, item.sha256);
+ }
+ verifyRepeatExport(archive + '/export.py', outputs);
 }, 180000);

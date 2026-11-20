@@ -1,0 +1,567 @@
+{
+  "schemaVersion": 1,
+  "canvas": [
+    256,
+    256
+  ],
+  "assets": [
+    {
+      "id": "bluewhale-happy",
+      "character": "bluewhale",
+      "emotion": "happy",
+      "file": "bluewhale-happy.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 18392,
+      "sha256": "91b6d637946cf5e526f0683db56c592411203489332001d8a2b5f8db1cb038e9",
+      "alphaBounds": [
+        17,
+        21,
+        233,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        124.76845149740122,
+        154.11823639563565
+      ]
+    },
+    {
+      "id": "bluewhale-flustered",
+      "character": "bluewhale",
+      "emotion": "flustered",
+      "file": "bluewhale-flustered.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 18640,
+      "sha256": "c608cf95b3556ef7752a8b0db38eed6f08fd1b8bd397637a9fe0422a05b047d4",
+      "alphaBounds": [
+        17,
+        21,
+        233,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        124.76845149740122,
+        154.11823639563565
+      ]
+    },
+    {
+      "id": "bluewhale-focused",
+      "character": "bluewhale",
+      "emotion": "focused",
+      "file": "bluewhale-focused.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 18524,
+      "sha256": "463be58a89d16f6014bd5dbdd4ae4c776a67c0e163662f5024736b006d13f54b",
+      "alphaBounds": [
+        17,
+        21,
+        233,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        124.76845149740122,
+        154.11823639563565
+      ]
+    },
+    {
+      "id": "qwen-happy",
+      "character": "qwen",
+      "emotion": "happy",
+      "file": "qwen-happy.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 19046,
+      "sha256": "2ba66b33bb13146e1b2d2f01e82af0c1290c909a830abc8c575e32edcfade033",
+      "alphaBounds": [
+        21,
+        31,
+        222,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        119.37387724987565,
+        152.87238298658772
+      ]
+    },
+    {
+      "id": "qwen-flustered",
+      "character": "qwen",
+      "emotion": "flustered",
+      "file": "qwen-flustered.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 19164,
+      "sha256": "33370e8d662eb7f65437b5eeda0c8701aeaebd495f5f257d070a3f6201cb3de4",
+      "alphaBounds": [
+        21,
+        31,
+        222,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        119.37387724987565,
+        152.87238298658772
+      ]
+    },
+    {
+      "id": "qwen-focused",
+      "character": "qwen",
+      "emotion": "focused",
+      "file": "qwen-focused.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 19058,
+      "sha256": "1495c297498bf7d357cfb23167921d3ae897d555aa95acdffb31c0f2c393b800",
+      "alphaBounds": [
+        21,
+        31,
+        222,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        119.37387724987565,
+        152.87238298658772
+      ]
+    },
+    {
+      "id": "llama-happy",
+      "character": "llama",
+      "emotion": "happy",
+      "file": "llama-happy.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 21114,
+      "sha256": "ed2f9eafc7e2dc19d9cf6de8e95c013b78d355f88675db7a2897f6286f2dd3cb",
+      "alphaBounds": [
+        16,
+        19,
+        233,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        124.08969188241448,
+        148.89093644497072
+      ]
+    },
+    {
+      "id": "llama-flustered",
+      "character": "llama",
+      "emotion": "flustered",
+      "file": "llama-flustered.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 21376,
+      "sha256": "4c10f4615fb13c353371f1c58ae91d523384bbcfe8cc3eb59ccd31db1c9b7cf6",
+      "alphaBounds": [
+        16,
+        19,
+        233,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        124.08969188241448,
+        148.89093644497072
+      ]
+    },
+    {
+      "id": "llama-focused",
+      "character": "llama",
+      "emotion": "focused",
+      "file": "llama-focused.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 21260,
+      "sha256": "8c9b3dcfa106774be9c82b825f71e63c1c224e9b11ad2e67aa284478962ee4d8",
+      "alphaBounds": [
+        16,
+        19,
+        233,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        124.08969188241448,
+        148.89093644497072
+      ]
+    },
+    {
+      "id": "mistral-happy",
+      "character": "mistral",
+      "emotion": "happy",
+      "file": "mistral-happy.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 25410,
+      "sha256": "fbac7161ada8955f5f577598188423f9a8e298ebd145e8738359a8846f5ab792",
+      "alphaBounds": [
+        12,
+        12,
+        232,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        120.551239201235,
+        138.9498199698978
+      ]
+    },
+    {
+      "id": "mistral-flustered",
+      "character": "mistral",
+      "emotion": "flustered",
+      "file": "mistral-flustered.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 25488,
+      "sha256": "06c83017bae22b0542978628bd5ddaa4b4b851d0d6e70149533e37278f29405a",
+      "alphaBounds": [
+        12,
+        12,
+        232,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        120.551239201235,
+        138.9498199698978
+      ]
+    },
+    {
+      "id": "mistral-focused",
+      "character": "mistral",
+      "emotion": "focused",
+      "file": "mistral-focused.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 25400,
+      "sha256": "7124ddc08b97e907af9233635829bef129ac67bb1957d3b55c7e5b4b3aef372d",
+      "alphaBounds": [
+        12,
+        12,
+        232,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        120.551239201235,
+        138.9498199698978
+      ]
+    },
+    {
+      "id": "gpt-happy",
+      "character": "gpt",
+      "emotion": "happy",
+      "file": "gpt-happy.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 21354,
+      "sha256": "9e080c17be64acb85cd61f646e7c3d846f25b172ffab1f46341e7fca5a696e3b",
+      "alphaBounds": [
+        13,
+        12,
+        235,
+        243
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        125.15556521901908,
+        149.48571798384518
+      ]
+    },
+    {
+      "id": "gpt-flustered",
+      "character": "gpt",
+      "emotion": "flustered",
+      "file": "gpt-flustered.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 21522,
+      "sha256": "0c51629cd69f9f344665f562d8a10cce9cacdb64c2c08014191fad26fb4becd4",
+      "alphaBounds": [
+        13,
+        12,
+        235,
+        243
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        125.15556521901908,
+        149.48571798384518
+      ]
+    },
+    {
+      "id": "gpt-focused",
+      "character": "gpt",
+      "emotion": "focused",
+      "file": "gpt-focused.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 21376,
+      "sha256": "4b97eee1d147c03baff883d30f6ad63418a743f703ba3b22d82c5eabbdc09e55",
+      "alphaBounds": [
+        13,
+        12,
+        235,
+        243
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        125.15556521901908,
+        149.48571798384518
+      ]
+    },
+    {
+      "id": "claude-happy",
+      "character": "claude",
+      "emotion": "happy",
+      "file": "claude-happy.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 19980,
+      "sha256": "d556804beacfeedd148aedd25f8ecfe518bdace8eb33b7a4ee984aab81794823",
+      "alphaBounds": [
+        20,
+        32,
+        229,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        127.02320076545304,
+        153.67978942854415
+      ]
+    },
+    {
+      "id": "claude-flustered",
+      "character": "claude",
+      "emotion": "flustered",
+      "file": "claude-flustered.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 20158,
+      "sha256": "26b828c2f8b4d802b366880acc6ba44cbc17ab0b959542622dc1ed0569042752",
+      "alphaBounds": [
+        20,
+        32,
+        229,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        127.02320076545304,
+        153.67978942854415
+      ]
+    },
+    {
+      "id": "claude-focused",
+      "character": "claude",
+      "emotion": "focused",
+      "file": "claude-focused.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 20136,
+      "sha256": "82a1557518a95a3ae9680be3a7bdc822581c9c824399b21f3d190704facb4f6a",
+      "alphaBounds": [
+        20,
+        32,
+        229,
+        244
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "visiblePureBlackPixels": 0,
+      "mode": "RGBA",
+      "heightRatio": 1.0,
+      "centroidShiftPx": [
+        0.0,
+        0.0
+      ],
+      "alphaCentroidPx": [
+        127.02320076545304,
+        153.67978942854415
+      ]
+    }
+  ]
+}

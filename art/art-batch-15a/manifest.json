@@ -1,0 +1,1174 @@
+{
+  "batch": "15a",
+  "generator": "built-in image_gen",
+  "transparent_background": true,
+  "usage": "Commissioned for Out of Tokens.",
+  "pillow": "12.1.1",
+  "libwebp": "1.6.0",
+  "assets": [
+    {
+      "id": "bluewhale-happy",
+      "master": {
+        "file": "art/art-batch-15a/masters/bluewhale/happy.png",
+        "bytes": 1651245,
+        "sha256": "97c313684f3f6f8f36497261af52410f13c032266e796db7ee9108a01dd98dd4",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/bluewhale/avatar.png",
+        "bytes": 1642321,
+        "sha256": "fa3b413b626ccdc1f3207eb31df9a3a90bd2cb47d40bd823de14d1d795523142"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+        "bytes": 19052,
+        "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+      },
+      "encoder": {
+        "sourceBox": [
+          -64,
+          -101,
+          1351,
+          1314
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 1.628
+      },
+      "runtime": {
+        "id": "bluewhale-happy",
+        "character": "bluewhale",
+        "emotion": "happy",
+        "file": "apps/web/public/art/portraits/expressions/bluewhale-happy.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 18392,
+        "sha256": "91b6d637946cf5e526f0683db56c592411203489332001d8a2b5f8db1cb038e9",
+        "alphaBounds": [
+          17,
+          21,
+          233,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          124.76845149740122,
+          154.11823639563565
+        ]
+      }
+    },
+    {
+      "id": "bluewhale-flustered",
+      "master": {
+        "file": "art/art-batch-15a/masters/bluewhale/flustered.png",
+        "bytes": 1661568,
+        "sha256": "1ab3d250d44963525d5db96967e3c59589fd491aa4f8517182e662774c274b9a",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/bluewhale/avatar.png",
+        "bytes": 1642321,
+        "sha256": "fa3b413b626ccdc1f3207eb31df9a3a90bd2cb47d40bd823de14d1d795523142"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+        "bytes": 19052,
+        "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+      },
+      "encoder": {
+        "sourceBox": [
+          -63,
+          -100,
+          1350,
+          1313
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 1.4681
+      },
+      "runtime": {
+        "id": "bluewhale-flustered",
+        "character": "bluewhale",
+        "emotion": "flustered",
+        "file": "apps/web/public/art/portraits/expressions/bluewhale-flustered.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 18640,
+        "sha256": "c608cf95b3556ef7752a8b0db38eed6f08fd1b8bd397637a9fe0422a05b047d4",
+        "alphaBounds": [
+          17,
+          21,
+          233,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          124.76845149740122,
+          154.11823639563565
+        ]
+      }
+    },
+    {
+      "id": "bluewhale-focused",
+      "master": {
+        "file": "art/art-batch-15a/masters/bluewhale/focused.png",
+        "bytes": 1644978,
+        "sha256": "58e942eaed455f9f55336dc75d5540cb979565e350d61904068797e7f7717a80",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/bluewhale/avatar.png",
+        "bytes": 1642321,
+        "sha256": "fa3b413b626ccdc1f3207eb31df9a3a90bd2cb47d40bd823de14d1d795523142"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
+        "bytes": 19052,
+        "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb"
+      },
+      "encoder": {
+        "sourceBox": [
+          -63,
+          -99,
+          1349,
+          1313
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 1.5101
+      },
+      "runtime": {
+        "id": "bluewhale-focused",
+        "character": "bluewhale",
+        "emotion": "focused",
+        "file": "apps/web/public/art/portraits/expressions/bluewhale-focused.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 18524,
+        "sha256": "463be58a89d16f6014bd5dbdd4ae4c776a67c0e163662f5024736b006d13f54b",
+        "alphaBounds": [
+          17,
+          21,
+          233,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          124.76845149740122,
+          154.11823639563565
+        ]
+      }
+    },
+    {
+      "id": "qwen-happy",
+      "master": {
+        "file": "art/art-batch-15a/masters/qwen/happy.png",
+        "bytes": 1681384,
+        "sha256": "a99031bb08c4f3e2efc1999182835969cd55034aa9cd0161b28fb023e64bfe84",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/qwen/avatar.png",
+        "bytes": 1708231,
+        "sha256": "04d03da3054112718feeec4253279bd6e29a1267a42c83842b386a6dadc5efbf"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/qwen.webp",
+        "bytes": 19404,
+        "sha256": "eb0f7f9f6cd45329cdd0ee1e4ffabdc0860ce5651bbf02d47547925926c16f3e"
+      },
+      "encoder": {
+        "sourceBox": [
+          -18,
+          -93,
+          1359,
+          1284
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 2.1156
+      },
+      "runtime": {
+        "id": "qwen-happy",
+        "character": "qwen",
+        "emotion": "happy",
+        "file": "apps/web/public/art/portraits/expressions/qwen-happy.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 19046,
+        "sha256": "2ba66b33bb13146e1b2d2f01e82af0c1290c909a830abc8c575e32edcfade033",
+        "alphaBounds": [
+          21,
+          31,
+          222,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          119.37387724987565,
+          152.87238298658772
+        ]
+      }
+    },
+    {
+      "id": "qwen-flustered",
+      "master": {
+        "file": "art/art-batch-15a/masters/qwen/flustered.png",
+        "bytes": 1707147,
+        "sha256": "baec446c236c05c35de372ac243bbffb5adbd7fb6be1816959e2d5ef6a16cc42",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/qwen/avatar.png",
+        "bytes": 1708231,
+        "sha256": "04d03da3054112718feeec4253279bd6e29a1267a42c83842b386a6dadc5efbf"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/qwen.webp",
+        "bytes": 19404,
+        "sha256": "eb0f7f9f6cd45329cdd0ee1e4ffabdc0860ce5651bbf02d47547925926c16f3e"
+      },
+      "encoder": {
+        "sourceBox": [
+          -18,
+          -93,
+          1359,
+          1284
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 2.1405
+      },
+      "runtime": {
+        "id": "qwen-flustered",
+        "character": "qwen",
+        "emotion": "flustered",
+        "file": "apps/web/public/art/portraits/expressions/qwen-flustered.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 19164,
+        "sha256": "33370e8d662eb7f65437b5eeda0c8701aeaebd495f5f257d070a3f6201cb3de4",
+        "alphaBounds": [
+          21,
+          31,
+          222,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          119.37387724987565,
+          152.87238298658772
+        ]
+      }
+    },
+    {
+      "id": "qwen-focused",
+      "master": {
+        "file": "art/art-batch-15a/masters/qwen/focused.png",
+        "bytes": 1705088,
+        "sha256": "e576a94e9a62b2b5383152b801ef445608c05d9ac35b0af79814ac12673396c9",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/qwen/avatar.png",
+        "bytes": 1708231,
+        "sha256": "04d03da3054112718feeec4253279bd6e29a1267a42c83842b386a6dadc5efbf"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/qwen.webp",
+        "bytes": 19404,
+        "sha256": "eb0f7f9f6cd45329cdd0ee1e4ffabdc0860ce5651bbf02d47547925926c16f3e"
+      },
+      "encoder": {
+        "sourceBox": [
+          -19,
+          -93,
+          1358,
+          1284
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 2.143
+      },
+      "runtime": {
+        "id": "qwen-focused",
+        "character": "qwen",
+        "emotion": "focused",
+        "file": "apps/web/public/art/portraits/expressions/qwen-focused.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 19058,
+        "sha256": "1495c297498bf7d357cfb23167921d3ae897d555aa95acdffb31c0f2c393b800",
+        "alphaBounds": [
+          21,
+          31,
+          222,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          119.37387724987565,
+          152.87238298658772
+        ]
+      }
+    },
+    {
+      "id": "llama-happy",
+      "master": {
+        "file": "art/art-batch-15a/masters/llama/happy.png",
+        "bytes": 2043016,
+        "sha256": "b7de3b061798efc6bd2788bd828c3b441fecf7d30ebb3ebb574e346a6b00152a",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/llama/avatar.png",
+        "bytes": 2024458,
+        "sha256": "e9c51fe03611f316f492f410cf2891678ebc3359481e2f26f257168048786a7f"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/llama.webp",
+        "bytes": 21804,
+        "sha256": "2d91064e1a84c34881a89e27ae4c1fb64603f82dfc034ed9ea37f68927a1a5d2"
+      },
+      "encoder": {
+        "sourceBox": [
+          -47,
+          -89,
+          1343,
+          1301
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 1.3348
+      },
+      "runtime": {
+        "id": "llama-happy",
+        "character": "llama",
+        "emotion": "happy",
+        "file": "apps/web/public/art/portraits/expressions/llama-happy.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 21114,
+        "sha256": "ed2f9eafc7e2dc19d9cf6de8e95c013b78d355f88675db7a2897f6286f2dd3cb",
+        "alphaBounds": [
+          16,
+          19,
+          233,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          124.08969188241448,
+          148.89093644497072
+        ]
+      }
+    },
+    {
+      "id": "llama-flustered",
+      "master": {
+        "file": "art/art-batch-15a/masters/llama/flustered.png",
+        "bytes": 2043323,
+        "sha256": "115422dec3ac0ca8d2c10723af05df2158f1e0cbb068a731b7a21294f0922598",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/llama/avatar.png",
+        "bytes": 2024458,
+        "sha256": "e9c51fe03611f316f492f410cf2891678ebc3359481e2f26f257168048786a7f"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/llama.webp",
+        "bytes": 21804,
+        "sha256": "2d91064e1a84c34881a89e27ae4c1fb64603f82dfc034ed9ea37f68927a1a5d2"
+      },
+      "encoder": {
+        "sourceBox": [
+          -50,
+          -92,
+          1344,
+          1302
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 1.3443
+      },
+      "runtime": {
+        "id": "llama-flustered",
+        "character": "llama",
+        "emotion": "flustered",
+        "file": "apps/web/public/art/portraits/expressions/llama-flustered.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 21376,
+        "sha256": "4c10f4615fb13c353371f1c58ae91d523384bbcfe8cc3eb59ccd31db1c9b7cf6",
+        "alphaBounds": [
+          16,
+          19,
+          233,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          124.08969188241448,
+          148.89093644497072
+        ]
+      }
+    },
+    {
+      "id": "llama-focused",
+      "master": {
+        "file": "art/art-batch-15a/masters/llama/focused.png",
+        "bytes": 2133726,
+        "sha256": "c8e8828f26a6f4ff0942ff43db3b24a904fc3cd31015e4e6a47d24ef5f0a5335",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/llama/avatar.png",
+        "bytes": 2024458,
+        "sha256": "e9c51fe03611f316f492f410cf2891678ebc3359481e2f26f257168048786a7f"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/llama.webp",
+        "bytes": 21804,
+        "sha256": "2d91064e1a84c34881a89e27ae4c1fb64603f82dfc034ed9ea37f68927a1a5d2"
+      },
+      "encoder": {
+        "sourceBox": [
+          -49,
+          -90,
+          1343,
+          1302
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 1.3365
+      },
+      "runtime": {
+        "id": "llama-focused",
+        "character": "llama",
+        "emotion": "focused",
+        "file": "apps/web/public/art/portraits/expressions/llama-focused.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 21260,
+        "sha256": "8c9b3dcfa106774be9c82b825f71e63c1c224e9b11ad2e67aa284478962ee4d8",
+        "alphaBounds": [
+          16,
+          19,
+          233,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          124.08969188241448,
+          148.89093644497072
+        ]
+      }
+    },
+    {
+      "id": "mistral-happy",
+      "master": {
+        "file": "art/art-batch-15a/masters/mistral/happy.png",
+        "bytes": 2093660,
+        "sha256": "6edbc256dbc02619056f4f2954a53b4c9376d48d617666309c33104ab5f34cfb",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/mistral/avatar.png",
+        "bytes": 2055850,
+        "sha256": "9ae8251354ce047e02a5b41dbdf7411fb3c7b16d654f28e00fa69f20cc76379a"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/mistral.webp",
+        "bytes": 25866,
+        "sha256": "48831ab8766853b00aeb5776cdc758aa697a030351f5f94b9dc24e22a715d387"
+      },
+      "encoder": {
+        "sourceBox": [
+          -17,
+          -39,
+          1322,
+          1300
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 2.1192
+      },
+      "runtime": {
+        "id": "mistral-happy",
+        "character": "mistral",
+        "emotion": "happy",
+        "file": "apps/web/public/art/portraits/expressions/mistral-happy.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 25410,
+        "sha256": "fbac7161ada8955f5f577598188423f9a8e298ebd145e8738359a8846f5ab792",
+        "alphaBounds": [
+          12,
+          12,
+          232,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          120.551239201235,
+          138.9498199698978
+        ]
+      }
+    },
+    {
+      "id": "mistral-flustered",
+      "master": {
+        "file": "art/art-batch-15a/masters/mistral/flustered.png",
+        "bytes": 2081671,
+        "sha256": "850ab93c248e1ce4b0d3572c2ddc5d3e224ae70982a520836eba1ac0cbff3124",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/mistral/avatar.png",
+        "bytes": 2055850,
+        "sha256": "9ae8251354ce047e02a5b41dbdf7411fb3c7b16d654f28e00fa69f20cc76379a"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/mistral.webp",
+        "bytes": 25866,
+        "sha256": "48831ab8766853b00aeb5776cdc758aa697a030351f5f94b9dc24e22a715d387"
+      },
+      "encoder": {
+        "sourceBox": [
+          -14,
+          -35,
+          1320,
+          1299
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 2.1118
+      },
+      "runtime": {
+        "id": "mistral-flustered",
+        "character": "mistral",
+        "emotion": "flustered",
+        "file": "apps/web/public/art/portraits/expressions/mistral-flustered.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 25488,
+        "sha256": "06c83017bae22b0542978628bd5ddaa4b4b851d0d6e70149533e37278f29405a",
+        "alphaBounds": [
+          12,
+          12,
+          232,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          120.551239201235,
+          138.9498199698978
+        ]
+      }
+    },
+    {
+      "id": "mistral-focused",
+      "master": {
+        "file": "art/art-batch-15a/masters/mistral/focused.png",
+        "bytes": 2076487,
+        "sha256": "966e341c9f91a450046d9099a1bd7b0dd13dd3d71629874ca56b186f9a4700fc",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/mistral/avatar.png",
+        "bytes": 2055850,
+        "sha256": "9ae8251354ce047e02a5b41dbdf7411fb3c7b16d654f28e00fa69f20cc76379a"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/mistral.webp",
+        "bytes": 25866,
+        "sha256": "48831ab8766853b00aeb5776cdc758aa697a030351f5f94b9dc24e22a715d387"
+      },
+      "encoder": {
+        "sourceBox": [
+          -16,
+          -38,
+          1322,
+          1300
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 2.1231
+      },
+      "runtime": {
+        "id": "mistral-focused",
+        "character": "mistral",
+        "emotion": "focused",
+        "file": "apps/web/public/art/portraits/expressions/mistral-focused.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 25400,
+        "sha256": "7124ddc08b97e907af9233635829bef129ac67bb1957d3b55c7e5b4b3aef372d",
+        "alphaBounds": [
+          12,
+          12,
+          232,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          120.551239201235,
+          138.9498199698978
+        ]
+      }
+    },
+    {
+      "id": "gpt-happy",
+      "master": {
+        "file": "art/art-batch-15a/masters/gpt/happy.png",
+        "bytes": 1935310,
+        "sha256": "eb8d04e1a69b75172e8d42e823f18764b4d165baf71783c096286b8db4084515",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/gpt/avatar.png",
+        "bytes": 1781498,
+        "sha256": "e3d01e324c6e53d4c30742a215fde84bca029fc51f905c6bada5bc1d86790222"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/gpt.webp",
+        "bytes": 21888,
+        "sha256": "b960f0c1ff589e5e5e11d746516e6dff841acc8091953408fc07193550ba96d9"
+      },
+      "encoder": {
+        "sourceBox": [
+          -28,
+          -42,
+          1312,
+          1298
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 1.3981
+      },
+      "runtime": {
+        "id": "gpt-happy",
+        "character": "gpt",
+        "emotion": "happy",
+        "file": "apps/web/public/art/portraits/expressions/gpt-happy.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 21354,
+        "sha256": "9e080c17be64acb85cd61f646e7c3d846f25b172ffab1f46341e7fca5a696e3b",
+        "alphaBounds": [
+          13,
+          12,
+          235,
+          243
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          125.15556521901908,
+          149.48571798384518
+        ]
+      }
+    },
+    {
+      "id": "gpt-flustered",
+      "master": {
+        "file": "art/art-batch-15a/masters/gpt/flustered.png",
+        "bytes": 1802370,
+        "sha256": "1e04a346c6967746ce17584ac0aabfe5f15596f8627efa47f8795943cf4b2cbc",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/gpt/avatar.png",
+        "bytes": 1781498,
+        "sha256": "e3d01e324c6e53d4c30742a215fde84bca029fc51f905c6bada5bc1d86790222"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/gpt.webp",
+        "bytes": 21888,
+        "sha256": "b960f0c1ff589e5e5e11d746516e6dff841acc8091953408fc07193550ba96d9"
+      },
+      "encoder": {
+        "sourceBox": [
+          -28,
+          -42,
+          1313,
+          1299
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 1.4251
+      },
+      "runtime": {
+        "id": "gpt-flustered",
+        "character": "gpt",
+        "emotion": "flustered",
+        "file": "apps/web/public/art/portraits/expressions/gpt-flustered.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 21522,
+        "sha256": "0c51629cd69f9f344665f562d8a10cce9cacdb64c2c08014191fad26fb4becd4",
+        "alphaBounds": [
+          13,
+          12,
+          235,
+          243
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          125.15556521901908,
+          149.48571798384518
+        ]
+      }
+    },
+    {
+      "id": "gpt-focused",
+      "master": {
+        "file": "art/art-batch-15a/masters/gpt/focused.png",
+        "bytes": 1995452,
+        "sha256": "99a47e5b7ffdf3989372a577310a27c84c991cd890d621776badeb1077a9d041",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/gpt/avatar.png",
+        "bytes": 1781498,
+        "sha256": "e3d01e324c6e53d4c30742a215fde84bca029fc51f905c6bada5bc1d86790222"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/gpt.webp",
+        "bytes": 21888,
+        "sha256": "b960f0c1ff589e5e5e11d746516e6dff841acc8091953408fc07193550ba96d9"
+      },
+      "encoder": {
+        "sourceBox": [
+          -29,
+          -44,
+          1314,
+          1299
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 1.3797
+      },
+      "runtime": {
+        "id": "gpt-focused",
+        "character": "gpt",
+        "emotion": "focused",
+        "file": "apps/web/public/art/portraits/expressions/gpt-focused.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 21376,
+        "sha256": "4b97eee1d147c03baff883d30f6ad63418a743f703ba3b22d82c5eabbdc09e55",
+        "alphaBounds": [
+          13,
+          12,
+          235,
+          243
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          125.15556521901908,
+          149.48571798384518
+        ]
+      }
+    },
+    {
+      "id": "claude-happy",
+      "master": {
+        "file": "art/art-batch-15a/masters/claude/happy.png",
+        "bytes": 1871089,
+        "sha256": "4f9c25d92401acaf2d0dbf862f566375eaa6c3c1dc58dfffc685fed021330415",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/claude/avatar.png",
+        "bytes": 1942286,
+        "sha256": "7ba314349de3b11222a9dce3d1e69e3c0dab8345da1eb2a655d4f9a68b5625ce"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/claude.webp",
+        "bytes": 20350,
+        "sha256": "e905ccc1563572e7fac043548a478365b80370ef64087201318d67019a0bb03c"
+      },
+      "encoder": {
+        "sourceBox": [
+          -62,
+          -129,
+          1351,
+          1284
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 1.847
+      },
+      "runtime": {
+        "id": "claude-happy",
+        "character": "claude",
+        "emotion": "happy",
+        "file": "apps/web/public/art/portraits/expressions/claude-happy.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 19980,
+        "sha256": "d556804beacfeedd148aedd25f8ecfe518bdace8eb33b7a4ee984aab81794823",
+        "alphaBounds": [
+          20,
+          32,
+          229,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          127.02320076545304,
+          153.67978942854415
+        ]
+      }
+    },
+    {
+      "id": "claude-flustered",
+      "master": {
+        "file": "art/art-batch-15a/masters/claude/flustered.png",
+        "bytes": 1876787,
+        "sha256": "fcaf6e373a007aedc842a4f0a87a001f0a8cd7e33ca4253ffe660fe59ffbca59",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/claude/avatar.png",
+        "bytes": 1942286,
+        "sha256": "7ba314349de3b11222a9dce3d1e69e3c0dab8345da1eb2a655d4f9a68b5625ce"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/claude.webp",
+        "bytes": 20350,
+        "sha256": "e905ccc1563572e7fac043548a478365b80370ef64087201318d67019a0bb03c"
+      },
+      "encoder": {
+        "sourceBox": [
+          -63,
+          -131,
+          1352,
+          1284
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 1.8565
+      },
+      "runtime": {
+        "id": "claude-flustered",
+        "character": "claude",
+        "emotion": "flustered",
+        "file": "apps/web/public/art/portraits/expressions/claude-flustered.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 20158,
+        "sha256": "26b828c2f8b4d802b366880acc6ba44cbc17ab0b959542622dc1ed0569042752",
+        "alphaBounds": [
+          20,
+          32,
+          229,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          127.02320076545304,
+          153.67978942854415
+        ]
+      }
+    },
+    {
+      "id": "claude-focused",
+      "master": {
+        "file": "art/art-batch-15a/masters/claude/focused.png",
+        "bytes": 1907639,
+        "sha256": "0989e1dfdbde44dc2cab9a603a28ea181b858a18a846484ee18a51fd8047f51e",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "reference": {
+        "file": "art/art-batch-12a/masters/claude/avatar.png",
+        "bytes": 1942286,
+        "sha256": "7ba314349de3b11222a9dce3d1e69e3c0dab8345da1eb2a655d4f9a68b5625ce"
+      },
+      "default": {
+        "file": "apps/web/public/art/portraits/avatars/claude.webp",
+        "bytes": 20350,
+        "sha256": "e905ccc1563572e7fac043548a478365b80370ef64087201318d67019a0bb03c"
+      },
+      "encoder": {
+        "sourceBox": [
+          -62,
+          -129,
+          1351,
+          1284
+        ],
+        "quality": 88,
+        "method": 6,
+        "warmInkPasses": 0,
+        "outsideFaceMeanRgbError": 1.8767
+      },
+      "runtime": {
+        "id": "claude-focused",
+        "character": "claude",
+        "emotion": "focused",
+        "file": "apps/web/public/art/portraits/expressions/claude-focused.webp",
+        "width": 256,
+        "height": 256,
+        "bytes": 20136,
+        "sha256": "82a1557518a95a3ae9680be3a7bdc822581c9c824399b21f3d190704facb4f6a",
+        "alphaBounds": [
+          20,
+          32,
+          229,
+          244
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "mode": "RGBA",
+        "heightRatio": 1.0,
+        "centroidShiftPx": [
+          0.0,
+          0.0
+        ],
+        "alphaCentroidPx": [
+          127.02320076545304,
+          153.67978942854415
+        ]
+      }
+    }
+  ],
+  "catalog": {
+    "file": "apps/web/public/art/portraits/expressions/catalog.json",
+    "bytes": 11806,
+    "sha256": "29004f5beab0b5d200ff58648aa862ae4994031a56e9d2edcfdf3061e5b98d5f"
+  },
+  "reviews": [
+    {
+      "file": "art/art-batch-15a/review/batch15a-expressions-review.png",
+      "bytes": 1508181,
+      "sha256": "5653ae69cf8d27da22de3588f7e5dd2c8f1b320feedd16d3b6a79cde5a3caf64"
+    }
+  ]
+}
