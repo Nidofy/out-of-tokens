@@ -4,6 +4,7 @@ import type {OfficeFocus} from './office-scene-spec.js';
 import type {Furniture} from 'oot-core';
 import type {GameView,GameSession} from 'oot-platform';
 import {slotPoint,officeCamera} from './office-scene-spec.js';
+import {resolveFurniturePreviewUrl} from './art/furniture-rig.js';
 import {Icon} from './icons.js';
 
 export function readableSlotLabel(slot:string,english:boolean):string{
@@ -93,7 +94,7 @@ export function OfficeEditor({view,session,english,send,onPreview,close}:{view:G
       {items.map(i=>{
        const cat=original.catalog.find(d=>d.id===i.kind)!;
        return <button key={i.id} class="ui2-furn-card" aria-pressed={selected===i.id} onClick={()=>{setSelected(i.id);setError('');}}>
-        <img src={`./art/office/${i.kind}-front.svg`} alt=""/>
+        <img src={resolveFurniturePreviewUrl(i.kind)} alt=""/>
         <span class="ui2-furn-badge">{kindBadge(i.kind)}</span>
         <b>{tr(cat.name,cat.nameEn)}</b>
         <small>{i.slot?readableSlotLabel(i.slot,english):tr('仓库中','Stored')}{reserved(i.id)?tr(' · 占用中',' · In use'):''}</small>
@@ -105,7 +106,7 @@ export function OfficeEditor({view,session,english,send,onPreview,close}:{view:G
       <select aria-label={tr('家具分类','Furniture category')} value={zone} onChange={e=>setZone(e.currentTarget.value)}>{['work','meeting','lounge','server'].map((z,i)=><option key={z} value={z}>{tr(['工位套餐','会议设施','休闲家具','设备外壳'][i]!,['Stations','Meeting','Lounge','Equipment shells'][i]!)}</option>)}</select>
       <div class="office-inventory ui2-thumb-strip">
        {original.catalog.filter(d=>d.zone===zone).map(d=><button key={d.id} class="ui2-furn-card" onClick={()=>{const id=`new:${Math.max(-1,...items.filter(i=>i.id.startsWith('new:')).map(i=>Number(i.id.slice(4))))+1}`;const slot=original.slots.find(s=>slotZone(s)===d.zone&&!items.some(i=>i.slot===s))??null;setItems(prev=>[...prev,{id,kind:d.id,slot}]);setSelected(id);setDrawerTab('owned');setError('');}}>
-        <img src={`./art/office/${d.id}-front.svg`} alt=""/>
+        <img src={resolveFurniturePreviewUrl(d.id)} alt=""/>
         <span class="ui2-furn-badge">¥{d.price}</span>
         <b>{tr('添购','Add')} {tr(d.name,d.nameEn)}</b>
         <small>{d.efficiency?`+${Math.round(d.efficiency*100)}% ${tr('产出','output')}`:tr('扩展槽位容积','Expands capacity')}</small>

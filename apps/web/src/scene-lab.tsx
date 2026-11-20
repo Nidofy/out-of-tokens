@@ -12,7 +12,7 @@ type BluewhaleDemoMode='daily'|'work'|'review'|'overload'|'blocked'|'rest';
 export function SceneLab(){
  const host=useRef<HTMLDivElement>(null),renderer=useRef<Awaited<ReturnType<typeof createWorkshop>>|null>(null);
  const [scene,setScene]=useState<Scene>('workshop'),[level,setLevel]=useState(0),[picked,setPicked]=useState(''),[ready,setReady]=useState(false);
- const [demoMode,setDemoMode]=useState<BluewhaleDemoMode>('daily'),[legacyFallback,setLegacyFallback]=useState(false),[stillDemo,setStillDemo]=useState(false);
+ const [demoMode,setDemoMode]=useState<BluewhaleDemoMode>('daily'),[legacyFallback,setLegacyFallback]=useState(false),[legacyFurniture,setLegacyFurniture]=useState(false),[stillDemo,setStillDemo]=useState(false);
 
  useEffect(()=>{
   document.documentElement.dataset.motion=stillDemo?'still':'full';
@@ -20,6 +20,7 @@ export function SceneLab(){
 
  useEffect(()=>{
   document.documentElement.dataset.chibi=legacyFallback?'legacy':'';
+  document.documentElement.dataset.furniture=legacyFurniture?'legacy':'';
   document.documentElement.dataset.motion=stillDemo?'still':'full';
   let dead=false;
   setReady(false);
@@ -28,7 +29,7 @@ export function SceneLab(){
    else{renderer.current=r;setReady(true);}
   });
   return()=>{dead=true;renderer.current?.destroy();renderer.current=null;};
- },[legacyFallback]);
+ },[legacyFallback,legacyFurniture]);
 
  useEffect(()=>{
   if(!ready||!renderer.current)return;
@@ -36,8 +37,15 @@ export function SceneLab(){
   s.campaign!.scene=scene;s.campaign!.hardware.office=level;s.campaign!.hardware.compute=level;
   for(const r of Object.values(s.campaign!.relations)){r.location=scene;r.locationUntil=1000;}
   const office=s.campaign!.office;
-  if(office&&!office.items.some(i=>i.kind==='sofa')){
-   office.items.push({id:'f99',kind:'sofa',slot:'lounge-2'});
+  if(office){
+   const f2=office.items.find(i=>i.id==='f2');
+   if(f2)f2.kind='standard';
+   if(!office.items.some(i=>i.kind==='sofa')){
+    office.items.push({id:'f99',kind:'sofa',slot:'lounge-2'});
+   }
+   if(!office.items.some(i=>i.kind==='server')){
+    office.items.push({id:'f98',kind:'server',slot:'server-1'});
+   }
   }
   const bw=s.actors.find(a=>a.id==='bluewhale');
   let cap:Readonly<Record<string,CapacityExplanation>>|undefined;
@@ -46,9 +54,10 @@ export function SceneLab(){
    if(demoMode==='work'||demoMode==='overload'||demoMode==='blocked'){
     const job=s.jobs[0]!;
     job.status='working';
-    job.team=[{character:'bluewhale',role:'worker',mode:'local'},{character:'qwen',role:'reviewer',mode:'cloud'}];
+    job.team=[{character:'bluewhale',role:'worker',mode:'local'},{character:'mistral',role:'worker',mode:'local'},{character:'qwen',role:'reviewer',mode:'cloud'}];
     if(office){
      office.reservations.bluewhale={item:'f1',seat:0,job:job.id,zone:'work'};
+     if(office.items.some(i=>i.id==='f2'))office.reservations.mistral={item:'f2',seat:0,job:job.id,zone:'work'};
      office.reservations.qwen={item:'f4',seat:0,job:job.id,zone:'meeting'};
     }
     if(demoMode==='overload'){
@@ -94,9 +103,10 @@ export function SceneLab(){
      <span>| Bluewhale:</span>
      {(['daily','work','review','overload','blocked','rest'] as const).map(m=><button key={m} style={demoMode===m?'font-weight:700;text-decoration:underline':''} onClick={()=>setDemoMode(m)}>{m}</button>)}
      <button onClick={()=>setLegacyFallback(v=>!v)}>{legacyFallback?'Rig: Legacy PaperDoll':'Rig: MapleChibi'}</button>
+     <button onClick={()=>setLegacyFurniture(v=>!v)}>{legacyFurniture?'Furn: Legacy SVG':'Furn: Hand-Painted'}</button>
      <button onClick={()=>setStillDemo(v=>!v)}>{stillDemo?'Motion: Still':'Motion: Full'}</button>
     </div>
-    <p style="margin:6px 0 0">Selected: {picked||'none'} · {scene} · Office {level} · Bluewhale: {demoMode} · {legacyFallback?'legacy':'maple-chibi'}</p>
+    <p style="margin:6px 0 0">Selected: {picked||'none'} · {scene} · Office {level} · Bluewhale: {demoMode} · {legacyFallback?'legacy':'maple-chibi'} · {legacyFurniture?'svg-furn':'hand-painted-furn'}</p>
    </div>
   </div>
  );

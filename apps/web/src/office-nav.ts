@@ -263,8 +263,8 @@ export function extractOfficePois(
    if (item.kind === 'coffee') {
     pois.push({id: `${item.id}:coffee`, kind: 'coffee', x: clamp(p.x + 12, 170, 1770), y: clamp(p.y + 42, 580, 960), facing: 'left'});
    } else if (item.kind === 'sofa') {
-    pois.push({id: `${item.id}:sofa-0`, kind: 'sofa', x: clamp(p.x - 42, 170, 1770), y: clamp(p.y + 24, 580, 960), facing: 'right'});
-    pois.push({id: `${item.id}:sofa-1`, kind: 'sofa', x: clamp(p.x + 42, 170, 1770), y: clamp(p.y + 24, 580, 960), facing: 'left'});
+    pois.push({id: `${item.id}:sofa-0`, kind: 'sofa', x: clamp(p.x - 42, 170, 1770), y: clamp(p.y + 12, 580, 960), facing: 'right'});
+    pois.push({id: `${item.id}:sofa-1`, kind: 'sofa', x: clamp(p.x + 42, 170, 1770), y: clamp(p.y + 12, 580, 960), facing: 'left'});
    } else if (item.kind === 'whiteboard') {
     pois.push({id: `${item.id}:wb-0`, kind: 'whiteboard', x: clamp(p.x - 56, 170, 1770), y: clamp(p.y + 44, 580, 960), facing: 'right'});
     pois.push({id: `${item.id}:wb-1`, kind: 'whiteboard', x: clamp(p.x + 56, 170, 1770), y: clamp(p.y + 44, 580, 960), facing: 'left'});
@@ -272,8 +272,9 @@ export function extractOfficePois(
     pois.push({id: `${item.id}:srv`, kind: 'server', x: clamp(p.x - 62, 170, 1770), y: clamp(p.y + 36, 580, 960), facing: 'right'});
    }
   }
-  // Open studio aisle stroll anchors so idle characters can tour naturally even with minimal furniture.
+  // Open studio aisle stroll anchors (+ front-left cat corner) so idle characters can tour naturally.
   const aisles: readonly [number, number, Facing][] = [
+   [216, 948, 'left'],
    [320, 740, 'right'],
    [520, 905, 'right'],
    [880, 925, 'left'],
