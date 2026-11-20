@@ -8,28 +8,93 @@
       "art/art-batch-8/masters/bluewhale/ref_sheet.png",
       "apps/web/public/art/stage-b/bluewhale.r1.webp"
     ],
+    "styleReferences": [
+      {
+        "role": "最高权重画风",
+        "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+        "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1"
+      },
+      {
+        "role": "高头身原设",
+        "file": "../../dsh_docs/live2d_assets/Character-reference/deepseek.jpg",
+        "sha256": "ceb4fe6ca8632d5a7e01b93b48b11bb1ec063a354931a85c49a5a58d55a103f4"
+      }
+    ],
     "base": {
-      "sourceFile": "exec-2d2f778e-df28-4887-af19-8a57ce8bae3d.png",
-      "sourceSha256": "45f89aa229d0967529e4c55dc76e8b016efe595f0c7ed1ea75a5f6b1750eca43",
-      "headRegion": [395, 135, 740, 481],
+      "sourceFile": "exec-b79924a5-bc42-410c-87e9-784f98af572b.png",
+      "sourceSha256": "9c1f8664ea314b53c1c401ed50b00c3cd44b363701766d7c080ece2d7052e0a5",
+      "headRegion": [
+        333,
+        135,
+        674,
+        490
+      ],
       "eyes": [
-        [538, 373],
-        [647, 342]
+        [
+          455,
+          382
+        ],
+        [
+          581,
+          340
+        ]
       ]
     },
     "flagship": {
-      "sourceFile": "exec-6985d938-7f51-4aae-bfe0-54f879c5d994.png",
-      "sourceSha256": "50aa18288337ba42450fce3cb6f9c3e2fb22e17ed3047b78579eea666dec9e6a",
-      "headRegion": [337, 130, 675, 432],
+      "sourceFile": "exec-806737cb-44f8-4a1c-a570-e511ca5702eb.png",
+      "sourceSha256": "e617595149ef2de2e9ba5231087a16c47763dee533a9074069ecde5424a0d718",
+      "headRegion": [
+        348,
+        115,
+        716,
+        468
+      ],
       "eyes": [
-        [490, 339],
-        [585, 306]
-      ]
+        [
+          495,
+          355
+        ],
+        [
+          613,
+          334
+        ]
+      ],
+      "redrawnFrom": "rejected/bluewhale-flagship-cel-02-anatomy.png"
     },
     "avatar": {
-      "bottomY": 660,
-      "arcCurvature": 0.00145,
-      "eyeTarget": [0.51, 0.51]
+      "sourceFile": "exec-89ccc8ec-252a-4d0b-b871-8446a8116fdb.png",
+      "sourceSha256": "fa3b413b626ccdc1f3207eb31df9a3a90bd2cb47d40bd823de14d1d795523142",
+      "headRegion": [
+        359,
+        196,
+        892,
+        766
+      ],
+      "eyes": [
+        [
+          546,
+          566
+        ],
+        [
+          743,
+          550
+        ]
+      ],
+      "eyeTarget": [
+        0.5,
+        0.465
+      ]
+    },
+    "generationGuides": {
+      "flagship": {
+        "inputs": [
+          "art/art-batch-12a/masters/bluewhale/avatar.png",
+          "apps/web/public/art/stage-b/bluewhale.r1.webp"
+        ],
+        "cellSize": 424,
+        "fit": 408,
+        "sha256": "cbe42d7861bac13feb1554d911a90ab7375813cf6c0a8b1a87f1f06338efecca"
+      }
     }
   },
   "qwen": {
@@ -42,27 +107,112 @@
       "apps/web/public/art/stage-b/qwen.qwq.webp"
     ],
     "base": {
-      "sourceFile": "exec-87e732d6-02b4-4872-b212-dcc4d337c7b8.png",
-      "sourceSha256": "b6d449c89bb4fe5f1513334b852aa426784f60027941c87af84bfd6b6500776c",
-      "headRegion": [395, 113, 755, 478],
+      "sourceFile": "exec-0cbabc5b-0f54-4534-9955-0e9e80423a58.png",
+      "sourceSha256": "b0306852490d1cb2a0cacded63ca7602b4726e65a403c7f18f169bbc0fad3c72",
+      "headRegion": [
+        370,
+        97,
+        722,
+        450
+      ],
       "eyes": [
-        [542, 369],
-        [650, 338]
+        [
+          520,
+          346
+        ],
+        [
+          631,
+          315
+        ]
       ]
     },
     "flagship": {
-      "sourceFile": "exec-57d6f928-cca5-480b-957c-f811269ed411.png",
-      "sourceSha256": "d9fdf68fa9dc52c55ac788dfe33523e079c7f442a77c5ff3659132b5797fc2bd",
-      "headRegion": [360, 123, 670, 442],
+      "sourceFile": "exec-bace9283-2c20-4117-9d1e-0052364e31ab.png",
+      "sourceSha256": "e4340905b6126ca458ac76e2c618ad41bfbc7d21dde56ec58d1650b022ffc17e",
+      "headRegion": [
+        336,
+        81,
+        662,
+        401
+      ],
       "eyes": [
-        [477, 351],
-        [571, 319]
-      ]
+        [
+          486,
+          310
+        ],
+        [
+          587,
+          281
+        ]
+      ],
+      "redrawnFrom": "rejected/qwen-flagship-cel-01-planning.png"
     },
     "avatar": {
-      "bottomY": 661,
-      "arcCurvature": 0.00125,
-      "eyeTarget": [0.52, 0.51]
+      "sourceFile": "exec-8c50d8bd-200c-42b0-996b-67b66cb00ed9.png",
+      "sourceSha256": "04d03da3054112718feeec4253279bd6e29a1267a42c83842b386a6dadc5efbf",
+      "headRegion": [
+        369,
+        187,
+        885,
+        738
+      ],
+      "eyes": [
+        [
+          584,
+          558
+        ],
+        [
+          756,
+          536
+        ]
+      ],
+      "eyeTarget": [
+        0.5,
+        0.465
+      ]
+    },
+    "styleReferences": [
+      {
+        "role": "最高权重画风",
+        "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+        "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1"
+      },
+      {
+        "role": "高头身原设",
+        "file": "../../dsh_docs/live2d_assets/Character-reference/qwen.jpg",
+        "sha256": "b6fb5aafa062c909104f583e2f8c3fe9f895c2109e50d9d136d3b5f0cc46ecfa"
+      },
+      {
+        "role": "已确认同批日常画风",
+        "file": "art/art-batch-12a/masters/bluewhale/base.png",
+        "sha256": "9c1f8664ea314b53c1c401ed50b00c3cd44b363701766d7c080ece2d7052e0a5"
+      },
+      {
+        "role": "已确认同批头像画风",
+        "file": "art/art-batch-12a/masters/bluewhale/avatar.png",
+        "sha256": "fa3b413b626ccdc1f3207eb31df9a3a90bd2cb47d40bd823de14d1d795523142"
+      }
+    ],
+    "generationGuides": {
+      "base": {
+        "inputs": [
+          "art/art-batch-12a/masters/bluewhale/avatar.png",
+          "apps/web/public/art/stage-b/qwen.qwq.webp"
+        ],
+        "cellSize": 424,
+        "fit": 408,
+        "sha256": "97308805048587b2978b3cde1b8d414c09eed6319ab56d694180192bc031df2d"
+      },
+      "flagshipAndAvatar": {
+        "inputs": [
+          "art/art-batch-12a/masters/bluewhale/avatar.png",
+          "apps/web/public/art/stage-b/qwen.qwq.webp",
+          "art/art-batch-12a/masters/qwen/base.png"
+        ],
+        "cellSize": 424,
+        "fit": 408,
+        "sha256": "3ebdb56a06bc1115aa94661b5452a06066442dcf4d1cd0917ba776afe71e1452"
+      }
     }
   },
   "llama": {
@@ -75,28 +225,111 @@
       "apps/web/public/art/stage-b/llama.3.1.webp"
     ],
     "base": {
-      "sourceFile": "exec-53cdd433-b5a1-4629-9d97-faf9079c7bad.png",
-      "sourceSha256": "31512fe9940015c511dcbb1efd7208acfe493ef1da7429640fc57345e5bb4dda",
-      "headRegion": [391, 102, 727, 467],
-      "eyes": [
-        [521, 344],
-        [636, 314]
+      "sourceFile": "exec-27bd9990-061d-40c6-89df-92faa662d2c4.png",
+      "sourceSha256": "1ea291bc4ba17fbea9ebbc68c60855f1d46321f2a71626b4d475f6bc3d937387",
+      "headRegion": [
+        397,
+        163,
+        717,
+        490
       ],
-      "redrawnFrom": "rejected/llama-base-01.png"
+      "eyes": [
+        [
+          497,
+          382
+        ],
+        [
+          617,
+          353
+        ]
+      ]
     },
     "flagship": {
-      "sourceFile": "exec-17b56d8d-58d5-4f6b-9d41-c09589f81227.png",
-      "sourceSha256": "f4db65b96d67d24ddb28606169108c4f04f1d039c9cc0d1cc177c8103fcfe0b1",
-      "headRegion": [322, 109, 618, 423],
+      "sourceFile": "exec-81acb01c-f0de-420f-9655-84ce62916e62.png",
+      "sourceSha256": "6ddc3624e13721e2d8cd4d2c84b1894f1cd93789157331ff0310c9c3698e3283",
+      "headRegion": [
+        395,
+        155,
+        715,
+        477
+      ],
       "eyes": [
-        [456, 315],
-        [557, 282]
+        [
+          498,
+          375
+        ],
+        [
+          608,
+          346
+        ]
       ]
     },
     "avatar": {
-      "bottomY": 617,
-      "arcCurvature": 0.00135,
-      "eyeTarget": [0.52, 0.50]
+      "sourceFile": "exec-6d6e27a4-6824-47dd-81cd-536c6942b56c.png",
+      "sourceSha256": "e9c51fe03611f316f492f410cf2891678ebc3359481e2f26f257168048786a7f",
+      "headRegion": [
+        375,
+        230,
+        910,
+        735
+      ],
+      "eyes": [
+        [
+          562,
+          567
+        ],
+        [
+          733,
+          548
+        ]
+      ],
+      "eyeTarget": [
+        0.5,
+        0.465
+      ]
+    },
+    "styleReferences": [
+      {
+        "role": "最高权重画风",
+        "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+        "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1"
+      },
+      {
+        "role": "高头身原设",
+        "file": "../../dsh_docs/live2d_assets/Character-reference/llama.jpg",
+        "sha256": "b5172cb36700aa5fb8a7efbbd3a436f4421cad34b7a11c74b657a3306e17717f"
+      },
+      {
+        "role": "已确认同批日常画风",
+        "file": "art/art-batch-12a/masters/bluewhale/base.png",
+        "sha256": "9c1f8664ea314b53c1c401ed50b00c3cd44b363701766d7c080ece2d7052e0a5"
+      },
+      {
+        "role": "已确认同批头像画风",
+        "file": "art/art-batch-12a/masters/bluewhale/avatar.png",
+        "sha256": "fa3b413b626ccdc1f3207eb31df9a3a90bd2cb47d40bd823de14d1d795523142"
+      }
+    ],
+    "generationGuides": {
+      "base": {
+        "inputs": [
+          "art/art-batch-12a/masters/bluewhale/avatar.png",
+          "apps/web/public/art/stage-b/llama.3.1.webp"
+        ],
+        "cellSize": 424,
+        "fit": 408,
+        "sha256": "53eb3d482b038c726e5cfcb1bfe930cf510506374f3bce4290b7305109a92f13"
+      },
+      "flagshipAndAvatar": {
+        "inputs": [
+          "art/art-batch-12a/masters/bluewhale/avatar.png",
+          "apps/web/public/art/stage-b/llama.3.1.webp",
+          "art/art-batch-12a/masters/llama/base.png"
+        ],
+        "cellSize": 424,
+        "fit": 408,
+        "sha256": "3e6dff7453bddbad6d2b7f180d9f8743f0f591c1187eea5305a53376d6e7616f"
+      }
     }
   },
   "mistral": {
@@ -109,30 +342,111 @@
       "apps/web/public/art/stage-b/mistral.large.webp"
     ],
     "base": {
-      "sourceFile": "exec-3b964fc3-5304-4067-8fec-67a15d35abbe.png",
-      "sourceSha256": "5318a3f23b42bb469c71ded34a3381eefd0f45846de0ffd1aff7659b564ec547",
-      "headRegion": [492, 172, 792, 485],
-      "eyes": [
-        [626, 383],
-        [720, 353]
+      "sourceFile": "exec-ef808ec9-1e31-46b2-b8b0-fa008fdc9de0.png",
+      "sourceSha256": "342c34f4884429d40c0324fe0f847ef95df63f783bbb11a7113df43200bd5d91",
+      "headRegion": [
+        412,
+        209,
+        761,
+        537
       ],
-      "redrawnFrom": "rejected/mistral-base-01.png"
+      "eyes": [
+        [
+          544,
+          420
+        ],
+        [
+          665,
+          396
+        ]
+      ]
     },
     "flagship": {
-      "sourceFile": "exec-52a06e98-fe25-4dbd-907f-8b2d61e8fcdc.png",
-      "sourceSha256": "12ff835520ba2d63002d04ed0270ba8e4bb712602bb57c819c39086cbb591bbc",
-      "headRegion": [417, 198, 701, 472],
+      "sourceFile": "exec-77933d77-267d-410f-ac66-9fe655d697e6.png",
+      "sourceSha256": "9fa2ca0c72b5691d82fd59cb0d67b101a792afdf9765c923e4f33d3f9c7efd32",
+      "headRegion": [
+        425,
+        178,
+        757,
+        504
+      ],
       "eyes": [
-        [554, 390],
-        [640, 357]
+        [
+          557,
+          406
+        ],
+        [
+          667,
+          379
+        ]
       ]
     },
     "avatar": {
-      "sourceFile": "exec-42c0b77b-1bf3-4920-acb6-ecc415c50e1a.png",
-      "sourceSha256": "5369777f707e431dd73a240549738040569feeae0bd99f16c4da6ee79cafb6f1",
-      "headRegion": [374, 306, 902, 869],
-      "eyes": [[545, 645], [730, 636]],
-      "eyeTarget": [0.50, 0.50]
+      "sourceFile": "exec-d112183e-fdf0-4ae7-954a-6fb93886c005.png",
+      "sourceSha256": "9ae8251354ce047e02a5b41dbdf7411fb3c7b16d654f28e00fa69f20cc76379a",
+      "headRegion": [
+        394,
+        327,
+        901,
+        760
+      ],
+      "eyes": [
+        [
+          575,
+          591
+        ],
+        [
+          733,
+          577
+        ]
+      ],
+      "eyeTarget": [
+        0.5,
+        0.465
+      ]
+    },
+    "styleReferences": [
+      {
+        "role": "最高权重画风",
+        "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+        "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1"
+      },
+      {
+        "role": "高头身原设",
+        "file": "../../dsh_docs/live2d_assets/Character-reference/Mistral.jpg",
+        "sha256": "f95e9ba5c6d2708562862c9d1477da0d47675f822d836e98dcb37272f4918206"
+      },
+      {
+        "role": "已确认同批日常画风",
+        "file": "art/art-batch-12a/masters/bluewhale/base.png",
+        "sha256": "9c1f8664ea314b53c1c401ed50b00c3cd44b363701766d7c080ece2d7052e0a5"
+      },
+      {
+        "role": "已确认同批头像画风",
+        "file": "art/art-batch-12a/masters/bluewhale/avatar.png",
+        "sha256": "fa3b413b626ccdc1f3207eb31df9a3a90bd2cb47d40bd823de14d1d795523142"
+      }
+    ],
+    "generationGuides": {
+      "base": {
+        "inputs": [
+          "art/art-batch-12a/masters/bluewhale/avatar.png",
+          "apps/web/public/art/stage-b/mistral.large.webp"
+        ],
+        "cellSize": 424,
+        "fit": 408,
+        "sha256": "605728c681f0ae52b224fbb2350dbb6e1fbae840e1be72f9c6b6c62625d63ff9"
+      },
+      "flagshipAndAvatar": {
+        "inputs": [
+          "art/art-batch-12a/masters/bluewhale/avatar.png",
+          "apps/web/public/art/stage-b/mistral.large.webp",
+          "art/art-batch-12a/masters/mistral/base.png"
+        ],
+        "cellSize": 424,
+        "fit": 408,
+        "sha256": "d5bc771058c27d797f43f24be5054ada32983da1d924d2c0a9fdb89fe80f2418"
+      }
     }
   },
   "gpt": {
@@ -145,27 +459,111 @@
       "apps/web/public/art/stage-b/gpt.4o.webp"
     ],
     "base": {
-      "sourceFile": "exec-9a1b1a43-abb7-421c-8251-2ad6580985d3.png",
-      "sourceSha256": "59a4bfa019866d53d77d7da4d77f25c4f5690a8f94f9076e80dc7390a227912a",
-      "headRegion": [400, 103, 744, 463],
+      "sourceFile": "exec-22ddc4e0-8e30-4151-a38c-bea5776009bb.png",
+      "sourceSha256": "be91d7eae857ee549ee9ac84618b52fe7f501e40564f43dacc5cb199b965d599",
+      "headRegion": [
+        378,
+        103,
+        740,
+        482
+      ],
       "eyes": [
-        [527, 348],
-        [635, 326]
+        [
+          507,
+          371
+        ],
+        [
+          628,
+          349
+        ]
       ]
     },
     "flagship": {
-      "sourceFile": "exec-960c6f9a-c16a-425a-9485-5b9ea943f721.png",
-      "sourceSha256": "240818dd0bdf05523a80b7f848505e672b53640ecd3fc75b59bf049f929e1dfe",
-      "headRegion": [412, 103, 723, 438],
+      "sourceFile": "exec-9d58a9d8-d964-43c6-b8ee-089d9d7e1aad.png",
+      "sourceSha256": "ff0f2f18c7e820d272ef67571549e1660ff25897ce40829098ade1fac407ce8d",
+      "headRegion": [
+        368,
+        118,
+        727,
+        456
+      ],
       "eyes": [
-        [535, 337],
-        [640, 312]
+        [
+          506,
+          355
+        ],
+        [
+          613,
+          324
+        ]
       ]
     },
     "avatar": {
-      "bottomY": 618,
-      "arcCurvature": 0.00123,
-      "eyeTarget": [0.515, 0.51]
+      "sourceFile": "exec-45f8334c-d775-4f0f-9248-3efb4f5d30c4.png",
+      "sourceSha256": "e3d01e324c6e53d4c30742a215fde84bca029fc51f905c6bada5bc1d86790222",
+      "headRegion": [
+        354,
+        185,
+        910,
+        777
+      ],
+      "eyes": [
+        [
+          546,
+          591
+        ],
+        [
+          738,
+          575
+        ]
+      ],
+      "eyeTarget": [
+        0.5,
+        0.465
+      ]
+    },
+    "styleReferences": [
+      {
+        "role": "最高权重画风",
+        "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+        "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1"
+      },
+      {
+        "role": "高头身原设",
+        "file": "../../dsh_docs/live2d_assets/Character-reference/gpt.jpg",
+        "sha256": "db7e9c113348baa426310ee28ddd07a93a0c9d4a3287036791061783a7d66738"
+      },
+      {
+        "role": "已确认同批日常画风",
+        "file": "art/art-batch-12a/masters/bluewhale/base.png",
+        "sha256": "9c1f8664ea314b53c1c401ed50b00c3cd44b363701766d7c080ece2d7052e0a5"
+      },
+      {
+        "role": "已确认同批头像画风",
+        "file": "art/art-batch-12a/masters/bluewhale/avatar.png",
+        "sha256": "fa3b413b626ccdc1f3207eb31df9a3a90bd2cb47d40bd823de14d1d795523142"
+      }
+    ],
+    "generationGuides": {
+      "base": {
+        "inputs": [
+          "art/art-batch-12a/masters/bluewhale/avatar.png",
+          "apps/web/public/art/stage-b/gpt.4o.webp"
+        ],
+        "cellSize": 424,
+        "fit": 408,
+        "sha256": "41279c3860c83495b6182810b300c065f478a8a4cb30b481fc815e1763b8c5fd"
+      },
+      "flagshipAndAvatar": {
+        "inputs": [
+          "art/art-batch-12a/masters/bluewhale/avatar.png",
+          "apps/web/public/art/stage-b/gpt.4o.webp",
+          "art/art-batch-12a/masters/gpt/base.png"
+        ],
+        "cellSize": 424,
+        "fit": 408,
+        "sha256": "c73df5e6bc1a0306f7662520bf847875428123560a167aa98fbcc498ec928be8"
+      }
     }
   },
   "claude": {
@@ -178,28 +576,123 @@
       "apps/web/public/art/stage-b/claude.sonnet.webp"
     ],
     "base": {
-      "sourceFile": "exec-b628cad1-8ae0-459d-8242-171c152a64f9.png",
-      "sourceSha256": "ee7cd19b4af4c3c3ec4895dcfaba5806dce642b66aaaed765b90d65683f65b65",
-      "headRegion": [377, 17, 709, 439],
-      "eyes": [
-        [496, 317],
-        [613, 291]
+      "sourceFile": "exec-8b7946ca-22d2-4d37-8c94-74d1abf688eb.png",
+      "sourceSha256": "b44ed9d840f45f8c2de6ea2145dea80aa29a18d4041e54091866c377c8ba6e84",
+      "headRegion": [
+        350,
+        42,
+        718,
+        447
       ],
-      "redrawnFrom": "rejected/claude-base-01.png"
-    },
-    "flagship": {
-      "sourceFile": "exec-18de7c24-4e40-4027-b0f2-4ee90a4fb355.png",
-      "sourceSha256": "18bd0cbc7673340ee6caa5d6284fbda0b2a9ee8acc5b869ae463bdb39c997784",
-      "headRegion": [387, 125, 676, 451],
       "eyes": [
-        [509, 357],
-        [600, 335]
+        [
+          496,
+          322
+        ],
+        [
+          619,
+          298
+        ]
       ]
     },
+    "flagship": {
+      "sourceFile": "exec-f1fba29f-cfb0-4b9a-9bd2-1731f4c881d3.png",
+      "sourceSha256": "925764a4b2a41058898c9752f8fa42e5fe8253ad2d20c5bf7ae1a275e3c15ac9",
+      "headRegion": [
+        401,
+        42,
+        743,
+        389
+      ],
+      "eyes": [
+        [
+          552,
+          291
+        ],
+        [
+          657,
+          269
+        ]
+      ],
+      "redrawnFrom": "rejected/claude-flagship-cel-02-palm.png"
+    },
     "avatar": {
-      "bottomY": 570,
-      "arcCurvature": 0.00155,
-      "eyeTarget": [0.505, 0.50]
+      "sourceFile": "exec-dc6bd4db-7e40-4114-9057-1b0c1d8b8208.png",
+      "sourceSha256": "7ba314349de3b11222a9dce3d1e69e3c0dab8345da1eb2a655d4f9a68b5625ce",
+      "headRegion": [
+        321,
+        100,
+        873,
+        735
+      ],
+      "eyes": [
+        [
+          548,
+          532
+        ],
+        [
+          742,
+          523
+        ]
+      ],
+      "eyeTarget": [
+        0.5,
+        0.465
+      ]
+    },
+    "styleReferences": [
+      {
+        "role": "最高权重画风",
+        "file": "../../dsh_docs/live2d_assets/Character-reference/style_reference.jpg",
+        "sha256": "2e5eb208edb3ae49f7bffbd299a4a5960fbc902878e858424ae1b117b0f4daf1"
+      },
+      {
+        "role": "高头身原设",
+        "file": "../../dsh_docs/live2d_assets/Character-reference/claude.jpg",
+        "sha256": "d6ef675d449c48cdfeee02892a79b8b324f330a685f95902963920f5230abcb7"
+      },
+      {
+        "role": "已确认同批日常画风",
+        "file": "art/art-batch-12a/masters/bluewhale/base.png",
+        "sha256": "9c1f8664ea314b53c1c401ed50b00c3cd44b363701766d7c080ece2d7052e0a5"
+      },
+      {
+        "role": "已确认同批头像画风",
+        "file": "art/art-batch-12a/masters/bluewhale/avatar.png",
+        "sha256": "fa3b413b626ccdc1f3207eb31df9a3a90bd2cb47d40bd823de14d1d795523142"
+      }
+    ],
+    "generationGuides": {
+      "base": {
+        "inputs": [
+          "art/art-batch-12a/masters/bluewhale/avatar.png",
+          "apps/web/public/art/stage-b/claude.sonnet.webp"
+        ],
+        "cellSize": 424,
+        "fit": 408,
+        "sha256": "94df829d77678540139dadd606ce2ac5a8679b0d529d562b492cea70c24cc815"
+      },
+      "avatarAndFlagshipStudies": {
+        "inputs": [
+          "art/art-batch-12a/masters/bluewhale/avatar.png",
+          "apps/web/public/art/stage-b/claude.sonnet.webp",
+          "art/art-batch-12a/masters/claude/base.png"
+        ],
+        "cellSize": 424,
+        "fit": 408,
+        "sha256": "1f0e8a751f3cabfd41ac138775b67e3eb93852517c9bdfda0084b45ca611aa26"
+      },
+      "flagship": {
+        "inputs": [
+          "art/art-batch-12a/masters/bluewhale/avatar.png",
+          "apps/web/public/art/stage-b/claude.sonnet.webp",
+          "art/art-batch-12a/masters/claude/base.png",
+          "art/art-batch-12a/rejected/claude-flagship-cel-02-palm.png"
+        ],
+        "cellSize": 424,
+        "fit": 408,
+        "sha256": "886ad3120520111cd3af8b8e9c6190ffb21848ec6227aaf08624b5d700e3d080"
+      }
     }
   }
 }

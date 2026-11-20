@@ -10,10 +10,10 @@
     "bluewhale": {
       "base": {
         "file": "art/art-batch-12a/masters/bluewhale/base.png",
-        "bytes": 2172941,
-        "sha256": "45f89aa229d0967529e4c55dc76e8b016efe595f0c7ed1ea75a5f6b1750eca43",
+        "bytes": 1768772,
+        "sha256": "9c1f8664ea314b53c1c401ed50b00c3cd44b363701766d7c080ece2d7052e0a5",
         "method": "built-in image_gen",
-        "sourceFile": "exec-2d2f778e-df28-4887-af19-8a57ce8bae3d.png",
+        "sourceFile": "exec-b79924a5-bc42-410c-87e9-784f98af572b.png",
         "references": [
           {
             "file": "art/art-batch-8/masters/bluewhale/ref_sheet.png",
@@ -33,18 +33,18 @@
           255
         ],
         "alphaBounds": [
-          31,
           0,
-          1073,
+          18,
+          1072,
           1448
         ]
       },
       "flagship": {
         "file": "art/art-batch-12a/masters/bluewhale/flagship.png",
-        "bytes": 2771976,
-        "sha256": "50aa18288337ba42450fce3cb6f9c3e2fb22e17ed3047b78579eea666dec9e6a",
+        "bytes": 2199174,
+        "sha256": "e617595149ef2de2e9ba5231087a16c47763dee533a9074069ecde5424a0d718",
         "method": "built-in image_gen",
-        "sourceFile": "exec-6985d938-7f51-4aae-bfe0-54f879c5d994.png",
+        "sourceFile": "exec-806737cb-44f8-4a1c-a570-e511ca5702eb.png",
         "references": [
           {
             "file": "art/art-batch-8/masters/bluewhale/ref_sheet.png",
@@ -58,8 +58,8 @@
           },
           {
             "file": "art/art-batch-12a/masters/bluewhale/base.png",
-            "bytes": 2172941,
-            "sha256": "45f89aa229d0967529e4c55dc76e8b016efe595f0c7ed1ea75a5f6b1750eca43"
+            "bytes": 1768772,
+            "sha256": "9c1f8664ea314b53c1c401ed50b00c3cd44b363701766d7c080ece2d7052e0a5"
           }
         ],
         "width": 1086,
@@ -71,43 +71,54 @@
         "alphaBounds": [
           0,
           0,
-          1074,
+          1086,
           1448
         ]
       },
       "avatar": {
         "file": "art/art-batch-12a/masters/bluewhale/avatar.png",
-        "bytes": 792969,
-        "sha256": "ee3548c62dce07ba71f2759d3a12d7588a6bf89c1e19dee60ec6025658be1045",
-        "method": "native-resolution contour crop",
+        "bytes": 1642321,
+        "sha256": "fa3b413b626ccdc1f3207eb31df9a3a90bd2cb47d40bd823de14d1d795523142",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-89ccc8ec-252a-4d0b-b871-8446a8116fdb.png",
         "references": [
           {
+            "file": "art/art-batch-8/masters/bluewhale/ref_sheet.png",
+            "bytes": 627644,
+            "sha256": "15d0e69f0e2cd9da3e619f8ec8130edd285fc410e2dc52c119c3bf5c743a04a3"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/bluewhale.r1.webp",
+            "bytes": 94624,
+            "sha256": "8ea8181da3380a8f776ba0786791da695552abd171921d2bd54a69c2b09f56c4"
+          },
+          {
             "file": "art/art-batch-12a/masters/bluewhale/base.png",
-            "bytes": 2172941,
-            "sha256": "45f89aa229d0967529e4c55dc76e8b016efe595f0c7ed1ea75a5f6b1750eca43"
+            "bytes": 1768772,
+            "sha256": "9c1f8664ea314b53c1c401ed50b00c3cd44b363701766d7c080ece2d7052e0a5"
           }
         ],
-        "width": 757,
-        "height": 757,
+        "width": 1254,
+        "height": 1254,
         "alphaRange": [
           0,
           255
         ],
         "alphaBounds": [
-          61,
-          37,
-          658,
-          690
+          0,
+          6,
+          1238,
+          1254
         ]
       }
     },
     "qwen": {
       "base": {
         "file": "art/art-batch-12a/masters/qwen/base.png",
-        "bytes": 2131543,
-        "sha256": "b6d449c89bb4fe5f1513334b852aa426784f60027941c87af84bfd6b6500776c",
+        "bytes": 2015574,
+        "sha256": "b0306852490d1cb2a0cacded63ca7602b4726e65a403c7f18f169bbc0fad3c72",
         "method": "built-in image_gen",
-        "sourceFile": "exec-87e732d6-02b4-4872-b212-dcc4d337c7b8.png",
+        "sourceFile": "exec-0cbabc5b-0f54-4534-9955-0e9e80423a58.png",
         "references": [
           {
             "file": "art/art-batch-10a/masters/qwen/ref_sheet.png",
@@ -127,18 +138,18 @@
           255
         ],
         "alphaBounds": [
-          50,
-          11,
-          1070,
+          0,
+          21,
+          1076,
           1448
         ]
       },
       "flagship": {
         "file": "art/art-batch-12a/masters/qwen/flagship.png",
-        "bytes": 2470002,
-        "sha256": "d9fdf68fa9dc52c55ac788dfe33523e079c7f442a77c5ff3659132b5797fc2bd",
+        "bytes": 2214189,
+        "sha256": "e4340905b6126ca458ac76e2c618ad41bfbc7d21dde56ec58d1650b022ffc17e",
         "method": "built-in image_gen",
-        "sourceFile": "exec-57d6f928-cca5-480b-957c-f811269ed411.png",
+        "sourceFile": "exec-bace9283-2c20-4117-9d1e-0052364e31ab.png",
         "references": [
           {
             "file": "art/art-batch-10a/masters/qwen/ref_sheet.png",
@@ -152,8 +163,8 @@
           },
           {
             "file": "art/art-batch-12a/masters/qwen/base.png",
-            "bytes": 2131543,
-            "sha256": "b6d449c89bb4fe5f1513334b852aa426784f60027941c87af84bfd6b6500776c"
+            "bytes": 2015574,
+            "sha256": "b0306852490d1cb2a0cacded63ca7602b4726e65a403c7f18f169bbc0fad3c72"
           }
         ],
         "width": 1086,
@@ -164,44 +175,55 @@
         ],
         "alphaBounds": [
           0,
-          30,
-          1078,
+          0,
+          1086,
           1448
         ]
       },
       "avatar": {
         "file": "art/art-batch-12a/masters/qwen/avatar.png",
-        "bytes": 816671,
-        "sha256": "872b4d6ef61fda9d902dc111b5e9aca14cdbfc3549a762919cf0c7258bcb7d53",
-        "method": "native-resolution contour crop",
+        "bytes": 1708231,
+        "sha256": "04d03da3054112718feeec4253279bd6e29a1267a42c83842b386a6dadc5efbf",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-8c50d8bd-200c-42b0-996b-67b66cb00ed9.png",
         "references": [
           {
+            "file": "art/art-batch-10a/masters/qwen/ref_sheet.png",
+            "bytes": 775484,
+            "sha256": "1ce1100501658592b751a6d709423ce1eeb23aafa78ab4a36fa185e5d49682c2"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/qwen.qwq.webp",
+            "bytes": 77950,
+            "sha256": "6aef0ea101701c048c0f77e1e29a1fd8951790a7860eef0d15aa7de33df8a83a"
+          },
+          {
             "file": "art/art-batch-12a/masters/qwen/base.png",
-            "bytes": 2131543,
-            "sha256": "b6d449c89bb4fe5f1513334b852aa426784f60027941c87af84bfd6b6500776c"
+            "bytes": 2015574,
+            "sha256": "b0306852490d1cb2a0cacded63ca7602b4726e65a403c7f18f169bbc0fad3c72"
           }
         ],
-        "width": 738,
-        "height": 738,
+        "width": 1254,
+        "height": 1254,
         "alphaRange": [
           0,
           255
         ],
         "alphaBounds": [
-          50,
-          36,
-          671,
-          685
+          0,
+          22,
+          1236,
+          1254
         ]
       }
     },
     "llama": {
       "base": {
         "file": "art/art-batch-12a/masters/llama/base.png",
-        "bytes": 2481285,
-        "sha256": "31512fe9940015c511dcbb1efd7208acfe493ef1da7429640fc57345e5bb4dda",
+        "bytes": 2126124,
+        "sha256": "1ea291bc4ba17fbea9ebbc68c60855f1d46321f2a71626b4d475f6bc3d937387",
         "method": "built-in image_gen",
-        "sourceFile": "exec-53cdd433-b5a1-4629-9d97-faf9079c7bad.png",
+        "sourceFile": "exec-27bd9990-061d-40c6-89df-92faa662d2c4.png",
         "references": [
           {
             "file": "art/art-batch-10a/masters/llama/ref_sheet.png",
@@ -212,11 +234,6 @@
             "file": "apps/web/public/art/stage-b/llama.3.1.webp",
             "bytes": 87526,
             "sha256": "27994a6dcc899c0927ad436331e16354f8b7efd68c0f2d35baf765b5e1a034c5"
-          },
-          {
-            "file": "art/art-batch-12a/rejected/llama-base-01.png",
-            "bytes": 2348016,
-            "sha256": "e65392441597ec7a7edee116c6be6a4f9944cec8678dfc607e6aa7b4813c7589"
           }
         ],
         "width": 1086,
@@ -228,16 +245,16 @@
         "alphaBounds": [
           0,
           0,
-          1085,
+          1086,
           1448
         ]
       },
       "flagship": {
         "file": "art/art-batch-12a/masters/llama/flagship.png",
-        "bytes": 3138861,
-        "sha256": "f4db65b96d67d24ddb28606169108c4f04f1d039c9cc0d1cc177c8103fcfe0b1",
+        "bytes": 2396477,
+        "sha256": "6ddc3624e13721e2d8cd4d2c84b1894f1cd93789157331ff0310c9c3698e3283",
         "method": "built-in image_gen",
-        "sourceFile": "exec-17b56d8d-58d5-4f6b-9d41-c09589f81227.png",
+        "sourceFile": "exec-81acb01c-f0de-420f-9655-84ce62916e62.png",
         "references": [
           {
             "file": "art/art-batch-10a/masters/llama/ref_sheet.png",
@@ -251,8 +268,8 @@
           },
           {
             "file": "art/art-batch-12a/masters/llama/base.png",
-            "bytes": 2481285,
-            "sha256": "31512fe9940015c511dcbb1efd7208acfe493ef1da7429640fc57345e5bb4dda"
+            "bytes": 2126124,
+            "sha256": "1ea291bc4ba17fbea9ebbc68c60855f1d46321f2a71626b4d475f6bc3d937387"
           }
         ],
         "width": 1086,
@@ -270,37 +287,48 @@
       },
       "avatar": {
         "file": "art/art-batch-12a/masters/llama/avatar.png",
-        "bytes": 938722,
-        "sha256": "05612db63ec8879f739b30fa7da3e9c637ef44188a8ff543251d1092b59a7c50",
-        "method": "native-resolution contour crop",
+        "bytes": 2024458,
+        "sha256": "e9c51fe03611f316f492f410cf2891678ebc3359481e2f26f257168048786a7f",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-6d6e27a4-6824-47dd-81cd-536c6942b56c.png",
         "references": [
           {
+            "file": "art/art-batch-10a/masters/llama/ref_sheet.png",
+            "bytes": 676660,
+            "sha256": "35bc4acbc36bcc6df22e895a1cb0fccd3fa7bda7fcc5a8d39854f0843e4ada54"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/llama.3.1.webp",
+            "bytes": 87526,
+            "sha256": "27994a6dcc899c0927ad436331e16354f8b7efd68c0f2d35baf765b5e1a034c5"
+          },
+          {
             "file": "art/art-batch-12a/masters/llama/base.png",
-            "bytes": 2481285,
-            "sha256": "31512fe9940015c511dcbb1efd7208acfe493ef1da7429640fc57345e5bb4dda"
+            "bytes": 2126124,
+            "sha256": "1ea291bc4ba17fbea9ebbc68c60855f1d46321f2a71626b4d475f6bc3d937387"
           }
         ],
-        "width": 798,
-        "height": 798,
+        "width": 1254,
+        "height": 1254,
         "alphaRange": [
           0,
           255
         ],
         "alphaBounds": [
-          38,
-          77,
-          737,
-          688
+          0,
+          3,
+          1238,
+          1254
         ]
       }
     },
     "mistral": {
       "base": {
         "file": "art/art-batch-12a/masters/mistral/base.png",
-        "bytes": 2492246,
-        "sha256": "5318a3f23b42bb469c71ded34a3381eefd0f45846de0ffd1aff7659b564ec547",
+        "bytes": 2374384,
+        "sha256": "342c34f4884429d40c0324fe0f847ef95df63f783bbb11a7113df43200bd5d91",
         "method": "built-in image_gen",
-        "sourceFile": "exec-3b964fc3-5304-4067-8fec-67a15d35abbe.png",
+        "sourceFile": "exec-ef808ec9-1e31-46b2-b8b0-fa008fdc9de0.png",
         "references": [
           {
             "file": "art/art-batch-10a/masters/mistral/ref_sheet.png",
@@ -311,11 +339,6 @@
             "file": "apps/web/public/art/stage-b/mistral.large.webp",
             "bytes": 95232,
             "sha256": "907bfdacf2faa90c3f57903e5e086dd88a8e92b9604b54576f9e14d8fb2fd374"
-          },
-          {
-            "file": "art/art-batch-12a/rejected/mistral-base-01.png",
-            "bytes": 2615996,
-            "sha256": "1b5efe037a6cdd4917c592ece933f6dcd4c4590111d3358eab613f8175e0b2cd"
           }
         ],
         "width": 1086,
@@ -325,18 +348,18 @@
           255
         ],
         "alphaBounds": [
+          13,
           0,
-          17,
-          1046,
+          1070,
           1448
         ]
       },
       "flagship": {
         "file": "art/art-batch-12a/masters/mistral/flagship.png",
-        "bytes": 2831624,
-        "sha256": "12ff835520ba2d63002d04ed0270ba8e4bb712602bb57c819c39086cbb591bbc",
+        "bytes": 2444597,
+        "sha256": "9fa2ca0c72b5691d82fd59cb0d67b101a792afdf9765c923e4f33d3f9c7efd32",
         "method": "built-in image_gen",
-        "sourceFile": "exec-52a06e98-fe25-4dbd-907f-8b2d61e8fcdc.png",
+        "sourceFile": "exec-77933d77-267d-410f-ac66-9fe655d697e6.png",
         "references": [
           {
             "file": "art/art-batch-10a/masters/mistral/ref_sheet.png",
@@ -350,8 +373,8 @@
           },
           {
             "file": "art/art-batch-12a/masters/mistral/base.png",
-            "bytes": 2492246,
-            "sha256": "5318a3f23b42bb469c71ded34a3381eefd0f45846de0ffd1aff7659b564ec547"
+            "bytes": 2374384,
+            "sha256": "342c34f4884429d40c0324fe0f847ef95df63f783bbb11a7113df43200bd5d91"
           }
         ],
         "width": 1086,
@@ -362,17 +385,17 @@
         ],
         "alphaBounds": [
           0,
-          25,
+          16,
           1086,
           1448
         ]
       },
       "avatar": {
         "file": "art/art-batch-12a/masters/mistral/avatar.png",
-        "bytes": 2784985,
-        "sha256": "5369777f707e431dd73a240549738040569feeae0bd99f16c4da6ee79cafb6f1",
+        "bytes": 2055850,
+        "sha256": "9ae8251354ce047e02a5b41dbdf7411fb3c7b16d654f28e00fa69f20cc76379a",
         "method": "built-in image_gen",
-        "sourceFile": "exec-42c0b77b-1bf3-4920-acb6-ecc415c50e1a.png",
+        "sourceFile": "exec-d112183e-fdf0-4ae7-954a-6fb93886c005.png",
         "references": [
           {
             "file": "art/art-batch-10a/masters/mistral/ref_sheet.png",
@@ -386,8 +409,8 @@
           },
           {
             "file": "art/art-batch-12a/masters/mistral/base.png",
-            "bytes": 2492246,
-            "sha256": "5318a3f23b42bb469c71ded34a3381eefd0f45846de0ffd1aff7659b564ec547"
+            "bytes": 2374384,
+            "sha256": "342c34f4884429d40c0324fe0f847ef95df63f783bbb11a7113df43200bd5d91"
           }
         ],
         "width": 1254,
@@ -407,10 +430,10 @@
     "gpt": {
       "base": {
         "file": "art/art-batch-12a/masters/gpt/base.png",
-        "bytes": 2292368,
-        "sha256": "59a4bfa019866d53d77d7da4d77f25c4f5690a8f94f9076e80dc7390a227912a",
+        "bytes": 2110617,
+        "sha256": "be91d7eae857ee549ee9ac84618b52fe7f501e40564f43dacc5cb199b965d599",
         "method": "built-in image_gen",
-        "sourceFile": "exec-9a1b1a43-abb7-421c-8251-2ad6580985d3.png",
+        "sourceFile": "exec-22ddc4e0-8e30-4151-a38c-bea5776009bb.png",
         "references": [
           {
             "file": "art/art-batch-10a/masters/gpt/ref_sheet.png",
@@ -432,16 +455,16 @@
         "alphaBounds": [
           0,
           0,
-          1070,
+          1086,
           1448
         ]
       },
       "flagship": {
         "file": "art/art-batch-12a/masters/gpt/flagship.png",
-        "bytes": 2899612,
-        "sha256": "240818dd0bdf05523a80b7f848505e672b53640ecd3fc75b59bf049f929e1dfe",
+        "bytes": 2415907,
+        "sha256": "ff0f2f18c7e820d272ef67571549e1660ff25897ce40829098ade1fac407ce8d",
         "method": "built-in image_gen",
-        "sourceFile": "exec-960c6f9a-c16a-425a-9485-5b9ea943f721.png",
+        "sourceFile": "exec-9d58a9d8-d964-43c6-b8ee-089d9d7e1aad.png",
         "references": [
           {
             "file": "art/art-batch-10a/masters/gpt/ref_sheet.png",
@@ -455,8 +478,8 @@
           },
           {
             "file": "art/art-batch-12a/masters/gpt/base.png",
-            "bytes": 2292368,
-            "sha256": "59a4bfa019866d53d77d7da4d77f25c4f5690a8f94f9076e80dc7390a227912a"
+            "bytes": 2110617,
+            "sha256": "be91d7eae857ee549ee9ac84618b52fe7f501e40564f43dacc5cb199b965d599"
           }
         ],
         "width": 1086,
@@ -468,43 +491,54 @@
         "alphaBounds": [
           0,
           0,
-          1076,
+          1086,
           1448
         ]
       },
       "avatar": {
         "file": "art/art-batch-12a/masters/gpt/avatar.png",
-        "bytes": 744438,
-        "sha256": "b254a3cd95aa7f9c43a910515d73ecc0f88029d5e239bba474bfa3d1021aa767",
-        "method": "native-resolution contour crop",
+        "bytes": 1781498,
+        "sha256": "e3d01e324c6e53d4c30742a215fde84bca029fc51f905c6bada5bc1d86790222",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-45f8334c-d775-4f0f-9248-3efb4f5d30c4.png",
         "references": [
           {
+            "file": "art/art-batch-10a/masters/gpt/ref_sheet.png",
+            "bytes": 737228,
+            "sha256": "147fcac22dbe465b9948c8884661632cbebd3c52ec83e26bacd33bce6252b3ce"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/gpt.4o.webp",
+            "bytes": 88654,
+            "sha256": "e99b8d697b01cd27cfa0d6ab129e4ffbbd67fac32594d6ba6a07b5dd4662454e"
+          },
+          {
             "file": "art/art-batch-12a/masters/gpt/base.png",
-            "bytes": 2292368,
-            "sha256": "59a4bfa019866d53d77d7da4d77f25c4f5690a8f94f9076e80dc7390a227912a"
+            "bytes": 2110617,
+            "sha256": "be91d7eae857ee549ee9ac84618b52fe7f501e40564f43dacc5cb199b965d599"
           }
         ],
-        "width": 730,
-        "height": 730,
+        "width": 1254,
+        "height": 1254,
         "alphaRange": [
           0,
           255
         ],
         "alphaBounds": [
-          95,
-          35,
-          666,
-          654
+          0,
+          0,
+          1236,
+          1254
         ]
       }
     },
     "claude": {
       "base": {
         "file": "art/art-batch-12a/masters/claude/base.png",
-        "bytes": 2634620,
-        "sha256": "ee7cd19b4af4c3c3ec4895dcfaba5806dce642b66aaaed765b90d65683f65b65",
+        "bytes": 2224259,
+        "sha256": "b44ed9d840f45f8c2de6ea2145dea80aa29a18d4041e54091866c377c8ba6e84",
         "method": "built-in image_gen",
-        "sourceFile": "exec-b628cad1-8ae0-459d-8242-171c152a64f9.png",
+        "sourceFile": "exec-8b7946ca-22d2-4d37-8c94-74d1abf688eb.png",
         "references": [
           {
             "file": "art/art-batch-10a/masters/claude/ref_sheet.png",
@@ -515,11 +549,6 @@
             "file": "apps/web/public/art/stage-b/claude.sonnet.webp",
             "bytes": 87946,
             "sha256": "efcccbfbff9562c8fae8f83e45e1035ca0793ffebcc37d94869c401745ec4bbb"
-          },
-          {
-            "file": "art/art-batch-12a/rejected/claude-base-01.png",
-            "bytes": 2585066,
-            "sha256": "403445861ad79f3db216fd2095aff5769ab36edcf938fdbf4cc40d9b507dd582"
           }
         ],
         "width": 1086,
@@ -537,10 +566,10 @@
       },
       "flagship": {
         "file": "art/art-batch-12a/masters/claude/flagship.png",
-        "bytes": 2665164,
-        "sha256": "18bd0cbc7673340ee6caa5d6284fbda0b2a9ee8acc5b869ae463bdb39c997784",
+        "bytes": 2323835,
+        "sha256": "925764a4b2a41058898c9752f8fa42e5fe8253ad2d20c5bf7ae1a275e3c15ac9",
         "method": "built-in image_gen",
-        "sourceFile": "exec-18de7c24-4e40-4027-b0f2-4ee90a4fb355.png",
+        "sourceFile": "exec-f1fba29f-cfb0-4b9a-9bd2-1731f4c881d3.png",
         "references": [
           {
             "file": "art/art-batch-10a/masters/claude/ref_sheet.png",
@@ -554,8 +583,8 @@
           },
           {
             "file": "art/art-batch-12a/masters/claude/base.png",
-            "bytes": 2634620,
-            "sha256": "ee7cd19b4af4c3c3ec4895dcfaba5806dce642b66aaaed765b90d65683f65b65"
+            "bytes": 2224259,
+            "sha256": "b44ed9d840f45f8c2de6ea2145dea80aa29a18d4041e54091866c377c8ba6e84"
           }
         ],
         "width": 1086,
@@ -573,27 +602,38 @@
       },
       "avatar": {
         "file": "art/art-batch-12a/masters/claude/avatar.png",
-        "bytes": 780255,
-        "sha256": "6584ed2f1aaabad6f4ffbe4e75d5d03f6b97e7424174b177b5ae30f3bca2dc41",
-        "method": "native-resolution contour crop",
+        "bytes": 1942286,
+        "sha256": "7ba314349de3b11222a9dce3d1e69e3c0dab8345da1eb2a655d4f9a68b5625ce",
+        "method": "built-in image_gen",
+        "sourceFile": "exec-dc6bd4db-7e40-4114-9057-1b0c1d8b8208.png",
         "references": [
           {
+            "file": "art/art-batch-10a/masters/claude/ref_sheet.png",
+            "bytes": 610550,
+            "sha256": "d76c0288606bca90ed28214bfa969d9e334dbc9e5111d723a403a382fb981d88"
+          },
+          {
+            "file": "apps/web/public/art/stage-b/claude.sonnet.webp",
+            "bytes": 87946,
+            "sha256": "efcccbfbff9562c8fae8f83e45e1035ca0793ffebcc37d94869c401745ec4bbb"
+          },
+          {
             "file": "art/art-batch-12a/masters/claude/base.png",
-            "bytes": 2634620,
-            "sha256": "ee7cd19b4af4c3c3ec4895dcfaba5806dce642b66aaaed765b90d65683f65b65"
+            "bytes": 2224259,
+            "sha256": "b44ed9d840f45f8c2de6ea2145dea80aa29a18d4041e54091866c377c8ba6e84"
           }
         ],
-        "width": 673,
-        "height": 673,
+        "width": 1254,
+        "height": 1254,
         "alphaRange": [
           0,
           255
         ],
         "alphaBounds": [
-          39,
-          32,
-          638,
-          603
+          0,
+          17,
+          1232,
+          1244
         ]
       }
     }
@@ -603,78 +643,78 @@
       "id": "bluewhale",
       "tier": "base",
       "file": "apps/web/public/art/portraits/base/bluewhale.webp",
-      "bytes": 115606,
-      "sha256": "84e80477df386ec08eb11fa958cbf7a3b85b7ed5ac9607ddce459e4fabdbdbfd",
-      "sourceSha256": "45f89aa229d0967529e4c55dc76e8b016efe595f0c7ed1ea75a5f6b1750eca43",
+      "bytes": 94068,
+      "sha256": "7ec598786dda9e7a061f1f6c54bab71d20bab9c1e4ae2d654c8e921810120d66",
+      "sourceSha256": "9c1f8664ea314b53c1c401ed50b00c3cd44b363701766d7c080ece2d7052e0a5",
       "encoder": {
         "quality": 86,
         "method": 6,
         "grainRadius": 0,
-        "liftedPixels": 283
+        "liftedPixels": 13
       }
     },
     {
       "id": "bluewhale",
       "tier": "flagship",
       "file": "apps/web/public/art/portraits/flagship/bluewhale.webp",
-      "bytes": 129876,
-      "sha256": "894fe242eda4f8cc6113de6e2618f3ec2deda0c9cf0184942048c602c3803882",
-      "sourceSha256": "50aa18288337ba42450fce3cb6f9c3e2fb22e17ed3047b78579eea666dec9e6a",
+      "bytes": 132276,
+      "sha256": "c18d16af9b7aab487b51cd980be4d0a8c55fab880004c749be87a92fa8dd2658",
+      "sourceSha256": "e617595149ef2de2e9ba5231087a16c47763dee533a9074069ecde5424a0d718",
       "encoder": {
         "quality": 86,
         "method": 6,
-        "grainRadius": 0.8,
-        "liftedPixels": 262
+        "grainRadius": 0,
+        "liftedPixels": 5
       }
     },
     {
       "id": "bluewhale",
       "tier": "avatar",
       "file": "apps/web/public/art/portraits/avatars/bluewhale.webp",
-      "bytes": 19682,
-      "sha256": "7a3bcc487a58385f188625e54228ea4eaaa45474c34b6a4b4985f698fa99d71c",
-      "sourceSha256": "ee3548c62dce07ba71f2759d3a12d7588a6bf89c1e19dee60ec6025658be1045",
+      "bytes": 19052,
+      "sha256": "c31f39ba98427dda11fbe7dac37c6587b3074c628be6c04a4f4cd09491d58fbb",
+      "sourceSha256": "fa3b413b626ccdc1f3207eb31df9a3a90bd2cb47d40bd823de14d1d795523142",
       "encoder": {
         "quality": 88,
         "method": 6,
-        "warmInkPasses": 0
+        "warmInkPasses": 2
       }
     },
     {
       "id": "qwen",
       "tier": "base",
       "file": "apps/web/public/art/portraits/base/qwen.webp",
-      "bytes": 115998,
-      "sha256": "b83cd6a37d8290a889d81bd3fb12d87a4ab72eb716b0f2657f1371b1e2c2b0cd",
-      "sourceSha256": "b6d449c89bb4fe5f1513334b852aa426784f60027941c87af84bfd6b6500776c",
+      "bytes": 111816,
+      "sha256": "d311b3f1e1e89bd13c8bc4ef15c29a6ff7a761f8bb6f04ae8969a9b51e10f122",
+      "sourceSha256": "b0306852490d1cb2a0cacded63ca7602b4726e65a403c7f18f169bbc0fad3c72",
       "encoder": {
         "quality": 86,
         "method": 6,
         "grainRadius": 0,
-        "liftedPixels": 8
+        "liftedPixels": 9
       }
     },
     {
       "id": "qwen",
       "tier": "flagship",
       "file": "apps/web/public/art/portraits/flagship/qwen.webp",
-      "bytes": 134556,
-      "sha256": "07764f263f9071bee771720868bcaab0e9b3e0403e4b50cd33fd7f304e98586a",
-      "sourceSha256": "d9fdf68fa9dc52c55ac788dfe33523e079c7f442a77c5ff3659132b5797fc2bd",
+      "bytes": 130996,
+      "sha256": "aa8f43618ae18ad052fd2a2845e3010b8881caccb2b9a1e788829250da25a926",
+      "sourceSha256": "e4340905b6126ca458ac76e2c618ad41bfbc7d21dde56ec58d1650b022ffc17e",
       "encoder": {
         "quality": 86,
         "method": 6,
-        "grainRadius": 0.65,
-        "liftedPixels": 18
+        "grainRadius": 0,
+        "liftedPixels": 13
       }
     },
     {
       "id": "qwen",
       "tier": "avatar",
       "file": "apps/web/public/art/portraits/avatars/qwen.webp",
-      "bytes": 21222,
-      "sha256": "04c461358cd8fbc6771b6b6a68a689b7a7211b6c014a2a14f0f28340441bc312",
-      "sourceSha256": "872b4d6ef61fda9d902dc111b5e9aca14cdbfc3549a762919cf0c7258bcb7d53",
+      "bytes": 19404,
+      "sha256": "eb0f7f9f6cd45329cdd0ee1e4ffabdc0860ce5651bbf02d47547925926c16f3e",
+      "sourceSha256": "04d03da3054112718feeec4253279bd6e29a1267a42c83842b386a6dadc5efbf",
       "encoder": {
         "quality": 88,
         "method": 6,
@@ -685,37 +725,37 @@
       "id": "llama",
       "tier": "base",
       "file": "apps/web/public/art/portraits/base/llama.webp",
-      "bytes": 136972,
-      "sha256": "0d9ff3a76b3e1b17a8861c2a58f2efd255ecfb86875afe6bc1073cfa8a15da96",
-      "sourceSha256": "31512fe9940015c511dcbb1efd7208acfe493ef1da7429640fc57345e5bb4dda",
+      "bytes": 108960,
+      "sha256": "779bbb2b1237f4b66337e4738955a7b58886c845c5179e3063d76aa1e5618fb5",
+      "sourceSha256": "1ea291bc4ba17fbea9ebbc68c60855f1d46321f2a71626b4d475f6bc3d937387",
       "encoder": {
         "quality": 86,
         "method": 6,
         "grainRadius": 0,
-        "liftedPixels": 51
+        "liftedPixels": 19
       }
     },
     {
       "id": "llama",
       "tier": "flagship",
       "file": "apps/web/public/art/portraits/flagship/llama.webp",
-      "bytes": 135458,
-      "sha256": "092cd0c64f6937fcd8d1c7253d87c77b525f6f7f161c34e856349d4d60a7621f",
-      "sourceSha256": "f4db65b96d67d24ddb28606169108c4f04f1d039c9cc0d1cc177c8103fcfe0b1",
+      "bytes": 128840,
+      "sha256": "0cf166e369326e675d978cb5170ed9488337037f16b0a6c1e300ad10030acd52",
+      "sourceSha256": "6ddc3624e13721e2d8cd4d2c84b1894f1cd93789157331ff0310c9c3698e3283",
       "encoder": {
         "quality": 86,
         "method": 6,
-        "grainRadius": 0.65,
-        "liftedPixels": 32
+        "grainRadius": 0,
+        "liftedPixels": 33
       }
     },
     {
       "id": "llama",
       "tier": "avatar",
       "file": "apps/web/public/art/portraits/avatars/llama.webp",
-      "bytes": 17802,
-      "sha256": "732bb4901b0e804f438b5eb54fc0c1456a4deb60ff15d93396bf5dba4411232c",
-      "sourceSha256": "05612db63ec8879f739b30fa7da3e9c637ef44188a8ff543251d1092b59a7c50",
+      "bytes": 21804,
+      "sha256": "2d91064e1a84c34881a89e27ae4c1fb64603f82dfc034ed9ea37f68927a1a5d2",
+      "sourceSha256": "e9c51fe03611f316f492f410cf2891678ebc3359481e2f26f257168048786a7f",
       "encoder": {
         "quality": 88,
         "method": 6,
@@ -726,37 +766,37 @@
       "id": "mistral",
       "tier": "base",
       "file": "apps/web/public/art/portraits/base/mistral.webp",
-      "bytes": 127990,
-      "sha256": "4ff265053628fc5a3ae0c0fc7ac7012b077ecafe9935a0744eb1f4880d0f715d",
-      "sourceSha256": "5318a3f23b42bb469c71ded34a3381eefd0f45846de0ffd1aff7659b564ec547",
+      "bytes": 130362,
+      "sha256": "ab619c407507d43f61688c282f6d3d8f4d12654bee4d4b192d57bf2187af0669",
+      "sourceSha256": "342c34f4884429d40c0324fe0f847ef95df63f783bbb11a7113df43200bd5d91",
       "encoder": {
         "quality": 86,
         "method": 6,
         "grainRadius": 0.45,
-        "liftedPixels": 5
+        "liftedPixels": 9
       }
     },
     {
       "id": "mistral",
       "tier": "flagship",
       "file": "apps/web/public/art/portraits/flagship/mistral.webp",
-      "bytes": 138900,
-      "sha256": "9309b6afb933a22856d129be4af0c763aa0ac66b2ecbda304075d788b91e726b",
-      "sourceSha256": "12ff835520ba2d63002d04ed0270ba8e4bb712602bb57c819c39086cbb591bbc",
+      "bytes": 130718,
+      "sha256": "66d625e856bd48e00b0236f14e2fd15bad181024570c59d7406e68b948d9c641",
+      "sourceSha256": "9fa2ca0c72b5691d82fd59cb0d67b101a792afdf9765c923e4f33d3f9c7efd32",
       "encoder": {
         "quality": 86,
         "method": 6,
-        "grainRadius": 0.8,
-        "liftedPixels": 18
+        "grainRadius": 0.65,
+        "liftedPixels": 2
       }
     },
     {
       "id": "mistral",
       "tier": "avatar",
       "file": "apps/web/public/art/portraits/avatars/mistral.webp",
-      "bytes": 27008,
-      "sha256": "3f00638fa81bc611826634488939989c9a1b374b2284e3439344f12f684ffa1c",
-      "sourceSha256": "5369777f707e431dd73a240549738040569feeae0bd99f16c4da6ee79cafb6f1",
+      "bytes": 25866,
+      "sha256": "48831ab8766853b00aeb5776cdc758aa697a030351f5f94b9dc24e22a715d387",
+      "sourceSha256": "9ae8251354ce047e02a5b41dbdf7411fb3c7b16d654f28e00fa69f20cc76379a",
       "encoder": {
         "quality": 88,
         "method": 6,
@@ -767,37 +807,37 @@
       "id": "gpt",
       "tier": "base",
       "file": "apps/web/public/art/portraits/base/gpt.webp",
-      "bytes": 126830,
-      "sha256": "9de404e0cad5c4a25e16693d1cc4c3fd64c020eabf430b29a69b3ce8b71e61d6",
-      "sourceSha256": "59a4bfa019866d53d77d7da4d77f25c4f5690a8f94f9076e80dc7390a227912a",
+      "bytes": 122216,
+      "sha256": "9625e6b27f69ad9e53abcdb2e2632d90a0aed45851b7d0d1a5a481d7ac0f3c8b",
+      "sourceSha256": "be91d7eae857ee549ee9ac84618b52fe7f501e40564f43dacc5cb199b965d599",
       "encoder": {
         "quality": 86,
         "method": 6,
         "grainRadius": 0,
-        "liftedPixels": 8
+        "liftedPixels": 10
       }
     },
     {
       "id": "gpt",
       "tier": "flagship",
       "file": "apps/web/public/art/portraits/flagship/gpt.webp",
-      "bytes": 135164,
-      "sha256": "dc1e02b60955fdbf233f117c42e7cf49ed5129e5487eb36b615b9061bde312a7",
-      "sourceSha256": "240818dd0bdf05523a80b7f848505e672b53640ecd3fc75b59bf049f929e1dfe",
+      "bytes": 135818,
+      "sha256": "0aab38190ec34e397b13813aef4b8fe1b8fd08dc39c36a1247b2428a63cd7500",
+      "sourceSha256": "ff0f2f18c7e820d272ef67571549e1660ff25897ce40829098ade1fac407ce8d",
       "encoder": {
         "quality": 86,
         "method": 6,
-        "grainRadius": 0.65,
-        "liftedPixels": 24
+        "grainRadius": 0.45,
+        "liftedPixels": 7
       }
     },
     {
       "id": "gpt",
       "tier": "avatar",
       "file": "apps/web/public/art/portraits/avatars/gpt.webp",
-      "bytes": 20616,
-      "sha256": "d6b055b66602e52bf2b7a786398906451fe7403207d2c884ddd804a91b0a029a",
-      "sourceSha256": "b254a3cd95aa7f9c43a910515d73ecc0f88029d5e239bba474bfa3d1021aa767",
+      "bytes": 21888,
+      "sha256": "b960f0c1ff589e5e5e11d746516e6dff841acc8091953408fc07193550ba96d9",
+      "sourceSha256": "e3d01e324c6e53d4c30742a215fde84bca029fc51f905c6bada5bc1d86790222",
       "encoder": {
         "quality": 88,
         "method": 6,
@@ -808,37 +848,37 @@
       "id": "claude",
       "tier": "base",
       "file": "apps/web/public/art/portraits/base/claude.webp",
-      "bytes": 136150,
-      "sha256": "edc655716ecfaf8698a5565cd67a8a1160784b26253dc395a64f6355b26fdcf2",
-      "sourceSha256": "ee7cd19b4af4c3c3ec4895dcfaba5806dce642b66aaaed765b90d65683f65b65",
+      "bytes": 133282,
+      "sha256": "64e78566775c0148ba4a59a0542a66c490706d6dc149a9c1443b760b9c582d0a",
+      "sourceSha256": "b44ed9d840f45f8c2de6ea2145dea80aa29a18d4041e54091866c377c8ba6e84",
       "encoder": {
         "quality": 86,
         "method": 6,
-        "grainRadius": 0.45,
-        "liftedPixels": 644
+        "grainRadius": 0,
+        "liftedPixels": 118
       }
     },
     {
       "id": "claude",
       "tier": "flagship",
       "file": "apps/web/public/art/portraits/flagship/claude.webp",
-      "bytes": 138436,
-      "sha256": "c3e07f0418220d7510df33b66eaeb9bc045aa01d2c754c8877e510b909eea97b",
-      "sourceSha256": "18bd0cbc7673340ee6caa5d6284fbda0b2a9ee8acc5b869ae463bdb39c997784",
+      "bytes": 129856,
+      "sha256": "361d214f5172c02d34070842cc464a4e77e91a0ea1f9e90ff81b525229a0d95a",
+      "sourceSha256": "925764a4b2a41058898c9752f8fa42e5fe8253ad2d20c5bf7ae1a275e3c15ac9",
       "encoder": {
         "quality": 86,
         "method": 6,
-        "grainRadius": 0.65,
-        "liftedPixels": 234
+        "grainRadius": 0,
+        "liftedPixels": 26
       }
     },
     {
       "id": "claude",
       "tier": "avatar",
       "file": "apps/web/public/art/portraits/avatars/claude.webp",
-      "bytes": 20722,
-      "sha256": "80a1f3c8201c65ede776f73bfb64fbd7ef16b62600e7d67b973e51c7124cad3a",
-      "sourceSha256": "6584ed2f1aaabad6f4ffbe4e75d5d03f6b97e7424174b177b5ae30f3bca2dc41",
+      "bytes": 20350,
+      "sha256": "e905ccc1563572e7fac043548a478365b80370ef64087201318d67019a0bb03c",
+      "sourceSha256": "7ba314349de3b11222a9dce3d1e69e3c0dab8345da1eb2a655d4f9a68b5625ce",
       "encoder": {
         "quality": 88,
         "method": 6,
@@ -848,7 +888,7 @@
   ],
   "catalog": {
     "file": "apps/web/public/art/portraits/catalog.json",
-    "bytes": 14697,
-    "sha256": "71949858e225c432e7df32d6078199795757fd32e2a424256ba5a446a26e5969"
+    "bytes": 14693,
+    "sha256": "6c62d7862036981a534da39b53c786cf6af984779438f8926dabc700804593e2"
   }
 }
