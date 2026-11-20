@@ -1,4 +1,4 @@
-2026-11-20 Art-Batch 12A 已交付。bluewhale、qwen、llama、mistral、gpt、claude 的日常立绘、觉醒立绘和头像共 18 张 WebP，合计 1,698,988 字节。Web 和 DSH 离线包均收录 18 张图和目录。六人双底对照见 `art/art-batch-12a/review/batch12a-overview.png`。招募、入驻与伙伴详情的界面接入排在 12B 完成后。
+2026-11-20 Art-Batch 12A 赛璐璐终版已交付。六位伙伴的 18 张透明 WebP 共 1,617,572 字节，已进入 Web 与 DSH 离线包。Bluewhale V3 和头像保留定调文件，R1 已修正肩臂。六张个人核验图和双底总览见 `art/art-batch-12a/review/`，完整门禁见 `harness/reviews/art-batch-12a.md`。招募、入驻与伙伴详情的界面接入排在 12B 完成后。
 
 2026-11-19 Art-Batch 11 已交付。8 类家具的 10 张图层、8 张有内容的预览、4 件彩蛋摆件和目录已通过离线包核验。依照现有工位坐标，两张无椅书桌的后沿均为 y224，坐姿双手露出、双腿被挡板遮住。叠合图见 `art/art-batch-11/review/batch11-composite-review.png`。
 
