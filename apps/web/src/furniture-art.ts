@@ -1,5 +1,8 @@
 export const furnitureKinds = ['basic', 'standard', 'whiteboard', 'coffee', 'sofa', 'server', 'dining', 'reading'] as const;
-export const decorPropIds = ['decor-studio_cat', 'decor-monstera_pot', 'decor-token_jar', 'decor-vinyl_player'] as const;
+export const decorPropIds = [
+    'decor-studio_cat', 'decor-monstera_pot', 'decor-token_jar', 'decor-vinyl_player',
+    'decor-ramen_cart', 'decor-bento_board', 'decor-book_trolley', 'decor-library_owl',
+] as const;
 
 type Layer = 'back' | 'front';
 const layers: Record<typeof furnitureKinds[number], readonly Layer[]> = {

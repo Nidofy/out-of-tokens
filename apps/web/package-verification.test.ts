@@ -8,6 +8,7 @@ import {chapterBannerArt,projectCoverArt,financeArt,ritualBackdropArt,stampSealC
 import {emoteArt,giftArt,clientArt,teaBreakArt} from './src/living-art.js';
 import {decorPropArt, decorPropIds, furnitureKinds, furnitureLayerArt, furniturePreviewArt} from './src/furniture-art.js';
 import {avatarPortraitArt, basePortraitArt, flagshipPortraitArt, portraitCharacters} from './src/portraits-art.js';
+import {endingArt, paperclipMascotArt, storyClientArt, worldArt} from './src/story-art.js';
 
 // Full-batch byte comparisons exceeded 5s before Batch 6 on this Windows host.
 // This is an integrity test, not a performance gate; retain every byte assertion.
@@ -410,10 +411,11 @@ const furnitureLayers = {
  sofa: ['back'], server: ['back'], dining: ['front'], reading: ['front'],
 } as const;
 const batch11Decor = ['decor-studio_cat', 'decor-monstera_pot', 'decor-token_jar', 'decor-vinyl_player'];
+const batch13Decor = ['decor-ramen_cart', 'decor-bento_board', 'decor-book_trolley', 'decor-library_owl'];
 
 it('limits Art-Batch 11 paths to shipped layers, previews and decor', () => {
  expect(furnitureKinds).toEqual(Object.keys(furnitureLayers));
- expect(decorPropIds).toEqual(batch11Decor);
+ expect(decorPropIds).toEqual([...batch11Decor, ...batch13Decor]);
  for (const kind of furnitureKinds) {
   const layers: readonly string[] = furnitureLayers[kind];
   for (const layer of ['back', 'front'] as const) {
@@ -443,7 +445,7 @@ it('verifies Art-Batch 11 PNGs, decoded WebPs, composite sources, catalog and of
  const previews = furnitureKinds.map(k => k + '-preview');
  const originals = [...layers, ...batch11Decor];
  const images = [...originals, ...previews];
- const inventory = [...images.map(k => k + '.webp'), 'catalog.json'].sort();
+ const inventory = [...images, ...batch13Decor].map(k => k + '.webp').concat('catalog.json').sort();
  const sha = (path: string) => createHash('sha256').update(readFileSync(path)).digest('hex');
  const offline: {assets: string[]} = JSON.parse(readFileSync('apps/web/dist/offline-assets.json', 'utf8'));
  expect(entries).toHaveLength(37);
@@ -490,9 +492,12 @@ it('verifies Art-Batch 11 PNGs, decoded WebPs, composite sources, catalog and of
  const catalogPath = join('apps/web/public', pub, 'catalog.json');
  expect(catalogEntry.file).toBe('apps/web/public/art/furniture/catalog.json');
  expect(catalogEntry.publicFile).toBe(pub + 'catalog.json');
- expect(readFileSync(catalogPath).length).toBe(catalogEntry.bytes);
- for (const f of ['public', 'dist']) expect(sha(join('apps/web', f, pub, 'catalog.json'))).toBe(catalogEntry.sha256);
  const catalog = JSON.parse(readFileSync(catalogPath, 'utf8'));
+ // Reconstruct the exact Batch 11 document after the additive Batch 13 extension.
+ const original = Buffer.from(JSON.stringify({...catalog, decor: catalog.decor.slice(0, batch11Decor.length)}, null, 2) + '\n');
+ expect(original.length).toBe(catalogEntry.bytes);
+ expect(createHash('sha256').update(original).digest('hex')).toBe(catalogEntry.sha256);
+ expect(sha(join('apps/web/dist', pub, 'catalog.json'))).toBe(sha(catalogPath));
  expect(catalog).toMatchObject({schemaVersion: 1, layerCanvas: [560,480], pixelsPerWorldUnit: 2, worldOriginPx: [280,400],
   previewCanvas: [256,256], decorCanvas: [256,256]});
  expect(catalog.furniture).toHaveLength(8);
@@ -501,7 +506,7 @@ it('verifies Art-Batch 11 PNGs, decoded WebPs, composite sources, catalog and of
    alphaBounds: Object.fromEntries(furnitureLayers[kind].map(l => [l, byId(kind + '-' + l).alphaBounds])),
    previewAlphaBounds: byId(kind + '-preview').alphaBounds});
  }
- expect(catalog.decor).toHaveLength(4);
+ expect(catalog.decor.map((entry: {id: string}) => entry.id)).toEqual(decorPropIds);
  for (const [i, id] of batch11Decor.entries()) {
   const e = byId(id), [l,t,r,b] = e.alphaBounds as [number,number,number,number];
   expect(catalog.decor[i]).toMatchObject({id, file: id + '.webp', feet: [128,236], visibleHeight: b-t, bytes: e.bytes,
@@ -746,5 +751,122 @@ it('preserves the five lines of Kimi K2’s music staff in the decoded WebP', ()
   '        strokes = sum(1 for lit, pixels in groupby(gold) if lit)',
   '        assert strokes == 5, (x, strokes)',
  ].join('\n'), resolve('apps/web/public/art/portraits/flagship/kimi.webp')], {encoding: 'utf8'});
+ expect(result.status, result.error?.message ?? result.stderr).toBe(0);
+});
+
+const storyGroups = [
+ {prefix: 'client', ids: ['tea-lin', 'book-zhou', 'tech-yan', 'curator-su', 'oss-zhe', 'vc-lu'], path: storyClientArt},
+ {prefix: 'ending', ids: ['independent', 'acquired', 'open-source', 'warm-shop', 'paperclip'], path: endingArt},
+ {prefix: 'world', ids: ['slime', 'paper', 'castle'], path: worldArt},
+ {prefix: 'mascot-paperclip', ids: ['idle', 'alert'], path: paperclipMascotArt},
+];
+const storyIds = storyGroups.flatMap(group => group.ids.map(id => group.prefix + '-' + id));
+
+it('resolves exactly sixteen story paths and rejects IDs from outside their category', () => {
+ for (const {prefix, ids, path} of storyGroups) {
+  for (const id of ids) expect(path(id)).toBe(`./art/story/${prefix}-${id}.webp`);
+  for (const invalid of ['', '../tea-lin', 'SLIME', 'idle.webp', 'acquired?x', '%2e%2e', 'constructor', '__proto__',
+   ...storyGroups.flatMap(group => group.ids).filter(id => !ids.includes(id))]) {
+   expect(path(invalid)).toBeNull();
+  }
+ }
+});
+
+type Batch13Metadata = {
+ width: number; height: number; mode: 'RGBA' | 'RGB'; alphaRange?: number[]; alphaBounds?: number[];
+ visiblePureBlackPixels?: number; feet?: number[]; visibleHeight?: number; alphaCentroidX?: number;
+};
+type Batch13Asset = {id: string; master: ArtFile & Batch13Metadata; runtime: ArtFile & Batch13Metadata};
+
+it('verifies the twenty Batch 13 masters and WebPs, both catalogs and both offline copies', () => {
+ const batch = 'art/art-batch-13', pub = 'apps/web/public', expected = [...storyIds, ...batch13Decor];
+ const manifest: {assets: Batch13Asset[]; catalogs: ArtFile[]; reviews: ArtFile[]; studies: ArtFile[]} =
+  JSON.parse(readFileSync(join(batch, 'manifest.json'), 'utf8'));
+ const catalog: {assets: ({id: string} & ArtFile & Batch13Metadata)[]} =
+  JSON.parse(readFileSync(join(pub, 'art/story/catalog.json'), 'utf8'));
+ const furniture: {decor: ({id: string} & ArtFile & Partial<Batch13Metadata>)[]} =
+  JSON.parse(readFileSync(join(pub, 'art/furniture/catalog.json'), 'utf8'));
+ const published = new Map<string, string>();
+ const hash = (buffer: Buffer) => createHash('sha256').update(buffer).digest('hex');
+ function verified(file: ArtFile) {
+  const bytes = readFileSync(file.file);
+  expect({bytes: bytes.length, sha256: hash(bytes)}).toEqual({bytes: file.bytes, sha256: file.sha256});
+  return bytes;
+ }
+ expect(manifest.assets.map(a => a.id)).toEqual(expected);
+ expect(catalog.assets.map(a => a.id)).toEqual(storyIds);
+ expect(readdirSync(join(pub, 'art/story')).sort()).toEqual(['catalog.json', ...storyIds.map(id => id + '.webp')].sort());
+ expect(readdirSync(join(batch, 'masters')).sort()).toEqual(expected.map(id => id + '.png').sort());
+ expect(manifest.studies.map(e => e.file)).toEqual(['client-oss-zhe', 'world-castle'].map(id => `${batch}/studies/${id}.png`));
+ for (const study of manifest.studies) verified(study);
+ for (const {id, master, runtime} of manifest.assets) {
+  expect(master.file).toBe(`${batch}/masters/${id}.png`);
+  const png = verified(master);
+  expect(png.subarray(0, 8)).toEqual(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+  expect([png.readUInt32BE(16), png.readUInt32BE(20)]).toEqual([master.width, master.height]);
+  const decor = batch13Decor.includes(id);
+  const publicPath = `art/${decor ? 'furniture' : 'story'}/${id}.webp`;
+  expect(runtime.file).toBe(pub + '/' + publicPath);
+  verified(runtime);
+  published.set(publicPath, runtime.sha256);
+  const common = {id, file: id + '.webp', bytes: runtime.bytes, sha256: runtime.sha256};
+  if (decor) {
+   const entry = furniture.decor.find(e => e.id === id);
+   expect(entry).toMatchObject({...common, alphaBounds: runtime.alphaBounds, feet: [128, 236],
+    visibleHeight: runtime.visibleHeight, alphaCentroidX: runtime.alphaCentroidX});
+  } else {
+   const entry = catalog.assets.find(e => e.id === id);
+   expect(entry).toMatchObject({...common, width: runtime.width, height: runtime.height, mode: runtime.mode});
+   if (runtime.mode === 'RGBA') expect(entry).toMatchObject({alphaBounds: runtime.alphaBounds, alphaRange: [0, 255],
+    visiblePureBlackPixels: 0});
+  }
+ }
+ expect(manifest.catalogs.map(e => e.file).sort()).toEqual(['art/furniture', 'art/story'].map(dir => pub + '/' + dir + '/catalog.json'));
+ for (const file of manifest.catalogs) {
+  verified(file);
+  published.set(file.file.slice(pub.length + 1), file.sha256);
+ }
+ expect(manifest.reviews.map(e => e.file).sort()).toEqual(['clients', 'endings-worlds', 'mascot-decor'].map(id => `${batch}/review/${id}-review.png`));
+ for (const proof of manifest.reviews) verified(proof);
+ for (const root of ['apps/web/dist', 'apps/dsh/dist/web']) {
+  const offline: {assets: string[]} = JSON.parse(readFileSync(join(root, 'offline-assets.json'), 'utf8'));
+  expect(offline.assets.filter(p => p.startsWith('art/story/')).sort()).toEqual([...published.keys()].filter(p => p.startsWith('art/story/')).sort());
+  for (const [file, sha] of published) {
+   expect(offline.assets).toContain(file);
+   expect(hash(readFileSync(join(root, file)))).toBe(sha);
+  }
+ }
+});
+
+it('decodes Batch 13 scene budgets, clear sprite edges and four floor anchors', () => {
+ const result = spawnSync('python', ['-c', [
+  'import json',
+  'from pathlib import Path',
+  'import numpy as np',
+  'from PIL import Image',
+  'assets = json.loads(Path("art/art-batch-13/manifest.json").read_bytes())["assets"]',
+  'for asset in assets:',
+  '    key, item = asset["id"], asset["runtime"]',
+  '    ending, world = key.startswith("ending-"), key.startswith("world-")',
+  '    size = (1280,720) if ending else (768,512) if world else (256,256)',
+  '    with Image.open(item["file"]) as im:',
+  '        assert im.format == "WEBP" and im.size == size == (item["width"],item["height"]), key',
+  '        assert im.mode == item["mode"] == ("RGB" if ending or world else "RGBA"), key',
+  '        if ending or world:',
+  '            assert Path(item["file"]).stat().st_size <= (180000 if ending else 90000), key',
+  '            continue',
+  '        alpha = im.getchannel("A"); a = np.asarray(alpha)',
+  '        assert list(alpha.getextrema()) == item["alphaRange"] == [0,255], key',
+  '        assert list(alpha.getbbox()) == item["alphaBounds"], key',
+  '        assert not np.any((a>0) & (np.asarray(im)[:,:,:3]==0).all(axis=2)) and item["visiblePureBlackPixels"] == 0, key',
+  '        assert np.all(a[[0,-1],:]==0) and np.all(a[:,[0,-1]]==0), key',
+  '        if key.startswith("client-"):',
+  '            y,x = np.ogrid[:256,:256]; radius = np.hypot(x-127.5,y-127.5)',
+  '            assert not a[radius>122].any() and a[radius<108].min()>=240, key',
+  '        if key.startswith("decor-"):',
+  '            l,t,r,b = alpha.getbbox(); cx = np.average(np.arange(256),weights=a.sum(axis=0))',
+  '            assert b-1==236 and 170<=b-t<=198 and item["visibleHeight"]==b-t, key',
+  '            assert abs(cx-128)<=1 and abs(item["alphaCentroidX"]-cx)<1e-6 and item["feet"]==[128,236], key',
+ ].join('\n')], {encoding: 'utf8'});
  expect(result.status, result.error?.message ?? result.stderr).toBe(0);
 });

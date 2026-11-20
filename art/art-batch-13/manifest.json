@@ -1,0 +1,809 @@
+{
+  "batch": 13,
+  "generator": "built-in image_gen",
+  "model": "not exposed by the tool",
+  "source": "Original game artwork generated for this commission. Per-image prompts and reference roles in PROMPTS.md.",
+  "usage": "Commissioned for distribution as part of Out of Tokens.",
+  "encoderVersions": {
+    "pillow": "12.1.1",
+    "libwebp": "1.6.0"
+  },
+  "assets": [
+    {
+      "id": "client-tea-lin",
+      "master": {
+        "file": "art/art-batch-13/masters/client-tea-lin.png",
+        "bytes": 2727722,
+        "sha256": "97c4720f6b00ffffd347097eebf4a9ea0e5560c4b7a432cd27d59264b1c1f796",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/client-tea-lin.webp",
+        "width": 256,
+        "height": 256,
+        "mode": "RGBA",
+        "bytes": 18328,
+        "sha256": "402607db6a8927252a5d432b0ee82cee151a13e4ec6c05f8c6a76c184df2da58",
+        "sourceBox": [
+          11,
+          17,
+          1228,
+          1228
+        ],
+        "encoder": {
+          "quality": 88,
+          "method": 6,
+          "warmInkPasses": 0
+        },
+        "alphaBounds": [
+          9,
+          9,
+          247,
+          246
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0
+      }
+    },
+    {
+      "id": "client-book-zhou",
+      "master": {
+        "file": "art/art-batch-13/masters/client-book-zhou.png",
+        "bytes": 2736157,
+        "sha256": "31961d338be8268a51836df0cfca5e5bc35ee1c9d2e20e4661e7f22da45a42fb",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA",
+        "editedFrom": "art/art-batch-13/masters/client-tea-lin.png"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/client-book-zhou.webp",
+        "width": 256,
+        "height": 256,
+        "mode": "RGBA",
+        "bytes": 20526,
+        "sha256": "4ee17610b8f0cc79e85e7ce7ad9b3d039f8b9bffce807a2d69ccc8dd937abe38",
+        "sourceBox": [
+          13,
+          18,
+          1225,
+          1227
+        ],
+        "encoder": {
+          "quality": 88,
+          "method": 6,
+          "warmInkPasses": 0
+        },
+        "alphaBounds": [
+          9,
+          9,
+          247,
+          246
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0
+      }
+    },
+    {
+      "id": "client-tech-yan",
+      "master": {
+        "file": "art/art-batch-13/masters/client-tech-yan.png",
+        "bytes": 2404632,
+        "sha256": "0919b0fdb9ab4b5693e8805597dd04400df5a58bd29924452db62068bfa62400",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA",
+        "editedFrom": "art/art-batch-13/masters/client-tea-lin.png"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/client-tech-yan.webp",
+        "width": 256,
+        "height": 256,
+        "mode": "RGBA",
+        "bytes": 13530,
+        "sha256": "c0fe89e0ad2d4cf71a2f4368c17959330269f21ddd3fb3e0230ccebc6f4f5048",
+        "sourceBox": [
+          8,
+          16,
+          1229,
+          1226
+        ],
+        "encoder": {
+          "quality": 88,
+          "method": 6,
+          "warmInkPasses": 0
+        },
+        "alphaBounds": [
+          9,
+          10,
+          247,
+          246
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0
+      }
+    },
+    {
+      "id": "client-curator-su",
+      "master": {
+        "file": "art/art-batch-13/masters/client-curator-su.png",
+        "bytes": 2456872,
+        "sha256": "c693126a594b96ad2e04fcac39f63975967196201e1cc9d73b675825bfb4e535",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA",
+        "editedFrom": "art/art-batch-13/masters/client-tea-lin.png"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/client-curator-su.webp",
+        "width": 256,
+        "height": 256,
+        "mode": "RGBA",
+        "bytes": 15260,
+        "sha256": "d58145beda379caab9e6586d21c28bc61f402892f8bd597e57a8769c32bd8641",
+        "sourceBox": [
+          7,
+          15,
+          1229,
+          1225
+        ],
+        "encoder": {
+          "quality": 88,
+          "method": 6,
+          "warmInkPasses": 0
+        },
+        "alphaBounds": [
+          9,
+          10,
+          247,
+          246
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0
+      }
+    },
+    {
+      "id": "client-oss-zhe",
+      "master": {
+        "file": "art/art-batch-13/masters/client-oss-zhe.png",
+        "bytes": 2455046,
+        "sha256": "a58e72b630df83b5f15a68436e512639749e3362be59b7cfd2d4d4502ddbfa69",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA",
+        "editedFrom": "art/art-batch-13/studies/client-oss-zhe.png"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/client-oss-zhe.webp",
+        "width": 256,
+        "height": 256,
+        "mode": "RGBA",
+        "bytes": 18642,
+        "sha256": "33bfa9bfb5b0c6434bbb2809570508674f05519587d808d7aabba173bc6f4ef4",
+        "sourceBox": [
+          8,
+          15,
+          1232,
+          1229
+        ],
+        "encoder": {
+          "quality": 88,
+          "method": 6,
+          "warmInkPasses": 0
+        },
+        "alphaBounds": [
+          9,
+          10,
+          247,
+          246
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0
+      }
+    },
+    {
+      "id": "client-vc-lu",
+      "master": {
+        "file": "art/art-batch-13/masters/client-vc-lu.png",
+        "bytes": 2467612,
+        "sha256": "ed5c4bf538070d0b7a6583325f63355d88243642567d7d2d9710a8dd26112abb",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA",
+        "editedFrom": "art/art-batch-13/masters/client-tea-lin.png"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/client-vc-lu.webp",
+        "width": 256,
+        "height": 256,
+        "mode": "RGBA",
+        "bytes": 15018,
+        "sha256": "953bf1ad17d6c3e1fa419cc525f3575bbe98a450e3bb1cacf0006fe1b850513e",
+        "sourceBox": [
+          10,
+          17,
+          1225,
+          1223
+        ],
+        "encoder": {
+          "quality": 88,
+          "method": 6,
+          "warmInkPasses": 0
+        },
+        "alphaBounds": [
+          9,
+          10,
+          247,
+          246
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0
+      }
+    },
+    {
+      "id": "ending-independent",
+      "master": {
+        "file": "art/art-batch-13/masters/ending-independent.png",
+        "bytes": 2924853,
+        "sha256": "a86ad57ccfc352d10facccfe28c2a1c576106b16332a7c5312d049684d4105ec",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/ending-independent.webp",
+        "width": 1280,
+        "height": 720,
+        "mode": "RGB",
+        "bytes": 178676,
+        "sha256": "eb98afe84ea45666657bc7be192cfc86e0c4719b7e4f0b887cdcf55b75c8bdde",
+        "sourceBox": [
+          0.0,
+          0.25,
+          1672.0,
+          940.75
+        ],
+        "encoder": {
+          "quality": 81,
+          "method": 6
+        }
+      }
+    },
+    {
+      "id": "ending-acquired",
+      "master": {
+        "file": "art/art-batch-13/masters/ending-acquired.png",
+        "bytes": 2867127,
+        "sha256": "41b0c385a260e40801b376f407f2197182f8cfe1a2062bdd0aa461b7e8556b24",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/ending-acquired.webp",
+        "width": 1280,
+        "height": 720,
+        "mode": "RGB",
+        "bytes": 178092,
+        "sha256": "8c2d30e80a49cab9e2117e1c7e4643667ac0a0175d51619424101a39ab4085c0",
+        "sourceBox": [
+          0.0,
+          0.25,
+          1672.0,
+          940.75
+        ],
+        "encoder": {
+          "quality": 83,
+          "method": 6
+        }
+      }
+    },
+    {
+      "id": "ending-open-source",
+      "master": {
+        "file": "art/art-batch-13/masters/ending-open-source.png",
+        "bytes": 3151704,
+        "sha256": "978ef2f2eede80dfafe179550c31d42dbdd0649c932b1773ac77a28a05295967",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/ending-open-source.webp",
+        "width": 1280,
+        "height": 720,
+        "mode": "RGB",
+        "bytes": 179124,
+        "sha256": "87ed9ed0c6f8d4f1f43791cffcacbf4cf11ee318db36e37c15cb46899e6f1f29",
+        "sourceBox": [
+          0.0,
+          0.25,
+          1672.0,
+          940.75
+        ],
+        "encoder": {
+          "quality": 70,
+          "method": 6
+        }
+      }
+    },
+    {
+      "id": "ending-warm-shop",
+      "master": {
+        "file": "art/art-batch-13/masters/ending-warm-shop.png",
+        "bytes": 3341146,
+        "sha256": "769224a6bc2bf587ded92ab3b07641c5cb00b56e99f2bbff9e3c52b925cd34cb",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/ending-warm-shop.webp",
+        "width": 1280,
+        "height": 720,
+        "mode": "RGB",
+        "bytes": 178816,
+        "sha256": "c3ee3190a5cad079724911f07b3a3452bb5a6a85c7153009a011d0fbdd6a3785",
+        "sourceBox": [
+          0.0,
+          0.25,
+          1672.0,
+          940.75
+        ],
+        "encoder": {
+          "quality": 64,
+          "method": 6
+        }
+      }
+    },
+    {
+      "id": "ending-paperclip",
+      "master": {
+        "file": "art/art-batch-13/masters/ending-paperclip.png",
+        "bytes": 3368220,
+        "sha256": "494e86cd3ed5ccdedcfadd5f2bb9abe9e8ce01c93ebd411b52a69a1a429eeced",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/ending-paperclip.webp",
+        "width": 1280,
+        "height": 720,
+        "mode": "RGB",
+        "bytes": 175936,
+        "sha256": "834540cce4abe44b5bdba58475cce0c0c6d7a649d29f8fdb298b38a47c2c5afc",
+        "sourceBox": [
+          0.0,
+          0.25,
+          1672.0,
+          940.75
+        ],
+        "encoder": {
+          "quality": 65,
+          "method": 6
+        }
+      }
+    },
+    {
+      "id": "world-slime",
+      "master": {
+        "file": "art/art-batch-13/masters/world-slime.png",
+        "bytes": 3699512,
+        "sha256": "ed4b0e447e2c329f50ffb2a77a44953dbea9dd70fad3c90576376555276b2bf2",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/world-slime.webp",
+        "width": 768,
+        "height": 512,
+        "mode": "RGB",
+        "bytes": 89876,
+        "sha256": "e7db8a0924327249a583e167a9692c32d0f35c168ed5c3f832f33f2d6e89b946",
+        "sourceBox": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "encoder": {
+          "quality": 53,
+          "method": 6
+        }
+      }
+    },
+    {
+      "id": "world-paper",
+      "master": {
+        "file": "art/art-batch-13/masters/world-paper.png",
+        "bytes": 3724097,
+        "sha256": "9bd147053761f92d58bba651746e2ee24d65612d7cb2e56fed27b64fff23f5eb",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/world-paper.webp",
+        "width": 768,
+        "height": 512,
+        "mode": "RGB",
+        "bytes": 88972,
+        "sha256": "d3cc402cf07295de3651e26cd0c0e0ea11c3a2704dc9f51180c500a2bc916ae3",
+        "sourceBox": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "encoder": {
+          "quality": 59,
+          "method": 6
+        }
+      }
+    },
+    {
+      "id": "world-castle",
+      "master": {
+        "file": "art/art-batch-13/masters/world-castle.png",
+        "bytes": 3218162,
+        "sha256": "8a0f9e2011a41d6c5fb89b5961c366e3dd59f87686b15fccae28921cd30281ae",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB",
+        "editedFrom": "art/art-batch-13/studies/world-castle.png"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/world-castle.webp",
+        "width": 768,
+        "height": 512,
+        "mode": "RGB",
+        "bytes": 86660,
+        "sha256": "b5c9ad26a69e79f4c46dbd004a4260dfac0b75cb2d539f703a739348ee5a6cd2",
+        "sourceBox": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "encoder": {
+          "quality": 77,
+          "method": 6
+        }
+      }
+    },
+    {
+      "id": "mascot-paperclip-idle",
+      "master": {
+        "file": "art/art-batch-13/masters/mascot-paperclip-idle.png",
+        "bytes": 885873,
+        "sha256": "540ba87c496fcc104ff85efd96208db91abc6c938909ae897d2ce9960b609544",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/mascot-paperclip-idle.webp",
+        "width": 256,
+        "height": 256,
+        "mode": "RGBA",
+        "bytes": 14378,
+        "sha256": "36b04fa0204b472f9aba7ed9eef95621aa900e4bb8007857a11d02ba853ba044",
+        "sourceBox": [
+          302,
+          69,
+          1083,
+          1190
+        ],
+        "encoder": {
+          "quality": 88,
+          "method": 6,
+          "warmInkPasses": 0
+        },
+        "alphaBounds": [
+          52,
+          19,
+          204,
+          237
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0
+      }
+    },
+    {
+      "id": "mascot-paperclip-alert",
+      "master": {
+        "file": "art/art-batch-13/masters/mascot-paperclip-alert.png",
+        "bytes": 900134,
+        "sha256": "b63b013f7aa24df534dd49ad3d1b0b83ef15145ea9351e6c24f1c5db04853ddb",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA",
+        "editedFrom": "art/art-batch-13/masters/mascot-paperclip-idle.png"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/story/mascot-paperclip-alert.webp",
+        "width": 256,
+        "height": 256,
+        "mode": "RGBA",
+        "bytes": 14898,
+        "sha256": "6e70d25ac53a2bded0b0f0dd7d6c214f4e67249bf34e42a69af6f85fd504d61b",
+        "sourceBox": [
+          279,
+          68,
+          918,
+          1190
+        ],
+        "encoder": {
+          "quality": 88,
+          "method": 6,
+          "warmInkPasses": 0
+        },
+        "alphaBounds": [
+          66,
+          19,
+          190,
+          237
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0
+      }
+    },
+    {
+      "id": "decor-ramen_cart",
+      "master": {
+        "file": "art/art-batch-13/masters/decor-ramen_cart.png",
+        "bytes": 2150912,
+        "sha256": "2578591bc03de133d10b66517b5a8858e11cd0cbe629d4200052c2e1787563ed",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/furniture/decor-ramen_cart.webp",
+        "width": 256,
+        "height": 256,
+        "mode": "RGBA",
+        "bytes": 12890,
+        "sha256": "6f9cf37b47ab9349043e0da3b02a11ea49bb94eaccf4d4eaed221767ec6d63a1",
+        "sourceBox": [
+          69,
+          9,
+          1164,
+          1239
+        ],
+        "encoder": {
+          "quality": 88,
+          "method": 6,
+          "warmInkPasses": 0
+        },
+        "alphaBounds": [
+          38,
+          41,
+          212,
+          237
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "feet": [
+          128,
+          236
+        ],
+        "visibleHeight": 196,
+        "alphaCentroidX": 127.69775955088409
+      }
+    },
+    {
+      "id": "decor-bento_board",
+      "master": {
+        "file": "art/art-batch-13/masters/decor-bento_board.png",
+        "bytes": 1759616,
+        "sha256": "2a99025bf8df198352187e917ce59da454cded8b8ab4fa5f88faba6b7e737c40",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/furniture/decor-bento_board.webp",
+        "width": 256,
+        "height": 256,
+        "mode": "RGBA",
+        "bytes": 12176,
+        "sha256": "6bd0d97e3b061ba9e5cb3dd891bc84d690bd37ecdf577b3550e12f3aa8393c7a",
+        "sourceBox": [
+          135,
+          92,
+          1120,
+          1169
+        ],
+        "encoder": {
+          "quality": 88,
+          "method": 6,
+          "warmInkPasses": 0
+        },
+        "alphaBounds": [
+          37,
+          41,
+          216,
+          237
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "feet": [
+          128,
+          236
+        ],
+        "visibleHeight": 196,
+        "alphaCentroidX": 128.09564333003354
+      }
+    },
+    {
+      "id": "decor-book_trolley",
+      "master": {
+        "file": "art/art-batch-13/masters/decor-book_trolley.png",
+        "bytes": 2361849,
+        "sha256": "b3a758cc87e9df794afd19f4198845532db407b4a6c74e3f7bedeb4b474ed10b",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/furniture/decor-book_trolley.webp",
+        "width": 256,
+        "height": 256,
+        "mode": "RGBA",
+        "bytes": 13784,
+        "sha256": "a52e3bfdaede3cfe0ccd6b7d3db249c38e71347e987a54098084af2d6bb90071",
+        "sourceBox": [
+          68,
+          14,
+          1161,
+          1245
+        ],
+        "encoder": {
+          "quality": 88,
+          "method": 6,
+          "warmInkPasses": 0
+        },
+        "alphaBounds": [
+          40,
+          41,
+          214,
+          237
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "feet": [
+          128,
+          236
+        ],
+        "visibleHeight": 196,
+        "alphaCentroidX": 128.054635747751
+      }
+    },
+    {
+      "id": "decor-library_owl",
+      "master": {
+        "file": "art/art-batch-13/masters/decor-library_owl.png",
+        "bytes": 2792092,
+        "sha256": "efcb4211e53ef3fe39574d996f1348c97eceec8ff6b96fdf05c205647c9298c7",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "file": "apps/web/public/art/furniture/decor-library_owl.webp",
+        "width": 256,
+        "height": 256,
+        "mode": "RGBA",
+        "bytes": 12436,
+        "sha256": "611cb137f4d4115081d304d05305bf969fa8928d7b5b55eaf2ec98f02bd073b1",
+        "sourceBox": [
+          71,
+          21,
+          1176,
+          1251
+        ],
+        "encoder": {
+          "quality": 88,
+          "method": 6,
+          "warmInkPasses": 0
+        },
+        "alphaBounds": [
+          41,
+          41,
+          217,
+          237
+        ],
+        "alphaRange": [
+          0,
+          255
+        ],
+        "visiblePureBlackPixels": 0,
+        "feet": [
+          128,
+          236
+        ],
+        "visibleHeight": 196,
+        "alphaCentroidX": 128.27248515157135
+      }
+    }
+  ],
+  "catalogs": [
+    {
+      "file": "apps/web/public/art/story/catalog.json",
+      "bytes": 5413,
+      "sha256": "5999ef7f7131a41dee147b2f9ce78af1d040312959679f31f1374bc038570029"
+    },
+    {
+      "file": "apps/web/public/art/furniture/catalog.json",
+      "bytes": 7230,
+      "sha256": "f7879241adfd2710e1c0ed55c42e363a391fca9198a858d99047029796cdd3df"
+    }
+  ],
+  "studies": [
+    {
+      "file": "art/art-batch-13/studies/client-oss-zhe.png",
+      "bytes": 2597805,
+      "sha256": "1eae77c519d2045c7f8babde8710d79da4921f13db3235807e4733e3f705439a"
+    },
+    {
+      "file": "art/art-batch-13/studies/world-castle.png",
+      "bytes": 3571123,
+      "sha256": "5cb1e2d17ea55d5f5aab49d1795509ed30c7745aacd4950fc5e10a6e0c7a7f2e"
+    }
+  ],
+  "reviews": [
+    {
+      "file": "art/art-batch-13/review/clients-review.png",
+      "bytes": 762144,
+      "sha256": "083ab5221b21bcdce051e5752a9106a16732276258e28ea24e8143b396c16b13"
+    },
+    {
+      "file": "art/art-batch-13/review/endings-worlds-review.png",
+      "bytes": 3128405,
+      "sha256": "36f6672b54a42a2842a52a5c8b13b7a07e925971b89a00556eda5921e2922806"
+    },
+    {
+      "file": "art/art-batch-13/review/mascot-decor-review.png",
+      "bytes": 1292324,
+      "sha256": "03f282b91472bdbf77fa93a88f691cbc7890617a27b636a177ab6900371d6eda"
+    }
+  ]
+}

@@ -107,7 +107,9 @@ describe('Art-Batch 11 furniture upgrade & clickable decor integration',()=>{
  });
 
  it('keeps all 4 clickable decor placements clear of every workshop furniture slot across chapters 0..4',()=>{
-  expect(WORKSHOP_DECOR_PLACEMENTS.map(p=>p.id).sort()).toEqual([...decorPropIds].sort());
+  expect(WORKSHOP_DECOR_PLACEMENTS.map(p=>p.id).sort()).toEqual([
+   'decor-monstera_pot','decor-studio_cat','decor-token_jar','decor-vinyl_player'
+  ]);
   for(let chapter=0;chapter<=4;chapter++){
    for(const decor of WORKSHOP_DECOR_PLACEMENTS){
     expect(
