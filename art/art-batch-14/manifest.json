@@ -1,0 +1,725 @@
+{
+  "batch": "14",
+  "generator": "built-in image_gen",
+  "usage": "Commissioned for Out of Tokens.",
+  "encoderVersions": {
+    "pillow": "12.1.1",
+    "libwebp": "1.6.0"
+  },
+  "assets": [
+    {
+      "id": "outcome-pitch-demo",
+      "master": {
+        "file": "art/art-batch-14/masters/outcome-pitch-demo.png",
+        "bytes": 3130077,
+        "sha256": "0d719427882649ad7a7d5f4fd5656cf484d7247b86f9f90b6f095a7dec9df5fd",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "id": "outcome-pitch-demo",
+        "category": "outcome",
+        "file": "apps/web/public/art/expansion/outcome-pitch-demo.webp",
+        "width": 768,
+        "height": 512,
+        "mode": "RGB",
+        "bytes": 86888,
+        "sha256": "cd2ae29dc292cb2368d656d7cd5e7625b0a61acad701a35cb468404b2394fda2",
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            0.0,
+            0.0,
+            1536.0,
+            1024.0
+          ],
+          "prefilterRadius": 0,
+          "quality": 86
+        }
+      }
+    },
+    {
+      "id": "outcome-code-ops",
+      "master": {
+        "file": "art/art-batch-14/masters/outcome-code-ops.png",
+        "bytes": 3080829,
+        "sha256": "73f3d380b73a52a004fbb25ec565fd1851e8226f7fa8add5ad061f1871b9850e",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "id": "outcome-code-ops",
+        "category": "outcome",
+        "file": "apps/web/public/art/expansion/outcome-code-ops.webp",
+        "width": 768,
+        "height": 512,
+        "mode": "RGB",
+        "bytes": 87252,
+        "sha256": "3ecad42c2d7bd4ff07adabea19028c8ee254c605cd053311f24084911ccb9cbe",
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            0.0,
+            0.0,
+            1536.0,
+            1024.0
+          ],
+          "prefilterRadius": 0,
+          "quality": 86
+        }
+      }
+    },
+    {
+      "id": "outcome-release-night",
+      "master": {
+        "file": "art/art-batch-14/masters/outcome-release-night.png",
+        "bytes": 3308107,
+        "sha256": "0de9929f309cb8b8455cc884795ccf96c579edafbe1c357b470a26fd092d3a93",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "id": "outcome-release-night",
+        "category": "outcome",
+        "file": "apps/web/public/art/expansion/outcome-release-night.webp",
+        "width": 768,
+        "height": 512,
+        "mode": "RGB",
+        "bytes": 83054,
+        "sha256": "79658234b90b935e9cd01684b1f82f3d1e5d8d24da576d342663d247ab0e7c16",
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            0.0,
+            0.0,
+            1536.0,
+            1024.0
+          ],
+          "prefilterRadius": 0,
+          "quality": 80
+        }
+      }
+    },
+    {
+      "id": "outcome-crisis-429",
+      "master": {
+        "file": "art/art-batch-14/masters/outcome-crisis-429.png",
+        "bytes": 3213087,
+        "sha256": "f4c27a02e729e6d7ee1c33f0453cfedd42394aed39567089df2f84d5e77dbbcb",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "id": "outcome-crisis-429",
+        "category": "outcome",
+        "file": "apps/web/public/art/expansion/outcome-crisis-429.webp",
+        "width": 768,
+        "height": 512,
+        "mode": "RGB",
+        "bytes": 93130,
+        "sha256": "3d3f4b4cf650fad09c6a66f6c3a857d421935b5106a6b6bbbe0be49849a87e10",
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            0.0,
+            0.0,
+            1536.0,
+            1024.0
+          ],
+          "prefilterRadius": 0,
+          "quality": 83
+        }
+      }
+    },
+    {
+      "id": "outcome-museum-media",
+      "master": {
+        "file": "art/art-batch-14/masters/outcome-museum-media.png",
+        "bytes": 3125566,
+        "sha256": "df91b78786496830a4d1020cfd198210efee791d6fc1ea1591a343f0f25cc8f2",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "id": "outcome-museum-media",
+        "category": "outcome",
+        "file": "apps/web/public/art/expansion/outcome-museum-media.webp",
+        "width": 768,
+        "height": 512,
+        "mode": "RGB",
+        "bytes": 83786,
+        "sha256": "d89f3a9fa31dcb349ac96bc0a2a0c864eecdd0813343c9e141e12eb230436e9b",
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            0.0,
+            0.0,
+            1536.0,
+            1024.0
+          ],
+          "prefilterRadius": 0,
+          "quality": 86
+        }
+      }
+    },
+    {
+      "id": "outcome-open-dawn",
+      "master": {
+        "file": "art/art-batch-14/masters/outcome-open-dawn.png",
+        "bytes": 3240108,
+        "sha256": "464ae0d9507ecb2c08c726949cd4c8f60ac40bc65d523a157552c3d4bf62ee31",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "id": "outcome-open-dawn",
+        "category": "outcome",
+        "file": "apps/web/public/art/expansion/outcome-open-dawn.webp",
+        "width": 768,
+        "height": 512,
+        "mode": "RGB",
+        "bytes": 91086,
+        "sha256": "975305f235f901500a62d00e6b5dfbe3b2edc226fe51af261eeab1644dea13a5",
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            0.0,
+            0.0,
+            1536.0,
+            1024.0
+          ],
+          "prefilterRadius": 0,
+          "quality": 83
+        }
+      }
+    },
+    {
+      "id": "software-rag",
+      "master": {
+        "file": "art/art-batch-14/masters/software-rag.png",
+        "bytes": 1422930,
+        "sha256": "8db5e37104688cda697d0a56b1d619b657ff82709f8a6d24aca22e9ce2d5902b",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "id": "software-rag",
+        "category": "software",
+        "file": "apps/web/public/art/expansion/software-rag.webp",
+        "width": 128,
+        "height": 128,
+        "mode": "RGBA",
+        "bytes": 5298,
+        "sha256": "a202a5c6e0d2a0cd44b06020f6fa0102acde62db477cfb458ede3fb5452770e9",
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          12,
+          18,
+          115,
+          109
+        ],
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            125,
+            164,
+            1060,
+            991
+          ],
+          "quality": 88,
+          "warmInkPasses": 0
+        }
+      }
+    },
+    {
+      "id": "software-vllm",
+      "master": {
+        "file": "art/art-batch-14/masters/software-vllm.png",
+        "bytes": 1252323,
+        "sha256": "f97882bdb58608319842e4915e8714f4e7af4020c044c050c89eac1c216c9455",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "id": "software-vllm",
+        "category": "software",
+        "file": "apps/web/public/art/expansion/software-vllm.webp",
+        "width": 128,
+        "height": 128,
+        "mode": "RGBA",
+        "bytes": 5624,
+        "sha256": "dbf7f78d4d472d0cb9e0d2b699cb864b1355bb69816b93c309caffb04a51ad53",
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          12,
+          15,
+          115,
+          113
+        ],
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            195,
+            189,
+            1079,
+            1031
+          ],
+          "quality": 88,
+          "warmInkPasses": 0
+        }
+      }
+    },
+    {
+      "id": "software-autotest",
+      "master": {
+        "file": "art/art-batch-14/masters/software-autotest.png",
+        "bytes": 1051066,
+        "sha256": "3e465f1449e98655990ab2bb57a55ff7e5744f6b1cb8c9ee56d045bbb7bf86fd",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "id": "software-autotest",
+        "category": "software",
+        "file": "apps/web/public/art/expansion/software-autotest.webp",
+        "width": 128,
+        "height": 128,
+        "mode": "RGBA",
+        "bytes": 4492,
+        "sha256": "c277485a4838f7f1c76ebe102636cb5949e1ae35920f13fe3fba78367f33f8ce",
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          24,
+          12,
+          104,
+          115
+        ],
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            256,
+            160,
+            949,
+            1052
+          ],
+          "quality": 88,
+          "warmInkPasses": 0
+        }
+      }
+    },
+    {
+      "id": "software-multiagent",
+      "master": {
+        "file": "art/art-batch-14/masters/software-multiagent.png",
+        "bytes": 1173017,
+        "sha256": "593c65c58143058b5cd390b810f49835e023437b10e9a2b0fda70492557f18b7",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "id": "software-multiagent",
+        "category": "software",
+        "file": "apps/web/public/art/expansion/software-multiagent.webp",
+        "width": 128,
+        "height": 128,
+        "mode": "RGBA",
+        "bytes": 4972,
+        "sha256": "8d9e49a0b1845a2f95d721e0fc848ba6203d7cb188a84f08060e05a203e03eae",
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          12,
+          15,
+          115,
+          112
+        ],
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            162,
+            240,
+            1078,
+            1099
+          ],
+          "quality": 88,
+          "warmInkPasses": 0
+        }
+      }
+    },
+    {
+      "id": "software-versioncontrol",
+      "master": {
+        "file": "art/art-batch-14/masters/software-versioncontrol.png",
+        "bytes": 810077,
+        "sha256": "b110ebf8915fd5562c551483c41a0af5a7f403b37765a7830fda37df24c972cd",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "id": "software-versioncontrol",
+        "category": "software",
+        "file": "apps/web/public/art/expansion/software-versioncontrol.webp",
+        "width": 128,
+        "height": 128,
+        "mode": "RGBA",
+        "bytes": 4564,
+        "sha256": "e7a1a85356a074edbeb85b78312344d2ffaa9c47d40da5e59370c8fda3e73fdd",
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          16,
+          12,
+          112,
+          115
+        ],
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            169,
+            130,
+            1083,
+            1108
+          ],
+          "quality": 88,
+          "warmInkPasses": 0
+        }
+      }
+    },
+    {
+      "id": "software-tokenbank",
+      "master": {
+        "file": "art/art-batch-14/masters/software-tokenbank.png",
+        "bytes": 894370,
+        "sha256": "d2a91000587c116a9845f60a9e396590f65c75466f07c76fcd7add1de3a8f659",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "id": "software-tokenbank",
+        "category": "software",
+        "file": "apps/web/public/art/expansion/software-tokenbank.webp",
+        "width": 128,
+        "height": 128,
+        "mode": "RGBA",
+        "bytes": 4184,
+        "sha256": "71f3341b53e1a0889669796e4ceb1668916f33bbf1deb0be35675bb8ba547d6b",
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          27,
+          12,
+          100,
+          115
+        ],
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            316,
+            182,
+            923,
+            1037
+          ],
+          "quality": 88,
+          "warmInkPasses": 0
+        }
+      }
+    },
+    {
+      "id": "software-prompt",
+      "master": {
+        "file": "art/art-batch-14/masters/software-prompt.png",
+        "bytes": 1184755,
+        "sha256": "edadd5d815d33a12f6aa43a32a30d21217fe5321d5aed0e8e7691b16064fee85",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "id": "software-prompt",
+        "category": "software",
+        "file": "apps/web/public/art/expansion/software-prompt.webp",
+        "width": 128,
+        "height": 128,
+        "mode": "RGBA",
+        "bytes": 5494,
+        "sha256": "9cd78e4624618fa6db6f6b0705ebb09d2a3fdc6dd19dcd796be14a2e22475d53",
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          12,
+          13,
+          115,
+          114
+        ],
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            192,
+            216,
+            1071,
+            1080
+          ],
+          "quality": 88,
+          "warmInkPasses": 0
+        }
+      }
+    },
+    {
+      "id": "software-remote",
+      "master": {
+        "file": "art/art-batch-14/masters/software-remote.png",
+        "bytes": 842620,
+        "sha256": "bcd870e62e3c18f1fb0f83def1d55705671ff5dbf870d7d0c5fb3015bdfef250",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA"
+      },
+      "runtime": {
+        "id": "software-remote",
+        "category": "software",
+        "file": "apps/web/public/art/expansion/software-remote.webp",
+        "width": 128,
+        "height": 128,
+        "mode": "RGBA",
+        "bytes": 4180,
+        "sha256": "4b817e582aa9531e631589cca6570edc0a52a7d3eb1a35817d11378df507f4b4",
+        "alphaRange": [
+          0,
+          255
+        ],
+        "alphaBounds": [
+          39,
+          12,
+          88,
+          115
+        ],
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            352,
+            65,
+            892,
+            1197
+          ],
+          "quality": 88,
+          "warmInkPasses": 0
+        }
+      }
+    },
+    {
+      "id": "vignette-chapter-clear",
+      "master": {
+        "file": "art/art-batch-14/masters/vignette-chapter-clear.png",
+        "bytes": 2700439,
+        "sha256": "611eb30fcf7cb55fbcbf838edd8b3b741ce9c3055a9098b313477ad9d89c897a",
+        "width": 2172,
+        "height": 724,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "id": "vignette-chapter-clear",
+        "category": "vignette",
+        "file": "apps/web/public/art/expansion/vignette-chapter-clear.webp",
+        "width": 960,
+        "height": 320,
+        "mode": "RGB",
+        "bytes": 82134,
+        "sha256": "f7fa5e8fcf887a35ef53102e2b0586f8dfa7f022366be654e7c7d0e200f04135",
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            0.0,
+            0.0,
+            2172.0,
+            724.0
+          ],
+          "prefilterRadius": 0,
+          "quality": 92
+        }
+      }
+    },
+    {
+      "id": "vignette-duo-tea",
+      "master": {
+        "file": "art/art-batch-14/masters/vignette-duo-tea.png",
+        "bytes": 2628771,
+        "sha256": "5525334cd306ab0f6cbdfbab1cb6eb0dc1d94f65f7d4c98e8b289f1179cb1905",
+        "width": 2172,
+        "height": 724,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "id": "vignette-duo-tea",
+        "category": "vignette",
+        "file": "apps/web/public/art/expansion/vignette-duo-tea.webp",
+        "width": 960,
+        "height": 320,
+        "mode": "RGB",
+        "bytes": 76850,
+        "sha256": "2efed56532e9fa066251ccb7877763002b0410e4842a832180c35b776f053422",
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            0.0,
+            0.0,
+            2172.0,
+            724.0
+          ],
+          "prefilterRadius": 0,
+          "quality": 92
+        }
+      }
+    },
+    {
+      "id": "vignette-crisis-429",
+      "master": {
+        "file": "art/art-batch-14/masters/vignette-crisis-429.png",
+        "bytes": 2433407,
+        "sha256": "a5c2c0522c1738623ebd2d67d557d0b6966c8f78a85ee3f1a2c2b0bb829dc46f",
+        "width": 2172,
+        "height": 724,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "id": "vignette-crisis-429",
+        "category": "vignette",
+        "file": "apps/web/public/art/expansion/vignette-crisis-429.webp",
+        "width": 960,
+        "height": 320,
+        "mode": "RGB",
+        "bytes": 66410,
+        "sha256": "e2cdfad7e0b1004ea4bd7330d8e7647469b87bf5cee81b8c4d9b52779bb023ba",
+        "visiblePureBlackPixels": 0,
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            0.0,
+            0.0,
+            2172.0,
+            724.0
+          ],
+          "prefilterRadius": 0,
+          "quality": 92
+        }
+      }
+    },
+    {
+      "id": "world-town-map",
+      "master": {
+        "file": "art/art-batch-14/masters/world-town-map.png",
+        "bytes": 3963787,
+        "sha256": "2e3d97a59577e68fc0086e9826299b525e97746fe2ebae43e8c42e42e278ebe9",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB"
+      },
+      "runtime": {
+        "id": "world-town-map",
+        "category": "world",
+        "file": "apps/web/public/art/expansion/world-town-map.webp",
+        "width": 1280,
+        "height": 720,
+        "mode": "RGB",
+        "bytes": 175756,
+        "sha256": "98066468fd7d39ffd8d942c47e40fc7fae0a99ddf3e969bff43ed988940e865c",
+        "visiblePureBlackPixels": 0,
+        "mapPins": {
+          "workshop": {
+            "x": 0.296875,
+            "y": 0.6888888888888889
+          },
+          "canteen": {
+            "x": 0.4375,
+            "y": 0.30833333333333335
+          },
+          "library": {
+            "x": 0.79765625,
+            "y": 0.26944444444444443
+          },
+          "expedition": {
+            "x": 0.784375,
+            "y": 0.6611111111111111
+          }
+        },
+        "encoder": {
+          "method": 6,
+          "sourceBox": [
+            0.0,
+            0.25,
+            1672.0,
+            940.75
+          ],
+          "prefilterRadius": 0.65,
+          "quality": 65
+        }
+      }
+    }
+  ],
+  "catalog": {
+    "file": "apps/web/public/art/expansion/catalog.json",
+    "bytes": 7250,
+    "sha256": "69e078b2d1acfe09c2f4a89154ddb7424d0f4647965ebfb0c1b632c62e271208"
+  },
+  "reviews": [
+    {
+      "file": "art/art-batch-14/review/outcomes-vignettes-review.png",
+      "bytes": 1813272,
+      "sha256": "760c4d293da64637d531346ddc82f423e07ca966c1eb1511b37b5fde90ad213d"
+    },
+    {
+      "file": "art/art-batch-14/review/software-icons-review.png",
+      "bytes": 371650,
+      "sha256": "2dac0aeec99e9293075cdcdf0a09fa20eafa8a9314e9bd1dde7b5d916b4c7662"
+    },
+    {
+      "file": "art/art-batch-14/review/town-map-review.png",
+      "bytes": 3651033,
+      "sha256": "86181006d243cd4ee1aa0b1fa2001ce3606ae7b8f994f3340677f5199315a879"
+    }
+  ]
+}

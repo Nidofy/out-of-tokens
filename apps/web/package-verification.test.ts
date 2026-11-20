@@ -9,6 +9,7 @@ import {emoteArt,giftArt,clientArt,teaBreakArt} from './src/living-art.js';
 import {decorPropArt, decorPropIds, furnitureKinds, furnitureLayerArt, furniturePreviewArt} from './src/furniture-art.js';
 import {avatarPortraitArt, basePortraitArt, flagshipPortraitArt, portraitCharacters} from './src/portraits-art.js';
 import {endingArt, paperclipMascotArt, storyClientArt, worldArt} from './src/story-art.js';
+import {expansionOutcomeArt, expansionSoftwareArt, expansionVignetteArt, worldTownMapArt} from './src/expansion-art.js';
 
 // Full-batch byte comparisons exceeded 5s before Batch 6 on this Windows host.
 // This is an integrity test, not a performance gate; retain every byte assertion.
@@ -870,3 +871,142 @@ it('decodes Batch 13 scene budgets, clear sprite edges and four floor anchors', 
  ].join('\n')], {encoding: 'utf8'});
  expect(result.status, result.error?.message ?? result.stderr).toBe(0);
 });
+
+type RuntimeArt = ArtFile & {
+ id: string; width: number; height: number; mode: 'RGB' | 'RGBA'; visiblePureBlackPixels: number;
+ alphaRange?: number[]; alphaBounds?: number[];
+};
+
+function fileSha(path: string): string {
+ return createHash('sha256').update(readFileSync(path)).digest('hex');
+}
+
+function decodeRuntimeArt(paths: string[]): (Pick<RuntimeArt, 'width' | 'height' | 'mode' | 'visiblePureBlackPixels' | 'alphaBounds' | 'alphaRange'> & {format: string})[] {
+ const result = spawnSync('python', ['-c', [
+  'import json, sys',
+  'import numpy as np',
+  'from PIL import Image',
+  'result = []',
+  'for path in sys.argv[1:]:',
+  '    with Image.open(path) as im:',
+  '        p = np.asarray(im); black = (p[:, :, :3] == 0).all(axis=2)',
+  '        item = dict(format=im.format, mode=im.mode, width=im.width, height=im.height)',
+  '        if im.mode == "RGBA":',
+  '            alpha = im.getchannel("A"); black &= p[:, :, 3] > 0',
+  '            item.update(alphaBounds=alpha.getbbox(), alphaRange=alpha.getextrema())',
+  '        result.append(dict(**item, visiblePureBlackPixels=int(black.sum())))',
+  'print(json.dumps(result))',
+ ].join('\n'), ...paths], {encoding: 'utf8'});
+ expect(result.status, result.error?.message ?? result.stderr).toBe(0);
+ return JSON.parse(result.stdout);
+}
+
+function verifyArtPackages(directory: string, entries: RuntimeArt[], catalog: ArtFile) {
+ const inventory = ['catalog.json', ...entries.map(e => e.file)].sort();
+ const pub = join('apps/web/public', directory);
+ expect(readdirSync(pub).sort()).toEqual(inventory);
+ expect(fileSha(join(pub, 'catalog.json'))).toBe(catalog.sha256);
+ for (const root of ['apps/web/dist', 'apps/dsh/dist/web']) {
+  const {assets}: {assets: string[]} = JSON.parse(readFileSync(join(root, 'offline-assets.json'), 'utf8'));
+  const prefix = directory + '/';
+  expect(assets.filter(p => p.startsWith(prefix)).sort()).toEqual(inventory.map(name => prefix + name));
+  const folder = join(root, directory);
+  expect(readdirSync(folder).sort()).toEqual(inventory);
+  expect(fileSha(join(folder, 'catalog.json'))).toBe(catalog.sha256);
+  const decoded = decodeRuntimeArt(entries.map(entry => join(folder, entry.file)));
+  for (const [i, entry] of entries.entries()) {
+   const source = join(pub, entry.file), copy = join(folder, entry.file);
+   expect(fileSha(source)).toBe(entry.sha256);
+   expect(fileSha(copy)).toBe(entry.sha256);
+   expect(readFileSync(copy).length).toBe(entry.bytes);
+   const pixel = decoded[i]!;
+   expect(pixel.format).toBe('WEBP');
+   expect(pixel).toMatchObject({mode: entry.mode, width: entry.width, height: entry.height,
+    visiblePureBlackPixels: entry.visiblePureBlackPixels});
+   expect(pixel.alphaBounds).toEqual(entry.alphaBounds);
+   expect(pixel.alphaRange).toEqual(entry.alphaRange);
+   expect(pixel.visiblePureBlackPixels).toBe(0);
+   if (entry.mode === 'RGBA') expect(pixel.alphaRange).toEqual([0, 255]);
+  }
+ }
+}
+
+function verifyRepeatExport(script: string, files: Map<string, string>, args: string[] = []) {
+ const scratch = mkdtempSync(join(tmpdir(), 'oot-art-'));
+ try {
+  for (const pass of ['first', 'second']) {
+   const output = join(scratch, pass);
+   const built = spawnSync('python', ['-B', script, ...args, '--output-root', output], {encoding: 'utf8'});
+   expect(built.status, built.error?.message ?? built.stderr).toBe(0);
+   for (const [path, sha] of files) expect(fileSha(join(output, path)), path).toBe(sha);
+  }
+ } finally {
+  rmSync(scratch, {recursive: true, force: true});
+ }
+}
+
+const expansionGroups = [
+ {category: 'outcome', ids: ['pitch-demo', 'code-ops', 'release-night', 'crisis-429', 'museum-media', 'open-dawn'],
+  lookup: expansionOutcomeArt, size: [768, 512], limit: 95000},
+ {category: 'software', ids: ['rag', 'vllm', 'autotest', 'multiagent', 'versioncontrol', 'tokenbank', 'prompt', 'remote'],
+  lookup: expansionSoftwareArt, size: [128, 128], limit: 18000},
+ {category: 'vignette', ids: ['chapter-clear', 'duo-tea', 'crisis-429'], lookup: expansionVignetteArt,
+  size: [960, 320], limit: 95000},
+] as const;
+
+it('checks the expansion whitelist, eighteen decoded assets, map pins and both offline inventories', () => {
+ const batch = 'art/art-batch-14', directory = 'art/expansion';
+ type Entry = RuntimeArt & {category: string; mapPins?: Record<string, {x: number; y: number}>};
+ const catalog: {schemaVersion: number; assets: Entry[]} = JSON.parse(readFileSync('apps/web/public/' + directory + '/catalog.json', 'utf8'));
+ const manifest: {assets: {id: string; master: ArtFile; runtime: Entry}[]; catalog: ArtFile} =
+  JSON.parse(readFileSync(join(batch, 'manifest.json'), 'utf8'));
+ expect(catalog.schemaVersion).toBe(1);
+ const expected = [...expansionGroups.flatMap(g => g.ids.map(id => g.category + '-' + id)), 'world-town-map'];
+ expect(catalog.assets.map(a => a.id)).toEqual(expected);
+ expect(manifest.assets.map(a => a.id)).toEqual(expected);
+ expect(readdirSync(join(batch, 'masters')).sort()).toEqual(expected.map(id => id + '.png').sort());
+ for (const {category, ids, lookup, size, limit} of expansionGroups) {
+  for (const id of ids) {
+   const key = category + '-' + id, entry = catalog.assets.find(e => e.id === key)!;
+   expect(lookup(id)).toBe('./' + directory + '/' + key + '.webp');
+   expect(entry).toMatchObject({file: key + '.webp', category, mode: category === 'software' ? 'RGBA' : 'RGB',
+    width: size[0], height: size[1]});
+   expect(entry.bytes).toBeLessThanOrEqual(limit);
+   if (category === 'software') {
+    const [l, t, r, b] = entry.alphaBounds!;
+    expect(Math.min(l!, t!, 128-r!, 128-b!)).toBeGreaterThanOrEqual(8);
+   }
+  }
+  for (const id of ['', '../rag', '__proto__', 'RAG', 'town-map', ...expected]) expect(lookup(id)).toBeNull();
+ }
+ const map = catalog.assets.at(-1)!;
+ expect(map).toMatchObject({file: 'world-town-map.webp', category: 'world', mode: 'RGB', width: 1280, height: 720});
+ expect(worldTownMapArt).toBe('./' + directory + '/' + map.file);
+ expect(map.bytes).toBeLessThanOrEqual(185000);
+ const zones = {workshop: [.20,.35,.60,.78], canteen: [.42,.58,.24,.42],
+  library: [.68,.85,.26,.46], expedition: [.68,.84,.64,.82]} as const;
+ expect(Object.keys(map.mapPins!).sort()).toEqual(Object.keys(zones).sort());
+ for (const [name, [minX,maxX,minY,maxY]] of Object.entries(zones)) {
+  const {x,y} = map.mapPins![name]!;
+  expect(x >= minX && x <= maxX && y >= minY && y <= maxY).toBe(true);
+ }
+ for (const [i, {id, master, runtime}] of manifest.assets.entries()) {
+  const entry = catalog.assets[i]!;
+  expect(master.file).toBe(batch + '/masters/' + id + '.png');
+  expect(fileSha(master.file)).toBe(master.sha256);
+  expect(runtime).toMatchObject({...entry, file: 'apps/web/public/' + directory + '/' + entry.file});
+ }
+ verifyArtPackages(directory, catalog.assets, manifest.catalog);
+});
+
+it('re-exports Batch 14 twice from the masters including the catalog and proof sheets', () => {
+ const batch = 'art/art-batch-14', path = batch + '/manifest.json';
+ const manifest: {assets: {runtime: ArtFile}[]; catalog: ArtFile; reviews: ArtFile[]} = JSON.parse(readFileSync(path, 'utf8'));
+ const files = new Map([[path, fileSha(path)]]);
+ for (const file of [...manifest.assets.map(a => a.runtime), manifest.catalog, ...manifest.reviews]) {
+  expect(fileSha(file.file)).toBe(file.sha256);
+  files.set(file.file, file.sha256);
+ }
+ expect(files.size).toBe(23);
+ verifyRepeatExport(batch + '/export.py', files);
+}, 180000);
