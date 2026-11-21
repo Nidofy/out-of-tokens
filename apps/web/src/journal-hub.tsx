@@ -2,7 +2,8 @@ import type {Command} from 'oot-core';
 import {worlds} from 'oot-core';
 import type {ActivityPreview,ExperienceView,FinanceExplanation,GameView} from 'oot-platform';
 import {Icon} from './icons.js';
-import {artSlotForJobTemplate,describeActivityPreview,formatFactLine,receiptKey} from './experience-adapter.js';
+import {describeActivityPreview,formatFactLine,receiptKey} from './experience-adapter.js';
+import {resolveCommissionOutcomeSlot,resolveEndingArt,resolveWorldArt} from './art/story-expansion-resolver.js';
 import {ExperienceArtSlot} from './experience-art-slot.js';
 import {experienceReceiptCopy} from './experience-copy.js';
 import {financeNetSolvencyNote} from './experience-ui-copy.js';
@@ -96,7 +97,7 @@ export function JournalHub({view,english,locked,tab,setTab,send,hideTabs,preview
           {[...receipts].reverse().map(r=>{
            const job=view.jobs.find(j=>j.id===r.jobId);
            const copy=experienceReceiptCopy(r,job);
-           const slotId=artSlotForJobTemplate(job?.template);
+           const slotId=resolveCommissionOutcomeSlot(job?.template);
            const passed=r.facts.some(f=>f.certainty==='certain'&&f.reason==='delivery-passed');
            const rework=r.facts.some(f=>f.certainty==='certain'&&f.reason==='delivery-rework');
            const badge=passed?tr('验收通过','Accepted'):rework?tr('返工修正','Rework'):tr('未通过/违约','Failed');
@@ -235,7 +236,7 @@ export function JournalHub({view,english,locked,tab,setTab,send,hideTabs,preview
        <h4>{tr('异世界远征','Otherworld expeditions')}</h4>
        <div class="ui2-world-list">
         {worlds.map(w=><article class="ui2-world-item" key={w.id}>
-         <img src={`./art/${w.id}.webp`} alt=""/>
+         <img src={resolveWorldArt(w.id)} alt=""/>
          <div>
           <b>{english?w.en:w.zh}</b>
           <small>¥{w.cost} · {w.slots}{tr('槽',' slots')} · +{w.research} RP</small>
@@ -267,7 +268,7 @@ export function JournalHub({view,english,locked,tab,setTab,send,hideTabs,preview
        <h4>{tr('事务所终局画册','Studio endings gallery')}</h4>
        {f.ending?(
         <div class="ui2-ending-active">
-         <img class="ending-art" src={`./art/${f.ending}.webp`} alt=""/>
+         <img class="ending-art" src={resolveEndingArt(f.ending)} alt=""/>
          <b>{endings.find(e=>e[0]===f.ending)?.[english?2:1]}</b>
          <p>{endings.find(e=>e[0]===f.ending)?.[english?6:5]}</p>
          <button class="primary" disabled={locked||f.endless} onClick={()=>act('endless','continue')}>{tr('开启无尽经营模式','Continue in endless mode')}</button>
@@ -283,7 +284,7 @@ export function JournalHub({view,english,locked,tab,setTab,send,hideTabs,preview
        {!f.ending&&(
         <div class="ui2-endings-grid">
          {endings.map(e=><div class="ui2-ending-card" key={e[0]}>
-          <img src={`./art/${e[0]}.webp`} alt=""/>
+          <img src={resolveEndingArt(e[0])} alt=""/>
           <div>
            <b>{e[english?2:1]}</b>
            <small>{e[english?4:3]}</small>

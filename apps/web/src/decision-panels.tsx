@@ -2,7 +2,7 @@ import {names} from './presentation.js';
 import type {ExperienceView,GameSession,GameView} from 'oot-platform';
 import {experienceReceiptCopy} from './experience-copy.js';
 import type {ClientPersonaDef} from './living-adapter.js';
-import {clientAssetSrc} from './living-adapter.js';
+import {resolveClientAvatarArt} from './art/story-expansion-resolver.js';
 type Forecast=NonNullable<ReturnType<GameSession['previewAssignment']>['forecast']>;
 export function periodText(slot:number,english:boolean){return `${english?'Day ':'第'}${Math.floor(slot/4)+1}${english?'':'天'} · ${(english?['Morning','Afternoon','Evening','Night']:['上午','下午','晚上','深夜'])[slot%4]}`;}
 export function AssignmentForecast({value,english}:{value:Forecast;english:boolean}){
@@ -22,7 +22,7 @@ export function DeliverySummary({job,english,settled,persona,receipt}:{job:GameV
      ?(histAssessment.quality>=(histAssessment.qualityLines[2]??90)?'excellent':histAssessment.quality>=(histAssessment.qualityLines[1]??75)?'good':'pass')
      :'pass')
    :r.tier;
- const avatarSrc=persona?clientAssetSrc(persona.id):null;
+ const avatarSrc=persona?resolveClientAvatarArt(persona.id):null;
  const clientNote=persona&&(
   <div class="ui2-client-card">
    <div class="ui2-client-avatar">

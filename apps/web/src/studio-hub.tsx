@@ -4,7 +4,9 @@ import {Icon} from './icons.js';
 import {describeActivityPreview,formatFactLine} from './experience-adapter.js';
 import {financeNetSolvencyNote} from './experience-ui-copy.js';
 import {PipTrack} from './ornaments.js';
-import {chapterBannerArt,financeArt,softwareArt} from './generated-art.js';
+import {chapterBannerArt,financeArt} from './generated-art.js';
+import {ExperienceArtSlot} from './experience-art-slot.js';
+import {resolveSoftwareIconArt} from './art/story-expansion-resolver.js';
 import {names} from './presentation.js';
 import {actorIds} from './studio-ui.js';
 import {recruitmentBlock} from './character-profiles.js';
@@ -72,6 +74,17 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
         </li>)}
        </ul>
        <p class="ui2-muted-note">{tr('第0章目标','Chapter 0 goal')}: {tr({pending:'待结算',passed:'达成',missed:'可继续经营后补达成'}[p.chapterZero],p.chapterZero)} · {tr('已完成章节','Completed')}: {p.completed.join(', ')||'—'}</p>
+       {view.chapterGoal.ready&&(
+        <ExperienceArtSlot
+         slotId="vignette-chapter-clear"
+         variant="vignette"
+         state="delivered"
+         english={english}
+         badgeText={tr('章节达成','Chapter ready')}
+         title={tr('本章全部目标已就绪，可以迈向下一阶段','All chapter goals met — ready to advance')}
+         subtitle={tr('确认章节目标即可解锁新舞台与后续合作机会','Confirm below to unlock the next stage & opportunities')}
+        />
+       )}
        <button class="primary" disabled={locked||!view.chapterGoal.ready} onClick={()=>life('chapter','next')}>
         {p.chapter===1?tr('举行融资路演，进入第2章','Hold pitch and enter chapter 2'):tr('确认章节目标','Complete chapter goal')}
        </button>
@@ -96,6 +109,16 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
 
       <section class="ui2-card" data-alert={activeIncidents.length>0}>
        <h4><Icon name={activeIncidents.length>0?'warning':'check'}/> {tr('SLA 运维监控','SLA maintenance')}</h4>
+       {activeIncidents.length>0&&(
+        <ExperienceArtSlot
+         slotId="vignette-crisis-429"
+         variant="vignette"
+         english={english}
+         badgeText={tr('线上告警','SLA alert')}
+         title={tr(`有 ${activeIncidents.length} 项线上异常等待响应`,`${activeIncidents.length} live incident(s) need response`)}
+         subtitle={tr('在截止槽前派空闲伙伴处理，避免客户口碑与尾款受损','Assign an idle teammate before the deadline slot')}
+        />
+       )}
        {activeIncidents.length===0?<p class="ui2-muted-note">{tr('当前线上运行平稳，没有待响应的维护事件。','All services steady; no pending maintenance incidents.')}</p>:activeIncidents.map(i=>(
         <div class="ui2-incident-row" key={i.job}>
          <b>{i.job}</b>
@@ -229,7 +252,7 @@ export function StudioHub({view,english,locked,tab,setTab,send,onOpenOffice,onSw
         const owned=p.software.includes(u.id),missingPre=u.requires.filter(req=>!p.software.includes(req)),rpShort=Math.max(0,u.research-p.research);
         return <article class="ui2-card ui2-sw-card" key={u.id} data-owned={owned}>
          <div class="ui2-card-head">
-          <img class="art-icon" src={softwareArt(u.id)} alt=""/>
+          <img class="art-icon" src={resolveSoftwareIconArt(u.id)} alt=""/>
           <div>
            <b>{english?u.nameEn:u.name}</b>
            <small>¥{u.cost} · {u.research} RP</small>

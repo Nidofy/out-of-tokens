@@ -193,6 +193,16 @@ const stageBMap:Readonly<Record<string,string>>={bluewhale:'bluewhale.r1',qwen:'
         {livingView.duos.some(d=>d.actors.includes(actor.id))&&(
          <div class="ui2-duo-section">
           <h4><Icon name="link"/> {tr('搭档默契（Duo Synergy）','Duo Synergy')}</h4>
+          {!suppressVignettes&&livingView.duos.some(d=>d.actors.includes(actor.id)&&!d.unlocked&&d.canUnlock)&&(
+           <ExperienceArtSlot
+            slotId="vignette-duo-tea"
+            variant="vignette"
+            english={english}
+            badgeText={tr('搭档茶会就绪','Duo tea ready')}
+            title={tr('并肩交付已满，可随时召开搭档茶会','Shared deliveries reached — host duo tea')}
+            subtitle={tr('解锁永久搭档默契加成并收获 +2 RP','Unlock permanent duo synergy and earn +2 RP')}
+           />
+          )}
           <div class="ui2-duo-grid">
            {livingView.duos.filter(d=>d.actors.includes(actor.id)).map(d=>{
             const partnerId=d.actors[0]===actor.id?d.actors[1]:d.actors[0];

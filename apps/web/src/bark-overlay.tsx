@@ -1,6 +1,6 @@
 import {Icon} from './icons.js';
 import {characterPosters} from './character-profiles.js';
-import {resolveAvatarArt} from './art/portrait-resolver.js';
+import {emotionForEmote,resolveExpressionAvatarArt} from './art/portrait-resolver.js';
 import {names} from './presentation.js';
 import {EmoteBadge} from './stage-chatter.js';
 import type {EmoteKind,GiftDef} from './living-adapter.js';
@@ -24,8 +24,9 @@ export function BarkOverlay({bark,view,english,inModal=false,onClose}:{bark:Bark
  if(!bark)return null;
  const tr=(zh:string,en:string)=>english?en:zh;
  const accent=characterPosters[bark.actorId]?.themeColor??'#8b673c';
- const art=resolveAvatarArt(bark.actorId);
- const partnerArt=bark.partnerId?resolveAvatarArt(bark.partnerId):null;
+ const emotion=emotionForEmote(bark.emote);
+ const art=resolveExpressionAvatarArt(bark.actorId,emotion);
+ const partnerArt=bark.partnerId?resolveExpressionAvatarArt(bark.partnerId,emotion):null;
 
  return (
   <div class="ui2-bark-card" data-in-modal={inModal?'true':'false'} role="status" aria-live="polite" style={{'--poster-color':accent}}>

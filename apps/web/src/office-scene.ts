@@ -24,7 +24,7 @@ import {decorPropArt} from './furniture-art.js';
 import {
  ClickableDecorProp,
  FurnitureDynamicFx,
- WORKSHOP_DECOR_PLACEMENTS,
+ decorPlacementsForScene,
  furnitureTintFor,
  isLegacyFurnitureFallbackActive,
  resolveFurnitureLayerUrl,
@@ -65,26 +65,28 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
  const fixed=visualReviewEnabled?Number(new URLSearchParams(location.search).get('animation-time')??NaN):NaN;
  let lastPresence='';
  const objects=new Map<string,{back:Container;front:Container;backSprite?:Sprite|undefined;frontSprite?:Sprite|undefined;hasBack:boolean;hasFront:boolean;fx:FurnitureDynamicFx;kind:string;slot:string}>(),walkers=new Map<string,Walker>(),textures=new Map<string,Texture>(),requested=new Set<string>(),workHits=new Map<string,ReturnType<typeof workFurnitureHitArea>>();
- const decorProps=new Map<string,ClickableDecorProp>();
- let decorRequested=false;
+ const decorProps=new Map<string,{scene:string;prop:ClickableDecorProp}>();
+ const decorRequestedScenes=new Set<string>();
  const hitKinds=['basic','standard','whiteboard','coffee','sofa','server','dining','reading'];
  let navKey='',navGrid:OfficeNavGrid=bakeOfficeNavGrid([]),officePois:OfficePoi[]=[];
 
- function ensureWorkshopDecor(){
-  if(decorRequested||isLegacyFurnitureFallbackActive())return;
-  decorRequested=true;
+ function ensureSceneDecor(scene:string){
+  if(decorRequestedScenes.has(scene)||isLegacyFurnitureFallbackActive())return;
+  decorRequestedScenes.add(scene);
+  const placements=decorPlacementsForScene(scene);
   void loadChibiFxBundle().catch(()=>undefined).then(fxBundle=>{
    if(dead)return;
-   for(const spec of WORKSHOP_DECOR_PLACEMENTS){
+   for(const spec of placements){
+    const mapKey=`${scene}:${spec.id}`;
     void Assets.load<Texture>(decorPropArt(spec.id)).then(tex=>{
-     if(dead||decorProps.has(spec.id))return;
+     if(dead||decorProps.has(mapKey))return;
      const prop=new ClickableDecorProp(spec,tex,fxBundle,tapped=>{
       if(gestureMoved||performance.now()<suppressTapUntil)return false;
       playFoley(tapped.foley,readAudioPrefs().sfx);
       return true;
      });
-     prop.root.visible=(latest?.campaign?.scene??'workshop')==='workshop';
-     decorProps.set(spec.id,prop);
+     prop.root.visible=(latest?.campaign?.scene??'workshop')===scene;
+     decorProps.set(mapKey,{scene,prop});
      world.addChild(prop.root);
      queueSync();
     }).catch(()=>{});
@@ -183,8 +185,8 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
   background.set(sceneArt(scene,chapter,v.absoluteSlot%4>=2),v.absoluteSlot%4>=2);
   const items=scene==='workshop'?(v.office?.items??[]):[{id:'public-table',kind:scene==='canteen'?'dining':'reading',slot:'meeting-1'}];
   ensureNav(scene,chapter,items);
-  if(scene==='workshop')ensureWorkshopDecor();
-  for(const prop of decorProps.values())prop.root.visible=scene==='workshop';
+  ensureSceneDecor(scene);
+  for(const entry of decorProps.values())entry.prop.root.visible=entry.scene===scene;
   const present=new Set(items.filter(i=>i.slot).map(i=>i.id));for(const [id,o] of objects)if(!present.has(id)){o.back.destroy({children:true});o.front.destroy({children:true});objects.delete(id);}
   for(const i of items){if(!i.slot)continue;let object=objects.get(i.id);if(object&&object.kind!==i.kind){object.back.destroy({children:true});object.front.destroy({children:true});objects.delete(i.id);object=undefined;}if(!object){const backRes=furniture(i.kind,'back'),frontRes=furniture(i.kind,'front'),fx=new FurnitureDynamicFx(i.kind);backRes.node.addChild(fx.backFx);frontRes.node.addChild(fx.frontFx);object={kind:i.kind,slot:i.slot,back:backRes.node,front:frontRes.node,backSprite:backRes.sprite,frontSprite:frontRes.sprite,hasBack:backRes.key!==null,hasFront:frontRes.key!==null,fx};objects.set(i.id,object);world.addChild(object.back,object.front);for(const entry of [{node:object.back,key:backRes.key,side:'back' as const},{node:object.front,key:frontRes.key,side:'front' as const}]){if(!entry.key){entry.node.eventMode='none';continue;}entry.node.eventMode='static';entry.node.cursor='pointer';if(!textures.has(entry.key))entry.node.hitArea=hitKinds.includes(i.kind)?(workHits.get(entry.key)??{contains:()=>false}):furnitureHitArea(i.kind,entry.side);else if(!hitKinds.includes(i.kind))entry.node.hitArea=furnitureHitArea(i.kind,entry.side);entry.node.on('pointertap',()=>{if(!gestureMoved&&performance.now()>=suppressTapUntil)onFurniture?.(i.id);});}}object.slot=i.slot;const p=slotPoint(i.slot,chapter);object.back.position.set(p.x,p.y);object.front.position.set(p.x,p.y);object.back.zIndex=p.y-2;object.front.zIndex=p.y+2;object.back.eventMode=layout||!object.hasBack?'none':'static';object.front.eventMode=layout||!object.hasFront?'none':'static';}
   const members=v.actors.filter(a=>a.location===scene);for(const [id,a] of walkers){a.root.visible=members.some(m=>m.id===id);a.badge.visible=a.root.visible;}
@@ -333,8 +335,8 @@ export async function createWorkshop(host:HTMLElement,onSelect:(id:string)=>void
     });
    }
   }
-  for(const prop of decorProps.values()){
-   if(prop.root.visible)prop.update(animTime,ms,night,layout,still);
+  for(const entry of decorProps.values()){
+   if(entry.prop.root.visible)entry.prop.update(animTime,ms,night,layout,still);
   }
   const faces=[...walkers.values()].filter(w=>w.root.visible&&w.root.renderable).flatMap(w=>{const b=w.rig?.getFaceBounds();return b?[b]:[];});
   for(const row of separateOfficeLabels([...walkers.values()].filter(w=>w.badge.visible).map(w=>({id:w.id,x:w.badge.x,y:w.badge.y-2,width:w.badge.width,height:w.badge.height})),app.screen.width,app.screen.height,faces)){const w=walkers.get(row.id)!;w.badge.position.set(row.x,row.y+2);}

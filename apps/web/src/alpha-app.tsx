@@ -8,7 +8,8 @@ import type {CameraPan,OfficeFocus,CameraZone} from './office-scene-spec.js';
 import type {Furniture} from 'oot-core';
 import {Onboarding} from './onboarding.js';
 import {characterPosters,recruitmentBlock,recruitmentReasons} from './character-profiles.js';
-import {isFlagshipVersion,resolveAvatarArt,resolveBasePortraitArt,resolveCharacterStageArt,resolveFlagshipPortraitArt} from './art/portrait-resolver.js';
+import {isFlagshipVersion,resolveBasePortraitArt,resolveCharacterStageArt,resolveExpressionAvatarArt,resolveFlagshipPortraitArt} from './art/portrait-resolver.js';
+import {TOWN_MAP_PINS,resolveTownMapBackdropArt} from './art/story-expansion-resolver.js';
 import {effectLabel} from './player-labels.js';
 import {controllerTracker} from './update-observer.js';
 import {Icon} from './icons.js';
@@ -884,20 +885,70 @@ export function AlphaApp(){
      <>
       <p>{tr('切换场景不推进时段。伙伴按自己的日程活动。','Changing scenes does not advance time. Teammates follow their own schedules.')}</p>
       {locked&&<p class="system-caption">{busy?tr('正在处理操作，请稍候再切换场景。','An operation is in progress. Please wait before travelling.'):tr('请先处理当前事件或经营状态，再切换场景。','Resolve the current event or studio state before travelling.')}</p>}
-      <div class="world-map">
-       <svg class="map-road" viewBox="0 0 600 350" preserveAspectRatio="none" aria-hidden="true"><path d="M100 70 Q300 50 300 175 T500 280" fill="none" stroke="#b08c63" stroke-width="12" stroke-dasharray="12 8"/></svg>
-       {(Object.keys(sceneText) as (keyof typeof sceneText)[]).map(id=>{
-        const night=view.absoluteSlot%4>=2;
-        const hint=id==='workshop'?(night?tr('加班筹备 · 查看委托进度','Overtime prep · Check jobs'):tr('接单 · 派遣 · 布置','Jobs · Assign · Layout')):id==='canteen'?(night?tr('夜间聚餐 · 休息聊天','Evening meal · Rest & chat'):tr('吃饭 ¥30 · 休息 · 聊天','Meals ¥30 · Rest · Chat')):(night?tr('晚间共学 +2RP · 微调/访友','Evening study +2RP · Train'):tr('学习 +2RP · 微调 · 访友','Study +2RP · Train · Visit'));
-        return <button key={id} disabled={locked} aria-pressed={p.scene===id} onClick={()=>{life('visit',id);setMapOpen(false);}}>
-         <img src={sceneArt(id,p.chapter,night)} alt=""/>
-         {p.scene===id&&<span class="ui2-here-pill">{tr('当前所在','Current')}</span>}
-         <b>{scene(id)}</b>
-         <span class="map-people">{view.actors.filter(a=>a.location===id&&(id===p.scene||p.software.includes('messenger'))).map(a=><span key={a.id} title={names[a.id]}><Portrait id={a.id} variant="map"/></span>)}</span>
-         <span class="ui2-map-hint"><Icon name={id==='workshop'?'briefcase':id==='canteen'?'sun':'book'}/><small>{hint}</small></span>
-        </button>;
-       })}
-      </div>
+      {(()=>{
+       const townMapSrc=resolveTownMapBackdropArt();
+       const night=view.absoluteSlot%4>=2;
+       return townMapSrc?(
+        <div class="ui2-town-map-stage">
+         <img class="ui2-town-map-bg" src={townMapSrc} alt="" decoding="async"/>
+         <div class="ui2-town-map-pins">
+          {(Object.keys(sceneText) as (keyof typeof sceneText)[]).map(id=>{
+           const pin=TOWN_MAP_PINS[id];
+           const hint=id==='workshop'?(night?tr('加班筹备 · 委托进度','Overtime · Jobs'):tr('接单 · 派遣 · 布置','Jobs · Layout')):id==='canteen'?(night?tr('夜间聚餐 · 聊天','Evening meal · Chat'):tr('吃饭 ¥30 · 聊天','Meals ¥30 · Chat')):(night?tr('晚间共学 +2RP · 微调','Study +2RP · Train'):tr('学习 +2RP · 微调','Study +2RP · Train'));
+           const present=view.actors.filter(a=>a.location===id&&(id===p.scene||p.software.includes('messenger')));
+           return (
+            <button
+             key={id}
+             class="ui2-map-pin"
+             data-scene={id}
+             disabled={locked}
+             aria-pressed={p.scene===id}
+             style={{left:`${(pin.x*100).toFixed(2)}%`,top:`${(pin.y*100).toFixed(2)}%`}}
+             onClick={()=>{life('visit',id);setMapOpen(false);}}
+            >
+             <span class="ui2-map-pin-head">
+              <Icon name={id==='workshop'?'briefcase':id==='canteen'?'sun':'book'}/>
+              <b>{scene(id)}</b>
+              {p.scene===id&&<span class="ui2-here-pill">{tr('在此','Here')}</span>}
+             </span>
+             <small>{hint}</small>
+             {present.length>0&&(
+              <span class="map-people">{present.map(a=><span key={a.id} title={names[a.id]}><Portrait id={a.id} variant="map"/></span>)}</span>
+             )}
+            </button>
+           );
+          })}
+          <button
+           class="ui2-map-pin is-expedition"
+           data-locked={p.chapter<3?'true':'false'}
+           disabled={locked}
+           style={{left:`${(TOWN_MAP_PINS.expedition.x*100).toFixed(2)}%`,top:`${(TOWN_MAP_PINS.expedition.y*100).toFixed(2)}%`}}
+           onClick={()=>{setMapOpen(false);setJournalTab('expedition');setPanel('journal');}}
+          >
+           <span class="ui2-map-pin-head">
+            <Icon name={p.chapter<3?'lock':'spark'}/>
+            <b>{tr('异世界光门','Expedition gate')}</b>
+           </span>
+           <small>{p.chapter<3?tr('第 3 章开放远征','Unlocks Ch.3'):tr('派遣远征 · 终局画册','Expeditions & endings')}</small>
+          </button>
+         </div>
+        </div>
+       ):(
+        <div class="world-map">
+         <svg class="map-road" viewBox="0 0 600 350" preserveAspectRatio="none" aria-hidden="true"><path d="M100 70 Q300 50 300 175 T500 280" fill="none" stroke="#b08c63" stroke-width="12" stroke-dasharray="12 8"/></svg>
+         {(Object.keys(sceneText) as (keyof typeof sceneText)[]).map(id=>{
+          const hint=id==='workshop'?(night?tr('加班筹备 · 查看委托进度','Overtime prep · Check jobs'):tr('接单 · 派遣 · 布置','Jobs · Assign · Layout')):id==='canteen'?(night?tr('夜间聚餐 · 休息聊天','Evening meal · Rest & chat'):tr('吃饭 ¥30 · 休息 · 聊天','Meals ¥30 · Rest · Chat')):(night?tr('晚间共学 +2RP · 微调/访友','Evening study +2RP · Train'):tr('学习 +2RP · 微调 · 访友','Study +2RP · Train · Visit'));
+          return <button key={id} disabled={locked} aria-pressed={p.scene===id} onClick={()=>{life('visit',id);setMapOpen(false);}}>
+           <img src={sceneArt(id,p.chapter,night)} alt=""/>
+           {p.scene===id&&<span class="ui2-here-pill">{tr('当前所在','Current')}</span>}
+           <b>{scene(id)}</b>
+           <span class="map-people">{view.actors.filter(a=>a.location===id&&(id===p.scene||p.software.includes('messenger'))).map(a=><span key={a.id} title={names[a.id]}><Portrait id={a.id} variant="map"/></span>)}</span>
+           <span class="ui2-map-hint"><Icon name={id==='workshop'?'briefcase':id==='canteen'?'sun':'book'}/><small>{hint}</small></span>
+          </button>;
+         })}
+        </div>
+       );
+      })()}
      </>
     ):(
      <SecondaryFallbackSurface status={secondaryState.status} english={english} onRetry={retrySecondary} onCancel={()=>setMapOpen(false)}/>
@@ -938,7 +989,7 @@ export function AlphaApp(){
          {evActor&&(
           <div class="ui2-event-actor">
            <div class="ui2-event-actor-avatar">
-            <img class="ui2-event-portrait" src={resolveAvatarArt(evActor.id)} alt=""/>
+            <img class="ui2-event-portrait" src={resolveExpressionAvatarArt(evActor.id,'flustered')} alt=""/>
             <EmoteBadge emote="sweat" view={view}/>
            </div>
            <div>

@@ -1,5 +1,7 @@
-import {avatarPortraitArt,basePortraitArt,flagshipPortraitArt} from '../portraits-art.js';
+import {avatarPortraitArt,basePortraitArt,expressionAvatarArt,flagshipPortraitArt} from '../portraits-art.js';
 import {stageBPortrait} from '../character-profiles.js';
+
+export type PortraitEmotion='default'|'happy'|'flustered'|'focused';
 
 export const FLAGSHIP_VERSION_BY_CHARACTER:Readonly<Record<string,string>>={
  bluewhale:'bluewhale.r1',
@@ -47,6 +49,31 @@ export function resolveAvatarArt(characterId:string,legacyOverride?:boolean):str
  const isLegacy=legacyOverride??isLegacyPortraitsFallbackActive();
  if(isLegacy)return `./art/ai-village/portraits/${characterId}.png`;
  return avatarPortraitArt(characterId)??`./art/ai-village/portraits/${characterId}.png`;
+}
+
+export function resolveExpressionAvatarArt(
+ characterId:string,
+ emotion:PortraitEmotion='default',
+ legacyOverride?:boolean
+):string{
+ const isLegacy=legacyOverride??isLegacyPortraitsFallbackActive();
+ if(isLegacy||emotion==='default')return resolveAvatarArt(characterId,isLegacy);
+ return expressionAvatarArt(characterId,emotion)??resolveAvatarArt(characterId,false);
+}
+
+export function emotionForEmote(emote:string|undefined):PortraitEmotion{
+ if(emote==='sparkle'||emote==='rice'||emote==='coffee')return 'happy';
+ if(emote==='sweat'||emote==='sleepy')return 'flustered';
+ if(emote==='idea')return 'focused';
+ return 'default';
+}
+
+export function emotionForThreadContext(text:string):PortraitEmotion{
+ const lower=text.toLowerCase();
+ if(/429|危机|过载|救命|崩溃|停工|来不及|催|bug|error|urgent|panic|late|deadline|alert|rush/.test(lower))return 'flustered';
+ if(/恭喜|太棒|感谢|干杯|奶茶|聚餐|茶会|开心|庆功|成功|好消息|happy|great|thanks|tea|celebrate|yay/.test(lower))return 'happy';
+ if(/清单|方案|架构|排期|复核|微调|研发|算法|分析|plan|review|spec|bench|debug|check|design/.test(lower))return 'focused';
+ return 'default';
 }
 
 export function resolveBasePortraitArt(characterId:string,legacyOverride?:boolean):string{

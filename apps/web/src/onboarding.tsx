@@ -2,6 +2,7 @@ import {useEffect,useMemo,useRef,useState} from 'preact/hooks';
 import type {ExperienceView,GameView} from 'oot-platform';
 import {Icon} from './icons.js';
 import {ExperienceArtSlot} from './experience-art-slot.js';
+import {resolvePaperclipMascotArt} from './art/story-expansion-resolver.js';
 import {resolveReasonCopy} from './experience-ui-copy.js';
 import {readLearningPrefs,resumeLearning,skipAllLearning,skipLearningNode,subscribeLearningPrefs} from './experience-ui-state.js';
 import type {LearningNodeId,LearningPrefs,UiKeyValueStore} from './experience-ui-state.js';
@@ -207,6 +208,8 @@ export function Onboarding({
    }
    cbRef.current.openPanel(meta.panel);
   };
+  const mascotPose:'idle'|'alert'=activeNode==='bill'||activeNode==='clarify'||view.liquidCash<0?'alert':'idle';
+  const mascotSrc=resolvePaperclipMascotArt(mascotPose);
   return (
    <>
     <div class="ui2-guide-head">
@@ -216,7 +219,10 @@ export function Onboarding({
       aria-expanded={open}
       onClick={handleToggle}
      >
-      <span>{tr('回形针 · 7项核心引导','Paperclip · 7-step guide')} ({observedCount}/7)</span>
+      <span class="ui2-guide-title">
+       {mascotSrc&&<img class="ui2-guide-mascot" src={mascotSrc} alt="" decoding="async"/>}
+       <span>{tr('回形针 · 7项核心引导','Paperclip · 7-step guide')} ({observedCount}/7)</span>
+      </span>
       <b>{prefs.skippedAll?tr('重开','Reopen'):open?'−':'+'}</b>
      </button>
      {surface==='scene'?(

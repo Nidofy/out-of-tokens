@@ -53,6 +53,24 @@ export const WORKSHOP_DECOR_PLACEMENTS:readonly DecorPlacement[]=[
  {id:'decor-vinyl_player',x:1630,y:956,displayHeight:94,fxId:'emote-slack',foley:'message'}
 ];
 
+/** Presentation-only floor placements in Canteen (clear of meeting-1 table & actor rows). */
+export const CANTEEN_DECOR_PLACEMENTS:readonly DecorPlacement[]=[
+ {id:'decor-ramen_cart',x:270,y:918,displayHeight:112,fxId:'prop-coffee_cup',foley:'flip'},
+ {id:'decor-bento_board',x:1590,y:928,displayHeight:116,fxId:'emote-heart',foley:'emote'}
+];
+
+/** Presentation-only floor placements in Library (clear of meeting-1 table & actor rows). */
+export const LIBRARY_DECOR_PLACEMENTS:readonly DecorPlacement[]=[
+ {id:'decor-book_trolley',x:280,y:926,displayHeight:114,fxId:'prop-doc_page',foley:'flip'},
+ {id:'decor-library_owl',x:1600,y:922,displayHeight:96,fxId:'emote-zzz',foley:'emote'}
+];
+
+export function decorPlacementsForScene(scene:string):readonly DecorPlacement[]{
+ if(scene==='canteen')return CANTEEN_DECOR_PLACEMENTS;
+ if(scene==='library')return LIBRARY_DECOR_PLACEMENTS;
+ return WORKSHOP_DECOR_PLACEMENTS;
+}
+
 export function canvasToFurnitureWorld(px:number,py:number):{x:number;y:number}{
  return {x:px/2-140,y:py/2-200};
 }
@@ -125,8 +143,8 @@ export function warmModernFurnitureAssets(view:GameView):void{
    }
   }
  }
- if(!legacy&&scene==='workshop'){
-  for(const d of WORKSHOP_DECOR_PLACEMENTS){
+ if(!legacy){
+  for(const d of decorPlacementsForScene(scene)){
    void Assets.load<Texture>(decorPropArt(d.id)).catch(()=>{});
   }
  }
@@ -314,7 +332,7 @@ export class ClickableDecorProp {
   let rot=0;
   let offsetY=0;
 
-  if(!still&&this.spec.id==='decor-studio_cat'){
+  if(!still&&(this.spec.id==='decor-studio_cat'||this.spec.id==='decor-library_owl')){
    const breath=Math.sin(elapsed*1.45);
    sx=baseScale*(1-breath*0.015);
    sy=baseScale*(1+breath*0.02);

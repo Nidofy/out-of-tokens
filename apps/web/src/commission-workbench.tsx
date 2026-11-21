@@ -3,12 +3,13 @@ import type {ComponentChildren} from 'preact';
 import type {Command,Member} from 'oot-core';
 import type {ActivityPreview,Draft,DuoExplanation,ExperienceView,GameSession,GameView,SuggestResult} from 'oot-platform';
 import {commissionObjective,showSettlement,waitingText} from './commission-tracking.js';
-import {artSlotForJobTemplate,computeCandidateDelta,describeActivityPreview,findLatestJobReceipt,formatDuoEvaluations,formatFactLine,stableDraftKey} from './experience-adapter.js';
+import {computeCandidateDelta,describeActivityPreview,findLatestJobReceipt,formatDuoEvaluations,formatFactLine,stableDraftKey} from './experience-adapter.js';
 import type {SuggestionTimingSample} from './experience-worker-host.js';
 import {ExperienceArtSlot} from './experience-art-slot.js';
 import {experienceDuoCopy} from './experience-copy.js';
 import {Portrait} from './studio-ui.js';
-import {resolveAvatarArt} from './art/portrait-resolver.js';
+import {resolveExpressionAvatarArt} from './art/portrait-resolver.js';
+import {resolveCommissionOutcomeSlot} from './art/story-expansion-resolver.js';
 import {AssignmentForecast,DeliverySummary,periodText} from './decision-panels.js';
 import {names} from './presentation.js';
 import {skillText} from './ui-labels.js';
@@ -246,7 +247,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
         :null;
        return (
         <ExperienceArtSlot
-         slotId={artSlotForJobTemplate(job.template)}
+         slotId={resolveCommissionOutcomeSlot(job.template)}
          variant="outcome"
          english={english}
          state={job.status==='delivered'?'delivered':'preview'}
@@ -348,7 +349,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
               <div class="ui2-candidate-team">
                {cand.team.map(m=>(
                 <span key={m.character} class="ui2-candidate-member">
-                 <img src={resolveAvatarArt(m.character)} alt=""/>
+                 <img src={resolveExpressionAvatarArt(m.character,'focused')} alt=""/>
                  <em>{names[m.character]??m.character} · {roleShort[m.role]} · {m.mode==='cloud'?tr('云端','Cloud'):tr('本地','Local')}</em>
                 </span>
                ))}
@@ -380,7 +381,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
            const m=members[idx];
            return m?(
             <div class="ui2-squad-slot is-filled" key={idx}>
-             <img src={resolveAvatarArt(m.character)} alt=""/>
+             <img src={resolveExpressionAvatarArt(m.character,'focused')} alt=""/>
              <span>{roleShort[m.role]}</span>
             </div>
            ):<div class="ui2-squad-slot is-empty" key={idx}><span>+</span></div>;
@@ -422,7 +423,7 @@ export function CommissionWorkbench({view,job,english,locked,send,previewAssignm
 
         {workBark&&(
          <div class="ui2-work-bark" role="status">
-          <img src={resolveAvatarArt(workBark.actorId)} alt=""/>
+          <img src={resolveExpressionAvatarArt(workBark.actorId,'focused')} alt=""/>
           <span><b>{names[workBark.actorId]??workBark.actorId}:</b> “{workBark.text}”</span>
          </div>
         )}

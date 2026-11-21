@@ -3,7 +3,7 @@ import {Dialog} from './dialog.js';
 import {Icon} from './icons.js';
 import {names} from './presentation.js';
 import {characterPosters} from './character-profiles.js';
-import {resolveAvatarArt} from './art/portrait-resolver.js';
+import {emotionForThreadContext,resolveExpressionAvatarArt} from './art/portrait-resolver.js';
 import {messengerStatusCopy} from './experience-ui-copy.js';
 import {describeActivityPreview} from './experience-adapter.js';
 import {isThreadUnread} from './experience-ui-state.js';
@@ -80,7 +80,7 @@ export function MessengerDrawer({open,close,threads,readIds,onMarkRead,english,s
         class="ui2-thread-item"
         onClick={()=>openThreadBody(t)}
        >
-        <img src={resolveAvatarArt(speaker)} alt=""/>
+        <img src={resolveExpressionAvatarArt(speaker,emotionForThreadContext(`${t.title} ${t.titleEn}`))} alt=""/>
         <span>
          <b>{english?t.titleEn:t.title}</b>
          <small>{statusText}</small>
@@ -101,7 +101,7 @@ export function MessengerDrawer({open,close,threads,readIds,onMarkRead,english,s
        <div class="ui2-chat-messages">
         {active.messages.map((m,i)=>(
          <div key={i} class="ui2-chat-row" style={{'--poster-color':characterPosters[m.speaker]?.themeColor??'#8b673c'}}>
-          <img src={resolveAvatarArt(m.speaker)} alt=""/>
+          <img src={resolveExpressionAvatarArt(m.speaker,emotionForThreadContext(`${m.zh} ${m.en}`))} alt=""/>
           <div class="ui2-chat-bubble">
            <b>{names[m.speaker]??m.speaker}</b>
            <p>{english?m.en:m.zh}</p>
@@ -118,7 +118,7 @@ export function MessengerDrawer({open,close,threads,readIds,onMarkRead,english,s
            </div>
           </div>
           <div class="ui2-chat-row" style={{'--poster-color':characterPosters[chosen.targetActor]?.themeColor??'#8b673c'}}>
-           <img src={resolveAvatarArt(chosen.targetActor)} alt=""/>
+           <img src={resolveExpressionAvatarArt(chosen.targetActor,'happy')} alt=""/>
            <div class="ui2-chat-bubble">
             <b>{names[chosen.targetActor]??chosen.targetActor} <em class="is-up">+{tr('好感','Aff')} 2</em></b>
             <p>{english?chosen.responseEn:chosen.responseZh}</p>

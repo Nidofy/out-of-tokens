@@ -1,5 +1,5 @@
 import {useEffect,useState} from 'preact/hooks';
-import {experienceArt} from './experience-art.js';
+import {resolveExperienceOrExpansionArt} from './art/story-expansion-resolver.js';
 import {Icon} from './icons.js';
 import {visualReviewEnabled} from './visual-review.js';
 
@@ -10,8 +10,17 @@ const OBJECT_POSITIONS:Readonly<Record<string,string>>={
  'outcome-bookshop-system':'50% 50%',
  'outcome-bookshop-guide':'50% 50%',
  'outcome-workshop-display':'50% 48%',
+ 'outcome-pitch-demo':'50% 50%',
+ 'outcome-code-ops':'50% 50%',
+ 'outcome-release-night':'50% 48%',
+ 'outcome-crisis-429':'50% 50%',
+ 'outcome-museum-media':'50% 50%',
+ 'outcome-open-dawn':'50% 48%',
  'vignette-rest-corner':'68% 50%',
- 'vignette-first-delivery':'66% 48%'
+ 'vignette-first-delivery':'66% 48%',
+ 'vignette-chapter-clear':'70% 50%',
+ 'vignette-duo-tea':'70% 50%',
+ 'vignette-crisis-429':'70% 50%'
 };
 
 export interface ExperienceArtSlotProps {
@@ -37,7 +46,7 @@ export function ExperienceArtSlot({
  badgeText,
  state='neutral'
 }:ExperienceArtSlotProps){
- const src=experienceArt(slotId);
+ const src=resolveExperienceOrExpansionArt(slotId);
  const forceFault=(import.meta.env.DEV||visualReviewEnabled)&&new URLSearchParams(location.search).get('test-fault')==='art';
  const [failed,setFailed]=useState(forceFault);
 

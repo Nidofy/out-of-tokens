@@ -1,12 +1,13 @@
 import {useEffect,useRef,useState} from 'preact/hooks';
 import type {ExperienceView,GameView} from 'oot-platform';
-import {artSlotForJobTemplate,findLatestJobReceipt} from './experience-adapter.js';
+import {findLatestJobReceipt} from './experience-adapter.js';
 import {ExperienceArtSlot} from './experience-art-slot.js';
 import {experienceDuoCopy,experienceReceiptCopy} from './experience-copy.js';
 import {Dialog} from './dialog.js';
 import {Icon} from './icons.js';
-import {clientAssetSrc,resolveClientPersona} from './living-adapter.js';
+import {resolveClientPersona} from './living-adapter.js';
 import type {ClientPersonaDef,LivingContent,LivingView} from './living-adapter.js';
+import {resolveClientAvatarArt,resolveCommissionOutcomeSlot} from './art/story-expansion-resolver.js';
 import {names} from './presentation.js';
 
 export interface DeliveryDuoStageNote {
@@ -131,7 +132,7 @@ export function DeliveryFeedbackModal({
 
  const {job,assessment,cashDelta,action,outcome,persona,receipt,duoStages}=payload;
  const receiptCopy=experienceReceiptCopy(receipt,job);
- const slotId=artSlotForJobTemplate(job.template);
+ const slotId=resolveCommissionOutcomeSlot(job.template);
  const gradeTier:'excellent'|'good'|'pass'|'fail'=outcome==='rework'||outcome==='failed'
   ?'fail'
   :assessment===null
@@ -157,7 +158,7 @@ export function DeliveryFeedbackModal({
   ?`${tr('质量评分','Quality')} ${assessment.quality}（${tr('及格线','Pass')} ${assessment.passQuality}） · ${tr('未澄清扣分','Hidden penalty')} −${assessment.qualityBreakdown.hiddenPenalty} · ${tr('缺陷扣分','Defect penalty')} −${assessment.qualityBreakdown.defectPenalty}`
   :tr('该条回执未附带独立评分明细，此处不代填后续阶段数值。','No separate assessment snapshot was attached to this receipt.');
  const cashSigned=`${cashDelta>=0?'+':'−'}¥${Math.abs(cashDelta).toFixed(2)}`;
- const avatarSrc=persona?clientAssetSrc(persona.id):null;
+ const avatarSrc=persona?resolveClientAvatarArt(persona.id):null;
 
  return (
   <Dialog
